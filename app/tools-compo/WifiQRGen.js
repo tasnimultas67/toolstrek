@@ -94,10 +94,13 @@ const WifiQRGen = () => {
   };
 
   return (
-    <div className="">
-      <div className="flex justify-between w-10/12 mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200 md:h-[340px]">
-        <div className="w-1/3">
-          <form onSubmit={(e) => e.preventDefault()} className="space-y-3">
+    <div className="w-full mx-auto">
+      <div className="flex justify-between w-10/12 mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200">
+        <div className="w-2/3">
+          <form
+            onSubmit={(e) => e.preventDefault()}
+            className="space-y-3 w-2/3"
+          >
             {/* SSID Input */}
             <div className="space-y-1">
               <label>
@@ -166,8 +169,14 @@ const WifiQRGen = () => {
                 <p className="text-xs ">Your Wifi QR Code will show here!</p>
               </div>
             )}
+
             {qrCode && (
-              <div className="w-[250px] flex items-center justify-end">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5 }}
+                className="w-[250px] flex items-center justify-end"
+              >
                 <div className="p-4 flex flex-col items-center justify-start border border-gray-300 bg-white rounded-xl">
                   <img src={qrCode} alt="WiFi QR Code" className="m-2" />
 
@@ -181,7 +190,7 @@ const WifiQRGen = () => {
                     Download QR Code
                   </button>
                 </div>
-              </div>
+              </motion.div>
             )}
           </div>
         </div>
