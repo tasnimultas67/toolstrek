@@ -13,6 +13,7 @@ import {
 import { Copy, Download, Link2, QrCode } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
+import { motion, AnimatePresence } from "framer-motion";
 
 const WifiQRGen = () => {
   const [ssid, setSsid] = useState("");
@@ -94,8 +95,8 @@ const WifiQRGen = () => {
 
   return (
     <div className="">
-      <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200">
-        <div>
+      <div className="flex justify-between w-10/12 mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200 md:h-[340px]">
+        <div className="w-1/3">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-3">
             {/* SSID Input */}
             <div className="space-y-1">
@@ -158,37 +159,43 @@ const WifiQRGen = () => {
         </div>
 
         {/* QR Code Preview & Buttons */}
-        <div className="flex flex-col items-end justify-center">
-          {!qrCode && (
-            <div className="w-[250px]">
-              <p className="text-xs text-center">
-                Your Wifi QR Code will show here!
-              </p>
-            </div>
-          )}
-          {qrCode && (
-            <div className="w-[250px] flex items-center justify-end">
-              <div className="p-4 flex flex-col items-center justify-start border border-gray-300 bg-white rounded-xl">
-                <img src={qrCode} alt="WiFi QR Code" className="m-2" />
-
-                {/* Download QR Code Button */}
-                <button
-                  className="flex items-center justify-center gap-2 text-xs bg-blue-500 hover:bg-blue-800 transition-all text-white px-4 py-2 rounded-md"
-                  type="button"
-                  onClick={downloadQRCode}
-                >
-                  <Download className="size-4" />
-                  Download QR Code
-                </button>
+        <div className="w-1/3 flex flex-col items-end justify-center">
+          <div className="flex flex-col items-end justify-center ">
+            {!qrCode && (
+              <div className="">
+                <p className="text-xs ">Your Wifi QR Code will show here!</p>
               </div>
-            </div>
-          )}
+            )}
+            {qrCode && (
+              <div className="w-[250px] flex items-center justify-end">
+                <div className="p-4 flex flex-col items-center justify-start border border-gray-300 bg-white rounded-xl">
+                  <img src={qrCode} alt="WiFi QR Code" className="m-2" />
+
+                  {/* Download QR Code Button */}
+                  <button
+                    className="flex items-center justify-center gap-2 text-xs bg-blue-500 hover:bg-blue-800 transition-all text-white px-4 py-2 rounded-md"
+                    type="button"
+                    onClick={downloadQRCode}
+                  >
+                    <Download className="size-4" />
+                    Download QR Code
+                  </button>
+                </div>
+              </div>
+            )}
+          </div>
         </div>
       </div>
-      {/* PDF Template Download */}
+      {/* PDF Template Download section*/}
+
       {qrCode && (
-        <div className="max-w-5xl mx-auto p-3 bg-gray-50 rounded-lg mt-5 border border-gray-200 flex items-center justify-between">
-          <div className="w-[45%] flex items-center gap-4">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5, duration: 0.5 }}
+          className="w-10/12 mx-auto p-3 bg-gray-50 rounded-lg mt-5 border border-gray-200 flex items-center justify-between"
+        >
+          <div className="w-1/2 flex items-center gap-4">
             <Image
               src="/wifi_qr_template.jpg"
               alt="Wifi QR Template Demo"
@@ -201,7 +208,7 @@ const WifiQRGen = () => {
             </h3>
           </div>
           {/* Buttons */}
-          <div className="flex items-center justify-center gap-3">
+          <div className="w-1/2 flex items-center justify-end gap-3">
             {/* Show password in template */}
             <div className="flex items-center space-x-2 text-xs">
               <Switch
@@ -222,7 +229,7 @@ const WifiQRGen = () => {
               Download Full Template
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

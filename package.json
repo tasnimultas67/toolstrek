@@ -19,6 +19,7 @@
     "jspdf": "^3.0.1",
     "lucide": "^0.507.0",
     "lucide-react": "^0.507.0",
+    "motion": "^12.9.4",
     "next": "15.3.1",
     "qrcode": "^1.5.4",
     "qrcode.react": "^4.2.0",
