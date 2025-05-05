@@ -297,7 +297,7 @@ export function TestCal() {
 
               <Button
                 type="submit"
-                className="w-full h-12 text-lg bg-blue-600 hover:bg-blue-700 cursor-pointer"
+                className="font-normal w-full h-12 text-base bg-blue-600 hover:bg-blue-700 cursor-pointer"
                 disabled={!form.watch("birthDate")}
               >
                 Calculate Age
