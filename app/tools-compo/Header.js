@@ -29,19 +29,19 @@ const services = [
   {
     name: "Link Shortener",
     description: "Shorten your links for easy sharing",
-    href: "#",
+    href: "/tools/link-shortener",
     icon: LinkIcon,
   },
   {
     name: "Wifi QR Code Generator",
     description: "Generate QR codes for your wifi network",
-    href: "#",
+    href: "/tools/wifi-qr",
     icon: QrCodeIcon,
   },
   {
     name: "Age Calculator",
     description: "Calculate your age in years, months, and days",
-    href: "#",
+    href: "/tools/age-calculate",
     icon: CalculatorIcon,
   },
 ];

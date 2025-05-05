@@ -11,7 +11,7 @@ const HServices = () => {
         <div className="flex max-w-7xl items-center justify-center px-6 lg:px-8 gap-5 ">
           {/* Link Shortner */}
           <Link
-            href="#"
+            href="/tools/link-shortener"
             className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[32%]"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
@@ -24,7 +24,7 @@ const HServices = () => {
           </Link>
           {/* Wi-Fi QR Code */}
           <Link
-            href="#"
+            href="/tools/wifi-qr"
             className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[32%]"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
@@ -37,7 +37,7 @@ const HServices = () => {
           </Link>
           {/* Age Calculator */}
           <Link
-            href="#"
+            href="/tools/age-calculate"
             className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[32%]"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
