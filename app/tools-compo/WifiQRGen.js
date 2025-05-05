@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/select";
 import { Copy, Download, Link2, QrCode } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
+import Image from "next/image";
 
 const WifiQRGen = () => {
   const [ssid, setSsid] = useState("");
@@ -93,7 +94,7 @@ const WifiQRGen = () => {
 
   return (
     <div className="">
-      <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto p-5 bg-white rounded-lg mt-10 border border-gray-300">
+      <div className="grid grid-cols-1 md:grid-cols-2 max-w-5xl mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200">
         <div>
           <form onSubmit={(e) => e.preventDefault()} className="space-y-3">
             {/* SSID Input */}
@@ -102,7 +103,7 @@ const WifiQRGen = () => {
                 Wifi Name/SSID <span className="text-red-700">*</span>
               </label>
               <input
-                className="p-2 border border-gray-300 rounded-md text-sm w-full"
+                className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white"
                 type="text"
                 value={ssid}
                 placeholder="Enter your wifi name"
@@ -117,7 +118,7 @@ const WifiQRGen = () => {
                 Wifi Password <span className="text-red-700">*</span>
               </label>
               <input
-                className="p-2 border border-gray-300 rounded-md text-sm w-full"
+                className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white"
                 type="text"
                 value={password}
                 placeholder="Enter your wifi password"
@@ -186,10 +187,19 @@ const WifiQRGen = () => {
       </div>
       {/* PDF Template Download */}
       {qrCode && (
-        <div className="max-w-5xl mx-auto p-3 bg-white rounded-lg mt-5 border border-gray-300 flex items-center justify-between">
-          <h3 className="text-base text-left font-semibold md:text-xl w-[45%] bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-            Download the PDF template to print or share your Wi-Fi QR code.
-          </h3>
+        <div className="max-w-5xl mx-auto p-3 bg-gray-50 rounded-lg mt-5 border border-gray-200 flex items-center justify-between">
+          <div className="w-[45%] flex items-center gap-4">
+            <Image
+              src="/wifi_qr_template.jpg"
+              alt="Wifi QR Template Demo"
+              width="50"
+              height="200"
+              className="border border-gray-300 rounded-sm -rotate-6"
+            ></Image>
+            <h3 className="text-base text-left font-semibold md:text-xl  bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
+              Download the PDF template to print or share your Wi-Fi QR code.
+            </h3>
+          </div>
           {/* Buttons */}
           <div className="flex items-center justify-center gap-3">
             {/* Show password in template */}
