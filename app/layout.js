@@ -12,7 +12,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "ToolTrek",
+  title: "ToolsTrek",
   description:
     "ToolsTrek – Your go-to destination for smart online utilities. Instantly shorten URLs, generate QR codes, calculate metrics, and streamline digital tasks with ease. Explore powerful tools designed for efficiency!",
 };
