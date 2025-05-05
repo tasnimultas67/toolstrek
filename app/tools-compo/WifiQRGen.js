@@ -187,7 +187,7 @@ const WifiQRGen = () => {
       {/* PDF Template Download */}
       {qrCode && (
         <div className="max-w-5xl mx-auto p-3 bg-white rounded-lg mt-5 border border-gray-300 flex items-center justify-between">
-          <h3 className="text-base text-left font-semibold md:text-xl w-[50%]">
+          <h3 className="text-base text-left font-semibold md:text-xl w-[45%] bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
             Download the PDF template to print or share your Wi-Fi QR code.
           </h3>
           {/* Buttons */}
