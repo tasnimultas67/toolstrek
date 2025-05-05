@@ -29,7 +29,7 @@ const services = [
   {
     name: "Link Shortener",
     description: "Shorten your links for easy sharing",
-    href: "/tools/link-shortener",
+    href: "/tools/link-shortner",
     icon: LinkIcon,
   },
   {
