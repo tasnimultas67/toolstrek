@@ -23,7 +23,6 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
-// import { QrCode } from "lucide";
 
 const services = [
   {
@@ -72,44 +71,51 @@ export default function Header() {
         </div>
         <PopoverGroup className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
-              Services
-              <ChevronDownIcon
-                aria-hidden="true"
-                className="size-5 flex-none text-gray-400"
-              />
-            </PopoverButton>
+            {({ close }) => (
+              <>
+                <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+                  Services
+                  <ChevronDownIcon
+                    aria-hidden="true"
+                    className="size-5 flex-none text-gray-400"
+                  />
+                </PopoverButton>
 
-            <PopoverPanel
-              transition
-              className="absolute top-full -left-8 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
-            >
-              <div className="p-4">
-                {services.map((item) => (
-                  <div
-                    key={item.name}
-                    className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
-                  >
-                    <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                      <item.icon
-                        aria-hidden="true"
-                        className="size-6 text-gray-600 group-hover:text-indigo-600"
-                      />
-                    </div>
-                    <div className="flex-auto">
-                      <Link
-                        href={item.href}
-                        className="block font-semibold text-gray-900"
+                <PopoverPanel
+                  transition
+                  className="absolute top-full -left-8 z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+                >
+                  <div className="p-4">
+                    {services.map((item) => (
+                      <div
+                        key={item.name}
+                        onClick={() => close()}
+                        className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                       >
-                        {item.name}
-                        <span className="absolute inset-0" />
-                      </Link>
-                      <p className="mt-1 text-gray-600">{item.description}</p>
-                    </div>
+                        <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                          <item.icon
+                            aria-hidden="true"
+                            className="size-6 text-gray-600 group-hover:text-indigo-600"
+                          />
+                        </div>
+                        <div className="flex-auto">
+                          <Link
+                            href={item.href}
+                            className="block font-semibold text-gray-900"
+                          >
+                            {item.name}
+                            <span className="absolute inset-0" />
+                          </Link>
+                          <p className="mt-1 text-gray-600">
+                            {item.description}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </PopoverPanel>
+                </PopoverPanel>
+              </>
+            )}
           </Popover>
 
           <Link href="#" className="text-sm/6 font-semibold text-gray-900">
@@ -125,6 +131,7 @@ export default function Header() {
           </Link>
         </div>
       </nav>
+      {/* Mobile menu */}
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
@@ -154,41 +161,51 @@ export default function Header() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6">
                 <Disclosure as="div" className="-mx-3">
-                  <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
-                    Services
-                    <ChevronDownIcon
-                      aria-hidden="true"
-                      className="size-5 flex-none group-data-open:rotate-180"
-                    />
-                  </DisclosureButton>
-                  <DisclosurePanel className="mt-2 space-y-2">
-                    {[...services].map((item) => (
-                      <DisclosureButton
-                        key={item.name}
-                        as="a"
-                        href={item.href}
-                        className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
-                      >
-                        {item.name}
+                  {({ close }) => (
+                    <>
+                      <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pr-3.5 pl-3 text-base/7 font-semibold text-gray-900 hover:bg-gray-50">
+                        Services
+                        <ChevronDownIcon
+                          aria-hidden="true"
+                          className="size-5 flex-none group-data-open:rotate-180"
+                        />
                       </DisclosureButton>
-                    ))}
-                  </DisclosurePanel>
+                      <DisclosurePanel className="mt-2 space-y-2">
+                        {services.map((item) => (
+                          <Link
+                            key={item.name}
+                            href={item.href}
+                            className="block rounded-lg py-2 pr-3 pl-6 text-sm/7 font-semibold text-gray-900 hover:bg-gray-50"
+                            onClick={() => {
+                              close();
+                              setMobileMenuOpen(false);
+                            }}
+                          >
+                            {item.name}
+                          </Link>
+                        ))}
+                      </DisclosurePanel>
+                    </>
+                  )}
                 </Disclosure>
                 <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Features
                 </Link>
                 <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Marketplace
                 </Link>
                 <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Company
                 </Link>
@@ -197,6 +214,7 @@ export default function Header() {
                 <Link
                   href="#"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
                 >
                   Log in
                 </Link>
