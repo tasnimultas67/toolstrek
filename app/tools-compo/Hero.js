@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 
 const Hero = () => {
@@ -16,7 +17,7 @@ const Hero = () => {
             className="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 rotate-[30deg] bg-linear-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
           />
         </div>
-        <div className="mx-auto max-w-2xl  md:py-32">
+        <div className="mx-auto max-w-2xl relative top-0 md:py-32">
           <div className="text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
               Your Digital Toolbox for Everyday Tasks
@@ -28,6 +29,13 @@ const Hero = () => {
               Start your journey with powerful utilities designed to enhance
               productivity!
             </p>
+            <Image
+              className="absolute top-20 -left-28 -rotate-12 drop-shadow-2xl"
+              src="/Age-Calculator-icon.svg"
+              width={50}
+              height={50}
+              alt="Age Calculator Icon"
+            ></Image>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#"
