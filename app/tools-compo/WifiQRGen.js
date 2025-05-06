@@ -99,15 +99,15 @@ const WifiQRGen = () => {
         <div className="w-2/3">
           <form
             onSubmit={(e) => e.preventDefault()}
-            className="space-y-3 w-2/3"
+            className="space-y-4 w-2/3"
           >
             {/* SSID Input */}
-            <div className="space-y-1">
-              <label>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
                 Wifi Name/SSID <span className="text-red-700">*</span>
               </label>
               <input
-                className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white"
+                className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white mt-1.5"
                 type="text"
                 value={ssid}
                 placeholder="Enter your wifi name"
@@ -117,12 +117,12 @@ const WifiQRGen = () => {
             </div>
 
             {/* Password Input */}
-            <div className="space-y-1">
-              <label>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">
                 Wifi Password <span className="text-red-700">*</span>
               </label>
               <input
-                className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white"
+                className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white mt-1.5"
                 type="text"
                 value={password}
                 placeholder="Enter your wifi password"
@@ -132,8 +132,8 @@ const WifiQRGen = () => {
             </div>
 
             {/* Encryption Type Selector */}
-            <div className="space-y-1">
-              <label>Encryption Type:</label>
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Encryption Type:</label>
               <Select onValueChange={(value) => setEncryption(value)}>
                 <SelectTrigger className="w-[180px] bg-white">
                   <SelectValue placeholder={encryption} />
