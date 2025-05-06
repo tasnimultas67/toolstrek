@@ -77,7 +77,7 @@ export default function Header() {
             </div>
             <PopoverGroup className="hidden lg:flex lg:gap-x-12">
               <Popover className="relative">
-                {({ open }) => {
+                {({ open, close }) => {
                   // Use useEffect to sync the open state after render
                   useEffect(() => {
                     setServicesOpen(open);
@@ -103,7 +103,6 @@ export default function Header() {
                           {services.map((item) => (
                             <div
                               key={item.name}
-                              onClick={() => setServicesOpen(false)}
                               className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
                             >
                               <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
@@ -116,6 +115,7 @@ export default function Header() {
                                 <Link
                                   href={item.href}
                                   className="block font-semibold text-gray-900"
+                                  onClick={() => close()}
                                 >
                                   {item.name}
                                   <span className="absolute inset-0" />
@@ -160,11 +160,7 @@ export default function Header() {
           <div className="flex items-center justify-between">
             <Link href="#" className="-m-1.5 p-1.5">
               <span className="sr-only">Your Company</span>
-              <img
-                alt=""
-                src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=600"
-                className="h-8 w-auto"
-              />
+              <h3 className="text-xl font-semibold">ToolsTrek</h3>
             </Link>
             <button
               type="button"
