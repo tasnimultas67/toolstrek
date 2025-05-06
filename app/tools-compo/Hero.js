@@ -20,7 +20,11 @@ const Hero = () => {
         <div className="mx-auto max-w-2xl relative top-0 md:py-32">
           <div className="text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
-              Your Digital Toolbox for Everyday Tasks
+              Your Digital{" "}
+              <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+                Toolbox
+              </span>{" "}
+              for Everyday Tasks
             </h1>
             <p className="mt-8 text-base text-pretty text-gray-500">
               Your all-in-one toolkit for effortless online tasks. From URL
