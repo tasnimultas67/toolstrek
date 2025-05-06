@@ -36,6 +36,13 @@ const Hero = () => {
               height={50}
               alt="Age Calculator Icon"
             ></Image>
+            <Image
+              className="absolute top-20 -right-28 rotate-12 drop-shadow-2xl"
+              src="/QR-Generator.svg"
+              width={40}
+              height={40}
+              alt="Age Calculator Icon"
+            ></Image>
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#"
