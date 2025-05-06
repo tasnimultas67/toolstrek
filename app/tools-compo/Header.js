@@ -129,7 +129,10 @@ export default function Header() {
               <Link href="#" className="text-sm/6 font-semibold text-gray-900">
                 Features
               </Link>
-              <Link href="#" className="text-sm/6 font-semibold text-gray-900">
+              <Link
+                href="/about-us"
+                className="text-sm/6 font-semibold text-gray-900"
+              >
                 Company
               </Link>
             </PopoverGroup>
@@ -207,14 +210,7 @@ export default function Header() {
                   Features
                 </Link>
                 <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Marketplace
-                </Link>
-                <Link
-                  href="#"
+                  href="/about-us"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
                   onClick={() => setMobileMenuOpen(false)}
                 >
