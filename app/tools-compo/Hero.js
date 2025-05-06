@@ -30,14 +30,14 @@ const Hero = () => {
               productivity!
             </p>
             <Image
-              className="absolute top-20 -left-28 -rotate-12 drop-shadow-2xl"
+              className="absolute top-20 -left-28 -rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               src="/Age-Calculator-icon.svg"
               width={50}
               height={50}
               alt="Age Calculator Icon"
             ></Image>
             <Image
-              className="absolute top-20 -right-28 rotate-12 drop-shadow-2xl"
+              className="absolute top-20 -right-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               src="/QR-Generator.svg"
               width={40}
               height={40}
