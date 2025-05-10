@@ -10,7 +10,6 @@ const ShortenerForm = () => {
   const [url, setUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
   const qrCodeRef = useRef(null);
-  const dateYear = new Date().getFullYear();
 
   async function shortURL(e) {
     e.preventDefault();
@@ -53,7 +52,7 @@ const ShortenerForm = () => {
   };
 
   return (
-    <div className="w-full space-y-5">
+    <div className="w-full space-y-5 p-5 bg-gray-50 rounded-md">
       {/* Form */}
       <form
         onSubmit={shortURL}
@@ -74,8 +73,8 @@ const ShortenerForm = () => {
         </button>
       </form>
       {shortenedUrl && (
-        <div className="bg-gray-200 p-4 mt-4 rounded-md w-all gap-3 grid grid-cols-1 md:grid-cols-3 ">
-          <div className=" space-y-3 md:col-span-2">
+        <div className="bg-gray-50 mt-4 rounded-md w-full flex items-start justify-start justify-self-stretch">
+          <div className=" space-y-3 ">
             {/* Original URL */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -138,14 +137,14 @@ const ShortenerForm = () => {
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
-            className="space-y-2 p-3 bg-white rounded-lg shadow-xl w-fit"
+            className="space-y-2 p-3 bg-white rounded-lg shadow-xl w-fit ml-auto mr-0 "
           >
             <div
               title="Shortened URL QR Code"
               ref={qrCodeRef}
               className="bg-white p-2 rounded border border-gray-300"
             >
-              <QRCodeCanvas value={shortenedUrl} size={150} level="H" />{" "}
+              <QRCodeCanvas value={shortenedUrl} size={200} level="H" />{" "}
               {/* Display size */}
             </div>
             <button
@@ -157,15 +156,6 @@ const ShortenerForm = () => {
           </motion.div>
         </div>
       )}
-      {/* Footer */}
-      <div>
-        <h3 className="text-xs text-center text-gray-400">
-          ©{dateYear} Tasnimul. All Rights Reserved. Developed by{" "}
-          <Link href="https://tasnimul.vercel.app/" target="_blank">
-            Tasnimul Haque
-          </Link>
-        </h3>
-      </div>
     </div>
   );
 };

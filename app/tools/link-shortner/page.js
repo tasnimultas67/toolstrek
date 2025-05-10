@@ -3,7 +3,7 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="w-[1100px] mx-auto">
+    <div className="w-[1000px] mx-auto">
       <div className="p-5">
         <ShortenerForm></ShortenerForm>
       </div>
