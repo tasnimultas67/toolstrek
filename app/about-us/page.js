@@ -6,7 +6,7 @@ const page = () => {
   return (
     <div className="w-[1100px] mx-auto">
       <div>
-        <section className="grid grid-cols-2 p-5">
+        <section className="grid grid-cols-1 md:grid-cols-2 p-5">
           <div className="space-y-4">
             <h1 className="text-4xl font-semibold">About Us</h1>
             <div className="space-y-3">
