@@ -4,11 +4,11 @@ import React from "react";
 
 const page = () => {
   return (
-    <div className="w-[1200px] mx-auto">
+    <div className="w-[1100px] mx-auto">
       <div>
-        <section className="grid grid-cols-2 bg-gray-100 p-5">
+        <section className="grid grid-cols-2 p-5">
           <div className="space-y-4">
-            <h1 className="text-4xl ">About Us</h1>
+            <h1 className="text-4xl font-semibold">About Us</h1>
             <div className="space-y-3">
               <p className="">
                 Welcome to ToolsTrek, a platform designed and developed by Md.
@@ -46,7 +46,7 @@ const page = () => {
                 experience.
               </p>
             </div>
-            <button>
+            <button className="mt-5">
               <Link
                 href="https://tasnimul.vercel.app/"
                 className="p-2 px-4 bg-blue-700 text-white rounded-sm hover:bg-blue-800 transition duration-300 ease-in-out text-sm"
@@ -58,11 +58,11 @@ const page = () => {
                 Read More About Tasnimul Haque
               </Link>
             </button>
-            <p>
+            {/* <p>
               Thank you for choosing ToolsTrek. We look forward to serving you
               and helping you achieve your online goals with our powerful tools
               and resources.
-            </p>
+            </p> */}
           </div>
           <div className="flex items-center justify-end">
             {/* <Image
