@@ -64,14 +64,14 @@ const page = () => {
               and resources.
             </p> */}
           </div>
-          <div className="flex items-center justify-end">
-            {/* <Image
+          <div className="flex items-center justify-center">
+            <Image
               src="https://tasnimul.vercel.app/_next/image?url=%2FTasnimul-Haque.jpg&w=1080&q=75"
               alt="About Us"
-              className="object-cover"
-              width={200}
+              className="object-cover rotate-6 h-[400px] border-2 border-dashed border-accent-foreground rounded-lg"
+              width={300}
               height={500}
-            /> */}
+            />
           </div>
         </section>
       </div>
