@@ -1,4 +1,5 @@
 "use client";
+
 import { Copy, Download, Link2 } from "lucide-react";
 import React, { useRef, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
@@ -7,155 +8,223 @@ import { toast } from "sonner";
 import * as motion from "motion/react-client";
 
 const ShortenerForm = () => {
+  // State management
   const [url, setUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const qrCodeRef = useRef(null);
 
+  /**
+   * Handles URL shortening using TinyURL API
+   * @param {Event} e - Form submission event
+   */
   async function shortURL(e) {
     e.preventDefault();
-    const response = await fetch(
-      `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`
-    );
-    if (response.ok) {
-      const data = await response.text();
-      setShortenedUrl(data);
-    } else {
-      alert("Error shortening URL");
+
+    // Validate URL input
+    if (!url.trim()) {
+      toast.error("Please enter a URL");
+      return;
+    }
+
+    // Basic URL format validation
+    if (!url.match(/^https?:\/\//i)) {
+      toast.error("Please include http:// or https://");
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`
+      );
+
+      if (response.ok) {
+        const data = await response.text();
+        setShortenedUrl(data);
+        toast.success("URL shortened successfully!");
+      } else {
+        throw new Error("Failed to shorten URL");
+      }
+    } catch (error) {
+      console.error("Error shortening URL:", error);
+      toast.error("Failed to shorten URL. Please try again.");
+    } finally {
+      setIsLoading(false);
     }
   }
 
+  /**
+   * Downloads the QR code as PNG with 10px white padding
+   */
   const handleDownload = () => {
-    const padding = 10; // Padding size in pixels
+    if (!qrCodeRef.current) return;
+
+    const padding = 10; // Exactly 10px padding as requested
     const qrCanvas = qrCodeRef.current.querySelector("canvas");
     const qrSize = qrCanvas.width;
-    const size = qrSize + padding * 2; // Total size including padding
+    const size = qrSize + padding * 2;
 
-    // Create a new canvas for the download with padding
+    // Create download canvas
     const canvas = document.createElement("canvas");
     canvas.width = size;
     canvas.height = size;
     const context = canvas.getContext("2d");
 
-    // Fill the background with white (optional)
+    // White background with 10px padding
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, size, size);
-
-    // Draw the QR code with padding
     context.drawImage(qrCanvas, padding, padding, qrSize, qrSize);
 
-    // Generate the image data URL
+    // Generate filename from shortened URL
+    const filename =
+      shortenedUrl.replace(/^https?:\/\//, "").replace(/\//g, "-") + ".png";
+
+    // Trigger download
     const url = canvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.href = url;
-    link.download = `${shortenedUrl.replace(/https?:\/\//, "")}.png`; // Set file name to shortened URL without protocol
+    link.download = filename;
     link.click();
   };
 
+  /**
+   * Copies text to clipboard and shows feedback
+   * @param {string} text - Text to copy
+   */
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    toast("Copied to clipboard", {
+      description: "The URL is ready to be pasted",
+      action: {
+        label: "Open URL",
+        onClick: () => window.open(text, "_blank"),
+      },
+    });
+  };
+
   return (
-    <div className="w-full space-y-5 p-5 bg-gray-50 rounded-md">
-      {/* Form */}
+    <div className="w-full max-w-4xl mx-auto space-y-6 p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+      {/* URL Shortening Form */}
       <form
         onSubmit={shortURL}
-        className="flex justify-center items-center w-full flex-col md:flex-row gap-2"
+        className="flex flex-col md:flex-row gap-3 w-full"
       >
-        <input
-          className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white"
-          type="text"
-          placeholder="Enter URL"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        />
+        <div className="flex-grow relative">
+          <input
+            className="p-3 border border-gray-300 rounded-lg text-base w-full bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
+            type="url"
+            placeholder="https://example.com"
+            value={url}
+            onChange={(e) => setUrl(e.target.value)}
+            required
+            pattern="https?://.+"
+            title="Include http:// or https://"
+          />
+          <span className="absolute right-3 top-3 text-gray-400 text-sm">
+            {isLoading ? "Shortening..." : ""}
+          </span>
+        </div>
         <button
-          className="bg-blue-500 hover:bg-blue-800 text-white px-4 py-2 rounded-md ml-2 flex items-center justify-center gap-1 text-sm cursor-pointer transition-all"
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-70 disabled:cursor-not-allowed min-w-[130px]"
           type="submit"
+          disabled={isLoading || !url.trim()}
         >
-          Shorten <Link2 className="size-4" />
+          {isLoading ? (
+            <span className="animate-pulse">Processing...</span>
+          ) : (
+            <>
+              Shorten <Link2 className="size-4" />
+            </>
+          )}
         </button>
       </form>
+
+      {/* Results Section */}
       {shortenedUrl && (
-        <div className="bg-gray-50 mt-4 rounded-md w-full flex items-start justify-start justify-self-stretch gap-4">
-          <div className=" space-y-3 w-full">
-            {/* Original URL */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
-              className="bg-white p-3 rounded-md shadow-xl text-sm space-y-2 w-full"
-            >
-              <p className="font-semibold">Original URL:</p>
-              <div>
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.3 }}
+          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
+        >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            {/* Original URL Card */}
+            {/* <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+              <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
+                <span className="text-blue-600">Original URL</span>
+              </h3>
+              <div className="break-words text-blue-600 hover:text-blue-800 transition-colors">
                 <Link
                   href={url}
                   target="_blank"
-                  className="text-blue-600 break-all"
+                  rel="noopener noreferrer"
+                  className="underline"
                 >
-                  {url}
+                  {url.length > 50 ? `${url.substring(0, 50)}...` : url}
                 </Link>
               </div>
-            </motion.div>
-            {/* Shorten URL */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, ease: "easeInOut", delay: 0.2 }}
-              className="bg-white p-3 rounded-md shadow-xl space-y-2 text-sm"
-            >
-              <p className="font-semibold">Shortened URL:</p>
-              <div className="flex items-center justify-start gap-2 p-1 bg-blue-100 rounded-lg">
+            </div> */}
+
+            {/* Shortened URL Card */}
+            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
+              <h3 className="font-semibold text-gray-700 mb-2">
+                <span className="text-green-600">Shortened URL</span>
+              </h3>
+              <div className="flex items-center gap-2">
                 <button
-                  title="Copy to clipboard"
-                  className="bg-blue-500 hover:bg-blue-800 text-white p-2 rounded-md shadow cursor-pointer"
-                  onClick={() => {
-                    navigator.clipboard.writeText(shortenedUrl);
-                    // alert("Copied to clipboard");
-                    toast("Copied to clipboad", {
-                      description:
-                        "Success! Your content has been copied to the clipboard",
-                      action: {
-                        label: "Undo",
-                        onClick: () => console.log("Undo"),
-                      },
-                    });
-                  }}
+                  onClick={() => copyToClipboard(shortenedUrl)}
+                  className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg transition-colors"
+                  aria-label="Copy shortened URL"
                 >
-                  <Copy className="size-3 text-white"></Copy>
+                  <Copy className="size-4" />
                 </button>
-                <div>
-                  <Link
-                    href={shortenedUrl}
-                    target="_blank"
-                    className="text-blue-600"
-                  >
-                    {shortenedUrl}
-                  </Link>
-                </div>
+                <Link
+                  href={shortenedUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-green-600 hover:text-green-800 break-all underline"
+                >
+                  {shortenedUrl}
+                </Link>
               </div>
-            </motion.div>
-          </div>
-          {/* QR Code */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
-            className="space-y-2 p-3 bg-white rounded-lg shadow-xl w-fit ml-auto mr-0 "
-          >
-            <div
-              title="Shortened URL QR Code"
-              ref={qrCodeRef}
-              className="bg-white p-2 rounded border border-gray-300"
-            >
-              <QRCodeCanvas value={shortenedUrl} size={200} level="H" />{" "}
-              {/* Display size */}
             </div>
-            <button
-              className="flex items-center justify-center gap-2 text-xs bg-blue-500 hover:bg-blue-800 transition-all text-white px-4 py-2 rounded-md w-full"
-              onClick={handleDownload}
-            >
-              <Download className="size-4"></Download> QR Code
-            </button>
-          </motion.div>
-        </div>
+
+            {/* QR Code Card with 10px Padding */}
+            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col items-center">
+              <div
+                ref={qrCodeRef}
+                className="mb-3 bg-white rounded-md"
+                style={{
+                  padding: "10px",
+                  display: "inline-block",
+                }}
+              >
+                <QRCodeCanvas
+                  value={shortenedUrl}
+                  size={250}
+                  level="H"
+                  includeMargin={false}
+                  fgColor="#000000"
+                />
+              </div>
+              <button
+                onClick={handleDownload}
+                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors text-sm"
+              >
+                <Download className="size-4" />
+                Download QR Code
+              </button>
+            </div>
+          </div>
+        </motion.div>
       )}
+
+      {/* Help Text */}
+      <div className="text-sm text-gray-500 text-center">
+        <p>Shorten any valid URL and generate a QR code for easy sharing</p>
+      </div>
     </div>
   );
 };
