@@ -33,6 +33,14 @@ import {
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
+/**
+ * CustomCalendar component with enhanced month/year navigation
+ * @param {Object} props - Component props
+ * @param {Date} props.selected - Currently selected date
+ * @param {Function} props.onSelect - Date selection handler
+ * @param {Function} props.disabled - Function to determine disabled dates
+ * @param {Date} props.defaultMonth - Default month to display
+ */
 const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
   const [currentMonth, setCurrentMonth] = useState(
     defaultMonth?.getMonth() || new Date().getMonth()
@@ -41,6 +49,7 @@ const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
     defaultMonth?.getFullYear() || new Date().getFullYear()
   );
 
+  // Month names for the dropdown
   const months = [
     "January",
     "February",
@@ -56,6 +65,7 @@ const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
     "December",
   ];
 
+  // Generate years from current year to 150 years back
   const years = Array.from(
     { length: 150 },
     (_, i) => new Date().getFullYear() - i
@@ -94,12 +104,14 @@ const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
           variant="ghost"
           size="sm"
           onClick={goToPreviousMonth}
-          className="h-7 w-7 p-0"
+          className="h-7 w-7 p-0 opacity-70 hover:opacity-100 transition-opacity"
+          aria-label="Previous month"
         >
           <ChevronLeft className="h-4 w-4" />
         </Button>
 
         <div className="flex gap-2">
+          {/* Month Selector */}
           <Select
             value={currentMonth.toString()}
             onValueChange={(value) => handleMonthChange(parseInt(value))}
@@ -116,6 +128,7 @@ const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
             </SelectContent>
           </Select>
 
+          {/* Year Selector */}
           <Select
             value={currentYear.toString()}
             onValueChange={(value) => handleYearChange(parseInt(value))}
@@ -123,7 +136,7 @@ const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
             <SelectTrigger className="w-[100px]">
               <SelectValue placeholder="Year" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="max-h-[300px] overflow-y-auto">
               {years.map((year) => (
                 <SelectItem key={year} value={year.toString()}>
                   {year}
@@ -137,7 +150,8 @@ const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
           variant="ghost"
           size="sm"
           onClick={goToNextMonth}
-          className="h-7 w-7 p-0"
+          className="h-7 w-7 p-0 opacity-70 hover:opacity-100 transition-opacity"
+          aria-label="Next month"
         >
           <ChevronRight className="h-4 w-4" />
         </Button>
@@ -153,16 +167,25 @@ const CustomCalendar = ({ selected, onSelect, disabled, defaultMonth }) => {
           setCurrentMonth(date.getMonth());
           setCurrentYear(date.getFullYear());
         }}
+        className="rounded-md border"
+        classNames={{
+          day_selected: "bg-blue-600 text-white hover:bg-blue-700",
+          day_today: "border border-blue-500",
+        }}
         initialFocus
       />
     </div>
   );
 };
 
+/**
+ * Main Age Calculator component
+ */
 export function AgeCal() {
   const [result, setResult] = useState(null);
   const currentDate = new Date();
 
+  // Form initialization with react-hook-form
   const form = useForm({
     defaultValues: {
       birthDate: null,
@@ -170,6 +193,10 @@ export function AgeCal() {
     },
   });
 
+  /**
+   * Calculates age based on birth date and target date
+   * @param {Object} data - Form data containing birthDate and ageAtDate
+   */
   const calculateAge = (data) => {
     if (!data.birthDate) {
       setResult(null);
@@ -179,6 +206,7 @@ export function AgeCal() {
     const birthDate = new Date(data.birthDate);
     const ageAtDate = new Date(data.ageAtDate || currentDate);
 
+    // Calculate differences
     const years = differenceInYears(ageAtDate, birthDate);
     const months = differenceInMonths(ageAtDate, birthDate) % 12;
     const days = differenceInDays(
@@ -200,9 +228,14 @@ export function AgeCal() {
   };
 
   return (
-    <div className="min-h-[90dvh] py-12 px-4 sm:px-6 lg:px-8 grid items-center grid-cols-1 gap-y-6 md:grid-cols-2 md:gap-x-6 md:gap-y-0 ">
-      <div className="w-[400px] bg-white rounded-xl shadow-md overflow-hidden">
-        <div className="p-6">
+    <div className="min-h-[90dvh] py-12 px-4 sm:px-6 lg:px-8 grid items-center grid-cols-1 gap-y-8 md:grid-cols-2 md:gap-x-12">
+      {/* Input Card */}
+      <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+        <div className="p-8">
+          <h1 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+            Age Calculator
+          </h1>
+
           <Form {...form}>
             <form
               onSubmit={form.handleSubmit(calculateAge)}
@@ -214,7 +247,7 @@ export function AgeCal() {
                 name="birthDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel className="text-lg font-medium text-gray-700">
+                    <FormLabel className="text-base font-medium text-gray-700 mb-2">
                       Date of Birth
                     </FormLabel>
                     <Popover>
@@ -255,7 +288,7 @@ export function AgeCal() {
                 name="ageAtDate"
                 render={({ field }) => (
                   <FormItem className="flex flex-col">
-                    <FormLabel className="text-lg font-medium text-gray-700">
+                    <FormLabel className="text-base font-medium text-gray-700 mb-2">
                       Age at Date
                     </FormLabel>
                     <Popover>
@@ -297,7 +330,7 @@ export function AgeCal() {
 
               <Button
                 type="submit"
-                className="font-normal w-full h-12 text-base bg-blue-600 hover:bg-blue-700 cursor-pointer"
+                className="w-full h-12 text-base bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md transition-all duration-200"
                 disabled={!form.watch("birthDate")}
               >
                 Calculate Age
@@ -307,35 +340,47 @@ export function AgeCal() {
         </div>
       </div>
 
-      {/* Result of Age */}
+      {/* Result Section */}
       {result && (
-        <div className="rounded-lg p-6">
-          <h2 className="text-xl font-semibold text-center text-gray-800 mb-4">
-            Age Calculation
-          </h2>
-          <div className="grid grid-cols-3 gap-4 text-center mb-4">
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-blue-600">
-                {result.years}
+        <div className="w-full max-w-md mx-auto bg-white rounded-xl shadow-lg overflow-hidden border border-gray-100">
+          <div className="p-8">
+            <h2 className="text-2xl font-bold text-gray-800 mb-6 text-center">
+              Your Age
+            </h2>
+
+            {/* Age Breakdown */}
+            <div className="grid grid-cols-3 gap-4 text-center mb-6">
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <div className="text-3xl font-bold text-blue-600">
+                  {result.years}
+                </div>
+                <div className="text-gray-600 text-sm font-medium">Years</div>
               </div>
-              <div className="text-gray-600">Years</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-blue-600">
-                {result.months}
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <div className="text-3xl font-bold text-blue-600">
+                  {result.months}
+                </div>
+                <div className="text-gray-600 text-sm font-medium">Months</div>
               </div>
-              <div className="text-gray-600">Months</div>
-            </div>
-            <div className="bg-white p-4 rounded-lg shadow-sm">
-              <div className="text-3xl font-bold text-blue-600">
-                {result.days}
+              <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
+                <div className="text-3xl font-bold text-blue-600">
+                  {result.days}
+                </div>
+                <div className="text-gray-600 text-sm font-medium">Days</div>
               </div>
-              <div className="text-gray-600">Days</div>
             </div>
-          </div>
-          <div className="text-center text-gray-600 space-y-1 text-sm">
-            <p className="font-normal">Born on: {result.birthDate}</p>
-            <p className="font-normal">Age on: {result.ageAtDate}</p>
+
+            {/* Date Information */}
+            <div className="space-y-3 text-sm text-gray-600">
+              <div className="flex justify-between py-2 border-b border-gray-100">
+                <span className="font-medium">Born on:</span>
+                <span>{result.birthDate}</span>
+              </div>
+              <div className="flex justify-between py-2">
+                <span className="font-medium">Age on:</span>
+                <span>{result.ageAtDate}</span>
+              </div>
+            </div>
           </div>
         </div>
       )}
