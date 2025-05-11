@@ -51,11 +51,11 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <div className="bg-white border-b border-gray-900/10 sticky top-0 z-50">
+    <div className="bg-white/30 backdrop-blur-3xl border-b border-gray-900/10 sticky top-0 z-50">
       {/* Black backdrop when services popover is open */}
       {servicesOpen && <div className="fixed inset-0 bg-black/20 z-40" />}
 
-      <div className="relative z-50 bg-white">
+      <div className="relative z-50 bg-white/30">
         <header className="w-full">
           <nav
             aria-label="Global"
