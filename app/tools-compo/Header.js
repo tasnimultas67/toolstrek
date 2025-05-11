@@ -23,6 +23,7 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
+import { Origami } from "lucide-react";
 
 const services = [
   {
@@ -61,8 +62,14 @@ export default function Header() {
             className="mx-auto flex items-center justify-between px-6 py-4 lg:px-8 max-w-[1200px]"
           >
             <div className="flex lg:flex-1">
-              <Link href="/" className="-m-1.5 p-1.5">
-                <h3 className="text-xl font-semibold">ToolsTrek</h3>
+              <Link
+                href="/"
+                className="-m-1.5 py-1 px-3 flex items-center justify-start gap-1 bg-blue-50 border border-blue-300 rounded-md hover:bg-blue-700 group/logo hover:border-blue-700 transition duration-200 ease-in-out"
+              >
+                <Origami className="size-5 text-blue-700 group-hover/logo:text-white" />
+                <h3 className="text-lg font-semibold group-hover/logo:text-white">
+                  ToolsTrek
+                </h3>
               </Link>
             </div>
             <div className="flex lg:hidden">
