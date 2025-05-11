@@ -10,21 +10,48 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Copy, Download, Link2, QrCode } from "lucide-react";
+import { Copy, Download, Eye, EyeOff, QrCode } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 const WifiQRGen = () => {
   const [ssid, setSsid] = useState("");
   const [password, setPassword] = useState("");
-  const [encryption, setEncryption] = useState("WPA/WPA2");
+  const [encryption, setEncryption] = useState("WPA");
   const [qrCode, setQrCode] = useState("");
-  const [passChecked, setPassUnChecked] = useState("true");
+  const [showPassword, setShowPassword] = useState(false);
+  const [passChecked, setPassUnChecked] = useState(true);
+
+  // Helper function to escape special characters
+  const escapeSpecialChars = (str) => {
+    return str
+      .replace(/\\/g, "\\\\") // escape backslashes first
+      .replace(/;/g, "\\;") // escape semicolons
+      .replace(/"/g, '\\"') // escape quotes
+      .replace(/,/g, "\\,") // escape commas
+      .replace(/:/g, "\\:"); // escape colons
+  };
 
   // Generate the QR code
   const generateQRCode = async () => {
-    const wifiDetails = `WIFI:T:${encryption};S:${ssid};P:${password};;`;
+    if (!ssid.trim()) {
+      alert("Please enter a WiFi name (SSID)");
+      return;
+    }
+
+    let formattedEncryption = encryption;
+    let finalPassword = password;
+
+    if (encryption === "nopass") {
+      formattedEncryption = "nopass";
+      finalPassword = "";
+    }
+
+    const wifiDetails = `WIFI:T:${formattedEncryption};S:${escapeSpecialChars(
+      ssid
+    )}${finalPassword ? `;P:${escapeSpecialChars(finalPassword)}` : ""};`;
+
     try {
       const qr = await QRCode.toDataURL(wifiDetails, {
         width: 500,
@@ -35,6 +62,7 @@ const WifiQRGen = () => {
       setQrCode(qr);
     } catch (error) {
       console.error("Error generating QR code", error);
+      alert("Error generating QR code. Please try again.");
     }
   };
 
@@ -43,7 +71,7 @@ const WifiQRGen = () => {
     if (!qrCode) return;
     const link = document.createElement("a");
     link.href = qrCode;
-    link.download = "wifi_qr_code.png";
+    link.download = `${ssid || "wifi"}_qr_code.png`;
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -71,7 +99,7 @@ const WifiQRGen = () => {
     doc.setFontSize(12);
     doc.text(`Network Name: ${ssid}`, pageWidth / 2, 113, { align: "center" });
 
-    if (passChecked) {
+    if (passChecked && password) {
       doc.text(`Network Password: ${password}`, pageWidth / 2, 120, {
         align: "center",
       });
@@ -83,34 +111,34 @@ const WifiQRGen = () => {
 
     const dateYear = new Date().getFullYear();
     doc.setFontSize(8);
-    doc.text(
-      `© ${dateYear} Tasnimul Haque | Proudly developed at www.tinywaveqr.vercel.app`,
-      pageWidth / 2,
-      290,
-      { align: "center" }
-    );
+    doc.text(`© ${dateYear} | Generated at TinyWaveQR`, pageWidth / 2, 290, {
+      align: "center",
+    });
 
-    doc.save("wifi_qr_template.pdf");
+    doc.save(`${ssid || "wifi"}_qr_template.pdf`);
   };
 
   return (
     <div className="w-full mx-auto">
-      <div className="flex justify-between w-10/12 mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200">
-        <div className="w-2/3">
+      <div className="flex flex-col lg:flex-row justify-between w-11/12 lg:w-10/12 mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200">
+        <div className="w-full lg:w-2/3">
           <form
-            onSubmit={(e) => e.preventDefault()}
-            className="space-y-4 w-2/3"
+            onSubmit={(e) => {
+              e.preventDefault();
+              generateQRCode();
+            }}
+            className="space-y-4 w-full lg:w-2/3"
           >
             {/* SSID Input */}
             <div className="space-y-2">
               <label className="text-sm font-medium">
-                Wifi Name/SSID <span className="text-red-700">*</span>
+                WiFi Name/SSID <span className="text-red-700">*</span>
               </label>
               <input
                 className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white mt-1.5"
                 type="text"
                 value={ssid}
-                placeholder="Enter your wifi name"
+                placeholder="Enter your WiFi name"
                 onChange={(e) => setSsid(e.target.value)}
                 required
               />
@@ -118,30 +146,62 @@ const WifiQRGen = () => {
 
             {/* Password Input */}
             <div className="space-y-2">
-              <label className="text-sm font-medium">
-                Wifi Password <span className="text-red-700">*</span>
-              </label>
+              <div className="flex justify-between items-center">
+                <label className="text-sm font-medium">
+                  WiFi Password{" "}
+                  {encryption !== "nopass" && (
+                    <span className="text-red-700">*</span>
+                  )}
+                </label>
+                {encryption !== "nopass" && (
+                  <button
+                    type="button"
+                    className="text-xs text-gray-500 hover:text-gray-700 flex items-center gap-1"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? (
+                      <EyeOff className="size-4" />
+                    ) : (
+                      <Eye className="size-4" />
+                    )}
+                    {showPassword ? "Hide" : "Show"}
+                  </button>
+                )}
+              </div>
               <input
                 className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white mt-1.5"
-                type="text"
+                type={showPassword ? "text" : "password"}
                 value={password}
-                placeholder="Enter your wifi password"
+                placeholder={
+                  encryption === "nopass"
+                    ? "No password needed"
+                    : "Enter your WiFi password"
+                }
                 onChange={(e) => setPassword(e.target.value)}
-                required
+                disabled={encryption === "nopass"}
+                required={encryption !== "nopass"}
               />
             </div>
 
             {/* Encryption Type Selector */}
             <div className="space-y-2">
               <label className="text-sm font-medium">Encryption Type:</label>
-              <Select onValueChange={(value) => setEncryption(value)}>
+              <Select
+                value={encryption}
+                onValueChange={(value) => {
+                  setEncryption(value);
+                  if (value === "nopass") {
+                    setPassword("");
+                  }
+                }}
+              >
                 <SelectTrigger className="w-[180px] bg-white">
-                  <SelectValue placeholder={encryption} />
+                  <SelectValue placeholder="Select encryption" />
                 </SelectTrigger>
                 <SelectContent>
-                  <SelectItem value="WPA/WPA2">WPA/WPA2</SelectItem>
+                  <SelectItem value="WPA">WPA/WPA2</SelectItem>
                   <SelectItem value="WEP">WEP</SelectItem>
-                  <SelectItem value="nopass">None</SelectItem>
+                  <SelectItem value="nopass">No Password</SelectItem>
                 </SelectContent>
               </Select>
             </div>
@@ -149,11 +209,12 @@ const WifiQRGen = () => {
             {/* Generate QR Code Button */}
             <button
               className={`bg-blue-600 text-white px-3 py-1.5 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-blue-800 transition-all ${
-                !password || !ssid ? "opacity-50 cursor-not-allowed" : ""
+                (!password && encryption !== "nopass") || !ssid
+                  ? "opacity-50 cursor-not-allowed"
+                  : ""
               }`}
-              type="button"
-              onClick={generateQRCode}
-              disabled={!password || !ssid} // Properly setting the disabled attribute
+              type="submit"
+              disabled={(!password && encryption !== "nopass") || !ssid}
             >
               <QrCode className="size-4" />
               Generate QR Code
@@ -162,80 +223,78 @@ const WifiQRGen = () => {
         </div>
 
         {/* QR Code Preview & Buttons */}
-        <div className="w-1/3 flex flex-col items-end justify-center">
-          <div className="flex flex-col items-end justify-center ">
-            {!qrCode && (
-              <div className="">
-                <p className="text-xs ">Your Wifi QR Code will show here!</p>
+        <div className="w-full lg:w-1/3 flex flex-col items-center lg:items-end justify-center mt-6 lg:mt-0">
+          {!qrCode ? (
+            <div className="w-full max-w-[250px] h-[300px] flex items-center justify-center border border-dashed border-gray-300 rounded-xl bg-gray-50">
+              <p className="text-sm text-gray-500 text-center">
+                Your WiFi QR Code will appear here after generation
+              </p>
+            </div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="w-full max-w-[250px]"
+            >
+              <div className="p-4 flex flex-col items-center justify-start border border-gray-300 bg-white rounded-xl">
+                <img
+                  src={qrCode}
+                  alt="WiFi QR Code"
+                  className="m-2 w-[200px] h-[200px]"
+                />
+                <button
+                  className="flex items-center justify-center gap-2 text-xs bg-blue-500 hover:bg-blue-800 transition-all text-white px-4 py-2 rounded-md w-full"
+                  onClick={downloadQRCode}
+                >
+                  <Download className="size-4" />
+                  Download QR Code
+                </button>
               </div>
-            )}
-
-            {qrCode && (
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="w-[250px] flex items-center justify-end"
-              >
-                <div className="p-4 flex flex-col items-center justify-start border border-gray-300 bg-white rounded-xl">
-                  <img src={qrCode} alt="WiFi QR Code" className="m-2" />
-
-                  {/* Download QR Code Button */}
-                  <button
-                    className="flex items-center justify-center gap-2 text-xs bg-blue-500 hover:bg-blue-800 transition-all text-white px-4 py-2 rounded-md"
-                    type="button"
-                    onClick={downloadQRCode}
-                  >
-                    <Download className="size-4" />
-                    Download QR Code
-                  </button>
-                </div>
-              </motion.div>
-            )}
-          </div>
+            </motion.div>
+          )}
         </div>
       </div>
-      {/* PDF Template Download section*/}
 
+      {/* PDF Template Download section */}
       {qrCode && (
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="w-10/12 mx-auto p-3 bg-gray-50 rounded-lg mt-5 border border-gray-200 flex items-center justify-between"
+          className="w-11/12 lg:w-10/12 mx-auto p-3 bg-gray-50 rounded-lg mt-5 border border-gray-200 flex flex-col lg:flex-row items-center justify-between"
         >
-          <div className="w-1/2 flex items-center gap-4">
+          <div className="w-full lg:w-1/2 flex items-center gap-4 mb-4 lg:mb-0">
             <Image
               src="/wifi_qr_template.jpg"
-              alt="Wifi QR Template Demo"
-              width="50"
-              height="200"
+              alt="WiFi QR Template Demo"
+              width={50}
+              height={50}
               className="border border-gray-300 rounded-sm -rotate-6"
-            ></Image>
-            <h3 className="text-base text-left font-semibold md:text-xl  bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
-              Download the PDF template to print or share your Wi-Fi QR code.
+            />
+            <h3 className="text-base text-left font-semibold md:text-xl bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
+              Download the PDF template to print or share your WiFi QR code.
             </h3>
           </div>
-          {/* Buttons */}
-          <div className="w-1/2 flex items-center justify-end gap-3">
-            {/* Show password in template */}
-            <div className="flex items-center space-x-2 text-xs">
-              <Switch
-                id="show-password"
-                checked={passChecked}
-                onCheckedChange={() => setPassUnChecked(!passChecked)}
-              />
-              <label htmlFor="show-password">Show password</label>
-            </div>
 
-            {/* Download Full Template Button */}
+          <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center justify-end gap-3">
+            {password && (
+              <div className="flex items-center space-x-2 text-xs w-full lg:w-auto justify-between lg:justify-start">
+                <label htmlFor="show-password">Show password on PDF:</label>
+                <Switch
+                  id="show-password"
+                  checked={passChecked}
+                  onCheckedChange={() => setPassUnChecked(!passChecked)}
+                />
+              </div>
+            )}
+
             <button
-              className="flex items-center justify-center gap-2 text-xs bg-blue-500 hover:bg-blue-800 transition-all text-white px-4 py-2 rounded-md"
-              type="button"
+              className="flex items-center justify-center gap-2 text-xs bg-blue-500 hover:bg-blue-800 transition-all text-white px-4 py-2 rounded-md w-full lg:w-auto"
               onClick={generatePDF}
             >
               <Copy className="size-4" />
-              Download Full Template
+              Download PDF Template
             </button>
           </div>
         </motion.div>
