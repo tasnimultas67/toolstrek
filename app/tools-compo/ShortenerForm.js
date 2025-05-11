@@ -104,7 +104,7 @@ const ShortenerForm = () => {
               <div className="flex items-center justify-start gap-2 p-1 bg-blue-100 rounded-lg">
                 <button
                   title="Copy to clipboard"
-                  className="bg-blue-500 hover:bg-blue-800 text-white p-2 rounded-md shadow"
+                  className="bg-blue-500 hover:bg-blue-800 text-white p-2 rounded-md shadow cursor-pointer"
                   onClick={() => {
                     navigator.clipboard.writeText(shortenedUrl);
                     // alert("Copied to clipboard");
