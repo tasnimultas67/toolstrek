@@ -59,7 +59,7 @@ const ShortenerForm = () => {
         className="flex justify-center items-center w-full flex-col md:flex-row gap-2"
       >
         <input
-          className="p-2 border border-gray-300 rounded-md text-sm w-full"
+          className="p-2 border border-gray-300 rounded-md text-sm w-full bg-white"
           type="text"
           placeholder="Enter URL"
           value={url}
@@ -73,14 +73,14 @@ const ShortenerForm = () => {
         </button>
       </form>
       {shortenedUrl && (
-        <div className="bg-gray-50 mt-4 rounded-md w-full flex items-start justify-start justify-self-stretch">
-          <div className=" space-y-3 ">
+        <div className="bg-gray-50 mt-4 rounded-md w-full flex items-start justify-start justify-self-stretch gap-4">
+          <div className=" space-y-3 w-full">
             {/* Original URL */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, ease: "easeInOut", delay: 0.2 }}
-              className="bg-white p-3 rounded-md shadow-xl text-sm space-y-2"
+              className="bg-white p-3 rounded-md shadow-xl text-sm space-y-2 w-full"
             >
               <p className="font-semibold">Original URL:</p>
               <div>
