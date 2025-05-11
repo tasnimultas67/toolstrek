@@ -111,9 +111,14 @@ const WifiQRGen = () => {
 
     const dateYear = new Date().getFullYear();
     doc.setFontSize(8);
-    doc.text(`© ${dateYear} | Generated at TinyWaveQR`, pageWidth / 2, 290, {
-      align: "center",
-    });
+    doc.text(
+      `© ${dateYear} | Generated at TinyWaveQR, Developed by Tasnimul Haque`,
+      pageWidth / 2,
+      290,
+      {
+        align: "center",
+      }
+    );
 
     doc.save(`${ssid || "wifi"}_qr_template.pdf`);
   };
