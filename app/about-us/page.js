@@ -49,7 +49,7 @@ const page = () => {
             <button className="mt-5">
               <Link
                 href="https://tasnimul.vercel.app/"
-                className="p-2 px-4 bg-blue-700 text-white rounded-sm hover:bg-blue-800 transition duration-300 ease-in-out text-sm"
+                className="p-2 px-4 bg-brandColor text-white rounded-sm hover:bg-brandColorHover transition duration-300 ease-in-out text-sm"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Read More About Tasnimul Haque"
