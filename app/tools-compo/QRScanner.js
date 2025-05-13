@@ -3,7 +3,7 @@ import { useState, useRef, useCallback } from "react";
 import { BrowserQRCodeReader } from "@zxing/library";
 import Webcam from "react-webcam";
 import { useDropzone } from "react-dropzone";
-import { Copy } from "lucide-react";
+import { Camera, CameraIcon, Copy, Upload } from "lucide-react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
 
 const QRScanner = () => {
@@ -62,25 +62,27 @@ const QRScanner = () => {
       <h2 className="text-3xl font-bold text-gray-800 mb-6">QR Code Scanner</h2>
 
       {/* Toggle Scanner Mode */}
-      <div className="flex gap-4">
+      <div className="flex gap-2">
         <button
-          onClick={() => setMode("camera")}
-          className={`px-6 py-3 rounded-lg shadow-lg transition ${
+          onClick={() => setMode("camera") & setResult("")}
+          className={`px-6 py-3 rounded-md cursor-pointer transition flex items-center justify-center gap-2 text-sm ${
             mode === "camera"
-              ? "bg-blue-600 text-white"
-              : "bg-blue-500 text-white hover:bg-blue-600"
+              ? "bg-brandColor text-white"
+              : "bg-brandColor text-white hover:bg-brandColorHover"
           }`}
         >
+          <CameraIcon className="size-4"></CameraIcon>
           Use Camera
         </button>
         <button
-          onClick={() => setMode("upload")}
-          className={`px-6 py-3 rounded-lg shadow-lg transition ${
+          onClick={() => setMode("upload") & setResult("")}
+          className={`px-6 py-3 rounded-md cursor-pointer transition flex items-center justify-center gap-2 text-sm ${
             mode === "upload"
-              ? "bg-green-600 text-white"
-              : "bg-green-500 text-white hover:bg-green-600"
+              ? "bg-brandColor text-white"
+              : "bg-brandColor text-white hover:bg-brandColorHover"
           }`}
         >
+          <Upload className="size-4"></Upload>
           Upload Image
         </button>
       </div>
@@ -95,8 +97,9 @@ const QRScanner = () => {
           />
           <button
             onClick={captureImage}
-            className="mt-4 px-6 py-3 bg-blue-600 text-white rounded-lg shadow-lg transition hover:bg-blue-700"
+            className="-mt-5 px-6 py-2 bg-brandColor text-white rounded-md text-sm transition hover:bg-brandColorHover cursor-pointer flex items-center justify-center gap-2"
           >
+            <Camera className="size-4"></Camera>
             Capture & Scan
           </button>
         </>
@@ -121,14 +124,21 @@ const QRScanner = () => {
 
       {/* Display Result with Copy Button */}
       {result && (
-        <div className="mt-6 flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-md">
-          <p className="text-lg font-semibold text-gray-700">📌 {result}</p>
-          <button
-            onClick={copyToClipboard}
-            className="p-2 bg-gray-300 text-gray-700 rounded-lg transition hover:bg-gray-400"
-          >
-            <Copy className="size-4" />
-          </button>
+        <div className="mt-6">
+          <div className="flex items-center justify-center bg-white p-2 px-5 rounded-t-md w-fit m-auto">
+            <h3 className="text-sm font-medium text-gray-800">
+              Scanned Result:
+            </h3>
+          </div>
+          <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-md">
+            <p className="text-lg font-medium text-brandColor"> {result}</p>
+            <button
+              onClick={copyToClipboard}
+              className="p-2 bg-brandColor/20 text-gray-700 rounded-md transition hover:bg-brandColorHover/30 cursor-pointer"
+            >
+              <Copy className="size-4" />
+            </button>
+          </div>
         </div>
       )}
     </div>
