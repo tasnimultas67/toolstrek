@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const Hero = () => {
@@ -43,21 +44,28 @@ const Hero = () => {
             <Image
               className="absolute top-20 -right-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               src="/QR-Generator.svg"
-              width={40}
-              height={40}
+              width={60}
+              height={60}
               alt="Age Calculator Icon"
             ></Image>
             <div className="mt-10 flex items-center justify-center gap-x-6">
-              <a
+              <Link
                 href="#"
                 className="rounded-md bg-brandColor hover:bg-brandColorHover px-5 py-2 text-sm font-semibold text-white "
               >
                 Get started
-              </a>
-              <a href="#" className="text-sm/6 font-semibold text-gray-900">
+              </Link>
+              <Link href="#" className="text-sm/6 font-semibold text-gray-900">
                 Learn more <span aria-hidden="true">→</span>
-              </a>
+              </Link>
             </div>
+            <Image
+              className="absolute bottom-40 -left-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
+              src="/Link-shortener.svg"
+              width={40}
+              height={40}
+              alt="Age Calculator Icon"
+            ></Image>
           </div>
         </div>
         {/* <div
