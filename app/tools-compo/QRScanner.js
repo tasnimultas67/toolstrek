@@ -104,17 +104,17 @@ const QRScanner = () => {
 
       {/* Upload Mode with Drag & Drop */}
       {mode === "upload" && (
-        <div className="mt-6 w-[500px]">
+        <div className="mt-6 w-full md:w-[500px]">
           <div
             {...getRootProps()}
-            className="cursor-pointer flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-400 bg-white p-6 shadow-md transition hover:border-gray-600"
+            className="cursor-pointer flex flex-col items-center justify-center rounded-lg border-1 border-dashed border-gray-400 bg-white p-6  transition hover:border-gray-600"
           >
             <input {...getInputProps()} />
             <PhotoIcon className="size-12 text-gray-400" />
             <p className="mt-3 text-sm text-gray-600">
               Drag & drop an image here or click to upload
             </p>
-            <p className="text-xs text-gray-500">PNG, JPG up to 10MB</p>
+            <p className="text-xs text-gray-500">PNG, JPG up to 5MB</p>
           </div>
         </div>
       )}
