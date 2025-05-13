@@ -5,6 +5,7 @@ import Webcam from "react-webcam";
 import { useDropzone } from "react-dropzone";
 import { Camera, CameraIcon, Copy, Upload } from "lucide-react";
 import { PhotoIcon } from "@heroicons/react/24/outline";
+import { toast } from "sonner";
 
 const QRScanner = () => {
   const [mode, setMode] = useState("upload"); // Toggle mode between "camera" and "upload"
@@ -51,10 +52,16 @@ const QRScanner = () => {
     },
   });
 
-  // Copy scanned result to clipboard
-  const copyToClipboard = () => {
-    navigator.clipboard.writeText(result);
-    alert("Copied to clipboard!");
+  // Function to copy the result to clipboard
+  const copyToClipboard = (text) => {
+    navigator.clipboard.writeText(text);
+    toast("Copied to clipboard", {
+      description: "The URL is ready to be pasted",
+      action: {
+        label: "Open URL",
+        onClick: () => window.open(text, "_blank"),
+      },
+    });
   };
 
   return (
@@ -133,7 +140,7 @@ const QRScanner = () => {
           <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-md">
             <p className="text-lg font-medium text-brandColor"> {result}</p>
             <button
-              onClick={copyToClipboard}
+              onClick={() => copyToClipboard(result)}
               className="p-2 bg-brandColor/20 text-gray-700 rounded-md transition hover:bg-brandColorHover/30 cursor-pointer"
             >
               <Copy className="size-4" />
