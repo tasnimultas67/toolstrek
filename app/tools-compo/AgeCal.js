@@ -330,7 +330,7 @@ export function AgeCal() {
 
               <Button
                 type="submit"
-                className="w-full h-12 text-base bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-700 hover:to-blue-600 text-white shadow-md transition-all duration-200"
+                className="w-full h-12 text-base bg-brandColor hover:bg-brandColorHover text-white shadow-md transition-all duration-200"
                 disabled={!form.watch("birthDate")}
               >
                 Calculate Age
@@ -351,19 +351,19 @@ export function AgeCal() {
             {/* Age Breakdown */}
             <div className="grid grid-cols-3 gap-4 text-center mb-6">
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <div className="text-3xl font-bold text-blue-600">
+                <div className="text-3xl font-bold text-brandColor">
                   {result.years}
                 </div>
                 <div className="text-gray-600 text-sm font-medium">Years</div>
               </div>
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <div className="text-3xl font-bold text-blue-600">
+                <div className="text-3xl font-bold text-brandColor">
                   {result.months}
                 </div>
                 <div className="text-gray-600 text-sm font-medium">Months</div>
               </div>
               <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <div className="text-3xl font-bold text-blue-600">
+                <div className="text-3xl font-bold text-brandColor">
                   {result.days}
                 </div>
                 <div className="text-gray-600 text-sm font-medium">Days</div>

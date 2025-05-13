@@ -127,7 +127,7 @@ const ShortenerForm = () => {
           </span>
         </div>
         <button
-          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-70 disabled:cursor-not-allowed min-w-[130px]"
+          className="bg-brandColor hover:bg-brandColorHover text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-70 disabled:cursor-not-allowed min-w-[130px] cursor-pointer"
           type="submit"
           disabled={isLoading || !url.trim()}
         >
@@ -150,23 +150,6 @@ const ShortenerForm = () => {
           className="bg-gray-50 rounded-lg p-4 border border-gray-200"
         >
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Original URL Card */}
-            {/* <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-              <h3 className="font-semibold text-gray-700 mb-2 flex items-center gap-2">
-                <span className="text-blue-600">Original URL</span>
-              </h3>
-              <div className="break-words text-blue-600 hover:text-blue-800 transition-colors">
-                <Link
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="underline"
-                >
-                  {url.length > 50 ? `${url.substring(0, 50)}...` : url}
-                </Link>
-              </div>
-            </div> */}
-
             {/* Shortened URL Card */}
             <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
               <h3 className="font-semibold text-gray-700 mb-2">
@@ -211,7 +194,7 @@ const ShortenerForm = () => {
               </div>
               <button
                 onClick={handleDownload}
-                className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors text-sm"
+                className="w-full bg-brandColor hover:bg-brandColorHover text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors text-sm"
               >
                 <Download className="size-4" />
                 Download QR Code
