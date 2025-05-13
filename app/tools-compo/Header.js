@@ -24,6 +24,14 @@ import {
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
 import { Origami } from "lucide-react";
+import { Staatliches } from "next/font/google";
+import Image from "next/image";
+
+const staatliches = Staatliches({
+  subsets: ["latin"], // Ensures proper character support
+  weight: "400", // Adjust weight as needed
+  display: "swap", // Ensures text is visible during loading
+});
 
 const services = [
   {
@@ -59,16 +67,24 @@ export default function Header() {
         <header className="w-full">
           <nav
             aria-label="Global"
-            className="mx-auto flex items-center justify-between px-6 py-4 lg:px-8 max-w-[1200px]"
+            className="mx-auto flex items-center justify-between px-6 py-3 lg:px-8 max-w-[1200px]"
           >
             <div className="flex lg:flex-1">
-              <Link
-                href="/"
-                className="-m-1.5 py-1 px-3 flex items-center justify-start gap-1 bg-blue-50 border border-brandColor/20 rounded-md hover:bg-brandColor group/logo hover:border-brandColor transition duration-200 ease-in-out"
-              >
-                <Origami className="size-5 text-brandColor group-hover/logo:text-white" />
-                <h3 className="text-lg font-semibold group-hover/logo:text-white">
-                  ToolsTrek
+              <Link href="/" className=" flex items-center justify-start gap-1">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  id="Layer_1"
+                  data-name="Layer 1"
+                  viewBox="0 0 24 24"
+                  width="50"
+                  height="50"
+                  className="size-6 fill-brandColor"
+                >
+                  <path d="m19,16h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5h6c2.757,0,5,2.243,5,5v6c0,2.757-2.243,5-5,5Zm-8,8h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5,.553,0,1,.448,1,1v2c0,3.86,3.141,7,7,7h2c.553,0,1,.448,1,1,0,2.757-2.243,5-5,5Z" />
+                </svg>
+
+                <h3 className={`text-3xl ${staatliches.className} `}>
+                  Tools<span className="text-brandColor">Trek</span>
                 </h3>
               </Link>
             </div>
