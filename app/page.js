@@ -1,8 +1,35 @@
 import Hero from "./tools-compo/Hero";
-import { Calculator, Clock, Scissors } from "lucide-react";
+import {
+  Calculator,
+  Clock,
+  MousePointer,
+  MousePointerClick,
+  Scissors,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import HServices from "./tools-compo/HServices";
+
+const whychoose = [
+  {
+    title: "Easy to Use",
+    description:
+      "Intuitive interfaces designed for everyone from students to professionals. ",
+    icon: <MousePointerClick className="w-12 h-12 text-white" />,
+  },
+  {
+    title: "No Installation",
+    description:
+      "Access all tools directly in your browser with no downloads required.",
+    icon: <Scissors className="w-8 h-8 text-blue-600" />,
+  },
+  {
+    title: "Save Time",
+    description:
+      "Get instant results without manual calculations or complex formulas.",
+    icon: <Clock className="w-8 h-8 text-blue-600" />,
+  },
+];
 
 export default function Home() {
   return (
@@ -19,40 +46,18 @@ export default function Home() {
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div className="text-center">
-                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Calculator className="w-8 h-8 text-blue-600" />
+                {whychoose.map((item, index) => (
+                  <div
+                    key={index}
+                    className="bg-gradient-to-b from-blue-600 to-blue-800 rounded-lg p-6 "
+                  >
+                    <div className="mb-4">{item.icon}</div>
+                    <h3 className="text-xl font-semibold mb-2 text-white">
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-50 text-sm">{item.description}</p>
                   </div>
-                  <h3 className="text-xl font-semibold mb-2">Easy to Use</h3>
-                  <p className="text-gray-600 text-sm">
-                    Intuitive interfaces designed for everyone from students to
-                    professionals.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Scissors className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">
-                    No Installation
-                  </h3>
-                  <p className="text-gray-600 text-sm">
-                    Access all tools directly in your browser with no downloads
-                    required.
-                  </p>
-                </div>
-
-                <div className="text-center">
-                  <div className="bg-blue-100 w-16 h-16 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Clock className="w-8 h-8 text-blue-600" />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">Save Time</h3>
-                  <p className="text-gray-600 text-sm">
-                    Get instant results without manual calculations or complex
-                    formulas.
-                  </p>
-                </div>
+                ))}
               </div>
             </div>
           </section>
