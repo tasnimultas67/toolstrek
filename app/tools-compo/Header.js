@@ -64,9 +64,9 @@ export default function Header() {
             <div className="flex lg:flex-1">
               <Link
                 href="/"
-                className="-m-1.5 py-1 px-3 flex items-center justify-start gap-1 bg-blue-50 border border-blue-300 rounded-md hover:bg-blue-700 group/logo hover:border-blue-700 transition duration-200 ease-in-out"
+                className="-m-1.5 py-1 px-3 flex items-center justify-start gap-1 bg-blue-50 border border-brandColor/20 rounded-md hover:bg-brandColor group/logo hover:border-brandColor transition duration-200 ease-in-out"
               >
-                <Origami className="size-5 text-blue-700 group-hover/logo:text-white" />
+                <Origami className="size-5 text-brandColor group-hover/logo:text-white" />
                 <h3 className="text-lg font-semibold group-hover/logo:text-white">
                   ToolsTrek
                 </h3>
@@ -110,12 +110,12 @@ export default function Header() {
                           {services.map((item) => (
                             <div
                               key={item.name}
-                              className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-gray-50"
+                              className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-brandColor/5 transition duration-200 ease-in-out"
                             >
                               <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <item.icon
                                   aria-hidden="true"
-                                  className="size-6 text-gray-600 group-hover:text-indigo-600"
+                                  className="size-6 text-gray-600 group-hover:text-brandColor"
                                 />
                               </div>
                               <div className="flex-auto">

@@ -21,12 +21,12 @@ const Hero = () => {
           <div className="text-center">
             <h1 className="text-5xl font-semibold tracking-tight text-balance text-gray-900 sm:text-7xl">
               Your Digital{" "}
-              <span className="bg-gradient-to-r from-blue-500 to-violet-500 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brandColor to-emerald-900 bg-clip-text text-transparent">
                 Toolbox
               </span>{" "}
               for Everyday Tasks
             </h1>
-            <p className="mt-8 text-base text-pretty text-gray-500">
+            <p className={`mt-8 text-base text-pretty text-gray-500`}>
               Your all-in-one toolkit for effortless online tasks. From URL
               shorteners to QR code generators and age calculators—ToolsTrek
               simplifies digital solutions with speed, precision, and ease.
@@ -50,7 +50,7 @@ const Hero = () => {
             <div className="mt-10 flex items-center justify-center gap-x-6">
               <a
                 href="#"
-                className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                className="rounded-md bg-brandColor hover:bg-brandColorHover px-5 py-2 text-sm font-semibold text-white "
               >
                 Get started
               </a>

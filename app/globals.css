@@ -42,6 +42,11 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
+@theme{
+  --color-brandColor: #1C4748;
+  --color-brandColorHover: #1A3739;
+
+}
 
 :root {
   --radius: 0.625rem;

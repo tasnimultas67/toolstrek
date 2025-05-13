@@ -1,33 +1,52 @@
 import Hero from "./tools-compo/Hero";
-import {
-  Calculator,
-  Clock,
-  MousePointer,
-  MousePointerClick,
-  Scissors,
-} from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import HServices from "./tools-compo/HServices";
+import Image from "next/image";
 
 const whychoose = [
   {
     title: "Easy to Use",
     description:
       "No complicated setup, no confusion. ToolsTrek is designed for effortless navigation, ensuring anyone can use it without hassle. Get results fast and efficiently",
-    icon: <MousePointerClick className="w-12 h-12 text-white" />,
+    icon: (
+      <Image
+        src="/easytouse.svg"
+        width={50}
+        height={50}
+        alt="card icon"
+        className="w-12 h-12 "
+      />
+    ),
   },
   {
     title: "No Installation",
     description:
       "Instant access, no downloads. Our tools run completely online, letting you work from any device without storage or update worries. Just open and start using—simple as that!",
-    icon: <Scissors className="w-8 h-8 text-white" />,
+    icon: (
+      <Image
+        src="/noinstallation.svg"
+        width={50}
+        height={50}
+        alt="card icon"
+        className="w-12 h-12 "
+      />
+    ),
   },
   {
     title: "Save Time",
     description:
       "Efficiency is key. Our tools streamline your tasks, cutting out unnecessary steps so you can get things done in seconds. Work smarter, not harder!",
-    icon: <Clock className="w-8 h-8 text-white" />,
+    icon: (
+      <Image
+        src="/savetime.svg"
+        width={50}
+        height={50}
+        alt="card icon"
+        className="w-12 h-12 "
+      />
+    ),
   },
 ];
 
@@ -40,22 +59,19 @@ export default function Home() {
         <div className="bg-gradient-to-b from-gray-50 to-white">
           {/* Features Section */}
           <section className="pt-12 pb-28 px-4 sm:px-6 lg:px-8 bg-white">
-            <div className="max-w-4xl mx-auto">
+            <div className="max-w-5xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12">
                 Why Choose Our Tools?
               </h2>
 
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {whychoose.map((item, index) => (
-                  <div
-                    key={index}
-                    className="bg-gradient-to-b from-blue-600 to-blue-800 rounded-lg p-6 "
-                  >
+                  <div key={index} className="bg-brandColor rounded-lg p-6 ">
                     <div className="mb-4">{item.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2 text-white">
+                    <h3 className="text-xl font-semibold mb-2 mt-10 text-white">
                       {item.title}
                     </h3>
-                    <p className="text-gray-50 text-sm">{item.description}</p>
+                    <p className="text-gray-200 text-sm">{item.description}</p>
                   </div>
                 ))}
               </div>
@@ -63,7 +79,7 @@ export default function Home() {
           </section>
 
           {/* Call to Action */}
-          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-blue-600 text-white">
+          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brandColor text-white">
             <div className="max-w-4xl mx-auto text-center">
               <h2 className="text-3xl font-bold mb-4">
                 Ready to Simplify Your Tasks?
