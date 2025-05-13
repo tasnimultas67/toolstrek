@@ -108,7 +108,7 @@ export default function Header() {
 
                   return (
                     <>
-                      <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900">
+                      <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 outline-none">
                         Services
                         <ChevronDownIcon
                           aria-hidden="true"
