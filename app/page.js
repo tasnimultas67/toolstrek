@@ -14,20 +14,20 @@ const whychoose = [
   {
     title: "Easy to Use",
     description:
-      "Intuitive interfaces designed for everyone from students to professionals. ",
+      "No complicated setup, no confusion. ToolsTrek is designed for effortless navigation, ensuring anyone can use it without hassle. Get results fast and efficiently",
     icon: <MousePointerClick className="w-12 h-12 text-white" />,
   },
   {
     title: "No Installation",
     description:
-      "Access all tools directly in your browser with no downloads required.",
-    icon: <Scissors className="w-8 h-8 text-blue-600" />,
+      "Instant access, no downloads. Our tools run completely online, letting you work from any device without storage or update worries. Just open and start using—simple as that!",
+    icon: <Scissors className="w-8 h-8 text-white" />,
   },
   {
     title: "Save Time",
     description:
-      "Get instant results without manual calculations or complex formulas.",
-    icon: <Clock className="w-8 h-8 text-blue-600" />,
+      "Efficiency is key. Our tools streamline your tasks, cutting out unnecessary steps so you can get things done in seconds. Work smarter, not harder!",
+    icon: <Clock className="w-8 h-8 text-white" />,
   },
 ];
 
