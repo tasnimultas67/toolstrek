@@ -12,7 +12,7 @@ export default function Home() {
         <HServices />
         <div className="bg-gradient-to-b from-gray-50 to-white">
           {/* Features Section */}
-          <section className="py-12 px-4 sm:px-6 lg:px-8 bg-gray-50">
+          <section className="pt-12 pb-28 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-4xl mx-auto">
               <h2 className="text-3xl font-bold text-center mb-12">
                 Why Choose Our Tools?
@@ -24,7 +24,7 @@ export default function Home() {
                     <Calculator className="w-8 h-8 text-blue-600" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Easy to Use</h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm">
                     Intuitive interfaces designed for everyone from students to
                     professionals.
                   </p>
@@ -37,7 +37,7 @@ export default function Home() {
                   <h3 className="text-xl font-semibold mb-2">
                     No Installation
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm">
                     Access all tools directly in your browser with no downloads
                     required.
                   </p>
@@ -48,7 +48,7 @@ export default function Home() {
                     <Clock className="w-8 h-8 text-blue-600" />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">Save Time</h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-600 text-sm">
                     Get instant results without manual calculations or complex
                     formulas.
                   </p>

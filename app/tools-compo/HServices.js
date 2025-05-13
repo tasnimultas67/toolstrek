@@ -5,7 +5,7 @@ import Link from "next/link";
 
 const HServices = () => {
   return (
-    <div className="bg-gray-50 py-24 sm:py-32 border-t border-gray-900/10">
+    <div className="bg-white py-24 sm:py-32 border-t border-gray-900/10">
       {/* Services/Tools */}
       <div className="max-w-[1280px] mx-auto px-2 lg:px-4">
         <div className="flex max-w-7xl items-center justify-center px-6 lg:px-8 gap-5 ">
