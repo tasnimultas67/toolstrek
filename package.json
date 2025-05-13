@@ -17,6 +17,7 @@
     "@radix-ui/react-select": "^2.2.2",
     "@radix-ui/react-slot": "^1.2.0",
     "@radix-ui/react-switch": "^1.2.2",
+    "@zxing/library": "^0.21.3",
     "class-variance-authority": "^0.7.1",
     "clipboard-copy": "^4.0.1",
     "clsx": "^2.1.1",
@@ -33,6 +34,7 @@
     "react-day-picker": "^8.10.1",
     "react-dom": "^19.0.0",
     "react-hook-form": "^7.56.2",
+    "react-webcam": "^7.2.0",
     "sonner": "^2.0.3",
     "tailwind-merge": "^3.2.0",
     "zod": "^3.24.4"
