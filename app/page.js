@@ -13,10 +13,10 @@ const whychoose = [
     icon: (
       <Image
         src="/easytouse.svg"
-        width={50}
-        height={50}
+        width={100}
+        height={100}
         alt="card icon"
-        className="w-12 h-12 "
+        className="size-16"
       />
     ),
   },
@@ -27,10 +27,10 @@ const whychoose = [
     icon: (
       <Image
         src="/noinstallation.svg"
-        width={50}
-        height={50}
+        width={100}
+        height={100}
         alt="card icon"
-        className="w-12 h-12 "
+        className="size-16"
       />
     ),
   },
@@ -41,10 +41,10 @@ const whychoose = [
     icon: (
       <Image
         src="/savetime.svg"
-        width={50}
-        height={50}
+        width={100}
+        height={100}
         alt="card icon"
-        className="w-12 h-12 "
+        className="size-16 "
       />
     ),
   },
@@ -60,18 +60,20 @@ export default function Home() {
           {/* Features Section */}
           <section className="pt-12 pb-28 px-4 sm:px-6 lg:px-8 bg-white">
             <div className="max-w-5xl mx-auto">
-              <h2 className="text-3xl font-bold text-center mb-12">
-                Why Choose Our Tools?
+              <h2 className="text-5xl font-semibold text-center mb-20">
+                Why Our Tools Work Best for You?
               </h2>
 
               <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
                 {whychoose.map((item, index) => (
                   <div key={index} className="bg-brandColor rounded-lg p-6 ">
                     <div className="mb-4">{item.icon}</div>
-                    <h3 className="text-xl font-semibold mb-2 mt-10 text-white">
+                    <h3 className="text-xl font-medium mb-2 mt-10 text-white">
                       {item.title}
                     </h3>
-                    <p className="text-gray-200 text-sm">{item.description}</p>
+                    <p className="text-gray-200 text-sm font-light">
+                      {item.description}
+                    </p>
                   </div>
                 ))}
               </div>
