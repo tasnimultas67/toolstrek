@@ -23,7 +23,7 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import { Origami, QrCode } from "lucide-react";
+import { Origami, QrCode, ScanQrCode } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Image from "next/image";
 
@@ -56,7 +56,7 @@ const services = [
     name: "QR Code Scanner",
     description: "Scan QR codes using your device's camera",
     href: "/tools/qr-scanner",
-    icon: QrCode,
+    icon: ScanQrCode,
   },
 ];
 
