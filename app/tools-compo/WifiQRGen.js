@@ -10,10 +10,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Copy, Download, Eye, EyeOff, QrCode } from "lucide-react";
+import { Copy, Download, Eye, EyeOff, QrCode, Palette } from "lucide-react";
 import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { HexColorPicker } from "react-colorful";
 
 const WifiQRGen = () => {
   const [ssid, setSsid] = useState("");
@@ -22,6 +23,10 @@ const WifiQRGen = () => {
   const [qrCode, setQrCode] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [passChecked, setPassUnChecked] = useState(true);
+  const [qrColor, setQrColor] = useState("#000000");
+  const [bgColor, setBgColor] = useState("#ffffff");
+  const [showQrColorPicker, setShowQrColorPicker] = useState(false);
+  const [showBgColorPicker, setShowBgColorPicker] = useState(false);
 
   // Helper function to escape special characters
   const escapeSpecialChars = (str) => {
@@ -58,6 +63,10 @@ const WifiQRGen = () => {
         margin: 1,
         errorCorrectionLevel: "H",
         type: "image/png",
+        color: {
+          dark: qrColor,
+          light: bgColor,
+        },
       });
       setQrCode(qr);
     } catch (error) {
@@ -211,6 +220,82 @@ const WifiQRGen = () => {
               </Select>
             </div>
 
+            {/* QR Code Color Picker */}
+            <div className="space-y-2">
+              <label className="text-sm font-medium">QR Code Colors:</label>
+              <div className="flex flex-col sm:flex-row gap-3">
+                <div className="relative">
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 p-2 border border-gray-300 rounded-md text-xs w-full bg-white"
+                    onClick={() => {
+                      setShowQrColorPicker(!showQrColorPicker);
+                      setShowBgColorPicker(false);
+                    }}
+                  >
+                    <Palette className="size-4" />
+                    <span>QR Color</span>
+                    <div
+                      className="w-4 h-4 rounded-full border border-gray-300"
+                      style={{ backgroundColor: qrColor }}
+                    />
+                  </button>
+                  {showQrColorPicker && (
+                    <div className="absolute z-10 mt-1 w-full md:w-96">
+                      <HexColorPicker
+                        color={qrColor}
+                        onChange={setQrColor}
+                        className="!w-full"
+                      />
+                      <div className="flex items-center gap-2 p-2 bg-white border border-t-0 border-gray-300 rounded-b-md">
+                        <input
+                          type="text"
+                          value={qrColor}
+                          onChange={(e) => setQrColor(e.target.value)}
+                          className="text-xs p-1 border border-gray-300 rounded w-full"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="relative">
+                  <button
+                    type="button"
+                    className="flex items-center gap-2 p-2 border border-gray-300 rounded-md text-xs w-full bg-white"
+                    onClick={() => {
+                      setShowBgColorPicker(!showBgColorPicker);
+                      setShowQrColorPicker(false);
+                    }}
+                  >
+                    <Palette className="size-4" />
+                    <span>Background</span>
+                    <div
+                      className="w-4 h-4 rounded-full border border-gray-300"
+                      style={{ backgroundColor: bgColor }}
+                    />
+                  </button>
+                  {showBgColorPicker && (
+                    <div className="absolute z-10 mt-1 w-full md:w-96">
+                      <HexColorPicker
+                        color={bgColor}
+                        onChange={setBgColor}
+                        className="!w-full"
+                      />
+                      <div className="flex items-center gap-2 p-2 bg-white border border-t-0 border-gray-300 rounded-b-md">
+                        <input
+                          type="text"
+                          value={bgColor}
+                          onChange={(e) => setBgColor(e.target.value)}
+                          className="text-xs p-1 border border-gray-300 rounded w-full"
+                        />
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
             {/* Generate QR Code Button */}
             <button
               className={`bg-brandColor text-white px-3 py-1.5 rounded-md text-sm flex items-center justify-center gap-2 hover:bg-brandColorHover cursor-pointer transition-all ${
@@ -242,14 +327,17 @@ const WifiQRGen = () => {
               transition={{ duration: 0.5 }}
               className="w-full max-w-[250px]"
             >
-              <div className="p-4 flex flex-col items-center justify-start border border-gray-300 bg-white rounded-xl">
+              <div
+                className="p-4 flex flex-col items-center justify-start border border-gray-300 rounded-xl"
+                style={{ backgroundColor: bgColor }}
+              >
                 <img
                   src={qrCode}
                   alt="WiFi QR Code"
                   className="m-2 w-[200px] h-[200px]"
                 />
                 <button
-                  className="flex items-center justify-center gap-2 text-xs bg-brandColor hover:bg-brandColorHover transition-all text-white px-4 py-2 rounded-md w-full cursor-pointer"
+                  className="flex items-center justify-center gap-2 text-xs bg-brandColor hover:bg-brandColorHover transition-all text-white px-4 py-2 rounded-md w-full cursor-pointer mt-2"
                   onClick={downloadQRCode}
                 >
                   <Download className="size-4" />
