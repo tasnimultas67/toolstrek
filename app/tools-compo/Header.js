@@ -23,7 +23,7 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import { Origami, QrCode, ScanQrCode } from "lucide-react";
+import { CalendarRange, Origami, QrCode, ScanQrCode } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -58,6 +58,12 @@ const services = [
     description: "Scan QR codes using your device's camera",
     href: "/tools/qr-scanner",
     icon: ScanQrCode,
+  },
+  {
+    name: "Days Tracker",
+    description: "Calculate the end date based on start date",
+    href: "/tools/days-tracker",
+    icon: CalendarRange,
   },
 ];
 
@@ -150,7 +156,7 @@ export default function Header() {
                                   {item.name}
                                   <span className="absolute inset-0" />
                                 </Link>
-                                <p className="mt-1 text-gray-600">
+                                <p className=" text-gray-600">
                                   {item.description}
                                 </p>
                               </div>
