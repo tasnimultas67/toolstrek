@@ -31,6 +31,41 @@ const companies = [
   { name: "Security at Templafy", url: "#" },
 ];
 
+const services = [
+  {
+    name: "Link Shortener",
+    href: "/tools/link-shortner",
+  },
+  {
+    name: "Wifi QR Code Generator",
+    href: "/tools/wifi-qr",
+  },
+  {
+    name: "Age Calculator",
+    href: "/tools/age-calculate",
+  },
+  {
+    name: "QR Code Scanner",
+    href: "/tools/qr-scanner",
+  },
+  {
+    name: "Days Tracker",
+    href: "/tools/days-tracker",
+  },
+];
+
+const whyus = [
+  { name: "User-Friendly Interface" },
+  { name: "Fast and Efficient" },
+  { name: "Secure and Private" },
+  { name: "Free to Use" },
+  { name: "No Registration Required" },
+  { name: "Regular Updates" },
+  { name: "No Ads" },
+  { name: "Expertly Crafted" },
+  { name: "Creative & Practical Solutions" },
+];
+
 const Footer = () => {
   const copyrightYear = new Date().getFullYear();
   return (
@@ -54,33 +89,17 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          {/* Solutions Menus */}
+          {/* service Menus */}
           <div className="space-y-4">
-            <h3 className="text-base text-white font-semibold">Solutions</h3>
+            <h3 className="text-base text-white font-semibold">Tools</h3>
             <ul className="space-y-2">
-              {platforms.map((platform) => (
-                <li key={platform.name} className="relative">
+              {services.map((service) => (
+                <li key={service.name} className="relative">
                   <Link
-                    href={platform.url}
+                    href={service.href}
                     className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
                   >
-                    {platform.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          {/* Resources Menus */}
-          <div className="space-y-4">
-            <h3 className="text-base text-white font-semibold">Resources</h3>
-            <ul className="space-y-2">
-              {platforms.map((platform) => (
-                <li key={platform.name} className="relative">
-                  <Link
-                    href={platform.url}
-                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
-                  >
-                    {platform.name}
+                    {service.name}
                   </Link>
                 </li>
               ))}
@@ -98,6 +117,19 @@ const Footer = () => {
                   >
                     {company.name}
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+          {/* whyus Menus */}
+          <div className="space-y-4">
+            <h3 className="text-base text-white font-semibold">Why Us</h3>
+            <ul className="space-y-2">
+              {whyus.map((benefit) => (
+                <li key={benefit.name} className="relative">
+                  <p className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full">
+                    {benefit.name}
+                  </p>
                 </li>
               ))}
             </ul>
