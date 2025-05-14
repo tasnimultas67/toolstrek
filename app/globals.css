@@ -52,7 +52,18 @@
   background: var(--color-brandColor);
   color: var(--color-background);
 }
+/* For modern browsers */
+html {
+  scrollbar-width: none;
+  /* Firefox */
+  -ms-overflow-style: none;
+  /* IE and Edge */
+}
 
+html::-webkit-scrollbar {
+  display: none;
+  /* Chrome, Safari, Opera */
+}
 :root {
   --radius: 0.625rem;
   --background: oklch(1 0 0);
