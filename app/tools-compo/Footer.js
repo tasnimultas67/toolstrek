@@ -23,7 +23,7 @@ const platforms = [
 const Footer = () => {
   const copyrightYear = new Date().getFullYear();
   return (
-    <div className="bg-gradient-to-b from-black to-neutral-950 pt-20 pb-5 px-3 mt-10 ">
+    <div className="bg-gradient-to-b from-black to-neutral-950 pt-20 pb-5 px-3">
       <div className="md:w-[1180px] m-auto space-y-14">
         <div className="flex items-start justify-between">
           {/* Platform Menus */}
