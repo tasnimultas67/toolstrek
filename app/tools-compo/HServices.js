@@ -12,7 +12,7 @@ const HServices = () => {
           {/* Link Shortner */}
           <Link
             href="/tools/link-shortner"
-            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[32%]"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%] flex-1"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
               <LinkIcon className="size-5 text-gray-900" />
@@ -25,7 +25,7 @@ const HServices = () => {
           {/* Wi-Fi QR Code */}
           <Link
             href="/tools/wifi-qr"
-            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[32%]"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%]"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
               <QrCodeIcon className="size-5 text-gray-900" />
@@ -38,7 +38,7 @@ const HServices = () => {
           {/* Age Calculator */}
           <Link
             href="/tools/age-calculate"
-            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[32%]"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%]"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
               <CalculatorIcon className="size-5 text-gray-900" />
@@ -46,6 +46,19 @@ const HServices = () => {
             <h3 className="font-semibold">Age Calculator</h3>
             <p className="text-sm text-gray-500">
               Calculate your age in years, months, and days
+            </p>
+          </Link>
+          {/* QR Code Scanner */}
+          <Link
+            href="/tools/qr-scanner"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%]"
+          >
+            <div className="border border-gray-300 rounded-xl p-3 mb-4">
+              <QrCodeIcon className="size-5 text-gray-900" />
+            </div>
+            <h3 className="font-semibold">QR Code Scanner</h3>
+            <p className="text-sm text-gray-500">
+              Scan QR codes with your device's camera or upload an image
             </p>
           </Link>
         </div>
