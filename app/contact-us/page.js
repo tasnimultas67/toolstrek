@@ -45,6 +45,7 @@ const toolOptions = [
   { value: "age-calculator", label: "Age Calculator" },
   { value: "qr-code-scanner", label: "QR Code Scanner" },
   { value: "days-tracker", label: "Days Tracker" },
+  { value: "suggest-a-tool", label: "Suggest a Tool" },
   { value: "other", label: "Other Inquiry" },
 ];
 
