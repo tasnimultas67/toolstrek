@@ -40,13 +40,13 @@ const formSchema = z.object({
 });
 
 const toolOptions = [
-  { value: "link-shortener", label: "Link Shortener" },
-  { value: "wifi-qr-code-maker", label: "WiFi QR Code Maker" },
-  { value: "age-calculator", label: "Age Calculator" },
-  { value: "qr-code-scanner", label: "QR Code Scanner" },
-  { value: "days-tracker", label: "Days Tracker" },
-  { value: "suggest-a-tool", label: "Suggest a Tool" },
-  { value: "other", label: "Other Inquiry" },
+  { value: "Link Shortener", label: "Link Shortener" },
+  { value: "WiFi QR Code Maker", label: "WiFi QR Code Maker" },
+  { value: "Age Calculator", label: "Age Calculator" },
+  { value: "QR Code Scanner", label: "QR Code Scanner" },
+  { value: "Days Tracker", label: "Days Tracker" },
+  { value: "Suggest a Tool", label: "Suggest a Tool" },
+  { value: "Other Inquiry", label: "Other Inquiry" },
 ];
 
 export default function ContactPage() {
