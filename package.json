@@ -37,6 +37,7 @@
     "react-day-picker": "^8.10.1",
     "react-dom": "^19.0.0",
     "react-dropzone": "^14.3.8",
+    "react-google-recaptcha": "^3.1.0",
     "react-hook-form": "^7.56.3",
     "react-webcam": "^7.2.0",
     "sonner": "^2.0.3",

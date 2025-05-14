@@ -1,11 +1,11 @@
 import nodemailer from "nodemailer";
 
 export async function POST(request) {
-  const { name, email, phone, company, subject, message } =
+  const { name, email, phone, company, subject, message, recaptchaToken } =
     await request.json();
 
   // Validate input
-  if (!name || !email || !subject || !message) {
+  if (!name || !email || !subject || !message || !recaptchaToken) {
     return new Response(JSON.stringify({ error: "Missing required fields" }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
@@ -13,7 +13,24 @@ export async function POST(request) {
   }
 
   try {
-    // Create transporter
+    // Verify reCAPTCHA token first
+    const recaptchaResponse = await fetch(
+      `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
+      { method: "POST" }
+    );
+    const recaptchaData = await recaptchaResponse.json();
+
+    if (!recaptchaData.success) {
+      return new Response(
+        JSON.stringify({ error: "reCAPTCHA verification failed" }),
+        {
+          status: 400,
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+    }
+
+    // Proceed with email if reCAPTCHA is valid
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -22,7 +39,6 @@ export async function POST(request) {
       },
     });
 
-    // Email content
     const mailOptions = {
       from: `"ToolsTrek Contact Form" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
@@ -44,11 +60,13 @@ export async function POST(request) {
               process.env.NEXT_PUBLIC_SITE_URL
             }" style="color: #2563eb;">ToolsTrek Contact Form</a>
           </p>
+          <p style="font-size: 0.8em; color: #9ca3af;">
+            reCAPTCHA verified: ${new Date().toLocaleString()}
+          </p>
         </div>
       `,
     };
 
-    // Send email
     await transporter.sendMail(mailOptions);
 
     return new Response(JSON.stringify({ success: true }), {
@@ -56,10 +74,13 @@ export async function POST(request) {
       headers: { "Content-Type": "application/json" },
     });
   } catch (error) {
-    console.error("Email send error:", error);
-    return new Response(JSON.stringify({ error: "Failed to send message" }), {
-      status: 500,
-      headers: { "Content-Type": "application/json" },
-    });
+    console.error("Error processing contact form:", error);
+    return new Response(
+      JSON.stringify({ error: "Failed to process your request" }),
+      {
+        status: 500,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
   }
 }

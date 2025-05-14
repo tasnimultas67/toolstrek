@@ -60,9 +60,20 @@ html {
   /* IE and Edge */
 }
 
+
 html::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, Opera */
+}
+.grecaptcha-badge {
+  visibility: hidden;
+}
+
+/* Optional: Adjust reCAPTCHA size */
+.g-recaptcha>div {
+  margin: 0 auto;
+  transform: scale(0.9);
+  transform-origin: 0 0;
 }
 :root {
   --radius: 0.625rem;

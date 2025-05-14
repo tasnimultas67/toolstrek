@@ -1,10 +1,10 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-
+import ReCAPTCHA from "react-google-recaptcha";
 import {
   Form,
   FormControl,
@@ -25,7 +25,6 @@ import {
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
 
-// Form validation schema
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
   email: z.string().email({ message: "Please enter a valid email" }),
@@ -48,8 +47,10 @@ const toolOptions = [
   { value: "other", label: "Other Inquiry" },
 ];
 
-const page = () => {
+export default function ContactPage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [recaptchaToken, setRecaptchaToken] = useState(null);
+  const recaptchaRef = useRef();
 
   const form = useForm({
     resolver: zodResolver(formSchema),
@@ -64,6 +65,11 @@ const page = () => {
   });
 
   async function onSubmit(data) {
+    if (!recaptchaToken) {
+      toast.error("Please complete the reCAPTCHA verification");
+      return;
+    }
+
     setIsSubmitting(true);
 
     try {
@@ -72,7 +78,7 @@ const page = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify({ ...data, recaptchaToken }),
       });
 
       const result = await response.json();
@@ -81,20 +87,12 @@ const page = () => {
         throw new Error(result.error || "Failed to send message");
       }
 
-      toast({
-        title: "Message Sent!",
-        description:
-          "Thank you for contacting us. We will get back to you soon.",
-        variant: "default",
-      });
-
+      toast.success("Message sent successfully!");
       form.reset();
+      recaptchaRef.current.reset();
+      setRecaptchaToken(null);
     } catch (error) {
-      toast({
-        title: "Error",
-        description: error.message || "Something went wrong. Please try again.",
-        variant: "destructive",
-      });
+      toast.error(error.message || "Something went wrong. Please try again.");
     } finally {
       setIsSubmitting(false);
     }
@@ -226,11 +224,19 @@ const page = () => {
                 )}
               />
 
+              <ReCAPTCHA
+                ref={recaptchaRef}
+                sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+                onChange={(token) => setRecaptchaToken(token)}
+                onExpired={() => setRecaptchaToken(null)}
+                className="mx-auto"
+              />
+
               <div className="flex justify-end">
                 <Button
                   type="submit"
                   size="lg"
-                  disabled={isSubmitting}
+                  disabled={isSubmitting || !recaptchaToken}
                   className="w-full sm:w-auto"
                 >
                   {isSubmitting ? (
@@ -274,6 +280,4 @@ const page = () => {
       </div>
     </div>
   );
-};
-
-export default page;
+}
