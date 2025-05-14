@@ -1,6 +1,12 @@
 import { AgeCal } from "@/app/tools-compo/AgeCal";
 import React from "react";
 
+export const metadata = {
+  title: "Age Calculator — ToolsTrek",
+  keywords: ["age", "calculator", "age calculator"],
+  description: "Calculate your age in years, months, and days",
+};
+
 const page = () => {
   return (
     <div className="bg-[#f3f4f6]">
