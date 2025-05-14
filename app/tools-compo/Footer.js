@@ -1,3 +1,4 @@
+import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 import { Mail } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Link from "next/link";
@@ -126,10 +127,12 @@ const Footer = () => {
             <h3 className="text-base text-white font-semibold">Why Us</h3>
             <ul className="space-y-2">
               {whyus.map((benefit) => (
-                <li key={benefit.name} className="relative">
-                  <p className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full">
-                    {benefit.name}
-                  </p>
+                <li
+                  key={benefit.name}
+                  className="relative flex items-center gap-2"
+                >
+                  <CheckBadgeIcon className="size-4 fill-blue-600 text-white" />
+                  <p className="text-gray-200 text-sm ">{benefit.name}</p>
                 </li>
               ))}
             </ul>
