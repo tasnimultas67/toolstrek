@@ -190,18 +190,14 @@ export default function ContactPage() {
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <FormControl>
+                      <FormControl className="w-full">
                         <SelectTrigger>
                           <SelectValue placeholder="Select a tool" />
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
+                      <SelectContent className="w-full">
                         {toolOptions.map((tool) => (
-                          <SelectItem
-                            className="w-full"
-                            key={tool.value}
-                            value={tool.value}
-                          >
+                          <SelectItem key={tool.value} value={tool.value}>
                             {tool.label}
                           </SelectItem>
                         ))}
