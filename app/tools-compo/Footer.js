@@ -20,11 +20,23 @@ const platforms = [
   { name: "Security at Templafy", url: "#" },
 ];
 
+const companies = [
+  { name: "About Company", url: "#" },
+  { name: "Contact Us", url: "#" },
+  { name: "Cookies Settings", url: "#" },
+  { name: "Frequently Asked Questions", url: "#" },
+  { name: "Productivity tools", url: "#" },
+  { name: "AI and doc gen", url: "#" },
+  { name: "Privacy at Templafy", url: "#" },
+  { name: "Security at Templafy", url: "#" },
+];
+
 const Footer = () => {
   const copyrightYear = new Date().getFullYear();
   return (
     <div className="bg-gradient-to-b from-black to-neutral-950 pt-20 pb-5 px-3">
       <div className="md:w-[1180px] m-auto space-y-14">
+        {/* Menus */}
         <div className="flex items-start justify-between">
           {/* Platform Menus */}
           <div className="space-y-4">
@@ -78,13 +90,13 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-base text-white font-semibold">Company</h3>
             <ul className="space-y-2">
-              {platforms.map((platform) => (
-                <li key={platform.name} className="relative">
+              {companies.map((company) => (
+                <li key={company.name} className="relative">
                   <Link
-                    href={platform.url}
+                    href={company.url}
                     className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
                   >
-                    {platform.name}
+                    {company.name}
                   </Link>
                 </li>
               ))}
