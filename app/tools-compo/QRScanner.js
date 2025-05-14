@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useCallback } from "react";
 import { BrowserQRCodeReader } from "@zxing/library";
+import jsQR from "jsqr";
 import Webcam from "react-webcam";
 import { useDropzone } from "react-dropzone";
 import { Camera, CameraIcon, Copy, Upload } from "lucide-react";
@@ -8,58 +9,116 @@ import { PhotoIcon } from "@heroicons/react/24/outline";
 import { toast } from "sonner";
 
 const QRScanner = () => {
-  const [mode, setMode] = useState("upload"); // Toggle mode between "camera" and "upload"
+  const [mode, setMode] = useState("upload"); // "camera" or "upload"
   const videoRef = useRef(null);
   const [result, setResult] = useState("");
   const [uploadedFile, setUploadedFile] = useState(null);
+  const [isScanning, setIsScanning] = useState(false);
 
-  // Function to capture from Camera
-  const captureImage = useCallback(async () => {
-    if (videoRef.current) {
-      const imageSrc = videoRef.current.getScreenshot();
-      const codeReader = new BrowserQRCodeReader();
+  // Try both decoders (ZXing and jsQR)
+  const tryBothDecoders = async (canvas) => {
+    setIsScanning(true);
+    setResult("");
 
-      try {
-        const decodedResult = await codeReader.decodeFromImageUrl(imageSrc);
-        setResult(decodedResult.getText());
-      } catch (err) {
-        setResult("No QR Code detected.");
-      }
-    }
-  }, []);
-
-  // Function to process Uploaded QR Image
-  const handleFileUpload = async (file) => {
-    const imgUrl = URL.createObjectURL(file);
-    setUploadedFile(imgUrl);
-    const codeReader = new BrowserQRCodeReader();
-
+    // First try @zxing
     try {
-      const result = await codeReader.decodeFromImageUrl(imgUrl);
-      setResult(result.getText());
+      const codeReader = new BrowserQRCodeReader();
+      const result = await codeReader.decodeFromCanvas(canvas);
+      setIsScanning(false);
+      return result.getText();
     } catch (err) {
-      setResult("QR Code not found.");
+      console.log("ZXing failed, trying jsQR...");
+    }
+
+    // Then try jsQR
+    try {
+      const imageData = canvas
+        .getContext("2d")
+        .getImageData(0, 0, canvas.width, canvas.height);
+      const code = jsQR(imageData.data, imageData.width, imageData.height);
+      setIsScanning(false);
+      return code ? code.data : null;
+    } catch (err) {
+      setIsScanning(false);
+      return null;
     }
   };
 
-  // Drag & Drop functionality with react-dropzone
+  // Capture from camera
+  const captureImage = useCallback(async () => {
+    if (!videoRef.current) return;
+
+    const imageSrc = videoRef.current.getScreenshot();
+    const img = new Image();
+    img.src = imageSrc;
+
+    img.onload = async () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      const decodedText = await tryBothDecoders(canvas);
+      setResult(decodedText || "No QR Code detected.");
+    };
+  }, []);
+
+  // Handle file upload
+  const handleFileUpload = async (file) => {
+    const imgUrl = URL.createObjectURL(file);
+    setUploadedFile(imgUrl);
+
+    const img = new Image();
+    img.src = imgUrl;
+
+    img.onload = async () => {
+      const canvas = document.createElement("canvas");
+      canvas.width = img.width;
+      canvas.height = img.height;
+      const ctx = canvas.getContext("2d");
+      ctx.drawImage(img, 0, 0);
+
+      const decodedText = await tryBothDecoders(canvas);
+      setResult(decodedText || "QR Code not found.");
+    };
+  };
+
+  // Drag & drop functionality
   const { getRootProps, getInputProps } = useDropzone({
-    accept: "image/*",
+    accept: {
+      "image/*": [".png", ".jpg", ".jpeg"],
+    },
+    maxSize: 5 * 1024 * 1024, // 5MB
     onDrop: (acceptedFiles) => {
       if (acceptedFiles.length > 0) {
         handleFileUpload(acceptedFiles[0]);
       }
     },
+    onDropRejected: () => {
+      toast.error("File rejected", {
+        description: "Please upload an image (PNG/JPG) under 5MB",
+      });
+    },
   });
 
-  // Function to copy the result to clipboard
+  // Copy result to clipboard
   const copyToClipboard = (text) => {
+    if (!text) return;
+
     navigator.clipboard.writeText(text);
     toast("Copied to clipboard", {
-      description: "The URL is ready to be pasted",
+      description: "The QR code content is ready to be pasted",
       action: {
         label: "Open URL",
-        onClick: () => window.open(text, "_blank"),
+        onClick: () => {
+          try {
+            new URL(text); // Validate if it's a URL
+            window.open(text, "_blank");
+          } catch {
+            toast.info("This is not a valid URL");
+          }
+        },
       },
     });
   };
@@ -68,83 +127,118 @@ const QRScanner = () => {
     <div className="flex flex-col items-center p-6 min-h-screen bg-gray-100">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">QR Code Scanner</h2>
 
-      {/* Toggle Scanner Mode */}
-      <div className="flex gap-2">
+      {/* Mode Toggle */}
+      <div className="flex gap-2 mb-6">
         <button
-          onClick={() => setMode("camera") & setResult("")}
+          onClick={() => {
+            setMode("camera");
+            setResult("");
+            setUploadedFile(null);
+          }}
           className={`px-6 py-3 rounded-md cursor-pointer transition flex items-center justify-center gap-2 text-sm ${
             mode === "camera"
-              ? "bg-brandColor text-white"
-              : "bg-brandColor text-white hover:bg-brandColorHover"
+              ? "bg-blue-600 text-white"
+              : "bg-blue-500 text-white hover:bg-blue-600"
           }`}
         >
-          <CameraIcon className="size-4"></CameraIcon>
+          <CameraIcon className="size-4" />
           Use Camera
         </button>
         <button
-          onClick={() => setMode("upload") & setResult("")}
+          onClick={() => {
+            setMode("upload");
+            setResult("");
+          }}
           className={`px-6 py-3 rounded-md cursor-pointer transition flex items-center justify-center gap-2 text-sm ${
             mode === "upload"
-              ? "bg-brandColor text-white"
-              : "bg-brandColor text-white hover:bg-brandColorHover"
+              ? "bg-blue-600 text-white"
+              : "bg-blue-500 text-white hover:bg-blue-600"
           }`}
         >
-          <Upload className="size-4"></Upload>
+          <Upload className="size-4" />
           Upload Image
         </button>
       </div>
 
       {/* Camera Mode */}
       {mode === "camera" && (
-        <>
+        <div className="flex flex-col items-center">
           <Webcam
             ref={videoRef}
             screenshotFormat="image/png"
-            className="mt-6 w-80 h-80 border-2 border-gray-400 rounded-lg"
+            className="w-full max-w-md border-2 border-gray-300 rounded-lg"
+            videoConstraints={{
+              facingMode: "environment",
+              width: 1280,
+              height: 720,
+            }}
           />
           <button
             onClick={captureImage}
-            className="-mt-5 px-6 py-2 bg-brandColor text-white rounded-md text-sm transition hover:bg-brandColorHover cursor-pointer flex items-center justify-center gap-2"
+            disabled={isScanning}
+            className="mt-4 px-6 py-2 bg-blue-600 text-white rounded-md text-sm transition hover:bg-blue-700 cursor-pointer flex items-center justify-center gap-2 disabled:opacity-50"
           >
-            <Camera className="size-4"></Camera>
-            Capture & Scan
+            <Camera className="size-4" />
+            {isScanning ? "Scanning..." : "Capture & Scan"}
           </button>
-        </>
-      )}
-
-      {/* Upload Mode with Drag & Drop */}
-      {mode === "upload" && (
-        <div className="mt-6 w-full md:w-[500px]">
-          <div
-            {...getRootProps()}
-            className="cursor-pointer flex flex-col items-center justify-center rounded-lg border-1 border-dashed border-gray-400 bg-white p-6  transition hover:border-gray-600"
-          >
-            <input {...getInputProps()} />
-            <PhotoIcon className="size-12 text-gray-400" />
-            <p className="mt-3 text-sm text-gray-600">
-              Drag & drop an image here or click to upload
-            </p>
-            <p className="text-xs text-gray-500">PNG, JPG up to 5MB</p>
-          </div>
         </div>
       )}
 
-      {/* Display Result with Copy Button */}
-      {result && (
-        <div className="mt-6">
-          <div className="flex items-center justify-center bg-white p-2 px-5 rounded-t-md w-fit m-auto">
-            <h3 className="text-sm font-medium text-gray-800">
-              Scanned Result:
-            </h3>
+      {/* Upload Mode */}
+      {mode === "upload" && (
+        <div className="w-full max-w-md">
+          <div
+            {...getRootProps()}
+            className="cursor-pointer flex flex-col items-center justify-center rounded-lg border-2 border-dashed border-gray-300 bg-white p-8 transition hover:border-gray-400"
+          >
+            <input {...getInputProps()} />
+            <PhotoIcon className="size-12 text-gray-400 mb-3" />
+            <p className="text-sm text-gray-600 text-center">
+              Drag & drop an image here, or click to select
+            </p>
+            <p className="text-xs text-gray-500 mt-1">
+              Supports: PNG, JPG (max 5MB)
+            </p>
           </div>
-          <div className="flex items-center gap-3 bg-white px-4 py-2 rounded-lg shadow-md">
-            <p className="text-lg font-medium text-brandColor"> {result}</p>
-            <button
-              onClick={() => copyToClipboard(result)}
-              className="p-2 bg-brandColor/20 text-gray-700 rounded-md transition hover:bg-brandColorHover/30 cursor-pointer"
-            >
-              <Copy className="size-4" />
-            </button>
+
+          {uploadedFile && (
+            <div className="mt-4 flex justify-center">
+              <img
+                src={uploadedFile}
+                alt="Uploaded QR Code"
+                className="max-h-64 border rounded-lg"
+              />
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* Scan Results */}
+      {(result || isScanning) && (
+        <div className="mt-8 w-full max-w-md">
+          <div className="bg-white p-4 rounded-lg shadow-md">
+            <h3 className="text-lg font-medium text-gray-800 mb-2">
+              {isScanning ? "Scanning..." : "Scan Result"}
+            </h3>
+
+            {result ? (
+              <div className="flex items-center gap-2">
+                <div className="flex-1 truncate text-blue-600 font-medium">
+                  {result}
+                </div>
+                <button
+                  onClick={() => copyToClipboard(result)}
+                  className="p-2 bg-blue-100 text-blue-600 rounded-md hover:bg-blue-200 transition"
+                  title="Copy to clipboard"
+                >
+                  <Copy className="size-4" />
+                </button>
+              </div>
+            ) : isScanning ? (
+              <div className="text-gray-500">Processing image...</div>
+            ) : (
+              <div className="text-gray-500">No QR code found</div>
+            )}
           </div>
         </div>
       )}
