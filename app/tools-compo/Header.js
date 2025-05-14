@@ -169,14 +169,17 @@ export default function Header() {
                 }}
               </Popover>
 
-              <Link href="#" className="text-sm/6 font-semibold text-gray-900">
-                Features
-              </Link>
               <Link
                 href="/about-us"
                 className="text-sm/6 font-semibold text-gray-900"
               >
                 Company
+              </Link>
+              <Link
+                href="/contact-us"
+                className="text-sm/6 font-semibold text-gray-900"
+              >
+                Contact Us
               </Link>
             </PopoverGroup>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
@@ -199,9 +202,22 @@ export default function Header() {
         <div className="fixed inset-0 z-10 bg-black/20" />
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <Link href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <h3 className="text-xl font-semibold">ToolsTrek</h3>
+            <Link href="/" className=" flex items-center justify-start gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                id="Layer_1"
+                data-name="Layer 1"
+                viewBox="0 0 24 24"
+                width="50"
+                height="50"
+                className="size-6 fill-brandColor"
+              >
+                <path d="m19,16h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5h6c2.757,0,5,2.243,5,5v6c0,2.757-2.243,5-5,5Zm-8,8h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5,.553,0,1,.448,1,1v2c0,3.86,3.141,7,7,7h2c.553,0,1,.448,1,1,0,2.757-2.243,5-5,5Z" />
+              </svg>
+
+              <h3 className={`text-3xl ${staatliches.className} `}>
+                Tools<span className="text-brandColor">Trek</span>
+              </h3>
             </Link>
             <button
               type="button"
@@ -243,13 +259,6 @@ export default function Header() {
                     </>
                   )}
                 </Disclosure>
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Features
-                </Link>
 
                 <Link
                   href="/about-us"
@@ -257,6 +266,13 @@ export default function Header() {
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   Company
+                </Link>
+                <Link
+                  href="/contact-us"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  Contact Us
                 </Link>
               </div>
               <div className="py-6">
