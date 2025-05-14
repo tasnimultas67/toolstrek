@@ -40,10 +40,11 @@ const formSchema = z.object({
 });
 
 const toolOptions = [
-  { value: "image-compressor", label: "Image Compressor" },
-  { value: "pdf-merger", label: "PDF Merger" },
-  { value: "color-converter", label: "Color Converter" },
-  { value: "code-minifier", label: "Code Minifier" },
+  { value: "link-shortener", label: "Link Shortener" },
+  { value: "wifi-qr-code-maker", label: "WiFi QR Code Maker" },
+  { value: "age-calculator", label: "Age Calculator" },
+  { value: "qr-code-scanner", label: "QR Code Scanner" },
+  { value: "days-tracker", label: "Days Tracker" },
   { value: "other", label: "Other Inquiry" },
 ];
 
@@ -195,7 +196,11 @@ export default function ContactPage() {
                       </FormControl>
                       <SelectContent>
                         {toolOptions.map((tool) => (
-                          <SelectItem key={tool.value} value={tool.value}>
+                          <SelectItem
+                            className="w-full"
+                            key={tool.value}
+                            value={tool.value}
+                          >
                             {tool.label}
                           </SelectItem>
                         ))}
@@ -274,7 +279,7 @@ export default function ContactPage() {
 
         <div className="mt-12 text-center text-gray-500">
           <p>
-            Prefer email? Contact us directly at: contact@toolstrek.vercel.app
+            Prefer email? Contact us directly at: contact.toolstrek@gmail.com
           </p>
         </div>
       </div>
