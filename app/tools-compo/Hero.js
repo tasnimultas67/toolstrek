@@ -37,14 +37,14 @@ const Hero = () => {
               productivity!
             </p>
             <Image
-              className="absolute top-10 left-0 w-7 md:w-full md:top-20 md:-left-28 -rotate-12 drop-shadow-2xl drop-shadow-blue-300"
+              className="absolute top-10 left-0 w-7 md:w-[50px] md:top-20 md:-left-28 -rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               src="/Age-Calculator-icon.svg"
               width={50}
               height={50}
               alt="Age Calculator Icon"
             ></Image>
             <Image
-              className="absolute top-10 right-0 w-7 md:w-full md:top-20 md:-right-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
+              className="absolute top-10 right-0 w-7 md:w-[50px] md:top-20 md:-right-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               src="/QR-Generator.svg"
               width={60}
               height={60}
@@ -62,7 +62,7 @@ const Hero = () => {
               </Link>
             </div>
             <Image
-              className="absolute bottom-10 left-0 w-7 md:w-full md:bottom-40 md:-left-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
+              className="absolute bottom-10 left-0 w-7 md:w-[40px] md:bottom-40 md:-left-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               src="/Link-shortener.svg"
               width={40}
               height={40}
