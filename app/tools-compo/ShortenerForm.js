@@ -14,10 +14,6 @@ const ShortenerForm = () => {
   const [isLoading, setIsLoading] = useState(false);
   const qrCodeRef = useRef(null);
 
-  /**
-   * Handles URL shortening using TinyURL API
-   * @param {Event} e - Form submission event
-   */
   async function shortURL(e) {
     e.preventDefault();
 
@@ -105,7 +101,7 @@ const ShortenerForm = () => {
   };
 
   return (
-    <div className="w-full max-w-4xl mx-auto space-y-6 p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
+    <div className="w-full md:max-w-4xl mx-auto space-y-6 p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
       {/* URL Shortening Form */}
       <form
         onSubmit={shortURL}

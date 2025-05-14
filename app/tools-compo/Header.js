@@ -26,6 +26,7 @@ import Link from "next/link";
 import { Origami, QrCode, ScanQrCode } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 const staatliches = Staatliches({
   subsets: ["latin"], // Ensures proper character support
@@ -173,8 +174,10 @@ export default function Header() {
               </Link>
             </PopoverGroup>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <Link href="#" className="text-sm/6 font-semibold text-gray-900">
-                Log in <span aria-hidden="true">&rarr;</span>
+              <Link href="/contact-us" className="cursor-pointer text-sm">
+                <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none">
+                  Suggest a Tool
+                </Button>
               </Link>
             </div>
           </nav>
@@ -251,12 +254,10 @@ export default function Header() {
                 </Link>
               </div>
               <div className="py-6">
-                <Link
-                  href="#"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base/7 font-semibold text-gray-900 hover:bg-gray-50"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  Log in
+                <Link href="/contact-us" className="cursor-pointer text-sm">
+                  <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none">
+                    Suggest a Tool
+                  </Button>
                 </Link>
               </div>
             </div>

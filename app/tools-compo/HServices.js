@@ -8,11 +8,11 @@ const HServices = () => {
     <div className="bg-white py-24 sm:py-32 border-t border-gray-900/10">
       {/* Services/Tools */}
       <div className="max-w-[1280px] mx-auto px-2 lg:px-4">
-        <div className="flex max-w-7xl items-center justify-center px-6 lg:px-8 gap-5 ">
+        <div className="flex flex-col md:flex-row max-w-7xl items-center justify-center px-6 lg:px-8 gap-5 ">
           {/* Link Shortner */}
           <Link
             href="/tools/link-shortner"
-            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%] flex-1"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-full md:w-[24%] flex-1"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
               <LinkIcon className="size-5 text-gray-900" />
@@ -25,7 +25,7 @@ const HServices = () => {
           {/* Wi-Fi QR Code */}
           <Link
             href="/tools/wifi-qr"
-            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%]"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-full md:w-[24%] flex-1"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
               <QrCodeIcon className="size-5 text-gray-900" />
@@ -38,7 +38,7 @@ const HServices = () => {
           {/* Age Calculator */}
           <Link
             href="/tools/age-calculate"
-            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%]"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-full md:w-[24%] flex-1"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
               <CalculatorIcon className="size-5 text-gray-900" />
@@ -51,7 +51,7 @@ const HServices = () => {
           {/* QR Code Scanner */}
           <Link
             href="/tools/qr-scanner"
-            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-[24%]"
+            className="p-8 bg-white rounded-xl border border-gray-300 text-center flex flex-col items-center justify-center gap-1 w-full md:w-[24%] flex-1"
           >
             <div className="border border-gray-300 rounded-xl p-3 mb-4">
               <QrCodeIcon className="size-5 text-gray-900" />
