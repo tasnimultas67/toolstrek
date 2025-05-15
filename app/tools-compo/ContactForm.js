@@ -150,7 +150,7 @@ export default function ContactForm() {
         <div className="bg-white shadow rounded-lg p-8 sm:p-10">
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
-              <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
                 <FormField
                   control={form.control}
                   name="name"
@@ -182,6 +182,95 @@ export default function ContactForm() {
                     </FormItem>
                   )}
                 />
+                {/* Phone Input with Country Selector */}
+                <FormField
+                  control={form.control}
+                  name="phone"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Phone Number</FormLabel>
+                      <div className="relative flex">
+                        <button
+                          type="button"
+                          onClick={() =>
+                            setShowCountryDropdown(!showCountryDropdown)
+                          }
+                          className="shrink-0 z-10 inline-flex items-center py-1.5 px-2 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-1 focus:outline-none focus:ring-gray-100"
+                        >
+                          <ReactCountryFlag
+                            countryCode={selectedCountry.code}
+                            svg
+                            style={{
+                              width: "1.3em",
+                              height: "1.3em",
+                            }}
+                            title={selectedCountry.code}
+                          />
+                          <span className="ml-2">
+                            {selectedCountry.dialCode}
+                          </span>
+                          <svg
+                            className="w-2.5 h-2.5 ml-2.5"
+                            aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 10 6"
+                          >
+                            <path
+                              stroke="currentColor"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth="2"
+                              d="m1 1 4 4 4-4"
+                            />
+                          </svg>
+                        </button>
+
+                        {showCountryDropdown && (
+                          <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-60 top-full mt-1 h-[200px] overflow-y-scroll">
+                            <ul className="py-2 text-sm text-gray-700">
+                              {countries.map((country) => (
+                                <li key={country.code}>
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      handleCountryChange(country.code)
+                                    }
+                                    className="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                                  >
+                                    <span className="inline-flex items-center">
+                                      <ReactCountryFlag
+                                        countryCode={country.code}
+                                        svg
+                                        style={{
+                                          width: "1.3em",
+                                          height: "1.3em",
+                                        }}
+                                        title={country.code}
+                                      />
+                                      <span className="ml-2">
+                                        {country.name} ({country.dialCode})
+                                      </span>
+                                    </span>
+                                  </button>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+
+                        <FormControl>
+                          <Input
+                            placeholder="123 456 7890"
+                            className="rounded-l-none"
+                            {...field}
+                          />
+                        </FormControl>
+                      </div>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
 
                 <FormField
                   control={form.control}
@@ -200,94 +289,6 @@ export default function ContactForm() {
                   )}
                 />
               </div>
-
-              {/* Phone Input with Country Selector */}
-              <FormField
-                control={form.control}
-                name="phone"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Phone Number</FormLabel>
-                    <div className="relative flex">
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setShowCountryDropdown(!showCountryDropdown)
-                        }
-                        className="shrink-0 z-10 inline-flex items-center py-1.5 px-2 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-4 focus:outline-none focus:ring-gray-100"
-                      >
-                        <ReactCountryFlag
-                          countryCode={selectedCountry.code}
-                          svg
-                          style={{
-                            width: "1.5em",
-                            height: "1.5em",
-                          }}
-                          title={selectedCountry.code}
-                        />
-                        <span className="ml-2">{selectedCountry.dialCode}</span>
-                        <svg
-                          className="w-2.5 h-2.5 ml-2.5"
-                          aria-hidden="true"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 10 6"
-                        >
-                          <path
-                            stroke="currentColor"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth="2"
-                            d="m1 1 4 4 4-4"
-                          />
-                        </svg>
-                      </button>
-
-                      {showCountryDropdown && (
-                        <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-60 top-full mt-1 h-[200px] overflow-y-scroll">
-                          <ul className="py-2 text-sm text-gray-700">
-                            {countries.map((country) => (
-                              <li key={country.code}>
-                                <button
-                                  type="button"
-                                  onClick={() =>
-                                    handleCountryChange(country.code)
-                                  }
-                                  className="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                >
-                                  <span className="inline-flex items-center">
-                                    <ReactCountryFlag
-                                      countryCode={country.code}
-                                      svg
-                                      style={{
-                                        width: "1.5em",
-                                        height: "1.5em",
-                                      }}
-                                      title={country.code}
-                                    />
-                                    <span className="ml-2">
-                                      {country.name} ({country.dialCode})
-                                    </span>
-                                  </span>
-                                </button>
-                              </li>
-                            ))}
-                          </ul>
-                        </div>
-                      )}
-
-                      <FormControl>
-                        <Input
-                          placeholder="123 456 7890"
-                          className="rounded-l-none"
-                          {...field}
-                        />
-                      </FormControl>
-                    </div>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
 
               <FormField
                 control={form.control}
