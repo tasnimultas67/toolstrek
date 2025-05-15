@@ -1,5 +1,20 @@
 import nodemailer from "nodemailer";
 
+// Move country data to a shared file if used in multiple places
+const countryData = {
+  US: { name: "United States", dialCode: "+1" },
+  GB: { name: "United Kingdom", dialCode: "+44" },
+  CA: { name: "Canada", dialCode: "+1" },
+  AU: { name: "Australia", dialCode: "+61" },
+  IN: { name: "India", dialCode: "+91" },
+  DE: { name: "Germany", dialCode: "+49" },
+  FR: { name: "France", dialCode: "+33" },
+  JP: { name: "Japan", dialCode: "+81" },
+  BR: { name: "Brazil", dialCode: "+55" },
+  NG: { name: "Nigeria", dialCode: "+234" },
+  // Add more countries as needed
+};
+
 export async function POST(request) {
   const {
     name,
@@ -12,16 +27,38 @@ export async function POST(request) {
     recaptchaToken,
   } = await request.json();
 
-  // Validate input
+  // Enhanced validation
   if (!name || !email || !country || !subject || !message || !recaptchaToken) {
-    return new Response(JSON.stringify({ error: "Missing required fields" }), {
+    return new Response(
+      JSON.stringify({
+        error: "Missing required fields",
+        details: {
+          name: !name,
+          email: !email,
+          country: !country,
+          subject: !subject,
+          message: !message,
+          recaptchaToken: !recaptchaToken,
+        },
+      }),
+      {
+        status: 400,
+        headers: { "Content-Type": "application/json" },
+      }
+    );
+  }
+
+  // Validate email format
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    return new Response(JSON.stringify({ error: "Invalid email format" }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
     });
   }
 
   try {
-    // Verify reCAPTCHA token first
+    // Verify reCAPTCHA token
     const recaptchaResponse = await fetch(
       `https://www.google.com/recaptcha/api/siteverify?secret=${process.env.RECAPTCHA_SECRET_KEY}&response=${recaptchaToken}`,
       { method: "POST" }
@@ -30,7 +67,10 @@ export async function POST(request) {
 
     if (!recaptchaData.success) {
       return new Response(
-        JSON.stringify({ error: "reCAPTCHA verification failed" }),
+        JSON.stringify({
+          error: "reCAPTCHA verification failed",
+          details: recaptchaData,
+        }),
         {
           status: 400,
           headers: { "Content-Type": "application/json" },
@@ -38,24 +78,10 @@ export async function POST(request) {
       );
     }
 
-    // Country data with names
-    const countryNames = {
-      US: "United States",
-      GB: "United Kingdom",
-      CA: "Canada",
-      AU: "Australia",
-      IN: "India",
-      DE: "Germany",
-      FR: "France",
-      JP: "Japan",
-      BR: "Brazil",
-      NG: "Nigeria",
-      // Add more countries as needed
-    };
+    // Get country name - fallback to code if not found
+    const countryInfo = countryData[country] || { name: country, dialCode: "" };
 
-    const countryName = countryNames[country] || country;
-
-    // Proceed with email if reCAPTCHA is valid
+    // Create email transporter
     const transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -64,6 +90,7 @@ export async function POST(request) {
       },
     });
 
+    // Format the email content
     const mailOptions = {
       from: `"ToolsTrek Contact Form" <${process.env.GMAIL_USER}>`,
       to: process.env.GMAIL_USER,
@@ -73,7 +100,7 @@ export async function POST(request) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2563eb;">New Contact Form Submission</h2>
           <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
-          <p><strong>Country:</strong> ${countryName}</p>
+          <p><strong>Country:</strong> ${countryInfo.name}</p>
           ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
           ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
           <p><strong>Regarding:</strong> ${subject}</p>
@@ -93,6 +120,7 @@ export async function POST(request) {
       `,
     };
 
+    // Send email
     await transporter.sendMail(mailOptions);
 
     return new Response(JSON.stringify({ success: true }), {
@@ -102,7 +130,10 @@ export async function POST(request) {
   } catch (error) {
     console.error("Error processing contact form:", error);
     return new Response(
-      JSON.stringify({ error: "Failed to process your request" }),
+      JSON.stringify({
+        error: "Failed to process your request",
+        ...(process.env.NODE_ENV === "development" && { debug: error.message }),
+      }),
       {
         status: 500,
         headers: { "Content-Type": "application/json" },
