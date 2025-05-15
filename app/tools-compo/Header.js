@@ -23,7 +23,13 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import { CalendarRange, Origami, QrCode, ScanQrCode } from "lucide-react";
+import {
+  CalendarRange,
+  Origami,
+  QrCode,
+  ScanQrCode,
+  SplinePointer,
+} from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
@@ -184,8 +190,9 @@ export default function Header() {
             </PopoverGroup>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
               <Link href="/contact-us" className="cursor-pointer text-sm">
-                <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none">
-                  Suggest a Tool
+                <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2">
+                  <SplinePointer className="size-4"></SplinePointer>Suggest a
+                  Tool
                 </Button>
               </Link>
             </div>
