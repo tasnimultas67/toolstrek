@@ -25,6 +25,21 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { cn } from "@/lib/utils";
+import { Check, ChevronsUpDown } from "lucide-react";
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@/components/ui/command";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "Name must be at least 2 characters" }),
@@ -54,24 +69,75 @@ const toolOptions = [
 ];
 
 const countries = [
-  { code: "US", name: "United States", dialCode: "+1" },
-  { code: "GB", name: "United Kingdom", dialCode: "+44" },
-  { code: "CA", name: "Canada", dialCode: "+1" },
+  { code: "AF", name: "Afghanistan", dialCode: "+93" },
+  { code: "AL", name: "Albania", dialCode: "+355" },
+  { code: "DZ", name: "Algeria", dialCode: "+213" },
+  { code: "AD", name: "Andorra", dialCode: "+376" },
+  { code: "AO", name: "Angola", dialCode: "+244" },
+  { code: "AG", name: "Antigua and Barbuda", dialCode: "+1-268" },
+  { code: "AR", name: "Argentina", dialCode: "+54" },
+  { code: "AM", name: "Armenia", dialCode: "+374" },
   { code: "AU", name: "Australia", dialCode: "+61" },
-  { code: "IN", name: "India", dialCode: "+91" },
-  { code: "DE", name: "Germany", dialCode: "+49" },
-  { code: "FR", name: "France", dialCode: "+33" },
-  { code: "JP", name: "Japan", dialCode: "+81" },
+  { code: "AT", name: "Austria", dialCode: "+43" },
+  { code: "AZ", name: "Azerbaijan", dialCode: "+994" },
+  { code: "BS", name: "Bahamas", dialCode: "+1-242" },
+  { code: "BH", name: "Bahrain", dialCode: "+973" },
+  { code: "BD", name: "Bangladesh", dialCode: "+880" },
+  { code: "BB", name: "Barbados", dialCode: "+1-246" },
+  { code: "BY", name: "Belarus", dialCode: "+375" },
+  { code: "BE", name: "Belgium", dialCode: "+32" },
+  { code: "BZ", name: "Belize", dialCode: "+501" },
+  { code: "BJ", name: "Benin", dialCode: "+229" },
+  { code: "BT", name: "Bhutan", dialCode: "+975" },
+  { code: "BO", name: "Bolivia", dialCode: "+591" },
+  { code: "BA", name: "Bosnia and Herzegovina", dialCode: "+387" },
+  { code: "BW", name: "Botswana", dialCode: "+267" },
   { code: "BR", name: "Brazil", dialCode: "+55" },
+  { code: "GB", name: "United Kingdom", dialCode: "+44" },
+  { code: "US", name: "United States", dialCode: "+1" },
+  { code: "CA", name: "Canada", dialCode: "+1" },
+  { code: "CN", name: "China", dialCode: "+86" },
+  { code: "FR", name: "France", dialCode: "+33" },
+  { code: "DE", name: "Germany", dialCode: "+49" },
+  { code: "IN", name: "India", dialCode: "+91" },
+  { code: "JP", name: "Japan", dialCode: "+81" },
+  { code: "RU", name: "Russia", dialCode: "+7" },
+  { code: "ZA", name: "South Africa", dialCode: "+27" },
+  { code: "KR", name: "South Korea", dialCode: "+82" },
   { code: "NG", name: "Nigeria", dialCode: "+234" },
-  // Add more countries as needed
+  { code: "ES", name: "Spain", dialCode: "+34" },
+  { code: "IT", name: "Italy", dialCode: "+39" },
+  { code: "MX", name: "Mexico", dialCode: "+52" },
+  { code: "NL", name: "Netherlands", dialCode: "+31" },
+  { code: "SE", name: "Sweden", dialCode: "+46" },
+  { code: "CH", name: "Switzerland", dialCode: "+41" },
+  { code: "TR", name: "Turkey", dialCode: "+90" },
+  { code: "AE", name: "United Arab Emirates", dialCode: "+971" },
+  { code: "VN", name: "Vietnam", dialCode: "+84" },
+  { code: "PK", name: "Pakistan", dialCode: "+92" },
+  { code: "PH", name: "Philippines", dialCode: "+63" },
+  { code: "MY", name: "Malaysia", dialCode: "+60" },
+  { code: "TH", name: "Thailand", dialCode: "+66" },
+  { code: "SG", name: "Singapore", dialCode: "+65" },
+  { code: "EG", name: "Egypt", dialCode: "+20" },
+  { code: "IR", name: "Iran", dialCode: "+98" },
+  { code: "IQ", name: "Iraq", dialCode: "+964" },
+  { code: "UA", name: "Ukraine", dialCode: "+380" },
+  { code: "PL", name: "Poland", dialCode: "+48" },
+  { code: "PT", name: "Portugal", dialCode: "+351" },
+  { code: "GR", name: "Greece", dialCode: "+30" },
+  { code: "NO", name: "Norway", dialCode: "+47" },
+  { code: "FI", name: "Finland", dialCode: "+358" },
+  { code: "DK", name: "Denmark", dialCode: "+45" },
+  { code: "IS", name: "Iceland", dialCode: "+354" },
+  { code: "NZ", name: "New Zealand", dialCode: "+64" },
+  // Add remaining recognized countries as needed
 ];
 
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState(null);
   const [selectedCountry, setSelectedCountry] = useState(countries[0]);
-  const [showCountryDropdown, setShowCountryDropdown] = useState(false);
   const recaptchaRef = useRef();
 
   const form = useForm({
@@ -131,7 +197,6 @@ export default function ContactForm() {
     if (country) {
       setSelectedCountry(country);
       form.setValue("country", countryCode);
-      setShowCountryDropdown(false);
     }
   };
 
@@ -182,87 +247,85 @@ export default function ContactForm() {
                     </FormItem>
                   )}
                 />
-                {/* Phone Input with Country Selector */}
+
+                {/* Phone Input with Country Selector - ShadCN Combobox Version */}
                 <FormField
                   control={form.control}
                   name="phone"
                   render={({ field }) => (
                     <FormItem>
                       <FormLabel>Phone Number</FormLabel>
-                      <div className="relative flex">
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setShowCountryDropdown(!showCountryDropdown)
-                          }
-                          className="shrink-0 z-10 inline-flex items-center py-1.5 px-2 text-sm font-medium text-center text-gray-900 bg-gray-100 border border-gray-300 rounded-s-lg hover:bg-gray-200 focus:ring-1 focus:outline-none focus:ring-gray-100"
-                        >
-                          <ReactCountryFlag
-                            countryCode={selectedCountry.code}
-                            svg
-                            style={{
-                              width: "1.3em",
-                              height: "1.3em",
-                            }}
-                            title={selectedCountry.code}
-                          />
-                          <span className="ml-2">
-                            {selectedCountry.dialCode}
-                          </span>
-                          <svg
-                            className="w-2.5 h-2.5 ml-2.5"
-                            aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 10 6"
-                          >
-                            <path
-                              stroke="currentColor"
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth="2"
-                              d="m1 1 4 4 4-4"
-                            />
-                          </svg>
-                        </button>
-
-                        {showCountryDropdown && (
-                          <div className="absolute z-10 bg-white divide-y divide-gray-100 rounded-lg shadow w-60 top-full mt-1 h-[200px] overflow-y-scroll">
-                            <ul className="py-2 text-sm text-gray-700">
-                              {countries.map((country) => (
-                                <li key={country.code}>
-                                  <button
-                                    type="button"
-                                    onClick={() =>
-                                      handleCountryChange(country.code)
-                                    }
-                                    className="inline-flex w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                                  >
-                                    <span className="inline-flex items-center">
-                                      <ReactCountryFlag
-                                        countryCode={country.code}
-                                        svg
-                                        style={{
-                                          width: "1.3em",
-                                          height: "1.3em",
-                                        }}
-                                        title={country.code}
+                      <div className="flex">
+                        <Popover>
+                          <PopoverTrigger asChild>
+                            <Button
+                              variant="outline"
+                              role="combobox"
+                              className="w-[100px] justify-between rounded-l-md rounded-r-none"
+                            >
+                              <div className="flex items-center gap-2">
+                                <ReactCountryFlag
+                                  countryCode={selectedCountry.code}
+                                  svg
+                                  style={{
+                                    width: "1.3em",
+                                    height: "1.3em",
+                                  }}
+                                  title={selectedCountry.code}
+                                />
+                                <span>{selectedCountry.dialCode}</span>
+                              </div>
+                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                            </Button>
+                          </PopoverTrigger>
+                          <PopoverContent className="w-[250px] p-0">
+                            <Command>
+                              <CommandInput placeholder="Search country..." />
+                              <CommandList>
+                                <CommandEmpty>No country found.</CommandEmpty>
+                                <CommandGroup>
+                                  {countries.map((country) => (
+                                    <CommandItem
+                                      key={country.code}
+                                      value={`${country.name} (${country.dialCode})`}
+                                      onSelect={() => {
+                                        handleCountryChange(country.code);
+                                      }}
+                                    >
+                                      <Check
+                                        className={cn(
+                                          "mr-2 h-4 w-4",
+                                          selectedCountry.code === country.code
+                                            ? "opacity-100"
+                                            : "opacity-0"
+                                        )}
                                       />
-                                      <span className="ml-2">
-                                        {country.name} ({country.dialCode})
-                                      </span>
-                                    </span>
-                                  </button>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-
+                                      <div className="flex items-center gap-2">
+                                        <ReactCountryFlag
+                                          countryCode={country.code}
+                                          svg
+                                          style={{
+                                            width: "1.3em",
+                                            height: "1.3em",
+                                          }}
+                                          title={country.code}
+                                        />
+                                        <span>{country.name}</span>
+                                        <span className="text-muted-foreground">
+                                          {country.dialCode}
+                                        </span>
+                                      </div>
+                                    </CommandItem>
+                                  ))}
+                                </CommandGroup>
+                              </CommandList>
+                            </Command>
+                          </PopoverContent>
+                        </Popover>
                         <FormControl>
                           <Input
+                            className="rounded-r-md rounded-l-none"
                             placeholder="123 456 7890"
-                            className="rounded-l-none"
                             {...field}
                           />
                         </FormControl>
