@@ -17,8 +17,8 @@ const platforms = [
   { name: "Brand content distribution", url: "#" },
   { name: "Productivity tools", url: "#" },
   { name: "AI and doc gen", url: "#" },
-  { name: "Privacy at Templafy", url: "#" },
-  { name: "Security at Templafy", url: "#" },
+  { name: "Privacy at ToolsTrek", url: "#" },
+  { name: "Security at ToolsTrek", url: "#" },
 ];
 
 const companies = [
@@ -28,8 +28,8 @@ const companies = [
   { name: "Frequently Asked Questions", url: "/faq" },
   { name: "Productivity tools", url: "#" },
   { name: "AI and doc gen", url: "#" },
-  { name: "Privacy at Templafy", url: "#" },
-  { name: "Security at Templafy", url: "#" },
+  { name: "Privacy at ToolsTrek", url: "#" },
+  { name: "Security at ToolsTrek", url: "#" },
 ];
 
 const services = [
