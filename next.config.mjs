@@ -6,6 +6,18 @@ const nextConfig = {
         protocol: "https",
         hostname: "tasnimul.vercel.app",
       },
+      {
+        protocol: "https",
+        hostname: "unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+      },
+      {
+        protocol: "https",
+        hostname: "plus.unsplash.com",
+      },
     ],
   },
 };
