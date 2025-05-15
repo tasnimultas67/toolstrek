@@ -71,11 +71,11 @@ const Footer = () => {
   const copyrightYear = new Date().getFullYear();
   return (
     <div className="bg-gradient-to-b from-black to-neutral-950 pt-20 pb-5 px-3">
-      <div className="md:w-[1180px] m-auto space-y-14">
+      <div className="md:w-[1180px] m-auto space-y-7 md:space-y-8 ">
         {/* Menus */}
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-0 md:mb-16 ">
           {/* Platform Menus */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Platform</h3>
             <ul className="space-y-2">
               {platforms.map((platform) => (
@@ -91,7 +91,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* service Menus */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Tools</h3>
             <ul className="space-y-2">
               {services.map((service) => (
@@ -107,7 +107,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* Company Menus */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Company</h3>
             <ul className="space-y-2">
               {companies.map((company) => (
@@ -123,7 +123,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* whyus Menus */}
-          <div className="space-y-4">
+          <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Why Us</h3>
             <ul className="space-y-2">
               {whyus.map((benefit) => (
