@@ -2,6 +2,13 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
+export const metadata = {
+  title: "About Us — ToolsTrek",
+  keywords: ["about", "tools", "tools trek", "Tasnimul Haque"],
+  description:
+    "Discover the story behind ToolsTrek, a platform created by Md. Tasnimul Haque, a passionate web developer and branding expert.",
+};
+
 const page = () => {
   return (
     <div className="w-[1100px] mx-auto">
