@@ -1,11 +1,19 @@
 import nodemailer from "nodemailer";
 
 export async function POST(request) {
-  const { name, email, phone, company, subject, message, recaptchaToken } =
-    await request.json();
+  const {
+    name,
+    email,
+    country,
+    phone, // This now contains the full phone number with dial code
+    company,
+    subject,
+    message,
+    recaptchaToken,
+  } = await request.json();
 
   // Validate input
-  if (!name || !email || !subject || !message || !recaptchaToken) {
+  if (!name || !email || !country || !subject || !message || !recaptchaToken) {
     return new Response(JSON.stringify({ error: "Missing required fields" }), {
       status: 400,
       headers: { "Content-Type": "application/json" },
@@ -30,6 +38,23 @@ export async function POST(request) {
       );
     }
 
+    // Country data with names
+    const countryNames = {
+      US: "United States",
+      GB: "United Kingdom",
+      CA: "Canada",
+      AU: "Australia",
+      IN: "India",
+      DE: "Germany",
+      FR: "France",
+      JP: "Japan",
+      BR: "Brazil",
+      NG: "Nigeria",
+      // Add more countries as needed
+    };
+
+    const countryName = countryNames[country] || country;
+
     // Proceed with email if reCAPTCHA is valid
     const transporter = nodemailer.createTransport({
       service: "gmail",
@@ -48,6 +73,7 @@ export async function POST(request) {
         <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
           <h2 style="color: #2563eb;">New Contact Form Submission</h2>
           <p><strong>From:</strong> ${name} &lt;${email}&gt;</p>
+          <p><strong>Country:</strong> ${countryName}</p>
           ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
           ${company ? `<p><strong>Company:</strong> ${company}</p>` : ""}
           <p><strong>Regarding:</strong> ${subject}</p>
