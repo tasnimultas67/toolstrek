@@ -22,10 +22,10 @@ const platforms = [
 ];
 
 const companies = [
-  { name: "About Company", url: "#" },
-  { name: "Contact Us", url: "#" },
-  { name: "Cookies Settings", url: "#" },
-  { name: "Frequently Asked Questions", url: "#" },
+  { name: "About Company", url: "/about-us" },
+  { name: "Contact Us", url: "/contact-us" },
+  { name: "Suggest a Tool", url: "/contact-us" },
+  { name: "Frequently Asked Questions", url: "/faq" },
   { name: "Productivity tools", url: "#" },
   { name: "AI and doc gen", url: "#" },
   { name: "Privacy at Templafy", url: "#" },
