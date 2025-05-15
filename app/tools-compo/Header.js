@@ -72,11 +72,11 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
 
   return (
-    <div className="bg-white  border-b border-gray-900/10 sticky top-0 z-50">
+    <div className="  border-b border-gray-900/10 sticky top-0 z-50">
       {/* Black backdrop when services popover is open */}
       {servicesOpen && <div className="fixed inset-0 bg-black/20 z-40" />}
 
-      <div className="relative z-50 bg-white">
+      <div className="relative z-50 bg-white/80 backdrop-blur-2xl">
         <header className="w-full">
           <nav
             aria-label="Global"
@@ -111,7 +111,7 @@ export default function Header() {
                 <Bars3Icon aria-hidden="true" className="size-6" />
               </button>
             </div>
-            <PopoverGroup className="hidden lg:flex lg:gap-x-12">
+            <PopoverGroup className="hidden lg:flex lg:gap-x-12 ">
               <Popover className="relative">
                 {({ open, close }) => {
                   // Use useEffect to sync the open state after render
@@ -133,7 +133,7 @@ export default function Header() {
 
                       <PopoverPanel
                         transition
-                        className="absolute top-full -left-8 z-10 mt-4.5 w-screen max-w-md overflow-hidden rounded-xl bg-white shadow-lg ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+                        className="absolute top-full -left-8 z-10 mt-4.5 w-screen max-w-md overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
                       >
                         <div className="p-4">
                           {services.map((item) => (
