@@ -1,5 +1,5 @@
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
-import { Mail } from "lucide-react";
+import { LocateIcon, Mail, MapPin } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Link from "next/link";
 import React from "react";
@@ -172,7 +172,7 @@ const Footer = () => {
             minimal effort.
           </p>
           {/* Social Icons */}
-          <div>
+          <div className="space-y-2">
             <Link
               href="mailto:contact.toolstrek@gmail.com"
               className="text-gray-300 text-sm flex items-center justify-start gap-2"
@@ -180,6 +180,10 @@ const Footer = () => {
               <Mail className="size-4 text-gray-300" />{" "}
               contact.toolstrek@gmail.com
             </Link>
+            <p className="flex items-center gap-2 text-gray-300 text-sm">
+              <MapPin className="size-4 text-gray-300" /> House#711/7, Baitul
+              Aman Housing, Road#11, Shyamoli, Dhaka-1207
+            </p>
           </div>
         </div>
         {/* Divider */}
