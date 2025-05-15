@@ -261,9 +261,9 @@ export default function ContactForm() {
                             <Button
                               variant="outline"
                               role="combobox"
-                              className="w-[100px] justify-between rounded-l-md rounded-r-none"
+                              className="w-[70px] justify-between rounded-l-md rounded-r-none"
                             >
-                              <div className="flex items-center gap-2">
+                              <div className="flex items-center">
                                 <ReactCountryFlag
                                   countryCode={selectedCountry.code}
                                   svg
@@ -273,9 +273,8 @@ export default function ContactForm() {
                                   }}
                                   title={selectedCountry.code}
                                 />
-                                <span>{selectedCountry.dialCode}</span>
                               </div>
-                              <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
+                              <ChevronsUpDown className=" h-4 w-2 shrink-0 opacity-50" />
                             </Button>
                           </PopoverTrigger>
                           <PopoverContent className="w-[250px] p-0">
