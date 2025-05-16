@@ -136,7 +136,7 @@ const Hero = () => {
             >
               <Link
                 href="#"
-                className="rounded-md bg-brandColor hover:bg-brandColorHover px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandColor"
+                className="rounded-md bg-brandColor hover:bg-brandColorHover px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors duration-300 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-brandColor"
               >
                 Get started
               </Link>
