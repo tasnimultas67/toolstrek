@@ -88,7 +88,7 @@ const CTA = () => {
           variants={containerVariants}
         >
           <motion.svg
-            className="absolute right-0 md:right-[-400px] bottom-[-300px] md:bottom-0 md:top-[-130px] w-[480px] md:w-[800px] h-[600px] opacity-20"
+            className="absolute right-0 md:right-[-400px] bottom-[-300px] md:bottom-0 md:top-[-130px] w-[480px] md:w-[800px] h-[600px]  fill-white "
             viewBox="0 0 600 600"
             fill="none"
             variants={circleVariants}
