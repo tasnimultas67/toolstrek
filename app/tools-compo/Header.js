@@ -97,7 +97,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   width="25"
                   height="25"
-                  classname="size-4 "
+                  className="size-4 "
                 >
                   <path
                     d="M 19 16 L 13 16 C 10.243 16 8 13.757 8 11 L 8 5 C 8 2.243 10.243 0 13 0 L 19 0 C 21.757 0 24 2.243 24 5 L 24 11 C 24 13.757 21.757 16 19 16 Z"
@@ -222,11 +222,18 @@ export default function Header() {
                 id="Layer_1"
                 data-name="Layer 1"
                 viewBox="0 0 24 24"
-                width="50"
-                height="50"
-                className="size-6 fill-brandColor"
+                width="25"
+                height="25"
+                className="size-4 "
               >
-                <path d="m19,16h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5h6c2.757,0,5,2.243,5,5v6c0,2.757-2.243,5-5,5Zm-8,8h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5,.553,0,1,.448,1,1v2c0,3.86,3.141,7,7,7h2c.553,0,1,.448,1,1,0,2.757-2.243,5-5,5Z" />
+                <path
+                  d="M 19 16 L 13 16 C 10.243 16 8 13.757 8 11 L 8 5 C 8 2.243 10.243 0 13 0 L 19 0 C 21.757 0 24 2.243 24 5 L 24 11 C 24 13.757 21.757 16 19 16 Z"
+                  className="fill-brandColor"
+                />
+                <path
+                  d="M 11 24 L 5 24 C 2.243 24 0 21.757 0 19 L 0 13 C 0 10.243 2.243 8 5 8 C 5.553 8 6 8.448 6 9 L 6 11 C 6 14.86 9.141 18 13 18 L 15 18 C 15.553 18 16 18.448 16 19 C 16 21.757 13.757 24 11 24 Z"
+                  className="fill-brandColorHover"
+                />
               </svg>
 
               <h3 className={`text-3xl ${staatliches.className} `}>
