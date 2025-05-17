@@ -50,7 +50,7 @@ const fadeIn = {
 
 const Reviews = () => {
   return (
-    <section className="w-full m-auto py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-900">
+    <section className="w-full m-auto py-12 md:py-24 bg-gray-50 dark:bg-gray-900">
       <div className="container m-auto px-4 md:px-6">
         <motion.div
           initial="hidden"

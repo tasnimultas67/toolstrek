@@ -10,6 +10,7 @@ import {
   EnvelopeOpenIcon,
   HomeIcon,
 } from "@heroicons/react/20/solid";
+import CTA from "../tools-compo/Home-Compo/CTA";
 
 export const metadata = {
   title: "Contact Us — ToolsTrek",
@@ -19,8 +20,8 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="bg-gray-50 py-12 px-4 sm:px-6 lg:px-8">
-      <div className="md:w-[1180px] m-auto">
+    <div className="bg-gray-50 py-12 px-4">
+      <div className="md:w-[1180px] m-auto pb-20">
         <div>
           <div>
             <div className="text-center mb-12">
@@ -98,6 +99,8 @@ const page = () => {
           </div>
         </div>
       </div>
+      {/* Call to Action */}
+      <CTA></CTA>
     </div>
   );
 };

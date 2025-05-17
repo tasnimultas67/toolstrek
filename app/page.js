@@ -1,10 +1,9 @@
 import Hero from "./tools-compo/Hero";
 
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
 import HServices from "./tools-compo/HServices";
 import Image from "next/image";
 import Reviews from "./tools-compo/Home-Compo/Reviews";
+import CTA from "./tools-compo/Home-Compo/CTA";
 
 const whychoose = [
   {
@@ -80,26 +79,14 @@ export default function Home() {
               </div>
             </div>
           </section>
-
-          {/* Call to Action */}
-          <section className="py-16 px-4 sm:px-6 lg:px-8 bg-brandColor text-white">
-            <div className="max-w-4xl mx-auto text-center">
-              <h2 className="text-3xl font-bold mb-4">
-                Ready to Simplify Your Tasks?
-              </h2>
-              <p className="text-xl mb-8 opacity-90">
-                Explore our full collection of tools designed to make your daily
-                calculations effortless.
-              </p>
-              <Button asChild variant="secondary" size="lg">
-                <Link href="#tools">Browse All Tools</Link>
-              </Button>
-            </div>
-          </section>
           {/* Reviews */}
         </div>
         <div className="m-auto">
           <Reviews></Reviews>
+        </div>
+        {/* Call to Action */}
+        <div className="py-7 bg-gray-50">
+          <CTA></CTA>
         </div>
       </div>
     </div>
