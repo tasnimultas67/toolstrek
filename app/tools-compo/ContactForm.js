@@ -397,7 +397,7 @@ export default function ContactForm() {
               type="submit"
               size="lg"
               disabled={isSubmitting || !recaptchaToken}
-              className="w-full sm:w-auto"
+              className="w-full sm:w-auto bg-black hover:to-brandColorHover"
             >
               {isSubmitting ? (
                 <>
