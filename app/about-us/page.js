@@ -47,7 +47,7 @@ const AnimatedSection = ({ children }) => (
 // Main page component (can remain server-side)
 const Page = () => {
   return (
-    <div className="w-[1100px] mx-auto">
+    <div className="md:w-[1100px] mx-auto">
       <div>
         <AnimatedSection>
           <section className="py-12 md:py-20 px-3">

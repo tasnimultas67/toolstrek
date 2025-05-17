@@ -5,13 +5,13 @@ import Link from "next/link";
 const CTA = () => {
   return (
     <section className="relative">
-      <div className="md:w-[1000px] mx-auto text-left bg-gradient-to-r from-black to-brandColor rounded-3xl text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden">
+      <div className="w-full md:w-[1000px] mx-auto text-left bg-gradient-to-r from-black to-brandColor rounded-3xl text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden pb-52 md:pb-10">
         {/* Left Content */}
-        <div className="">
+        <div className="text-center md:text-left">
           <h2 className="text-3xl font-semibold mb-4 leading-normal">
             Your Digital Toolbox for Productivity & Efficiency!
           </h2>
-          <p className="text-sm mb-5 opacity-90 w-[70%]">
+          <p className="text-sm mb-5 opacity-90 w-full md:w-[70%]">
             Discover the power of precision-crafted tools designed to simplify
             your workflow. From QR code generation to smart utilities, ToolsTrek
             offers innovative solutions that enhance efficiency and convenience.
@@ -25,9 +25,9 @@ const CTA = () => {
         </div>
 
         {/* Right Background - Abstract Geometric Circles */}
-        <div className="absolute right-0 top-0 bottom-0 w-[60%] hidden md:block">
+        <div className="absolute right-0 top-0 bottom-0 w-[100%] md:w-[60%] ">
           <svg
-            className="absolute right-[-400px] top-[-130px] w-[800px] h-[600px] opacity-20"
+            className="absolute  right-0 md:right-[-400px] bottom-[-300px] md:bottom-0 md:top-[-130px] w-[480px] md:w-[800px] h-[600px] opacity-20"
             viewBox="0 0 600 600"
             fill="none"
           >
