@@ -79,16 +79,12 @@ const page = () => {
                     className="w-full rounded-lg h-full object-cover object-center"
                   ></Image>
                   <div className="p-4 rounded-lg border border-gray-300 space-y-2 bg-white/60 backdrop-blur-2xl absolute bottom-2 left-2 right-2">
-                    <p className="text-sm text-gray-600">
-                      Prefer email? Contact us directly at
+                    <p className="text-base ">
+                      "If you can connect people, you can create the future."
                     </p>
-                    <Link
-                      href="mailto:contact.toolstrek@gmail.com"
-                      className="flex items-center gap-2"
-                    >
-                      contact.toolstrek@gmail.com{" "}
-                      <ArrowUpRightIcon className="size-4"></ArrowUpRightIcon>
-                    </Link>
+                    <p className="text-xs font-semibold text-gray-600">
+                      Scott Heiferman
+                    </p>
                   </div>
                 </div>
               </div>
