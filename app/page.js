@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import HServices from "./tools-compo/HServices";
 import Image from "next/image";
+import Reviews from "./tools-compo/Home-Compo/Reviews";
 
 const whychoose = [
   {
@@ -95,6 +96,10 @@ export default function Home() {
               </Button>
             </div>
           </section>
+          {/* Reviews */}
+        </div>
+        <div className="m-auto">
+          <Reviews></Reviews>
         </div>
       </div>
     </div>
