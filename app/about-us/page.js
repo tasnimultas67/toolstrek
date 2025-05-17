@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import * as motion from "motion/react-client";
+import CTA from "../tools-compo/Home-Compo/CTA";
 
 export const metadata = {
   title: "About Us — ToolsTrek",
@@ -164,6 +165,10 @@ const Page = () => {
             </div>
           </section>
         </AnimatedSection>
+      </div>
+      {/* Call to Action */}
+      <div className="py-7 ">
+        <CTA></CTA>
       </div>
     </div>
   );
