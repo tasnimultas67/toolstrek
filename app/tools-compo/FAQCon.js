@@ -1,4 +1,3 @@
-// app/faq/page.tsx
 import { ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -8,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import * as motion from "motion/react-client";
 
 const faqs = {
   general: [
@@ -75,10 +75,51 @@ const faqs = {
   ],
 };
 
+// Animation variants
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+const itemVariants = {
+  hidden: { y: 20, opacity: 0 },
+  visible: {
+    y: 0,
+    opacity: 1,
+    transition: {
+      duration: 0.5,
+      ease: "easeOut",
+    },
+  },
+};
+
+const accordionItemVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.3,
+      ease: "easeOut",
+    },
+  },
+};
+
 const FAQCon = () => {
   return (
-    <div className="container max-w-4xl py-12 px-4 sm:px-6 m-auto">
-      <header className="text-center mb-12">
+    <motion.div
+      className="container max-w-4xl py-12 px-4 sm:px-6 m-auto"
+      initial="hidden"
+      animate="visible"
+      variants={containerVariants}
+    >
+      <motion.header className="text-center mb-12" variants={itemVariants}>
         <h1 className="text-3xl font-bold text-primary sm:text-4xl mb-2">
           Frequently Asked Questions
         </h1>
@@ -86,17 +127,22 @@ const FAQCon = () => {
           Find answers to common questions about ToolsTrek and our free online
           tools
         </p>
-      </header>
+      </motion.header>
 
-      <div className="space-y-12">
+      <motion.div className="space-y-12" variants={containerVariants}>
         <FAQSection title="General Questions" faqs={faqs.general} />
         <FAQSection title="Link Shortener" faqs={faqs.linkShortener} />
         <FAQSection title="WiFi QR Code Maker" faqs={faqs.wifiQr} />
         <FAQSection title="Age Calculator" faqs={faqs.ageCalculator} />
-      </div>
+      </motion.div>
 
       {/* Still have question */}
-      <div className="mt-16 text-center bg-card p-8 rounded-lg shadow-sm">
+      <motion.div
+        className="mt-16 text-center bg-card p-8 rounded-lg shadow-sm"
+        variants={itemVariants}
+        whileHover={{ scale: 1.01 }}
+        transition={{ type: "spring", stiffness: 300 }}
+      >
         <h2 className="text-2xl font-semibold mb-2">Still have questions?</h2>
         <p className="text-muted-foreground mb-4">
           If you can't find the answer you're looking for, feel free to contact
@@ -105,32 +151,55 @@ const FAQCon = () => {
         <Button asChild>
           <Link href="/contact-us">Contact Us</Link>
         </Button>
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 };
 export default FAQCon;
 
 function FAQSection({ title, faqs }) {
   return (
-    <section>
-      <h2 className="text-xl font-semibold border-b pb-2 mb-6 text-secondary-foreground">
+    <motion.section variants={itemVariants}>
+      <motion.h2
+        className="text-xl font-semibold border-b pb-2 mb-6 text-secondary-foreground"
+        whileInView={{ x: 0, opacity: 1 }}
+        initial={{ x: -20, opacity: 0 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.4 }}
+      >
         {title}
-      </h2>
-      <div className="">
+      </motion.h2>
+      <div className="space-y-2">
         {faqs.map((faq, index) => (
-          <Accordion key={index} type="single" collapsible>
-            <AccordionItem value="item-1" className="relative">
-              <AccordionTrigger className="text-base data-[state=open]:text-brandColor ">
-                {faq.question}
-              </AccordionTrigger>
-              <AccordionContent className="p-3 rounded-lg border-[0.5px] border-brandColor/20 bg-gray-50">
-                {faq.answer}
-              </AccordionContent>
-            </AccordionItem>
-          </Accordion>
+          <motion.div
+            key={index}
+            variants={accordionItemVariants}
+            initial="hidden"
+            animate="visible"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <Accordion type="single" collapsible>
+              <AccordionItem value={`item-${index}`} className="relative">
+                <AccordionTrigger className="text-base data-[state=open]:text-brandColor hover:text-brandColor/80 transition-colors">
+                  <motion.span layout transition={{ duration: 0.2 }}>
+                    {faq.question}
+                  </motion.span>
+                </AccordionTrigger>
+                <AccordionContent className="p-3 rounded-lg border-[0.5px] border-brandColor/20 bg-gray-50">
+                  <motion.p
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 0.3, delay: 0.1 }}
+                  >
+                    {faq.answer}
+                  </motion.p>
+                </AccordionContent>
+              </AccordionItem>
+            </Accordion>
+          </motion.div>
         ))}
       </div>
-    </section>
+    </motion.section>
   );
 }
