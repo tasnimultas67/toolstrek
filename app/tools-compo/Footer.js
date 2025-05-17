@@ -26,10 +26,6 @@ const companies = [
   { name: "Contact Us", url: "/contact-us" },
   { name: "Suggest a Tool", url: "/contact-us" },
   { name: "Frequently Asked Questions", url: "/faq" },
-  { name: "Productivity tools", url: "#" },
-  { name: "AI and doc gen", url: "#" },
-  { name: "Privacy at ToolsTrek", url: "#" },
-  { name: "Security at ToolsTrek", url: "#" },
 ];
 
 const services = [
