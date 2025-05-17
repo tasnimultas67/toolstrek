@@ -26,6 +26,7 @@ const companies = [
   { name: "Contact Us", url: "/contact-us" },
   { name: "Suggest a Tool", url: "/contact-us" },
   { name: "Frequently Asked Questions", url: "/faq" },
+  { name: "Privacy Policy", url: "/privacy-policy" },
 ];
 
 const services = [
