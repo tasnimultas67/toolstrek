@@ -43,8 +43,8 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 @theme{
-  --color-brandColor: #004f3b;
-  --color-brandColorHover: #03251d;
+  --color-brandColor: #7C00FE;
+  --color-brandColorHover: #4635B1;
 
 }
 
