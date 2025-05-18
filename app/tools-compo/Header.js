@@ -97,7 +97,7 @@ export default function Header() {
                   viewBox="0 0 24 24"
                   width="25"
                   height="25"
-                  className="size-4 "
+                  className="size-6 "
                 >
                   <path
                     d="M 19 16 L 13 16 C 10.243 16 8 13.757 8 11 L 8 5 C 8 2.243 10.243 0 13 0 L 19 0 C 21.757 0 24 2.243 24 5 L 24 11 C 24 13.757 21.757 16 19 16 Z"
@@ -224,7 +224,7 @@ export default function Header() {
                 viewBox="0 0 24 24"
                 width="25"
                 height="25"
-                className="size-4 "
+                className="size-6 "
               >
                 <path
                   d="M 19 16 L 13 16 C 10.243 16 8 13.757 8 11 L 8 5 C 8 2.243 10.243 0 13 0 L 19 0 C 21.757 0 24 2.243 24 5 L 24 11 C 24 13.757 21.757 16 19 16 Z"

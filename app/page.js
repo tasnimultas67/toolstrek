@@ -4,6 +4,8 @@ import HServices from "./tools-compo/HServices";
 import Image from "next/image";
 import Reviews from "./tools-compo/Home-Compo/Reviews";
 import CTA from "./tools-compo/Home-Compo/CTA";
+import { Suspense } from "react";
+import HeroSkeleton from "./tools-compo/Home-Compo/HeroSkeleton";
 
 const whychoose = [
   {
@@ -54,7 +56,10 @@ export default function Home() {
   return (
     <div>
       <div>
-        <Hero />
+        <Suspense fallback={<HeroSkeleton />}>
+          <Hero />
+        </Suspense>
+        {/* <Hero /> */}
         <HServices />
         <div className="bg-gradient-to-b from-gray-50 to-white">
           {/* Features Section */}
