@@ -25,6 +25,7 @@ import {
 import Link from "next/link";
 import {
   CalendarRange,
+  Lock,
   Origami,
   QrCode,
   ScanQrCode,
@@ -70,6 +71,13 @@ const services = [
     description: "Calculate the end date based on start date",
     href: "/tools/days-tracker",
     icon: CalendarRange,
+  },
+  {
+    name: "Password Generator",
+    description:
+      "A secure tool that creates strong, randomized passwords with customizable options",
+    href: "/tools/password-generator",
+    icon: Lock,
   },
 ];
 
@@ -152,7 +160,7 @@ export default function Header() {
                           {services.map((item) => (
                             <div
                               key={item.name}
-                              className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm/6 hover:bg-brandColor/5 transition duration-200 ease-in-out"
+                              className="group relative flex items-center gap-x-6 rounded-lg p-3 text-sm/6 hover:bg-brandColor/5 transition duration-200 ease-in-out"
                             >
                               <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
                                 <item.icon
@@ -163,13 +171,13 @@ export default function Header() {
                               <div className="flex-auto">
                                 <Link
                                   href={item.href}
-                                  className="block font-semibold text-gray-900"
+                                  className="block font-semibold text-gray-900 "
                                   onClick={() => close()}
                                 >
                                   {item.name}
                                   <span className="absolute inset-0" />
                                 </Link>
-                                <p className=" text-gray-600">
+                                <p className=" text-gray-500 text-sm line-clamp-1">
                                   {item.description}
                                 </p>
                               </div>

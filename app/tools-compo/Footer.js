@@ -50,6 +50,10 @@ const services = [
     name: "Days Tracker",
     href: "/tools/days-tracker",
   },
+  {
+    name: "Password Generator",
+    href: "/tools/password-generator",
+  },
 ];
 
 const whyus = [
