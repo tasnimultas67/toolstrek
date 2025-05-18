@@ -198,7 +198,7 @@ export default function Header() {
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
               <Link href="/contact-us" className="cursor-pointer text-sm">
                 <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2">
-                  <SplinePointer className="size-4"></SplinePointer>Suggest a
+                  <SplinePointer className="size-4"></SplinePointer>Request a
                   Tool
                 </Button>
               </Link>
@@ -299,7 +299,7 @@ export default function Header() {
               <div className="py-6">
                 <Link href="/contact-us" className="cursor-pointer text-sm">
                   <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none">
-                    Suggest a Tool
+                    Request a Tool
                   </Button>
                 </Link>
               </div>
