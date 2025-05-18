@@ -196,7 +196,11 @@ export default function Header() {
               </Link>
             </PopoverGroup>
             <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-              <Link href="/contact-us" className="cursor-pointer text-sm">
+              <Link
+                href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
+                className="cursor-pointer text-sm"
+                target="_blank"
+              >
                 <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2">
                   <SplinePointer className="size-4"></SplinePointer>Request a
                   Tool
@@ -297,7 +301,11 @@ export default function Header() {
                 </Link>
               </div>
               <div className="py-6">
-                <Link href="/contact-us" className="cursor-pointer text-sm">
+                <Link
+                  href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
+                  className="cursor-pointer text-sm"
+                  target="_blank"
+                >
                   <Button className="cursor-pointer bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none">
                     Request a Tool
                   </Button>
