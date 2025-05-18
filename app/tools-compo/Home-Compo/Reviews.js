@@ -50,8 +50,8 @@ const fadeIn = {
 
 const Reviews = () => {
   return (
-    <section className="w-full m-auto py-12 md:py-24 bg-gray-50 dark:bg-gray-900">
-      <div className="container m-auto px-4 md:px-6">
+    <section className="w-ful m-auto py-12 md:py-24 bg-gray-50 dark:bg-gray-900">
+      <div className=" w-[1180px] m-auto px-4 md:px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -63,7 +63,7 @@ const Reviews = () => {
           <h2 className="text-3xl font-bold  sm:text-4xl md:text-5xl">
             What Our Clients Say
           </h2>
-          <p className="max-w-[700px] text-gray-500 md:text-base dark:text-gray-400">
+          <p className="max-w-[1180px] text-gray-500 md:text-base dark:text-gray-400">
             Don't just take our word for it. Here's what our clients have to say
             about their experiences.
           </p>
@@ -82,22 +82,23 @@ const Reviews = () => {
               align: "start",
               loop: true,
             }}
-            className="w-full"
+            className="w-full "
           >
             <CarouselContent>
               {testimonials.map((testimonial, index) => (
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <motion.div
+                    className=""
                     initial="hidden"
                     whileInView="visible"
                     viewport={{ once: true }}
                     variants={fadeIn}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="h-full">
+                    <Card className="h-full shadow-none">
                       <CardContent className="flex flex-col justify-between p-6 h-full">
-                        <div className="space-y-4">
-                          <p className="text-gray-600 dark:text-gray-400">
+                        <div className="space-y-10">
+                          <p className="text-black dark:text-white">
                             "{testimonial.description}"
                           </p>
                           <div className="space-y-1">
