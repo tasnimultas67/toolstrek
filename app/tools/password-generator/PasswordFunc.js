@@ -108,7 +108,7 @@ export default function PasswordFunc() {
 
             <Button
               onClick={generatePassword}
-              className="w-full hover:bg-brandColorHover"
+              className="w-full bg-brandColor hover:bg-brandColorHover"
             >
               {password.length >= 2
                 ? "Regenerate Password"
