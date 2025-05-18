@@ -1,6 +1,13 @@
 import React from "react";
 import * as motion from "motion/react-client";
 
+export const metadata = {
+  title: "Privacy Policy — ToolsTrek",
+  keywords: ["privacy policy", "privacy", "tools", "security"],
+  description:
+    "Welcome to ToolsTrek! Your privacy is our priority. This policy outlines how we collect, use, and protect your personal information when you visit our website",
+};
+
 // Animation variants
 const containerVariants = {
   hidden: { opacity: 0 },
