@@ -29,7 +29,7 @@ export function CopyButton({ textToCopy, copyTrigger }) {
       variant="outline"
       size="icon"
       onClick={handleCopy}
-      className="h-12 w-12"
+      className="size-9"
     >
       {isCopied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
       <span className="sr-only">Copy to clipboard</span>

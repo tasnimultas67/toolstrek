@@ -62,7 +62,7 @@ export default function PasswordGenerator() {
                     value={params.password}
                     placeholder="Your secure password"
                     readOnly
-                    className="text-lg font-mono h-12"
+                    className="text-lg font-mono"
                   />
                   <CopyButton
                     textToCopy={params.password}
@@ -74,7 +74,7 @@ export default function PasswordGenerator() {
 
               <div className="space-y-4">
                 <div>
-                  <Label htmlFor="length">
+                  <Label htmlFor="length" className="mb-2">
                     Length: <span id="length-value">{params.length}</span>
                   </Label>
                   <Slider
