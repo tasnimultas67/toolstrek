@@ -127,7 +127,7 @@ export default function PasswordGenerator() {
                 </div>
               </div>
 
-              <Button type="submit" className="w-full" size="lg">
+              <Button type="submit" className="w-full hover:bg-brandColorHover">
                 Generate Password
               </Button>
             </form>
