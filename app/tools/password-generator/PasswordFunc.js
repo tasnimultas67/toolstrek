@@ -61,7 +61,7 @@ export default function PasswordFunc() {
           </CardHeader>
           <CardContent className="space-y-6">
             <div className="space-y-2">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-5">
                 <Input
                   value={password}
                   readOnly
@@ -73,8 +73,8 @@ export default function PasswordFunc() {
               {password && <StrengthIndicator password={password} />}
             </div>
 
-            <div className="space-y-4">
-              <div>
+            <div className="space-y-6">
+              <div className="">
                 <Label className="mb-2">Length: {length}</Label>
                 <Slider
                   defaultValue={[length]}
@@ -85,7 +85,7 @@ export default function PasswordFunc() {
                 />
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div className="flex items-center gap-4">
                 {Object.entries(options).map(([key, value]) => (
                   <div key={key} className="flex items-center space-x-2">
                     <Switch
@@ -110,7 +110,9 @@ export default function PasswordFunc() {
               onClick={generatePassword}
               className="w-full hover:bg-brandColorHover"
             >
-              Generate Password
+              {password.length >= 2
+                ? "Regenerate Password"
+                : "Generate Password"}
             </Button>
           </CardContent>
         </Card>
