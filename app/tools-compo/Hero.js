@@ -1,9 +1,21 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion"; // Correct import
+import * as motion from "motion/react-client";
+import { useState, useEffect } from "react"; // Add these imports
 
 const Hero = () => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading delay
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000); // Adjust time as needed
+
+    return () => clearTimeout(timer);
+  }, []);
+
   // Animation variants
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -51,6 +63,40 @@ const Hero = () => {
     },
   };
 
+  // Skeleton Loader
+  if (isLoading) {
+    return (
+      <div className="bg-white h-dvh overflow-hidden">
+        <div className="relative isolate px-6 lg:px-8">
+          <div className="mx-auto max-w-2xl relative top-0 py-24 md:py-32">
+            <div className="text-center space-y-6">
+              {/* Title Skeleton */}
+              <div className="animate-pulse">
+                <div className="h-12 bg-gray-200 rounded-lg w-3/4 mx-auto sm:h-16"></div>
+                <div className="h-12 bg-gray-200 rounded-lg w-1/2 mx-auto mt-4 sm:h-16"></div>
+              </div>
+
+              {/* Text Skeleton */}
+              <div className="animate-pulse space-y-2">
+                <div className="h-4 bg-gray-200 rounded w-5/6 mx-auto"></div>
+                <div className="h-4 bg-gray-200 rounded w-4/6 mx-auto"></div>
+                <div className="h-4 bg-gray-200 rounded w-5/6 mx-auto"></div>
+                <div className="h-4 bg-gray-200 rounded w-3/6 mx-auto"></div>
+              </div>
+
+              {/* Buttons Skeleton */}
+              <div className="animate-pulse flex justify-center gap-x-6 pt-4">
+                <div className="h-10 bg-gray-200 rounded-md w-32"></div>
+                <div className="h-10 bg-gray-200 rounded-md w-32"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  // Original Content
   return (
     <div className="bg-white h-dvh overflow-hidden">
       <div className="relative isolate px-6 lg:px-8">
