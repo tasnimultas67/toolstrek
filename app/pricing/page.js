@@ -144,7 +144,7 @@ const page = () => {
             <div className="plan-header">
               <div class="pricing-title">Free</div>
               <div class="pricing-price">
-                £29<span>/mo</span>
+                £0<span>/mo</span>
               </div>
             </div>
             <ul class="pricing-features">
@@ -190,7 +190,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Essential Tenant Referencing</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -202,7 +202,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Digital Right to Rent Checks</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -222,7 +222,7 @@ const page = () => {
                   Deposit Collection & Protection
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -248,13 +248,13 @@ const page = () => {
               <li>
                 <span class="feature-name">Tenant & Landlord Portals</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Smart Compliance Alerts</span>
                 <span class="feature-value">
-                  <span class="icon-limited">Limited</span>
+                  <span class="icon-yes">✓</span>
                 </span>
               </li>
 
@@ -262,7 +262,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Rent Collection (AI)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -282,7 +282,7 @@ const page = () => {
                   Work Order & Maintenance Management
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -290,7 +290,7 @@ const page = () => {
                   Automated Workflows & Tenancy Renewals
                 </span>
                 <span class="feature-value">
-                  <span class="icon-limited">Basic</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -314,7 +314,7 @@ const page = () => {
                   Accounting & Financial Reporting
                 </span>
                 <span class="feature-value">
-                  <span class="icon-limited">Basic</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -335,7 +335,7 @@ const page = () => {
             <div className="plan-header">
               <div class="pricing-title">PAYG</div>
               <div class="pricing-price">
-                £59<span>/mo</span>
+                £0<span>/mo</span>
               </div>
             </div>
             <ul class="pricing-features">
@@ -353,7 +353,7 @@ const page = () => {
                   Property Listings (Rightmove, Zoopla, etc.)
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-text">£30</span>
                 </span>
               </li>
               <li>
@@ -381,19 +381,19 @@ const page = () => {
               <li>
                 <span class="feature-name">Essential Tenant Referencing</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-text">£7.50</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Full Elite Referencing</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-text">£15</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Digital Right to Rent Checks</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-text">£5</span>
                 </span>
               </li>
               <li>
@@ -413,19 +413,19 @@ const page = () => {
                   Deposit Collection & Protection
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Section 13 notice (AI)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Section 48 Notice (AI)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -439,13 +439,13 @@ const page = () => {
               <li>
                 <span class="feature-name">Tenant & Landlord Portals</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Smart Compliance Alerts</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
 
@@ -453,19 +453,19 @@ const page = () => {
               <li>
                 <span class="feature-name">Rent Collection (AI)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Rent Collection (Human)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Debt Collection (AI)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -473,7 +473,7 @@ const page = () => {
                   Work Order & Maintenance Management
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -481,7 +481,7 @@ const page = () => {
                   Automated Workflows & Tenancy Renewals
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -489,7 +489,7 @@ const page = () => {
                   Integrations with Xero, QuickBooks
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
 
@@ -497,7 +497,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Full Property Management Suite</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -505,13 +505,13 @@ const page = () => {
                   Accounting & Financial Reporting
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Legal Support & Evictions</span>
                 <span class="feature-value">
-                  <span class="icon-limited">Basic</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
             </ul>

@@ -248,7 +248,7 @@ h1 {
 
 .pricing-features li {
   padding: 8px 0;
-  border-bottom: 1px solid #f0f0f0;
+  border-bottom: 1px solid #dbdbdb;
   display: flex;
   justify-content: space-between;
 }
@@ -289,12 +289,12 @@ h1 {
 .pricing-button {
   display: block;
   text-align: center;
-  padding: 12px 20px;
+  padding: 7px 20px;
   background: #4e73df;
   color: white;
   text-decoration: none;
   border-radius: 5px;
-  font-weight: 600;
+  font-weight: 500;
   transition: all 0.3s ease;
   margin-top: 15px;
 }
@@ -317,7 +317,8 @@ h1 {
 /* Desktop Layout - Switch to horizontal table */
 @media (min-width: 992px) {
   .pricing-table {
-    display: table;
+    display: flex;
+    flex-direction: row;
     width: 100%;
     /* table-layout: fixed; */
     /* border-collapse: collapse; */
@@ -328,19 +329,24 @@ h1 {
     display: table-cell;
     vertical-align: top;
     /* border-bottom: none; */
-    border: 1px solid #d5dfff;
-    padding: 25px 15px;
-    background-color: #FAFBFF;
-    border-radius: 14px;
-    margin: 10px;
-    transition: all 0.5s;
+    
+    padding: 25px 10px;
+
     /* overflow: visible; */
   }
 
-  .pricing-plan:hover{
+    .pricing-table:not(:first-child) .pricing-plan{
+      background-color: #FAFBFF;
+        border-radius: 14px;
+        margin: 2px;
+        transition: all 0.5s;
+        border: 1px solid #d5dfff;
+    }
+
+.pricing-table:not(:first-child) .pricing-plan:hover{
     border-color: #4e73df;
     /* transform: scale(1.01); */
-    z-index: 100;
+    z-index: 10;
   }
 
   /* Feature column - 30% width */
