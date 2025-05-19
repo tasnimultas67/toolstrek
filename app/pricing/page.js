@@ -577,7 +577,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Full Elite Referencing</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -629,7 +629,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Tenant & Landlord Portals</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -643,13 +643,13 @@ const page = () => {
               <li>
                 <span class="feature-name">Rent Collection (AI)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Rent Collection (Human)</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -663,7 +663,7 @@ const page = () => {
                   Work Order & Maintenance Management
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -671,7 +671,7 @@ const page = () => {
                   Automated Workflows & Tenancy Renewals
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -679,7 +679,7 @@ const page = () => {
                   Integrations with Xero, QuickBooks
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
 
@@ -687,7 +687,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Full Property Management Suite</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -695,13 +695,13 @@ const page = () => {
                   Accounting & Financial Reporting
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Legal Support & Evictions</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
             </ul>
@@ -760,7 +760,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Essential Tenant Referencing</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -876,7 +876,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Full Property Management Suite</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
@@ -884,13 +884,13 @@ const page = () => {
                   Accounting & Financial Reporting
                 </span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
                 <span class="feature-name">Legal Support & Evictions</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
             </ul>
@@ -949,7 +949,7 @@ const page = () => {
               <li>
                 <span class="feature-name">Essential Tenant Referencing</span>
                 <span class="feature-value">
-                  <span class="icon-yes">✓</span>
+                  <span class="icon-no">×</span>
                 </span>
               </li>
               <li>
