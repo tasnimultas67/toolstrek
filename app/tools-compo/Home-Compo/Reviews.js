@@ -51,7 +51,7 @@ const fadeIn = {
 const Reviews = () => {
   return (
     <section className="w-ful m-auto py-12 md:py-24 bg-gray-50 dark:bg-gray-900">
-      <div className=" w-[1180px] m-auto px-4 md:px-6">
+      <div className="w-full md:w-[1180px] m-auto px-4 md:px-6">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -63,7 +63,7 @@ const Reviews = () => {
           <h2 className="text-3xl font-bold  sm:text-4xl md:text-5xl">
             What Our Clients Say
           </h2>
-          <p className="max-w-[1180px] text-gray-500 md:text-base dark:text-gray-400">
+          <p className=" w-full md:max-w-[1180px] text-gray-500 md:text-base dark:text-gray-400">
             Don't just take our word for it. Here's what our clients have to say
             about their experiences.
           </p>
