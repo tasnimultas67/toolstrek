@@ -152,23 +152,15 @@ html::-webkit-scrollbar {
     @apply bg-background text-foreground;
   }
 }
+.features .pricing-title {
+  padding-bottom: 52px;
+}
 
 
 /* Pricig CSS */
 
+
 /* Base Styles */
-/* * {
-  box-sizing: border-box;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
-  margin: 0;
-  padding: 0;
-} */
-/* 
-body {
-  background: #f8f9fa;
-  padding: 20px;
-  color: #333;
-} */
 
 .pricing-container {
   max-width: 1200px;
@@ -197,8 +189,8 @@ h1 {
   flex-direction: column;
   background: #fff;
   border-radius: 10px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  overflow: hidden;
+  /* box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05); */
+  /* overflow: hidden; */
   margin-bottom: 40px;
 }
 
@@ -206,6 +198,7 @@ h1 {
   border-bottom: 1px solid #eaeaea;
   padding: 25px;
   position: relative;
+
 }
 
 .pricing-plan.popular {
@@ -231,6 +224,7 @@ h1 {
   font-weight: 700;
   color: #2c3e50;
   margin-bottom: 10px;
+  text-align: center;
 }
 
 .pricing-price {
@@ -238,6 +232,7 @@ h1 {
   font-weight: 700;
   color: #4e73df;
   margin-bottom: 20px;
+  text-align: center;
 }
 
 .pricing-price span {
@@ -256,7 +251,6 @@ h1 {
   border-bottom: 1px solid #f0f0f0;
   display: flex;
   justify-content: space-between;
-  font-size: 0.9rem;
 }
 
 .pricing-features li:last-child {
@@ -279,6 +273,7 @@ h1 {
 .icon-yes {
   color: #2ecc71;
   font-weight: bold;
+  
 }
 
 .icon-no {
@@ -324,19 +319,31 @@ h1 {
   .pricing-table {
     display: table;
     width: 100%;
-    table-layout: fixed;
-    border-collapse: collapse;
+    /* table-layout: fixed; */
+    /* border-collapse: collapse; */
+    
   }
 
   .pricing-plan {
     display: table-cell;
-    width: 14%;
     vertical-align: top;
-    border-bottom: none;
-    border-right: 1px solid #eaeaea;
+    /* border-bottom: none; */
+    border: 1px solid #d5dfff;
     padding: 25px 15px;
+    background-color: #FAFBFF;
+    border-radius: 14px;
+    margin: 10px;
+    transition: all 0.5s;
+    /* overflow: visible; */
   }
 
+  .pricing-plan:hover{
+    border-color: #4e73df;
+    /* transform: scale(1.01); */
+    z-index: 100;
+  }
+
+  /* Feature column - 30% width */
   .pricing-plan:first-child {
     width: 30%;
     text-align: left;
@@ -344,6 +351,12 @@ h1 {
     position: sticky;
     left: 0;
     z-index: 10;
+  }
+
+  /* Pricing columns - 14% width each (5 columns = 70% total) */
+  .pricing-plan:not(:first-child) {
+    width: 14%;
+    /* margin: 20px!important; */
   }
 
   .pricing-plan.popular {
@@ -359,76 +372,58 @@ h1 {
   }
 
   .pricing-features li {
-    display: flex;
+    display: block;
     text-align: left;
     padding: 8px 0;
   }
 
-  .feature-name {
+  /* Hide feature names in pricing columns */
+  .pricing-plan:not(:first-child) .feature-name {
     display: none;
   }
 
+  /* Show feature names only in first column */
   .pricing-plan:first-child .feature-name {
-    display: block;
+    display: inline;
     font-weight: 500;
   }
 
+  /* Hide the "-" values in first column */
   .pricing-plan:first-child .feature-value {
     display: none;
   }
-.features .pricing-title{
-  padding-bottom: 90px;
-}
-    .pricing-features .section-title:not(:first-child){
-      display: none;
-    }
-  /* h2.section-title {
-    margin: 35px 0 15px 0;
-  } */
-}
 
-/* Tooltip for limited features */
-.tooltip {
-  position: relative;
-  display: inline-block;
-  cursor: help;
-}
+  /* Center content in pricing columns */
+  .pricing-plan:not(:first-child) .feature-value {
+    text-align: center;
+    margin-left: 0;
+    display: block;
+  }
 
-.tooltip .tooltiptext {
-  visibility: hidden;
-  width: 200px;
-  background-color: #555;
-  color: #fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -100px;
-  opacity: 0;
-  transition: opacity 0.3s;
-  font-size: 0.8rem;
-  font-weight: normal;
-}
+  /* Show section titles only in first column on desktop */
+  .pricing-plan:not(:first-child) h2.section-title {
+    display: none;
+  }
 
-.tooltip:hover .tooltiptext {
-  visibility: visible;
-  opacity: 1;
-}
+  /* Add "-" placeholders for section titles in pricing columns */
+  .pricing-plan:not(:first-child) .section-title-placeholder {
+    display: block;
+    /* height: 50px; */
+    /* Match your section title height */
+    margin: 25px 0 15px 0;
+    color: transparent;
+  }
 
-.pricing-features .section-title {
-  display: inline-block;
-  /* Default: Show normal text */
-}
+  h2.section-title {
+    margin: 25px 0 15px 0;
+    text-align: left;
+    /* text-decoration: underline; */
+    color:#e74c3c;
+    font-weight: bold;
 
-@media (min-width: 1024px) {
-
-  /* Desktop */
-  .pricing-features:not(:first-child) .section-title {
-    content: "-"!important;
-    /* Show "-" for all except the first column */
-    display: inline-block;
   }
 }
+
+/* .plan-header{
+  background-color: rgba(0, 0, 255, 0.566);
+} */
