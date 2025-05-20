@@ -66,7 +66,7 @@ export default function PasswordFunc() {
                   value={password}
                   readOnly
                   placeholder="Your secure password"
-                  className="text-lg font-mono"
+                  className="text-base md:text-lg font-mono"
                 />
                 <CopyButton textToCopy={password} />
               </div>
@@ -85,7 +85,7 @@ export default function PasswordFunc() {
                 />
               </div>
 
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-4 flex-wrap">
                 {Object.entries(options).map(([key, value]) => (
                   <div key={key} className="flex items-center space-x-2">
                     <Switch
