@@ -1,6 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react"; // Removed useEffect import as it's not needed
+import { Staatliches } from "next/font/google";
 import {
   Dialog,
   DialogPanel,
@@ -23,22 +24,15 @@ import {
   QrCodeIcon,
 } from "@heroicons/react/20/solid";
 import Link from "next/link";
-import {
-  CalendarRange,
-  Lock,
-  Origami,
-  QrCode,
-  ScanQrCode,
-  SplinePointer,
-} from "lucide-react";
-import { Staatliches } from "next/font/google";
-import Image from "next/image";
+import { CalendarRange, Lock, ScanQrCode, SplinePointer } from "lucide-react";
+
 import { Button } from "@/components/ui/button";
 
 const staatliches = Staatliches({
-  subsets: ["latin"], // Ensures proper character support
-  weight: "400", // Adjust weight as needed
-  display: "swap", // Ensures text is visible during loading
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-staatliches",
 });
 
 const services = [
@@ -83,13 +77,10 @@ const services = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
+  // Removed servicesOpen state - it was causing the sync conflict
 
   return (
-    <div className="  border-b border-gray-900/10 sticky top-0 z-50">
-      {/* Black backdrop when services popover is open */}
-      {servicesOpen && <div className="fixed inset-0 bg-black/20 z-40" />}
-
+    <div className="border-b border-gray-900/10 sticky top-0 z-50">
       <div className="relative z-50 bg-white/80 backdrop-blur-2xl">
         <header className="w-full">
           <nav
@@ -118,7 +109,7 @@ export default function Header() {
                 </svg>
 
                 <h3 className={`text-3xl ${staatliches.className} `}>
-                  Tools<span className="text-brandColorHover">Trek</span>
+                  Tools<span className="text-brandColor">Trek</span>
                 </h3>
               </Link>
             </div>
@@ -134,60 +125,53 @@ export default function Header() {
             </div>
             <PopoverGroup className="hidden lg:flex lg:gap-x-12 ">
               <Popover className="relative">
-                {({ open, close }) => {
-                  // Use useEffect to sync the open state after render
-                  useEffect(() => {
-                    setServicesOpen(open);
-                  }, [open]);
+                {({ open, close }) => (
+                  <>
+                    <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 outline-none">
+                      Services
+                      <ChevronDownIcon
+                        aria-hidden="true"
+                        className={`size-5 flex-none text-gray-400 transition-transform ${
+                          open ? "rotate-180" : ""
+                        }`}
+                      />
+                    </PopoverButton>
 
-                  return (
-                    <>
-                      <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 outline-none">
-                        Services
-                        <ChevronDownIcon
-                          aria-hidden="true"
-                          className={`size-5 flex-none text-gray-400 transition-transform ${
-                            open ? "rotate-180" : ""
-                          }`}
-                        />
-                      </PopoverButton>
-
-                      <PopoverPanel
-                        transition
-                        className="absolute top-full -left-8 z-10 mt-4.5 w-screen max-w-md overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
-                      >
-                        <div className="p-4">
-                          {services.map((item) => (
-                            <div
-                              key={item.name}
-                              className="group relative flex items-center gap-x-6 rounded-lg p-3 text-sm/6 hover:bg-brandColor/5 transition duration-200 ease-in-out"
-                            >
-                              <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <item.icon
-                                  aria-hidden="true"
-                                  className="size-6 text-gray-600 group-hover:text-brandColor"
-                                />
-                              </div>
-                              <div className="flex-auto">
-                                <Link
-                                  href={item.href}
-                                  className="block font-semibold text-gray-900 "
-                                  onClick={() => close()}
-                                >
-                                  {item.name}
-                                  <span className="absolute inset-0" />
-                                </Link>
-                                <p className=" text-gray-500 text-sm line-clamp-1">
-                                  {item.description}
-                                </p>
-                              </div>
+                    <PopoverPanel
+                      transition
+                      className="absolute top-full -left-8 z-10 mt-4.5 w-screen max-w-md overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-gray-900/5 transition data-closed:translate-y-1 data-closed:opacity-0 data-enter:duration-200 data-enter:ease-out data-leave:duration-150 data-leave:ease-in"
+                    >
+                      <div className="p-4">
+                        {services.map((item) => (
+                          <div
+                            key={item.name}
+                            className="group relative flex items-center gap-x-6 rounded-lg p-3 text-sm/6 hover:bg-brandColor/5 transition duration-200 ease-in-out"
+                          >
+                            <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                              <item.icon
+                                aria-hidden="true"
+                                className="size-6 text-gray-600 group-hover:text-brandColor"
+                              />
                             </div>
-                          ))}
-                        </div>
-                      </PopoverPanel>
-                    </>
-                  );
-                }}
+                            <div className="flex-auto">
+                              <Link
+                                href={item.href}
+                                className="block font-semibold text-gray-900 "
+                                onClick={() => close()}
+                              >
+                                {item.name}
+                                <span className="absolute inset-0" />
+                              </Link>
+                              <p className=" text-gray-500 text-sm line-clamp-1">
+                                {item.description}
+                              </p>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    </PopoverPanel>
+                  </>
+                )}
               </Popover>
 
               <Link
@@ -219,13 +203,12 @@ export default function Header() {
         </header>
       </div>
 
-      {/* Mobile menu */}
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
         className="lg:hidden"
       >
-        <div className="fixed inset-0 z-10 bg-black/20" />
+        {/* <div className="fixed inset-0 z-10 bg-black/20" /> */}
         <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href="/" className=" flex items-center justify-start gap-1">
