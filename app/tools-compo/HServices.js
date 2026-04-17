@@ -5,34 +5,48 @@ import {
   QrCodeIcon,
   CalculatorIcon,
   ArrowRightIcon,
+  CalendarIcon,
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { motion } from "framer-motion";
+import { LockClosedIcon } from "@heroicons/react/20/solid";
 
 const toolCards = [
   {
     title: "Link Shortener",
     link: "/tools/link-shortner",
-    description: "Transform long URLs into clean, manageable links.",
+    description: "Shorten your links for easy sharing",
     icon: LinkIcon,
   },
   {
-    title: "Wi-Fi QR Code",
+    title: "Wifi QR Code Generator",
     link: "/tools/wifi-qr",
-    description: "Let guests scan to join your network instantly.",
+    description: "Generate QR codes for your wifi network",
     icon: QrCodeIcon,
   },
   {
     title: "Age Calculator",
     link: "/tools/age-calculate",
-    description: "Precise breakdown of your age down to the day.",
+    description: "Calculate your age in years, months, and days",
     icon: CalculatorIcon,
   },
   {
-    title: "QR Scanner",
+    title: "QR Code Scanner",
     link: "/tools/qr-scanner",
-    description: "Instant detection via camera or local files.",
+    description: "Scan QR codes using your device's camera",
     icon: QrCodeIcon,
+  },
+  {
+    title: "Days Tracker",
+    link: "/tools/days-tracker",
+    description: "Calculate the end date based on start date",
+    icon: CalendarIcon,
+  },
+  {
+    title: "Password Generator",
+    link: "/tools/password-gen",
+    description: "A secure tool that creates strong, randomized passwords",
+    icon: LockClosedIcon,
   },
 ];
 
