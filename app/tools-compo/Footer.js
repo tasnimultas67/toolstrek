@@ -173,9 +173,17 @@ const Footer = () => {
             <Link
               href="https://tasnimul.vercel.app/"
               target="_blank"
-              className="text-yellow-300"
+              className="text-yellow-300 mr-1"
             >
               Tasnimul Haque
+            </Link>
+            &
+            <Link
+              href="https://oraclebyte.com/"
+              target="_blank"
+              className="text-yellow-300 ml-1"
+            >
+              Oracle Byte
             </Link>
           </p>
         </div>
