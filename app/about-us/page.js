@@ -73,7 +73,7 @@ const Page = () => {
                 width={1400}
                 height={400}
                 alt="About Us page banner"
-                className="object-cover h-[400px] rounded-lg"
+                className="object-cover h-100 rounded-lg"
               />
             </div>
           </section>
@@ -85,7 +85,7 @@ const Page = () => {
               <AnimatedImage
                 src="https://tasnimul.vercel.app/_next/image?url=%2FTasnimul-Haque.jpg&w=1080&q=75"
                 alt="About Us"
-                className="object-cover size-[150px] border-2 border-dashed border-accent-foreground rounded-full"
+                className="object-cover size-37.5 border-2 border-dashed border-accent-foreground rounded-full"
                 width={300}
                 height={500}
               />
@@ -106,11 +106,11 @@ const Page = () => {
 
                 <AnimatedText delay={0.2}>
                   <p>
-                    Tasnimul's journey in web development has been driven by a
-                    commitment to clarity, functionality, and innovation. From
-                    configuring vendor workflows to refining website content for
-                    professionalism, every aspect of ToolsTrek reflects his
-                    methodical approach and attention to detail.
+                    Tasnimul&lsquo;s journey in web development has been driven
+                    by a commitment to clarity, functionality, and innovation.
+                    From configuring vendor workflows to refining website
+                    content for professionalism, every aspect of ToolsTrek
+                    reflects his methodical approach and attention to detail.
                   </p>
                 </AnimatedText>
 

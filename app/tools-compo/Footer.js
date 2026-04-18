@@ -83,7 +83,7 @@ const Footer = () => {
                 <li key={service.name} className="relative">
                   <Link
                     href={service.href}
-                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
+                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-px before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
                   >
                     {service.name}
                   </Link>
@@ -99,7 +99,7 @@ const Footer = () => {
                 <li key={company.name} className="relative">
                   <Link
                     href={company.url}
-                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
+                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-px before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
                   >
                     {company.name}
                   </Link>

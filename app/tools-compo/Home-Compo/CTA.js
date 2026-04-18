@@ -44,7 +44,7 @@ const CTA = () => {
   return (
     <section className="relative">
       <motion.div
-        className="w-full md:w-11/12 mx-auto text-left bg-gradient-to-r from-black to-brandColorHover  rounded-3xl text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden pb-52 md:pb-10"
+        className="w-full md:w-11/12 mx-auto text-left bg-linear-to-r from-black to-brandColorHover  rounded-3xl text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden pb-52 md:pb-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
@@ -81,14 +81,14 @@ const CTA = () => {
 
         {/* Right Background - Abstract Geometric Circles */}
         <motion.div
-          className="absolute right-0 top-0 bottom-0 w-[100%] md:w-[60%]"
+          className="absolute right-0 top-0 bottom-0 w-full md:w-[60%]"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
           variants={containerVariants}
         >
           <motion.svg
-            className="absolute right-0 md:right-[-400px] bottom-[-300px] md:bottom-0 md:top-[-130px] w-[480px] md:w-[800px] h-[600px]  fill-white "
+            className="absolute right-0 md:-right-100 -bottom-75 md:bottom-0 md:-top-32.5 w-120 md:w-200 h-150 fill-white "
             viewBox="0 0 600 600"
             fill="none"
             variants={circleVariants}
