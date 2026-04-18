@@ -31,7 +31,7 @@ const ToolsCard = (tool, index) => {
             </p>
           </div>
 
-          <div className="mt-8 flex items-center text-sm font-medium text-gray-400 transition-colors group-hover:text-indigo-600">
+          <div className="mt-8 flex items-center text-sm font-medium text-gray-600 transition-colors group-hover:text-indigo-600">
             Get started
             <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </div>
