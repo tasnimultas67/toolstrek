@@ -2,11 +2,8 @@ import React from "react";
 import ContactForm from "../tools-compo/ContactForm";
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowUpRightIcon } from "@heroicons/react/24/outline";
-import { Home } from "lucide-react";
 import {
   ClockIcon,
-  EnvelopeIcon,
   EnvelopeOpenIcon,
   HomeIcon,
 } from "@heroicons/react/20/solid";
@@ -20,8 +17,8 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="bg-gray-50 py-12 px-4">
-      <div className="md:w-[1180px] m-auto pb-20">
+    <div className="bg-gray-50 py-12 px-2">
+      <div className="w-11/12 m-auto pb-20">
         <div>
           <div>
             <div className="text-center mb-12">
@@ -29,7 +26,7 @@ const page = () => {
                 Contact Us
               </h1>
               <p className="mt-4 text-lg text-gray-600">
-                Have questions about our tools? We'd love to hear from you!
+                Have questions about our tools? We&apos;d love to hear from you!
               </p>
             </div>
           </div>
@@ -80,7 +77,8 @@ const page = () => {
                   ></Image>
                   <div className="p-4 rounded-lg border border-gray-300 space-y-2 bg-white/60 backdrop-blur-2xl absolute bottom-2 left-2 right-2">
                     <p className="text-base ">
-                      "If you can connect people, you can create the future."
+                      &quot;If you can connect people, you can create the
+                      future.&quot;
                     </p>
                     <p className="text-xs font-semibold text-gray-600">
                       Scott Heiferman
