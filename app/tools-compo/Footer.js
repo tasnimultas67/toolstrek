@@ -71,28 +71,12 @@ const whyus = [
 const Footer = () => {
   const copyrightYear = new Date().getFullYear();
   return (
-    <div className="bg-gradient-to-b from-black to-neutral-950 pt-20 pb-5 px-3">
-      <div className="md:w-[1180px] m-auto space-y-7 md:space-y-8 ">
+    <div className="bg-linear-to-b from-black to-neutral-950 pt-20 pb-5 px-2">
+      <div className="w-11/12 m-auto space-y-7 md:space-y-8 ">
         {/* Menus */}
         <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-0 md:mb-16 ">
-          {/* Platform Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/4">
-            <h3 className="text-base text-white font-semibold">Platform</h3>
-            <ul className="space-y-2">
-              {platforms.map((platform) => (
-                <li key={platform.name} className="relative">
-                  <Link
-                    href={platform.url}
-                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-[1px] before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
-                  >
-                    {platform.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
           {/* service Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/4">
+          <div className="space-y-4 w-1/2 md:w-1/3">
             <h3 className="text-base text-white font-semibold">Tools</h3>
             <ul className="space-y-2">
               {services.map((service) => (
@@ -108,7 +92,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* Company Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/4">
+          <div className="space-y-4 w-1/2 md:w-1/3">
             <h3 className="text-base text-white font-semibold">Company</h3>
             <ul className="space-y-2">
               {companies.map((company) => (
@@ -124,7 +108,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* whyus Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/4">
+          <div className="space-y-4 w-1/2 md:w-1/3">
             <h3 className="text-base text-white font-semibold">Why Us</h3>
             <ul className="space-y-2">
               {whyus.map((benefit) => (
@@ -140,7 +124,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Divider */}
-        <div className="w-full h-[1px] bg-white/20" />
+        <div className="w-full h-px bg-white/20" />
         {/* company information */}
         <div className="space-y-5">
           {/* Logo */}
@@ -188,7 +172,7 @@ const Footer = () => {
           </div>
         </div>
         {/* Divider */}
-        <div className="w-full h-[1px] bg-white/20" />
+        <div className="w-full h-px bg-white/20" />
         <div>
           <p className="text-gray-300 text-sm">
             copyright {copyrightYear} Toolstrek. All Rights Reserved. Developed

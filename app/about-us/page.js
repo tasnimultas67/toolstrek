@@ -47,13 +47,13 @@ const AnimatedSection = ({ children }) => (
 // Main page component (can remain server-side)
 const Page = () => {
   return (
-    <div className="md:w-[1100px] mx-auto">
+    <div className="w-11/12 mx-auto">
       <div>
         <AnimatedSection>
           <section className="py-12 md:py-20 px-3">
             <div className="space-y-10">
               <AnimatedText>
-                <h2 className="text-5xl font-semibold">
+                <h2 className="text-2xl md:text-5xl font-semibold">
                   Empowering Productivity, One Tool at a Time Innovative
                   Solutions for Everyday Challenges
                 </h2>

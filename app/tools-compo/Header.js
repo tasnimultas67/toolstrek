@@ -85,7 +85,7 @@ export default function Header() {
         <header className="w-full">
           <nav
             aria-label="Global"
-            className="mx-auto flex items-center justify-between px-6 py-3 lg:px-8 max-w-[1200px]"
+            className="mx-auto flex items-center justify-between px-6 py-3 lg:px-2 w-11/12"
           >
             <div className="flex lg:flex-1">
               <Link href="/" className=" flex items-center justify-start gap-1">

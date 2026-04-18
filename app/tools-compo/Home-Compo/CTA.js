@@ -44,7 +44,7 @@ const CTA = () => {
   return (
     <section className="relative">
       <motion.div
-        className="w-full md:w-[1000px] mx-auto text-left bg-gradient-to-r from-black to-brandColorHover  rounded-3xl text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden pb-52 md:pb-10"
+        className="w-full md:w-11/12 mx-auto text-left bg-gradient-to-r from-black to-brandColorHover  rounded-3xl text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden pb-52 md:pb-10"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
