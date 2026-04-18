@@ -67,7 +67,7 @@ const Hero = () => {
               clipPath:
                 "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
             }}
-            className="relative left-[calc(50%-11rem)] aspect-1155/678 w-[36.125rem] -translate-x-1/2 bg-gradient-to-tr from-brandColor/40 to-brandColorHover/40 sm:left-[calc(50%-30rem)] sm:w-[72.1875rem]"
+            className="relative left-[calc(50%-11rem)] aspect-1155/678 w-144.5 -translate-x-1/2 bg-linear-to-tr from-brandColor/40 to-brandColorHover/40 sm:left-[calc(50%-30rem)] sm:w-288.75"
           />
         </motion.div>
 
@@ -84,7 +84,7 @@ const Hero = () => {
               variants={itemVariants}
             >
               Your Digital{" "}
-              <span className="bg-gradient-to-r from-brandColor to-emerald-900 bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-brandColor to-emerald-900 bg-clip-text text-transparent">
                 Toolbox
               </span>{" "}
               for Everyday Tasks
@@ -103,7 +103,7 @@ const Hero = () => {
 
             {/* Floating Icons */}
             <motion.div
-              className="absolute top-10 left-0 w-7 md:w-[50px] md:top-20 md:-left-28 -rotate-12 drop-shadow-2xl drop-shadow-blue-300"
+              className="absolute top-10 left-0 w-7 md:w-12.5 md:top-20 md:-left-28 -rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               variants={floatingVariants}
               animate="float"
             >
@@ -117,7 +117,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-              className="absolute top-10 right-0 w-7 md:w-[50px] md:top-20 md:-right-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
+              className="absolute top-10 right-0 w-7 md:w-12.5 md:top-20 md:-right-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               variants={floatingVariants}
               animate="float"
             >
@@ -135,13 +135,13 @@ const Hero = () => {
               variants={itemVariants}
             >
               <Link
-                href="#"
+                href="#tools"
                 className="rounded-md bg-brandColor hover:bg-brandColorHover px-5 py-2 text-sm font-semibold text-white shadow-sm transition-colors duration-300 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-brandColor"
               >
                 Get started
               </Link>
               <Link
-                href="#"
+                href="/about-us"
                 className="text-sm font-semibold leading-6 text-gray-900 hover:text-brandColor transition-colors duration-300"
               >
                 Learn more <span aria-hidden="true">→</span>
@@ -149,7 +149,7 @@ const Hero = () => {
             </motion.div>
 
             <motion.div
-              className="absolute bottom-10 left-0 w-7 md:w-[40px] md:bottom-40 md:-left-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
+              className="absolute bottom-10 left-0 w-7 md:w-10 md:bottom-40 md:-left-28 rotate-12 drop-shadow-2xl drop-shadow-blue-300"
               variants={floatingVariants}
               animate="float"
             >

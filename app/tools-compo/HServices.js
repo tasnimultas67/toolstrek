@@ -50,11 +50,11 @@ const toolCards = [
 
 const HServices = () => {
   return (
-    <section className="bg-white pb-20 px-2">
+    <section className="bg-white pb-20 px-2" id="tools">
       <div className="w-11/12 mx-auto">
         {/* Optional Header Section */}
         <div className="mb-16 text-center lg:text-left">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
             Powerful simple tools
           </h2>
           <p className="mt-4 text-lg text-gray-600">
