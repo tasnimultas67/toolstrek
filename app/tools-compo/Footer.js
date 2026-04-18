@@ -1,5 +1,5 @@
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
-import { LocateIcon, Mail, MapPin } from "lucide-react";
+import { Github, Mail, MapPin } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Link from "next/link";
 import React from "react";
@@ -9,17 +9,6 @@ const staatliches = Staatliches({
   weight: "400", // Adjust weight as needed
   display: "swap", // Ensures text is visible during loading
 });
-
-const platforms = [
-  { name: "Automated document creation", url: "#" },
-  { name: "Automated template management", url: "#" },
-  { name: "Email signature management", url: "#" },
-  { name: "Brand content distribution", url: "#" },
-  { name: "Productivity tools", url: "#" },
-  { name: "AI and doc gen", url: "#" },
-  { name: "Privacy at ToolsTrek", url: "#" },
-  { name: "Security at ToolsTrek", url: "#" },
-];
 
 const companies = [
   { name: "About Company", url: "/about-us" },
@@ -76,7 +65,7 @@ const Footer = () => {
         {/* Menus */}
         <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-0 md:mb-16 ">
           {/* service Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/3">
+          <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Tools</h3>
             <ul className="space-y-2">
               {services.map((service) => (
@@ -92,7 +81,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* Company Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/3">
+          <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Company</h3>
             <ul className="space-y-2">
               {companies.map((company) => (
@@ -108,9 +97,9 @@ const Footer = () => {
             </ul>
           </div>
           {/* whyus Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/3">
+          <div className="space-y-4 w-2/2 md:w-2/4">
             <h3 className="text-base text-white font-semibold">Why Us</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 grid grid-cols-2">
               {whyus.map((benefit) => (
                 <li
                   key={benefit.name}
@@ -157,7 +146,7 @@ const Footer = () => {
             minimal effort.
           </p>
           {/* Social Icons */}
-          <div className="space-y-2">
+          <div className="space-y-2 flex flex-col md:flex-row items-start md:items-center justify-start gap-4">
             <Link
               href="mailto:contact.toolstrek@gmail.com"
               className="text-gray-300 text-sm flex items-center justify-start gap-2"
@@ -165,10 +154,14 @@ const Footer = () => {
               <Mail className="size-4 text-gray-300" />{" "}
               contact.toolstrek@gmail.com
             </Link>
-            <p className="flex items-center gap-2 text-gray-300 text-sm">
-              <MapPin className="size-4 text-gray-300" /> House#711/7, Baitul
-              Aman Housing, Road#11, Shyamoli, Dhaka-1207
-            </p>
+            <Link
+              href="https://github.com/tasnimultas67/toolstrek"
+              target="_blank"
+              className="text-gray-300 text-sm flex items-center justify-start gap-2"
+            >
+              <Github className="size-4 text-gray-300" /> Github Project
+              Repository
+            </Link>
           </div>
         </div>
         {/* Divider */}
