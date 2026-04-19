@@ -8,7 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { EyeIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 import ToolsCard from "./ToolsCard";
-import { SplinePointerIcon } from "lucide-react";
+import { FileImageIcon, SplinePointerIcon } from "lucide-react";
 
 const toolCards = [
   {
@@ -59,6 +59,12 @@ const toolCards = [
     link: "/tools/case-converter",
     description: "Convert text between different case formats.",
     icon: SplinePointerIcon,
+  },
+  {
+    title: "PDF to High-Quality Image Converter",
+    link: "/tools/pdf-to-image",
+    description: "Convert PDF pages into high-resolution images.",
+    icon: FileImageIcon,
   },
 ];
 

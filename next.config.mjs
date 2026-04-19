@@ -20,6 +20,16 @@ const nextConfig = {
       },
     ],
   },
+  // Add this part to handle the PDF.js canvas and binary dependencies
+  webpack: (config) => {
+    config.resolve.alias.canvas = false;
+    return config;
+  },
+  // This helps prevent Next.js from trying to bundle the server-side parts
+  // of pdfjs-dist which can cause the "DOMMatrix" or worker errors.
+  experimental: {
+    serverExternalPackages: ["pdfjs-dist"],
+  },
 };
 
 export default nextConfig;

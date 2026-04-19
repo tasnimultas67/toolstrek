@@ -33,6 +33,7 @@ import {
   Github,
   Eye,
   SplinePointerIcon,
+  FileImageIcon,
 } from "lucide-react"; // Added Star and Github icons
 
 import { Button } from "@/components/ui/button";
@@ -94,6 +95,12 @@ const services = [
     description: "Convert text between different case formats.",
     href: "/tools/case-converter",
     icon: SplinePointerIcon,
+  },
+  {
+    name: "PDF to High-Quality Image Converter",
+    description: "Convert PDF pages into high-resolution images.",
+    href: "/tools/pdf-to-image",
+    icon: FileImageIcon,
   },
 ];
 

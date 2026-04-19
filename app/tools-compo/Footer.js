@@ -51,6 +51,10 @@ const services = [
     name: "Case Converter",
     href: "/tools/case-converter",
   },
+  {
+    name: "PDF to High-Quality Image Converter",
+    href: "/tools/pdf-to-image",
+  },
 ];
 
 const whyus = [
