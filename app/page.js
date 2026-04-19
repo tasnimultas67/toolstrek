@@ -1,32 +1,60 @@
 import Hero from "./tools-compo/Hero";
 import HServices from "./tools-compo/HServices";
-import Image from "next/image";
 import Reviews from "./tools-compo/Home-Compo/Reviews";
 import CTA from "./tools-compo/Home-Compo/CTA";
 import { Suspense } from "react";
 import HeroSkeleton from "./tools-compo/Home-Compo/HeroSkeleton";
+import {
+  Zap,
+  CloudOff,
+  Clock,
+  ShieldCheck,
+  CircleDollarSign,
+  MonitorSmartphone,
+} from "lucide-react";
 
 const whychoose = [
   {
     title: "Easy to Use",
     description:
       "No complicated setup, no confusion. ToolsTrek is designed for effortless navigation, ensuring anyone can use it without hassle.",
-    icon: "/easytouse.svg",
+    icon: <Zap size={24} />,
     gradient: "from-blue-500/20 to-cyan-500/20",
   },
   {
     title: "No Installation",
     description:
       "Instant access, no downloads. Our tools run completely online, letting you work from any device without storage or update worries.",
-    icon: "/noinstallation.svg",
+    icon: <CloudOff size={24} />,
     gradient: "from-purple-500/20 to-pink-500/20",
   },
   {
     title: "Save Time",
     description:
       "Efficiency is key. Our tools streamline your tasks, cutting out unnecessary steps so you can get things done in seconds.",
-    icon: "/savetime.svg",
+    icon: <Clock size={24} />,
     gradient: "from-orange-500/20 to-yellow-500/20",
+  },
+  {
+    title: "Privacy First",
+    description:
+      "Your data stays yours. Most of our tools process information locally in your browser, meaning your sensitive data never even touches our servers.",
+    icon: <ShieldCheck size={24} />,
+    gradient: "from-green-500/20 to-emerald-500/20",
+  },
+  {
+    title: "Always Free",
+    description:
+      "No subscriptions, no hidden fees, and no 'pro' versions. Access every single tool in our library completely free of charge, forever.",
+    icon: <CircleDollarSign size={24} />,
+    gradient: "from-red-500/20 to-rose-500/20",
+  },
+  {
+    title: "Cross-Platform",
+    description:
+      "Whether you're on a high-end PC, a tablet, or a smartphone, ToolsTrek adapts to your screen size for a seamless experience everywhere.",
+    icon: <MonitorSmartphone size={24} />,
+    gradient: "from-indigo-500/20 to-blue-500/20",
   },
 ];
 
@@ -67,31 +95,31 @@ export default function Home() {
             {whychoose.map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-white border border-gray-100 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-brandColor/10 hover:-translate-y-1"
+                className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-brandColor/10 hover:-translate-y-1 overflow-hidden"
               >
                 {/* Icon Container */}
                 <div
-                  className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gradient-to-br ${item.gradient} mb-6 group-hover:scale-110 transition-transform duration-300`}
+                  className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-linear-to-br ${item.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 text-gray-800 dark:text-white`}
                 >
-                  <Image
-                    src={item.icon}
-                    width={40}
-                    height={40}
-                    alt={item.title}
-                    className="size-10 object-contain"
-                  />
+                  {/* Render Lucide Icon directly */}
+                  {item.icon}
                 </div>
 
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
                   {item.title}
                 </h3>
 
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   {item.description}
                 </p>
 
                 {/* Decorative bottom line */}
                 <div className="absolute bottom-0 left-0 h-1 w-0 bg-brandColor transition-all duration-300 group-hover:w-full rounded-b-2xl" />
+
+                {/* Optional: Subtle background glow on hover */}
+                <div
+                  className={`absolute -inset-2 bg-linear-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity blur-2xl -z-10`}
+                />
               </div>
             ))}
           </div>
