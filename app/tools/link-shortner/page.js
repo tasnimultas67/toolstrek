@@ -8,9 +8,9 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="md:w-[1000px] mx-auto">
+    <div className="md:w-250 mx-auto">
       <div className="p-5">
-        <ShortenerForm></ShortenerForm>
+        <ShortenerForm />
       </div>
     </div>
   );

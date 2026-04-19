@@ -1,14 +1,23 @@
 "use client";
 
-import { Copy, Download, Link2 } from "lucide-react";
+import {
+  Copy,
+  Download,
+  Link2,
+  Sparkles,
+  QrCode,
+  CheckCircle2,
+  ExternalLink,
+} from "lucide-react";
 import React, { useRef, useState } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 import Link from "next/link";
 import { toast } from "sonner";
-import * as motion from "motion/react-client";
+import { motion, AnimatePresence } from "framer-motion";
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 
 const ShortenerForm = () => {
-  // State management
   const [url, setUrl] = useState("");
   const [shortenedUrl, setShortenedUrl] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -17,13 +26,11 @@ const ShortenerForm = () => {
   async function shortURL(e) {
     e.preventDefault();
 
-    // Validate URL input
     if (!url.trim()) {
       toast.error("Please enter a URL");
       return;
     }
 
-    // Basic URL format validation
     if (!url.match(/^https?:\/\//i)) {
       toast.error("Please include http:// or https://");
       return;
@@ -33,7 +40,7 @@ const ShortenerForm = () => {
 
     try {
       const response = await fetch(
-        `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`
+        `https://tinyurl.com/api-create.php?url=${encodeURIComponent(url)}`,
       );
 
       if (response.ok) {
@@ -51,158 +58,191 @@ const ShortenerForm = () => {
     }
   }
 
-  /**
-   * Downloads the QR code as PNG with 10px white padding
-   */
   const handleDownload = () => {
     if (!qrCodeRef.current) return;
 
-    const padding = 10; // Exactly 10px padding as requested
+    const padding = 10;
     const qrCanvas = qrCodeRef.current.querySelector("canvas");
     const qrSize = qrCanvas.width;
     const size = qrSize + padding * 2;
 
-    // Create download canvas
     const canvas = document.createElement("canvas");
     canvas.width = size;
     canvas.height = size;
     const context = canvas.getContext("2d");
 
-    // White background with 10px padding
     context.fillStyle = "#ffffff";
     context.fillRect(0, 0, size, size);
     context.drawImage(qrCanvas, padding, padding, qrSize, qrSize);
 
-    // Generate filename from shortened URL
     const filename =
       shortenedUrl.replace(/^https?:\/\//, "").replace(/\//g, "-") + ".png";
-
-    // Trigger download
-    const url = canvas.toDataURL("image/png");
+    const downloadUrl = canvas.toDataURL("image/png");
     const link = document.createElement("a");
-    link.href = url;
+    link.href = downloadUrl;
     link.download = filename;
     link.click();
   };
 
-  /**
-   * Copies text to clipboard and shows feedback
-   * @param {string} text - Text to copy
-   */
   const copyToClipboard = (text) => {
     navigator.clipboard.writeText(text);
-    toast("Copied to clipboard", {
-      description: "The URL is ready to be pasted",
-      action: {
-        label: "Open URL",
-        onClick: () => window.open(text, "_blank"),
-      },
+    toast.success("Copied to clipboard!", {
+      description: "Link is ready to share.",
     });
   };
 
   return (
-    <div className="w-full md:max-w-4xl mx-auto space-y-6 p-6 bg-white rounded-lg border border-gray-200 shadow-sm">
-      {/* URL Shortening Form */}
-      <form
-        onSubmit={shortURL}
-        className="flex flex-col md:flex-row gap-3 w-full"
-      >
-        <div className="flex-grow relative">
-          <input
-            className="p-3 border border-gray-300 rounded-lg text-base w-full bg-white focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all"
-            type="url"
-            placeholder="https://example.com"
-            value={url}
-            onChange={(e) => setUrl(e.target.value)}
-            required
-            pattern="https?://.+"
-            title="Include http:// or https://"
-          />
-          <span className="absolute right-3 top-3 text-gray-400 text-sm">
-            {isLoading ? "Shortening..." : ""}
-          </span>
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 py-12 px-4 flex items-center justify-center font-sans">
+      <div className="w-full max-w-4xl space-y-8">
+        {/* Header Section */}
+        <div className="text-center space-y-2">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-2"
+          >
+            <Sparkles size={14} />
+            <span>Fast & Secure</span>
+          </motion.div>
+          <h1 className="text-4xl font-black text-gray-900 dark:text-white tracking-tight">
+            URL <span className="text-blue-600">Shortener</span>
+          </h1>
+          <p className="text-gray-500 dark:text-gray-400 font-medium">
+            Transform long links into powerful, shareable URLs and QR codes
+          </p>
         </div>
-        <button
-          className="bg-brandColor hover:bg-brandColorHover text-white px-6 py-3 rounded-lg font-medium flex items-center justify-center gap-2 transition-colors disabled:opacity-70 disabled:cursor-not-allowed min-w-[130px] cursor-pointer"
-          type="submit"
-          disabled={isLoading || !url.trim()}
-        >
-          {isLoading ? (
-            <span className="animate-pulse">Processing...</span>
-          ) : (
-            <>
-              Shorten <Link2 className="size-4" />
-            </>
+
+        {/* Form Card */}
+        <Card className="p-2 bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.05)] border-none">
+          <form onSubmit={shortURL} className="flex flex-col md:flex-row gap-2">
+            <div className="flex-grow relative">
+              <input
+                className="w-full h-16 pl-6 pr-4 bg-transparent border-none focus:ring-0 text-gray-700 dark:text-gray-200 font-bold placeholder:text-gray-400 placeholder:font-medium"
+                type="url"
+                placeholder="Paste your long link here..."
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                required
+              />
+            </div>
+            <Button
+              type="submit"
+              disabled={isLoading || !url.trim()}
+              className="h-14 md:h-12 md:mt-2 md:mr-2 px-8 rounded-3xl bg-blue-600 hover:bg-blue-700 text-white font-bold transition-all active:scale-95 shadow-lg shadow-blue-200 dark:shadow-none"
+            >
+              {isLoading ? (
+                <div className="flex items-center gap-2">
+                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                  <span>Processing...</span>
+                </div>
+              ) : (
+                <div className="flex items-center gap-2">
+                  <span>Shorten Now</span>
+                  <Link2 size={18} />
+                </div>
+              )}
+            </Button>
+          </form>
+        </Card>
+
+        {/* Results Section */}
+        <AnimatePresence>
+          {shortenedUrl && (
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 20 }}
+              className="grid grid-cols-1 md:grid-cols-5 gap-6"
+            >
+              {/* Short Link Card */}
+              <Card className="md:col-span-3 bg-white dark:bg-gray-900 rounded-[2rem] border-none shadow-xl p-8 flex flex-col justify-center relative overflow-hidden">
+                <div className="absolute top-0 right-0 p-8 opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
+                  <CheckCircle2 size={160} />
+                </div>
+
+                <h3 className="text-xs font-black uppercase text-gray-400 tracking-widest mb-6 flex items-center gap-2">
+                  <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                  Success! Your Link is Ready
+                </h3>
+
+                <div className="space-y-4">
+                  <div className="p-4 bg-gray-50 dark:bg-gray-800/50 rounded-2xl border border-gray-100 dark:border-gray-800 flex items-center justify-between group">
+                    <span className="text-lg font-bold text-gray-800 dark:text-white break-all">
+                      {shortenedUrl}
+                    </span>
+                    <div className="flex gap-2 shrink-0">
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        onClick={() => window.open(shortenedUrl, "_blank")}
+                        className="rounded-full hover:bg-blue-50 dark:hover:bg-blue-900/30 text-blue-600"
+                      >
+                        <ExternalLink size={18} />
+                      </Button>
+                    </div>
+                  </div>
+
+                  <Button
+                    onClick={() => copyToClipboard(shortenedUrl)}
+                    className="w-full h-14 rounded-2xl bg-gray-900 dark:bg-blue-600 hover:bg-black dark:hover:bg-blue-700 text-white font-bold flex items-center gap-2"
+                  >
+                    <Copy size={18} />
+                    Copy Short Link
+                  </Button>
+                </div>
+              </Card>
+
+              {/* QR Card */}
+              <Card className="md:col-span-2 bg-white dark:bg-gray-900 rounded-[2rem] border-none shadow-xl p-6 flex flex-col items-center">
+                <h3 className="text-xs font-black uppercase text-gray-400 tracking-widest mb-4 flex items-center gap-2">
+                  <QrCode size={14} />
+                  Visual QR Code
+                </h3>
+
+                <div
+                  ref={qrCodeRef}
+                  className="p-3 bg-white rounded-2xl border-4 border-gray-50 mb-4"
+                >
+                  <QRCodeCanvas
+                    value={shortenedUrl}
+                    size={160}
+                    level="H"
+                    includeMargin={false}
+                    fgColor="#0f172a"
+                  />
+                </div>
+
+                <Button
+                  onClick={handleDownload}
+                  variant="outline"
+                  className="w-full h-12 rounded-xl border-gray-100 dark:border-gray-800 font-bold text-gray-600 dark:text-gray-300 flex items-center gap-2"
+                >
+                  <Download size={16} />
+                  Download PNG
+                </Button>
+              </Card>
+            </motion.div>
           )}
-        </button>
-      </form>
+        </AnimatePresence>
 
-      {/* Results Section */}
-      {shortenedUrl && (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-          className="bg-gray-50 rounded-lg p-4 border border-gray-200"
-        >
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            {/* Shortened URL Card */}
-            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm">
-              <h3 className="font-semibold text-gray-700 mb-2">
-                <span className="text-green-600">Shortened URL</span>
-              </h3>
-              <div className="flex items-center gap-2">
-                <button
-                  onClick={() => copyToClipboard(shortenedUrl)}
-                  className="bg-green-600 hover:bg-green-700 text-white p-2 rounded-lg transition-colors"
-                  aria-label="Copy shortened URL"
-                >
-                  <Copy className="size-4" />
-                </button>
-                <Link
-                  href={shortenedUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-green-600 hover:text-green-800 break-all underline"
-                >
-                  {shortenedUrl}
-                </Link>
-              </div>
+        {/* Footer Meta */}
+        {!shortenedUrl && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="flex flex-wrap justify-center gap-8 pt-4 opacity-50 grayscale"
+          >
+            <div className="flex items-center gap-2 font-bold text-gray-500">
+              <CheckCircle2 size={16} /> <span>Instant Results</span>
             </div>
-
-            {/* QR Code Card with 10px Padding */}
-            <div className="bg-white p-4 rounded-lg border border-gray-200 shadow-sm flex flex-col items-center">
-              <div
-                ref={qrCodeRef}
-                className="mb-3 bg-white rounded-md"
-                style={{
-                  padding: "10px",
-                  display: "inline-block",
-                }}
-              >
-                <QRCodeCanvas
-                  value={shortenedUrl}
-                  size={250}
-                  level="H"
-                  includeMargin={false}
-                  fgColor="#000000"
-                />
-              </div>
-              <button
-                onClick={handleDownload}
-                className="w-full bg-brandColor hover:bg-brandColorHover text-white py-2 px-4 rounded-lg flex items-center justify-center gap-2 transition-colors text-sm"
-              >
-                <Download className="size-4" />
-                Download QR Code
-              </button>
+            <div className="flex items-center gap-2 font-bold text-gray-500">
+              <QrCode size={16} /> <span>HQ QR Codes</span>
             </div>
-          </div>
-        </motion.div>
-      )}
-
-      {/* Help Text */}
-      <div className="text-sm text-gray-500 text-center">
-        <p>Shorten any valid URL and generate a QR code for easy sharing</p>
+            <div className="flex items-center gap-2 font-bold text-gray-500">
+              <Link2 size={16} /> <span>Permanent Links</span>
+            </div>
+          </motion.div>
+        )}
       </div>
     </div>
   );
