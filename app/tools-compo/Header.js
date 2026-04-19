@@ -31,6 +31,7 @@ import {
   SplinePointer,
   Star,
   Github,
+  Eye,
 } from "lucide-react"; // Added Star and Github icons
 
 import { Button } from "@/components/ui/button";
@@ -79,6 +80,13 @@ const services = [
       "A secure tool that creates strong, randomized passwords with customizable options",
     href: "/tools/password-generator",
     icon: Lock,
+  },
+  {
+    name: "Markdown Previewer",
+    description:
+      "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
+    href: "/tools/markdown-previewer",
+    icon: Eye,
   },
 ];
 

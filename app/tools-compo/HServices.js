@@ -6,7 +6,7 @@ import {
   CalculatorIcon,
   CalendarIcon,
 } from "@heroicons/react/24/outline";
-import { LockClosedIcon } from "@heroicons/react/20/solid";
+import { EyeIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 import ToolsCard from "./ToolsCard";
 
 const toolCards = [
@@ -45,6 +45,13 @@ const toolCards = [
     link: "/tools/password-gen",
     description: "A secure tool that creates strong, randomized passwords",
     icon: LockClosedIcon,
+  },
+  {
+    title: "Markdown Previewer",
+    link: "/tools/markdown-previewer",
+    description:
+      "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
+    icon: EyeIcon,
   },
 ];
 

@@ -43,6 +43,10 @@ const services = [
     name: "Password Generator",
     href: "/tools/password-generator",
   },
+  {
+    name: "Markdown Previewer",
+    href: "/tools/markdown-previewer",
+  },
 ];
 
 const whyus = [
