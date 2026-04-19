@@ -32,6 +32,7 @@ import {
   Star,
   Github,
   Eye,
+  SplinePointerIcon,
 } from "lucide-react"; // Added Star and Github icons
 
 import { Button } from "@/components/ui/button";
@@ -87,6 +88,12 @@ const services = [
       "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
     href: "/tools/markdown-previewer",
     icon: Eye,
+  },
+  {
+    name: "Case Converter",
+    description: "Convert text between different case formats.",
+    href: "/tools/case-converter",
+    icon: SplinePointerIcon,
   },
 ];
 

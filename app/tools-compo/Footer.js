@@ -47,6 +47,10 @@ const services = [
     name: "Markdown Previewer",
     href: "/tools/markdown-previewer",
   },
+  {
+    name: "Case Converter",
+    href: "/tools/case-converter",
+  },
 ];
 
 const whyus = [

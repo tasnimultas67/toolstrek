@@ -8,6 +8,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { EyeIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 import ToolsCard from "./ToolsCard";
+import { SplinePointerIcon } from "lucide-react";
 
 const toolCards = [
   {
@@ -52,6 +53,12 @@ const toolCards = [
     description:
       "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
     icon: EyeIcon,
+  },
+  {
+    title: "Case Converter",
+    link: "/tools/case-converter",
+    description: "Convert text between different case formats.",
+    icon: SplinePointerIcon,
   },
 ];
 
