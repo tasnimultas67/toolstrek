@@ -9,15 +9,14 @@ const nextConfig = {
     ],
   },
 
-  // 1. Move serverExternalPackages to top-level (out of experimental)
+  // Stable top-level key
   serverExternalPackages: ["pdfjs-dist"],
 
-  // 2. Add an empty turbopack object to tell Next.js you acknowledge the setup
-  experimental: {
-    turbopack: {},
-  },
+  // MOVE THIS HERE: Next.js 16 expects turbopack at the top level
+  // This satisfies the "empty turbopack config" requirement mentioned in your error log
+  turbopack: {},
 
-  // 3. Keep Webpack config for the 'canvas' alias fix
+  // Keep Webpack as a fallback/parallel config
   webpack: (config) => {
     config.resolve.alias.canvas = false;
     return config;
