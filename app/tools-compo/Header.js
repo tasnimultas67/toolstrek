@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react"; // Added useEffect
+import { useState, useEffect } from "react";
 import { Staatliches } from "next/font/google";
 import {
   Dialog,
@@ -34,7 +34,7 @@ import {
   Eye,
   SplinePointerIcon,
   FileImageIcon,
-} from "lucide-react"; // Added Star and Github icons
+} from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -78,15 +78,13 @@ const services = [
   },
   {
     name: "Password Generator",
-    description:
-      "A secure tool that creates strong, randomized passwords with customizable options",
+    description: "A secure tool that creates strong, randomized passwords",
     href: "/tools/password-generator",
     icon: Lock,
   },
   {
     name: "Markdown Previewer",
-    description:
-      "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
+    description: "Edit your GitHub README in real-time.",
     href: "/tools/markdown-previewer",
     icon: Eye,
   },
@@ -97,7 +95,7 @@ const services = [
     icon: SplinePointerIcon,
   },
   {
-    name: "PDF to High-Quality Image Converter",
+    name: "PDF to Image",
     description: "Convert PDF pages into high-resolution images.",
     href: "/tools/pdf-to-image",
     icon: FileImageIcon,
@@ -106,9 +104,8 @@ const services = [
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [stars, setStars] = useState(0); // State for GitHub stars
+  const [stars, setStars] = useState(0);
 
-  // Fetching GitHub Stars
   useEffect(() => {
     fetch("https://api.github.com/repos/tasnimultas67/toolstrek")
       .then((res) => res.json())
@@ -119,158 +116,157 @@ export default function Header() {
   }, []);
 
   return (
-    <div className="border-b border-gray-900/10 sticky top-0 z-50">
-      <div className="relative z-50 bg-white/80 backdrop-blur-2xl">
-        <header className="w-full">
-          <nav
-            aria-label="Global"
-            className="mx-auto flex items-center justify-between px-2 py-3 lg:px-2 w-11/12"
-          >
-            <div className="flex lg:flex-1">
-              <Link href="/" className="flex items-center justify-start gap-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="25"
-                  height="25"
-                  className="size-6"
-                >
-                  <path
-                    d="M 19 16 L 13 16 C 10.243 16 8 13.757 8 11 L 8 5 C 8 2.243 10.243 0 13 0 L 19 0 C 21.757 0 24 2.243 24 5 L 24 11 C 24 13.757 21.757 16 19 16 Z"
-                    className="fill-brandColor"
-                  />
-                  <path
-                    d="M 11 24 L 5 24 C 2.243 24 0 21.757 0 19 L 0 13 C 0 10.243 2.243 8 5 8 C 5.553 8 6 8.448 6 9 L 6 11 C 6 14.86 9.141 18 13 18 L 15 18 C 15.553 18 16 18.448 16 19 C 16 21.757 13.757 24 11 24 Z"
-                    className="fill-brandColorHover"
-                  />
-                </svg>
-                <h3 className={`text-3xl ${staatliches.className}`}>
-                  Tools<span className="text-brandColor">Trek</span>
-                </h3>
-              </Link>
-            </div>
-
-            <div className="flex lg:hidden gap-4 items-center">
-              {/* Mobile Star Link */}
-              <Link
-                href="https://github.com/tasnimultas67/toolstrek"
-                target="_blank"
-                className="flex items-center gap-1 text-gray-700"
+    <div className="border-b border-gray-900/10 sticky top-0 z-50 bg-white/80 backdrop-blur-2xl">
+      <header className="w-full relative">
+        {" "}
+        {/* 'relative' here allows the panel to span full width */}
+        <nav
+          aria-label="Global"
+          className="mx-auto flex items-center justify-between px-2 py-3 lg:px-2 w-11/12"
+        >
+          <div className="flex lg:flex-1">
+            <Link href="/" className="flex items-center justify-start gap-1">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                width="25"
+                height="25"
+                className="size-6"
               >
-                <Star size={18} className="fill-yellow-400 text-yellow-400" />
-                <span className="text-sm font-bold">{stars}</span>
-              </Link>
-              <button
-                type="button"
-                onClick={() => setMobileMenuOpen(true)}
-                className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
-              >
-                <Bars3Icon aria-hidden="true" className="size-6" />
-              </button>
-            </div>
+                <path
+                  d="M 19 16 L 13 16 C 10.243 16 8 13.757 8 11 L 8 5 C 8 2.243 10.243 0 13 0 L 19 0 C 21.757 0 24 2.243 24 5 L 24 11 C 24 13.757 21.757 16 19 16 Z"
+                  className="fill-brandColor"
+                />
+                <path
+                  d="M 11 24 L 5 24 C 2.243 24 0 21.757 0 19 L 0 13 C 0 10.243 2.243 8 5 8 C 5.553 8 6 8.448 6 9 L 6 11 C 6 14.86 9.141 18 13 18 L 15 18 C 15.553 18 16 18.448 16 19 C 16 21.757 13.757 24 11 24 Z"
+                  className="fill-brandColorHover"
+                />
+              </svg>
+              <h3 className={`text-3xl ${staatliches.className}`}>
+                Tools<span className="text-brandColor">Trek</span>
+              </h3>
+            </Link>
+          </div>
 
-            <div className="hidden md:flex justify-end items-center lg:gap-x-4">
-              <PopoverGroup className="hidden lg:flex lg:gap-x-12 items-center">
-                <Popover className="relative">
-                  {({ open, close }) => (
-                    <>
-                      <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 outline-none">
-                        Services
-                        <ChevronDownIcon
-                          aria-hidden="true"
-                          className={`size-5 transition-transform ${open ? "rotate-180" : ""}`}
-                        />
-                      </PopoverButton>
-                      <PopoverPanel className="absolute top-full -left-8 z-10 mt-4.5 w-screen max-w-md overflow-hidden rounded-xl bg-white shadow-2xl ring-1 ring-gray-900/5 transition">
-                        <div className="p-4">
+          {/* Mobile UI */}
+          <div className="flex lg:hidden gap-4 items-center">
+            <Link
+              href="https://github.com/tasnimultas67/toolstrek"
+              target="_blank"
+              className="flex items-center gap-1 text-gray-700"
+            >
+              <Star size={18} className="fill-yellow-400 text-yellow-400" />
+              <span className="text-sm font-bold">{stars}</span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            >
+              <Bars3Icon aria-hidden="true" className="size-6" />
+            </button>
+          </div>
+
+          {/* Desktop UI */}
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-x-8">
+            <PopoverGroup className="flex gap-x-8 items-center">
+              {/* IMPORTANT: Removed 'relative' from Popover to allow click-outside to work on full screen */}
+              <Popover>
+                {({ open, close }) => (
+                  <>
+                    <PopoverButton className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 outline-none">
+                      Services
+                      <ChevronDownIcon
+                        aria-hidden="true"
+                        className={`size-5 transition-transform ${open ? "rotate-180" : ""}`}
+                      />
+                    </PopoverButton>
+
+                    <PopoverPanel
+                      transition
+                      className="absolute inset-x-0 top-full z-10 w-screen border-t border-gray-200 bg-white shadow-2xl transition data-closed:opacity-0 data-enter:duration-200 data-leave:duration-150 data-enter:ease-out data-leave:ease-in"
+                    >
+                      <div className="mx-auto max-w-7xl px-6 py-10">
+                        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                           {services.map((item) => (
-                            <div
+                            <Link
                               key={item.name}
-                              className="group relative flex items-center gap-x-6 rounded-lg p-3 text-sm/6 hover:bg-brandColor/5 transition"
+                              href={item.href}
+                              onClick={() => close()}
+                              className="group relative flex items-start gap-x-4 rounded-xl p-4 transition-all hover:bg-brandColor/5"
                             >
-                              <div className="flex size-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                                <item.icon className="size-6 text-gray-600 group-hover:text-brandColor" />
+                              <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white shadow-sm">
+                                <item.icon className="size-5 text-gray-600 group-hover:text-brandColor" />
                               </div>
-                              <div className="flex-auto">
-                                <Link
-                                  href={item.href}
-                                  className="block font-semibold text-gray-900"
-                                  onClick={() => close()}
-                                >
+                              <div>
+                                <div className="text-sm font-semibold text-gray-900">
                                   {item.name}
-                                  <span className="absolute inset-0" />
-                                </Link>
-                                <p className="text-gray-500 text-sm line-clamp-1">
+                                </div>
+                                <p className="mt-1 text-xs text-gray-500 line-clamp-2">
                                   {item.description}
                                 </p>
                               </div>
-                            </div>
+                            </Link>
                           ))}
                         </div>
-                      </PopoverPanel>
-                    </>
-                  )}
-                </Popover>
+                      </div>
+                    </PopoverPanel>
+                  </>
+                )}
+              </Popover>
 
-                <Link
-                  href="/about-us"
-                  className="text-sm/6 font-semibold text-gray-900"
-                >
-                  Company
-                </Link>
-                <Link
-                  href="/contact-us"
-                  className="text-sm/6 font-semibold text-gray-900"
-                >
-                  Contact Us
-                </Link>
-              </PopoverGroup>
+              <Link
+                href="/about-us"
+                className="text-sm font-semibold text-gray-900"
+              >
+                Company
+              </Link>
+              <Link
+                href="/contact-us"
+                className="text-sm font-semibold text-gray-900"
+              >
+                Contact Us
+              </Link>
+            </PopoverGroup>
 
-              <div className="hidden lg:flex lg:flex-1 lg:justify-end ml-8">
-                <Link
-                  href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
-                  target="_blank"
-                >
-                  <Button className="bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2">
-                    <SplinePointer className="size-4" /> Request a Tool
-                  </Button>
-                </Link>
-              </div>
-              {/* Desktop GitHub Star Button - Glass Style */}
+            <div className="flex items-center gap-4 border-l border-gray-200 pl-8">
+              <Link href="https://forms.gle/BJXbXuQ3n2mwdHgx5" target="_blank">
+                <Button className="bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2">
+                  <SplinePointer className="size-4" /> Request a Tool
+                </Button>
+              </Link>
+
               <Link
                 href="https://github.com/tasnimultas67/toolstrek"
                 target="_blank"
-                className="group flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 hover:bg-black/10 border border-black/10 transition-all duration-300 backdrop-blur-md"
+                className="group flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 hover:bg-black/10 border border-black/10 transition-all backdrop-blur-md"
               >
                 <Github
                   size={18}
                   className="group-hover:scale-110 transition-transform text-gray-900"
                 />
                 <div className="flex items-center gap-1.5 border-l border-black/10 pl-2">
-                  <Star
-                    size={14}
-                    className="text-yellow-500 fill-yellow-500 group-hover:rotate-12 transition-transform"
-                  />
+                  <Star size={14} className="text-yellow-500 fill-yellow-500" />
                   <span className="text-sm font-bold text-gray-900">
                     {stars}
                   </span>
                 </div>
               </Link>
             </div>
-          </nav>
-        </header>
-      </div>
+          </div>
+        </nav>
+      </header>
 
-      {/* Mobile Menu Dialog */}
+      {/* Mobile Menu */}
       <Dialog
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
         className="lg:hidden"
       >
-        <DialogPanel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-2 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm" />
+        <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <Link href="/" className="flex items-center gap-1">
-              {/* Logo SVG truncated for brevity */}
               <h3 className={`text-3xl ${staatliches.className}`}>
                 Tools<span className="text-brandColor">Trek</span>
               </h3>
