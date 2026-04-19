@@ -43,7 +43,7 @@ const toolCards = [
   },
   {
     title: "Password Generator",
-    link: "/tools/password-gen",
+    link: "/tools/password-generator",
     description: "A secure tool that creates strong, randomized passwords",
     icon: LockClosedIcon,
   },
