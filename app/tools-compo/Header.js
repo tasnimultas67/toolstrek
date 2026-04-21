@@ -154,9 +154,9 @@ export default function Header() {
                       transition
                       className="absolute inset-x-0 top-full z-10 w-screen border-t border-gray-200 bg-white shadow-2xl transition data-closed:opacity-0 data-enter:duration-200 data-leave:duration-150 data-enter:ease-out data-leave:ease-in"
                     >
-                      <div className="mx-auto max-w-7xl px-6 py-10">
-                        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                          {toolsData.map((item) => {
+                      <div className="mx-auto max-w-7xl px-6 py-5">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 divide-y divide-gray-100 sm:divide-y-0 border-l border-t border-gray-100">
+                          {toolsData.map((item, index) => {
                             const IconComponent =
                               iconMap[item.icon] || LinkIcon;
                             return (
@@ -164,7 +164,8 @@ export default function Header() {
                                 key={item.title}
                                 href={item.link}
                                 onClick={() => close()}
-                                className="group relative flex items-start gap-x-4 rounded-xl p-4 transition-all hover:bg-brandColor/5"
+                                // Added 'border' classes to create the divider effect
+                                className="group relative flex items-start gap-x-4 p-6 transition-all hover:bg-brandColor/5 border-gray-100 sm:border-b sm:border-r"
                               >
                                 <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white shadow-sm">
                                   <IconComponent className="size-5 text-gray-600 group-hover:text-brandColor" />
