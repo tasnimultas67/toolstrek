@@ -58,5 +58,11 @@
     "link": "/tools/image-to-text",
     "description": "Extract text from images locally and securely.",
     "icon": "FileText"
+  },
+  {
+    "title": "Image to PDF Converter",
+    "link": "/tools/image-to-pdf",
+    "description": "Convert images into PDF documents.",
+    "icon": "File"
   }
 ]
