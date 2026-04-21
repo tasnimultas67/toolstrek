@@ -3,54 +3,60 @@
     "title": "Link Shortener",
     "link": "/tools/link-shortner",
     "description": "Shorten your links for easy sharing",
-    "icon": "LinkIcon"
+    "icon": "Link"
   },
   {
     "title": "Wifi QR Code Generator",
     "link": "/tools/wifi-qr",
     "description": "Generate QR codes for your wifi network",
-    "icon": "QrCodeIcon"
+    "icon": "QrCode"
   },
   {
     "title": "Age Calculator",
     "link": "/tools/age-calculate",
     "description": "Calculate your age in years, months, and days",
-    "icon": "CalculatorIcon"
+    "icon": "Calculator"
   },
   {
     "title": "QR Code Scanner",
     "link": "/tools/qr-scanner",
     "description": "Scan QR codes using your device's camera",
-    "icon": "QrCodeIcon"
+    "icon": "ScanQrCode"
   },
   {
     "title": "Days Tracker",
     "link": "/tools/days-tracker",
     "description": "Calculate the end date based on start date",
-    "icon": "CalendarIcon"
+    "icon": "Calendar"
   },
   {
     "title": "Password Generator",
     "link": "/tools/password-generator",
     "description": "A secure tool that creates strong, randomized passwords",
-    "icon": "LockClosedIcon"
+    "icon": "Lock"
   },
   {
     "title": "Markdown Previewer",
     "link": "/tools/markdown-previewer",
     "description": "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
-    "icon": "EyeIcon"
+    "icon": "Eye"
   },
   {
     "title": "Case Converter",
     "link": "/tools/case-converter",
     "description": "Convert text between different case formats.",
-    "icon": "SplinePointerIcon"
+    "icon": "SplinePointer"
   },
   {
     "title": "PDF to High-Quality Image Converter",
     "link": "/tools/pdf-to-image",
     "description": "Convert PDF pages into high-resolution images.",
-    "icon": "FileImageIcon"
+    "icon": "FileImage"
+  },
+  {
+    "title": "Image to Text Converter",
+    "link": "/tools/image-to-text",
+    "description": "Extract text from images locally and securely.",
+    "icon": "FileText"
   }
 ]

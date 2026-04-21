@@ -1,3 +1,4 @@
+// components/Header.jsx
 "use client";
 
 import { useState, useEffect } from "react";
@@ -14,36 +15,14 @@ import {
   PopoverPanel,
 } from "@headlessui/react";
 import Link from "next/link";
-
-// 1. Corrected Heroicons Imports (v24 Outline)
 import {
   Bars3Icon,
-  CalculatorIcon,
   XMarkIcon,
-  LinkIcon,
-  QrCodeIcon,
-  CalendarIcon,
-  LockClosedIcon,
-  EyeIcon,
+  ChevronDownIcon,
 } from "@heroicons/react/24/outline";
-
-// 2. Corrected Heroicons Imports (v20 Solid)
-import { ChevronDownIcon } from "@heroicons/react/20/solid";
-
-// 3. Corrected Lucide-react Imports
-import {
-  CalendarRange,
-  Lock,
-  ScanQrCode,
-  SplinePointer,
-  Star,
-  Github,
-  Eye,
-  SplinePointerIcon,
-  FileImageIcon,
-} from "lucide-react";
-
+import { Star, Github } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { getIcon } from "../tools-compo/dynamicIcon";
 import toolsData from "../../lib/toolsData.json";
 
 const staatliches = Staatliches({
@@ -52,26 +31,6 @@ const staatliches = Staatliches({
   display: "swap",
   variable: "--font-staatliches",
 });
-
-// 4. Integrated Icon Map (Supports both libraries)
-const iconMap = {
-  // Heroicons Mapping
-  LinkIcon,
-  QrCodeIcon,
-  CalculatorIcon,
-  CalendarIcon,
-  LockClosedIcon,
-  EyeIcon,
-
-  // Lucide Mapping
-  ScanQrCode,
-  CalendarRange,
-  Lock,
-  Eye,
-  SplinePointerIcon,
-  FileImageIcon,
-  Github,
-};
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -157,14 +116,12 @@ export default function Header() {
                       <div className="mx-auto max-w-7xl px-6 py-5">
                         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 divide-y divide-gray-100 sm:divide-y-0 border-l border-t border-gray-100">
                           {toolsData.map((item, index) => {
-                            const IconComponent =
-                              iconMap[item.icon] || LinkIcon;
+                            const IconComponent = getIcon(item.icon);
                             return (
                               <Link
                                 key={item.title}
                                 href={item.link}
                                 onClick={() => close()}
-                                // Added 'border' classes to create the divider effect
                                 className="group relative flex items-start gap-x-4 p-6 transition-all hover:bg-brandColor/5 border-gray-100 sm:border-b sm:border-r"
                               >
                                 <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white shadow-sm">
@@ -205,7 +162,7 @@ export default function Header() {
             <div className="flex items-center gap-4 border-l border-gray-200 pl-8">
               <Link href="https://forms.gle/BJXbXuQ3n2mwdHgx5" target="_blank">
                 <Button className="bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2">
-                  <SplinePointer className="size-4" /> Request a Tool
+                  <Star className="size-4" /> Request a Tool
                 </Button>
               </Link>
 

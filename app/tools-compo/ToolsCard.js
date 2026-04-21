@@ -1,33 +1,13 @@
+// components/ToolsCard.jsx
 "use client";
 import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import {
-  LinkIcon,
-  QrCodeIcon,
-  CalculatorIcon,
-  CalendarIcon,
-} from "@heroicons/react/24/outline";
-import { EyeIcon, LockClosedIcon } from "@heroicons/react/20/solid";
-import { FileImageIcon, SplinePointerIcon } from "lucide-react";
+import { getIcon } from "../tools-compo/dynamicIcon";
 
-// The Map links the string from JSON to the actual Component
-const iconMap = {
-  LinkIcon,
-  QrCodeIcon,
-  CalculatorIcon,
-  CalendarIcon,
-  EyeIcon,
-  LockClosedIcon,
-  FileImageIcon,
-  SplinePointerIcon,
-};
-
-// We destructure the individual properties directly because of {...tool}
 const ToolsCard = ({ title, link, description, icon, index }) => {
-  // Look up the component in the map using the icon string
-  const IconComponent = iconMap[icon];
+  const IconComponent = getIcon(icon);
 
   return (
     <Link href={link} className="group relative">
@@ -42,11 +22,7 @@ const ToolsCard = ({ title, link, description, icon, index }) => {
 
         <div className="relative z-10 flex flex-col h-full">
           <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-gray-100 text-gray-700 transition-colors group-hover:text-indigo-600">
-            {IconComponent ? (
-              <IconComponent className="h-6 w-6" />
-            ) : (
-              <LinkIcon className="h-6 w-6" /> // Fallback icon
-            )}
+            {IconComponent && <IconComponent className="h-6 w-6" />}
           </div>
 
           <div className="flex flex-col grow">
