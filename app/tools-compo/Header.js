@@ -13,17 +13,24 @@ import {
   PopoverGroup,
   PopoverPanel,
 } from "@headlessui/react";
+import Link from "next/link";
+
+// 1. Corrected Heroicons Imports (v24 Outline)
 import {
   Bars3Icon,
   CalculatorIcon,
   XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
   LinkIcon,
   QrCodeIcon,
-} from "@heroicons/react/20/solid";
-import Link from "next/link";
+  CalendarIcon,
+  LockClosedIcon,
+  EyeIcon,
+} from "@heroicons/react/24/outline";
+
+// 2. Corrected Heroicons Imports (v20 Solid)
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+
+// 3. Corrected Lucide-react Imports
 import {
   CalendarRange,
   Lock,
@@ -37,6 +44,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import toolsData from "../../lib/toolsData.json";
 
 const staatliches = Staatliches({
   subsets: ["latin"],
@@ -45,62 +53,25 @@ const staatliches = Staatliches({
   variable: "--font-staatliches",
 });
 
-const services = [
-  {
-    name: "Link Shortener",
-    description: "Shorten your links for easy sharing",
-    href: "/tools/link-shortner",
-    icon: LinkIcon,
-  },
-  {
-    name: "Wifi QR Code Generator",
-    description: "Generate QR codes for your wifi network",
-    href: "/tools/wifi-qr",
-    icon: QrCodeIcon,
-  },
-  {
-    name: "Age Calculator",
-    description: "Calculate your age in years, months, and days",
-    href: "/tools/age-calculate",
-    icon: CalculatorIcon,
-  },
-  {
-    name: "QR Code Scanner",
-    description: "Scan QR codes using your device's camera",
-    href: "/tools/qr-scanner",
-    icon: ScanQrCode,
-  },
-  {
-    name: "Days Tracker",
-    description: "Calculate the end date based on start date",
-    href: "/tools/days-tracker",
-    icon: CalendarRange,
-  },
-  {
-    name: "Password Generator",
-    description: "A secure tool that creates strong, randomized passwords",
-    href: "/tools/password-generator",
-    icon: Lock,
-  },
-  {
-    name: "Markdown Previewer",
-    description: "Edit your GitHub README in real-time.",
-    href: "/tools/markdown-previewer",
-    icon: Eye,
-  },
-  {
-    name: "Case Converter",
-    description: "Convert text between different case formats.",
-    href: "/tools/case-converter",
-    icon: SplinePointerIcon,
-  },
-  {
-    name: "PDF to Image",
-    description: "Convert PDF pages into high-resolution images.",
-    href: "/tools/pdf-to-image",
-    icon: FileImageIcon,
-  },
-];
+// 4. Integrated Icon Map (Supports both libraries)
+const iconMap = {
+  // Heroicons Mapping
+  LinkIcon,
+  QrCodeIcon,
+  CalculatorIcon,
+  CalendarIcon,
+  LockClosedIcon,
+  EyeIcon,
+
+  // Lucide Mapping
+  ScanQrCode,
+  CalendarRange,
+  Lock,
+  Eye,
+  SplinePointerIcon,
+  FileImageIcon,
+  Github,
+};
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -118,8 +89,6 @@ export default function Header() {
   return (
     <div className="border-b border-gray-900/10 sticky top-0 z-50 bg-white/80 backdrop-blur-2xl">
       <header className="w-full relative">
-        {" "}
-        {/* 'relative' here allows the panel to span full width */}
         <nav
           aria-label="Global"
           className="mx-auto flex items-center justify-between px-2 py-3 lg:px-2 w-11/12"
@@ -148,7 +117,7 @@ export default function Header() {
             </Link>
           </div>
 
-          {/* Mobile UI */}
+          {/* Mobile UI Star & Hamburger */}
           <div className="flex lg:hidden gap-4 items-center">
             <Link
               href="https://github.com/tasnimultas67/toolstrek"
@@ -170,7 +139,6 @@ export default function Header() {
           {/* Desktop UI */}
           <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-x-8">
             <PopoverGroup className="flex gap-x-8 items-center">
-              {/* IMPORTANT: Removed 'relative' from Popover to allow click-outside to work on full screen */}
               <Popover>
                 {({ open, close }) => (
                   <>
@@ -188,26 +156,30 @@ export default function Header() {
                     >
                       <div className="mx-auto max-w-7xl px-6 py-10">
                         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
-                          {services.map((item) => (
-                            <Link
-                              key={item.name}
-                              href={item.href}
-                              onClick={() => close()}
-                              className="group relative flex items-start gap-x-4 rounded-xl p-4 transition-all hover:bg-brandColor/5"
-                            >
-                              <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white shadow-sm">
-                                <item.icon className="size-5 text-gray-600 group-hover:text-brandColor" />
-                              </div>
-                              <div>
-                                <div className="text-sm font-semibold text-gray-900">
-                                  {item.name}
+                          {toolsData.map((item) => {
+                            const IconComponent =
+                              iconMap[item.icon] || LinkIcon;
+                            return (
+                              <Link
+                                key={item.title}
+                                href={item.link}
+                                onClick={() => close()}
+                                className="group relative flex items-start gap-x-4 rounded-xl p-4 transition-all hover:bg-brandColor/5"
+                              >
+                                <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white shadow-sm">
+                                  <IconComponent className="size-5 text-gray-600 group-hover:text-brandColor" />
                                 </div>
-                                <p className="mt-1 text-xs text-gray-500 line-clamp-2">
-                                  {item.description}
-                                </p>
-                              </div>
-                            </Link>
-                          ))}
+                                <div>
+                                  <div className="text-sm font-semibold text-gray-900">
+                                    {item.title}
+                                  </div>
+                                  <p className="mt-1 text-xs text-gray-500 line-clamp-2">
+                                    {item.description}
+                                  </p>
+                                </div>
+                              </Link>
+                            );
+                          })}
                         </div>
                       </div>
                     </PopoverPanel>
@@ -290,17 +262,17 @@ export default function Header() {
                         <ChevronDownIcon className="size-5 transition-transform group-data-open:rotate-180" />
                       </DisclosureButton>
                       <DisclosurePanel className="mt-2 space-y-2">
-                        {services.map((item) => (
+                        {toolsData.map((item) => (
                           <Link
-                            key={item.name}
-                            href={item.href}
+                            key={item.title}
+                            href={item.link}
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold text-gray-900 hover:bg-gray-50"
                             onClick={() => {
                               close();
                               setMobileMenuOpen(false);
                             }}
                           >
-                            {item.name}
+                            {item.title}
                           </Link>
                         ))}
                       </DisclosurePanel>

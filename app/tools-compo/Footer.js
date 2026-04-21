@@ -3,6 +3,7 @@ import { Github, Mail, MapPin } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Link from "next/link";
 import React from "react";
+import toolsData from "../../lib/toolsData.json";
 
 const staatliches = Staatliches({
   subsets: ["latin"], // Ensures proper character support
@@ -17,46 +18,6 @@ const companies = [
   { name: "Frequently Asked Questions", url: "/faq" },
   { name: "Privacy Policy", url: "/privacy-policy" },
 ];
-
-const services = [
-  {
-    name: "Link Shortener",
-    href: "/tools/link-shortner",
-  },
-  {
-    name: "Wifi QR Code Generator",
-    href: "/tools/wifi-qr",
-  },
-  {
-    name: "Age Calculator",
-    href: "/tools/age-calculate",
-  },
-  {
-    name: "QR Code Scanner",
-    href: "/tools/qr-scanner",
-  },
-  {
-    name: "Days Tracker",
-    href: "/tools/days-tracker",
-  },
-  {
-    name: "Password Generator",
-    href: "/tools/password-generator",
-  },
-  {
-    name: "Markdown Previewer",
-    href: "/tools/markdown-previewer",
-  },
-  {
-    name: "Case Converter",
-    href: "/tools/case-converter",
-  },
-  {
-    name: "PDF to High-Quality Image Converter",
-    href: "/tools/pdf-to-image",
-  },
-];
-
 const whyus = [
   { name: "User-Friendly Interface" },
   { name: "Fast and Efficient" },
@@ -80,13 +41,13 @@ const Footer = () => {
           <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Tools</h3>
             <ul className="space-y-2">
-              {services.map((service) => (
-                <li key={service.name} className="relative">
+              {toolsData.map((tool) => (
+                <li key={tool.title} className="relative">
                   <Link
-                    href={service.href}
+                    href={tool.link}
                     className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-px before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
                   >
-                    {service.name}
+                    {tool.title}
                   </Link>
                 </li>
               ))}
