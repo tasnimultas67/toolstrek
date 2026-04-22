@@ -16,7 +16,7 @@ const ToolsCard = ({ title, link, description, icon, index }) => {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: index * 0.1 }}
-        className="h-full relative overflow-hidden rounded-3xl border border-gray-200 bg-gray-100 p-8 transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] group-hover:-translate-y-1"
+        className="h-full relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 p-6 transition-all duration-300 group-hover:bg-white group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] group-hover:-translate-y-1"
       >
         <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-gray-100/50 transition-all duration-500 group-hover:scale-[3] group-hover:bg-indigo-50" />
 
