@@ -91,11 +91,11 @@ export default function Home() {
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {whychoose.map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-100 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300 hover:shadow-2xl hover:shadow-brandColor/10 hover:-translate-y-1 overflow-hidden"
+                className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300  overflow-hidden"
               >
                 {/* Icon Container */}
                 <div
@@ -112,14 +112,6 @@ export default function Home() {
                 <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
                   {item.description}
                 </p>
-
-                {/* Decorative bottom line */}
-                <div className="absolute bottom-0 left-0 h-1 w-0 bg-brandColor transition-all duration-300 group-hover:w-full rounded-b-2xl" />
-
-                {/* Optional: Subtle background glow on hover */}
-                <div
-                  className={`absolute -inset-2 bg-linear-to-br ${item.gradient} opacity-0 group-hover:opacity-5 transition-opacity blur-2xl -z-10`}
-                />
               </div>
             ))}
           </div>

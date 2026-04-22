@@ -25,7 +25,7 @@ const whyus = [
   { name: "Free to Use" },
   { name: "No Registration Required" },
   { name: "Regular Updates" },
-  { name: "No Ads" },
+  { name: "Easy to Use" },
   { name: "Expertly Crafted" },
   { name: "Creative & Practical Solutions" },
 ];
@@ -38,9 +38,9 @@ const Footer = () => {
         {/* Menus */}
         <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-0 md:mb-16 ">
           {/* service Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/4">
+          <div className="space-y-4 w-1/2 md:w-2/4">
             <h3 className="text-base text-white font-semibold">Tools</h3>
-            <ul className="space-y-2">
+            <ul className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-2">
               {toolsData.map((tool) => (
                 <li key={tool.title} className="relative">
                   <Link
@@ -70,9 +70,9 @@ const Footer = () => {
             </ul>
           </div>
           {/* whyus Menus */}
-          <div className="space-y-4 w-2/2 md:w-2/4">
+          <div className="space-y-4 w-2/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Why Us</h3>
-            <ul className="space-y-2 grid grid-cols-2">
+            <ul className="space-y-2 grid grid-cols-1">
               {whyus.map((benefit) => (
                 <li
                   key={benefit.name}
