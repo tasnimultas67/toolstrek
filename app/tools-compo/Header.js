@@ -34,16 +34,6 @@ const staatliches = Staatliches({
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [stars, setStars] = useState(0);
-
-  useEffect(() => {
-    fetch("https://api.github.com/repos/tasnimultas67/toolstrek")
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.stargazers_count) setStars(data.stargazers_count);
-      })
-      .catch((err) => console.error("Error fetching stars:", err));
-  }, []);
 
   return (
     <div className="border-b border-gray-900/10 sticky top-0 z-50 bg-white/80 backdrop-blur-2xl">
@@ -78,14 +68,6 @@ export default function Header() {
 
           {/* Mobile UI Star & Hamburger */}
           <div className="flex lg:hidden gap-4 items-center">
-            <Link
-              href="https://github.com/tasnimultas67/toolstrek"
-              target="_blank"
-              className="flex items-center gap-1 text-gray-700"
-            >
-              <Star size={18} className="fill-yellow-400 text-yellow-400" />
-              <span className="text-sm font-bold">{stars}</span>
-            </Link>
             <button
               type="button"
               onClick={() => setMobileMenuOpen(true)}
@@ -164,23 +146,6 @@ export default function Header() {
                 <Button className="bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2">
                   <Star className="size-4" /> Request a Tool
                 </Button>
-              </Link>
-
-              <Link
-                href="https://github.com/tasnimultas67/toolstrek"
-                target="_blank"
-                className="group flex items-center gap-2 px-4 py-1.5 rounded-full bg-black/5 hover:bg-black/10 border border-black/10 transition-all backdrop-blur-md"
-              >
-                <Github
-                  size={18}
-                  className="group-hover:scale-110 transition-transform text-gray-900"
-                />
-                <div className="flex items-center gap-1.5 border-l border-black/10 pl-2">
-                  <Star size={14} className="text-yellow-500 fill-yellow-500" />
-                  <span className="text-sm font-bold text-gray-900">
-                    {stars}
-                  </span>
-                </div>
               </Link>
             </div>
           </div>
