@@ -17,8 +17,8 @@ const HServices = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-          {toolsData.map((tool, index) => (
-            <ToolsCard key={index} index={index} {...tool} />
+          {[...toolsData].reverse().map((tool, index) => (
+            <ToolsCard key={tool.id || index} index={index} {...tool} />
           ))}
         </div>
       </div>
