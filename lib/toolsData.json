@@ -64,5 +64,11 @@
     "link": "/tools/image-to-pdf",
     "description": "Convert images into PDF documents.",
     "icon": "File"
+  },
+  {
+    "title": "PDF Merger",
+    "link": "/tools/pdf-merger",
+    "description": "Merge multiple PDF files into a single document.",
+    "icon": "FileStack"
   }
 ]
