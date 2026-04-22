@@ -54,7 +54,7 @@ const WifiQRGen = () => {
     }
 
     const wifiDetails = `WIFI:T:${formattedEncryption};S:${escapeSpecialChars(
-      ssid
+      ssid,
     )}${finalPassword ? `;P:${escapeSpecialChars(finalPassword)}` : ""};`;
 
     try {
@@ -126,7 +126,7 @@ const WifiQRGen = () => {
       290,
       {
         align: "center",
-      }
+      },
     );
 
     doc.save(`${ssid || "wifi"}_qr_template.pdf`);
@@ -365,7 +365,7 @@ const WifiQRGen = () => {
               height={50}
               className="border border-gray-300 rounded-sm -rotate-6"
             />
-            <h3 className="text-base text-left font-semibold md:text-xl bg-gradient-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
+            <h3 className="text-base text-left font-semibold md:text-xl bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
               Download the PDF template to print or share your WiFi QR code.
             </h3>
           </div>

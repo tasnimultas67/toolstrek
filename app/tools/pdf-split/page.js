@@ -241,11 +241,11 @@ export default function PDFSplitPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50 py-8 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Header with Logo/Brand */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+          <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
             PDF Split Tool
           </h1>
           <p className="text-gray-600 text-lg max-w-2xl mx-auto">
@@ -329,7 +329,7 @@ export default function PDFSplitPage() {
                 <div className="mt-3 flex items-center justify-between bg-gray-50 p-3 rounded-lg border border-gray-200">
                   <div className="flex items-center flex-1 min-w-0">
                     <svg
-                      className="w-5 h-5 text-red-500 mr-2 flex-shrink-0"
+                      className="w-5 h-5 text-red-500 mr-2 shrink-0"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -342,13 +342,13 @@ export default function PDFSplitPage() {
                     <span className="text-sm text-gray-700 truncate">
                       {pdfFile.name}
                     </span>
-                    <span className="ml-2 text-xs text-gray-400 flex-shrink-0">
+                    <span className="ml-2 text-xs text-gray-400 shrink-0">
                       ({(pdfFile.size / 1024 / 1024).toFixed(2)} MB)
                     </span>
                   </div>
                   <button
                     onClick={clearAll}
-                    className="ml-3 text-red-500 hover:text-red-700 text-sm font-medium flex-shrink-0"
+                    className="ml-3 text-red-500 hover:text-red-700 text-sm font-medium shrink-0"
                   >
                     Remove
                   </button>
@@ -463,7 +463,7 @@ export default function PDFSplitPage() {
                   className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-200 transform ${
                     isProcessing
                       ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:scale-[1.02]"
+                      : "bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:scale-[1.02]"
                   }`}
                 >
                   {isProcessing ? (
@@ -550,7 +550,7 @@ export default function PDFSplitPage() {
                   {downloadedFiles.length > 1 && (
                     <button
                       onClick={handleDownloadAll}
-                      className="px-5 py-2 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all shadow-md hover:shadow-lg font-medium flex items-center gap-2"
+                      className="px-5 py-2 bg-linear-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all shadow-md hover:shadow-lg font-medium flex items-center gap-2"
                     >
                       <svg
                         className="w-4 h-4"
@@ -577,7 +577,7 @@ export default function PDFSplitPage() {
                     >
                       <div className="flex items-center flex-1 min-w-0">
                         <svg
-                          className="w-6 h-6 text-red-500 mr-3 flex-shrink-0"
+                          className="w-6 h-6 text-red-500 mr-3 shrink-0"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -613,7 +613,7 @@ export default function PDFSplitPage() {
             )}
 
             {/* Instructions */}
-            <div className="mt-6 p-5 bg-gradient-to-r from-blue-50 to-purple-50 rounded-xl">
+            <div className="mt-6 p-5 bg-linear-to-r from-blue-50 to-purple-50 rounded-xl">
               <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
                 <span>📘</span> How to Use
               </h4>

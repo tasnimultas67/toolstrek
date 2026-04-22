@@ -76,5 +76,11 @@
     "link": "/tools/pdf-split",
     "description": "Split PDF files into separate pages or sections.",
     "icon": "SquareSplitHorizontal"
+  },
+  {
+    "title": "PDF Reorder",
+    "link": "/tools/pdf-reorder",
+    "description": "Rearrange the pages of your PDF files.",
+    "icon": "ArrowRightLeft"
   }
 ]

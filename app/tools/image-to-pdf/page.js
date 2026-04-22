@@ -494,7 +494,7 @@ const ImageToPDF = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-linear-to-br from-gray-50 to-gray-100 py-8 px-4 sm:px-6 lg:px-8">
       <UploadStatus />
 
       <div className="max-w-7xl mx-auto">
@@ -635,7 +635,7 @@ const ImageToPDF = () => {
                 <button
                   onClick={addMoreImages}
                   disabled={uploadingImages.length > 0}
-                  className={`w-full bg-gradient-to-r from-indigo-600 to-indigo-700 text-white py-3 px-5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
+                  className={`w-full bg-linear-to-r from-indigo-600 to-indigo-700 text-white py-3 px-5 rounded-xl font-semibold transition-all flex items-center justify-center gap-2 ${
                     uploadingImages.length > 0
                       ? "opacity-50 cursor-not-allowed"
                       : "hover:from-indigo-700 hover:to-indigo-800"
@@ -668,7 +668,7 @@ const ImageToPDF = () => {
                     <button
                       onClick={convertToPDF}
                       disabled={isConverting || uploadingImages.length > 0}
-                      className="w-full bg-gradient-to-r from-green-600 to-green-700 text-white py-3 px-5 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                      className="w-full bg-linear-to-r from-green-600 to-green-700 text-white py-3 px-5 rounded-xl font-semibold hover:from-green-700 hover:to-green-800 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                     >
                       {isConverting ? (
                         <>

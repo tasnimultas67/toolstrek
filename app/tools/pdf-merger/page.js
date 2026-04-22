@@ -101,11 +101,11 @@ const PdfMergeTool = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-indigo-50 py-8 px-4">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 py-8 px-4">
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-lg mb-4">
+          <div className="inline-flex items-center justify-center w-16 h-16 bg-linear-to-r from-blue-600 to-indigo-600 rounded-2xl shadow-lg mb-4">
             <svg
               className="w-8 h-8 text-white"
               fill="none"
@@ -121,7 +121,7 @@ const PdfMergeTool = () => {
               />
             </svg>
           </div>
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold bg-linear-to-r from-blue-700 to-indigo-700 bg-clip-text text-transparent">
             PDF Merger
           </h1>
           <p className="text-gray-500 mt-2 max-w-md mx-auto">
@@ -189,7 +189,7 @@ const PdfMergeTool = () => {
           {error && (
             <div className="mx-6 mb-6 p-3 bg-red-50 border border-red-200 rounded-xl flex items-start gap-2">
               <svg
-                className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0"
+                className="w-5 h-5 text-red-500 mt-0.5 shrink-0"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -357,7 +357,7 @@ const PdfMergeTool = () => {
                   ${
                     isMerging || files.length < 2
                       ? "bg-gray-300 cursor-not-allowed"
-                      : "bg-gradient-to-r from-blue-600 to-indigo-600 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
+                      : "bg-linear-to-r from-blue-600 to-indigo-600 hover:shadow-lg hover:scale-[1.02] active:scale-[0.98]"
                   }`}
               >
                 {isMerging ? (
@@ -406,7 +406,7 @@ const PdfMergeTool = () => {
 
           {/* Download Section */}
           {mergedPdfUrl && (
-            <div className="border-t border-gray-100 bg-gradient-to-r from-green-50 to-emerald-50 p-6">
+            <div className="border-t border-gray-100 bg-linear-to-r from-green-50 to-emerald-50 p-6">
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
                 <div className="flex items-center gap-3">
                   <div className="w-12 h-12 bg-green-100 rounded-full flex items-center justify-center">
