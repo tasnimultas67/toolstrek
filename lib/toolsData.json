@@ -70,5 +70,11 @@
     "link": "/tools/pdf-merger",
     "description": "Merge multiple PDF files into a single document.",
     "icon": "FileStack"
+  },
+  {
+    "title": "PDF Splitter",
+    "link": "/tools/pdf-split",
+    "description": "Split PDF files into separate pages or sections.",
+    "icon": "SquareSplitHorizontal"
   }
 ]
