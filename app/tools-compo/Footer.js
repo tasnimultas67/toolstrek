@@ -40,7 +40,7 @@ const Footer = () => {
           {/* service Menus */}
           <div className="space-y-4 w-1/2 md:w-2/4">
             <h3 className="text-base text-white font-semibold">Tools</h3>
-            <ul className="space-y-2 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <ul className="space-y-1 grid grid-cols-1 md:grid-cols-2 gap-2">
               {toolsData.map((tool) => (
                 <li key={tool.title} className="relative">
                   <Link
