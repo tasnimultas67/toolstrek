@@ -131,7 +131,7 @@ export default function Header() {
                 href="/about-us"
                 className="text-sm font-semibold text-gray-900"
               >
-                Company
+                About
               </Link>
               <Link
                 href="/contact-us"
