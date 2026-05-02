@@ -7,6 +7,13 @@
     "category": "Productivity"
   },
   {
+    "title": "Numbers to Words Converter",
+    "link": "/tools/numbers-to-words",
+    "description": "Convert numbers to their word representation",
+    "icon": "Text",
+    "category": "Productivity"
+  },
+  {
     "title": "Wifi QR Code Generator",
     "link": "/tools/wifi-qr",
     "description": "Generate QR codes for your wifi network",
