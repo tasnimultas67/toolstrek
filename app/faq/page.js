@@ -11,7 +11,7 @@ export const metadata = {
 const page = () => {
   return (
     <div className="m-auto">
-      <div className="w-full md:w-[800px] m-auto">
+      <div className="w-full md:w-11/12 m-auto">
         <FAQCon></FAQCon>
       </div>
     </div>

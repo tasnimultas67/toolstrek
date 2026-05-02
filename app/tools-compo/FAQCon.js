@@ -114,7 +114,7 @@ const accordionItemVariants = {
 const FAQCon = () => {
   return (
     <motion.div
-      className="container max-w-4xl py-12 px-4 sm:px-6 m-auto"
+      className="container w-11/12 pb-12 pt-26 px-2 sm:px-3 m-auto"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

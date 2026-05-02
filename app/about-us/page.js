@@ -30,7 +30,7 @@ const FadeIn = ({ children, delay = 0, x = 0, y = 20 }) => (
 
 const Page = () => {
   return (
-    <div className="overflow-hidden pb-10">
+    <div className="overflow-hidden pb-10 pt-16">
       <div className="w-11/12 mx-auto">
         {/* --- Hero Section --- */}
         <section className="py-16 md:py-24">

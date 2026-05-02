@@ -72,7 +72,7 @@ const CTA = () => {
           </motion.p>
           <motion.div variants={itemVariants}>
             <Button asChild variant="secondary" className="">
-              <Link href="#" className="text-xs">
+              <Link href="/tools" className="text-xs">
                 Browse All Tools
               </Link>
             </Button>

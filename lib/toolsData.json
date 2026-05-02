@@ -3,84 +3,126 @@
     "title": "Link Shortener",
     "link": "/tools/link-shortner",
     "description": "Shorten your links for easy sharing",
-    "icon": "Link"
+    "icon": "Link",
+    "category": "Productivity"
   },
   {
     "title": "Wifi QR Code Generator",
     "link": "/tools/wifi-qr",
     "description": "Generate QR codes for your wifi network",
-    "icon": "QrCode"
+    "icon": "QrCode",
+    "category": "QR Code"
   },
   {
     "title": "Age Calculator",
     "link": "/tools/age-calculate",
     "description": "Calculate your age in years, months, and days",
-    "icon": "Calculator"
+    "icon": "Calculator",
+    "category": "Calculator"
   },
   {
     "title": "QR Code Scanner",
     "link": "/tools/qr-scanner",
     "description": "Scan QR codes using your device's camera",
-    "icon": "ScanQrCode"
+    "icon": "ScanQrCode",
+    "category": "QR Code"
   },
   {
     "title": "Days Tracker",
     "link": "/tools/days-tracker",
     "description": "Calculate the end date based on start date",
-    "icon": "Calendar"
+    "icon": "Calendar",
+    "category": "Calculator"
   },
   {
     "title": "Password Generator",
     "link": "/tools/password-generator",
     "description": "A secure tool that creates strong, randomized passwords",
-    "icon": "Lock"
+    "icon": "Lock",
+    "category": "Security"
   },
   {
     "title": "Markdown Previewer",
     "link": "/tools/markdown-previewer",
     "description": "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
-    "icon": "Eye"
+    "icon": "Eye",
+    "category": "Developer"
   },
   {
     "title": "Case Converter",
     "link": "/tools/case-converter",
     "description": "Convert text between different case formats.",
-    "icon": "SplinePointer"
+    "icon": "SplinePointer",
+    "category": "Text"
   },
   {
     "title": "PDF to High-Quality Image Converter",
     "link": "/tools/pdf-to-image",
     "description": "Convert PDF pages into high-resolution images.",
-    "icon": "FileImage"
+    "icon": "FileImage",
+    "category": "PDF"
   },
-  {
+    {
     "title": "Image to Text Converter",
     "link": "/tools/image-to-text",
     "description": "Extract text from images locally and securely.",
-    "icon": "FileText"
+    "icon": "FileText",
+    "category": "Image"
+  },
+  {
+    "title": "AVIF Converter",
+    "link": "/tools/avif-converter",
+    "description": "Convert images to and from the AVIF format for better compression and quality.",
+    "icon": "FileImage",
+    "category": "Image"
+  },
+  {
+    "title": "Image To AVIF ",
+    "link": "/tools/image-to-avif",
+    "description": "Convert your images to the AVIF format for improved compression and quality.",
+    "icon": "FileImage",
+    "category": "Image"
   },
   {
     "title": "Image to PDF Converter",
     "link": "/tools/image-to-pdf",
     "description": "Convert images into PDF documents.",
-    "icon": "File"
+    "icon": "File",
+    "category": "PDF"
   },
   {
     "title": "PDF Merger",
     "link": "/tools/pdf-merger",
     "description": "Merge multiple PDF files into a single document.",
-    "icon": "FileStack"
+    "icon": "FileStack",
+    "category": "PDF"
   },
   {
     "title": "PDF Splitter",
     "link": "/tools/pdf-split",
     "description": "Split PDF files into separate pages or sections.",
-    "icon": "SquareSplitHorizontal"
+    "icon": "SquareSplitHorizontal",
+    "category": "PDF"
   },
   {
     "title": "PDF Reorder",
     "link": "/tools/pdf-reorder",
     "description": "Rearrange the pages of your PDF files.",
-    "icon": "ArrowRightLeft"
+    "icon": "ArrowRightLeft",
+    "category": "PDF"
+  },
+  {
+    "title": "QR Code Generator",
+    "link": "/tools/qr-code-generator",
+    "description": "Generate custom QR codes for any purpose.",
+    "icon": "QrCode",
+    "category": "QR Code"
+  },
+  {
+    "title": "Text Repeater",
+    "link": "/tools/text-repeater",
+    "description": "Repeat any text multiple times with customizable options.",
+    "icon": "Repeat",
+    "category": "Text"
   }
 ]

@@ -11,8 +11,8 @@ const staatliches = Staatliches({
   display: "swap", // Ensures text is visible during loading
 });
 
-const companies = [
-  { name: "About Company", url: "/about-us" },
+const about = [
+  { name: "About Us", url: "/about-us" },
   { name: "Contact Us", url: "/contact-us" },
   { name: "Request a Tool", url: "/contact-us" },
   { name: "Frequently Asked Questions", url: "/faq" },
@@ -38,9 +38,9 @@ const Footer = () => {
         {/* Menus */}
         <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-0 md:mb-16 ">
           {/* service Menus */}
-          <div className="space-y-4 w-1/2 md:w-2/4">
+          <div className="space-y-4 w-full md:w-2/4">
             <h3 className="text-base text-white font-semibold">Tools</h3>
-            <ul className="space-y-1 grid grid-cols-1 md:grid-cols-2 gap-2">
+            <ul className="space-y-1 grid grid-cols-2 gap-2">
               {toolsData.map((tool) => (
                 <li key={tool.title} className="relative">
                   <Link
@@ -53,11 +53,11 @@ const Footer = () => {
               ))}
             </ul>
           </div>
-          {/* Company Menus */}
+          {/* About Menus */}
           <div className="space-y-4 w-1/2 md:w-1/4">
-            <h3 className="text-base text-white font-semibold">Company</h3>
+            <h3 className="text-base text-white font-semibold">About</h3>
             <ul className="space-y-2">
-              {companies.map((company) => (
+              {about.map((company) => (
                 <li key={company.name} className="relative">
                   <Link
                     href={company.url}
@@ -70,7 +70,7 @@ const Footer = () => {
             </ul>
           </div>
           {/* whyus Menus */}
-          <div className="space-y-4 w-2/2 md:w-1/4">
+          <div className="space-y-4 w-1/2 md:w-1/4">
             <h3 className="text-base text-white font-semibold">Why Us</h3>
             <ul className="space-y-2 grid grid-cols-1">
               {whyus.map((benefit) => (
@@ -127,6 +127,14 @@ const Footer = () => {
               <Mail className="size-4 text-gray-300" />{" "}
               contact.toolstrek@gmail.com
             </Link>
+            {/* <Link
+              href="https://github.com/tasnimultas67/toolstrek"
+              target="_blank"
+              className="text-gray-300 text-sm flex items-center justify-start gap-2"
+            >
+              <Github className="size-4 text-gray-300" /> Github Project
+              Repository
+            </Link> */}
           </div>
         </div>
         {/* Divider */}
