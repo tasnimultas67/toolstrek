@@ -14,6 +14,13 @@
     "category": "Productivity"
   },
   {
+    "title": "Fake Info Generator",
+    "link": "/tools/fake-info-generator",
+    "description": "Generate realistic fake information for testing purposes",
+    "icon": "User",
+    "category": "Productivity"
+  },
+  {
     "title": "Wifi QR Code Generator",
     "link": "/tools/wifi-qr",
     "description": "Generate QR codes for your wifi network",
