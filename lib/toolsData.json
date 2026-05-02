@@ -56,6 +56,13 @@
     "category": "Developer"
   },
   {
+    "title": "Domain Age Checker",
+    "link": "/tools/domain-age-checker",
+    "description": "Check the age of any domain name.",
+    "icon": "Globe",
+    "category": "Developer"
+  },
+  {
     "title": "Case Converter",
     "link": "/tools/case-converter",
     "description": "Convert text between different case formats.",
