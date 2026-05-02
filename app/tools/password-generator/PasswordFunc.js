@@ -52,12 +52,12 @@ export default function PasswordFunc() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 p-4 md:p-8 flex flex-col items-center justify-center font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 px-2 pb-10 pt-20 flex flex-col items-center justify-center font-sans">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.5 }}
-        className="w-full max-w-2xl"
+        className="w-full md:w-11/12 mx-auto"
       >
         <Card className="bg-white dark:bg-gray-900 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border-gray-100 dark:border-gray-800 overflow-hidden">
           <CardHeader className="px-8 py-6 border-b border-gray-50 dark:border-gray-800 bg-white/50 backdrop-blur-md">

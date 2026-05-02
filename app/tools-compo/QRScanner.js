@@ -129,18 +129,10 @@ const QRScanner = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 py-12 px-4 flex items-center justify-center font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 pb-12 pt-24 px-2 flex items-center justify-center font-sans">
       <div className="w-full max-w-4xl space-y-8">
         {/* Header */}
         <div className="text-center space-y-2">
-          <motion.div
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 text-xs font-bold uppercase tracking-wider mb-2"
-          >
-            <Scan size={14} />
-            <span>AI Powered Recognition</span>
-          </motion.div>
           <h1 className="text-4xl font-black text-gray-900 dark:text-white tracking-tight">
             QR Code <span className="text-blue-600">Scanner</span>
           </h1>

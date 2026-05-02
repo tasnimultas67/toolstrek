@@ -9,7 +9,7 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="md:max-w-[1200px] md:w-[1160px] mx-auto px-1 py-3">
+    <div className="w-full md:w-11/12 mx-auto px-1 py-3">
       <WifiQRGen></WifiQRGen>
     </div>
   );

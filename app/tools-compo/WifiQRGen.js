@@ -134,7 +134,7 @@ const WifiQRGen = () => {
 
   return (
     <div className="w-full mx-auto">
-      <div className="flex flex-col lg:flex-row justify-between w-11/12 lg:w-10/12 mx-auto p-5 bg-gray-50 rounded-lg mt-10 border border-gray-200">
+      <div className="flex flex-col lg:flex-row justify-between mx-auto p-5 bg-gray-50 rounded-lg mt-20 mb-10 border border-gray-200">
         <div className="w-full lg:w-2/3">
           <form
             onSubmit={(e) => {

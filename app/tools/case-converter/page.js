@@ -79,8 +79,8 @@ const CaseConverter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 p-4 md:p-8 flex items-center justify-center font-sans">
-      <div className="w-full max-w-4xl bg-white dark:bg-gray-900 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 dark:border-gray-800 overflow-hidden">
+    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 px-2 pb-10 pt-20 flex items-center justify-center font-sans">
+      <div className="w-full md:w-11/12 mx-auto bg-white dark:bg-gray-900 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-gray-100 dark:border-gray-800 overflow-hidden">
         <div className="px-8 py-6 border-b border-gray-50 dark:border-gray-800 flex justify-between items-center bg-white/50 backdrop-blur-md">
           <div className="flex items-center gap-3">
             <div className="p-2 bg-blue-600 rounded-lg">
