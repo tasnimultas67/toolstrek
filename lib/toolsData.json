@@ -77,13 +77,6 @@
     "category": "Image"
   },
   {
-    "title": "Image To AVIF ",
-    "link": "/tools/image-to-avif",
-    "description": "Convert your images to the AVIF format for improved compression and quality.",
-    "icon": "FileImage",
-    "category": "Image"
-  },
-  {
     "title": "Image to PDF Converter",
     "link": "/tools/image-to-pdf",
     "description": "Convert images into PDF documents.",
