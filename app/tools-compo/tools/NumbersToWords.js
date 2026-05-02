@@ -757,15 +757,15 @@ export default function NumbersToWords() {
                 {state.outputWords.map((result, index) => (
                   <div
                     key={index}
-                    className="bg-green-50 rounded-lg p-4 border border-green-200 relative group"
+                    className="bg-blue-700 rounded-lg p-4 border border-blue-800 relative group"
                   >
                     <div className="flex justify-between items-start mb-2">
-                      <p className="text-xs font-semibold text-green-600">
+                      <p className="text-xs font-semibold text-white opacity-80">
                         Result {index + 1}
                       </p>
                       <button
                         onClick={() => copyToClipboard(result)}
-                        className="text-gray-400 hover:text-green-600 transition-colors"
+                        className="text-white transition-colors bg-blue-800 p-1 rounded-full cursor-pointer"
                         title="Copy to clipboard"
                       >
                         <svg
@@ -783,7 +783,7 @@ export default function NumbersToWords() {
                         </svg>
                       </button>
                     </div>
-                    <div className="text-gray-800 font-medium leading-relaxed break-words">
+                    <div className="text-white font-medium leading-relaxed break-words">
                       {result}
                     </div>
                   </div>
