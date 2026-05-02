@@ -35,6 +35,13 @@
     "category": "Calculator"
   },
   {
+    "title": "BMI Calculator",
+    "link": "/tools/bmi-calculator",
+    "description": "Calculate your Body Mass Index (BMI)",
+    "icon": "Calculator",
+    "category": "Calculator"
+  },
+  {
     "title": "Password Generator",
     "link": "/tools/password-generator",
     "description": "A secure tool that creates strong, randomized passwords",
