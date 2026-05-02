@@ -1,5 +1,5 @@
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
-import { Github, Mail, MapPin } from "lucide-react";
+import { Mail, MapPin } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Link from "next/link";
 import React from "react";
@@ -126,14 +126,6 @@ const Footer = () => {
             >
               <Mail className="size-4 text-gray-300" />{" "}
               contact.toolstrek@gmail.com
-            </Link>
-            <Link
-              href="https://github.com/tasnimultas67/toolstrek"
-              target="_blank"
-              className="text-gray-300 text-sm flex items-center justify-start gap-2"
-            >
-              <Github className="size-4 text-gray-300" /> Github Project
-              Repository
             </Link>
           </div>
         </div>
