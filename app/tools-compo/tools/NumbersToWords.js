@@ -8,6 +8,7 @@ function numberToWords(
   useIndianSystem = false,
   useLacInsteadOfLakh = false,
   usePaisaInsteadOfPoisha = false,
+  useHyphen = true,
 ) {
   if (num === 0) return "zero";
 
@@ -56,7 +57,13 @@ function numberToWords(
     if (n < 100) {
       const ten = Math.floor(n / 10);
       const unit = n % 10;
-      return tens[ten] + (unit !== 0 ? "-" + ones[unit] : "");
+      // Apply hyphen based on parameter
+      if (useHyphen && unit !== 0) {
+        return tens[ten] + "-" + ones[unit];
+      } else if (unit !== 0) {
+        return tens[ten] + " " + ones[unit];
+      }
+      return tens[ten];
     }
 
     const hundred = Math.floor(n / 100);
@@ -155,14 +162,50 @@ function numberToCurrencyWords(
   usePaisaInsteadOfPoisha = false,
   endingText = "only",
   customText = "",
+  useHyphen = true,
+  enableRounding = true,
 ) {
-  const mainUnit = Math.floor(num);
-  const fractionalUnit = Math.round((num - mainUnit) * 100);
+  let mainUnit, fractionalUnit;
+
+  if (enableRounding) {
+    // Round to 2 decimal places
+    mainUnit = Math.floor(num);
+    fractionalUnit = Math.round((num - mainUnit) * 100);
+    // Handle case where rounding causes 100 paisa/cents
+    if (fractionalUnit === 100) {
+      mainUnit += 1;
+      fractionalUnit = 0;
+    }
+  } else {
+    // No rounding - take exact value up to 2 decimal places
+    const numStr = num.toString();
+    const decimalParts = numStr.split(".");
+    mainUnit = Math.floor(num);
+
+    if (decimalParts.length > 1) {
+      // Get exactly 2 digits from the decimal part
+      let decimalPart = decimalParts[1];
+      if (decimalPart.length === 1) {
+        decimalPart = decimalPart + "0";
+      } else if (decimalPart.length > 2) {
+        decimalPart = decimalPart.substring(0, 2);
+      }
+      fractionalUnit = parseInt(decimalPart, 10);
+    } else {
+      fractionalUnit = 0;
+    }
+  }
 
   const mainUnitWords =
     mainUnit === 0
       ? "zero"
-      : numberToWords(mainUnit, useIndianSystem, useLacInsteadOfLakh);
+      : numberToWords(
+          mainUnit,
+          useIndianSystem,
+          useLacInsteadOfLakh,
+          usePaisaInsteadOfPoisha,
+          useHyphen,
+        );
   const mainUnitName =
     mainUnit === 1
       ? getCurrencyUnit(currencyCode, "singular")
@@ -175,6 +218,8 @@ function numberToCurrencyWords(
       fractionalUnit,
       useIndianSystem,
       useLacInsteadOfLakh,
+      usePaisaInsteadOfPoisha,
+      useHyphen,
     );
     const fractionalUnitName =
       fractionalUnit === 1
@@ -271,8 +316,9 @@ export default function NumbersToWords() {
     paisaSpelling: "paisa",
     endingText: "only",
     customEndingText: "",
-    numberOfResults: 1,
+    numberOfResults: 2,
     isAdvancedOpen: false,
+    enableRounding: true, // Default: Rounding ON
   });
 
   const [toast, setToast] = useState({ show: false, message: "" });
@@ -293,38 +339,124 @@ export default function NumbersToWords() {
     const useLacInsteadOfLakh = state.lakhSpelling === "lac";
     const usePaisaInsteadOfPoisha = state.paisaSpelling === "paisa";
 
-    for (let i = 0; i < count; i++) {
-      let customEnding = state.customEndingText;
-
-      // For multiple results, add variation number if custom text exists
-      if (state.endingText === "custom" && customEnding && count > 1) {
-        customEnding = `${customEnding} (${i + 1})`;
+    // If count is 2, generate one without hyphen and one with hyphen
+    if (count === 2) {
+      // First result - Without hyphen
+      let customEnding1 = state.customEndingText;
+      if (state.endingText === "custom" && customEnding1) {
+        customEnding1 = `${customEnding1} (1)`;
       }
 
-      let words;
+      let words1;
       if (state.currency === "none") {
-        words = numberToWords(num, useIndianSystem, useLacInsteadOfLakh);
+        words1 = numberToWords(
+          num,
+          useIndianSystem,
+          useLacInsteadOfLakh,
+          usePaisaInsteadOfPoisha,
+          false,
+        );
         if (state.endingText === "only") {
-          words += " only";
+          words1 += " only";
         } else if (state.endingText === "exactly") {
-          words += " exactly";
-        } else if (state.endingText === "custom" && customEnding.trim()) {
-          words += ` ${customEnding.trim()}`;
+          words1 += " exactly";
+        } else if (state.endingText === "custom" && customEnding1.trim()) {
+          words1 += ` ${customEnding1.trim()}`;
         }
       } else {
-        words = numberToCurrencyWords(
+        words1 = numberToCurrencyWords(
           num,
           state.currency,
           useIndianSystem,
           useLacInsteadOfLakh,
           usePaisaInsteadOfPoisha,
           state.endingText,
-          customEnding,
+          customEnding1,
+          false, // No hyphen
+          state.enableRounding, // Pass rounding setting
         );
       }
+      const formattedWords1 = applyLetterCase(words1, state.letterCase);
+      results.push(formattedWords1);
 
-      const formattedWords = applyLetterCase(words, state.letterCase);
-      results.push(formattedWords);
+      // Second result - With hyphen
+      let customEnding2 = state.customEndingText;
+      if (state.endingText === "custom" && customEnding2) {
+        customEnding2 = `${customEnding2} (2)`;
+      }
+
+      let words2;
+      if (state.currency === "none") {
+        words2 = numberToWords(
+          num,
+          useIndianSystem,
+          useLacInsteadOfLakh,
+          usePaisaInsteadOfPoisha,
+          true,
+        );
+        if (state.endingText === "only") {
+          words2 += " only";
+        } else if (state.endingText === "exactly") {
+          words2 += " exactly";
+        } else if (state.endingText === "custom" && customEnding2.trim()) {
+          words2 += ` ${customEnding2.trim()}`;
+        }
+      } else {
+        words2 = numberToCurrencyWords(
+          num,
+          state.currency,
+          useIndianSystem,
+          useLacInsteadOfLakh,
+          usePaisaInsteadOfPoisha,
+          state.endingText,
+          customEnding2,
+          true, // With hyphen
+          state.enableRounding, // Pass rounding setting
+        );
+      }
+      const formattedWords2 = applyLetterCase(words2, state.letterCase);
+      results.push(formattedWords2);
+    } else {
+      // For count 1 or 3, use default behavior with hyphen
+      for (let i = 0; i < count; i++) {
+        let customEnding = state.customEndingText;
+        if (state.endingText === "custom" && customEnding && count > 1) {
+          customEnding = `${customEnding} (${i + 1})`;
+        }
+
+        let words;
+        if (state.currency === "none") {
+          words = numberToWords(
+            num,
+            useIndianSystem,
+            useLacInsteadOfLakh,
+            usePaisaInsteadOfPoisha,
+            true,
+          );
+          if (state.endingText === "only") {
+            words += " only";
+          } else if (state.endingText === "exactly") {
+            words += " exactly";
+          } else if (state.endingText === "custom" && customEnding.trim()) {
+            words += ` ${customEnding.trim()}`;
+          }
+        } else {
+          words = numberToCurrencyWords(
+            num,
+            state.currency,
+            useIndianSystem,
+            useLacInsteadOfLakh,
+            usePaisaInsteadOfPoisha,
+            state.endingText,
+            customEnding,
+            true,
+            state.enableRounding,
+          );
+        }
+
+        const formattedWords = applyLetterCase(words, state.letterCase);
+        results.push(formattedWords);
+      }
     }
 
     return results;
@@ -372,8 +504,9 @@ export default function NumbersToWords() {
       paisaSpelling: "paisa",
       endingText: "only",
       customEndingText: "",
-      numberOfResults: 1,
+      numberOfResults: 2,
       isAdvancedOpen: false,
+      enableRounding: true,
     });
   };
 
@@ -448,6 +581,10 @@ export default function NumbersToWords() {
     setState((prev) => ({ ...prev, numberOfResults: value }));
   };
 
+  const handleRoundingToggle = () => {
+    setState((prev) => ({ ...prev, enableRounding: !prev.enableRounding }));
+  };
+
   const toggleAdvancedOptions = () => {
     setState((prev) => ({ ...prev, isAdvancedOpen: !prev.isAdvancedOpen }));
   };
@@ -497,8 +634,8 @@ export default function NumbersToWords() {
                 className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white text-gray-800"
               />
               <p className="text-xs text-gray-500 mt-1">
-                Example: 2345.78 will convert to "Two Thousand Three Hundred
-                Forty-Five Taka And Seventy-Eight Paisa Only"
+                Example: 2345.78 will convert to &quot;Two Thousand Three
+                Hundred Forty-Five Taka And Seventy-Eight Paisa Only&quot;
               </p>
               <p className="text-xs text-gray-400 mt-1">
                 ✓ Supports pasting from Excel, Google Sheets, and other sources
@@ -587,44 +724,47 @@ export default function NumbersToWords() {
                     </p>
                   </div>
 
-                  {/* Letter Case Selection */}
-                  <div>
-                    <label
-                      htmlFor="letterCase"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Letter Case
-                    </label>
-                    <select
-                      id="letterCase"
-                      value={state.letterCase}
-                      onChange={handleLetterCaseChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white text-gray-800"
-                    >
-                      <option value="titlecase">Title Case</option>
-                      <option value="lowercase">lowercase</option>
-                      <option value="uppercase">UPPERCASE</option>
-                    </select>
-                  </div>
+                  {/* Letter Case and Ending Text - 2 Grid Layout */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {/* Letter Case Selection */}
+                    <div>
+                      <label
+                        htmlFor="letterCase"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Letter Case
+                      </label>
+                      <select
+                        id="letterCase"
+                        value={state.letterCase}
+                        onChange={handleLetterCaseChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white text-gray-800"
+                      >
+                        <option value="titlecase">Title Case</option>
+                        <option value="lowercase">lowercase</option>
+                        <option value="uppercase">UPPERCASE</option>
+                      </select>
+                    </div>
 
-                  {/* Ending Text Selection */}
-                  <div>
-                    <label
-                      htmlFor="endingText"
-                      className="block text-sm font-medium text-gray-700 mb-2"
-                    >
-                      Ending Text
-                    </label>
-                    <select
-                      id="endingText"
-                      value={state.endingText}
-                      onChange={handleEndingTextChange}
-                      className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white text-gray-800"
-                    >
-                      <option value="only">Only</option>
-                      <option value="exactly">Exactly</option>
-                      <option value="custom">Custom</option>
-                    </select>
+                    {/* Ending Text Selection */}
+                    <div>
+                      <label
+                        htmlFor="endingText"
+                        className="block text-sm font-medium text-gray-700 mb-2"
+                      >
+                        Ending Text
+                      </label>
+                      <select
+                        id="endingText"
+                        value={state.endingText}
+                        onChange={handleEndingTextChange}
+                        className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white text-gray-800"
+                      >
+                        <option value="only">Only</option>
+                        <option value="exactly">Exactly</option>
+                        <option value="custom">Custom</option>
+                      </select>
+                    </div>
                   </div>
 
                   {/* Custom Ending Text Input - Shows only when 'custom' is selected */}
@@ -668,8 +808,41 @@ export default function NumbersToWords() {
                       className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition-all bg-white text-gray-800"
                     />
                     <p className="text-xs text-gray-500 mt-1">
-                      Generate up to 3 different formatted results
+                      When set to 2: First result without hyphen, second result
+                      with hyphen
                     </p>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Example: &quot;Forty Five&quot; (no hyphen) vs
+                      &quot;Forty-Five&quot; (with hyphen)
+                    </p>
+                  </div>
+
+                  {/* Rounding Toggle Switch */}
+                  <div className="flex items-center justify-between p-3 bg-gray-50 rounded-lg border border-gray-200">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-700">
+                        Rounding
+                      </label>
+                      <p className="text-xs text-gray-500">
+                        {state.enableRounding
+                          ? "ON: 674.868 → 674.87 (rounded)"
+                          : "OFF: 674.868 → 674.86 (exact)"}
+                      </p>
+                    </div>
+                    <button
+                      onClick={handleRoundingToggle}
+                      className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 ${
+                        state.enableRounding ? "bg-blue-600" : "bg-gray-300"
+                      }`}
+                    >
+                      <span
+                        className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                          state.enableRounding
+                            ? "translate-x-6"
+                            : "translate-x-1"
+                        }`}
+                      />
+                    </button>
                   </div>
 
                   {/* BDT Specific Options - Only show when BDT is selected */}
@@ -693,7 +866,8 @@ export default function NumbersToWords() {
                           <option value="lakh">Lakh (Alternative)</option>
                         </select>
                         <p className="text-xs text-gray-500 mt-1">
-                          Choose between "Lac" or "Lakh" spelling
+                          Choose between &quot;Lac&quot; or &quot;Lakh&quot;
+                          spelling
                         </p>
                       </div>
 
@@ -715,7 +889,8 @@ export default function NumbersToWords() {
                           <option value="poisha">Poisha (Alternative)</option>
                         </select>
                         <p className="text-xs text-gray-500 mt-1">
-                          Choose between "Paisa" or "Poisha" spelling
+                          Choose between &quot;Paisa&quot; or &quot;Poisha&quot;
+                          spelling
                         </p>
                       </div>
                     </>
@@ -761,7 +936,12 @@ export default function NumbersToWords() {
                   >
                     <div className="flex justify-between items-start mb-2">
                       <p className="text-xs font-semibold text-white opacity-80">
-                        Result {index + 1}
+                        Result {index + 1}{" "}
+                        {index === 0 && state.numberOfResults === 2
+                          ? "(Without Hyphen)"
+                          : index === 1 && state.numberOfResults === 2
+                            ? "(With Hyphen)"
+                            : ""}
                       </p>
                       <button
                         onClick={() => copyToClipboard(result)}
@@ -783,7 +963,7 @@ export default function NumbersToWords() {
                         </svg>
                       </button>
                     </div>
-                    <div className="text-white font-medium leading-relaxed break-words">
+                    <div className="text-white font-medium leading-relaxed wrap-break-word">
                       {result}
                     </div>
                   </div>
@@ -819,6 +999,24 @@ export default function NumbersToWords() {
                     <p>
                       <span className="font-semibold">Number of Results:</span>{" "}
                       {state.numberOfResults}
+                      {state.numberOfResults === 2 && (
+                        <span className="text-xs text-gray-500 ml-2">
+                          (1st: no hyphen, 2nd: with hyphen)
+                        </span>
+                      )}
+                    </p>
+                    <p>
+                      <span className="font-semibold">Rounding:</span>{" "}
+                      {state.enableRounding ? "ON (Enabled)" : "OFF (Disabled)"}
+                      {state.enableRounding ? (
+                        <span className="text-xs text-gray-500 ml-2">
+                          (674.868 → 674.87)
+                        </span>
+                      ) : (
+                        <span className="text-xs text-gray-500 ml-2">
+                          (674.868 → 674.86)
+                        </span>
+                      )}
                     </p>
                     {isBDTSelected && (
                       <>
@@ -875,9 +1073,8 @@ export default function NumbersToWords() {
           1 Crore = 10,000,000 | 1 Lac = 100,000 | 1 Thousand = 1,000
         </p>
         <p className="text-xs mt-2 text-gray-400">
-          Note: Numbers are converted without the word "and" between hundred and
-          tens (e.g., "Three Hundred Forty-Five" instead of "Three Hundred And
-          Forty-Five")
+          Note: Numbers are converted without the word &quot;and&quot; between
+          hundred and tens
         </p>
       </div>
     </div>
