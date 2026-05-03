@@ -15,6 +15,7 @@ import {
   Bars3Icon,
   XMarkIcon,
   ChevronDownIcon,
+  MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -39,6 +40,14 @@ export default function Header() {
     left: 0,
     width: 0,
   });
+
+  // Search state
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const searchRef = useRef(null);
+  const searchButtonRef = useRef(null);
+  const searchInputRef = useRef(null);
 
   // Show only first 8 tools in mega menu
   const displayedTools = toolsData.toReversed().slice(0, 8);
@@ -92,6 +101,52 @@ export default function Header() {
     };
   }, [isMegaMenuOpen]);
 
+  // Handle click outside for search popover
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isSearchOpen &&
+        searchRef.current &&
+        !searchRef.current.contains(event.target) &&
+        searchButtonRef.current &&
+        !searchButtonRef.current.contains(event.target)
+      ) {
+        closeSearch();
+      }
+    };
+
+    if (isSearchOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isSearchOpen]);
+
+  // Handle escape key for search
+  useEffect(() => {
+    const handleEscKey = (event) => {
+      if (event.key === "Escape" && isSearchOpen) {
+        closeSearch();
+      }
+    };
+
+    if (isSearchOpen) {
+      document.addEventListener("keydown", handleEscKey);
+      // Focus input when search opens
+      setTimeout(() => {
+        if (searchInputRef.current) {
+          searchInputRef.current.focus();
+        }
+      }, 50);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [isSearchOpen]);
+
   // Handle escape key to close mega menu
   useEffect(() => {
     const handleEscKey = (event) => {
@@ -108,6 +163,25 @@ export default function Header() {
       document.removeEventListener("keydown", handleEscKey);
     };
   }, [isMegaMenuOpen]);
+
+  // Search function
+  useEffect(() => {
+    if (searchQuery.trim() === "") {
+      setSearchResults([]);
+      return;
+    }
+
+    const query = searchQuery.toLowerCase();
+    const results = toolsData.filter((tool) => {
+      return (
+        tool.title.toLowerCase().includes(query) ||
+        tool.description.toLowerCase().includes(query) ||
+        (tool.category && tool.category.toLowerCase().includes(query))
+      );
+    });
+
+    setSearchResults(results);
+  }, [searchQuery]);
 
   const openMegaMenu = () => {
     setIsMegaMenuOpen(true);
@@ -127,6 +201,18 @@ export default function Header() {
     } else {
       openMegaMenu();
     }
+  };
+
+  const openSearch = () => {
+    setIsSearchOpen(true);
+    setSearchQuery("");
+    setSearchResults([]);
+  };
+
+  const closeSearch = () => {
+    setIsSearchOpen(false);
+    setSearchQuery("");
+    setSearchResults([]);
   };
 
   return (
@@ -322,11 +408,108 @@ export default function Header() {
               </div>
 
               <div className="flex items-center gap-4 border-l border-gray-200 pl-8">
+                {/* Search Icon */}
+                <div className="relative">
+                  <button
+                    ref={searchButtonRef}
+                    onClick={openSearch}
+                    className="p-2 text-gray-600 hover:text-brandColor transition-colors duration-200 rounded-full hover:bg-gray-100"
+                    aria-label="Search tools"
+                  >
+                    <MagnifyingGlassIcon className="size-5" />
+                  </button>
+
+                  {/* Search Popover */}
+                  {isSearchOpen && (
+                    <div
+                      ref={searchRef}
+                      className="absolute right-0 mt-2.5 w-96 bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden z-30 animate-in fade-in zoom-in-95 duration-200"
+                    >
+                      <div className="p-4">
+                        <div className="relative">
+                          <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
+                          <input
+                            ref={searchInputRef}
+                            type="text"
+                            placeholder="Search tools..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandColor/20 focus:border-brandColor transition-all duration-200"
+                          />
+                          {searchQuery && (
+                            <button
+                              onClick={() => setSearchQuery("")}
+                              className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                            >
+                              <XMarkIcon className="size-4" />
+                            </button>
+                          )}
+                        </div>
+
+                        {/* Search Results */}
+                        <div className="mt-4 max-h-80 overflow-y-auto">
+                          {searchQuery.trim() === "" ? (
+                            <div className="text-center py-8">
+                              <MagnifyingGlassIcon className="size-8 text-gray-300 mx-auto mb-2" />
+                              <p className="text-sm text-gray-500">
+                                Type to search for tools
+                              </p>
+                            </div>
+                          ) : searchResults.length === 0 ? (
+                            <div className="text-center py-8">
+                              <p className="text-sm text-gray-500">
+                                No tools found for &ldquo;{searchQuery}&rdquo;
+                              </p>
+                            </div>
+                          ) : (
+                            <div className="space-y-2">
+                              {searchResults.map((tool, index) => {
+                                const IconComponent = getIcon(tool.icon);
+                                return (
+                                  <Link
+                                    key={tool.title}
+                                    href={tool.link}
+                                    onClick={closeSearch}
+                                    className="flex items-center gap-3 p-3 rounded-lg hover:bg-gray-50 transition-all duration-200 group"
+                                  >
+                                    <div className="flex size-10 flex-none items-center justify-center rounded-lg bg-gray-100 group-hover:bg-brandColor/10 transition-colors duration-200">
+                                      <IconComponent className="size-5 text-gray-600 group-hover:text-brandColor transition-colors duration-200" />
+                                    </div>
+                                    <div className="flex-1 min-w-0">
+                                      <div className="text-sm font-semibold text-gray-900 truncate">
+                                        {tool.title}
+                                      </div>
+                                      <p className="text-xs text-gray-500 truncate">
+                                        {tool.description}
+                                      </p>
+                                    </div>
+                                  </Link>
+                                );
+                              })}
+                              {searchResults.length > 0 && (
+                                <div className="border-t border-gray-100 pt-2 mt-2">
+                                  <Link
+                                    href={`/tools?search=${encodeURIComponent(searchQuery)}`}
+                                    onClick={closeSearch}
+                                    className="block text-center text-sm text-brandColor hover:text-brandColorHover py-2 transition-colors duration-200"
+                                  >
+                                    View all {searchResults.length} results →
+                                  </Link>
+                                </div>
+                              )}
+                            </div>
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 <Link
                   href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
                   target="_blank"
                 >
-                  <Button className="bg-brandColor hover:bg-brandColorHover !text-sm font-normal shadow-none flex items-center gap-2 transition-all duration-200 hover:scale-105 cursor-pointer">
+                  <Button className="bg-brandColor hover:bg-brandColorHover text-sm! font-normal shadow-none flex items-center gap-2 transition-all duration-200 hover:scale-105 cursor-pointer">
                     <Star className="size-4" /> Request a Tool
                   </Button>
                 </Link>
@@ -360,6 +543,71 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
+                  {/* Mobile Search */}
+                  <div className="relative mb-4">
+                    <MagnifyingGlassIcon className="absolute left-3 top-1/2 -translate-y-1/2 size-4 text-gray-400" />
+                    <input
+                      type="text"
+                      placeholder="Search tools..."
+                      value={searchQuery}
+                      onChange={(e) => setSearchQuery(e.target.value)}
+                      className="w-full pl-9 pr-3 py-2 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brandColor/20 focus:border-brandColor text-sm"
+                    />
+                    {searchQuery && (
+                      <button
+                        onClick={() => setSearchQuery("")}
+                        className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                      >
+                        <XMarkIcon className="size-4" />
+                      </button>
+                    )}
+                  </div>
+
+                  {/* Mobile Search Results */}
+                  {searchQuery.trim() !== "" && (
+                    <div className="mb-4 max-h-64 overflow-y-auto border border-gray-100 rounded-lg">
+                      {searchResults.length === 0 ? (
+                        <div className="text-center py-4">
+                          <p className="text-sm text-gray-500">
+                            No tools found
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="divide-y divide-gray-100">
+                          {searchResults.slice(0, 5).map((tool) => {
+                            const IconComponent = getIcon(tool.icon);
+                            return (
+                              <Link
+                                key={tool.title}
+                                href={tool.link}
+                                onClick={() => setMobileMenuOpen(false)}
+                                className="flex items-center gap-3 p-3 hover:bg-gray-50 transition-colors duration-200"
+                              >
+                                <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-100">
+                                  <IconComponent className="size-4 text-gray-600" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="text-sm font-semibold text-gray-900 truncate">
+                                    {tool.title}
+                                  </div>
+                                </div>
+                              </Link>
+                            );
+                          })}
+                          {searchResults.length > 5 && (
+                            <Link
+                              href={`/tools?search=${encodeURIComponent(searchQuery)}`}
+                              onClick={() => setMobileMenuOpen(false)}
+                              className="block text-center text-sm text-brandColor py-2 hover:bg-gray-50"
+                            >
+                              +{searchResults.length - 5} more results →
+                            </Link>
+                          )}
+                        </div>
+                      )}
+                    </div>
+                  )}
+
                   <Disclosure as="div" className="-mx-3">
                     {({ close, open }) => (
                       <>
