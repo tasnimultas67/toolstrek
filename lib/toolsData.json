@@ -112,6 +112,13 @@
     "category": "PDF"
   },
   {
+    "title": "Crop PDF Tool",
+    "link": "/tools/crop-pdf",
+    "description": "Trim and cut PDF pages online.",
+    "icon": "Crop",
+    "category": "PDF"
+  },
+  {
     "title": "PDF Merger",
     "link": "/tools/pdf-merger",
     "description": "Merge multiple PDF files into a single document.",

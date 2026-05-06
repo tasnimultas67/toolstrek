@@ -284,7 +284,7 @@ export default function Header() {
                     >
                       <div className="w-full mx-auto overflow-hidden">
                         <div
-                          className={`bg-white rounded-xl shadow-2xl border border-gray-200 overflow-hidden transition-all duration-200 ease-out transform origin-top
+                          className={`bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-200 ease-out transform origin-top
                             ${
                               megaMenuAnimation
                                 ? "opacity-100 scale-100 translate-y-0"
