@@ -147,6 +147,13 @@
     "category": "PDF"
   },
   {
+    "title": "Add Attachments to PDF",
+    "link": "/tools/add-attachments",
+    "description": "Add attachments to your PDF files.",
+    "icon": "Paperclip",
+    "category": "PDF"
+  },
+  {
     "title": "QR Code Generator",
     "link": "/tools/qr-code-generator",
     "description": "Generate custom QR codes for any purpose.",
