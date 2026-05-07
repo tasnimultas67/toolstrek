@@ -161,6 +161,13 @@
     "category": "PDF"
   },
   {
+    "title": "N-Up PDF",
+    "link": "/tools/n-up-pdf",
+    "description": "Rearrange your PDF layout to print multiple pages on a single sheet.",
+    "icon": "FileStack",
+    "category": "PDF"
+  },
+  {
     "title": "QR Code Generator",
     "link": "/tools/qr-code-generator",
     "description": "Generate custom QR codes for any purpose.",
