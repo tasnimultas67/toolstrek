@@ -1,9 +1,11 @@
+"use client";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
-import { Mail, MapPin } from "lucide-react";
+import { ArrowUpRight, Mail, SplinePointer } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import toolsData from "../../../lib/toolsData.json";
+import { usePathname } from "next/navigation";
 
 const staatliches = Staatliches({
   subsets: ["latin"], // Ensures proper character support
@@ -32,51 +34,57 @@ const whyus = [
 
 const Footer = () => {
   const copyrightYear = new Date().getFullYear();
+  const currentUrl = usePathname();
   return (
     <div className="bg-linear-to-b from-black to-neutral-950 pt-20 pb-5 px-2">
       <div className="w-11/12 m-auto space-y-7 md:space-y-8 ">
         {/* Menus */}
-        <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-0 md:mb-16 ">
+        <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-6 md:mb-16">
           {/* service Menus */}
-          <div className="space-y-4 w-full md:w-2/4">
-            <h3 className="text-base text-white font-semibold">Tools</h3>
-            <ul className="space-y-1 grid grid-cols-2 gap-2">
+          <div className="space-y-4 w-full divide-y divide-gray-700">
+            <h3 className="text-base text-white font-semibold pb-3 flex items-center gap-1">
+              <SplinePointer className="size-5" />
+              Digital Solutions
+            </h3>
+            <ul className="space-y-1 grid grid-cols-2 md:grid-cols-5 gap-2">
               {toolsData.map((tool) => (
                 <li key={tool.title} className="relative">
                   <Link
                     href={tool.link}
-                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-px before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
+                    className={`text-sm flex items-center gap-1 w-fit line-clamp-1 transition-all relative
+          before:absolute before:left-0 before:bottom-0 before:h-px before:transition-all before:duration-300 ${currentUrl === tool.link ? "text-yellow-400 before:w-full before:bg-yellow-400" : "text-gray-200 before:w-0 before:bg-gray-400 hover:before:w-full"}`}
                   >
-                    {tool.title}
+                    {tool.title} <ArrowUpRight className="size-4" />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
           {/* About Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/4">
-            <h3 className="text-base text-white font-semibold">About</h3>
-            <ul className="space-y-2">
+          <div className="space-y-4 w-full divide-y divide-gray-700">
+            <h3 className="text-base text-white font-semibold pb-3">About</h3>
+            <ul className="space-y-2 flex flex-wrap gap-x-4 gap-y-2">
               {about.map((company) => (
                 <li key={company.name} className="relative">
                   <Link
                     href={company.url}
-                    className="text-gray-200 text-sm relative before:absolute before:left-0 before:bottom-0 before:w-0 before:h-px before:bg-gray-400 before:transition-all before:duration-300 hover:before:w-full"
+                    className={`text-sm flex items-center gap-1 w-fit line-clamp-1 transition-all relative
+          before:absolute before:left-0 before:bottom-0 before:h-px before:transition-all before:duration-300 ${currentUrl === company.url ? "text-yellow-400 before:w-full before:bg-yellow-400" : "text-gray-200 before:w-0 before:bg-gray-400 hover:before:w-full"}`}
                   >
-                    {company.name}
+                    {company.name} <ArrowUpRight className="size-4" />
                   </Link>
                 </li>
               ))}
             </ul>
           </div>
           {/* whyus Menus */}
-          <div className="space-y-4 w-1/2 md:w-1/4">
+          <div className="space-y-4 w-full">
             <h3 className="text-base text-white font-semibold">Why Us</h3>
-            <ul className="space-y-2 grid grid-cols-1">
+            <ul className="flex flex-wrap gap-x-2 gap-y-2">
               {whyus.map((benefit) => (
                 <li
                   key={benefit.name}
-                  className="relative flex items-center gap-2"
+                  className="relative flex items-center gap-2 bg-white/10 px-2 py-1.5 rounded-md"
                 >
                   <CheckBadgeIcon className="size-4 fill-blue-600 text-white" />
                   <p className="text-gray-200 text-sm ">{benefit.name}</p>
@@ -141,7 +149,7 @@ const Footer = () => {
         <div className="w-full h-px bg-white/20" />
         <div>
           <p className="text-gray-300 text-sm">
-            copyright {copyrightYear} Toolstrek. All Rights Reserved. Developed
+            Copyright {copyrightYear} Toolstrek. All Rights Reserved. Developed
             by{" "}
             <Link
               href="https://tasnimul.vercel.app/"

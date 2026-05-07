@@ -17,7 +17,7 @@ import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { Star } from "lucide-react";
+import { SplinePointer, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getIcon } from "./dynamicIcon";
 import toolsData from "../../../lib/toolsData.json";
@@ -268,7 +268,7 @@ export default function Header() {
                     onClick={toggleMegaMenu}
                     className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 outline-none"
                   >
-                    Tools
+                    <SplinePointer className="size-5" /> Digital Solutions
                     <ChevronDownIcon
                       aria-hidden="true"
                       className={`size-5 transition-transform duration-200 ${isMegaMenuOpen ? "rotate-180" : ""}`}
@@ -612,7 +612,7 @@ export default function Header() {
                     {({ close, open }) => (
                       <>
                         <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors duration-200">
-                          Tools
+                          Digital Solutions
                           <ChevronDownIcon
                             className={`size-5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
                           />
