@@ -112,6 +112,13 @@
     "category": "PDF"
   },
   {
+    "title": "Compress PDF Tool",
+    "link": "/tools/compress-pdf",
+    "description": "Reduce the file size of your PDF documents without losing quality.",
+    "icon": "FileZip",
+    "category": "PDF"
+  },
+  {
     "title": "Crop PDF Tool",
     "link": "/tools/crop-pdf",
     "description": "Trim and cut PDF pages online.",
