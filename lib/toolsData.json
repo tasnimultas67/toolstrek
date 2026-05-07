@@ -154,6 +154,13 @@
     "category": "PDF"
   },
   {
+    "title": "Combine PDF Files",
+    "link": "/tools/combine-files-to-pdf",
+    "description": "Combine multiple PDF files into a single document.",
+    "icon": "FileStack",
+    "category": "PDF"
+  },
+  {
     "title": "QR Code Generator",
     "link": "/tools/qr-code-generator",
     "description": "Generate custom QR codes for any purpose.",
