@@ -130,12 +130,48 @@ npm run lint
 
 ## Project Structure
 
-- `app/(main)` - app routes, API routes, and page-level sections
-- `app/(main)/tools` - tool pages
-- `app/(main)/tools-compo` - shared tool components
-- `components/ui` - reusable UI primitives
-- `lib` - helper functions
-- `public` - static assets
+```text
+toolstrek/
+|-- app/
+|   `-- (main)/
+|       |-- api/
+|       |-- about-us/
+|       |-- contact-us/
+|       |-- faq/
+|       |-- privacy-policy/
+|       |-- tools/
+|       |-- tools-compo/
+|       |-- layout.js
+|       `-- page.js
+|-- components/
+|   `-- ui/
+|-- lib/
+|-- public/
+|-- .env.example
+|-- next.config.mjs
+|-- package.json
+`-- README.md
+```
+
+## Contributing
+
+ToolsTrek is open source, and contributions are welcome.
+
+If you'd like to contribute:
+
+1. Fork the repository.
+2. Create a branch for your change.
+3. Make your updates with a clear, focused scope.
+4. Test your changes locally.
+5. Open a pull request with a short description of what changed and why.
+
+Helpful contribution guidelines:
+
+- Keep changes consistent with the existing design and structure.
+- Prefer small, focused pull requests.
+- If you are fixing a bug, include the issue details or reproduction steps.
+- If you are adding a tool, update the README and route structure if needed.
+- Be respectful and constructive in discussions and reviews.
 
 ## License
 
