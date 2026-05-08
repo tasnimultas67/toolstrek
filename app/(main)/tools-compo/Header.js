@@ -49,6 +49,10 @@ export default function Header() {
   const searchButtonRef = useRef(null);
   const searchInputRef = useRef(null);
 
+  // GitHub stars state
+  const [starCount, setStarCount] = useState(null);
+  const [isLoadingStars, setIsLoadingStars] = useState(true);
+
   // Show only first 8 tools in mega menu
   const displayedTools = toolsData.toReversed().slice(0, 8);
 
@@ -73,6 +77,29 @@ export default function Header() {
       window.removeEventListener("resize", updateMegaMenuPosition);
       window.removeEventListener("scroll", updateMegaMenuPosition);
     };
+  }, []);
+
+  // Fetch GitHub stars
+  useEffect(() => {
+    const fetchGitHubStars = async () => {
+      try {
+        const response = await fetch(
+          "https://api.github.com/repos/tasnimultas67/toolstrek",
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setStarCount(data.stargazers_count);
+        } else {
+          console.error("Failed to fetch GitHub stars");
+        }
+      } catch (error) {
+        console.error("Error fetching GitHub stars:", error);
+      } finally {
+        setIsLoadingStars(false);
+      }
+    };
+
+    fetchGitHubStars();
   }, []);
 
   // Handle click outside for mega menu
@@ -104,6 +131,7 @@ export default function Header() {
   // Handle click outside for search popover
   useEffect(() => {
     const handleClickOutside = (event) => {
+      // Only close if clicking outside both search popover and search button
       if (
         isSearchOpen &&
         searchRef.current &&
@@ -203,6 +231,14 @@ export default function Header() {
     }
   };
 
+  const toggleSearch = () => {
+    if (isSearchOpen) {
+      closeSearch();
+    } else {
+      openSearch();
+    }
+  };
+
   const openSearch = () => {
     setIsSearchOpen(true);
     setSearchQuery("");
@@ -213,6 +249,14 @@ export default function Header() {
     setIsSearchOpen(false);
     setSearchQuery("");
     setSearchResults([]);
+  };
+
+  // Format star count (e.g., 1000 -> 1k)
+  const formatStarCount = (count) => {
+    if (count === null) return null;
+    if (count >= 1000000) return (count / 1000000).toFixed(1) + "M";
+    if (count >= 1000) return (count / 1000).toFixed(1) + "k";
+    return count.toString();
   };
 
   return (
@@ -260,7 +304,7 @@ export default function Header() {
             </div>
 
             {/* Desktop UI */}
-            <div className="hidden lg:flex lg:flex-1 lg:justify-end items-center gap-x-8">
+            <div className="hidden lg:flex lg:flex-2 lg:justify-end items-center gap-x-8">
               <div className="flex gap-x-8 items-center">
                 <div className="relative">
                   <button
@@ -412,8 +456,12 @@ export default function Header() {
                 <div className="relative">
                   <button
                     ref={searchButtonRef}
-                    onClick={openSearch}
-                    className="p-2 text-gray-600 hover:text-brandColor transition-colors duration-200 rounded-full hover:bg-gray-100"
+                    onClick={toggleSearch}
+                    className={`p-2 transition-colors duration-200 rounded-full hover:bg-gray-100 ${
+                      isSearchOpen
+                        ? "text-brandColor bg-brandColor/10"
+                        : "text-gray-600 hover:text-brandColor"
+                    }`}
                     aria-label="Search tools"
                   >
                     <MagnifyingGlassIcon className="size-5" />
@@ -504,6 +552,39 @@ export default function Header() {
                     </div>
                   )}
                 </div>
+
+                {/* GitHub Stars Button */}
+                <a
+                  href="https://github.com/tasnimultas67/toolstrek"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-full border border-gray-200 hover:bg-gray-100 hover:border-gray-300 transition-all duration-200 hover:scale-105"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-4 text-gray-800"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Star</span>
+                  {!isLoadingStars && starCount !== null && (
+                    <span className="flex items-center gap-1">
+                      <span className="text-gray-400">•</span>
+                      <span className="font-mono text-xs font-semibold text-gray-700">
+                        {formatStarCount(starCount)}
+                      </span>
+                    </span>
+                  )}
+                  {isLoadingStars && (
+                    <div className="h-4 w-8 animate-pulse bg-gray-200 rounded"></div>
+                  )}
+                </a>
 
                 <Link
                   href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
@@ -607,6 +688,33 @@ export default function Header() {
                       )}
                     </div>
                   )}
+
+                  {/* Mobile GitHub Stars Button */}
+                  <a
+                    href="https://github.com/tasnimultas67/toolstrek"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-center gap-2 w-full mb-4 px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-all duration-200"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="size-4 text-gray-800"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        clipRule="evenodd"
+                      />
+                    </svg>
+                    <span>Star on GitHub</span>
+                    {!isLoadingStars && starCount !== null && (
+                      <span className="ml-1 text-xs font-semibold text-gray-600">
+                        ({formatStarCount(starCount)})
+                      </span>
+                    )}
+                  </a>
 
                   <Disclosure as="div" className="-mx-3">
                     {({ close, open }) => (
