@@ -8,7 +8,14 @@ import {
   GraduationCap,
   X,
 } from "lucide-react";
+import { Hind_Siliguri } from "next/font/google";
 import subjectData from "./cgpaSubjectData.json";
+
+const hindSiliguri = Hind_Siliguri({
+  subsets: ["bengali", "latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+});
 
 const GRADES = [
   { grade: "A+", point: 4, markRange: "80% and above" },
@@ -150,6 +157,7 @@ function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
 }
 
 export default function CGPACalculator() {
+  const [studentName, setStudentName] = useState("");
   const [program, setProgram] = useState("");
   const [department, setDepartment] = useState("");
   const [year, setYear] = useState("");
@@ -261,6 +269,11 @@ export default function CGPACalculator() {
     setResult(null);
     setError("");
 
+    if (!studentName.trim()) {
+      setError("আপনার নাম লিখুন।");
+      return;
+    }
+
     if (!program || !department || !year) {
       setError("প্রোগ্রাম, বিভাগ এবং ইয়ার নির্বাচন করুন।");
       return;
@@ -324,6 +337,11 @@ export default function CGPACalculator() {
       canvas.height = height;
 
       const ctx = canvas.getContext("2d");
+      const calculatorShell = document.querySelector(".cgpa-calculator-shell");
+      const canvasFont =
+        calculatorShell && window.getComputedStyle(calculatorShell).fontFamily
+          ? window.getComputedStyle(calculatorShell).fontFamily
+          : "Arial, sans-serif";
       ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, width, height);
 
@@ -334,21 +352,25 @@ export default function CGPACalculator() {
 
       ctx.textAlign = "center";
       ctx.fillStyle = "#111827";
-      ctx.font = "700 44px Arial, sans-serif";
+      ctx.font = `700 44px ${canvasFont}`;
       ctx.fillText("ToolsTrek", width / 2, 78);
-      ctx.font = "700 34px Arial, sans-serif";
+      ctx.font = `700 34px ${canvasFont}`;
       ctx.fillText("Your Result", width / 2, 128);
 
-      ctx.font = "500 24px Arial, sans-serif";
+      ctx.font = `500 24px ${canvasFont}`;
       ctx.fillStyle = "#4b5563";
       ctx.fillText(`${program} - ${department} (${year})`, width / 2, 168);
 
-      ctx.font = "700 34px Arial, sans-serif";
+      ctx.font = `700 24px ${canvasFont}`;
+      ctx.fillStyle = "#111827";
+      ctx.fillText(`Name: ${studentName.trim()}`, width / 2, 202);
+
+      ctx.font = `700 34px ${canvasFont}`;
       ctx.fillStyle = parseFloat(result) > 3 ? "#059669" : "#2563eb";
-      ctx.fillText(`CGPA: ${result}`, width / 2, 220);
+      ctx.fillText(`CGPA: ${result}`, width / 2, 248);
 
       const startX = (width - tableWidth) / 2;
-      let currentY = 270;
+      let currentY = 300;
       const columns = [500, 150, 200, 190];
       const headers = ["বিষয়", "গ্রেড", "প্রাপ্ত পয়েন্ট", "মোট পয়েন্ট"];
 
@@ -361,7 +383,7 @@ export default function CGPACalculator() {
 
       let x = startX;
       ctx.fillStyle = "#111827";
-      ctx.font = "700 20px Arial, sans-serif";
+      ctx.font = `700 20px ${canvasFont}`;
       headers.forEach((header, index) => {
         ctx.strokeRect(x, currentY, columns[index], 56);
         ctx.fillText(header, x + 18, currentY + 36);
@@ -369,7 +391,7 @@ export default function CGPACalculator() {
       });
       currentY += 56;
 
-      ctx.font = "400 18px Arial, sans-serif";
+      ctx.font = `400 18px ${canvasFont}`;
       resultRows.forEach((row) => {
         x = startX;
         ctx.fillStyle = "#ffffff";
@@ -413,7 +435,7 @@ export default function CGPACalculator() {
       if (parseFloat(result) > 3) {
         ctx.textAlign = "center";
         ctx.fillStyle = "#059669";
-        ctx.font = "700 22px Arial, sans-serif";
+        ctx.font = `700 22px ${canvasFont}`;
         ctx.fillText(
           "--- Congratulations on your Outstanding Result! ---",
           width / 2,
@@ -424,7 +446,7 @@ export default function CGPACalculator() {
       const footerY = height - 130;
       ctx.textAlign = "center";
       ctx.fillStyle = "#2563eb";
-      ctx.font = "500 18px Arial, sans-serif";
+      ctx.font = `500 18px ${canvasFont}`;
       ctx.fillText(
         `Result Calculated by ToolsTrek CGPA Calculator | ${new Date().toLocaleDateString()}`,
         width / 2,
@@ -434,7 +456,12 @@ export default function CGPACalculator() {
 
       const link = document.createElement("a");
       link.href = canvas.toDataURL("image/png");
-      link.download = `CGPA-Result-${result}.png`;
+      const safeName = studentName
+        .trim()
+        .replace(/[\\/:*?"<>|]+/g, "-")
+        .replace(/\s+/g, "-")
+        .replace(/^-|-$/g, "");
+      link.download = `CGPA-Result-${safeName || "Student"}-${result}.png`;
       link.click();
     } finally {
       setIsDownloading(false);
@@ -442,7 +469,9 @@ export default function CGPACalculator() {
   };
 
   return (
-    <div className="min-h-screen bg-[#f9fafb] px-2 pb-10 pt-26 text-gray-900">
+    <div
+      className={`${hindSiliguri.className} cgpa-calculator-shell min-h-screen bg-[#f9fafb] px-2 pb-10 pt-26 text-gray-900`}
+    >
       <div className="mx-auto max-w-4xl">
         <div className="mb-6 text-center">
           <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-100 text-indigo-700">
@@ -454,6 +483,23 @@ export default function CGPACalculator() {
         </div>
 
         <section className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+          <label className="mb-4 block">
+            <span className="mb-2 block text-sm font-medium text-gray-700">
+              নাম
+            </span>
+            <input
+              type="text"
+              value={studentName}
+              onChange={(event) => {
+                setStudentName(event.target.value);
+                setResult(null);
+                setError("");
+              }}
+              placeholder="আপনার নাম লিখুন"
+              className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+            />
+          </label>
+
           <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
             <FieldSelect
               label="প্রোগ্রাম"
@@ -648,6 +694,9 @@ export default function CGPACalculator() {
                 </h3>
                 <p className="mt-2 text-lg text-gray-500">
                   {program} - {department} ({year})
+                </p>
+                <p className="mt-2 text-lg font-semibold text-gray-900">
+                  Name: {studentName.trim()}
                 </p>
                 <p
                   className={`mt-2 text-2xl font-bold ${

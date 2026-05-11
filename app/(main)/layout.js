@@ -1,5 +1,6 @@
 import { Outfit } from "next/font/google";
 import "../globals.css";
+
 import Header from "./tools-compo/Header";
 import { Toaster } from "sonner";
 import Footer from "./tools-compo/Footer";
