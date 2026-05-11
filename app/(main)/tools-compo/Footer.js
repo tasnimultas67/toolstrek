@@ -45,29 +45,8 @@ const Footer = () => {
       <div className="w-11/12 m-auto space-y-7 md:space-y-8 ">
         {/* Menus */}
         <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-6 md:mb-16">
-          {/* service Menus */}
-          <div className="space-y-4 w-full divide-y divide-gray-700">
-            <h3 className="text-base text-white font-semibold pb-3 flex items-center gap-1">
-              <SplinePointer className="size-5" />
-              Digital Solutions
-            </h3>
-            <ul className="space-y-1 grid grid-cols-2 md:grid-cols-5 gap-2">
-              {toolsData.map((tool) => (
-                <li key={tool.title} className="relative">
-                  <Link
-                    href={tool.link}
-                    className={`text-sm flex items-center gap-1 w-fit line-clamp-1 transition-all relative
-          before:absolute before:left-0 before:bottom-0 before:h-px before:transition-all before:duration-300 ${currentUrl === tool.link ? "text-yellow-400 before:w-full before:bg-yellow-400" : "text-gray-200 before:w-0 before:bg-gray-400 hover:before:w-full"}`}
-                  >
-                    {tool.title} <ArrowUpRight className="size-4" />
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
           {/* About Menus */}
-          <div className="space-y-4 w-full divide-y divide-gray-700">
-            <h3 className="text-base text-white font-semibold pb-3">About</h3>
+          <div className="space-y-4 w-full ">
             <ul className="space-y-2 flex flex-wrap gap-x-4 gap-y-2">
               {about.map((company) => (
                 <li key={company.name} className="relative">

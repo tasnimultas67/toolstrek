@@ -1,0 +1,5661 @@
+{
+  "BA": {
+    "Arabic": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211201",
+            "name": "Al- Quran & Al-Hadith",
+            "credit": 4
+          },
+          {
+            "code": "211203",
+            "name": "History of Arabic Literature (500-750 AD)",
+            "credit": 4
+          },
+          {
+            "code": "211205",
+            "name": "Communicative Arabic-I",
+            "credit": 4
+          },
+          {
+            "code": "211207",
+            "name": "Arabic Grammar (Sarf)",
+            "credit": 4
+          },
+          {
+            "code": "211209",
+            "name": "Islamic Ideology-I",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221203",
+            "name": "Communicative Arabic-2",
+            "credit": 4
+          },
+          {
+            "code": "221205",
+            "name": "Arabic Grammar (Nahu)",
+            "credit": 4
+          },
+          {
+            "code": "221207",
+            "name": "History of Arabic Literature(750-1258 A.D)",
+            "credit": 4
+          },
+          {
+            "code": "221209",
+            "name": "Islamic Ideology-2",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization and Political System of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231201",
+            "name": "Classical Prose ",
+            "credit": 4
+          },
+          {
+            "code": "231203",
+            "name": "Modern Prose",
+            "credit": 4
+          },
+          {
+            "code": "231205",
+            "name": "Communicative Arabic- III ",
+            "credit": 4
+          },
+          {
+            "code": "231207",
+            "name": "History of Arabic Literature (1258-1798 AD.)",
+            "credit": 4
+          },
+          {
+            "code": "231209",
+            "name": "Ilmul Balagah and Ilmul Arud",
+            "credit": 4
+          },
+          {
+            "code": "231211",
+            "name": "History of Islam (570-750 AD.)",
+            "credit": 4
+          },
+          {
+            "code": "231213",
+            "name": "Arabic Philology and Arabic Literary Criticism (Theoretical)",
+            "credit": 4
+          },
+          {
+            "code": "231215",
+            "name": "Muslim philosophy-I",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241201",
+            "name": "Modern poetry ",
+            "credit": 4
+          },
+          {
+            "code": "241203",
+            "name": "History of Arabic Literature (1789-Till now)",
+            "credit": 4
+          },
+          {
+            "code": "241205",
+            "name": "Arabic Literary Criticism ",
+            "credit": 4
+          },
+          {
+            "code": "241207",
+            "name": "Modern prose (Novel and Drama)",
+            "credit": 4
+          },
+          {
+            "code": "241209",
+            "name": "`Ilmul Kalam",
+            "credit": 4
+          },
+          {
+            "code": "241211",
+            "name": "Communicative Arabic-IV",
+            "credit": 4
+          },
+          {
+            "code": "241213",
+            "name": "History of Islam (750-1258AD)",
+            "credit": 4
+          },
+          {
+            "code": "241215",
+            "name": "Studies of Arabic in Bengal",
+            "credit": 4
+          },
+          {
+            "code": "241217",
+            "name": "Muslim Philosophy-2",
+            "credit": 4
+          },
+          {
+            "code": "241218",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Bangla": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211001",
+            "name": "History and Culture of Bangladesh and Bengalees (From Ancients to 2000 AD)",
+            "credit": 4
+          },
+          {
+            "code": "211003",
+            "name": "History of Bangla Language and Functional Bangla",
+            "credit": 4
+          },
+          {
+            "code": "211005",
+            "name": "Bangla Poetry-1",
+            "credit": 4
+          },
+          {
+            "code": "211007",
+            "name": "Bangla Novel-1",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "  History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": " Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": " Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": " Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221001",
+            "name": "History of Bengali Literature -1 (Ancients and Medieval)",
+            "credit": 4
+          },
+          {
+            "code": "221003",
+            "name": "Poetry of Medieval Age",
+            "credit": 4
+          },
+          {
+            "code": "221005",
+            "name": "Bengali Poetry -2",
+            "credit": 4
+          },
+          {
+            "code": "221007",
+            "name": "Bengali Drama -1",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization and The Political System of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231001",
+            "name": "History of Bangla Literature-II, First part of Modern AGE (1801-1947) ",
+            "credit": 4
+          },
+          {
+            "code": "231003",
+            "name": "Poetry of Anciant and Medieval AGE ",
+            "credit": 4
+          },
+          {
+            "code": "231005",
+            "name": "Bangla Short Story-I",
+            "credit": 4
+          },
+          {
+            "code": "231007",
+            "name": "Theory of Folklor and Bangla Folk Literature  ",
+            "credit": 4
+          },
+          {
+            "code": "231009",
+            "name": "Literary forms, Literary principles (Theory Rasa), Ornamentation, Rhythm ",
+            "credit": 4
+          },
+          {
+            "code": "231011",
+            "name": "Bangla Prose-I",
+            "credit": 4
+          },
+          {
+            "code": "231013",
+            "name": "Bangla Comedy and Literature of Traveling ",
+            "credit": 4
+          },
+          {
+            "code": "231015",
+            "name": "Bangla Novel-2 ",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241001",
+            "name": "History of Bangla Literature-3 (Development of Bangladeshi Literature Since 1947 to 2000)",
+            "credit": 4
+          },
+          {
+            "code": "241003",
+            "name": "Bangla Novel-3 ",
+            "credit": 4
+          },
+          {
+            "code": "241005",
+            "name": "Western Literary Theores and Methods of Literary Criticism ",
+            "credit": 4
+          },
+          {
+            "code": "241007",
+            "name": "Bangla Drama-2 ",
+            "credit": 4
+          },
+          {
+            "code": "241009",
+            "name": "Classical Literature (Translated) ",
+            "credit": 4
+          },
+          {
+            "code": "241011",
+            "name": "Bangla Short-Stories-2 ",
+            "credit": 4
+          },
+          {
+            "code": "241013",
+            "name": "Bangla Poetry-3 ",
+            "credit": 4
+          },
+          {
+            "code": "241015",
+            "name": "Phonetics and  Linguistics",
+            "credit": 4
+          },
+          {
+            "code": "241017",
+            "name": "Literature on Bangladesh Liberation War",
+            "credit": 4
+          },
+          {
+            "code": "241018",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "English": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211101",
+            "name": "English Reading Skills",
+            "credit": 4
+          },
+          {
+            "code": "211103",
+            "name": "English Writing Skills",
+            "credit": 4
+          },
+          {
+            "code": "211105",
+            "name": "Introduction to Poetry",
+            "credit": 4
+          },
+          {
+            "code": "211107",
+            "name": "Introduction to Prose: Fiction and Non- Fiction:",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": "Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221101",
+            "name": "Introduction to Drama",
+            "credit": 4
+          },
+          {
+            "code": "221103",
+            "name": "Romantic Poetry",
+            "credit": 4
+          },
+          {
+            "code": "221105",
+            "name": "Advanced Reading and Writing",
+            "credit": 4
+          },
+          {
+            "code": "221107",
+            "name": "History of English Literature",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization and The Political System of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231101",
+            "name": "Elizabethan and Jacobean Drama",
+            "credit": 4
+          },
+          {
+            "code": "231103",
+            "name": "16th and 17th Century Poetry",
+            "credit": 4
+          },
+          {
+            "code": "231105",
+            "name": "17th and 18th Century Non-Fictional Prose",
+            "credit": 4
+          },
+          {
+            "code": "231107",
+            "name": "Restoration and Eighteenth Century Fiction",
+            "credit": 4
+          },
+          {
+            "code": "231109",
+            "name": "Restoration and Eighteenth Century Poetry and Drama",
+            "credit": 4
+          },
+          {
+            "code": "231111",
+            "name": "Victorian Poetry",
+            "credit": 4
+          },
+          {
+            "code": "231113",
+            "name": "Introduction to Literary Criticism (Up to Romantic Period)",
+            "credit": 4
+          },
+          {
+            "code": "231115",
+            "name": "Introduction to Linguistics",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241101",
+            "name": "Nineteenth Century Novel",
+            "credit": 4
+          },
+          {
+            "code": "241103",
+            "name": "Twentieth Century Poetry",
+            "credit": 4
+          },
+          {
+            "code": "241105",
+            "name": "Modern Drama",
+            "credit": 4
+          },
+          {
+            "code": "241107",
+            "name": "Twentieth Century Novel",
+            "credit": 4
+          },
+          {
+            "code": "241109",
+            "name": "American Poetry",
+            "credit": 4
+          },
+          {
+            "code": "241111",
+            "name": "American Literature: Fiction and  American Literature: Fiction and Drama ",
+            "credit": 4
+          },
+          {
+            "code": "241113",
+            "name": "Classics in Translation",
+            "credit": 4
+          },
+          {
+            "code": "241115",
+            "name": "Literary Criticism (From Victorian to Modern Age)",
+            "credit": 4
+          },
+          {
+            "code": "241120",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "241117",
+            "name": "Continental Literature",
+            "credit": 4
+          },
+          {
+            "code": "241119",
+            "name": "Approaches and Methods of Language Teaching",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      }
+    },
+    "History": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211503",
+            "name": "Introduction to History",
+            "credit": 4
+          },
+          {
+            "code": "211505",
+            "name": "History of Bengal (from earliest times to 1204)",
+            "credit": 4
+          },
+          {
+            "code": "211507",
+            "name": "History of South Asia upto 1526",
+            "credit": 4
+          },
+          {
+            "code": "211509",
+            "name": "Political and Cultural History of Islam upto 1258",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": "Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221501",
+            "name": "History of South Asia, 1526-1757",
+            "credit": 4
+          },
+          {
+            "code": "221503",
+            "name": "History of Bengal, 1204-1765",
+            "credit": 4
+          },
+          {
+            "code": "221505",
+            "name": "History of Ancient Civilization",
+            "credit": 4
+          },
+          {
+            "code": "221507",
+            "name": "History of Medieval Civilization",
+            "credit": 4
+          },
+          {
+            "code": "222209",
+            "name": "Bangladesh Economy",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231501",
+            "name": "History of Bengal, 1765-1905",
+            "credit": 4
+          },
+          {
+            "code": "231503",
+            "name": "History of South Asia, 1757-1857",
+            "credit": 4
+          },
+          {
+            "code": "231505",
+            "name": "History of West Asia, 1560 hrs.-1914",
+            "credit": 4
+          },
+          {
+            "code": "231507",
+            "name": "History of United States, 1776-1860 hrs.",
+            "credit": 4
+          },
+          {
+            "code": "231509",
+            "name": "History of England, 1485 to 1945",
+            "credit": 4
+          },
+          {
+            "code": "231511",
+            "name": "History of Africa Since Colonial Period",
+            "credit": 4
+          },
+          {
+            "code": "231513",
+            "name": "History of Europe, 1453-1815",
+            "credit": 4
+          },
+          {
+            "code": "231515",
+            "name": "Far East and South-East Asia in Modern Times",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241501",
+            "name": "History of South Asia 1857-1947",
+            "credit": 4
+          },
+          {
+            "code": "241503",
+            "name": "History of Bengal 1905-1947",
+            "credit": 4
+          },
+          {
+            "code": "241505",
+            "name": "Constitutional History of India under British Colonial Rule 1773-1947",
+            "credit": 4
+          },
+          {
+            "code": "241507",
+            "name": "West Asia in Modern Times upto 1945",
+            "credit": 4
+          },
+          {
+            "code": "241509",
+            "name": "History of Russia and Soviet Union upto 1945",
+            "credit": 4
+          },
+          {
+            "code": "241511",
+            "name": "History of United States 1861-1945",
+            "credit": 4
+          },
+          {
+            "code": "241513",
+            "name": "History of Europe 1815-1939",
+            "credit": 4
+          },
+          {
+            "code": "241515",
+            "name": "Bangladesh: National Culture and Heritage",
+            "credit": 4
+          },
+          {
+            "code": "241517",
+            "name": "History of Resistance Movement and Subalterns (Selected Topics)",
+            "credit": 4
+          },
+          {
+            "code": "241518",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Islamic History and Culture": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211601",
+            "name": " History of the Muslims (570-750, Prophet Muhammad (sm), Khulafa-i-Rashidun and the Umayyads)",
+            "credit": 4
+          },
+          {
+            "code": "211603",
+            "name": "History of The Muslims (750-1258, The Abbasids and the Regional Dynasties)",
+            "credit": 4
+          },
+          {
+            "code": "211605",
+            "name": "History of The Muslims in Spain (710-1492)",
+            "credit": 4
+          },
+          {
+            "code": "211607",
+            "name": "History of The Muslim Rule in Syria, Egypt and North Africa (Fatimids, Ayyubids and Mamluks)",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": "Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221601",
+            "name": "History of the Muslims in India (upto 1526)",
+            "credit": 4
+          },
+          {
+            "code": "221603",
+            "name": "History of the Muslims in India (1526-1858)",
+            "credit": 4
+          },
+          {
+            "code": "221605",
+            "name": "History of Ancient Bengal (upto 1204)",
+            "credit": 4
+          },
+          {
+            "code": "221607",
+            "name": "History of Muslim rule in Bengal (1204 -1757)",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization and The Political System of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231601",
+            "name": "History of the Muslims in Persia and Central Asia (13th – 18th century)",
+            "credit": 4
+          },
+          {
+            "code": "231603",
+            "name": "History of the Ottomans (upto 1924)",
+            "credit": 4
+          },
+          {
+            "code": "231605",
+            "name": "History of Bengal (1757-1947)",
+            "credit": 4
+          },
+          {
+            "code": "231607",
+            "name": "History of Modern Europe (Since 1789)  ",
+            "credit": 4
+          },
+          {
+            "code": "231609",
+            "name": "Muslim Minorities in the Contemporary World",
+            "credit": 4
+          },
+          {
+            "code": "231611",
+            "name": "History of Muslim Administration (570-1258)",
+            "credit": 4
+          },
+          {
+            "code": "231613",
+            "name": "History of World Civilizations",
+            "credit": 4
+          },
+          {
+            "code": "231615",
+            "name": "Development of Religious Principles, Institutions, Literature and Science in Islam.",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241601",
+            "name": "Muslim Historiography (Khilafat; Sultanat and Mughal India)",
+            "credit": 4
+          },
+          {
+            "code": "241603",
+            "name": "Development of Philosophy and Sects in Islam",
+            "credit": 4
+          },
+          {
+            "code": "241605",
+            "name": "Development of Muslim Art and Painting",
+            "credit": 4
+          },
+          {
+            "code": "241607",
+            "name": "Development of Muslim Architecture and Archeology",
+            "credit": 4
+          },
+          {
+            "code": "241609",
+            "name": "History of Muslim Administration in India  (Sultanat and Mughal)",
+            "credit": 4
+          },
+          {
+            "code": "241611",
+            "name": "Economic History of Islam",
+            "credit": 4
+          },
+          {
+            "code": "241613",
+            "name": "History of the Muslims of Southeast Asia (upto 1824)",
+            "credit": 4
+          },
+          {
+            "code": "241615",
+            "name": "History of the Modern Muslim States",
+            "credit": 4
+          },
+          {
+            "code": "241617",
+            "name": "Political History of Bangladesh since 1971",
+            "credit": 4
+          },
+          {
+            "code": "241618",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Islamic Studies": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211801",
+            "name": "Quranic Studies",
+            "credit": 4
+          },
+          {
+            "code": "211803",
+            "name": "Introduction to Islam",
+            "credit": 4
+          },
+          {
+            "code": "211805",
+            "name": "Introduction to Islamic Dawah",
+            "credit": 4
+          },
+          {
+            "code": "211807",
+            "name": "Al-Kalam",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": "Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221801",
+            "name": "Introductory Knowledge of Quran",
+            "credit": 4
+          },
+          {
+            "code": "221803",
+            "name": "Study of Al-Hadith",
+            "credit": 4
+          },
+          {
+            "code": "221805",
+            "name": "Al-Sirat al-Nabawiyya",
+            "credit": 4
+          },
+          {
+            "code": "221807",
+            "name": "Social System and Family Welfare in Islam",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization and The Political System of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231801",
+            "name": "Study of al-Tafsir",
+            "credit": 4
+          },
+          {
+            "code": "231803",
+            "name": "Principles and History of Tafsir Literature",
+            "credit": 4
+          },
+          {
+            "code": "231805",
+            "name": "Muslim Philosophy and Philosophers",
+            "credit": 4
+          },
+          {
+            "code": "231807",
+            "name": "Sufism and some Prominent Sufis and their Contribution",
+            "credit": 4
+          },
+          {
+            "code": "231809",
+            "name": "Economic System in Islam ",
+            "credit": 4
+          },
+          {
+            "code": "231811",
+            "name": "Study of Islamic Law, Personal Law and Law of Inheritance in Islam",
+            "credit": 4
+          },
+          {
+            "code": "231813",
+            "name": "Ethics and Values in Islam",
+            "credit": 4
+          },
+          {
+            "code": "231815",
+            "name": "History of Muslim World ",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241801",
+            "name": "Sayings of the Holy Prophet (SM.) In the Practical Life",
+            "credit": 4
+          },
+          {
+            "code": "241803",
+            "name": "Principles and History of Hadith Literature",
+            "credit": 4
+          },
+          {
+            "code": "241805",
+            "name": "Principles and History of Islamic Jurisprudence",
+            "credit": 4
+          },
+          {
+            "code": "241807",
+            "name": "Political System in Islam",
+            "credit": 4
+          },
+          {
+            "code": "241809",
+            "name": "Study of Major Religions of the World",
+            "credit": 4
+          },
+          {
+            "code": "241811",
+            "name": "Banking  and Insurance in Islam",
+            "credit": 4
+          },
+          {
+            "code": "241813",
+            "name": "Muslims' Contribution to Science & Technology",
+            "credit": 4
+          },
+          {
+            "code": "241815",
+            "name": "Islamic Civilization",
+            "credit": 4
+          },
+          {
+            "code": "241817",
+            "name": "Human Rights in Islam",
+            "credit": 4
+          },
+          {
+            "code": "241818",
+            "name": "Viva-Voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Library and Information Science": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "213801",
+            "name": "Foundations of Library and Information Science",
+            "credit": 4
+          },
+          {
+            "code": "213803",
+            "name": "Basics of Classification and Cataloguing",
+            "credit": 4
+          },
+          {
+            "code": "213805",
+            "name": "Introduction to Computer and Communication Technologies",
+            "credit": 4
+          },
+          {
+            "code": "213807",
+            "name": "Management of Library and Information Centre",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": "Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223801",
+            "name": "Records and Archives Management",
+            "credit": 4
+          },
+          {
+            "code": "223803",
+            "name": "Information Sources and Services",
+            "credit": 4
+          },
+          {
+            "code": "223805",
+            "name": "Information Resources Development",
+            "credit": 4
+          },
+          {
+            "code": "223807",
+            "name": "Information Resource Sharing",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization and The Political System of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233801",
+            "name": "Information Networking and Resource Sharing",
+            "credit": 4
+          },
+          {
+            "code": "233803",
+            "name": "Database Design and Application",
+            "credit": 4
+          },
+          {
+            "code": "233805",
+            "name": "Documentation",
+            "credit": 4
+          },
+          {
+            "code": "233807",
+            "name": "International and Comparative Librarianship",
+            "credit": 4
+          },
+          {
+            "code": "233809",
+            "name": "Research Methodology and User Studies",
+            "credit": 4
+          },
+          {
+            "code": "233811",
+            "name": "Automation of Library and Information Centres",
+            "credit": 4
+          },
+          {
+            "code": "233813",
+            "name": "Indexing and Abstracting ",
+            "credit": 4
+          },
+          {
+            "code": "233815",
+            "name": "Information and Communication",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243801",
+            "name": "Organization of Knowledge (Classification Theory)",
+            "credit": 4
+          },
+          {
+            "code": "243803",
+            "name": "Organization of Knowledge (Cataloguing Theory)",
+            "credit": 4
+          },
+          {
+            "code": "243805",
+            "name": "Systems Analysis and Design",
+            "credit": 4
+          },
+          {
+            "code": "243807",
+            "name": "New Technologies Current Trends in Information Systems",
+            "credit": 4
+          },
+          {
+            "code": "243809",
+            "name": "Information Production Marketing and Public Relation",
+            "credit": 4
+          },
+          {
+            "code": "243811",
+            "name": "Information Retrieval Techniques ",
+            "credit": 4
+          },
+          {
+            "code": "243813",
+            "name": "Advanced Bibliography",
+            "credit": 4
+          },
+          {
+            "code": "243814",
+            "name": "Organization of Knowledge (Classification Practical)",
+            "credit": 3
+          },
+          {
+            "code": "243816",
+            "name": "Organization of Knowledge (Cataloguing Practical)",
+            "credit": 3
+          },
+          {
+            "code": "243820",
+            "name": "Computer Applications in Libraries (Practical)",
+            "credit": 2
+          },
+          {
+            "code": "243822",
+            "name": "Viva Voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Philosophy": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211701",
+            "name": "Problems of Philosophy ",
+            "credit": 4
+          },
+          {
+            "code": "211703",
+            "name": "History of Western Philosophy : Ancient and Medieval",
+            "credit": 4
+          },
+          {
+            "code": "211705",
+            "name": "General Ethics",
+            "credit": 4
+          },
+          {
+            "code": "211707",
+            "name": "Psychology",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": "Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221701",
+            "name": "History of  Western Philosophy: Modern",
+            "credit": 4
+          },
+          {
+            "code": "221703",
+            "name": "Muslim Philosophy ",
+            "credit": 4
+          },
+          {
+            "code": "221705",
+            "name": "Indian Philosophy: Atheistic School",
+            "credit": 4
+          },
+          {
+            "code": "221707",
+            "name": "General Logic",
+            "credit": 4
+          },
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization and The Political System of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231701",
+            "name": "Ancient Philosophical Classics : Plato and Aristotle",
+            "credit": 4
+          },
+          {
+            "code": "231703",
+            "name": "Modern Philosophical Classics : Hume and Kant",
+            "credit": 4
+          },
+          {
+            "code": "231705",
+            "name": "Symbolic Logic",
+            "credit": 4
+          },
+          {
+            "code": "231707",
+            "name": "Moral Philosophy of Immanuel Kant and J.S. Nill",
+            "credit": 4
+          },
+          {
+            "code": "231709",
+            "name": "Philosophy of the Bangalees : Ancient and Medieval",
+            "credit": 4
+          },
+          {
+            "code": "231711",
+            "name": "Muslim Philosophers",
+            "credit": 4
+          },
+          {
+            "code": "231713",
+            "name": "Indian Philosophy : Theistic School",
+            "credit": 4
+          },
+          {
+            "code": "231715",
+            "name": "Philosophy of Education",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241701",
+            "name": "Contemporary Western Philosophy",
+            "credit": 4
+          },
+          {
+            "code": "241703",
+            "name": "Marxist Philosophy",
+            "credit": 4
+          },
+          {
+            "code": "241705",
+            "name": "Aesthetics",
+            "credit": 4
+          },
+          {
+            "code": "241707",
+            "name": "Political Philosophy: Ancient and Medieval",
+            "credit": 4
+          },
+          {
+            "code": "241709",
+            "name": "Philosophy of the Bangalees: Modern and Contemporary",
+            "credit": 4
+          },
+          {
+            "code": "241711",
+            "name": "Philosophy of Mind",
+            "credit": 4
+          },
+          {
+            "code": "241713",
+            "name": "Social Philosophers",
+            "credit": 4
+          },
+          {
+            "code": "241715",
+            "name": "Meta Ethics",
+            "credit": 4
+          },
+          {
+            "code": "241717",
+            "name": "Philosophy of Religion",
+            "credit": 4
+          },
+          {
+            "code": "241718",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Sanskrit": {
+      "1st Year": {
+        "core": [
+          {
+            "code": "211301",
+            "name": "Sanskrit Language -I",
+            "credit": 4
+          },
+          {
+            "code": "211303",
+            "name": "History of Vedic Literature",
+            "credit": 4
+          },
+          {
+            "code": "211305",
+            "name": "History of Sanskrit Literature",
+            "credit": 4
+          },
+          {
+            "code": "211307",
+            "name": "Sanskrit Story Literature",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212009",
+            "name": "Introducing Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221301",
+            "name": "Sanskrit Language-2",
+            "credit": 4
+          },
+          {
+            "code": "221303",
+            "name": "Sanskrit Poetry",
+            "credit": 4
+          },
+          {
+            "code": "221305",
+            "name": "Sanskrit Prose",
+            "credit": 4
+          },
+          {
+            "code": "221307",
+            "name": "Sanskrit Poetics",
+            "credit": 4
+          },
+          {
+            "code": "222209",
+            "name": "Bangladesh Economy",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231301",
+            "name": "Sanskrit Grammar- I",
+            "credit": 4
+          },
+          {
+            "code": "231303",
+            "name": "Vedic Literature and Grammar",
+            "credit": 4
+          },
+          {
+            "code": "231305",
+            "name": "Sanskrit Drama (Kalidasa and Pre-Kalidasa)",
+            "credit": 4
+          },
+          {
+            "code": "231307",
+            "name": "Vedic and Sanskrit Prosody",
+            "credit": 4
+          },
+          {
+            "code": "231309",
+            "name": "Linguistics and Sanskrit Philology",
+            "credit": 4
+          },
+          {
+            "code": "231311",
+            "name": "Indian Philosophy",
+            "credit": 4
+          },
+          {
+            "code": "231313",
+            "name": "Ancient Indian History and Culture",
+            "credit": 4
+          },
+          {
+            "code": "231315",
+            "name": "Manuscript Studies",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241301",
+            "name": "Sanskrit Grammar-2",
+            "credit": 4
+          },
+          {
+            "code": "241303",
+            "name": "Sanskrit Epic",
+            "credit": 4
+          },
+          {
+            "code": "241305",
+            "name": "Purana and Philosophical Poem",
+            "credit": 4
+          },
+          {
+            "code": "241307",
+            "name": "Post-Kalidasa Sanskrit Drama",
+            "credit": 4
+          },
+          {
+            "code": "241309",
+            "name": "Sanskrit Ethical Poem",
+            "credit": 4
+          },
+          {
+            "code": "241311",
+            "name": "Sanskrit Historical Poem",
+            "credit": 4
+          },
+          {
+            "code": "241313",
+            "name": "Ancient Indian Politics",
+            "credit": 4
+          },
+          {
+            "code": "241315",
+            "name": "Archaeology of Bengal",
+            "credit": 4
+          },
+          {
+            "code": "241317",
+            "name": "Essay, Composition and Translation",
+            "credit": 4
+          },
+          {
+            "code": "241318",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    }
+  },
+  "BBA": {
+    "Accounting": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222501",
+            "name": "Computer Information Technology (Accounting)",
+            "credit": 4
+          },
+          {
+            "code": "222503",
+            "name": "Taxation in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222505",
+            "name": "Intermediate Accounting",
+            "credit": 4
+          },
+          {
+            "code": "222507",
+            "name": "Business Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "222509",
+            "name": "Business Statistics",
+            "credit": 4
+          },
+          {
+            "code": "222511",
+            "name": "Macro Economics",
+            "credit": 4
+          },
+          {
+            "code": "222513",
+            "name": "Business Communication and Report Writing",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "212501",
+            "name": "Principles of Accounting",
+            "credit": 4
+          },
+          {
+            "code": "212503",
+            "name": "Principles of Finance",
+            "credit": 4
+          },
+          {
+            "code": "212505",
+            "name": "Principles of Marketing ",
+            "credit": 4
+          },
+          {
+            "code": "212507",
+            "name": "Principles of Management",
+            "credit": 4
+          },
+          {
+            "code": "212509",
+            "name": "Micro Economics",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh ",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232501",
+            "name": "Audit and Assurance",
+            "credit": 4
+          },
+          {
+            "code": "232503",
+            "name": "Advanced Accounting-I",
+            "credit": 4
+          },
+          {
+            "code": "232505",
+            "name": "Cost Accounting",
+            "credit": 4
+          },
+          {
+            "code": "232507",
+            "name": "Management Accounting (In English)",
+            "credit": 4
+          },
+          {
+            "code": "232509",
+            "name": "Business and Commercial Laws",
+            "credit": 4
+          },
+          {
+            "code": "232511",
+            "name": "Entrepreneurship",
+            "credit": 4
+          },
+          {
+            "code": "232513",
+            "name": "Financial Management",
+            "credit": 4
+          },
+          {
+            "code": "232515",
+            "name": "Banking and Insurance Theories, Laws and Accounts",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242501",
+            "name": "Accounting Theory",
+            "credit": 4
+          },
+          {
+            "code": "242503",
+            "name": "Advanced Auditing & Professional Ethics",
+            "credit": 4
+          },
+          {
+            "code": "242505",
+            "name": "Accounting Information Systems",
+            "credit": 4
+          },
+          {
+            "code": "242507",
+            "name": "Organizational Behavior",
+            "credit": 4
+          },
+          {
+            "code": "242509",
+            "name": "Corporate Law and Practices",
+            "credit": 4
+          },
+          {
+            "code": "242511",
+            "name": "Working Capital Management And Financial Statement Analysis",
+            "credit": 4
+          },
+          {
+            "code": "242513",
+            "name": "Advanced Accounting-II",
+            "credit": 4
+          },
+          {
+            "code": "242515",
+            "name": "Investment Analysis and Portfolio Management",
+            "credit": 4
+          },
+          {
+            "code": "242517",
+            "name": "Research Methodology (In English)",
+            "credit": 4
+          },
+          {
+            "code": "242518",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Finance and Banking": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222401",
+            "name": "Business Statistics",
+            "credit": 4
+          },
+          {
+            "code": "222403",
+            "name": "Macro Economics",
+            "credit": 4
+          },
+          {
+            "code": "222405",
+            "name": "Business Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "222407",
+            "name": "Law and Practices of Banking and Insurance",
+            "credit": 4
+          },
+          {
+            "code": "222409",
+            "name": "Computer and Information Technology",
+            "credit": 4
+          },
+          {
+            "code": "222411",
+            "name": "Legal Aspects of Business",
+            "credit": 4
+          },
+          {
+            "code": "222413",
+            "name": "Business Communication and Report Writing",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "212401",
+            "name": "Principles of Accounting",
+            "credit": 4
+          },
+          {
+            "code": "212403",
+            "name": "Principles of Finance",
+            "credit": 4
+          },
+          {
+            "code": "212405",
+            "name": "Principles of Marketing ",
+            "credit": 4
+          },
+          {
+            "code": "212407",
+            "name": "Principles of Management",
+            "credit": 4
+          },
+          {
+            "code": "212409",
+            "name": "Micro Economics",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh ",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232401",
+            "name": "Portfolio Management",
+            "credit": 4
+          },
+          {
+            "code": "232403",
+            "name": "Financial Analysis & Control",
+            "credit": 4
+          },
+          {
+            "code": "232405",
+            "name": "Entrepreneurship",
+            "credit": 4
+          },
+          {
+            "code": "232407",
+            "name": "Management  Accounting",
+            "credit": 4
+          },
+          {
+            "code": "232409",
+            "name": "Auditing",
+            "credit": 4
+          },
+          {
+            "code": "232411",
+            "name": "Islamic Banking",
+            "credit": 4
+          },
+          {
+            "code": "232413",
+            "name": "Marketing of Financial Service",
+            "credit": 4
+          },
+          {
+            "code": "232415",
+            "name": "Financial Management",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242401",
+            "name": "International Trade and Finance",
+            "credit": 4
+          },
+          {
+            "code": "242403",
+            "name": "Public Finance and Taxation",
+            "credit": 4
+          },
+          {
+            "code": "242405",
+            "name": "Financial Market and Institutions",
+            "credit": 4
+          },
+          {
+            "code": "242407",
+            "name": "Comparative Financial System",
+            "credit": 4
+          },
+          {
+            "code": "242409",
+            "name": "Human Resource Management",
+            "credit": 4
+          },
+          {
+            "code": "242411",
+            "name": "Business Research Methodology",
+            "credit": 4
+          },
+          {
+            "code": "242413",
+            "name": "SME and Micro Finance",
+            "credit": 4
+          },
+          {
+            "code": "242415",
+            "name": "E-Banking & E-Commerce",
+            "credit": 4
+          },
+          {
+            "code": "242417",
+            "name": "Central Banking",
+            "credit": 4
+          },
+          {
+            "code": "242418",
+            "name": "Viva-Voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Management": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222601",
+            "name": "Human Resource Management",
+            "credit": 4
+          },
+          {
+            "code": "222603",
+            "name": "Business Communication (In English)",
+            "credit": 4
+          },
+          {
+            "code": "222605",
+            "name": "Legal Environment of Business",
+            "credit": 4
+          },
+          {
+            "code": "222607",
+            "name": "Principles of Finance",
+            "credit": 4
+          },
+          {
+            "code": "222609",
+            "name": "Business Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "222611",
+            "name": "Computer and Information Technology",
+            "credit": 4
+          },
+          {
+            "code": "222613",
+            "name": "Macro Economics",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "212601",
+            "name": "Introduction to Business",
+            "credit": 4
+          },
+          {
+            "code": "212603",
+            "name": "Principles of Management",
+            "credit": 4
+          },
+          {
+            "code": "212605",
+            "name": "Principles of Accounting",
+            "credit": 4
+          },
+          {
+            "code": "212607",
+            "name": "Principles of Marketing",
+            "credit": 4
+          },
+          {
+            "code": "212609",
+            "name": "Micro-Economics",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232601",
+            "name": "Operations Management",
+            "credit": 4
+          },
+          {
+            "code": "232603",
+            "name": "Business Statistics (In English)",
+            "credit": 4
+          },
+          {
+            "code": "232605",
+            "name": "Organizational Behavior",
+            "credit": 4
+          },
+          {
+            "code": "232607",
+            "name": "Taxation in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "232609",
+            "name": "Insurance & Risk Management",
+            "credit": 4
+          },
+          {
+            "code": "232611",
+            "name": "Company Law",
+            "credit": 4
+          },
+          {
+            "code": "232613",
+            "name": "Management Accounting (In English)",
+            "credit": 4
+          },
+          {
+            "code": "232615",
+            "name": "Marketing Management",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242601",
+            "name": "Bank Management",
+            "credit": 4
+          },
+          {
+            "code": "242603",
+            "name": "Financial Management (In English)",
+            "credit": 4
+          },
+          {
+            "code": "242605",
+            "name": "Supply Chain Management",
+            "credit": 4
+          },
+          {
+            "code": "242607",
+            "name": "Industrial Relations",
+            "credit": 4
+          },
+          {
+            "code": "242609",
+            "name": "Project Management",
+            "credit": 4
+          },
+          {
+            "code": "242611",
+            "name": "International Trade",
+            "credit": 4
+          },
+          {
+            "code": "242613",
+            "name": "Investment Management",
+            "credit": 4
+          },
+          {
+            "code": "242615",
+            "name": "Bangladesh Economy",
+            "credit": 4
+          },
+          {
+            "code": "242617",
+            "name": "Entrepreneurship",
+            "credit": 4
+          },
+          {
+            "code": "242618",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Marketing": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222301",
+            "name": "Business Communication",
+            "credit": 4
+          },
+          {
+            "code": "222303",
+            "name": "Fundamentals of Finance",
+            "credit": 4
+          },
+          {
+            "code": "222305",
+            "name": "Business Statistics- I",
+            "credit": 4
+          },
+          {
+            "code": "222307",
+            "name": "Business Mathmetics",
+            "credit": 4
+          },
+          {
+            "code": "222309",
+            "name": "Insurance and Risk Management",
+            "credit": 4
+          },
+          {
+            "code": "222311",
+            "name": "Micro Economics",
+            "credit": 4
+          },
+          {
+            "code": "222313",
+            "name": "Agricultural Marketing",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "212301",
+            "name": "Introduction to Business",
+            "credit": 4
+          },
+          {
+            "code": "212303",
+            "name": "Principles of Marketing-I",
+            "credit": 4
+          },
+          {
+            "code": "212305",
+            "name": "Financial Accounting",
+            "credit": 4
+          },
+          {
+            "code": "212307",
+            "name": "Principles of Management",
+            "credit": 4
+          },
+          {
+            "code": "212309",
+            "name": "Introduction to Computer",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence Independent of Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232301",
+            "name": "Principles of Marketing-II",
+            "credit": 4
+          },
+          {
+            "code": "232303",
+            "name": "Organizational Behavior",
+            "credit": 4
+          },
+          {
+            "code": "232305",
+            "name": "Financial Management",
+            "credit": 4
+          },
+          {
+            "code": "232307",
+            "name": "Business Statistics-II",
+            "credit": 4
+          },
+          {
+            "code": "232309",
+            "name": "Advertising & Promotion",
+            "credit": 4
+          },
+          {
+            "code": "232311",
+            "name": "Legal Aspects of Marketing",
+            "credit": 4
+          },
+          {
+            "code": "232313",
+            "name": "Macro Economics",
+            "credit": 4
+          },
+          {
+            "code": "232315",
+            "name": "Taxation in Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242301",
+            "name": "Marketing Management",
+            "credit": 4
+          },
+          {
+            "code": "242303",
+            "name": "Human Resource Management",
+            "credit": 4
+          },
+          {
+            "code": "242305",
+            "name": "International Business",
+            "credit": 4
+          },
+          {
+            "code": "242307",
+            "name": "Consumer Behavior",
+            "credit": 4
+          },
+          {
+            "code": "242309",
+            "name": "Sales Management",
+            "credit": 4
+          },
+          {
+            "code": "242311",
+            "name": "Brand Management",
+            "credit": 4
+          },
+          {
+            "code": "242313",
+            "name": "Entrepreneurship Development",
+            "credit": 4
+          },
+          {
+            "code": "242315",
+            "name": "Bangladesh Economics",
+            "credit": 4
+          },
+          {
+            "code": "242317",
+            "name": "Marketing Research",
+            "credit": 4
+          },
+          {
+            "code": "242318",
+            "name": "Viva- voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    }
+  },
+  "BSc": {
+    "Biochemistry and Molecular Biology": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222901",
+            "name": "Enzymes & Bioenergetics",
+            "credit": 4
+          },
+          {
+            "code": "222903",
+            "name": "Carbohydrates Metabolism",
+            "credit": 2
+          },
+          {
+            "code": "222905",
+            "name": "Molecular Biology-I",
+            "credit": 4
+          },
+          {
+            "code": "222907",
+            "name": "Computer Fundamentals",
+            "credit": 2
+          },
+          {
+            "code": "222908",
+            "name": "Biochemistry Practical",
+            "credit": 4
+          },
+          {
+            "code": "223007",
+            "name": "Botany-II",
+            "credit": 4
+          },
+          {
+            "code": "223008",
+            "name": "Botany Practical-II",
+            "credit": 2
+          },
+          {
+            "code": "223107",
+            "name": "Zoology-II",
+            "credit": 4
+          },
+          {
+            "code": "223108",
+            "name": "Zoology Practical-II",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "212901",
+            "name": "Biophysical and Bioorganic Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "212903",
+            "name": "Introductory Biochemistry",
+            "credit": 4
+          },
+          {
+            "code": "212904",
+            "name": "Biochemistry Practical",
+            "credit": 4
+          },
+          {
+            "code": "213007",
+            "name": "Botany-I",
+            "credit": 4
+          },
+          {
+            "code": "213008",
+            "name": "Botany-I  Practical ",
+            "credit": 2
+          },
+          {
+            "code": "213105",
+            "name": "Zoology-I",
+            "credit": 4
+          },
+          {
+            "code": "213106",
+            "name": "Zoology-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent of Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232901",
+            "name": "Metabolism of Lipids and Nitrogenous Compounds",
+            "credit": 4
+          },
+          {
+            "code": "232903",
+            "name": "Molecular Biology-II",
+            "credit": 4
+          },
+          {
+            "code": "232905",
+            "name": "Molecular Genetics & Clinical Biochemistry",
+            "credit": 4
+          },
+          {
+            "code": "232907",
+            "name": "Microbiology",
+            "credit": 4
+          },
+          {
+            "code": "232909",
+            "name": "Human Physiology ",
+            "credit": 4
+          },
+          {
+            "code": "232911",
+            "name": "Human Nutrition",
+            "credit": 4
+          },
+          {
+            "code": "232913",
+            "name": "Endocrinology",
+            "credit": 4
+          },
+          {
+            "code": "232914",
+            "name": "Practical",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242901",
+            "name": "Cell Biology",
+            "credit": 4
+          },
+          {
+            "code": "242903",
+            "name": "Molecular Biology-III",
+            "credit": 4
+          },
+          {
+            "code": "242905",
+            "name": "Plant Biochemistry & Biotechnology",
+            "credit": 4
+          },
+          {
+            "code": "242907",
+            "name": "Immunology",
+            "credit": 4
+          },
+          {
+            "code": "242909",
+            "name": "Industrial Biotechnology",
+            "credit": 4
+          },
+          {
+            "code": "242911",
+            "name": "Virology & Cancer Biology",
+            "credit": 4
+          },
+          {
+            "code": "242913",
+            "name": "Biochemistry of Natural Products",
+            "credit": 4
+          },
+          {
+            "code": "242915",
+            "name": "Biostatistics",
+            "credit": 4
+          },
+          {
+            "code": "242916",
+            "name": "Practical",
+            "credit": 4
+          },
+          {
+            "code": "242918",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Botany": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223001",
+            "name": " Higher Cryptogams",
+            "credit": 4
+          },
+          {
+            "code": "223003",
+            "name": "Taxonomy of Angiosperms",
+            "credit": 4
+          },
+          {
+            "code": "223005",
+            "name": "Plant Anatomy and Embryology",
+            "credit": 4
+          },
+          {
+            "code": "223006",
+            "name": "Practical- II",
+            "credit": 4
+          },
+          {
+            "code": "222807",
+            "name": " General Chemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222809",
+            "name": "Environmental Chemistry",
+            "credit": 2
+          },
+          {
+            "code": "223107",
+            "name": "Zoology- II",
+            "credit": 4
+          },
+          {
+            "code": "223108",
+            "name": "Zoology Practical- II",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "213001",
+            "name": "Microbiology",
+            "credit": 3
+          },
+          {
+            "code": "213003",
+            "name": "Mycology",
+            "credit": 3
+          },
+          {
+            "code": "213005",
+            "name": "Phycology",
+            "credit": 3
+          },
+          {
+            "code": "213006",
+            "name": "Practical-I",
+            "credit": 3
+          },
+          {
+            "code": "212807",
+            "name": "Chemistry-I",
+            "credit": 4
+          },
+          {
+            "code": "212808",
+            "name": "Chemistry-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "213105",
+            "name": "Zoology-I",
+            "credit": 4
+          },
+          {
+            "code": "213106",
+            "name": "Zoology Practical – I",
+            "credit": 2
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233001",
+            "name": "Gymnosperm, Paleobotany and Palynology",
+            "credit": 4
+          },
+          {
+            "code": "233003",
+            "name": "Plant Physiology and Plant Nutrition",
+            "credit": 4
+          },
+          {
+            "code": "233005",
+            "name": "Plant Biochemistry",
+            "credit": 4
+          },
+          {
+            "code": "233007",
+            "name": "Ecology and Environmental Science ",
+            "credit": 4
+          },
+          {
+            "code": "233009",
+            "name": "Plant Pathology",
+            "credit": 4
+          },
+          {
+            "code": "233011",
+            "name": "Cytology and Cytogenetics",
+            "credit": 4
+          },
+          {
+            "code": "233013",
+            "name": "Genetics",
+            "credit": 4
+          },
+          {
+            "code": "233014",
+            "name": "Practical-III",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243001",
+            "name": "Agronomy and Horticulture",
+            "credit": 4
+          },
+          {
+            "code": "243003",
+            "name": "Economic Botany, Ethnobotany and Pharmacognosy",
+            "credit": 4
+          },
+          {
+            "code": "243005",
+            "name": "Limnology and Aquaculture",
+            "credit": 4
+          },
+          {
+            "code": "243007",
+            "name": "Biodiversity and Evolution",
+            "credit": 4
+          },
+          {
+            "code": "243009",
+            "name": "Plant Breeding",
+            "credit": 4
+          },
+          {
+            "code": "243011",
+            "name": "Molecular Biology and Bioinformatics   ",
+            "credit": 4
+          },
+          {
+            "code": "243013",
+            "name": "Biostatistics and Research Methodology",
+            "credit": 4
+          },
+          {
+            "code": "243015",
+            "name": "Biotechnology and Genetic Engineering",
+            "credit": 4
+          },
+          {
+            "code": "243016",
+            "name": "Practical Paper-IV",
+            "credit": 4
+          },
+          {
+            "code": "243018",
+            "name": "Viva-Voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Chemistry": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222801",
+            "name": " Physical Chemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222803",
+            "name": "Organic Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "222805",
+            "name": "Chemistry of the Representative Elements",
+            "credit": 4
+          },
+          {
+            "code": "222806",
+            "name": "Quantitative Inorganic Analysis (Practical)",
+            "credit": 4
+          },
+          {
+            "code": "222707",
+            "name": "Physics-III (Electricity and Modern Physics)",
+            "credit": 4
+          },
+          {
+            "code": "222708",
+            "name": "Physics-IV (Physics Practical)",
+            "credit": 2
+          },
+          {
+            "code": "223707",
+            "name": "Calculus-II",
+            "credit": 4
+          },
+          {
+            "code": "223708",
+            "name": "Math Lab (Practical)",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "212801",
+            "name": "Physical Chemistry-I ",
+            "credit": 3
+          },
+          {
+            "code": "212803",
+            "name": "Fundamentals of Organic Chemistry",
+            "credit": 3
+          },
+          {
+            "code": "212805",
+            "name": "Fundamentals of Inorganic Chemistry",
+            "credit": 3
+          },
+          {
+            "code": "212806",
+            "name": "Chemistry Practical: Qualitative inorganic analysis, inorganic preparations and elementary crystal chemistry",
+            "credit": 3
+          },
+          {
+            "code": "213709",
+            "name": "Fundamentals of Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "213711",
+            "name": "Calculus-I",
+            "credit": 2
+          },
+          {
+            "code": "212707",
+            "name": "Physics-I (Mechanics, Properties of Matter, Waves & Optics)",
+            "credit": 4
+          },
+          {
+            "code": "212709",
+            "name": "Physics-II (Heat, Thermodynamics and Radiation)",
+            "credit": 2
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent of Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232801",
+            "name": "Physical Chemistry-III",
+            "credit": 4
+          },
+          {
+            "code": "232803",
+            "name": "Stereochemistry",
+            "credit": 4
+          },
+          {
+            "code": "232805",
+            "name": "Advanced Concepts of Atomic Structure and Chemical Bonding ",
+            "credit": 4
+          },
+          {
+            "code": "232807",
+            "name": "Coordination Chemistry and Organometallic Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "232809",
+            "name": "Fundamentals of Analytical Chemistry ",
+            "credit": 4
+          },
+          {
+            "code": "232811",
+            "name": "Industrial Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "232813",
+            "name": "Agricultural Chemistry ",
+            "credit": 4
+          },
+          {
+            "code": "232814",
+            "name": "Physical Chemistry Practical ",
+            "credit": 2
+          },
+          {
+            "code": "232816",
+            "name": "Organic Chemistry Practical (Detection & Preparation)",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242801",
+            "name": "Physical Chemistry-IV",
+            "credit": 4
+          },
+          {
+            "code": "242803",
+            "name": "Selected Topics in Organic Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "242805",
+            "name": "Selected Topics in Inorganic Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "242807",
+            "name": "Nuclear Chemistry  ",
+            "credit": 4
+          },
+          {
+            "code": "242809",
+            "name": "Organic Polymers",
+            "credit": 4
+          },
+          {
+            "code": "242811",
+            "name": "Reaction Mechanism",
+            "credit": 4
+          },
+          {
+            "code": "242813",
+            "name": "Separation Techniques ",
+            "credit": 4
+          },
+          {
+            "code": "242815",
+            "name": "Chemical Spectroscopy",
+            "credit": 4
+          },
+          {
+            "code": "242816",
+            "name": "Practical Chemistry (Organic)",
+            "credit": 2
+          },
+          {
+            "code": "242818",
+            "name": "Practical Chemistry (Industrial)",
+            "credit": 2
+          },
+          {
+            "code": "242820",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Environmental Science": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "224401",
+            "name": "Environmental Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "224403",
+            "name": "Environmental Earth Sciences and Soil Sciences",
+            "credit": 4
+          },
+          {
+            "code": "224405",
+            "name": "Environmental Biology",
+            "credit": 4
+          },
+          {
+            "code": "224407",
+            "name": "Economics and Environmental Economics",
+            "credit": 4
+          },
+          {
+            "code": "224409",
+            "name": "Meteorology and Climate Process ",
+            "credit": 4
+          },
+          {
+            "code": "224411",
+            "name": "Information Technology",
+            "credit": 4
+          },
+          {
+            "code": "224412",
+            "name": "Laboratory and Field work on Environmental Sciences",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "214401",
+            "name": "Introduction to Environmental Science",
+            "credit": 4
+          },
+          {
+            "code": "214403",
+            "name": "Fundamental of Chemistry",
+            "credit": 4
+          },
+          {
+            "code": "214405",
+            "name": "Fundamental of Earth Sciences",
+            "credit": 4
+          },
+          {
+            "code": "214407",
+            "name": " Fundamental of Biological Sciences",
+            "credit": 4
+          },
+          {
+            "code": "214409",
+            "name": "Mathematics and Statistics for Environmental Sciences",
+            "credit": 4
+          },
+          {
+            "code": "214410",
+            "name": "Laboratory and Field work on Environmental Sciences",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "234401",
+            "name": "Integrated Coastal Zone and Floodplain Managements",
+            "credit": 4
+          },
+          {
+            "code": "234403",
+            "name": "Ecology and Biodiversity",
+            "credit": 4
+          },
+          {
+            "code": "234405",
+            "name": "Environmental and Social Impact Assessment (EIA and SIA)",
+            "credit": 4
+          },
+          {
+            "code": "234407",
+            "name": "Environmental Toxicology",
+            "credit": 4
+          },
+          {
+            "code": "234409",
+            "name": "Remote Sensing and GIS",
+            "credit": 4
+          },
+          {
+            "code": "234411",
+            "name": "Geography and Geology of the Bengal Basin",
+            "credit": 4
+          },
+          {
+            "code": "234413",
+            "name": "Hydrology and Water Resources",
+            "credit": 4
+          },
+          {
+            "code": "234414",
+            "name": "Laboratory and Field work on Environmental Sciences",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "244401",
+            "name": "Research Methodology",
+            "credit": 4
+          },
+          {
+            "code": "244403",
+            "name": "Climate Change",
+            "credit": 4
+          },
+          {
+            "code": "244405",
+            "name": "Environmental Hazards and Disaster Managements",
+            "credit": 4
+          },
+          {
+            "code": "244407",
+            "name": "Water Resources Management in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "244409",
+            "name": "Waste Management",
+            "credit": 4
+          },
+          {
+            "code": "244411",
+            "name": "Environmental Laws, Protocols and Ethics",
+            "credit": 4
+          },
+          {
+            "code": "244413",
+            "name": "Instrumental Techniques in Environmental Analysis",
+            "credit": 4
+          },
+          {
+            "code": "244415",
+            "name": "Energy, Environment and Sustainable Development: Bangladesh Perspective",
+            "credit": 4
+          },
+          {
+            "code": "244417",
+            "name": "Agriculture and Environment",
+            "credit": 4
+          },
+          {
+            "code": "244418",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Geography and Environment": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223201",
+            "name": " Geomorphology",
+            "credit": 4
+          },
+          {
+            "code": "223203",
+            "name": "Climatology",
+            "credit": 4
+          },
+          {
+            "code": "223205",
+            "name": "Economic Geography",
+            "credit": 4
+          },
+          {
+            "code": "223206",
+            "name": "Practical-II",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222807",
+            "name": " General Chemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222809",
+            "name": " Environmental Chemistry ",
+            "credit": 2
+          },
+          {
+            "code": "223707",
+            "name": "Calculus-II",
+            "credit": 4
+          },
+          {
+            "code": "223708",
+            "name": "Math Lab (Practical)",
+            "credit": 2
+          },
+          {
+            "code": "223007",
+            "name": " Botany-II",
+            "credit": 4
+          },
+          {
+            "code": "223008",
+            "name": " Botany Practical-II",
+            "credit": 2
+          },
+          {
+            "code": "223107",
+            "name": " Zoology-II",
+            "credit": 4
+          },
+          {
+            "code": "223108",
+            "name": " Zoology Practical-II",
+            "credit": 2
+          },
+          {
+            "code": "223609",
+            "name": "Methods of Statistics",
+            "credit": 4
+          },
+          {
+            "code": "223610",
+            "name": "Statistics Practical-II",
+            "credit": 2
+          },
+          {
+            "code": "222009",
+            "name": " Sociology of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": " Bangladesh Society and Culture",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": " Political Organization and The Political System  of  UK and USA",
+            "credit": 4
+          },
+          {
+            "code": "222209",
+            "name": " Bangladesh Economy ",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 7
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "213201",
+            "name": "Introduction to Geography and Environment",
+            "credit": 3
+          },
+          {
+            "code": "213203",
+            "name": "Introduction to Physical Geography",
+            "credit": 3
+          },
+          {
+            "code": "213205",
+            "name": "Introduction to Human Geography",
+            "credit": 3
+          },
+          {
+            "code": "213206",
+            "name": "Practical-I",
+            "credit": 3
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212807",
+            "name": "Chemistry-I",
+            "credit": 4
+          },
+          {
+            "code": "212808",
+            "name": "Chemistry Practical",
+            "credit": 2
+          },
+          {
+            "code": "213709",
+            "name": "Fundamentals of Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "213711",
+            "name": "Calculus-I",
+            "credit": 2
+          },
+          {
+            "code": "213007",
+            "name": "Botany-I",
+            "credit": 4
+          },
+          {
+            "code": "213008",
+            "name": "Botany-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "213105",
+            "name": "Zoology-I",
+            "credit": 4
+          },
+          {
+            "code": "213106",
+            "name": "Zoology Practical - I",
+            "credit": 2
+          },
+          {
+            "code": "213607",
+            "name": "Introduction to Statistics",
+            "credit": 4
+          },
+          {
+            "code": "213608",
+            "name": "Statistics Practical-I",
+            "credit": 2
+          },
+          {
+            "code": "212009",
+            "name": "Introductory Sociology",
+            "credit": 4
+          },
+          {
+            "code": "212111",
+            "name": "Introduction to Social Work",
+            "credit": 4
+          },
+          {
+            "code": "211909",
+            "name": "Introduction to Political Theory",
+            "credit": 4
+          },
+          {
+            "code": "213905",
+            "name": "Introduction to Psychology",
+            "credit": 4
+          },
+          {
+            "code": "212209",
+            "name": "Principles of Economics",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 7
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233201",
+            "name": "Environmental Geography",
+            "credit": 4
+          },
+          {
+            "code": "233203",
+            "name": "Soil and Biogeography",
+            "credit": 4
+          },
+          {
+            "code": "233205",
+            "name": "Geography of Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "233207",
+            "name": "World Regional Geography",
+            "credit": 4
+          },
+          {
+            "code": "233209",
+            "name": "Cultural Geography",
+            "credit": 4
+          },
+          {
+            "code": "233211",
+            "name": "Population Geography",
+            "credit": 4
+          },
+          {
+            "code": "233213",
+            "name": "Quantitative Geography",
+            "credit": 4
+          },
+          {
+            "code": "233214",
+            "name": "Practical–III",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243201",
+            "name": "Geographical Thoughts and Concepts",
+            "credit": 4
+          },
+          {
+            "code": "243203",
+            "name": "Oceanography",
+            "credit": 4
+          },
+          {
+            "code": "243205",
+            "name": "Geography of Disasters  ",
+            "credit": 4
+          },
+          {
+            "code": "243207",
+            "name": "Political Geography",
+            "credit": 4
+          },
+          {
+            "code": "243209",
+            "name": "Agricultural Geography",
+            "credit": 4
+          },
+          {
+            "code": "243211",
+            "name": "Geography of South Asia",
+            "credit": 4
+          },
+          {
+            "code": "243213",
+            "name": "Urban Geography",
+            "credit": 4
+          },
+          {
+            "code": "243215",
+            "name": "Principles of Remote Sensing and Geographic Information System",
+            "credit": 4
+          },
+          {
+            "code": "243216",
+            "name": "Practical-IV",
+            "credit": 4
+          },
+          {
+            "code": "243218",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Home Economics": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223501",
+            "name": " Housing and Interior Decoration",
+            "credit": 4
+          },
+          {
+            "code": "223503",
+            "name": " Principles of Family Clothing",
+            "credit": 4
+          },
+          {
+            "code": "223505",
+            "name": " Household Physics",
+            "credit": 4
+          },
+          {
+            "code": "223506",
+            "name": " Household Physics (Practical)",
+            "credit": 2
+          },
+          {
+            "code": "223507",
+            "name": " Developmental Psychology",
+            "credit": 4
+          },
+          {
+            "code": "223508",
+            "name": " Developmental Psychology (Practical)",
+            "credit": 2
+          },
+          {
+            "code": "223409",
+            "name": " Basic Nutrition and Food Security, Safety",
+            "credit": 4
+          },
+          {
+            "code": "223410",
+            "name": " Practical",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "213501",
+            "name": "Philosophy and Purpose of Home Management",
+            "credit": 3
+          },
+          {
+            "code": "213503",
+            "name": "Maternal - Child Health and Early childhood Education",
+            "credit": 3
+          },
+          {
+            "code": "213505",
+            "name": "Applied Art and Textile",
+            "credit": 3
+          },
+          {
+            "code": "213506",
+            "name": "Home Economics Practical",
+            "credit": 3
+          },
+          {
+            "code": "213507",
+            "name": "Introduction to Human Physiology",
+            "credit": 4
+          },
+          {
+            "code": "213508",
+            "name": "Practical ",
+            "credit": 2
+          },
+          {
+            "code": "213509",
+            "name": "Elementary Biochemistry",
+            "credit": 4
+          },
+          {
+            "code": "213510",
+            "name": "Practical",
+            "credit": 2
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233501",
+            "name": "Meal Management ",
+            "credit": 4
+          },
+          {
+            "code": "233503",
+            "name": "Child Behaviour and Guidance",
+            "credit": 4
+          },
+          {
+            "code": "233505",
+            "name": "History Art Culture of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "233507",
+            "name": "Textile Design and Weaving",
+            "credit": 4
+          },
+          {
+            "code": "233509",
+            "name": "Human Nutrition and Dietetics",
+            "credit": 4
+          },
+          {
+            "code": "233511",
+            "name": "Environment, Ecology and Household Equipments ",
+            "credit": 4
+          },
+          {
+            "code": "233513",
+            "name": "Family and Child Welfare in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "233514",
+            "name": "Practical  ",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243501",
+            "name": "Food Science and Technology ",
+            "credit": 4
+          },
+          {
+            "code": "243503",
+            "name": "Counselling in Family",
+            "credit": 4
+          },
+          {
+            "code": "243505",
+            "name": "Family Resource Management ",
+            "credit": 4
+          },
+          {
+            "code": "243507",
+            "name": "Textile Manugacturing and Merchandising",
+            "credit": 4
+          },
+          {
+            "code": "243509",
+            "name": "Community Nutrition and Public Health",
+            "credit": 4
+          },
+          {
+            "code": "243511",
+            "name": "The Child with Special Needs ",
+            "credit": 4
+          },
+          {
+            "code": "243513",
+            "name": "Art and Craft: Income Generating Sources for Women",
+            "credit": 4
+          },
+          {
+            "code": "243515",
+            "name": "Home Economics Education",
+            "credit": 4
+          },
+          {
+            "code": "243516",
+            "name": "Practical  ",
+            "credit": 4
+          },
+          {
+            "code": "243518",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Mathematics": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223701",
+            "name": "Calculus –II",
+            "credit": 4
+          },
+          {
+            "code": "223703",
+            "name": "Ordinary Differential Equations",
+            "credit": 4
+          },
+          {
+            "code": "223705",
+            "name": "Computer Programming (Fortran)",
+            "credit": 4
+          },
+          {
+            "code": "223706",
+            "name": "Math Lab (Practical)",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222707",
+            "name": "Physics-III (Electricity and Modern Physics)",
+            "credit": 4
+          },
+          {
+            "code": "222708",
+            "name": "Physics-IV (Physics Practical)",
+            "credit": 2
+          },
+          {
+            "code": "222807",
+            "name": "General Chemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222809",
+            "name": "Environmental Chemistry",
+            "credit": 2
+          },
+          {
+            "code": "223609",
+            "name": "Methods of Statistics",
+            "credit": 4
+          },
+          {
+            "code": "223610",
+            "name": "Statistics Practical-II",
+            "credit": 2
+          }
+        ],
+        "optionalLimit": 4
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "213701",
+            "name": "Fundamentals of Mathematics",
+            "credit": 3
+          },
+          {
+            "code": "213703",
+            "name": "Calculus – I",
+            "credit": 3
+          },
+          {
+            "code": "213705",
+            "name": "Linear Algebra",
+            "credit": 3
+          },
+          {
+            "code": "213707",
+            "name": "Analytic and Vector Geometry",
+            "credit": 3
+          },
+          {
+            "code": "211501",
+            "name": " History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212807",
+            "name": "Chemistry-I",
+            "credit": 4
+          },
+          {
+            "code": "212808",
+            "name": "Chemistry-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "213607",
+            "name": "Introduction to Statistics",
+            "credit": 4
+          },
+          {
+            "code": "213608",
+            "name": "Statistics Practical-I",
+            "credit": 2
+          },
+          {
+            "code": "212707",
+            "name": "Physics-I (Mechanics, Properties of Matter, Waves & Optics)",
+            "credit": 4
+          },
+          {
+            "code": "212709",
+            "name": "Physics-II (Heat, Thermodynamics and Radiation)",
+            "credit": 2
+          }
+        ],
+        "optionalLimit": 4
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233701",
+            "name": "Abstract Algebra",
+            "credit": 4
+          },
+          {
+            "code": "233703",
+            "name": "Real Analysis",
+            "credit": 4
+          },
+          {
+            "code": "233705",
+            "name": "Numerical Analysis",
+            "credit": 4
+          },
+          {
+            "code": "233707",
+            "name": "Complex Analysis",
+            "credit": 4
+          },
+          {
+            "code": "233709",
+            "name": "Differential Geometry",
+            "credit": 4
+          },
+          {
+            "code": "233711",
+            "name": "Mechanics",
+            "credit": 4
+          },
+          {
+            "code": "233713",
+            "name": "Linear Programming",
+            "credit": 4
+          },
+          {
+            "code": "233714",
+            "name": "Math Lab (Practical)",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243701",
+            "name": "Theory of Numbers",
+            "credit": 4
+          },
+          {
+            "code": "243703",
+            "name": "Topology & Functional Analysis",
+            "credit": 4
+          },
+          {
+            "code": "243705",
+            "name": "Methods of Applied Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "243707",
+            "name": "Tensor Analysis",
+            "credit": 4
+          },
+          {
+            "code": "243709",
+            "name": "Partial Differential equations",
+            "credit": 4
+          },
+          {
+            "code": "243711",
+            "name": "Hydrodynamics",
+            "credit": 4
+          },
+          {
+            "code": "243718",
+            "name": "Math Lab (Practical)",
+            "credit": 4
+          },
+          {
+            "code": "243720",
+            "name": "Viva-Voce (Comprehensive)",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "243713",
+            "name": "Discrete Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "243715",
+            "name": "Astronomy",
+            "credit": 4
+          },
+          {
+            "code": "243717",
+            "name": "Mathematical Modeling in Biology",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 2
+      }
+    },
+    "Physics": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222701",
+            "name": "Electricity & Magnetism",
+            "credit": 4
+          },
+          {
+            "code": "222703",
+            "name": "Geometrical & Physical Optics",
+            "credit": 4
+          },
+          {
+            "code": "222705",
+            "name": "Classical Mechanics ",
+            "credit": 4
+          },
+          {
+            "code": "222706",
+            "name": "Physics Practical-II",
+            "credit": 4
+          },
+          {
+            "code": "223707",
+            "name": "Calculus-II",
+            "credit": 4
+          },
+          {
+            "code": "223708",
+            "name": "Math Lab (Practical)",
+            "credit": 2
+          },
+          {
+            "code": "222807",
+            "name": "  General Chemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222809",
+            "name": "  Enviromental Chemistry",
+            "credit": 2
+          },
+          {
+            "code": "223609",
+            "name": "  Methods of Statistics",
+            "credit": 4
+          },
+          {
+            "code": "223610",
+            "name": "  Statistics Practical-II",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "212701",
+            "name": "Mechanics",
+            "credit": 3
+          },
+          {
+            "code": "212703",
+            "name": "Properties of Matter, Waves & Oscillations",
+            "credit": 3
+          },
+          {
+            "code": "212705",
+            "name": "Heat, Thermodynamics and Radiation",
+            "credit": 3
+          },
+          {
+            "code": "212706",
+            "name": "Physics Practical-I",
+            "credit": 3
+          },
+          {
+            "code": "213709",
+            "name": "Fundamentals of Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "213711",
+            "name": "Calculus-I",
+            "credit": 2
+          },
+          {
+            "code": "212807",
+            "name": " Chemistry-I",
+            "credit": 4
+          },
+          {
+            "code": "212808",
+            "name": " Chemistry-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "213607",
+            "name": " Introduction to Statistics",
+            "credit": 4
+          },
+          {
+            "code": "213608",
+            "name": " Statistics Practical-I",
+            "credit": 2
+          },
+          {
+            "code": "211501",
+            "name": " History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232701",
+            "name": "Atomic & Molecular Physics",
+            "credit": 4
+          },
+          {
+            "code": "232703",
+            "name": "Quantum Mechanics-I",
+            "credit": 4
+          },
+          {
+            "code": "232705",
+            "name": "Computer Fundamentals and Numerical Analysis",
+            "credit": 4
+          },
+          {
+            "code": "232707",
+            "name": "Electronics-I",
+            "credit": 4
+          },
+          {
+            "code": "232709",
+            "name": "Nuclear Physics-I",
+            "credit": 4
+          },
+          {
+            "code": "232711",
+            "name": "Solid State Physics-I",
+            "credit": 4
+          },
+          {
+            "code": "232713",
+            "name": "Mathematical Physics",
+            "credit": 4
+          },
+          {
+            "code": "232714",
+            "name": "Physics Practical-III",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242701",
+            "name": "Nuclear Physics-II",
+            "credit": 4
+          },
+          {
+            "code": "242703",
+            "name": "Solid State Physics-II",
+            "credit": 4
+          },
+          {
+            "code": "242705",
+            "name": "Quantum Mechanics-II",
+            "credit": 4
+          },
+          {
+            "code": "242707",
+            "name": "Electronics-II",
+            "credit": 4
+          },
+          {
+            "code": "242709",
+            "name": "Classical Electrodynamics",
+            "credit": 4
+          },
+          {
+            "code": "242711",
+            "name": "Statistical Mechanics ",
+            "credit": 4
+          },
+          {
+            "code": "242713",
+            "name": "Computer Application and Programming",
+            "credit": 4
+          },
+          {
+            "code": "242715",
+            "name": "Theory of Relativity and Cosmology",
+            "credit": 4
+          },
+          {
+            "code": "242716",
+            "name": "Physics Practical-IV",
+            "credit": 4
+          },
+          {
+            "code": "242718",
+            "name": "Viva-Voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Psychology": {
+      "4th Year": {
+        "core": [
+          {
+            "code": "243401",
+            "name": "Theories of Motivation ",
+            "credit": 4
+          },
+          {
+            "code": "243403",
+            "name": "Theories of Learning ",
+            "credit": 4
+          },
+          {
+            "code": "243405",
+            "name": "Theories of Perception ",
+            "credit": 4
+          },
+          {
+            "code": "243407",
+            "name": "Theories of Personality",
+            "credit": 4
+          },
+          {
+            "code": "243409",
+            "name": "Educational Psychology",
+            "credit": 4
+          },
+          {
+            "code": "243411",
+            "name": "Industrial-Organizational Psychology ",
+            "credit": 4
+          },
+          {
+            "code": "243413",
+            "name": "Counseling Psychology",
+            "credit": 4
+          },
+          {
+            "code": "243415",
+            "name": "Clinical Psychology",
+            "credit": 4
+          },
+          {
+            "code": "243416",
+            "name": "Practical Research Project",
+            "credit": 4
+          },
+          {
+            "code": "243418",
+            "name": "Viva voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Soil Science": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223301",
+            "name": "Soil Physics-I",
+            "credit": 4
+          },
+          {
+            "code": "223303",
+            "name": "General Microbiology",
+            "credit": 4
+          },
+          {
+            "code": "223305",
+            "name": "Soil Mineralogy and Colloids",
+            "credit": 4
+          },
+          {
+            "code": "223306",
+            "name": "Soil Science Practical",
+            "credit": 4
+          },
+          {
+            "code": "222807",
+            "name": " General Chemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222809",
+            "name": " Environmental Chemistry  ",
+            "credit": 2
+          },
+          {
+            "code": "223007",
+            "name": " Botany-II",
+            "credit": 4
+          },
+          {
+            "code": "223008",
+            "name": " Botany Practical-II",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "213301",
+            "name": "Introductory Soils-I",
+            "credit": 4
+          },
+          {
+            "code": "213303",
+            "name": "Introductory Soils-II",
+            "credit": 4
+          },
+          {
+            "code": "213304",
+            "name": "Soil Science Practical",
+            "credit": 4
+          },
+          {
+            "code": "212807",
+            "name": "Chemistry-I",
+            "credit": 4
+          },
+          {
+            "code": "212808",
+            "name": "Chemistry-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "213007",
+            "name": "Botany-I",
+            "credit": 4
+          },
+          {
+            "code": "213008",
+            "name": "Botany-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233301",
+            "name": "Pedology ",
+            "credit": 4
+          },
+          {
+            "code": "233303",
+            "name": "Soil Physics-II ",
+            "credit": 4
+          },
+          {
+            "code": "233305",
+            "name": "Soil Chemistry ",
+            "credit": 4
+          },
+          {
+            "code": "233307",
+            "name": "Soil Microbiology ",
+            "credit": 4
+          },
+          {
+            "code": "233309",
+            "name": "Soil Fertility and Plant Nutrition ",
+            "credit": 4
+          },
+          {
+            "code": "233311",
+            "name": "Environmental Pollutions and Waste Management  ",
+            "credit": 4
+          },
+          {
+            "code": "233313",
+            "name": "Soil and Plant Biochemistry",
+            "credit": 4
+          },
+          {
+            "code": "233314",
+            "name": "Practical",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243301",
+            "name": "Soil Survey and Land Evaluation",
+            "credit": 4
+          },
+          {
+            "code": "243303",
+            "name": "Soil Conservation and Soil Management",
+            "credit": 4
+          },
+          {
+            "code": "243305",
+            "name": "Soil classification and Soils of Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "243307",
+            "name": "Irrigation and Drainage ",
+            "credit": 4
+          },
+          {
+            "code": "243309",
+            "name": "Soil Ecology ",
+            "credit": 4
+          },
+          {
+            "code": "243311",
+            "name": "Principles of Agronomy ",
+            "credit": 4
+          },
+          {
+            "code": "243313",
+            "name": "Fertilizers and Agricultural Statistics",
+            "credit": 4
+          },
+          {
+            "code": "243315",
+            "name": "Crops of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "243316",
+            "name": "Practical ",
+            "credit": 4
+          },
+          {
+            "code": "243318",
+            "name": "Viva-Voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Statistics": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223601",
+            "name": "Probability Distribution",
+            "credit": 4
+          },
+          {
+            "code": "223603",
+            "name": "Sampling Technique",
+            "credit": 4
+          },
+          {
+            "code": "223605",
+            "name": "Linear Algebra   ",
+            "credit": 4
+          },
+          {
+            "code": "223606",
+            "name": "Lab-3: Probability Distribution and Sampling Technique",
+            "credit": 2
+          },
+          {
+            "code": "223608",
+            "name": "Lab-4: Linear algebra",
+            "credit": 2
+          },
+          {
+            "code": "223707",
+            "name": "Calculus- II",
+            "credit": 4
+          },
+          {
+            "code": "223708",
+            "name": "Math Lab (Practical)",
+            "credit": 2
+          },
+          {
+            "code": "222211",
+            "name": "Money, Banking and Public finance ",
+            "credit": 4
+          },
+          {
+            "code": "222213",
+            "name": "Bangladesh Economy ",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "213601",
+            "name": "Introductory Statistics",
+            "credit": 4
+          },
+          {
+            "code": "213603",
+            "name": "Introductory Probability & Numerical Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "213604",
+            "name": "Lab 1: Descriptive Statistics",
+            "credit": 2
+          },
+          {
+            "code": "213606",
+            "name": "Lab 2: Numerical   Mathematics ",
+            "credit": 2
+          },
+          {
+            "code": "213709",
+            "name": "Fundamentals of Mathematics",
+            "credit": 4
+          },
+          {
+            "code": "213711",
+            "name": "Calculus-I",
+            "credit": 2
+          },
+          {
+            "code": "212209",
+            "name": "Principles of Economics",
+            "credit": 4
+          },
+          {
+            "code": "212211",
+            "name": "Bangladesh Agricultural Economics ",
+            "credit": 2
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233601",
+            "name": "Sampling Distribution",
+            "credit": 4
+          },
+          {
+            "code": "233603",
+            "name": "Statistical Inference",
+            "credit": 4
+          },
+          {
+            "code": "233605",
+            "name": "Regression Analysis",
+            "credit": 4
+          },
+          {
+            "code": "233607",
+            "name": "Design of Experiments",
+            "credit": 4
+          },
+          {
+            "code": "233609",
+            "name": "Applied Statistics",
+            "credit": 4
+          },
+          {
+            "code": "233611",
+            "name": "Introduction to computer and SPSS",
+            "credit": 4
+          },
+          {
+            "code": "233612",
+            "name": "Lab 5: Statistical Inference",
+            "credit": 2
+          },
+          {
+            "code": "233614",
+            "name": "Lab 6: Regression Analysis",
+            "credit": 2
+          },
+          {
+            "code": "233616",
+            "name": "Lab 7: Design of Experiments",
+            "credit": 2
+          },
+          {
+            "code": "233618",
+            "name": "Lab 8: Applied Statistics",
+            "credit": 2
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243601",
+            "name": "Multivariate Analysis",
+            "credit": 4
+          },
+          {
+            "code": "243603",
+            "name": "Advance Sampling Technique",
+            "credit": 4
+          },
+          {
+            "code": "243605",
+            "name": "Demography",
+            "credit": 4
+          },
+          {
+            "code": "243607",
+            "name": "Computer Programming (FORTRAN & R) ",
+            "credit": 4
+          },
+          {
+            "code": "243609",
+            "name": "Stochastic Process ",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "243611",
+            "name": "Econometrics",
+            "credit": 4
+          },
+          {
+            "code": "243613",
+            "name": "Operational Research and Research Methodology",
+            "credit": 4
+          },
+          {
+            "code": "243615",
+            "name": "Epidemiology & Biostatistics",
+            "credit": 4
+          },
+          {
+            "code": "243616",
+            "name": "Lab: 9 Multivariate Analysis",
+            "credit": 2
+          },
+          {
+            "code": "243618",
+            "name": "Lab: 10 Advance Sampling Technique",
+            "credit": 2
+          },
+          {
+            "code": "243620",
+            "name": "Lab: 11 Econometrics",
+            "credit": 2
+          },
+          {
+            "code": "243622",
+            "name": "Lab: 12 Operational Research & Demography",
+            "credit": 2
+          },
+          {
+            "code": "243624",
+            "name": "Lab: 13 Epidemiology & Biostatistics",
+            "credit": 2
+          },
+          {
+            "code": "243626",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 4
+      }
+    },
+    "Zoology": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "223101",
+            "name": "Animal Diversity –II: Lower chordates and Chordates",
+            "credit": 4
+          },
+          {
+            "code": "223103",
+            "name": "Comparative Anatomy: Protozoa, Non-chordates and Chordates",
+            "credit": 4
+          },
+          {
+            "code": "223105",
+            "name": "Environmental Biology",
+            "credit": 4
+          },
+          {
+            "code": "223106",
+            "name": "Zoology Practical -II",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "223007",
+            "name": "Botany-II",
+            "credit": 4
+          },
+          {
+            "code": "223008",
+            "name": "Botany Practical-II",
+            "credit": 2
+          },
+          {
+            "code": "222807",
+            "name": "General Chemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222809",
+            "name": "Environmental Chemistry ",
+            "credit": 2
+          },
+          {
+            "code": "222909",
+            "name": "Biochemistry-II",
+            "credit": 4
+          },
+          {
+            "code": "222910",
+            "name": "Biochemistry Practical –II",
+            "credit": 2
+          }
+        ],
+        "optionalLimit": 4
+      },
+      "1st Year": {
+        "core": [
+          {
+            "code": "213101",
+            "name": "Introduction to Zoology",
+            "credit": 4
+          },
+          {
+            "code": "213103",
+            "name": "Animal diversity-1: Protozoa and Non-chordates",
+            "credit": 4
+          },
+          {
+            "code": "213104",
+            "name": "Zoology Practical-I",
+            "credit": 4
+          },
+          {
+            "code": "211501",
+            "name": "History of the Emergence of Independent Bangladesh",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "212807",
+            "name": "Chemistry-I",
+            "credit": 4
+          },
+          {
+            "code": "212808",
+            "name": "Chemistry Practical-I",
+            "credit": 2
+          },
+          {
+            "code": "212905",
+            "name": "Biochemistry-I",
+            "credit": 4
+          },
+          {
+            "code": "212906",
+            "name": "Biochemistry-I Practical",
+            "credit": 2
+          },
+          {
+            "code": "213007",
+            "name": "Botany-I",
+            "credit": 4
+          },
+          {
+            "code": "213008",
+            "name": "Botany-I Practical",
+            "credit": 2
+          }
+        ],
+        "optionalLimit": 4
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "233101",
+            "name": "Evolution, Palaeontology and Zoogeography",
+            "credit": 4
+          },
+          {
+            "code": "233103",
+            "name": "Ecology",
+            "credit": 4
+          },
+          {
+            "code": "233105",
+            "name": "Genetics and Animal Breeding",
+            "credit": 4
+          },
+          {
+            "code": "233107",
+            "name": "Developmental Biology and Ethology",
+            "credit": 4
+          },
+          {
+            "code": "233109",
+            "name": "Human Physiology",
+            "credit": 4
+          },
+          {
+            "code": "233111",
+            "name": "Systematics, Demography and Family Planning",
+            "credit": 4
+          },
+          {
+            "code": "233113",
+            "name": "Cell and Molecular Biology",
+            "credit": 4
+          },
+          {
+            "code": "233114",
+            "name": "Zoology Practical-III",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "243101",
+            "name": "Applied and Economic Zoology",
+            "credit": 4
+          },
+          {
+            "code": "243103",
+            "name": "Genetic Engineering and Biotechnology",
+            "credit": 4
+          },
+          {
+            "code": "243105",
+            "name": "Biostatistics and Research Methodology",
+            "credit": 4
+          },
+          {
+            "code": "243107",
+            "name": "Microbiology and Radiation Biology",
+            "credit": 4
+          },
+          {
+            "code": "243109",
+            "name": "Parasitology",
+            "credit": 4
+          },
+          {
+            "code": "243111",
+            "name": "Entomology",
+            "credit": 4
+          },
+          {
+            "code": "243113",
+            "name": "Fisheries Biology",
+            "credit": 4
+          },
+          {
+            "code": "243115",
+            "name": "Wildlife Biology",
+            "credit": 4
+          },
+          {
+            "code": "243116",
+            "name": "Zoology Practical-IV",
+            "credit": 4
+          },
+          {
+            "code": "243118",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    }
+  },
+  "BSS": {
+    "Anthropology": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "224001",
+            "name": "Early Anthropological Theory",
+            "credit": 4
+          },
+          {
+            "code": "224003",
+            "name": "Research Methodology-I",
+            "credit": 4
+          },
+          {
+            "code": "224005",
+            "name": "Economic Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "224007",
+            "name": "European Social History and Culture",
+            "credit": 4
+          },
+          {
+            "code": "222209",
+            "name": "Bangladesh Economy ",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture ",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "234001",
+            "name": "Anthropological Theory-II",
+            "credit": 4
+          },
+          {
+            "code": "234003",
+            "name": "Political Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "234005",
+            "name": "Peasant Society",
+            "credit": 4
+          },
+          {
+            "code": "234007",
+            "name": "Religion and Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "234009",
+            "name": "Environmental Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "234011",
+            "name": "Gender Issues",
+            "credit": 4
+          },
+          {
+            "code": "234013",
+            "name": "Ethnic Identity and Nationalism",
+            "credit": 4
+          },
+          {
+            "code": "234015",
+            "name": "Reading Ethnographic Texts",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "244001",
+            "name": "Contemporary Anthropological Theory",
+            "credit": 4
+          },
+          {
+            "code": "244003",
+            "name": "Research Methods-II",
+            "credit": 4
+          },
+          {
+            "code": "244005",
+            "name": "Anthropology of Development",
+            "credit": 4
+          },
+          {
+            "code": "244007",
+            "name": "Medical Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "244009",
+            "name": "Urban Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "244011",
+            "name": "South Asian Society and Culture",
+            "credit": 4
+          },
+          {
+            "code": "244013",
+            "name": "Language, Society and Culture",
+            "credit": 4
+          },
+          {
+            "code": "244015",
+            "name": "Social Inequality",
+            "credit": 4
+          },
+          {
+            "code": "244017",
+            "name": "Emerging Issues in Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "244018",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Economics": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222201",
+            "name": "Intermediate Microeconomics",
+            "credit": 4
+          },
+          {
+            "code": "222203",
+            "name": "Mathematical Economics",
+            "credit": 4
+          },
+          {
+            "code": "222205",
+            "name": "Introduction to Business (In English/Bengali)",
+            "credit": 4
+          },
+          {
+            "code": "222207",
+            "name": "Computer and Information Technology",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization And Political System Of UK and USA",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society an Culture ",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232201",
+            "name": "Intermediate Macroeconomics",
+            "credit": 4
+          },
+          {
+            "code": "232203",
+            "name": "Statistics for Economics",
+            "credit": 4
+          },
+          {
+            "code": "232205",
+            "name": "Studies on Bangladesh Economy",
+            "credit": 4
+          },
+          {
+            "code": "232207",
+            "name": "Development of Economics",
+            "credit": 4
+          },
+          {
+            "code": "232209",
+            "name": "International Economics-I",
+            "credit": 4
+          },
+          {
+            "code": "232211",
+            "name": "Public Finance",
+            "credit": 4
+          },
+          {
+            "code": "232213",
+            "name": "Urban Economics",
+            "credit": 4
+          },
+          {
+            "code": "232215",
+            "name": "Agricultural and Rural Economics",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242201",
+            "name": "Money, Banking and Finance ",
+            "credit": 4
+          },
+          {
+            "code": "242203",
+            "name": "International Economics-II",
+            "credit": 4
+          },
+          {
+            "code": "242205",
+            "name": "Research Methodology",
+            "credit": 4
+          },
+          {
+            "code": "242207",
+            "name": "Industrial Economics ",
+            "credit": 4
+          },
+          {
+            "code": "242209",
+            "name": "Environmental  and Resource Economics",
+            "credit": 4
+          },
+          {
+            "code": "242211",
+            "name": "Population and Health Economics",
+            "credit": 4
+          },
+          {
+            "code": "242213",
+            "name": "Economic Thought",
+            "credit": 4
+          },
+          {
+            "code": "242222",
+            "name": "Viva-voce  ",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "242215",
+            "name": "Econometrics",
+            "credit": 4
+          },
+          {
+            "code": "242217",
+            "name": "Economic Systems and Development Patterns",
+            "credit": 4
+          },
+          {
+            "code": "242219",
+            "name": "Economics of Planning ",
+            "credit": 4
+          },
+          {
+            "code": "242221",
+            "name": "Islamic Economics",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 2
+      }
+    },
+    "Political Science": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "221901",
+            "name": " Political and Constitutional Development in British India (1757 to 1947)",
+            "credit": 4
+          },
+          {
+            "code": "221903",
+            "name": "Political Economy of Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "221905",
+            "name": "Women in Politics and Development ",
+            "credit": 4
+          },
+          {
+            "code": "221907",
+            "name": "Oriental Political Thought",
+            "credit": 4
+          },
+          {
+            "code": "222209",
+            "name": "Bangladesh Economy ",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222009",
+            "name": "Sociology of Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "222115",
+            "name": "Bangladesh Society and Culture ",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "231901",
+            "name": "Political and Constitutional Development in Bangladesh (1971 to date)",
+            "credit": 4
+          },
+          {
+            "code": "231903",
+            "name": "Fundamentals of International Politics",
+            "credit": 4
+          },
+          {
+            "code": "231905",
+            "name": "Government and Politics in South Asia: India, Pakistan, Nepal and SriLanka",
+            "credit": 4
+          },
+          {
+            "code": "231907",
+            "name": "Approaches to the Study of Politics",
+            "credit": 4
+          },
+          {
+            "code": "231909",
+            "name": "Introduction to Peace and Conflict Studies ",
+            "credit": 4
+          },
+          {
+            "code": "231911",
+            "name": "Public Administration in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "231913",
+            "name": "Research Methodology and Statistics",
+            "credit": 4
+          },
+          {
+            "code": "231915",
+            "name": "Political Sociology",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "241901",
+            "name": "Political Theories: Changes and Continuities",
+            "credit": 4
+          },
+          {
+            "code": "241903",
+            "name": "Local Government and Rural Development in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "241905",
+            "name": "Introduction to Public Policy",
+            "credit": 4
+          },
+          {
+            "code": "241907",
+            "name": "Government and Politics in East Asia: China, Japan and South Korea",
+            "credit": 4
+          },
+          {
+            "code": "241909",
+            "name": "Environment and Development ",
+            "credit": 4
+          },
+          {
+            "code": "241911",
+            "name": "Foreign Relations of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "241913",
+            "name": "Legislative Process in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "241915",
+            "name": "Globalization, Regionalism and International Financial Institutions",
+            "credit": 4
+          },
+          {
+            "code": "241917",
+            "name": "Modern Political Thought",
+            "credit": 4
+          },
+          {
+            "code": "241918",
+            "name": "Viva-voce  ",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Social Work": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222101",
+            "name": "Human Biology: Growth and Development",
+            "credit": 4
+          },
+          {
+            "code": "222103",
+            "name": " Social Policy and Planning",
+            "credit": 4
+          },
+          {
+            "code": "222105",
+            "name": " Social Problems Analysis",
+            "credit": 4
+          },
+          {
+            "code": "222107",
+            "name": " Introduction to Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "222109",
+            "name": " Computer and Information Technology",
+            "credit": 4
+          }
+        ],
+        "optional": [
+          {
+            "code": "222111",
+            "name": " Introduction to Sociology",
+            "credit": 4
+          },
+          {
+            "code": "222113",
+            "name": " Bangladesh Economy",
+            "credit": 4
+          }
+        ],
+        "optionalLimit": 1
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232101",
+            "name": "Social Work Methods: Case work and Group work",
+            "credit": 4
+          },
+          {
+            "code": "232103",
+            "name": "Theories in Social Work Practice",
+            "credit": 4
+          },
+          {
+            "code": "232105",
+            "name": "Voluntarism and NGOs in Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "232107",
+            "name": "Working with the Poor: Policy and Practice",
+            "credit": 4
+          },
+          {
+            "code": "232109",
+            "name": "Project Planning and Management",
+            "credit": 4
+          },
+          {
+            "code": "232111",
+            "name": "Population Issues, Policy Planning and Services",
+            "credit": 4
+          },
+          {
+            "code": "232113",
+            "name": "Human Rights, Social Justice and Social Work",
+            "credit": 4
+          },
+          {
+            "code": "232115",
+            "name": "Crime and Society ",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242101",
+            "name": "Rural and Urban Community Development",
+            "credit": 4
+          },
+          {
+            "code": "242103",
+            "name": "Climate Change: Issues and Disaster Management",
+            "credit": 4
+          },
+          {
+            "code": "242105",
+            "name": "Human Resource Management",
+            "credit": 4
+          },
+          {
+            "code": "242107",
+            "name": "Social Research and Statistics",
+            "credit": 4
+          },
+          {
+            "code": "242109",
+            "name": "Social Services in Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "242111",
+            "name": "Social Work and Globalization",
+            "credit": 4
+          },
+          {
+            "code": "242113",
+            "name": "Public Health and Social Work",
+            "credit": 4
+          },
+          {
+            "code": "242115",
+            "name": "Social Action, Social Legislation and Social Work",
+            "credit": 4
+          },
+          {
+            "code": "242117",
+            "name": "Field Work Education",
+            "credit": 4
+          },
+          {
+            "code": "242118",
+            "name": "Field Practicum+Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    },
+    "Sociology": {
+      "2nd Year": {
+        "core": [
+          {
+            "code": "222001",
+            "name": "Introductory Anthropology",
+            "credit": 4
+          },
+          {
+            "code": "222003",
+            "name": "Classical Social Thought",
+            "credit": 4
+          },
+          {
+            "code": "222005",
+            "name": "Social Statistics ",
+            "credit": 4
+          },
+          {
+            "code": "222007",
+            "name": "Research Methodology ",
+            "credit": 4
+          },
+          {
+            "code": "221909",
+            "name": "Political Organization And Political System Of UK And USA",
+            "credit": 4
+          },
+          {
+            "code": "222209",
+            "name": " Bangladesh Economy",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "3rd Year": {
+        "core": [
+          {
+            "code": "232001",
+            "name": "Classical Sociological Theory ",
+            "credit": 4
+          },
+          {
+            "code": "232003",
+            "name": "Rural Sociology ",
+            "credit": 4
+          },
+          {
+            "code": "232005",
+            "name": "Sociology of Religion ",
+            "credit": 4
+          },
+          {
+            "code": "232007",
+            "name": "Social Inequality",
+            "credit": 4
+          },
+          {
+            "code": "232009",
+            "name": "Societies and Communities",
+            "credit": 4
+          },
+          {
+            "code": "232011",
+            "name": "Social Structure of Bangladesh",
+            "credit": 4
+          },
+          {
+            "code": "232013",
+            "name": "Urban Sociology ",
+            "credit": 4
+          },
+          {
+            "code": "232015",
+            "name": "Social Psychology",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      },
+      "4th Year": {
+        "core": [
+          {
+            "code": "242001",
+            "name": "Gender, Society and Development",
+            "credit": 4
+          },
+          {
+            "code": "242003",
+            "name": "Sociology of Development",
+            "credit": 4
+          },
+          {
+            "code": "242005",
+            "name": "Social Demography ",
+            "credit": 4
+          },
+          {
+            "code": "242007",
+            "name": "Sociology of Environment",
+            "credit": 4
+          },
+          {
+            "code": "242009",
+            "name": "Sociology of Bangladesh ",
+            "credit": 4
+          },
+          {
+            "code": "242011",
+            "name": "Social Change",
+            "credit": 4
+          },
+          {
+            "code": "242013",
+            "name": "Deviance and Crime",
+            "credit": 4
+          },
+          {
+            "code": "242015",
+            "name": "Industrial Sociology",
+            "credit": 4
+          },
+          {
+            "code": "242017",
+            "name": "Peasant Society",
+            "credit": 4
+          },
+          {
+            "code": "242018",
+            "name": "Viva-voce",
+            "credit": 4
+          }
+        ],
+        "optional": [],
+        "optionalLimit": 0
+      }
+    }
+  }
+}

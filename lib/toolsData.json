@@ -56,6 +56,13 @@
     "category": "Calculator"
   },
   {
+    "title": "NU CGPA Calculator",
+    "link": "/tools/cgpa-calculator",
+    "description": "Calculate National University Bangladesh CGPA from subject grades and credits.",
+    "icon": "Calculator",
+    "category": "Calculator"
+  },
+  {
     "title": "Password Generator",
     "link": "/tools/password-generator",
     "description": "A secure tool that creates strong, randomized passwords",

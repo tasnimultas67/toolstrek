@@ -1,0 +1,707 @@
+"use client";
+
+import { useMemo, useState } from "react";
+import {
+  AlertCircle,
+  Calculator,
+  Download,
+  GraduationCap,
+  X,
+} from "lucide-react";
+import subjectData from "./cgpaSubjectData.json";
+
+const GRADES = [
+  { grade: "A+", point: 4, markRange: "80% and above" },
+  { grade: "A", point: 3.75, markRange: "75% to less than 80%" },
+  { grade: "A-", point: 3.5, markRange: "70% to less than 75%" },
+  { grade: "B+", point: 3.25, markRange: "65% to less than 70%" },
+  { grade: "B", point: 3, markRange: "60% to less than 65%" },
+  { grade: "B-", point: 2.75, markRange: "55% to less than 60%" },
+  { grade: "C+", point: 2.5, markRange: "50% to less than 55%" },
+  { grade: "C", point: 2.25, markRange: "45% to less than 50%" },
+  { grade: "D", point: 2, markRange: "40% to less than 45%" },
+  { grade: "F", point: 0, markRange: "Less than 40%" },
+];
+
+const COPYRIGHT_NAME = "Tasnimul Haque";
+
+function getGradePoint(grade) {
+  return GRADES.find((item) => item.grade === grade)?.point ?? null;
+}
+
+function getOptions(source) {
+  return Object.keys(source || {});
+}
+
+function ResultTable({ rows, compact = false }) {
+  return (
+    <div className="overflow-x-auto">
+      <table className="w-full min-w-[620px] border-collapse border border-gray-300 bg-white text-sm">
+        <thead className="bg-gray-100">
+          <tr>
+            <th className="border border-gray-300 px-3 py-2 text-left font-semibold">
+              বিষয়
+            </th>
+            <th className="border border-gray-300 px-3 py-2 text-center font-semibold">
+              গ্রেড
+            </th>
+            <th className="border border-gray-300 px-3 py-2 text-center font-semibold">
+              প্রাপ্ত পয়েন্ট
+            </th>
+            <th className="border border-gray-300 px-3 py-2 text-center font-semibold">
+              মোট পয়েন্ট
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((row) => (
+            <tr key={row.key}>
+              <td
+                className={`border border-gray-300 px-3 py-2 text-gray-800 ${
+                  compact ? "text-xs" : ""
+                }`}
+              >
+                {row.name} ({row.code})
+              </td>
+              <td className="border border-gray-300 px-3 py-2 text-center">
+                {row.grade}
+              </td>
+              <td className="border border-gray-300 px-3 py-2 text-center">
+                {row.point}
+              </td>
+              <td className="border border-gray-300 px-3 py-2 text-center">
+                {row.credit}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function GradeSelect({ value, onChange }) {
+  return (
+    <select
+      value={value}
+      onChange={(event) => onChange(event.target.value)}
+      className="mx-auto block h-9 w-24 rounded-md border border-gray-300 bg-white px-2 text-center text-sm text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+    >
+      <option value="">গ্রেড</option>
+      {GRADES.map((item) => (
+        <option key={item.grade} value={item.grade}>
+          {item.grade}
+        </option>
+      ))}
+    </select>
+  );
+}
+
+function FieldSelect({
+  label,
+  value,
+  onChange,
+  disabled,
+  options,
+  placeholder,
+}) {
+  return (
+    <label className="block">
+      <span className="mb-2 block text-sm font-medium text-gray-700">
+        {label}
+      </span>
+      <select
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        disabled={disabled}
+        className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
+      >
+        <option value="">{placeholder}</option>
+        {options.map((option) => (
+          <option key={option} value={option}>
+            {option}
+          </option>
+        ))}
+      </select>
+    </label>
+  );
+}
+
+function wrapCanvasText(ctx, text, x, y, maxWidth, lineHeight) {
+  const words = String(text).split(" ");
+  const lines = [];
+  let line = "";
+
+  words.forEach((word) => {
+    const testLine = line ? `${line} ${word}` : word;
+    if (ctx.measureText(testLine).width > maxWidth && line) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = testLine;
+    }
+  });
+
+  if (line) lines.push(line);
+  lines.forEach((lineText, index) =>
+    ctx.fillText(lineText, x, y + index * lineHeight),
+  );
+  return lines.length * lineHeight;
+}
+
+export default function CGPACalculator() {
+  const [program, setProgram] = useState("");
+  const [department, setDepartment] = useState("");
+  const [year, setYear] = useState("");
+  const [coreGrades, setCoreGrades] = useState([]);
+  const [optionalGrades, setOptionalGrades] = useState([]);
+  const [result, setResult] = useState(null);
+  const [error, setError] = useState("");
+  const [isDownloading, setIsDownloading] = useState(false);
+
+  const departmentOptions = useMemo(
+    () => getOptions(subjectData[program]),
+    [program],
+  );
+
+  const yearOptions = useMemo(
+    () => getOptions(subjectData[program]?.[department]),
+    [program, department],
+  );
+
+  const selectedData = subjectData[program]?.[department]?.[year] || {
+    core: [],
+    optional: [],
+    optionalLimit: 0,
+  };
+
+  const coreSubjects = selectedData.core || [];
+  const optionalSubjects = selectedData.optional || [];
+  const optionalLimit = selectedData.optionalLimit || 0;
+
+  const resultRows = useMemo(() => {
+    const coreRows = coreSubjects.map((subject, index) => {
+      const grade = coreGrades[index] || "-";
+      const point = getGradePoint(grade);
+
+      return {
+        key: `core-${subject.code}-${index}`,
+        name: subject.name,
+        code: subject.code,
+        grade,
+        point: point === null ? "-" : point.toFixed(2),
+        credit: subject.credit,
+      };
+    });
+
+    const optionalRows = optionalSubjects
+      .map((subject, index) => {
+        const grade = optionalGrades[index];
+        if (!grade) return null;
+        const point = getGradePoint(grade);
+
+        return {
+          key: `optional-${subject.code}-${index}`,
+          name: subject.name,
+          code: subject.code,
+          grade,
+          point: point === null ? "-" : point.toFixed(2),
+          credit: subject.credit,
+        };
+      })
+      .filter(Boolean);
+
+    return [...coreRows, ...optionalRows];
+  }, [coreGrades, coreSubjects, optionalGrades, optionalSubjects]);
+
+  const resetAfterProgram = (nextProgram) => {
+    setProgram(nextProgram);
+    setDepartment("");
+    setYear("");
+    setCoreGrades([]);
+    setOptionalGrades([]);
+    setResult(null);
+    setError("");
+  };
+
+  const resetAfterDepartment = (nextDepartment) => {
+    setDepartment(nextDepartment);
+    setYear("");
+    setCoreGrades([]);
+    setOptionalGrades([]);
+    setResult(null);
+    setError("");
+  };
+
+  const resetAfterYear = (nextYear) => {
+    setYear(nextYear);
+    setCoreGrades([]);
+    setOptionalGrades([]);
+    setResult(null);
+    setError("");
+  };
+
+  const updateCoreGrade = (index, grade) => {
+    setCoreGrades((current) => {
+      const next = [...current];
+      next[index] = grade;
+      return next;
+    });
+  };
+
+  const updateOptionalGrade = (index, grade) => {
+    setOptionalGrades((current) => {
+      const next = [...current];
+      next[index] = grade;
+      return next;
+    });
+  };
+
+  const calculateCgpa = () => {
+    setResult(null);
+    setError("");
+
+    if (!program || !department || !year) {
+      setError("প্রোগ্রাম, বিভাগ এবং ইয়ার নির্বাচন করুন।");
+      return;
+    }
+
+    const coreComplete = coreSubjects.every((_, index) => coreGrades[index]);
+    const selectedOptionalGrades = optionalGrades.filter(Boolean);
+
+    if (!coreComplete) {
+      setError("সব Core বিষয়ের গ্রেড পূরণ করুন।");
+      return;
+    }
+
+    if (selectedOptionalGrades.length !== optionalLimit) {
+      setError(`অপশনাল বিষয়ের মধ্যে ${optionalLimit} টি গ্রেড দিতে হবে।`);
+      return;
+    }
+
+    let weightedPoints = 0;
+    let totalCredits = 0;
+
+    coreSubjects.forEach((subject, index) => {
+      const point = getGradePoint(coreGrades[index]);
+      if (point !== null) {
+        weightedPoints += point * subject.credit;
+        totalCredits += subject.credit;
+      }
+    });
+
+    optionalSubjects.forEach((subject, index) => {
+      const grade = optionalGrades[index];
+      const point = getGradePoint(grade);
+      if (grade && point !== null) {
+        weightedPoints += point * subject.credit;
+        totalCredits += subject.credit;
+      }
+    });
+
+    if (!totalCredits) {
+      setError("CGPA হিসাব করার জন্য অন্তত একটি গ্রেড প্রয়োজন।");
+      return;
+    }
+
+    setResult((weightedPoints / totalCredits).toFixed(2));
+  };
+
+  const downloadResult = async () => {
+    if (!result) return;
+
+    setIsDownloading(true);
+
+    try {
+      await document.fonts?.ready;
+      const width = 1200;
+      const tableWidth = 1040;
+      const rowHeight = 58;
+      const tableHeight = 56 + resultRows.length * rowHeight;
+      const height = Math.max(760, 430 + tableHeight);
+      const canvas = document.createElement("canvas");
+      canvas.width = width;
+      canvas.height = height;
+
+      const ctx = canvas.getContext("2d");
+      ctx.fillStyle = "#ffffff";
+      ctx.fillRect(0, 0, width, height);
+
+      ctx.fillStyle = "rgba(124, 0, 254, 0.08)";
+      ctx.beginPath();
+      ctx.arc(width / 2, height / 2, 150, 0, Math.PI * 2);
+      ctx.fill();
+
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#111827";
+      ctx.font = "700 44px Arial, sans-serif";
+      ctx.fillText("ToolsTrek", width / 2, 78);
+      ctx.font = "700 34px Arial, sans-serif";
+      ctx.fillText("Your Result", width / 2, 128);
+
+      ctx.font = "500 24px Arial, sans-serif";
+      ctx.fillStyle = "#4b5563";
+      ctx.fillText(`${program} - ${department} (${year})`, width / 2, 168);
+
+      ctx.font = "700 34px Arial, sans-serif";
+      ctx.fillStyle = parseFloat(result) > 3 ? "#059669" : "#2563eb";
+      ctx.fillText(`CGPA: ${result}`, width / 2, 220);
+
+      const startX = (width - tableWidth) / 2;
+      let currentY = 270;
+      const columns = [500, 150, 200, 190];
+      const headers = ["বিষয়", "গ্রেড", "প্রাপ্ত পয়েন্ট", "মোট পয়েন্ট"];
+
+      ctx.textAlign = "left";
+      ctx.strokeStyle = "#d1d5db";
+      ctx.lineWidth = 1;
+      ctx.fillStyle = "#f3f4f6";
+      ctx.fillRect(startX, currentY, tableWidth, 56);
+      ctx.strokeRect(startX, currentY, tableWidth, 56);
+
+      let x = startX;
+      ctx.fillStyle = "#111827";
+      ctx.font = "700 20px Arial, sans-serif";
+      headers.forEach((header, index) => {
+        ctx.strokeRect(x, currentY, columns[index], 56);
+        ctx.fillText(header, x + 18, currentY + 36);
+        x += columns[index];
+      });
+      currentY += 56;
+
+      ctx.font = "400 18px Arial, sans-serif";
+      resultRows.forEach((row) => {
+        x = startX;
+        ctx.fillStyle = "#ffffff";
+        ctx.fillRect(startX, currentY, tableWidth, rowHeight);
+        ctx.strokeStyle = "#d1d5db";
+        columns.forEach((colWidth) => {
+          ctx.strokeRect(x, currentY, colWidth, rowHeight);
+          x += colWidth;
+        });
+
+        ctx.fillStyle = "#1f2937";
+        wrapCanvasText(
+          ctx,
+          `${row.name} (${row.code})`,
+          startX + 18,
+          currentY + 24,
+          columns[0] - 34,
+          20,
+        );
+
+        ctx.textAlign = "center";
+        ctx.fillText(
+          row.grade,
+          startX + columns[0] + columns[1] / 2,
+          currentY + 36,
+        );
+        ctx.fillText(
+          row.point,
+          startX + columns[0] + columns[1] + columns[2] / 2,
+          currentY + 36,
+        );
+        ctx.fillText(
+          String(row.credit),
+          startX + columns[0] + columns[1] + columns[2] + columns[3] / 2,
+          currentY + 36,
+        );
+        ctx.textAlign = "left";
+        currentY += rowHeight;
+      });
+
+      if (parseFloat(result) > 3) {
+        ctx.textAlign = "center";
+        ctx.fillStyle = "#059669";
+        ctx.font = "700 22px Arial, sans-serif";
+        ctx.fillText(
+          "--- Congratulations on your Outstanding Result! ---",
+          width / 2,
+          currentY + 44,
+        );
+      }
+
+      const footerY = height - 130;
+      ctx.textAlign = "center";
+      ctx.fillStyle = "#2563eb";
+      ctx.font = "500 18px Arial, sans-serif";
+      ctx.fillText(
+        `Result Calculated by ToolsTrek CGPA Calculator | ${new Date().toLocaleDateString()}`,
+        width / 2,
+        footerY + 14,
+      );
+      ctx.fillText(`Copyright © ${COPYRIGHT_NAME}`, width / 2, footerY + 44);
+
+      const link = document.createElement("a");
+      link.href = canvas.toDataURL("image/png");
+      link.download = `CGPA-Result-${result}.png`;
+      link.click();
+    } finally {
+      setIsDownloading(false);
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-[#f9fafb] px-2 pb-10 pt-26 text-gray-900">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-6 text-center">
+          <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-100 text-indigo-700">
+            <GraduationCap className="h-7 w-7" />
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900">
+            জাতীয় বিশ্ববিদ্যালয় CGPA ক্যালকুলেটর
+          </h1>
+        </div>
+
+        <section className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+          <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
+            <FieldSelect
+              label="প্রোগ্রাম"
+              value={program}
+              onChange={resetAfterProgram}
+              options={getOptions(subjectData)}
+              placeholder="প্রোগ্রাম নির্বাচন করুন"
+            />
+            <FieldSelect
+              label="বিভাগ"
+              value={department}
+              onChange={resetAfterDepartment}
+              disabled={!program}
+              options={departmentOptions}
+              placeholder="বিভাগ নির্বাচন করুন"
+            />
+            <FieldSelect
+              label="ইয়ার"
+              value={year}
+              onChange={resetAfterYear}
+              disabled={!department}
+              options={yearOptions}
+              placeholder="ইয়ার নির্বাচন করুন"
+            />
+          </div>
+
+          {(coreSubjects.length > 0 || optionalSubjects.length > 0) && (
+            <div className="mt-6 overflow-x-auto text-sm">
+              <table className="w-full min-w-[720px] border-collapse border border-gray-300 bg-white">
+                <thead className="bg-gray-100">
+                  <tr>
+                    <th className="border border-gray-300 px-4 py-2 text-left">
+                      বিষয়
+                    </th>
+                    <th className="border border-gray-300 px-4 py-2 text-center">
+                      গ্রেড
+                    </th>
+                    <th className="border border-gray-300 px-4 py-2 text-center">
+                      প্রাপ্ত পয়েন্ট
+                    </th>
+                    <th className="border border-gray-300 px-4 py-2 text-center">
+                      মোট পয়েন্ট
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {coreSubjects.map((subject, index) => {
+                    const point = getGradePoint(coreGrades[index]);
+
+                    return (
+                      <tr key={`core-${subject.code}-${index}`}>
+                        <td className="border border-gray-300 px-4 py-2 text-gray-800">
+                          {subject.name} ({subject.code})
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          <GradeSelect
+                            value={coreGrades[index] || ""}
+                            onChange={(grade) => updateCoreGrade(index, grade)}
+                          />
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          {point === null ? "" : point.toFixed(2)}
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          {subject.credit}
+                        </td>
+                      </tr>
+                    );
+                  })}
+
+                  {optionalSubjects.length > 0 && (
+                    <tr>
+                      <td
+                        colSpan="4"
+                        className="bg-gray-200 px-4 py-2 text-center font-semibold"
+                      >
+                        Optional Subjects (যেকোনো {optionalLimit} টি)
+                      </td>
+                    </tr>
+                  )}
+
+                  {optionalSubjects.map((subject, index) => {
+                    const point = getGradePoint(optionalGrades[index]);
+
+                    return (
+                      <tr key={`optional-${subject.code}-${index}`}>
+                        <td className="border border-gray-300 px-4 py-2 text-gray-800">
+                          {subject.name} ({subject.code})
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          <GradeSelect
+                            value={optionalGrades[index] || ""}
+                            onChange={(grade) =>
+                              updateOptionalGrade(index, grade)
+                            }
+                          />
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          {point === null ? "" : point.toFixed(2)}
+                        </td>
+                        <td className="border border-gray-300 px-4 py-2 text-center">
+                          {subject.credit}
+                        </td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          {error && (
+            <div className="mt-5 flex items-center justify-center gap-2 rounded-md bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-700">
+              <AlertCircle className="h-4 w-4 shrink-0" />
+              <span>{error}</span>
+            </div>
+          )}
+
+          <div className="mt-6 text-center">
+            <button
+              type="button"
+              onClick={calculateCgpa}
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+            >
+              <Calculator className="h-4 w-4" />
+              CGPA ক্যালকুলেট করুন
+            </button>
+          </div>
+        </section>
+
+        <section className="mx-auto mt-10 max-w-2xl">
+          <h2 className="mb-4 text-center text-xl font-semibold text-gray-900">
+            National University Bangladesh Grading System
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full min-w-[520px] border-collapse border border-gray-300 bg-white text-sm">
+              <thead>
+                <tr>
+                  <th className="border border-gray-300 px-3 py-2 text-center">
+                    Grade
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-center">
+                    Grade Point
+                  </th>
+                  <th className="border border-gray-300 px-3 py-2 text-center">
+                    Marks Range
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {GRADES.map((item) => (
+                  <tr key={item.grade}>
+                    <td className="border border-gray-300 px-3 py-2 text-center font-medium">
+                      {item.grade}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-center">
+                      {item.point.toFixed(2)}
+                    </td>
+                    <td className="border border-gray-300 px-3 py-2 text-center">
+                      {item.markRange}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </section>
+      </div>
+
+      {result && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-3 py-6">
+          <div className="max-h-full w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-4 shadow-2xl sm:p-6">
+            <div className="mb-4 flex items-center justify-end">
+              <button
+                type="button"
+                onClick={() => setResult(null)}
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-gray-100 text-gray-700 transition hover:bg-gray-200"
+                aria-label="Close result"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+
+            <div className="relative text-center">
+              <div className="pointer-events-none absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brandColor/10" />
+              <div className="relative">
+                <h2 className="text-2xl font-bold leading-tight text-gray-900">
+                  ToolsTrek
+                </h2>
+                <h3 className="mt-2 text-xl font-semibold text-gray-900">
+                  Your Result
+                </h3>
+                <p className="mt-2 text-lg text-gray-500">
+                  {program} - {department} ({year})
+                </p>
+                <p
+                  className={`mt-2 text-2xl font-bold ${
+                    parseFloat(result) > 3
+                      ? "text-emerald-600"
+                      : "text-blue-600"
+                  }`}
+                >
+                  CGPA: {result}
+                </p>
+
+                <div className="mt-5">
+                  <ResultTable rows={resultRows} compact />
+                </div>
+
+                {parseFloat(result) > 3 && (
+                  <p className="mt-4 text-base font-semibold text-emerald-600">
+                    --- Congratulations on your Outstanding Result! ---
+                  </p>
+                )}
+
+                <div className="mt-6 flex items-center justify-center">
+                  <div className="text-center text-sm text-blue-600">
+                    <p>
+                      Result Calculated by ToolsTrek CGPA Calculator |{" "}
+                      {new Date().toLocaleDateString()}
+                    </p>
+                    <p>Copyright © {COPYRIGHT_NAME}</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 flex flex-wrap justify-center gap-3">
+                  <button
+                    type="button"
+                    onClick={downloadResult}
+                    disabled={isDownloading}
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-wait disabled:bg-emerald-300"
+                  >
+                    <Download className="h-4 w-4" />
+                    {isDownloading ? "Generating..." : "Download Result"}
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setResult(null)}
+                    className="rounded-md bg-gray-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-700"
+                  >
+                    Close
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
