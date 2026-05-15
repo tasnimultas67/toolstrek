@@ -1,55 +1,98 @@
-
 {
-    "general": [
-      {
-        "question": "What is ToolsTrek?",
-        "answer": "ToolsTrek is a collection of free online tools designed to make your digital life easier. We offer various utilities including a Link Shortener, WiFi QR Code Maker, Age Calculator, and more - all available for free with no registration required."
-      },
-      {
-        "question": "Is ToolsTrek completely free to use?",
-        "answer": "Yes! All tools on ToolsTrek are completely free to use with no hidden charges. We may offer premium features in the future, but all current functionality will remain free."
-      },
-      {
-        "question": "Do I need to create an account to use the tools?",
-        "answer": "No, you can use all of our tools without creating an account or logging in. Some features like saving your history might require an account in the future, but the core functionality is available to everyone immediately."
-      }
-    ],
-    "linkShortener": [
-      {
-        "question": "How does the Link Shortener work?",
-        "answer": "Our Link Shortener takes your long URL and creates a shortened version that redirects to your original link. Simply paste your URL into the input field, click 'Shorten,' and you'll get a compact link you can share anywhere."
-      },
-      {
-        "question": "Are the shortened links permanent?",
-        "answer": "Currently, our shortened links don't expire, but we can't guarantee permanent availability. For critical links, we recommend using a dedicated URL shortener service."
-      },
-      {
-        "question": "Can I customize the shortened URLs?",
-        "answer": "Currently, we don't offer custom slugs for shortened URLs. All our shortened links use randomly generated characters for uniqueness."
-      }
-    ],
-    "wifiQr": [
-      {
-        "question": "How do I use the WiFi QR Code Maker?",
-        "answer": "Enter your WiFi network name (SSID), select the security type (WPA, WEP, or none), and enter your password. Click 'Generate QR Code' and we'll create a QR code that you can print or display. Guests can scan it to automatically connect to your WiFi."
-      },
-      {
-        "question": "Is my WiFi password safe when generating the QR code?",
-        "answer": "Yes! The QR code generation happens entirely in your browser - we never send your WiFi credentials to our servers. Your password remains private and secure on your device."
-      },
-      {
-        "question": "Can I customize the appearance of the QR code?",
-        "answer": "Currently, we offer standard black-and-white QR codes. While you can't customize colors or add logos, the codes we generate are highly reliable and easy to scan."
-      }
-    ],
-    "ageCalculator": [
-      {
-        "question": "How accurate is the Age Calculator?",
-        "answer": "Our Age Calculator is extremely accurate, accounting for leap years and different month lengths. It calculates your exact age down to the day based on your birth date and the current date."
-      },
-      {
-        "question": "Can I calculate age at a future or past date?",
-        "answer": "Yes! You can enter any target date (past, present, or future) to calculate what the age was or will be on that specific date."
-      }
-    ]
-  }
+  "general": [
+    {
+      "question": "What is ToolsTrek?",
+      "answer": "ToolsTrek is a browser-based collection of everyday utilities built with Next.js. It brings together PDF workflows, QR and link tools, image converters, text utilities, calculators, and developer helpers in one place."
+    },
+    {
+      "question": "Is ToolsTrek free to use, and do I need an account?",
+      "answer": "Yes. The current ToolsTrek tool library is free to use, and you can access the tools without creating an account or logging in."
+    },
+    {
+      "question": "What kinds of tools are available on ToolsTrek?",
+      "answer": "ToolsTrek currently includes PDF tools such as merge, split, reorder, crop, compress, combine, N-up, add attachments, and image/PDF conversion. It also includes QR tools, calculators, text tools, a password generator, markdown previewing, domain lookup, and more."
+    },
+    {
+      "question": "Can I use ToolsTrek on mobile or tablet devices?",
+      "answer": "Yes. The interface is responsive and designed to work across desktop, tablet, and mobile browsers, although larger file workflows may feel more comfortable on a desktop or laptop."
+    }
+  ],
+  "privacyAndSecurity": [
+    {
+      "question": "Do my files get uploaded to a server?",
+      "answer": "For file-based workflows such as PDF, image, and OCR tools, processing is designed to happen directly in your browser, which helps keep your files on your device while you work."
+    },
+    {
+      "question": "Are all ToolsTrek features fully offline?",
+      "answer": "No. Many file-processing tools work in the browser after the page loads, but some features still depend on network services, such as the Link Shortener, Domain Age Checker, reCAPTCHA verification, and contact form delivery."
+    },
+    {
+      "question": "Is sensitive information like WiFi data or passwords stored by ToolsTrek?",
+      "answer": "ToolsTrek is built to keep sensitive tool input local where possible. If you generate a WiFi QR code or a password, remember that the downloaded result or any QR code you share may expose that information to anyone who can access it."
+    },
+    {
+      "question": "How should I report a bug or privacy concern?",
+      "answer": "Use the contact page and include the tool name, the steps you followed, your browser or device, and what happened. That makes it much easier to reproduce and fix the issue quickly."
+    }
+  ],
+  "pdfTools": [
+    {
+      "question": "What can I do with PDFs on ToolsTrek?",
+      "answer": "You can compress, merge, split, reorder, crop, convert PDF to image, convert images to PDF, combine mixed files into one PDF, create N-up layouts, and add attachments to PDFs."
+    },
+    {
+      "question": "Which files can be combined into one PDF?",
+      "answer": "The Combine Files to PDF tool is built for PDFs plus image and SVG files in one queue. If you are starting only with images and want more control over page setup, the Image to PDF tool is usually the better fit."
+    },
+    {
+      "question": "Are PDF edits private?",
+      "answer": "The PDF-focused tools are designed for in-browser processing, and the generated files stay on your device until you download them, clear the tool, or refresh the page."
+    },
+    {
+      "question": "Can I work with more than one PDF at a time?",
+      "answer": "Yes. Several PDF tools support multi-file workflows, including merging, batch-style compression, and combining multiple assets into one PDF. Practical limits depend on your browser, available memory, and file sizes."
+    }
+  ],
+  "qrAndSharing": [
+    {
+      "question": "What is the difference between the QR Code Generator, WiFi QR tool, QR Scanner, and Link Shortener?",
+      "answer": "The QR Code Generator creates custom QR codes for text, links, and similar content. The WiFi QR tool creates a scannable code for joining a wireless network. The QR Scanner reads QR codes from a camera or image. The Link Shortener turns a long URL into a shorter share link and also shows a QR code for that shortened result."
+    },
+    {
+      "question": "Can I download the QR codes I create?",
+      "answer": "Yes. ToolsTrek includes download options for generated QR output, and the WiFi QR tool also offers a printable PDF template for sharing access more neatly."
+    },
+    {
+      "question": "Why does the Link Shortener need an internet connection?",
+      "answer": "The Link Shortener creates shortened links through an external shortening service, so it needs internet access to generate the final result. The availability of those shortened links also depends on that provider."
+    }
+  ],
+  "imagesAndText": [
+    {
+      "question": "Can ToolsTrek convert images to PDF or extract text from images?",
+      "answer": "Yes. ToolsTrek includes Image to PDF for turning images into PDF documents, Image to Text for OCR-based text extraction, PDF to Image for exporting PDF pages as images, and an AVIF Converter for image format conversion."
+    },
+    {
+      "question": "Does the Image to Text tool process images locally?",
+      "answer": "The OCR workflow is designed to run in the browser, which helps keep your source image on your device during text extraction."
+    },
+    {
+      "question": "Which image formats work best with the image tools?",
+      "answer": "Common web-friendly image formats usually work best, but supported file types can vary by tool. If a file does not load cleanly, converting it first or using the AVIF Converter can help."
+    }
+  ],
+  "productivityAndCalculators": [
+    {
+      "question": "What other utilities are included besides PDF and QR tools?",
+      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, NU CGPA Calculator, Case Converter, Text Repeater, Numbers to Words, Markdown Previewer, Domain Age Checker, Fake Info Generator, and Password Generator."
+    },
+    {
+      "question": "Is the NU CGPA Calculator specific to National University Bangladesh?",
+      "answer": "Yes. That calculator is tailored for National University Bangladesh grading workflows rather than being a fully generic CGPA tool."
+    },
+    {
+      "question": "Can I request a new tool or feature?",
+      "answer": "Yes. Send a request through the contact page and describe the workflow you want to solve, along with example input and output if possible. That makes feature planning much easier."
+    }
+  ]
+}
