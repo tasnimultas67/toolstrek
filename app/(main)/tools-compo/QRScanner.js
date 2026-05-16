@@ -20,6 +20,7 @@ import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import ToolPageShell from "./ToolPageShell";
 import { cn } from "@/lib/utils";
 
 const QRScanner = () => {
@@ -129,8 +130,8 @@ const QRScanner = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 pb-12 pt-24 px-2 flex items-center justify-center font-sans">
-      <div className="w-full max-w-4xl space-y-8">
+    <ToolPageShell widthClassName="max-w-4xl">
+      <div className="space-y-8 font-sans">
         {/* Header */}
         <div className="text-center space-y-2">
           <h1 className="text-4xl font-black text-gray-900 dark:text-white tracking-tight">
@@ -345,7 +346,7 @@ const QRScanner = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 };
 

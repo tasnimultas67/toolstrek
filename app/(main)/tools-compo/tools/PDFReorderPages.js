@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import * as PDFLib from "pdf-lib";
 import * as pdfjsLib from "pdfjs-dist";
+import ToolPageShell from "../ToolPageShell";
 
 // Set up the worker for PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
@@ -280,18 +281,20 @@ const PDFReorderPages = () => {
 
   if (!mounted) {
     return (
-      <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 flex items-center justify-center">
+      <ToolPageShell widthClassName="max-w-7xl">
+        <div className="flex items-center justify-center rounded-[2rem] border border-slate-200 bg-white/85 py-20 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
         <div className="text-center">
           <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
           <p className="mt-4 text-gray-600">Loading PDF tools...</p>
         </div>
-      </div>
+        </div>
+      </ToolPageShell>
     );
   }
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 pb-10 pt-24 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div>
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
@@ -811,7 +814,7 @@ const PDFReorderPages = () => {
           </div>
         )}
       </div>
-    </div>
+    </ToolPageShell>
   );
 };
 

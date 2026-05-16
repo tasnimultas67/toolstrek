@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import ToolPageShell from "../ToolPageShell";
 
 const BMICal = () => {
   const [weight, setWeight] = useState("");
@@ -374,7 +375,8 @@ const BMICal = () => {
   const personalizedTips = getPersonalizedTips();
 
   return (
-    <div className="w-full md:w-11/12 mx-auto px-2 pb-10 pt-20 font-sans">
+    <ToolPageShell widthClassName="max-w-6xl">
+      <div className="font-sans">
       <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
         {/* Header */}
         <div className="bg-gradient-to-r from-teal-500 to-blue-600 px-6 py-8 sm:px-8">
@@ -1007,7 +1009,8 @@ const BMICal = () => {
           animation: fadeIn 0.4s ease-out;
         }
       `}</style>
-    </div>
+      </div>
+    </ToolPageShell>
   );
 };
 

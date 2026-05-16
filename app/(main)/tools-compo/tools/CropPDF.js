@@ -3,6 +3,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import * as pdfjsLib from "pdfjs-dist";
 import { jsPDF } from "jspdf";
+import ToolPageShell from "../ToolPageShell";
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = new URL(
   "pdfjs-dist/build/pdf.worker.min.mjs",
@@ -815,7 +816,8 @@ const CropPDF = () => {
       : null;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-slate-100 px-2 pb-10 pt-26 sm:px-6 lg:px-8">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div>
       {toast.show && (
         <div className="fixed bottom-4 right-4 z-50 animate-slide-in">
           <div
@@ -1396,7 +1398,8 @@ const CropPDF = () => {
           animation: slide-in 0.3s ease-out;
         }
       `}</style>
-    </div>
+      </div>
+    </ToolPageShell>
   );
 };
 

@@ -3,6 +3,7 @@
 import React, { useState, useCallback } from "react";
 import { PDFDocument } from "pdf-lib";
 import JSZip from "jszip";
+import ToolPageShell from "../ToolPageShell";
 
 export default function PDFSplitPage() {
   const [pdfFile, setPdfFile] = useState(null);
@@ -241,8 +242,8 @@ export default function PDFSplitPage() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50 pb-16 pt-26 px-4">
-      <div className="max-w-5xl mx-auto">
+    <ToolPageShell widthClassName="max-w-5xl">
+      <div>
         {/* Header with Logo/Brand */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
@@ -647,6 +648,6 @@ export default function PDFSplitPage() {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

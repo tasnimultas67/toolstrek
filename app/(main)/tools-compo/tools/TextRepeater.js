@@ -13,6 +13,7 @@ import {
   Wand2,
   CheckCircle2,
 } from "lucide-react";
+import ToolPageShell from "../ToolPageShell";
 
 const TextRepeater = () => {
   const [inputText, setInputText] = useState("");
@@ -105,8 +106,8 @@ const TextRepeater = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 pb-10 pt-24 px-4">
-      <div className="max-w-7xl mx-auto">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div>
         {/* Header Section */}
         <div className="text-center mb-8">
           <h1 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-slate-800 to-slate-600 bg-clip-text text-transparent mb-3">
@@ -347,7 +348,7 @@ const TextRepeater = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 };
 

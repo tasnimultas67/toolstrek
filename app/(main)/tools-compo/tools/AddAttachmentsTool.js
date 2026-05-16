@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { PDFDocument } from "pdf-lib";
+import ToolPageShell from "../ToolPageShell";
 
 const MAX_ATTACHMENTS = 50;
 const MAX_TOTAL_BYTES = 500 * 1024 * 1024;
@@ -306,7 +307,8 @@ export default function AddAttachmentsTool() {
       : "Add Attachment";
 
   return (
-    <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-gradient-to-br from-slate-50 via-white to-amber-50/60 px-2 pb-10 pt-26 shadow-[0_20px_60px_rgba(15,23,42,0.08)] sm:px-6 lg:px-8">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white/85 px-3 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur sm:px-6 lg:px-8">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -left-20 top-6 h-56 w-56 rounded-full bg-amber-200/40 blur-3xl" />
         <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-sky-200/30 blur-3xl" />
@@ -592,7 +594,8 @@ export default function AddAttachmentsTool() {
             </button>
           </aside>
         </div>
-      </div>
-    </section>
+        </div>
+      </section>
+    </ToolPageShell>
   );
 }

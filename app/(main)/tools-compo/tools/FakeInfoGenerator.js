@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useCallback } from "react";
+import ToolPageShell from "../ToolPageShell";
 
 const FakeInfoGenerator = () => {
   const [selectedCountry, setSelectedCountry] = useState("us");
@@ -259,7 +260,8 @@ const FakeInfoGenerator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100 pb-10 pt-20 px-2 relative">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div className="relative">
       {/* Toast Notification */}
       {toast.show && (
         <div
@@ -680,7 +682,8 @@ const FakeInfoGenerator = () => {
           animation: slideInRight 0.3s ease-out;
         }
       `}</style>
-    </div>
+      </div>
+    </ToolPageShell>
   );
 };
 

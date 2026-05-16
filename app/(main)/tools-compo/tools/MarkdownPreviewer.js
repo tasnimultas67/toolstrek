@@ -9,6 +9,7 @@ import rehypeRaw from "rehype-raw";
 import "highlight.js/styles/github-dark.css";
 import { Copy, Eye, Check, Download, Trash2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import ToolPageShell from "../ToolPageShell";
 
 export default function MarkdownPreviewer() {
   const [markdown, setMarkdown] = useState(
@@ -34,7 +35,8 @@ export default function MarkdownPreviewer() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-60px)] w-full max-w-7xl mx-auto px-4 pt-20 pb-4 font-sans">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div className="flex h-[calc(100vh-60px)] flex-col font-sans">
       {/* Action Bar */}
       <div className="flex flex-wrap items-center justify-between bg-white border border-gray-200 p-2 mb-4 rounded-xl shadow-sm gap-2">
         <div className="flex items-center gap-2 px-2">
@@ -151,6 +153,7 @@ export default function MarkdownPreviewer() {
           </div>
         )}
       </div>
-    </div>
+      </div>
+    </ToolPageShell>
   );
 }

@@ -68,6 +68,86 @@ html::-webkit-scrollbar {
   visibility: hidden;
 }
 
+.tool-page-shell {
+  position: relative;
+  overflow: hidden;
+  padding: 6.5rem 0.5rem 2.75rem;
+  background:
+    radial-gradient(circle at top left, rgba(124, 0, 254, 0.14), transparent 26%),
+    radial-gradient(circle at top right, rgba(52, 211, 153, 0.12), transparent 24%),
+    linear-gradient(180deg, #f8fafc 0%, #ffffff 38%, #f8fafc 100%);
+}
+
+.tool-page-shell::before,
+.tool-page-shell::after {
+  content: "";
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(64px);
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+.tool-page-shell::before {
+  top: 4rem;
+  left: -5rem;
+  width: 16rem;
+  height: 16rem;
+  background: rgba(124, 0, 254, 0.22);
+}
+
+.tool-page-shell::after {
+  top: 8rem;
+  right: -4rem;
+  width: 14rem;
+  height: 14rem;
+  background: rgba(16, 185, 129, 0.18);
+}
+
+.tool-page-shell-inner {
+  position: relative;
+  width: 100%;
+  margin-inline: auto;
+}
+
+@media (min-width: 640px) {
+  .tool-page-shell {
+    padding-inline: 1rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .tool-page-shell {
+    padding-inline: 1.5rem;
+  }
+}
+
+.tool-chip-scroller {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.tool-chip-scroller::-webkit-scrollbar {
+  display: none;
+}
+
+.tool-page-content > * {
+  width: 100%;
+  max-width: 100%;
+}
+
+.tool-page-content * {
+  min-width: 0;
+}
+
+.tool-page-content img,
+.tool-page-content svg,
+.tool-page-content canvas,
+.tool-page-content video,
+.tool-page-content iframe {
+  max-width: 100%;
+}
+
 /* Optional: Adjust reCAPTCHA size */
 .g-recaptcha>div {
   margin: 0 auto;

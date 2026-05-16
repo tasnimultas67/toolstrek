@@ -14,6 +14,7 @@ import {
   AlertCircle,
   FileText,
 } from "lucide-react";
+import ToolPageShell from "../ToolPageShell";
 
 // Language configuration
 const LANGUAGES = {
@@ -192,11 +193,12 @@ export default function ImageToText() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 pt-20">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div>
       {/* Hidden canvas for preprocessing */}
       <canvas ref={canvasRef} style={{ display: "none" }} />
 
-      <div className="max-w-7xl mx-auto p-6 md:p-8">
+      <div className="p-6 md:p-8">
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -434,6 +436,7 @@ export default function ImageToText() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </ToolPageShell>
   );
 }

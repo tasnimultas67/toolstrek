@@ -33,6 +33,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import ToolPageShell from "./ToolPageShell";
 import {
   Select,
   SelectContent,
@@ -224,8 +225,8 @@ export function AgeCal() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 py-12 px-4 flex items-center justify-center font-sans">
-      <div className="w-full max-w-5xl grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
+    <ToolPageShell widthClassName="max-w-5xl">
+      <div className="grid grid-cols-1 gap-8 items-start font-sans lg:grid-cols-2">
         {/* Left Side: Input Card */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -470,6 +471,6 @@ export function AgeCal() {
           </AnimatePresence>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 }

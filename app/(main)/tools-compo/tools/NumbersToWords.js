@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import ToolPageShell from "../ToolPageShell";
 
 // Utility function to convert numbers to words with Lakh and Crore support
 function numberToWords(
@@ -593,7 +594,8 @@ export default function NumbersToWords() {
   const isBDTSelected = state.currency === "BDT";
 
   return (
-    <div className="max-w-6xl mx-auto px-2 pb-10 pt-26">
+    <ToolPageShell widthClassName="max-w-6xl">
+      <div>
       <Toast show={toast.show} message={toast.message} />
 
       {/* Page Header with Information */}
@@ -1077,6 +1079,7 @@ export default function NumbersToWords() {
           hundred and tens
         </p>
       </div>
-    </div>
+      </div>
+    </ToolPageShell>
   );
 }

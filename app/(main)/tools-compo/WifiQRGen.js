@@ -15,6 +15,7 @@ import { Switch } from "@/components/ui/switch";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { HexColorPicker } from "react-colorful";
+import ToolPageShell from "./ToolPageShell";
 
 const WifiQRGen = () => {
   const [ssid, setSsid] = useState("");
@@ -133,8 +134,9 @@ const WifiQRGen = () => {
   };
 
   return (
-    <div className="w-full mx-auto">
-      <div className="flex flex-col lg:flex-row justify-between mx-auto p-5 bg-gray-50 rounded-lg mt-20 mb-10 border border-gray-200">
+    <ToolPageShell widthClassName="max-w-6xl">
+      <div className="space-y-6">
+        <div className="mx-auto flex flex-col justify-between rounded-[2rem] border border-slate-200 bg-white/85 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur lg:flex-row">
         <div className="w-full lg:w-2/3">
           <form
             onSubmit={(e) => {
@@ -347,7 +349,7 @@ const WifiQRGen = () => {
             </motion.div>
           )}
         </div>
-      </div>
+        </div>
 
       {/* PDF Template Download section */}
       {qrCode && (
@@ -355,24 +357,24 @@ const WifiQRGen = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5, duration: 0.5 }}
-          className="w-11/12 lg:w-10/12 mx-auto p-3 bg-gray-50 rounded-lg mt-5 border border-gray-200 flex flex-col lg:flex-row items-center justify-between"
+          className="flex flex-col items-center justify-between gap-4 rounded-[1.75rem] border border-slate-200 bg-white/85 p-4 shadow-[0_20px_60px_rgba(15,23,42,0.06)] backdrop-blur lg:flex-row"
         >
-          <div className="w-full lg:w-1/2 flex items-center gap-4 mb-4 lg:mb-0">
+          <div className="mb-4 flex w-full items-center gap-4 lg:mb-0 lg:w-1/2">
             <Image
               src="/wifi_qr_template.jpg"
               alt="WiFi QR Template Demo"
               width={50}
               height={50}
-              className="border border-gray-300 rounded-sm -rotate-6"
+              className="rounded-sm border border-gray-300 -rotate-6"
             />
-            <h3 className="text-base text-left font-semibold md:text-xl bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-transparent">
+            <h3 className="bg-linear-to-r from-pink-500 to-violet-500 bg-clip-text text-left text-base font-semibold text-transparent md:text-xl">
               Download the PDF template to print or share your WiFi QR code.
             </h3>
           </div>
 
-          <div className="w-full lg:w-1/2 flex flex-col lg:flex-row items-center justify-end gap-3">
+          <div className="flex w-full flex-col items-center justify-end gap-3 lg:w-1/2 lg:flex-row">
             {password && (
-              <div className="flex items-center space-x-2 text-xs w-full lg:w-auto justify-between lg:justify-start">
+              <div className="flex w-full items-center justify-between space-x-2 text-xs lg:w-auto lg:justify-start">
                 <label htmlFor="show-password">Show password on PDF:</label>
                 <Switch
                   id="show-password"
@@ -392,7 +394,8 @@ const WifiQRGen = () => {
           </div>
         </motion.div>
       )}
-    </div>
+      </div>
+    </ToolPageShell>
   );
 };
 

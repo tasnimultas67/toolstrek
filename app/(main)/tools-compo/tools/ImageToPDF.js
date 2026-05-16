@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 import { PDFDocument, rgb } from "pdf-lib";
 import imageCompression from "browser-image-compression";
+import ToolPageShell from "../ToolPageShell";
 
 const PX_TO_PT = 72 / 96;
 const MM_TO_PT = 72 / 25.4;
@@ -1256,7 +1257,8 @@ export default function ImageToPDF() {
     : "Drag files here or use the button to start the queue.";
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div className="text-slate-900">
       <UploadStatus items={uploadingImages} progress={uploadProgress} />
 
       <section className="relative overflow-hidden bg-slate-950 text-white min-h-screen flex items-center pt-16 md:pt-0">
@@ -2218,6 +2220,7 @@ export default function ImageToPDF() {
         onChange={handleImageUpload}
         className="hidden"
       />
-    </div>
+      </div>
+    </ToolPageShell>
   );
 }

@@ -10,6 +10,7 @@ import {
   Sparkles,
 } from "lucide-react";
 import JSZip from "jszip";
+import ToolPageShell from "../ToolPageShell";
 
 const PdfToImage = () => {
   const [images, setImages] = useState([]);
@@ -98,7 +99,7 @@ const PdfToImage = () => {
   };
 
   return (
-    <div className="max-w-7xl mx-auto  pt-24 pb-10">
+    <ToolPageShell widthClassName="max-w-7xl">
       <div className="bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden transition-all">
         {/* EYE-CATCHING HEADER */}
         <div className="p-10 text-center border-b border-gray-50 dark:border-gray-800 bg-gradient-to-b from-brandColor/5 to-transparent">
@@ -226,7 +227,7 @@ const PdfToImage = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 };
 

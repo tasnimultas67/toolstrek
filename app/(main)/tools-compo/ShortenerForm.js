@@ -16,6 +16,7 @@ import { toast } from "sonner";
 import { motion, AnimatePresence } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import ToolPageShell from "./ToolPageShell";
 
 const ShortenerForm = () => {
   const [url, setUrl] = useState("");
@@ -92,8 +93,8 @@ const ShortenerForm = () => {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-gray-950 py-12 px-4 flex items-center justify-center font-sans">
-      <div className="w-full max-w-4xl space-y-8">
+    <ToolPageShell widthClassName="max-w-4xl">
+      <div className="space-y-8 font-sans">
         {/* Header Section */}
         <div className="text-center space-y-2">
           <motion.div
@@ -244,7 +245,7 @@ const ShortenerForm = () => {
           </motion.div>
         )}
       </div>
-    </div>
+    </ToolPageShell>
   );
 };
 

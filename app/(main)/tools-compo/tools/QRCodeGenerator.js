@@ -2,6 +2,7 @@
 
 import React, { useState, useRef } from "react";
 import { QRCodeSVG } from "qrcode.react";
+import ToolPageShell from "../ToolPageShell";
 
 const QRCodeGenerator = () => {
   const [inputValue, setInputValue] = useState("");
@@ -581,8 +582,8 @@ const QRCodeGenerator = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 pb-10 pt-26 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-7xl mx-auto">
+    <ToolPageShell widthClassName="max-w-7xl">
+      <div>
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
@@ -930,7 +931,7 @@ const QRCodeGenerator = () => {
           </div>
         </div>
       </div>
-    </div>
+    </ToolPageShell>
   );
 };
 
