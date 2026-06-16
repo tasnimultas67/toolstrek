@@ -5,6 +5,7 @@ import Header from "./tools-compo/Header";
 import { Toaster } from "sonner";
 import Footer from "./tools-compo/Footer";
 import GlobalSearchModal from "@/components/ui/GlobalSearchModal";
+import RecentToolsTracker from "@/components/RecentToolsTracker";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ export default function MainLayout({ children }) {
     <>
       <div className={`${outfit.className}`}>
         <Header />
+        <RecentToolsTracker />
         {children}
         <GlobalSearchModal />
         <Toaster />

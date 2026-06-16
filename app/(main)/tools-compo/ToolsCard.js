@@ -7,7 +7,7 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { getIcon } from "./dynamicIcon";
 import FavoriteButton from "@/components/FavoriteButton";
 
-const ToolsCard = ({ title, link, description, icon, category, index }) => {
+const ToolsCard = ({ title, link, description, icon, category, lastUsed, index }) => {
   const IconComponent = getIcon(icon);
 
   return (
@@ -38,6 +38,12 @@ const ToolsCard = ({ title, link, description, icon, category, index }) => {
             <p className="text-sm leading-relaxed text-gray-500">
               {description}
             </p>
+            {lastUsed && (
+              <span className="text-xs text-brandColor mt-2.5 font-medium flex items-center gap-1.5">
+                <span className="size-1.5 rounded-full bg-brandColor/80 animate-pulse" />
+                {lastUsed}
+              </span>
+            )}
           </div>
 
           <div className="mt-8 flex items-center text-sm font-medium text-gray-600 transition-colors group-hover:text-indigo-600">

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { toast } from "sonner";
 
 export function useFavorites() {
@@ -46,15 +46,15 @@ export function useFavorites() {
     };
   }, []);
 
-  const isFavorite = (slug) => {
+  const isFavorite = useCallback((slug) => {
     return favorites.some((tool) => {
       if (!tool || !tool.link) return false;
       const toolSlug = tool.link.split("/").pop();
       return toolSlug === slug || tool.link === slug || tool.title === slug;
     });
-  };
+  }, [favorites]);
 
-  const toggleFavorite = (tool) => {
+  const toggleFavorite = useCallback((tool) => {
     if (!tool || !tool.link) return;
 
     const toolSlug = tool.link.split("/").pop();
@@ -99,7 +99,7 @@ export function useFavorites() {
         console.error("Failed to save favorites to localStorage", e);
       }
     }
-  };
+  }, []);
 
   return {
     favorites,
