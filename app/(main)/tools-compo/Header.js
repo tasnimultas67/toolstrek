@@ -22,6 +22,7 @@ import { Button } from "@/components/ui/button";
 import { getIcon } from "./dynamicIcon";
 import toolsData from "../../../lib/toolsData.json";
 import { openGlobalSearch } from "@/lib/useGlobalSearch";
+import { useFavorites } from "@/hooks/useFavorites";
 
 const staatliches = Staatliches({
   subsets: ["latin"],
@@ -31,6 +32,7 @@ const staatliches = Staatliches({
 });
 
 export default function Header() {
+  const { favorites } = useFavorites();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [megaMenuAnimation, setMegaMenuAnimation] = useState(false);
@@ -336,6 +338,15 @@ export default function Header() {
                   )}
                 </div>
 
+                {favorites.length > 0 && (
+                  <Link
+                    href="/favorites"
+                    className="text-sm font-semibold text-gray-900 flex items-center gap-1.5 hover:text-brandColor transition-colors duration-200"
+                  >
+                    <Star className="size-4 text-amber-500 fill-amber-400" /> Favorites
+                  </Link>
+                )}
+
                 <Link
                   href="/about-us"
                   className="text-sm font-semibold text-gray-900"
@@ -526,6 +537,16 @@ export default function Header() {
                       </>
                     )}
                   </Disclosure>
+
+                  {favorites.length > 0 && (
+                    <Link
+                      href="/favorites"
+                      className="-mx-3 flex items-center gap-2 rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors duration-200"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      <Star className="size-4 text-amber-500 fill-amber-400" /> Favorites
+                    </Link>
+                  )}
 
                   <Link
                     href="/about-us"
