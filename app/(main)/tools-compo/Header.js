@@ -169,7 +169,7 @@ export default function Header() {
             aria-label="Global"
             className="mx-auto flex items-center justify-between"
           >
-            <div className="flex lg:flex-1">
+            <div className="flex ">
               <Link href="/" className="flex items-center justify-start gap-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -205,7 +205,7 @@ export default function Header() {
             </div>
 
             {/* Desktop UI */}
-            <div className="hidden lg:flex lg:flex-2 lg:justify-end items-center gap-x-8">
+            <div className="hidden lg:flex  lg:justify-end items-center gap-x-8">
               <div className="flex gap-x-8 items-center">
                 <div className="relative">
                   <button
@@ -230,9 +230,10 @@ export default function Header() {
                       <div className="w-full mx-auto overflow-hidden">
                         <div
                           className={`bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-200 ease-out transform origin-top
-                            ${megaMenuAnimation
-                              ? "opacity-100 scale-100 translate-y-0"
-                              : "opacity-0 scale-95 -translate-y-2"
+                            ${
+                              megaMenuAnimation
+                                ? "opacity-100 scale-100 translate-y-0"
+                                : "opacity-0 scale-95 -translate-y-2"
                             }`}
                         >
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -244,12 +245,15 @@ export default function Header() {
                                   href={item.link}
                                   onClick={() => closeMegaMenu()}
                                   className={`group relative flex items-start gap-x-4 p-6 transition-all hover:bg-brandColor/5 border-b border-r border-gray-100
-                                    ${megaMenuAnimation
-                                      ? "opacity-100 translate-x-0"
-                                      : "opacity-0 -translate-x-4"
+                                    ${
+                                      megaMenuAnimation
+                                        ? "opacity-100 translate-x-0"
+                                        : "opacity-0 -translate-x-4"
                                     }`}
                                   style={{
-                                    transitionDelay: megaMenuAnimation ? `${index * 30}ms` : "0ms",
+                                    transitionDelay: megaMenuAnimation
+                                      ? `${index * 30}ms`
+                                      : "0ms",
                                     transitionProperty: "opacity, transform",
                                     transitionDuration: "200ms",
                                   }}
@@ -275,20 +279,32 @@ export default function Header() {
                               href="/tools"
                               onClick={() => closeMegaMenu()}
                               className={`group flex items-center justify-between rounded-lg px-4 py-3 transition-all duration-200 hover:bg-brandColor/10
-                                ${megaMenuAnimation
-                                  ? "opacity-100 translate-y-0"
-                                  : "opacity-0 translate-y-2"
+                                ${
+                                  megaMenuAnimation
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-2"
                                 }`}
                               style={{
-                                transitionDelay: megaMenuAnimation ? `${displayedTools.length * 30}ms` : "0ms",
+                                transitionDelay: megaMenuAnimation
+                                  ? `${displayedTools.length * 30}ms`
+                                  : "0ms",
                                 transitionProperty: "opacity, transform",
                                 transitionDuration: "200ms",
                               }}
                             >
                               <div className="flex items-center gap-3">
                                 <div className="flex size-10 items-center justify-center rounded-lg bg-brandColor/10 text-brandColor group-hover:bg-brandColor group-hover:text-white transition-all duration-200">
-                                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5">
-                                    <path fillRule="evenodd" d="M4.25 2A2.25 2.25 0 0 0 2 4.25v11.5A2.25 2.25 0 0 0 4.25 18h11.5A2.25 2.25 0 0 0 18 15.75V4.25A2.25 2.25 0 0 0 15.75 2H4.25Zm9.47 4.72a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 1 1 1.06-1.06l1.97 1.97 3.72-3.72a.75.75 0 0 1 1.06 0Z" clipRule="evenodd" />
+                                  <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    className="size-5"
+                                  >
+                                    <path
+                                      fillRule="evenodd"
+                                      d="M4.25 2A2.25 2.25 0 0 0 2 4.25v11.5A2.25 2.25 0 0 0 4.25 18h11.5A2.25 2.25 0 0 0 18 15.75V4.25A2.25 2.25 0 0 0 15.75 2H4.25Zm9.47 4.72a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0l-2.5-2.5a.75.75 0 1 1 1.06-1.06l1.97 1.97 3.72-3.72a.75.75 0 0 1 1.06 0Z"
+                                      clipRule="evenodd"
+                                    />
                                   </svg>
                                 </div>
                                 <div>
@@ -300,8 +316,17 @@ export default function Header() {
                                   </p>
                                 </div>
                               </div>
-                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="size-5 text-gray-400 group-hover:text-brandColor group-hover:translate-x-1 transition-all duration-200">
-                                <path fillRule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
+                              <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 20 20"
+                                fill="currentColor"
+                                className="size-5 text-gray-400 group-hover:text-brandColor group-hover:translate-x-1 transition-all duration-200"
+                              >
+                                <path
+                                  fillRule="evenodd"
+                                  d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z"
+                                  clipRule="evenodd"
+                                />
                               </svg>
                             </Link>
                           </div>
@@ -311,16 +336,21 @@ export default function Header() {
                   )}
                 </div>
 
-                <Link href="/about-us" className="text-sm font-semibold text-gray-900">
+                <Link
+                  href="/about-us"
+                  className="text-sm font-semibold text-gray-900"
+                >
                   About
                 </Link>
-                <Link href="/contact-us" className="text-sm font-semibold text-gray-900">
+                <Link
+                  href="/contact-us"
+                  className="text-sm font-semibold text-gray-900"
+                >
                   Contact Us
                 </Link>
               </div>
 
               <div className="flex items-center gap-4 border-l border-gray-200 pl-8">
-
                 {/* ── Search pill — opens GlobalSearchModal ── */}
                 <button
                   onClick={openGlobalSearch}
@@ -349,8 +379,17 @@ export default function Header() {
                   rel="noopener noreferrer"
                   className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-full border border-gray-200 hover:bg-gray-100 hover:border-gray-300 transition-all duration-200 hover:scale-105"
                 >
-                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-gray-800">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-4 text-gray-800"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                      clipRule="evenodd"
+                    />
                   </svg>
                   <span>Star</span>
                   {!isLoadingStars && starCount !== null && (
@@ -366,7 +405,10 @@ export default function Header() {
                   )}
                 </a>
 
-                <Link href="https://forms.gle/BJXbXuQ3n2mwdHgx5" target="_blank">
+                <Link
+                  href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
+                  target="_blank"
+                >
                   <Button className="bg-brandColor hover:bg-brandColorHover text-sm! font-normal shadow-none flex items-center gap-2 transition-all duration-200 hover:scale-105 cursor-pointer">
                     <Star className="size-4" /> Request a Tool
                   </Button>
@@ -377,7 +419,11 @@ export default function Header() {
         </header>
 
         {/* Mobile Menu */}
-        <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+        <Dialog
+          open={mobileMenuOpen}
+          onClose={setMobileMenuOpen}
+          className="lg:hidden"
+        >
           <div className="fixed inset-0 z-50 bg-black/20 backdrop-blur-sm transition-opacity duration-300" />
           <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm transform transition-transform duration-300 ease-out">
             <div className="flex items-center justify-between">
@@ -397,14 +443,18 @@ export default function Header() {
             <div className="mt-6 flow-root">
               <div className="-my-6 divide-y divide-gray-500/10">
                 <div className="space-y-2 py-6">
-
                   {/* Mobile search — opens global modal */}
                   <button
-                    onClick={() => { setMobileMenuOpen(false); openGlobalSearch(); }}
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      openGlobalSearch();
+                    }}
                     className="flex items-center gap-2.5 w-full mb-4 px-3 py-2.5 rounded-lg border border-gray-200 bg-gray-50 text-gray-500 cursor-pointer"
                   >
                     <MagnifyingGlassIcon className="size-4 shrink-0" />
-                    <span className="text-sm text-gray-400 flex-1 text-left">Search tools…</span>
+                    <span className="text-sm text-gray-400 flex-1 text-left">
+                      Search tools…
+                    </span>
                     <span className="flex items-center gap-0.5">
                       <kbd className="inline-flex items-center justify-center h-5 px-1 rounded border border-gray-300 bg-white text-[10px] font-mono text-gray-400 shadow-sm leading-none">
                         {isMac ? "⌘" : "Ctrl"}
@@ -422,8 +472,17 @@ export default function Header() {
                     rel="noopener noreferrer"
                     className="flex items-center justify-center gap-2 w-full mb-4 px-4 py-2.5 text-sm font-medium text-gray-700 bg-gray-50 rounded-lg border border-gray-200 hover:bg-gray-100 transition-all duration-200"
                   >
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 text-gray-800">
-                      <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                      className="size-4 text-gray-800"
+                    >
+                      <path
+                        fillRule="evenodd"
+                        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                        clipRule="evenodd"
+                      />
                     </svg>
                     <span>Star on GitHub</span>
                     {!isLoadingStars && starCount !== null && (
@@ -438,23 +497,34 @@ export default function Header() {
                       <>
                         <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors duration-200">
                           Digital Solutions
-                          <ChevronDownIcon className={`size-5 transition-transform duration-200 ${open ? "rotate-180" : ""}`} />
+                          <ChevronDownIcon
+                            className={`size-5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                          />
                         </DisclosureButton>
                         <DisclosurePanel className="mt-2 space-y-2 transition-all duration-200">
-                          {toolsData.slice(0, 6).reverse().map((item) => (
-                            <Link
-                              key={item.title}
-                              href={item.link}
-                              className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-200 hover:pl-8"
-                              onClick={() => { close(); setMobileMenuOpen(false); }}
-                            >
-                              {item.title}
-                            </Link>
-                          ))}
+                          {toolsData
+                            .slice(0, 6)
+                            .reverse()
+                            .map((item) => (
+                              <Link
+                                key={item.title}
+                                href={item.link}
+                                className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-200 hover:pl-8"
+                                onClick={() => {
+                                  close();
+                                  setMobileMenuOpen(false);
+                                }}
+                              >
+                                {item.title}
+                              </Link>
+                            ))}
                           <Link
                             href="/tools"
                             className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold text-brandColor hover:bg-brandColor/10 transition-all duration-200 hover:pl-8"
-                            onClick={() => { close(); setMobileMenuOpen(false); }}
+                            onClick={() => {
+                              close();
+                              setMobileMenuOpen(false);
+                            }}
                           >
                             See All Tools →
                           </Link>
@@ -479,7 +549,10 @@ export default function Header() {
                   </Link>
                 </div>
                 <div className="py-6">
-                  <Link href="https://forms.gle/BJXbXuQ3n2mwdHgx5" target="_blank">
+                  <Link
+                    href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
+                    target="_blank"
+                  >
                     <Button className="w-full bg-brandColor hover:bg-brandColorHover transition-all duration-200 hover:scale-105 cursor-pointer">
                       Request a Tool
                     </Button>
