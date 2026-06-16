@@ -1,110 +1,134 @@
 # ToolsTrek
 
-ToolsTrek is a modern online utility hub built with Next.js. It combines text tools, PDF utilities, QR tools, image converters, and productivity helpers in one fast, responsive interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 27+ tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
-## Overview
+---
 
-The project is designed for quick, low-friction workflows:
+## ✨ Features
 
-- Most tools run directly in the browser.
-- The interface is responsive and works well across desktop and mobile.
-- Supporting pages include About, FAQ, Pricing, Contact, and Privacy Policy.
-- Server-side routes are used where needed for contact delivery and verification.
+- ⚡ **Browser-first** — most tools run entirely client-side, no account required
+- 🔒 **Privacy-conscious** — files and data are processed locally when possible
+- 🎨 **Modern UI** — dark/light theme, smooth animations with Framer Motion
+- 🔍 **Global Search** — keyboard-accessible command palette to find any tool instantly
+- ⭐ **Favorites System** — pin your most-used tools, persisted via `localStorage`
+- 🕐 **Recent Tools** — automatically tracks and highlights recently visited tools
+- 📱 **Fully Responsive** — works seamlessly across desktop and mobile
+- 📧 **Contact Form** — SMTP-powered with Google reCAPTCHA v2 protection
+- 📊 **Vercel Analytics** — built-in page view and performance tracking
 
-## Key Features
+---
 
-- Browser-first experience with no account required
-- Fast and responsive UI
-- Privacy-conscious tool design
-- Clear navigation across a large tool library
-- Contact form with SMTP and reCAPTCHA support
-- Free and easy to use
+## 🛠️ Tool Library (27 Tools)
 
-## Tool Library
+### 📝 Text
 
-### Text and Writing
+| Tool               | Description                                                        |
+| ------------------ | ------------------------------------------------------------------ |
+| Case Converter     | Convert text between UPPER, lower, Title, Sentence case, and more  |
+| Text Repeater      | Repeat any text multiple times with customizable separator options |
+| Markdown Previewer | Real-time GitHub-flavored Markdown & HTML preview editor           |
+| Numbers to Words   | Convert any number into its full English word representation       |
 
-- Case Converter
-- Markdown Previewer
-- Text Repeater
-- Numbers to Words
+### 📊 Calculator
 
-### Productivity
+| Tool               | Description                                                       |
+| ------------------ | ----------------------------------------------------------------- |
+| Age Calculator     | Calculate exact age in years, months, days, hours, and minutes    |
+| BMI Calculator     | Calculate Body Mass Index with health category classification     |
+| Days Tracker       | Find an end date by adding days to a start date                   |
+| NU CGPA Calculator | Calculate National University Bangladesh CGPA from subject grades |
 
-- Age Calculator
-- Days Tracker
-- BMI Calculator
-- Domain Age Checker
-- Fake Info Generator
+### 🔧 Productivity
 
-### QR and Scanning
+| Tool                | Description                                             |
+| ------------------- | ------------------------------------------------------- |
+| Link Shortener      | Shorten long URLs for clean, easy sharing               |
+| Fake Info Generator | Generate realistic fake identities for testing purposes |
 
-- QR Code Generator
-- QR Scanner
-- WiFi QR Generator
+### 🔒 Security
 
-### Documents and PDF
+| Tool               | Description                                           |
+| ------------------ | ----------------------------------------------------- |
+| Password Generator | Create strong, randomized passwords with custom rules |
 
-- PDF to Image
-- Image to PDF
-- Combine Files to PDF
-- PDF Merger
-- PDF Split
-- PDF Reorder
-- PDF Compression
-- Crop PDF
-- N-up PDF
-- Add Attachments
+### 🌐 Developer
 
-### Media and Conversion
+| Tool               | Description                                        |
+| ------------------ | -------------------------------------------------- |
+| Domain Age Checker | Look up when any domain was first registered       |
+| Markdown Previewer | Live preview with syntax highlighting (GFM + HTML) |
 
-- AVIF Converter
-- Image to Text
+### 📷 QR Code
 
-### Links and Security
+| Tool              | Description                                           |
+| ----------------- | ----------------------------------------------------- |
+| QR Code Generator | Generate custom QR codes with color and style options |
+| QR Code Scanner   | Scan QR codes via device camera in real-time          |
+| WiFi QR Generator | Generate a scannable QR code for any WiFi network     |
 
-- Link Shortener
-- Password Generator
+### 🖼️ Image
 
-## Tech Stack
+| Tool                | Description                                                   |
+| ------------------- | ------------------------------------------------------------- |
+| AVIF Converter      | Convert images to/from the AVIF format for better compression |
+| Image to Text (OCR) | Extract text from images locally using Tesseract.js           |
 
-- Next.js 16.2
-- React 19
-- Tailwind CSS 4
-- Radix UI
-- Framer Motion
-- Lucide React
-- React Hook Form
-- Zod
-- Sonner
-- pdf-lib, pdfjs-dist, jspdf
-- qrcode, qrcode.react, @zxing/library, jsqr, tesseract.js
-- Nodemailer
+### 📄 PDF
 
-## Getting Started
+| Tool                 | Description                                            |
+| -------------------- | ------------------------------------------------------ |
+| PDF to Image         | Convert PDF pages into high-resolution PNG/JPEG images |
+| Image to PDF         | Convert one or more images into a PDF document         |
+| Combine Files to PDF | Merge images and PDFs into a single PDF                |
+| PDF Merger           | Merge multiple PDF files into one                      |
+| PDF Splitter         | Split a PDF into individual pages or ranges            |
+| PDF Reorder          | Drag-and-drop to rearrange PDF pages                   |
+| Compress PDF         | Reduce PDF file size without significant quality loss  |
+| Crop PDF             | Trim margins and crop PDF pages online                 |
+| N-Up PDF             | Print multiple pages per sheet in your PDF layout      |
+| Add Attachments      | Embed file attachments inside a PDF document           |
+
+---
+
+## 🧰 Tech Stack
+
+| Category          | Technologies                                                                          |
+| ----------------- | ------------------------------------------------------------------------------------- |
+| **Framework**     | Next.js 16.2, React 19                                                                |
+| **Styling**       | Tailwind CSS 4, tw-animate-css                                                        |
+| **UI Components** | Radix UI (Accordion, Dialog, Select, Slider, Switch, Popover, Label), shadcn/ui       |
+| **Animation**     | Framer Motion 12, Motion                                                              |
+| **Icons**         | Lucide React, Heroicons                                                               |
+| **Forms**         | React Hook Form, Zod, @hookform/resolvers                                             |
+| **PDF**           | pdf-lib, pdfjs-dist, jspdf, react-pdf                                                 |
+| **QR Code**       | qrcode, qrcode.react, @zxing/library, jsqr                                            |
+| **OCR**           | Tesseract.js                                                                          |
+| **Image**         | browser-image-compression, react-dropzone, react-colorful                             |
+| **Markdown**      | react-markdown, remark-gfm, remark-breaks, rehype-highlight, rehype-raw, highlight.js |
+| **Drag & Drop**   | @hello-pangea/dnd                                                                     |
+| **Utilities**     | date-fns, jszip, clsx, tailwind-merge, class-variance-authority                       |
+| **Notifications** | Sonner                                                                                |
+| **Camera**        | react-webcam                                                                          |
+| **Email**         | Nodemailer                                                                            |
+| **reCAPTCHA**     | react-google-recaptcha                                                                |
+| **Analytics**     | @vercel/analytics                                                                     |
+| **Font**          | Outfit (Google Fonts via next/font)                                                   |
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
 
-- Node.js
-- npm
+- **Node.js** 18+
+- **npm** or **pnpm**
 
 ### Install Dependencies
 
 ```bash
 npm install
-```
-
-### Environment Variables
-
-Create a `.env.local` file in the project root using `.env.example` as a guide.
-
-```env
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_EMAIL=your-email@gmail.com
-SMTP_PASSWORD=your-app-password
-TO_EMAIL=recipient@example.com
-RECAPTCHA_SECRET_KEY=your-recaptcha-secret-key
+# or
+pnpm install
 ```
 
 ### Run the Development Server
@@ -113,7 +137,7 @@ RECAPTCHA_SECRET_KEY=your-recaptcha-secret-key
 npm run dev
 ```
 
-The app runs at `http://localhost:1000`.
+The app runs at **http://localhost:1000** (Turbopack enabled by default).
 
 ### Production Build
 
@@ -128,51 +152,173 @@ npm start
 npm run lint
 ```
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```text
 toolstrek/
-|-- app/
-|   `-- (main)/
-|       |-- api/
-|       |-- about-us/
-|       |-- contact-us/
-|       |-- faq/
-|       |-- privacy-policy/
-|       |-- tools/
-|       |-- tools-compo/
-|       |-- layout.js
-|       `-- page.js
-|-- components/
-|   `-- ui/
-|-- lib/
-|-- public/
-|-- .env.example
-|-- next.config.mjs
-|-- package.json
-`-- README.md
+├── app/
+│   ├── (main)/                        # Main route group
+│   │   ├── api/                       # Server-side API routes
+│   │   │   ├── check-domain-age/      #   Domain WHOIS lookup
+│   │   │   ├── contact/               #   Contact form (Nodemailer + SMTP)
+│   │   │   └── verify-recaptcha/      #   Google reCAPTCHA verification
+│   │   ├── about-us/                  # About page
+│   │   ├── data/                      # Static data pages
+│   │   ├── faq/                       # FAQ page
+│   │   ├── favorites/                 # ⭐ Favorites page
+│   │   ├── privacy-policy/            # Privacy Policy page
+│   │   ├── recent/                    # 🕐 Recently visited tools page
+│   │   ├── tools/                     # Individual tool pages (28 routes)
+│   │   │   ├── add-attachments/
+│   │   │   ├── age-calculate/
+│   │   │   ├── avif-converter/
+│   │   │   ├── bmi-calculator/
+│   │   │   ├── case-converter/
+│   │   │   ├── cgpa-calculator/
+│   │   │   ├── combine-files-to-pdf/
+│   │   │   ├── compress-pdf/
+│   │   │   ├── crop-pdf/
+│   │   │   ├── days-tracker/
+│   │   │   ├── domain-age-checker/
+│   │   │   ├── fake-info-generator/
+│   │   │   ├── image-to-pdf/
+│   │   │   ├── image-to-text/
+│   │   │   ├── link-shortner/
+│   │   │   ├── markdown-previewer/
+│   │   │   ├── n-up-pdf/
+│   │   │   ├── numbers-to-words/
+│   │   │   ├── password-generator/
+│   │   │   ├── pdf-merger/
+│   │   │   ├── pdf-reorder/
+│   │   │   ├── pdf-split/
+│   │   │   ├── pdf-to-image/
+│   │   │   ├── qr-code-generator/
+│   │   │   ├── qr-scanner/
+│   │   │   ├── text-repeater/
+│   │   │   └── wifi-qr/
+│   │   ├── tools-compo/               # Shared UI components & page shells
+│   │   │   ├── Home-Compo/            #   Homepage-specific components
+│   │   │   │   ├── CTA.js             #     Call-to-action section
+│   │   │   │   ├── HeroSkeleton.js    #     Hero loading skeleton
+│   │   │   │   └── Reviews.js         #     User reviews/testimonials
+│   │   │   ├── tools/                 # Tool implementation components
+│   │   │   │   ├── AddAttachmentsTool.js
+│   │   │   │   ├── AvifConverter.js
+│   │   │   │   ├── BMICal.js
+│   │   │   │   ├── CGPACalculator.js
+│   │   │   │   ├── CombineFilesToPDFTool.jsx
+│   │   │   │   ├── CompressPDFTool.js
+│   │   │   │   ├── CropPDF.js
+│   │   │   │   ├── DomainAgeChecker.js
+│   │   │   │   ├── FakeInfoGenerator.js
+│   │   │   │   ├── ImageToPDF.js
+│   │   │   │   ├── ImageToText.js
+│   │   │   │   ├── MarkdownPreviewer.js
+│   │   │   │   ├── NUpPDFTool.js
+│   │   │   │   ├── NumbersToWords.js
+│   │   │   │   ├── PDFReorderPages.js
+│   │   │   │   ├── PDFSplitPage.js
+│   │   │   │   ├── PdfToImage.js
+│   │   │   │   ├── QRCodeGenerator.js
+│   │   │   │   ├── TextRepeater.js
+│   │   │   │   └── cgpaSubjectData.json
+│   │   │   ├── AgeCal.js              #   Age Calculator component
+│   │   │   ├── DaysTracker.js         #   Days Tracker component
+│   │   │   ├── FAQCon.js              #   FAQ content component
+│   │   │   ├── Footer.js              #   Site footer
+│   │   │   ├── Header.js              #   Site header + navigation
+│   │   │   ├── Hero.js                #   Homepage hero section
+│   │   │   ├── HServices.js           #   Homepage services section
+│   │   │   ├── ParentTools.js         #   Tool listing/grid component
+│   │   │   ├── QRScanner.js           #   QR Scanner component
+│   │   │   ├── RecentToolsHome.js     #   Recent tools on homepage
+│   │   │   ├── ShortenerForm.js       #   Link shortener form
+│   │   │   ├── ToolPageShell.jsx      #   Wrapper shell for tool pages
+│   │   │   ├── ToolsCard.js           #   Individual tool card
+│   │   │   ├── WifiQRGen.js           #   WiFi QR generator component
+│   │   │   └── dynamicIcon.js         #   Dynamic Lucide icon resolver
+│   │   ├── layout.js                  # Main layout (Header, Footer, Toaster)
+│   │   └── page.js                    # Homepage
+│   ├── error.js                       # Global error boundary
+│   ├── global-error.js                # Root-level error boundary
+│   ├── globals.css                    # Global styles & CSS variables
+│   ├── layout.js                      # Root layout
+│   ├── loading.js                     # Global loading UI
+│   └── not-found.js                   # 404 page
+│
+├── components/
+│   ├── FavoriteButton.jsx             # ⭐ Favorite toggle button component
+│   ├── RecentToolsTracker.jsx         # 🕐 Passive recent-tool tracking component
+│   └── ui/                            # shadcn/ui & custom primitives
+│       ├── GlobalSearchModal.jsx      #   Command-palette search modal
+│       ├── accordion.jsx
+│       ├── button.jsx
+│       ├── calendar.jsx
+│       ├── card.jsx
+│       ├── carousel.jsx
+│       ├── command.jsx
+│       ├── copy-button.jsx
+│       ├── dialog.jsx
+│       ├── form.jsx
+│       ├── input.jsx
+│       ├── label.jsx
+│       ├── popover.jsx
+│       ├── select.jsx
+│       ├── slider.jsx
+│       ├── sonner.jsx
+│       ├── switch.jsx
+│       └── textarea.jsx
+│
+├── hooks/
+│   ├── useFavorites.js                # ⭐ Favorites state hook (localStorage, SSR-safe)
+│   └── useRecentTools.js              # 🕐 Recent tools state hook (localStorage, SSR-safe)
+│
+├── lib/
+│   ├── toolsData.json                 # Central tool registry (title, link, icon, category)
+│   ├── useGlobalSearch.js             # Global search state/logic
+│   └── utils.js                       # Shared utility functions (cn, etc.)
+│
+├── public/                            # Static assets
+│   ├── pdf.worker.js                  # pdfjs-dist web worker
+│   ├── wifi_qr_template.jpg
+│   └── ...                            # Icons, images, SVGs
+│
+├── .env.example                       # Environment variable template
+├── .gitignore
+├── components.json                    # shadcn/ui config
+├── eslint.config.mjs
+├── jsconfig.json
+├── LICENSE                            # MIT License
+├── next.config.mjs                    # Next.js config (Turbopack, Webpack, image domains)
+├── package.json
+├── postcss.config.mjs
+└── README.md
 ```
 
-## Contributing
+---
 
-ToolsTrek is open source, and contributions are welcome.
+## 🤝 Contributing
 
-If you'd like to contribute:
+ToolsTrek is open source and contributions are welcome!
 
-1. Fork the repository.
-2. Create a branch for your change.
-3. Make your updates with a clear, focused scope.
-4. Test your changes locally.
-5. Open a pull request with a short description of what changed and why.
+1. **Fork** the repository
+2. **Create a branch** for your feature or fix (`git checkout -b feature/my-tool`)
+3. **Make your changes** with a clear, focused scope
+4. **Test locally** — run `npm run dev` and verify everything works
+5. **Open a pull request** with a short description of what changed and why
 
-Helpful contribution guidelines:
+### Contribution Guidelines
 
-- Keep changes consistent with the existing design and structure.
-- Prefer small, focused pull requests.
-- If you are fixing a bug, include the issue details or reproduction steps.
-- If you are adding a tool, update the README and route structure if needed.
-- Be respectful and constructive in discussions and reviews.
+- Keep changes consistent with the existing design system and component structure
+- Prefer small, focused pull requests over large sweeping changes
+- If adding a new tool: create the page route, add the component under `tools-compo/tools/`, and register it in `lib/toolsData.json`
+- If fixing a bug: include reproduction steps in the PR description
+- Be respectful and constructive in all discussions
 
-## License
+---
 
-This project is licensed under the MIT License.
+## 📄 License
+
+This project is licensed under the **MIT License** — see [LICENSE](./LICENSE) for details.
