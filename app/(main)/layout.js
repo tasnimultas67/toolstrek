@@ -4,6 +4,7 @@ import "../globals.css";
 import Header from "./tools-compo/Header";
 import { Toaster } from "sonner";
 import Footer from "./tools-compo/Footer";
+import GlobalSearchModal from "@/components/ui/GlobalSearchModal";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -23,7 +24,7 @@ export default function MainLayout({ children }) {
       <div className={`${outfit.className}`}>
         <Header />
         {children}
-
+        <GlobalSearchModal />
         <Toaster />
         <Footer></Footer>
       </div>
