@@ -342,12 +342,6 @@ export default function Header() {
                 >
                   About
                 </Link>
-                <Link
-                  href="/contact-us"
-                  className="text-sm font-semibold text-gray-900"
-                >
-                  Contact Us
-                </Link>
               </div>
 
               <div className="flex items-center gap-4 border-l border-gray-200 pl-8">
@@ -539,13 +533,6 @@ export default function Header() {
                     onClick={() => setMobileMenuOpen(false)}
                   >
                     About
-                  </Link>
-                  <Link
-                    href="/contact-us"
-                    className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors duration-200"
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    Contact Us
                   </Link>
                 </div>
                 <div className="py-6">
