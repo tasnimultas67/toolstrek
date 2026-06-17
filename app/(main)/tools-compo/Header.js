@@ -165,7 +165,7 @@ export default function Header() {
 
   return (
     <div className="sticky top-2 z-50 w-full">
-      <div className="absolute top-0 left-0 right-0 border border-gray-900/10 bg-white/80 backdrop-blur-xl rounded-lg w-11/12 mx-auto px-2 py-2 shadow-md">
+      <div className="absolute top-0 left-0 right-0 border border-gray-900/10 bg-white/60 backdrop-blur-xl rounded-lg w-11/12 mx-auto px-2 py-2 shadow-md">
         <header className="w-full">
           <nav
             aria-label="Global"
@@ -343,7 +343,8 @@ export default function Header() {
                     href="/favorites"
                     className="text-sm font-semibold text-gray-900 flex items-center gap-1.5 hover:text-brandColor transition-colors duration-200"
                   >
-                    <Star className="size-4 text-amber-500 fill-amber-400" /> Favorites
+                    <Star className="size-4 text-amber-500 fill-amber-400" />{" "}
+                    Favorites
                   </Link>
                 )}
 
@@ -544,7 +545,8 @@ export default function Header() {
                       className="-mx-3 flex items-center gap-2 rounded-lg px-3 py-2 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-colors duration-200"
                       onClick={() => setMobileMenuOpen(false)}
                     >
-                      <Star className="size-4 text-amber-500 fill-amber-400" /> Favorites
+                      <Star className="size-4 text-amber-500 fill-amber-400" />{" "}
+                      Favorites
                     </Link>
                   )}
 
