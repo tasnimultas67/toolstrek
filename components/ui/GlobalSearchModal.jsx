@@ -178,11 +178,11 @@ export default function GlobalSearchModal() {
       onMouseDown={(e) => { if (e.target === e.currentTarget) closeModal(); }}
     >
       <div
-        className={`w-full max-w-xl bg-white rounded-2xl shadow-2xl border border-gray-100 overflow-hidden flex flex-col ${closing ? "tt-modal tt-modal-out" : "tt-modal"}`}
+        className={`w-full max-w-xl bg-white dark:bg-gray-900 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden flex flex-col ${closing ? "tt-modal tt-modal-out" : "tt-modal"}`}
         style={{ maxHeight: "78vh" }}
       >
         {/* Search bar */}
-        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-100 shrink-0">
+        <div className="flex items-center gap-3 px-4 py-3.5 border-b border-gray-100 dark:border-gray-800 shrink-0">
           <Search size={17} className="text-gray-400 shrink-0" />
           <input
             ref={inputRef}
@@ -191,17 +191,17 @@ export default function GlobalSearchModal() {
             onChange={(e) => setQuery(e.target.value)}
             onKeyDown={handleKeyDown}
             placeholder="Search tools…"
-            className="flex-1 bg-transparent text-gray-900 placeholder-gray-400 text-[15px] outline-none"
+            className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 text-[15px] outline-none"
           />
           <button
             onClick={() => setQuery("")}
             aria-label="Clear"
             style={{ opacity: query ? 1 : 0, pointerEvents: query ? "auto" : "none", transition: "opacity 150ms" }}
-            className="text-gray-400 hover:text-gray-600 rounded-full p-0.5 cursor-pointer"
+            className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 rounded-full p-0.5 cursor-pointer"
           >
             <X size={15} />
           </button>
-          <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] text-gray-400 border border-gray-200 rounded-md font-mono leading-none">
+          <kbd className="hidden sm:inline-flex items-center px-2 py-0.5 text-[11px] text-gray-400 dark:text-gray-300 border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-md font-mono leading-none">
             Esc
           </kbd>
         </div>
@@ -229,7 +229,7 @@ export default function GlobalSearchModal() {
             <div className="py-1.5">
               {Object.entries(grouped).map(([category, tools]) => (
                 <div key={category}>
-                  <p className="px-4 pt-3 pb-1 text-[11px] font-semibold text-gray-400 uppercase tracking-widest select-none">
+                  <p className="px-4 pt-3 pb-1 text-[11px] font-semibold text-gray-400 dark:text-gray-500 uppercase tracking-widest select-none">
                     {category}
                   </p>
                   <ul>
@@ -254,7 +254,7 @@ export default function GlobalSearchModal() {
         </div>
 
         {/* Footer */}
-        <div className="border-t border-gray-100 px-4 py-2 flex items-center gap-3 text-[11px] text-gray-400 bg-gray-50/70 shrink-0 select-none">
+        <div className="border-t border-gray-100 dark:border-gray-800 px-4 py-2 flex items-center gap-3 text-[11px] text-gray-400 bg-gray-50/70 dark:bg-gray-950/70 shrink-0 select-none">
           <span className="flex items-center gap-1"><Kbd>↑</Kbd><Kbd>↓</Kbd> navigate</span>
           <span className="flex items-center gap-1"><Kbd>↵</Kbd> open</span>
           <span className="flex items-center gap-1 ml-auto"><Kbd>Ctrl</Kbd>+<Kbd>K</Kbd> toggle</span>
@@ -266,7 +266,7 @@ export default function GlobalSearchModal() {
 
 function Kbd({ children }) {
   return (
-    <kbd className="inline-flex items-center justify-center px-1.5 py-0.5 font-mono text-[10px] border border-gray-200 rounded bg-white shadow-sm leading-none">
+    <kbd className="inline-flex items-center justify-center px-1.5 py-0.5 font-mono text-[10px] border border-gray-200 dark:border-gray-700 rounded bg-white dark:bg-gray-800 shadow-sm leading-none">
       {children}
     </kbd>
   );
@@ -282,7 +282,7 @@ function ToolRow({ tool, index, active, onSelect, onHover }) {
         className="w-full flex items-center gap-3 px-3 py-2.5 mx-1 rounded-xl cursor-pointer"
         style={{
           width: "calc(100% - 8px)",
-          backgroundColor: active ? "rgba(0,0,0,0.055)" : "transparent",
+          backgroundColor: active ? "var(--search-active-bg, rgba(0,0,0,0.055))" : "transparent",
           transition: "background-color 150ms ease",
         }}
       >
@@ -290,8 +290,8 @@ function ToolRow({ tool, index, active, onSelect, onHover }) {
         <span
           className="shrink-0 w-8 h-8 flex items-center justify-center rounded-lg"
           style={{
-            backgroundColor: active ? "var(--brand-icon-bg, rgba(99,102,241,0.15))" : "#f3f4f6",
-            color: active ? "var(--brandColor, #6366f1)" : "#6b7280",
+            backgroundColor: active ? "var(--brand-icon-bg, rgba(99,102,241,0.15))" : "var(--search-icon-bg, #f3f4f6)",
+            color: active ? "var(--brandColor, #6366f1)" : "var(--search-icon-fg, #6b7280)",
             transition: "background-color 150ms ease, color 150ms ease",
           }}
         >
@@ -302,7 +302,7 @@ function ToolRow({ tool, index, active, onSelect, onHover }) {
         <span
           className="flex-1 text-sm font-medium text-left"
           style={{
-            color: active ? "var(--brandColor, #6366f1)" : "#374151",
+            color: active ? "var(--brandColor, #6366f1)" : "var(--search-title-fg, #374151)",
             transition: "color 150ms ease",
           }}
         >
@@ -313,7 +313,7 @@ function ToolRow({ tool, index, active, onSelect, onHover }) {
         <span
           className="hidden sm:block text-[12px] whitespace-nowrap overflow-hidden"
           style={{
-            color: active ? "var(--brandColor, #6366f1)" : "#9ca3af",
+            color: active ? "var(--brandColor, #6366f1)" : "var(--search-cat-fg, #9ca3af)",
             opacity: active ? 0.7 : 1,
             transform: active ? "translateX(-4px)" : "translateX(0)",
             transition: "transform 180ms ease, opacity 180ms ease, color 180ms ease",

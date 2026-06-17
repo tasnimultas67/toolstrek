@@ -42,7 +42,7 @@ const Hero = () => {
   });
 
   return (
-    <div className="relative bg-slate-50 h-dvh overflow-hidden flex items-center justify-center">
+    <div className="relative bg-slate-50 dark:bg-gray-950 h-dvh overflow-hidden flex items-center justify-center">
       {/* Background Grid Pattern */}
       <div
         className="absolute inset-0 z-0 opacity-[0.03] [mask-image:radial-gradient(ellipse_at_center,white,transparent)]"
@@ -85,7 +85,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.h1
-            className="text-5xl font-extrabold tracking-tight text-gray-900 sm:text-7xl lg:text-8xl"
+            className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-7xl lg:text-8xl"
             variants={itemVariants}
           >
             Your Digital{" "}
@@ -97,7 +97,7 @@ const Hero = () => {
           </motion.h1>
 
           <motion.p
-            className="mt-8 text-lg leading-8 text-gray-600 max-w-2xl mx-auto"
+            className="mt-8 text-lg leading-8 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
             variants={itemVariants}
           >
             Instantly shorten URLs, generate QR codes, calculate metrics, and
@@ -111,13 +111,13 @@ const Hero = () => {
             variants={itemVariants}
           >
             <Link href="#tools">
-              <Button className="w-full bg-brandColor hover:bg-brandColorHover transition-all duration-200 hover:scale-105 cursor-pointer">
+              <Button className="w-full bg-brandColor dark:text-white hover:bg-brandColorHover transition-all duration-200  cursor-pointer">
                 Get started free
               </Button>
             </Link>
             <Link
               href="/about-us"
-              className="group text-sm font-semibold leading-6 text-gray-900 flex items-center"
+              className="group text-sm font-semibold leading-6 text-gray-900 dark:text-gray-200 flex items-center"
             >
               Learn more
               <span
@@ -131,7 +131,7 @@ const Hero = () => {
 
           {/* Floating Icons with specific delays and enhanced shadows */}
           <motion.div
-            className="absolute top-12 left-12 md:top-20 md:left-32 p-4 bg-white rounded-2xl shadow-xl border border-slate-100 hidden sm:block"
+            className="absolute top-12 left-12 md:top-20 md:left-32 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-slate-100 dark:border-gray-800 hidden sm:block"
             variants={floatingVariants(0)}
             animate="float"
           >
@@ -145,7 +145,7 @@ const Hero = () => {
           </motion.div>
 
           <motion.div
-            className="absolute top-0 right-12 md:top-10 md:right-32 p-4 bg-white rounded-2xl shadow-xl border border-slate-100 hidden sm:block"
+            className="absolute top-0 right-12 md:top-10 md:right-32 p-4 bg-white dark:bg-gray-900 rounded-2xl shadow-xl border border-slate-100 dark:border-gray-800 hidden sm:block"
             variants={floatingVariants(0.5)}
             animate="float"
           >

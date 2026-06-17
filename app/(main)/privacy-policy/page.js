@@ -51,7 +51,7 @@ const sectionVariants = {
 
 const PrivacyPolicy = () => {
   return (
-    <div className="bg-gray-50">
+    <div className="bg-gray-50 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
       <motion.div
         className="max-w-5xl mx-auto px-4 pb-12 pt-26"
         initial="hidden"
@@ -59,16 +59,16 @@ const PrivacyPolicy = () => {
         variants={containerVariants}
       >
         <motion.div
-          className="bg-white rounded-2xl shadow-sm border border-gray-100 p-4 md:p-8"
+          className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm border border-gray-100 dark:border-gray-800 p-4 md:p-8"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
           <motion.div variants={itemVariants} className="mb-8">
-            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
               Privacy Policy
             </h1>
-            <p className="text-gray-600 leading-relaxed">
+            <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
               Your privacy is our top priority. <strong>ToolsTrek</strong> is
               designed from the ground up to protect your data. All file
               processing happens locally in your browser.
@@ -103,12 +103,12 @@ const PrivacyPolicy = () => {
             ].map((feature, i) => (
               <div
                 key={i}
-                className="p-4 rounded-xl border border-gray-100 bg-gray-50/50"
+                className="p-4 rounded-xl border border-gray-100 dark:border-gray-800 bg-gray-50/50 dark:bg-gray-950/50"
               >
-                <h3 className="font-bold text-gray-900 flex items-center gap-2 mb-1">
+                <h3 className="font-bold text-gray-900 dark:text-white flex items-center gap-2 mb-1">
                   <span className="text-emerald-500">✓</span> {feature.title}
                 </h3>
-                <p className="text-sm text-gray-600 leading-snug">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-snug">
                   {feature.desc}
                 </p>
               </div>
@@ -119,7 +119,7 @@ const PrivacyPolicy = () => {
             {
               title: "1. Introduction",
               content: (
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
                   <strong>ToolsTrek</strong> ("we", "our", or "us") is committed
                   to protecting your privacy. This Privacy Policy explains how
                   we handle your information when you use our digital utilities.
@@ -129,7 +129,7 @@ const PrivacyPolicy = () => {
             {
               title: "2. How Our Service Works",
               content: (
-                <ul className="list-disc list-inside text-gray-600 mb-4 space-y-2">
+                <ul className="list-disc list-inside text-gray-600 dark:text-gray-400 mb-4 space-y-2">
                   <li>All processing happens directly in your web browser.</li>
                   <li>
                     Your files are never uploaded to our servers or any
@@ -144,16 +144,16 @@ const PrivacyPolicy = () => {
               title: "3. Information We Collect",
               content: (
                 <>
-                  <h3 className="font-bold text-gray-800 mt-4 mb-2">
+                  <h3 className="font-bold text-gray-850 dark:text-gray-200 mt-4 mb-2">
                     3.1 Your Files
                   </h3>
-                  <p className="text-gray-600 mb-4 font-semibold text-emerald-600">
+                  <p className="text-gray-600 dark:text-gray-405 mb-4 font-semibold text-emerald-600 dark:text-emerald-400">
                     We do not collect your files.
                   </p>
-                  <h3 className="font-bold text-gray-800 mt-4 mb-2">
+                  <h3 className="font-bold text-gray-850 dark:text-gray-200 mt-4 mb-2">
                     3.2 Usage Data
                   </h3>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
                     We may collect anonymous usage statistics to improve our
                     service, such as which tools are most popular, browser type,
                     and device type. This data is aggregated and anonymized.
@@ -164,7 +164,7 @@ const PrivacyPolicy = () => {
             {
               title: "4. Cookies & Local Storage",
               content: (
-                <p className="text-gray-600 mb-4 leading-relaxed">
+                <p className="text-gray-600 dark:text-gray-400 mb-4 leading-relaxed">
                   We use minimal cookies for essential functionality, such as
                   remembering your language preference or dark mode settings. We
                   do not use tracking or advertising cookies.
@@ -174,7 +174,7 @@ const PrivacyPolicy = () => {
             {
               title: "5. Third-Party Services",
               content: (
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
                   ToolsTrek does not share your data with third parties. We do
                   not use third-party analytics that track individual users,
                   advertising networks, or social media tracking pixels.
@@ -184,7 +184,7 @@ const PrivacyPolicy = () => {
             {
               title: "6. Your Rights",
               content: (
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Since we do not collect personal data, there is no personal
                   data to access, correct, or delete. You can clear your
                   browser's local storage at any time to remove any preferences
@@ -195,16 +195,16 @@ const PrivacyPolicy = () => {
             {
               title: "7. Contact Us",
               content: (
-                <div className="bg-gray-100 rounded-xl p-6">
-                  <p className="text-gray-700 mb-2 font-medium">
+                <div className="bg-gray-100 dark:bg-gray-950 rounded-xl p-6">
+                  <p className="text-gray-700 dark:text-gray-300 mb-2 font-medium">
                     Questions about this Privacy Policy?
                   </p>
-                  <p className="text-gray-600 mb-4">
+                  <p className="text-gray-600 dark:text-gray-400 mb-4">
                     📧 <strong>contact.toolstrek@gmail.com</strong>
                   </p>
                   <a
                     href="/contact-us"
-                    className="text-emerald-600 font-bold hover:underline"
+                    className="text-emerald-600 dark:text-emerald-400 font-bold hover:underline"
                   >
                     Contact Us Page →
                   </a>
@@ -220,7 +220,7 @@ const PrivacyPolicy = () => {
               className="mb-10"
               viewport={{ once: true, margin: "-50px" }}
             >
-              <h2 className="text-2xl font-bold mb-4 text-gray-800 border-b border-gray-100 pb-2">
+              <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-white border-b border-gray-100 dark:border-gray-800 pb-2">
                 {section.title}
               </h2>
               <motion.div
@@ -235,7 +235,7 @@ const PrivacyPolicy = () => {
           ))}
 
           <motion.p
-            className="text-gray-400 text-xs mt-12 border-t pt-6"
+            className="text-gray-400 dark:text-gray-500 text-xs mt-12 border-t border-gray-100 dark:border-gray-800 pt-6"
             variants={itemVariants}
           >
             Last updated:{" "}

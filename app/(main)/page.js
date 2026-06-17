@@ -61,7 +61,10 @@ const whychoose = [
 
 export default function Home() {
   return (
-    <div className="min-h-screen bg-white">
+    <div
+      className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors duration-300"
+      suppressHydrationWarning
+    >
       {/* Hero Section */}
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
@@ -86,10 +89,10 @@ export default function Home() {
             <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wider text-brandColor uppercase bg-brandColor/10 rounded-full">
               Why ToolsTrek?
             </span>
-            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 tracking-tight">
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight">
               Why Our Tools Work Best for You?
             </h2>
-            <p className="mt-4 text-lg text-gray-600">
+            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
               We focus on speed, accessibility, and simplicity so you can focus
               on your work.
             </p>
@@ -123,14 +126,14 @@ export default function Home() {
       </section>
 
       {/* Reviews */}
-      <div className="bg-gray-50 py-16">
+      <div className="bg-gray-50 dark:bg-gray-900/50 py-16">
         <div className="max-w-7xl mx-auto px-4">
           <Reviews />
         </div>
       </div>
 
       {/* Call to Action */}
-      <div className="py-12 bg-white">
+      <div className="py-12 bg-white dark:bg-gray-950">
         <CTA />
       </div>
     </div>

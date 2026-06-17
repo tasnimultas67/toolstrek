@@ -187,6 +187,11 @@ html::-webkit-scrollbar {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --search-active-bg: rgba(0, 0, 0, 0.055);
+  --search-icon-bg: #f3f4f6;
+  --search-icon-fg: #6b7280;
+  --search-title-fg: #374151;
+  --search-cat-fg: #9ca3af;
 }
 
 .dark {
@@ -221,6 +226,11 @@ html::-webkit-scrollbar {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --search-active-bg: rgba(255, 255, 255, 0.1);
+  --search-icon-bg: #1f2937;
+  --search-icon-fg: #9ca3af;
+  --search-title-fg: #f3f4f6;
+  --search-cat-fg: #6b7280;
 }
 
 @layer base {
@@ -509,6 +519,32 @@ html::-webkit-scrollbar {
 
   }
 }
+
+/* ── Theme toggle view transition (circle wipe) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Ensure the new view sits on top so the clipPath reveal animation works */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Disable transitions temporarily during view transitions to prevent instant theme jump */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
+}
+
 
 /* .plan-header{
   background-color: rgba(0, 0, 255, 0.566);
