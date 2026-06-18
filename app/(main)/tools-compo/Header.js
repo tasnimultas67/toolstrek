@@ -214,7 +214,7 @@ export default function Header() {
 
             {/* Desktop UI */}
             <div
-              className="hidden lg:flex  lg:justify-end items-center gap-x-8"
+              className="hidden lg:flex  lg:justify-end items-center gap-x-5"
               suppressHydrationWarning
             >
               <div
@@ -370,17 +370,17 @@ export default function Header() {
               </div>
 
               <div
-                className="flex items-center gap-2 border-l border-gray-200 dark:border-gray-800 pl-8"
+                className="flex items-center gap-2 border-l border-white/20 dark:border-gray-600 pl-4"
                 suppressHydrationWarning
               >
                 {/* ── Search pill — opens GlobalSearchModal ── */}
                 <button
                   onClick={openGlobalSearch}
                   aria-label="Search tools"
-                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-white/15 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer group"
+                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-white/20 bg-white/40 dark:bg-white/15 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 text-gray-700 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer group"
                 >
                   <MagnifyingGlassIcon className="size-4 shrink-0" />
-                  <span className="text-sm text-gray-400 group-hover:text-gray-500 transition-colors duration-200 pr-2">
+                  <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-500 transition-colors duration-200 pr-2">
                     Search
                   </span>
                   {/* Shortcut badge */}
@@ -399,7 +399,7 @@ export default function Header() {
                   href="https://github.com/tasnimultas67/toolstrek"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 rounded-lg"
+                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white/50 dark:bg-white/20 border border-gray-200 dark:border-white/30 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 rounded-lg"
                   suppressHydrationWarning
                 >
                   <svg
@@ -436,7 +436,7 @@ export default function Header() {
                   target="_blank"
                   suppressHydrationWarning
                 >
-                  <Button className="bg-brandColor hover:bg-brandColorHover dark:text-white text-sm! font-normal shadow-none flex items-center gap-2 transition-all duration-200 cursor-pointer">
+                  <Button className="bg-brandColor hover:bg-brandColorHover border-none dark:text-white text-sm! font-normal shadow-none flex items-center gap-2 transition-all duration-200 cursor-pointer">
                     <Star className="size-4" /> Request a Tool
                   </Button>
                 </Link>
