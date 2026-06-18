@@ -130,7 +130,7 @@ const QRScanner = () => {
   };
 
   return (
-    <ToolPageShell widthClassName="max-w-4xl">
+    <ToolPageShell widthClassName="w-full md:w-10/12 mx-auto px-1 pt-24 pb-10">
       <div className="space-y-8 font-sans">
         {/* Header */}
         <div className="text-center space-y-2">

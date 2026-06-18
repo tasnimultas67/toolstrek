@@ -50,7 +50,7 @@ const fadeIn = {
 
 const Reviews = () => {
   return (
-    <section className="w-ful m-auto  bg-gray-50 dark:bg-gray-900">
+    <section className="w-ful m-auto  ">
       <div className="w-full md:w-11/12 m-auto px-4 md:px-6">
         <motion.div
           initial="hidden"
@@ -60,7 +60,7 @@ const Reviews = () => {
           transition={{ duration: 0.6 }}
           className="flex flex-col items-center justify-center space-y-4 text-center"
         >
-          <h2 className="text-3xl font-bold  sm:text-4xl md:text-5xl">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white sm:text-4xl md:text-5xl">
             What Our Clients Say
           </h2>
           <p className=" w-full  text-gray-500 md:text-base dark:text-gray-400">
@@ -95,14 +95,14 @@ const Reviews = () => {
                     variants={fadeIn}
                     transition={{ duration: 0.5, delay: index * 0.1 }}
                   >
-                    <Card className="h-full shadow-none">
+                    <Card className="h-full shadow-none bg-white dark:bg-gray-950 border border-gray-100 dark:border-gray-800">
                       <CardContent className="flex flex-col justify-between p-6 h-full">
                         <div className="space-y-10">
-                          <p className="text-black dark:text-white">
+                          <p className="text-gray-700 dark:text-gray-300">
                             "{testimonial.description}"
                           </p>
                           <div className="space-y-1">
-                            <h3 className="font-semibold">
+                            <h3 className="font-semibold text-gray-900 dark:text-white">
                               {testimonial.name}
                             </h3>
                             <p className="text-sm text-gray-500 dark:text-gray-400">

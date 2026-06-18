@@ -13,6 +13,8 @@ import {
   RefreshCw,
   AlertCircle,
   FileText,
+  ChevronDown,
+  Search,
 } from "lucide-react";
 import ToolPageShell from "../ToolPageShell";
 
@@ -38,6 +40,110 @@ const PREPROCESSING_OPTIONS = {
   BINARY: "High Contrast (Best for printed text)",
   GRAYSCALE: "Grayscale",
   RESIZE: "Upscale (Best for small text)",
+};
+
+// Modern Custom Select Component
+const CustomSelect = ({
+  value,
+  onChange,
+  options,
+  disabled,
+  label,
+  icon: Icon,
+}) => {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+  const dropdownRef = useRef(null);
+
+  const filteredOptions = Object.entries(options).filter(([key, label]) =>
+    label.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
+  const selectedLabel = options[value];
+
+  return (
+    <div className="relative" ref={dropdownRef}>
+      <label className="flex items-center gap-2 text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+        {Icon && <Icon size={16} />}
+        {label}
+      </label>
+      <button
+        type="button"
+        onClick={() => !disabled && setIsOpen(!isOpen)}
+        disabled={disabled}
+        className={`flex w-full items-center justify-between rounded-lg bg-gray-50 dark:bg-gray-700 px-3 py-2 text-sm transition-all duration-200 ${
+          disabled
+            ? "cursor-not-allowed opacity-60"
+            : "cursor-pointer hover:border-blue-400 dark:hover:border-blue-500"
+        } border border-gray-300 dark:border-gray-600 focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-blue-500 dark:focus:border-blue-400`}
+      >
+        <span
+          className={
+            selectedLabel
+              ? "text-gray-900 dark:text-gray-100"
+              : "text-gray-500 dark:text-gray-400"
+          }
+        >
+          {selectedLabel || "Select..."}
+        </span>
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""} text-gray-500 dark:text-gray-400`}
+        />
+      </button>
+
+      {isOpen && !disabled && (
+        <>
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setIsOpen(false)}
+          />
+          <div className="absolute left-0 right-0 z-50 mt-1 max-h-72 overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg shadow-black/5 dark:shadow-gray-900/50 animate-in slide-in-from-top-2 duration-200">
+            {/* Search Bar */}
+            <div className="sticky top-0 bg-white dark:bg-gray-800 p-2 border-b border-gray-100 dark:border-gray-700">
+              <div className="relative">
+                <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-gray-400 dark:text-gray-500" />
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder="Search..."
+                  className="w-full rounded-md border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 py-1.5 pl-9 pr-3 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-100 dark:focus:ring-blue-900"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+            </div>
+
+            {/* Options */}
+            <div className="py-1">
+              {filteredOptions.length > 0 ? (
+                filteredOptions.map(([key, label]) => (
+                  <button
+                    key={key}
+                    onClick={() => {
+                      onChange(key);
+                      setIsOpen(false);
+                      setSearchTerm("");
+                    }}
+                    className={`w-full px-3 py-2 text-left text-sm transition-colors duration-150 hover:bg-blue-50 dark:hover:bg-blue-900/30 ${
+                      value === key
+                        ? "bg-blue-50 dark:bg-blue-900/30 text-blue-700 dark:text-blue-400"
+                        : "text-gray-700 dark:text-gray-300"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                ))
+              ) : (
+                <div className="px-3 py-2 text-sm text-gray-400 dark:text-gray-500">
+                  No results found
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
+  );
 };
 
 export default function ImageToText() {
@@ -193,249 +299,243 @@ export default function ImageToText() {
   };
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
+    <ToolPageShell widthClassName="max-w-7xl px-1 pt-20 pb-10">
       <div>
-      {/* Hidden canvas for preprocessing */}
-      <canvas ref={canvasRef} style={{ display: "none" }} />
+        {/* Hidden canvas for preprocessing */}
+        <canvas ref={canvasRef} style={{ display: "none" }} />
 
-      <div className="p-6 md:p-8">
-        {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
-            Image to Text Converter
-          </h1>
-          <p className="text-gray-600">
-            Extract text from images using OCR technology • Supports বাংলা and
-            12+ languages
-          </p>
-        </div>
+        <div className="p-6 md:p-8">
+          {/* Header */}
+          <div className="mb-8">
+            <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
+              Image to Text Converter
+            </h1>
+            <p className="text-gray-600 dark:text-gray-400">
+              Extract text from images using OCR technology • Supports বাংলা and
+              12+ languages
+            </p>
+          </div>
 
-        {/* Settings Panel */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-              <Languages size={16} />
-              Select Language
-            </label>
-            <select
+          {/* Settings Panel - Using Custom Selects */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+            <CustomSelect
               value={selectedLanguage}
-              onChange={(e) => setSelectedLanguage(e.target.value)}
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+              onChange={setSelectedLanguage}
+              options={LANGUAGES}
               disabled={isLoading}
-            >
-              {Object.entries(LANGUAGES).map(([code, name]) => (
-                <option key={code} value={code}>
-                  {name}
-                </option>
-              ))}
-            </select>
-          </div>
+              label="Select Language"
+              icon={Languages}
+            />
 
-          <div className="bg-white rounded-lg border border-gray-200 p-4">
-            <label className="flex items-center gap-2 text-sm font-medium text-gray-700 mb-2">
-              <AlertCircle size={16} />
-              Image Enhancement
-            </label>
-            <select
+            <CustomSelect
               value={preprocessing}
-              onChange={(e) => setPreprocessing(e.target.value)}
-              className="w-full px-3 py-2 bg-gray-50 border border-gray-300 rounded-lg text-gray-900 focus:ring-2 focus:ring-blue-500 focus:border-blue-500 text-sm"
+              onChange={setPreprocessing}
+              options={PREPROCESSING_OPTIONS}
               disabled={isLoading}
-            >
-              {Object.entries(PREPROCESSING_OPTIONS).map(([key, label]) => (
-                <option key={key} value={key}>
-                  {label}
-                </option>
-              ))}
-            </select>
+              label="Image Enhancement"
+              icon={AlertCircle}
+            />
           </div>
-        </div>
 
-        {/* Main Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          {/* Upload Section */}
-          <div>
-            <div
-              onClick={() => !isLoading && fileInputRef.current.click()}
-              className={`relative border-2 border-dashed rounded-lg p-6 transition-all cursor-pointer flex flex-col items-center justify-center min-h-[400px] bg-white
-                ${image ? "border-blue-400 bg-blue-50/20" : "border-gray-300 hover:border-blue-400 hover:bg-blue-50/10"}`}
-            >
-              <input
-                type="file"
-                ref={fileInputRef}
-                onChange={handleFileChange}
-                accept="image/*"
-                className="hidden"
-              />
+          {/* Main Content */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            {/* Upload Section */}
+            <div>
+              <div
+                onClick={() => !isLoading && fileInputRef.current.click()}
+                className={`relative border-2 border-dashed rounded-lg p-6 transition-all cursor-pointer flex flex-col items-center justify-center min-h-[400px] bg-white dark:bg-gray-800
+                  ${image ? "border-blue-400 dark:border-blue-500 bg-blue-50/20 dark:bg-blue-900/20" : "border-gray-300 dark:border-gray-600 hover:border-blue-400 dark:hover:border-blue-500 hover:bg-blue-50/10 dark:hover:bg-blue-900/10"}`}
+              >
+                <input
+                  type="file"
+                  ref={fileInputRef}
+                  onChange={handleFileChange}
+                  accept="image/*"
+                  className="hidden"
+                />
 
-              {image ? (
-                <div className="relative w-full">
-                  <img
-                    src={image}
-                    alt="Preview"
-                    className="max-w-full max-h-[350px] rounded-lg shadow-md object-contain mx-auto"
-                  />
-                  {isLoading && (
-                    <div className="absolute inset-0 bg-white/90 backdrop-blur-sm flex flex-col items-center justify-center rounded-lg">
-                      <Loader2
-                        className="text-blue-600 animate-spin mb-3"
-                        size={40}
-                      />
-                      <span className="text-gray-900 font-bold text-xl mb-1">
-                        {progress}%
-                      </span>
-                      <p className="text-gray-600 text-sm">{status}</p>
-                    </div>
-                  )}
-                </div>
-              ) : (
-                <div className="text-center">
-                  <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <Upload className="text-gray-600" size={24} />
+                {image ? (
+                  <div className="relative w-full">
+                    <img
+                      src={image}
+                      alt="Preview"
+                      className="max-w-full max-h-[350px] rounded-lg shadow-md dark:shadow-gray-900/30 object-contain mx-auto"
+                    />
+                    {isLoading && (
+                      <div className="absolute inset-0 bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm flex flex-col items-center justify-center rounded-lg">
+                        <Loader2
+                          className="text-blue-600 dark:text-blue-400 animate-spin mb-3"
+                          size={40}
+                        />
+                        <span className="text-gray-900 dark:text-white font-bold text-xl mb-1">
+                          {progress}%
+                        </span>
+                        <p className="text-gray-600 dark:text-gray-400 text-sm">
+                          {status}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                  <p className="text-gray-700 font-medium mb-1">
-                    Click to upload image
+                ) : (
+                  <div className="text-center">
+                    <div className="w-16 h-16 bg-gray-100 dark:bg-gray-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                      <Upload
+                        className="text-gray-600 dark:text-gray-400"
+                        size={24}
+                      />
+                    </div>
+                    <p className="text-gray-700 dark:text-gray-300 font-medium mb-1">
+                      Click to upload image
+                    </p>
+                    <p className="text-gray-500 dark:text-gray-400 text-sm">
+                      PNG, JPG, WEBP • Max 10MB
+                    </p>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex gap-3 mt-4">
+                <button
+                  onClick={runOCR}
+                  disabled={!image || isLoading}
+                  className="flex-1 py-2.5 bg-blue-600 dark:bg-blue-700 hover:bg-blue-700 dark:hover:bg-blue-800 text-white rounded-lg font-medium transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-lg hover:shadow-blue-200/50 dark:hover:shadow-blue-900/30 transform hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  {isLoading ? "Processing..." : "Extract Text"}
+                </button>
+
+                <button
+                  onClick={resetAll}
+                  disabled={isLoading}
+                  className="px-4 py-2.5 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 text-gray-700 dark:text-gray-300 rounded-lg font-medium transition-all duration-200 disabled:opacity-50 border border-gray-200 dark:border-gray-600 hover:shadow-md transform hover:scale-[1.02] active:scale-[0.98]"
+                >
+                  <RefreshCw size={18} />
+                </button>
+              </div>
+
+              {/* Bengali Tips */}
+              {selectedLanguage === "ben" && !image && (
+                <div className="mt-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 border border-blue-200 dark:border-blue-800/50 animate-in fade-in slide-in-from-top-2 duration-300">
+                  <p className="text-blue-800 dark:text-blue-300 text-xs font-medium mb-1">
+                    💡 বাংলা টেক্সটের জন্য টিপস:
                   </p>
-                  <p className="text-gray-500 text-sm">
-                    PNG, JPG, WEBP • Max 10MB
+                  <p className="text-blue-700 dark:text-blue-400 text-xs">
+                    পরিষ্কার, উচ্চ-রেজোলিউশনের ছবি ব্যবহার করুন এবং ভালো আলোতে
+                    ছবি তুলুন
                   </p>
                 </div>
               )}
             </div>
 
-            <div className="flex gap-3 mt-4">
-              <button
-                onClick={runOCR}
-                disabled={!image || isLoading}
-                className="flex-1 py-2.5 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-              >
-                {isLoading ? "Processing..." : "Extract Text"}
-              </button>
-
-              <button
-                onClick={resetAll}
-                disabled={isLoading}
-                className="px-4 py-2.5 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg font-medium transition-all disabled:opacity-50 border border-gray-200"
-              >
-                <RefreshCw size={18} />
-              </button>
-            </div>
-
-            {/* Bengali Tips */}
-            {selectedLanguage === "ben" && !image && (
-              <div className="mt-4 bg-blue-50 rounded-lg p-3 border border-blue-200">
-                <p className="text-blue-800 text-xs font-medium mb-1">
-                  💡 বাংলা টেক্সটের জন্য টিপস:
-                </p>
-                <p className="text-blue-700 text-xs">
-                  পরিষ্কার, উচ্চ-রেজোলিউশনের ছবি ব্যবহার করুন এবং ভালো আলোতে ছবি
-                  তুলুন
-                </p>
-              </div>
-            )}
-          </div>
-
-          {/* Output Section */}
-          <div className="bg-white border border-gray-200 rounded-lg flex flex-col h-[450px]">
-            <div className="p-4 border-b border-gray-200 flex justify-between items-center">
-              <div className="flex items-center gap-2">
-                <CheckCircle2
-                  className={text ? "text-green-600" : "text-gray-400"}
-                  size={18}
-                />
-                <span className="text-sm font-medium text-gray-700">
-                  Extracted Text
-                </span>
-                {confidence > 0 && (
-                  <span className="text-xs text-gray-500 bg-gray-100 px-2 py-0.5 rounded">
-                    ~{confidence}% confidence
+            {/* Output Section */}
+            <div className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg flex flex-col h-[450px] transition-all duration-200">
+              <div className="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
+                <div className="flex items-center gap-2">
+                  <CheckCircle2
+                    className={
+                      text
+                        ? "text-green-600 dark:text-green-400"
+                        : "text-gray-400 dark:text-gray-500"
+                    }
+                    size={18}
+                  />
+                  <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    Extracted Text
                   </span>
-                )}
-              </div>
-              <div className="flex gap-1">
-                <button
-                  onClick={copyText}
-                  disabled={!text}
-                  className="p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors disabled:opacity-30"
-                  title="Copy Text"
-                >
-                  <Copy size={16} />
-                </button>
-                <button
-                  onClick={() => {
-                    const blob = new Blob([text], { type: "text/plain" });
-                    const url = URL.createObjectURL(blob);
-                    const link = document.createElement("a");
-                    link.href = url;
-                    link.download = `ocr-${Date.now()}.txt`;
-                    link.click();
-                  }}
-                  disabled={!text}
-                  className="p-1.5 hover:bg-gray-100 rounded text-gray-600 transition-colors disabled:opacity-30"
-                  title="Download TXT"
-                >
-                  <Download size={16} />
-                </button>
-              </div>
-            </div>
-
-            <textarea
-              readOnly
-              placeholder={
-                selectedLanguage === "ben"
-                  ? "এক্সট্রাক্ট করা টেক্সট এখানে দেখা যাবে..."
-                  : "Extracted text will appear here..."
-              }
-              value={text}
-              className="w-full flex-grow p-4 outline-none resize-none bg-white text-gray-800 text-sm leading-relaxed"
-              style={{
-                fontFamily:
-                  selectedLanguage === "ben"
-                    ? "'Noto Sans Bengali', monospace"
-                    : "monospace",
-              }}
-              dir={selectedLanguage === "ara" ? "rtl" : "ltr"}
-            />
-
-            <div className="p-3 border-t border-gray-200 bg-gray-50 rounded-b-lg">
-              <div className="flex items-center justify-between text-xs text-gray-600">
-                <span>Status: {status}</span>
-                {isLoading && (
-                  <div className="flex items-center gap-2">
-                    <div className="w-24 bg-gray-200 h-1 rounded-full overflow-hidden">
-                      <div
-                        className="bg-blue-600 h-full transition-all duration-300"
-                        style={{ width: `${progress}%` }}
-                      ></div>
-                    </div>
-                    <span>{progress}%</span>
-                  </div>
-                )}
-                {text && !isLoading && (
-                  <div className="flex items-center gap-1">
-                    <FileText size={12} />
-                    <span>
-                      {text.split(/\s+/).filter((w) => w.length > 0).length}{" "}
-                      words
+                  {confidence > 0 && (
+                    <span className="text-xs text-gray-500 dark:text-gray-400 bg-gray-100 dark:bg-gray-700 px-2 py-0.5 rounded-full animate-in fade-in duration-300">
+                      ~{confidence}% confidence
                     </span>
-                  </div>
-                )}
+                  )}
+                </div>
+                <div className="flex gap-1">
+                  <button
+                    onClick={copyText}
+                    disabled={!text}
+                    className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-gray-600 dark:text-gray-400 transition-all duration-200 disabled:opacity-30 hover:scale-110 active:scale-90"
+                    title="Copy Text"
+                  >
+                    <Copy size={16} />
+                  </button>
+                  <button
+                    onClick={() => {
+                      const blob = new Blob([text], { type: "text/plain" });
+                      const url = URL.createObjectURL(blob);
+                      const link = document.createElement("a");
+                      link.href = url;
+                      link.download = `ocr-${Date.now()}.txt`;
+                      link.click();
+                    }}
+                    disabled={!text}
+                    className="p-1.5 hover:bg-gray-100 dark:hover:bg-gray-700 rounded text-gray-600 dark:text-gray-400 transition-all duration-200 disabled:opacity-30 hover:scale-110 active:scale-90"
+                    title="Download TXT"
+                  >
+                    <Download size={16} />
+                  </button>
+                </div>
+              </div>
+
+              <textarea
+                readOnly
+                placeholder={
+                  selectedLanguage === "ben"
+                    ? "এক্সট্রাক্ট করা টেক্সট এখানে দেখা যাবে..."
+                    : "Extracted text will appear here..."
+                }
+                value={text}
+                className="w-full flex-grow p-4 outline-none resize-none bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 text-sm leading-relaxed placeholder:text-gray-400 dark:placeholder:text-gray-500 transition-colors duration-200"
+                style={{
+                  fontFamily:
+                    selectedLanguage === "ben"
+                      ? "'Noto Sans Bengali', monospace"
+                      : "monospace",
+                }}
+                dir={selectedLanguage === "ara" ? "rtl" : "ltr"}
+              />
+
+              <div className="p-3 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700/50 rounded-b-lg transition-colors duration-200">
+                <div className="flex items-center justify-between text-xs text-gray-600 dark:text-gray-400">
+                  <span className="flex items-center gap-1">
+                    <span
+                      className={`inline-block h-2 w-2 rounded-full ${isLoading ? "bg-blue-500 animate-pulse" : text ? "bg-green-500" : "bg-gray-400"}`}
+                    />
+                    Status: {status}
+                  </span>
+                  {isLoading && (
+                    <div className="flex items-center gap-2 animate-in fade-in duration-300">
+                      <div className="w-24 bg-gray-200 dark:bg-gray-600 h-1.5 rounded-full overflow-hidden">
+                        <div
+                          className="bg-blue-600 dark:bg-blue-500 h-full transition-all duration-500 ease-out rounded-full"
+                          style={{ width: `${progress}%` }}
+                        ></div>
+                      </div>
+                      <span className="font-mono text-xs">{progress}%</span>
+                    </div>
+                  )}
+                  {text && !isLoading && (
+                    <div className="flex items-center gap-1 animate-in fade-in duration-300">
+                      <FileText size={12} />
+                      <span>
+                        {text.split(/\s+/).filter((w) => w.length > 0).length}{" "}
+                        words
+                      </span>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
           </div>
-        </div>
 
-        {/* Footer Note */}
-        <div className="mt-8 text-center">
-          <div className="inline-flex items-center gap-2 text-xs text-gray-500">
-            <Info size={12} />
-            <span>
-              Powered by Tesseract OCR • Works locally • Your images never leave
-              your device
-            </span>
+          {/* Footer Note */}
+          <div className="mt-8 text-center">
+            <div className="inline-flex items-center gap-2 text-xs text-gray-500 dark:text-gray-400">
+              <Info size={12} />
+              <span>
+                Powered by Tesseract OCR • Works locally • Your images never
+                leave your device
+              </span>
+            </div>
           </div>
         </div>
-      </div>
       </div>
     </ToolPageShell>
   );

@@ -28,7 +28,7 @@ export default function Loading() {
             className="fill-brandColorHover"
           />
         </svg>
-        <h3 className={`text-4xl ${staatliches.className}`}>
+        <h3 className={`text-4xl text-gray-900 dark:text-white ${staatliches.className}`}>
           Tools<span className="text-brandColor">Trek</span>
         </h3>
       </div>

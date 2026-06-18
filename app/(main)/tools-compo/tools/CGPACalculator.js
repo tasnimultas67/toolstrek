@@ -7,6 +7,7 @@ import {
   Download,
   GraduationCap,
   X,
+  ChevronDown,
 } from "lucide-react";
 import { Hind_Siliguri } from "next/font/google";
 import subjectData from "./cgpaSubjectData.json";
@@ -43,19 +44,19 @@ function getOptions(source) {
 function ResultTable({ rows, compact = false }) {
   return (
     <div className="overflow-x-auto">
-      <table className="w-full min-w-[620px] border-collapse border border-gray-300 bg-white text-sm">
-        <thead className="bg-gray-100">
+      <table className="w-full min-w-[620px] border-collapse border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm">
+        <thead className="bg-gray-100 dark:bg-gray-700">
           <tr>
-            <th className="border border-gray-300 px-3 py-2 text-left font-semibold">
+            <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-left font-semibold text-gray-900 dark:text-gray-100">
               বিষয়
             </th>
-            <th className="border border-gray-300 px-3 py-2 text-center font-semibold">
+            <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center font-semibold text-gray-900 dark:text-gray-100">
               গ্রেড
             </th>
-            <th className="border border-gray-300 px-3 py-2 text-center font-semibold">
+            <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center font-semibold text-gray-900 dark:text-gray-100">
               প্রাপ্ত পয়েন্ট
             </th>
-            <th className="border border-gray-300 px-3 py-2 text-center font-semibold">
+            <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center font-semibold text-gray-900 dark:text-gray-100">
               মোট পয়েন্ট
             </th>
           </tr>
@@ -64,19 +65,19 @@ function ResultTable({ rows, compact = false }) {
           {rows.map((row) => (
             <tr key={row.key}>
               <td
-                className={`border border-gray-300 px-3 py-2 text-gray-800 ${
+                className={`border border-gray-300 dark:border-gray-600 px-3 py-2 text-gray-800 dark:text-gray-200 ${
                   compact ? "text-xs" : ""
                 }`}
               >
                 {row.name} ({row.code})
               </td>
-              <td className="border border-gray-300 px-3 py-2 text-center">
+              <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                 {row.grade}
               </td>
-              <td className="border border-gray-300 px-3 py-2 text-center">
+              <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                 {row.point}
               </td>
-              <td className="border border-gray-300 px-3 py-2 text-center">
+              <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                 {row.credit}
               </td>
             </tr>
@@ -87,23 +88,92 @@ function ResultTable({ rows, compact = false }) {
   );
 }
 
+// Modern GradeSelect with custom dropdown
 function GradeSelect({ value, onChange }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredGrades = GRADES.filter((item) =>
+    item.grade.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
+  const selectedGrade = GRADES.find((item) => item.grade === value);
+
   return (
-    <select
-      value={value}
-      onChange={(event) => onChange(event.target.value)}
-      className="mx-auto block h-9 w-24 rounded-md border border-gray-300 bg-white px-2 text-center text-sm text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
-    >
-      <option value="">গ্রেড</option>
-      {GRADES.map((item) => (
-        <option key={item.grade} value={item.grade}>
-          {item.grade}
-        </option>
-      ))}
-    </select>
+    <div className="relative inline-block w-24">
+      <button
+        type="button"
+        onClick={() => setIsOpen(!isOpen)}
+        className="flex h-9 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-2 text-sm text-gray-900 dark:text-gray-100 transition-all duration-200 hover:border-indigo-400 dark:hover:border-indigo-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+      >
+        <span
+          className={
+            selectedGrade
+              ? "text-gray-900 dark:text-gray-100"
+              : "text-gray-400 dark:text-gray-500"
+          }
+        >
+          {selectedGrade ? selectedGrade.grade : "গ্রেড"}
+        </span>
+        <ChevronDown
+          className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+        />
+      </button>
+
+      {isOpen && (
+        <>
+          <div
+            className="fixed inset-0 z-40"
+            onClick={() => setIsOpen(false)}
+          />
+          <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg shadow-black/5 animate-in slide-in-from-top-2 duration-200">
+            <div className="sticky top-0 bg-white dark:bg-gray-800 p-2 border-b border-gray-100 dark:border-gray-700">
+              <input
+                type="text"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                placeholder="Search grade..."
+                className="w-full rounded-md border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 px-2 py-1 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+                onClick={(e) => e.stopPropagation()}
+              />
+            </div>
+            <div className="py-1">
+              {filteredGrades.map((item) => (
+                <button
+                  key={item.grade}
+                  onClick={() => {
+                    onChange(item.grade);
+                    setIsOpen(false);
+                    setSearchTerm("");
+                  }}
+                  className={`w-full px-3 py-2 text-left text-sm transition-colors duration-150 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 ${
+                    value === item.grade
+                      ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400"
+                      : "text-gray-700 dark:text-gray-300"
+                  }`}
+                >
+                  <div className="flex items-center justify-between">
+                    <span>{item.grade}</span>
+                    <span className="text-xs text-gray-400 dark:text-gray-500">
+                      {item.point.toFixed(2)}
+                    </span>
+                  </div>
+                </button>
+              ))}
+              {filteredGrades.length === 0 && (
+                <div className="px-3 py-2 text-sm text-gray-400 dark:text-gray-500">
+                  No grades found
+                </div>
+              )}
+            </div>
+          </div>
+        </>
+      )}
+    </div>
   );
 }
 
+// Modern FieldSelect with custom dropdown
 function FieldSelect({
   label,
   value,
@@ -112,24 +182,87 @@ function FieldSelect({
   options,
   placeholder,
 }) {
+  const [isOpen, setIsOpen] = useState(false);
+  const [searchTerm, setSearchTerm] = useState("");
+
+  const filteredOptions = options.filter((option) =>
+    option.toLowerCase().includes(searchTerm.toLowerCase()),
+  );
+
   return (
     <label className="block">
-      <span className="mb-2 block text-sm font-medium text-gray-700">
+      <span className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
         {label}
       </span>
-      <select
-        value={value}
-        onChange={(event) => onChange(event.target.value)}
-        disabled={disabled}
-        className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-900 outline-none transition focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 disabled:cursor-not-allowed disabled:bg-gray-100 disabled:text-gray-500"
-      >
-        <option value="">{placeholder}</option>
-        {options.map((option) => (
-          <option key={option} value={option}>
-            {option}
-          </option>
-        ))}
-      </select>
+      <div className="relative">
+        <button
+          type="button"
+          onClick={() => !disabled && setIsOpen(!isOpen)}
+          disabled={disabled}
+          className={`flex h-11 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 text-sm text-gray-900 dark:text-gray-100 transition-all duration-200 hover:border-indigo-400 dark:hover:border-indigo-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900 ${
+            disabled ? "cursor-not-allowed opacity-60" : "cursor-pointer"
+          }`}
+        >
+          <span
+            className={
+              value
+                ? "text-gray-900 dark:text-gray-100"
+                : "text-gray-400 dark:text-gray-500"
+            }
+          >
+            {value || placeholder}
+          </span>
+          <ChevronDown
+            className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
+          />
+        </button>
+
+        {isOpen && !disabled && (
+          <>
+            <div
+              className="fixed inset-0 z-40"
+              onClick={() => setIsOpen(false)}
+            />
+            <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg shadow-black/5 animate-in slide-in-from-top-2 duration-200">
+              <div className="sticky top-0 bg-white dark:bg-gray-800 p-2 border-b border-gray-100 dark:border-gray-700">
+                <input
+                  type="text"
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  placeholder={`Search ${label.toLowerCase()}...`}
+                  className="w-full rounded-md border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 px-2 py-1 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+                  onClick={(e) => e.stopPropagation()}
+                />
+              </div>
+              <div className="py-1">
+                {filteredOptions.length > 0 ? (
+                  filteredOptions.map((option) => (
+                    <button
+                      key={option}
+                      onClick={() => {
+                        onChange(option);
+                        setIsOpen(false);
+                        setSearchTerm("");
+                      }}
+                      className={`w-full px-3 py-2 text-left text-sm transition-colors duration-150 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 ${
+                        value === option
+                          ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400"
+                          : "text-gray-700 dark:text-gray-300"
+                      }`}
+                    >
+                      {option}
+                    </button>
+                  ))
+                ) : (
+                  <div className="px-3 py-2 text-sm text-gray-400 dark:text-gray-500">
+                    No results found
+                  </div>
+                )}
+              </div>
+            </div>
+          </>
+        )}
+      </div>
     </label>
   );
 }
@@ -470,21 +603,21 @@ export default function CGPACalculator() {
 
   return (
     <div
-      className={`${hindSiliguri.className} cgpa-calculator-shell min-h-screen bg-[#f9fafb] px-2 pb-10 pt-26 text-gray-900`}
+      className={`${hindSiliguri.className} cgpa-calculator-shell min-h-screen bg-[#f9fafb] dark:bg-gray-900 px-2 pb-10 pt-26 text-gray-900 dark:text-gray-100`}
     >
       <div className="mx-auto max-w-4xl">
         <div className="mb-6 text-center">
-          <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-100 text-indigo-700">
+          <div className="mb-3 inline-flex h-12 w-12 items-center justify-center rounded-md bg-indigo-100 dark:bg-indigo-900/40 text-indigo-700 dark:text-indigo-400">
             <GraduationCap className="h-7 w-7" />
           </div>
-          <h1 className="text-2xl font-bold text-gray-900">
+          <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 sm:text-3xl">
             জাতীয় বিশ্ববিদ্যালয় CGPA ক্যালকুলেটর
           </h1>
         </div>
 
-        <section className="rounded-lg border border-gray-200 bg-white p-4 shadow-sm sm:p-6">
+        <section className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800/90 p-4 shadow-sm sm:p-6">
           <label className="mb-4 block">
-            <span className="mb-2 block text-sm font-medium text-gray-700">
+            <span className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-300">
               নাম
             </span>
             <input
@@ -496,7 +629,7 @@ export default function CGPACalculator() {
                 setError("");
               }}
               placeholder="আপনার নাম লিখুন"
-              className="h-11 w-full rounded-md border border-gray-300 bg-white px-3 text-sm text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100"
+              className="h-11 w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-3 text-sm text-gray-900 dark:text-gray-100 outline-none transition placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
             />
           </label>
 
@@ -528,19 +661,19 @@ export default function CGPACalculator() {
 
           {(coreSubjects.length > 0 || optionalSubjects.length > 0) && (
             <div className="mt-6 overflow-x-auto text-sm">
-              <table className="w-full min-w-[720px] border-collapse border border-gray-300 bg-white">
-                <thead className="bg-gray-100">
+              <table className="w-full min-w-[720px] border-collapse border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800">
+                <thead className="bg-gray-100 dark:bg-gray-700">
                   <tr>
-                    <th className="border border-gray-300 px-4 py-2 text-left">
-                      বিষয়
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-left text-gray-900 dark:text-gray-100">
+                      বিষয়
                     </th>
-                    <th className="border border-gray-300 px-4 py-2 text-center">
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-900 dark:text-gray-100">
                       গ্রেড
                     </th>
-                    <th className="border border-gray-300 px-4 py-2 text-center">
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-900 dark:text-gray-100">
                       প্রাপ্ত পয়েন্ট
                     </th>
-                    <th className="border border-gray-300 px-4 py-2 text-center">
+                    <th className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-900 dark:text-gray-100">
                       মোট পয়েন্ট
                     </th>
                   </tr>
@@ -551,19 +684,19 @@ export default function CGPACalculator() {
 
                     return (
                       <tr key={`core-${subject.code}-${index}`}>
-                        <td className="border border-gray-300 px-4 py-2 text-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-200">
                           {subject.name} ({subject.code})
                         </td>
-                        <td className="border border-gray-300 px-4 py-2 text-center">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
                           <GradeSelect
                             value={coreGrades[index] || ""}
                             onChange={(grade) => updateCoreGrade(index, grade)}
                           />
                         </td>
-                        <td className="border border-gray-300 px-4 py-2 text-center">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-900 dark:text-gray-100">
                           {point === null ? "" : point.toFixed(2)}
                         </td>
-                        <td className="border border-gray-300 px-4 py-2 text-center">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-900 dark:text-gray-100">
                           {subject.credit}
                         </td>
                       </tr>
@@ -574,7 +707,7 @@ export default function CGPACalculator() {
                     <tr>
                       <td
                         colSpan="4"
-                        className="bg-gray-200 px-4 py-2 text-center font-semibold"
+                        className="bg-gray-200 dark:bg-gray-700 px-4 py-2 text-center font-semibold text-gray-900 dark:text-gray-100"
                       >
                         Optional Subjects (যেকোনো {optionalLimit} টি)
                       </td>
@@ -586,10 +719,10 @@ export default function CGPACalculator() {
 
                     return (
                       <tr key={`optional-${subject.code}-${index}`}>
-                        <td className="border border-gray-300 px-4 py-2 text-gray-800">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-gray-800 dark:text-gray-200">
                           {subject.name} ({subject.code})
                         </td>
-                        <td className="border border-gray-300 px-4 py-2 text-center">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center">
                           <GradeSelect
                             value={optionalGrades[index] || ""}
                             onChange={(grade) =>
@@ -597,10 +730,10 @@ export default function CGPACalculator() {
                             }
                           />
                         </td>
-                        <td className="border border-gray-300 px-4 py-2 text-center">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-900 dark:text-gray-100">
                           {point === null ? "" : point.toFixed(2)}
                         </td>
-                        <td className="border border-gray-300 px-4 py-2 text-center">
+                        <td className="border border-gray-300 dark:border-gray-600 px-4 py-2 text-center text-gray-900 dark:text-gray-100">
                           {subject.credit}
                         </td>
                       </tr>
@@ -612,7 +745,7 @@ export default function CGPACalculator() {
           )}
 
           {error && (
-            <div className="mt-5 flex items-center justify-center gap-2 rounded-md bg-red-50 px-4 py-3 text-center text-sm font-medium text-red-700">
+            <div className="mt-5 flex items-center justify-center gap-2 rounded-md bg-red-50 dark:bg-red-900/20 px-4 py-3 text-center text-sm font-medium text-red-700 dark:text-red-400">
               <AlertCircle className="h-4 w-4 shrink-0" />
               <span>{error}</span>
             </div>
@@ -622,7 +755,7 @@ export default function CGPACalculator() {
             <button
               type="button"
               onClick={calculateCgpa}
-              className="inline-flex items-center justify-center gap-2 rounded-md bg-indigo-600 px-6 py-2.5 text-sm font-semibold text-white transition hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-200"
+              className="inline-flex items-center justify-center gap-2 rounded-md bg-indigo-600 dark:bg-indigo-500 px-6 py-2.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-indigo-700 dark:hover:bg-indigo-600 hover:shadow-lg hover:shadow-indigo-200/50 dark:hover:shadow-indigo-900/30 focus:outline-none focus:ring-2 focus:ring-indigo-200 dark:focus:ring-indigo-800 transform hover:scale-[1.02] active:scale-[0.98]"
             >
               <Calculator className="h-4 w-4" />
               CGPA ক্যালকুলেট করুন
@@ -631,20 +764,20 @@ export default function CGPACalculator() {
         </section>
 
         <section className="mx-auto mt-10 max-w-2xl">
-          <h2 className="mb-4 text-center text-xl font-semibold text-gray-900">
+          <h2 className="mb-4 text-center text-xl font-semibold text-gray-900 dark:text-gray-100">
             National University Bangladesh Grading System
           </h2>
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[520px] border-collapse border border-gray-300 bg-white text-sm">
-              <thead>
+            <table className="w-full min-w-[520px] border-collapse border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 text-sm">
+              <thead className="bg-gray-100 dark:bg-gray-700">
                 <tr>
-                  <th className="border border-gray-300 px-3 py-2 text-center">
+                  <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                     Grade
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-center">
+                  <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                     Grade Point
                   </th>
-                  <th className="border border-gray-300 px-3 py-2 text-center">
+                  <th className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                     Marks Range
                   </th>
                 </tr>
@@ -652,13 +785,13 @@ export default function CGPACalculator() {
               <tbody>
                 {GRADES.map((item) => (
                   <tr key={item.grade}>
-                    <td className="border border-gray-300 px-3 py-2 text-center font-medium">
+                    <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center font-medium text-gray-900 dark:text-gray-100">
                       {item.grade}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-center">
+                    <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                       {item.point.toFixed(2)}
                     </td>
-                    <td className="border border-gray-300 px-3 py-2 text-center">
+                    <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center text-gray-900 dark:text-gray-100">
                       {item.markRange}
                     </td>
                   </tr>
@@ -670,13 +803,13 @@ export default function CGPACalculator() {
       </div>
 
       {result && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 px-3 py-6">
-          <div className="max-h-full w-full max-w-4xl overflow-y-auto rounded-lg bg-white p-4 shadow-2xl sm:p-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 dark:bg-black/70 px-3 py-6 animate-in fade-in duration-200">
+          <div className="max-h-full w-full max-w-4xl overflow-y-auto rounded-lg bg-white dark:bg-gray-800 p-4 shadow-2xl sm:p-6 animate-in slide-in-from-bottom-4 duration-300">
             <div className="mb-4 flex items-center justify-end">
               <button
                 type="button"
                 onClick={() => setResult(null)}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-gray-100 text-gray-700 transition hover:bg-gray-200"
+                className="inline-flex h-9 w-9 items-center justify-center rounded-md bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 transition-all duration-200 hover:bg-gray-200 dark:hover:bg-gray-600 hover:scale-110 active:scale-90"
                 aria-label="Close result"
               >
                 <X className="h-4 w-4" />
@@ -684,25 +817,25 @@ export default function CGPACalculator() {
             </div>
 
             <div className="relative text-center">
-              <div className="pointer-events-none absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brandColor/10" />
+              <div className="pointer-events-none absolute left-1/2 top-1/2 h-44 w-44 -translate-x-1/2 -translate-y-1/2 rounded-full bg-brandColor/10 dark:bg-brandColor/5" />
               <div className="relative">
-                <h2 className="text-2xl font-bold leading-tight text-gray-900">
+                <h2 className="text-2xl font-bold leading-tight text-gray-900 dark:text-gray-100">
                   ToolsTrek
                 </h2>
-                <h3 className="mt-2 text-xl font-semibold text-gray-900">
+                <h3 className="mt-2 text-xl font-semibold text-gray-900 dark:text-gray-100">
                   Your Result
                 </h3>
-                <p className="mt-2 text-lg text-gray-500">
+                <p className="mt-2 text-lg text-gray-500 dark:text-gray-400">
                   {program} - {department} ({year})
                 </p>
-                <p className="mt-2 text-lg font-semibold text-gray-900">
+                <p className="mt-2 text-lg font-semibold text-gray-900 dark:text-gray-100">
                   Name: {studentName.trim()}
                 </p>
                 <p
                   className={`mt-2 text-2xl font-bold ${
                     parseFloat(result) > 3
-                      ? "text-emerald-600"
-                      : "text-blue-600"
+                      ? "text-emerald-600 dark:text-emerald-400"
+                      : "text-blue-600 dark:text-blue-400"
                   }`}
                 >
                   CGPA: {result}
@@ -713,13 +846,13 @@ export default function CGPACalculator() {
                 </div>
 
                 {parseFloat(result) > 3 && (
-                  <p className="mt-4 text-base font-semibold text-emerald-600">
+                  <p className="mt-4 text-base font-semibold text-emerald-600 dark:text-emerald-400">
                     --- Congratulations on your Outstanding Result! ---
                   </p>
                 )}
 
                 <div className="mt-6 flex items-center justify-center">
-                  <div className="text-center text-sm text-blue-600">
+                  <div className="text-center text-sm text-blue-600 dark:text-blue-400">
                     <p>
                       Result Calculated by ToolsTrek CGPA Calculator |{" "}
                       {new Date().toLocaleDateString()}
@@ -733,7 +866,7 @@ export default function CGPACalculator() {
                     type="button"
                     onClick={downloadResult}
                     disabled={isDownloading}
-                    className="inline-flex items-center justify-center gap-2 rounded-md bg-emerald-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-wait disabled:bg-emerald-300"
+                    className="inline-flex items-center justify-center gap-2 rounded-md bg-emerald-600 dark:bg-emerald-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-emerald-700 dark:hover:bg-emerald-600 hover:shadow-lg hover:shadow-emerald-200/50 dark:hover:shadow-emerald-900/30 disabled:cursor-wait disabled:bg-emerald-300 dark:disabled:bg-emerald-700 transform hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <Download className="h-4 w-4" />
                     {isDownloading ? "Generating..." : "Download Result"}
@@ -741,7 +874,7 @@ export default function CGPACalculator() {
                   <button
                     type="button"
                     onClick={() => setResult(null)}
-                    className="rounded-md bg-gray-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-gray-700"
+                    className="rounded-md bg-gray-600 dark:bg-gray-500 px-4 py-2 text-sm font-semibold text-white transition-all duration-200 hover:bg-gray-700 dark:hover:bg-gray-600 hover:shadow-lg hover:shadow-gray-200/50 dark:hover:shadow-gray-900/30 transform hover:scale-[1.02] active:scale-[0.98]"
                   >
                     Close
                   </button>

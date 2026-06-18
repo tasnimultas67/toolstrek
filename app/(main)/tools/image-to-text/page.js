@@ -33,9 +33,9 @@ export const metadata = {
 
 const page = () => {
   return (
-    <main>
+    <div>
       <ImageToText />
-    </main>
+    </div>
   );
 };
 

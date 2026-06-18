@@ -59,18 +59,21 @@ export default function PasswordFunc() {
         transition={{ duration: 0.5 }}
         className="w-full md:w-11/12 mx-auto"
       >
-        <Card className="bg-white dark:bg-gray-900 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border-gray-100 dark:border-gray-800 overflow-hidden">
-          <CardHeader className="px-8 py-6 border-b border-gray-50 dark:border-gray-800 bg-white/50 backdrop-blur-md">
+        <Card className="bg-white dark:bg-gray-900 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:shadow-[0_20px_50px_rgba(0,0,0,0.3)] border-gray-100 dark:border-gray-800 overflow-hidden">
+          <CardHeader className="px-8 py-6 border-b border-gray-50 dark:border-gray-800 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-3">
-                <div className="p-2 bg-emerald-500 rounded-lg shadow-lg shadow-emerald-100">
+                <div className="p-2 bg-emerald-500 dark:bg-emerald-600 rounded-lg shadow-lg shadow-emerald-100 dark:shadow-emerald-900/30">
                   <ShieldCheck className="w-5 h-5 text-white" />
                 </div>
                 <div>
                   <CardTitle className="text-xl font-bold text-gray-800 dark:text-white">
-                    Password <span className="text-emerald-500">Generator</span>
+                    Password{" "}
+                    <span className="text-emerald-500 dark:text-emerald-400">
+                      Generator
+                    </span>
                   </CardTitle>
-                  <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400">
+                  <p className="text-[10px] uppercase tracking-widest font-bold text-gray-400 dark:text-gray-500">
                     Secure Client-Side Encryption
                   </p>
                 </div>
@@ -88,11 +91,11 @@ export default function PasswordFunc() {
                     value={password}
                     readOnly
                     placeholder="Click Generate..."
-                    className="h-16 px-6 text-xl md:text-2xl font-mono bg-slate-50 dark:bg-gray-800/50 border-none rounded-2xl text-gray-800 dark:text-gray-100 focus-visible:ring-4 focus-visible:ring-emerald-500/10 transition-all shadow-inner"
+                    className="h-16 px-6 text-xl md:text-2xl font-mono bg-slate-50 dark:bg-gray-800/50 border-none rounded-2xl text-gray-800 dark:text-gray-100 focus-visible:ring-4 focus-visible:ring-emerald-500/10 dark:focus-visible:ring-emerald-400/20 transition-all shadow-inner dark:shadow-gray-900/30"
                   />
                   <div className="absolute right-4 top-1/2 -translate-y-1/2">
                     <Zap
-                      className={`w-5 h-5 ${password ? "text-yellow-400 fill-yellow-400" : "text-gray-300"}`}
+                      className={`w-5 h-5 ${password ? "text-yellow-400 dark:text-yellow-400 fill-yellow-400" : "text-gray-300 dark:text-gray-600"}`}
                     />
                   </div>
                 </div>
@@ -121,7 +124,7 @@ export default function PasswordFunc() {
                   <Label className="text-sm font-bold text-gray-600 dark:text-gray-400 uppercase tracking-tight">
                     Password Length
                   </Label>
-                  <span className="px-3 py-1 bg-emerald-500 text-white rounded-lg font-mono font-bold text-lg shadow-md shadow-emerald-100">
+                  <span className="px-3 py-1 bg-emerald-500 dark:bg-emerald-600 text-white rounded-lg font-mono font-bold text-lg shadow-md shadow-emerald-100 dark:shadow-emerald-900/30">
                     {length}
                   </span>
                 </div>
@@ -141,36 +144,40 @@ export default function PasswordFunc() {
                   {
                     id: "uppercase",
                     label: "ABC",
-                    color: "peer-checked:bg-indigo-500",
+                    color:
+                      "peer-checked:bg-indigo-500 dark:peer-checked:bg-indigo-600",
                   },
                   {
                     id: "lowercase",
                     label: "abc",
-                    color: "peer-checked:bg-sky-500",
+                    color:
+                      "peer-checked:bg-sky-500 dark:peer-checked:bg-sky-600",
                   },
                   {
                     id: "numbers",
                     label: "123",
-                    color: "peer-checked:bg-amber-500",
+                    color:
+                      "peer-checked:bg-amber-500 dark:peer-checked:bg-amber-600",
                   },
                   {
                     id: "symbols",
                     label: "#&*",
-                    color: "peer-checked:bg-rose-500",
+                    color:
+                      "peer-checked:bg-rose-500 dark:peer-checked:bg-rose-600",
                   },
                 ].map((opt) => (
                   <div
                     key={opt.id}
-                    className="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm"
+                    className="flex items-center justify-between p-3 bg-white dark:bg-gray-800 rounded-xl border border-gray-100 dark:border-gray-700 shadow-sm dark:shadow-gray-900/20"
                   >
                     <div className="flex flex-col">
                       <Label
                         htmlFor={opt.id}
-                        className="text-xs font-black uppercase text-gray-400"
+                        className="text-xs font-black uppercase text-gray-400 dark:text-gray-500"
                       >
                         {opt.id}
                       </Label>
-                      <span className="text-sm font-bold text-gray-700 dark:text-gray-200">
+                      <span className="text-sm font-bold text-gray-700 dark:text-gray-300">
                         {opt.label}
                       </span>
                     </div>
@@ -192,7 +199,7 @@ export default function PasswordFunc() {
 
             <Button
               onClick={generatePassword}
-              className="w-full h-14 bg-gray-900 dark:bg-emerald-600 hover:bg-black dark:hover:bg-emerald-700 text-white rounded-2xl font-bold text-lg shadow-xl transition-all active:scale-[0.98] flex gap-2"
+              className="w-full h-14 bg-gray-900 dark:bg-emerald-600 hover:bg-black dark:hover:bg-emerald-700 text-white rounded-2xl font-bold text-lg shadow-xl dark:shadow-emerald-900/30 transition-all active:scale-[0.98] flex gap-2"
             >
               <RefreshCw className="w-5 h-5" />
               {password.length >= 2
@@ -210,29 +217,29 @@ export default function PasswordFunc() {
         transition={{ delay: 0.3, duration: 0.5 }}
         className="mt-8 w-full max-w-2xl"
       >
-        <Card className="bg-transparent border-dashed border-2 border-gray-200 dark:border-gray-800 shadow-none rounded-3xl">
+        <Card className="bg-transparent dark:bg-transparent border-dashed border-2 border-gray-200 dark:border-gray-800 shadow-none rounded-3xl">
           <CardHeader className="flex flex-row items-center gap-2 pb-2">
-            <Info className="w-4 h-4 text-gray-400" />
-            <CardTitle className="text-sm font-bold text-gray-500 uppercase tracking-widest">
+            <Info className="w-4 h-4 text-gray-400 dark:text-gray-500" />
+            <CardTitle className="text-sm font-bold text-gray-500 dark:text-gray-400 uppercase tracking-widest">
               Security Best Practices
             </CardTitle>
           </CardHeader>
           <CardContent>
             <ul className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-2 text-xs font-medium text-gray-500 dark:text-gray-400 list-none">
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 dark:bg-emerald-400" />
                 Minimum 12 characters recommended
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-indigo-500 dark:bg-indigo-400" />
                 Mix all character types
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400" />
                 Avoid common dictionary words
               </li>
               <li className="flex items-center gap-2">
-                <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+                <div className="w-1.5 h-1.5 rounded-full bg-rose-500 dark:bg-rose-400" />
                 Use a unique password per account
               </li>
             </ul>

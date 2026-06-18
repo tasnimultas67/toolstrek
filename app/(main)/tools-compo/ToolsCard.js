@@ -7,19 +7,27 @@ import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { getIcon } from "./dynamicIcon";
 import FavoriteButton from "@/components/FavoriteButton";
 
-const ToolsCard = ({ title, link, description, icon, category, lastUsed, index }) => {
+const ToolsCard = ({
+  title,
+  link,
+  description,
+  icon,
+  category,
+  lastUsed,
+  index,
+}) => {
   const IconComponent = getIcon(icon);
 
   return (
-    <Link href={link} className="group relative">
+    <Link href={link} className="group relative" suppressHydrationWarning>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: index * 0.08 }}
-        className="h-full relative overflow-hidden rounded-2xl border border-gray-200 bg-gray-100 p-5 group-hover:bg-white group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] group-hover:-translate-y-1 hover:border-brandColor/40 transitions-all duration-300"
+        className="h-full relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-gray-100 dark:bg-gray-900 p-5 group-hover:bg-white dark:group-hover:bg-gray-950 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] group-hover:-translate-y-1 hover:border-brandColor/40 dark:hover:border-brandColor/60 transitions-all duration-300"
       >
-        <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-gray-100/50 transition-all duration-500 group-hover:scale-[3] group-hover:bg-indigo-50" />
+        <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-gray-100/50 dark:bg-gray-800/30 transition-all duration-500 group-hover:scale-[3] group-hover:bg-indigo-50 dark:group-hover:bg-indigo-950/20" />
 
         {/* Favorite Button container with absolute positioning and high z-index */}
         <div className="absolute right-4 top-4 z-20">
@@ -27,15 +35,15 @@ const ToolsCard = ({ title, link, description, icon, category, lastUsed, index }
         </div>
 
         <div className="relative z-10 flex flex-col h-full">
-          <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white shadow-sm border border-gray-100 text-gray-700 transition-colors group-hover:text-indigo-600">
+          <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-white dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
             {IconComponent && <IconComponent className="h-6 w-6" />}
           </div>
 
           <div className="flex flex-col grow">
-            <h3 className="text-xl font-semibold text-gray-900 mb-2">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
               {title}
             </h3>
-            <p className="text-sm leading-relaxed text-gray-500">
+            <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400">
               {description}
             </p>
             {lastUsed && (
@@ -46,7 +54,7 @@ const ToolsCard = ({ title, link, description, icon, category, lastUsed, index }
             )}
           </div>
 
-          <div className="mt-8 flex items-center text-sm font-medium text-gray-600 transition-colors group-hover:text-indigo-600">
+          <div className="mt-8 flex items-center text-sm font-medium text-gray-600 dark:text-gray-400 transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
             Get started
             <ArrowRightIcon className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </div>

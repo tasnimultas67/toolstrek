@@ -99,17 +99,20 @@ const PdfToImage = () => {
   };
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
-      <div className="bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-2xl border border-gray-100 dark:border-gray-800 overflow-hidden transition-all">
+    <ToolPageShell widthClassName="max-w-7xl px-1 pt-20 pb-10">
+      <div className="bg-white dark:bg-gray-900 rounded-[2.5rem] shadow-2xl dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-800 overflow-hidden transition-all">
         {/* EYE-CATCHING HEADER */}
-        <div className="p-10 text-center border-b border-gray-50 dark:border-gray-800 bg-gradient-to-b from-brandColor/5 to-transparent">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brandColor/10 text-brandColor text-sm font-bold mb-4">
+        <div className="p-10 text-center border-b border-gray-50 dark:border-gray-800 bg-gradient-to-b from-brandColor/5 dark:from-brandColor/10 to-transparent">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-brandColor/10 dark:bg-brandColor/20 text-brandColor dark:text-brandColor text-sm font-bold mb-4">
             <Sparkles size={16} />
             <span>Magic Conversion</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-gray-900 dark:text-white mb-4 tracking-tight">
             Turn PDFs into{" "}
-            <span className="text-brandColor">Crystal Clear</span> Images
+            <span className="text-brandColor dark:text-brandColor">
+              Crystal Clear
+            </span>{" "}
+            Images
           </h2>
           <p className="text-lg text-gray-500 dark:text-gray-400 max-w-2xl mx-auto leading-relaxed">
             Stop dealing with blurry screenshots. Convert any PDF to
@@ -122,7 +125,7 @@ const PdfToImage = () => {
           {!images.length ? (
             <div
               onClick={() => fileInputRef.current.click()}
-              className="group cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-[2rem] py-24 px-6 transition-all hover:border-brandColor hover:bg-brandColor/[0.02] dark:hover:bg-brandColor/[0.05]"
+              className="group cursor-pointer flex flex-col items-center justify-center border-2 border-dashed border-gray-200 dark:border-gray-700 rounded-[2rem] py-24 px-6 transition-all hover:border-brandColor dark:hover:border-brandColor hover:bg-brandColor/[0.02] dark:hover:bg-brandColor/[0.05]"
             >
               <input
                 type="file"
@@ -131,7 +134,7 @@ const PdfToImage = () => {
                 className="hidden"
                 ref={fileInputRef}
               />
-              <div className="w-24 h-24 bg-brandColor text-white rounded-3xl flex items-center justify-center mb-6 rotate-3 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-brandColor/30">
+              <div className="w-24 h-24 bg-brandColor dark:bg-brandColor text-white rounded-3xl flex items-center justify-center mb-6 rotate-3 group-hover:rotate-0 group-hover:scale-110 transition-all duration-500 shadow-xl shadow-brandColor/30 dark:shadow-brandColor/20">
                 {loading ? (
                   <Loader2 className="animate-spin" size={40} />
                 ) : (
@@ -141,14 +144,14 @@ const PdfToImage = () => {
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
                 {loading ? "Magic in progress..." : "Drop your PDF here"}
               </h3>
-              <p className="text-gray-400 font-medium">
+              <p className="text-gray-400 dark:text-gray-500 font-medium">
                 Click to browse your files
               </p>
             </div>
           ) : (
-            <div className="flex flex-col sm:flex-row justify-between items-center gap-6 mb-12 p-6 bg-brandColor/[0.03] dark:bg-brandColor/[0.08] rounded-[2rem] border border-brandColor/10">
+            <div className="flex flex-col sm:flex-row justify-between items-center gap-6 mb-12 p-6 bg-brandColor/[0.03] dark:bg-brandColor/[0.08] rounded-[2rem] border border-brandColor/10 dark:border-brandColor/20">
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-green-500 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20">
+                <div className="w-12 h-12 bg-green-500 dark:bg-green-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-green-500/20 dark:shadow-green-900/30">
                   <CheckCircle2 size={24} />
                 </div>
                 <div>
@@ -164,14 +167,14 @@ const PdfToImage = () => {
               <div className="flex gap-3 w-full sm:w-auto">
                 <button
                   onClick={() => setImages([])}
-                  className="flex-1 sm:flex-none p-4 text-gray-400 hover:text-red-500 transition-colors"
+                  className="flex-1 sm:flex-none p-4 text-gray-400 dark:text-gray-500 hover:text-red-500 dark:hover:text-red-400 transition-colors"
                   title="Remove all"
                 >
                   <Trash2 size={24} />
                 </button>
                 <button
                   onClick={handleDownload}
-                  className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-brandColor text-white px-8 py-4 rounded-2xl font-bold shadow-2xl shadow-brandColor/30 hover:translate-y-[-2px] active:translate-y-[0px] transition-all"
+                  className="flex-1 sm:flex-none flex items-center justify-center gap-3 bg-brandColor dark:bg-brandColor text-white px-8 py-4 rounded-2xl font-bold shadow-2xl shadow-brandColor/30 dark:shadow-brandColor/20 hover:translate-y-[-2px] active:translate-y-[0px] transition-all"
                 >
                   {images.length > 1 ? (
                     <Archive size={20} />
@@ -191,7 +194,7 @@ const PdfToImage = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
             {images.map((url, index) => (
               <div key={index} className="group flex flex-col">
-                <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm group-hover:shadow-2xl transition-all duration-500">
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm dark:shadow-gray-900/30 group-hover:shadow-2xl dark:group-hover:shadow-gray-900/50 transition-all duration-500">
                   <img
                     src={url}
                     alt={`Page ${index + 1}`}
@@ -199,7 +202,7 @@ const PdfToImage = () => {
                   />
 
                   {/* Single Download Action */}
-                  <div className="absolute inset-0 bg-gray-900/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
+                  <div className="absolute inset-0 bg-gray-900/20 dark:bg-gray-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center backdrop-blur-[2px]">
                     <button
                       onClick={() => {
                         const a = document.createElement("a");
@@ -207,18 +210,18 @@ const PdfToImage = () => {
                         a.download = `Page-${index + 1}.png`;
                         a.click();
                       }}
-                      className="bg-white text-gray-900 px-6 py-3 rounded-xl font-bold shadow-2xl hover:scale-105 transition-transform"
+                      className="bg-white dark:bg-gray-800 text-gray-900 dark:text-white px-6 py-3 rounded-xl font-bold shadow-2xl dark:shadow-gray-900/50 hover:scale-105 transition-transform"
                     >
                       Download Page
                     </button>
                   </div>
                 </div>
                 <div className="mt-4 flex justify-between items-center">
-                  <span className="text-[10px] font-black tracking-[0.2em] text-gray-400">
+                  <span className="text-[10px] font-black tracking-[0.2em] text-gray-400 dark:text-gray-500">
                     P. {String(index + 1).padStart(2, "0")}
                   </span>
                   <div className="h-[1px] flex-1 bg-gray-100 dark:bg-gray-800 mx-4" />
-                  <span className="text-[10px] font-bold text-brandColor">
+                  <span className="text-[10px] font-bold text-brandColor dark:text-brandColor">
                     4K UHD
                   </span>
                 </div>

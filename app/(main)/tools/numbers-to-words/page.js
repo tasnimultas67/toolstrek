@@ -32,7 +32,7 @@ export const metadata = {
 
 const Page = () => {
   return (
-    <div className="bg-gray-50">
+    <div className="">
       <NumbersToWords />
     </div>
   );

@@ -25,9 +25,9 @@ export const metadata = {
 
 const page = () => {
   return (
-    <main>
+    <div className="px-1 pt-20 pb-10">
       <CompressPDFTool />
-    </main>
+    </div>
   );
 };
 

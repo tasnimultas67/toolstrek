@@ -41,13 +41,12 @@
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
 }
-@theme{
-  --color-brandColor: #7C00FE;
-  --color-brandColorHover: #4635B1;
-
+@theme {
+  --color-brandColor: #7c00fe;
+  --color-brandColorHover: #4635b1;
 }
 
-::selection{
+::selection {
   background: var(--color-brandColor);
   color: var(--color-background);
 }
@@ -59,7 +58,6 @@ html {
   /* IE and Edge */
 }
 
-
 html::-webkit-scrollbar {
   display: none;
   /* Chrome, Safari, Opera */
@@ -68,7 +66,7 @@ html::-webkit-scrollbar {
   visibility: hidden;
 }
 
-.tool-page-shell {
+/* .tool-page-shell {
   position: relative;
   overflow: hidden;
   padding: 6.5rem 0.5rem 2.75rem;
@@ -76,7 +74,7 @@ html::-webkit-scrollbar {
     radial-gradient(circle at top left, rgba(124, 0, 254, 0.14), transparent 26%),
     radial-gradient(circle at top right, rgba(52, 211, 153, 0.12), transparent 24%),
     linear-gradient(180deg, #f8fafc 0%, #ffffff 38%, #f8fafc 100%);
-}
+} */
 
 .tool-page-shell::before,
 .tool-page-shell::after {
@@ -149,7 +147,7 @@ html::-webkit-scrollbar {
 }
 
 /* Optional: Adjust reCAPTCHA size */
-.g-recaptcha>div {
+.g-recaptcha > div {
   margin: 0 auto;
   transform: scale(0.9);
   transform-origin: 0 0;
@@ -187,6 +185,11 @@ html::-webkit-scrollbar {
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+  --search-active-bg: rgba(0, 0, 0, 0.055);
+  --search-icon-bg: #f3f4f6;
+  --search-icon-fg: #6b7280;
+  --search-title-fg: #374151;
+  --search-cat-fg: #9ca3af;
 }
 
 .dark {
@@ -221,6 +224,11 @@ html::-webkit-scrollbar {
   --sidebar-accent-foreground: oklch(0.985 0 0);
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
+  --search-active-bg: rgba(255, 255, 255, 0.1);
+  --search-icon-bg: #1f2937;
+  --search-icon-fg: #9ca3af;
+  --search-title-fg: #f3f4f6;
+  --search-cat-fg: #6b7280;
 }
 
 @layer base {
@@ -235,9 +243,7 @@ html::-webkit-scrollbar {
   padding-bottom: 53px;
 }
 
-
 /* Pricig CSS */
-
 
 /* Base Styles */
 
@@ -277,7 +283,6 @@ html::-webkit-scrollbar {
   border-bottom: 1px solid #eaeaea;
   padding: 25px;
   position: relative;
-
 }
 
 .pricing-plan.popular {
@@ -352,7 +357,6 @@ html::-webkit-scrollbar {
 .icon-yes {
   color: #2ecc71;
   font-weight: bold;
-  
 }
 
 .icon-no {
@@ -401,28 +405,27 @@ html::-webkit-scrollbar {
     width: 100%;
     /* table-layout: fixed; */
     /* border-collapse: collapse; */
-    
   }
 
   .pricing-plan {
     display: table-cell;
     vertical-align: top;
     /* border-bottom: none; */
-    
+
     padding: 25px 10px;
 
     /* overflow: visible; */
   }
 
-    .pricing-plan:not(:first-child){
-      background-color: #FAFBFF;
-        border-radius: 14px;
-        margin: 0 2px;
-        transition: all 0.5s;
-        border: 1px solid #d5dfff;
-    }
+  .pricing-plan:not(:first-child) {
+    background-color: #fafbff;
+    border-radius: 14px;
+    margin: 0 2px;
+    transition: all 0.5s;
+    border: 1px solid #d5dfff;
+  }
 
-.pricing-table:not(:first-child) .pricing-plan:hover{
+  .pricing-table:not(:first-child) .pricing-plan:hover {
     border-color: #4e73df;
     /* transform: scale(1.01); */
     z-index: 10;
@@ -504,10 +507,34 @@ html::-webkit-scrollbar {
     margin: 25px 0 15px 0;
     text-align: left;
     /* text-decoration: underline; */
-    color:#e74c3c;
+    color: #e74c3c;
     font-weight: bold;
-
   }
+}
+
+/* ── Theme toggle view transition (circle wipe) ── */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* Ensure the new view sits on top so the clipPath reveal animation works */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 9999;
+}
+
+/* Disable transitions temporarily during view transitions to prevent instant theme jump */
+.no-transitions,
+.no-transitions *,
+.no-transitions *::before,
+.no-transitions *::after {
+  transition: none !important;
+  animation-duration: 0s !important;
 }
 
 /* .plan-header{

@@ -455,338 +455,358 @@ export default function CompressPDFTool() {
 
   return (
     <ToolPageShell widthClassName="max-w-7xl">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white/85 px-3 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-20 top-6 h-56 w-56 rounded-full bg-amber-200/40 blur-3xl" />
-        <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-sky-200/30 blur-3xl" />
-      </div>
-
-      <div className="relative mx-auto w-full md:w-11/12">
-        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="mb-3 inline-flex rounded-full border border-amber-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
-              Optimize &amp; Repair
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              Compress PDF
-            </h1>
-            <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-              Reduce PDF size right inside the browser. Files stay local, the
-              interface stays simple, and batch jobs can be downloaded as a
-              single ZIP file.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 text-center">
-            <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
-              <div className="text-lg font-semibold text-slate-900">100%</div>
-              <div className="text-xs text-slate-500">Private</div>
-            </div>
-            <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
-              <div className="text-lg font-semibold text-slate-900">3</div>
-              <div className="text-xs text-slate-500">Presets</div>
-            </div>
-            <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
-              <div className="text-lg font-semibold text-slate-900">Batch</div>
-              <div className="text-xs text-slate-500">ZIP ready</div>
-            </div>
-          </div>
+      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white/85 px-3 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)]">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-20 top-6 h-56 w-56 rounded-full bg-amber-200/40 blur-3xl dark:bg-amber-500/10" />
+          <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-sky-200/30 blur-3xl dark:bg-sky-500/10" />
         </div>
 
-        <div className="grid gap-6 lg:grid-cols-[1.55fr_0.95fr]">
-          <div className="space-y-6">
-            <div
-              className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur"
-              onDragOver={(event) => event.preventDefault()}
-              onDrop={handleDrop}
-            >
-              <div
-                className="flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-200 bg-gradient-to-b from-slate-50 to-white px-6 py-10 text-center transition hover:border-amber-300 hover:bg-amber-50/30"
-                onClick={openPicker}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    openPicker();
-                  }
-                }}
-              >
-                <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-100 text-3xl">
-                  PDF
+        <div className="relative mx-auto w-full md:w-11/12">
+          <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="mb-3 inline-flex rounded-full border border-amber-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:border-amber-800/40 dark:bg-amber-950/30 dark:text-amber-300">
+                Optimize &amp; Repair
+              </p>
+              <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl dark:text-slate-100">
+                Compress PDF
+              </h1>
+              <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base dark:text-slate-400">
+                Reduce PDF size right inside the browser. Files stay local, the
+                interface stays simple, and batch jobs can be downloaded as a
+                single ZIP file.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-3 gap-3 text-center">
+              <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  100%
                 </div>
-                <h2 className="text-lg font-semibold text-slate-900">
-                  Upload PDF files
-                </h2>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
-                  Drag and drop one file or many files here, or click to browse
-                  from your device.
-                </p>
-                <p className="mt-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-400">
-                  application/pdf
-                </p>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  Private
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  3
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  Presets
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  Batch
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  ZIP ready
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-6 lg:grid-cols-[1.55fr_0.95fr]">
+            <div className="space-y-6">
+              <div
+                className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50"
+                onDragOver={(event) => event.preventDefault()}
+                onDrop={handleDrop}
+              >
+                <div
+                  className="flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-200 bg-gradient-to-b from-slate-50 to-white px-6 py-10 text-center transition hover:border-amber-300 hover:bg-amber-50/30 dark:border-slate-700/50 dark:from-slate-800/30 dark:to-slate-800/50 dark:hover:border-amber-500/50 dark:hover:bg-amber-500/10"
+                  onClick={openPicker}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      openPicker();
+                    }
+                  }}
+                >
+                  <div className="mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-amber-100 text-3xl dark:bg-amber-900/30 dark:text-amber-300">
+                    PDF
+                  </div>
+                  <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    Upload PDF files
+                  </h2>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    Drag and drop one file or many files here, or click to
+                    browse from your device.
+                  </p>
+                  <p className="mt-3 text-xs font-medium uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                    application/pdf
+                  </p>
+                </div>
+
+                <input
+                  ref={inputRef}
+                  type="file"
+                  accept="application/pdf,.pdf"
+                  multiple
+                  className="hidden"
+                  onChange={(event) => handleFiles(event.target.files)}
+                />
+
+                {fileCount ? (
+                  <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-800/30">
+                    <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                      <div>
+                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          {fileCount === 1
+                            ? entries[0].file.name
+                            : `${fileCount} PDF files selected`}
+                        </p>
+                        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                          {formatBytes(summaryOriginal)}
+                          {entries.some((item) => item.pages)
+                            ? " | page counts loaded"
+                            : ""}
+                        </p>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={resetTool}
+                        className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-700/50"
+                      >
+                        Clear
+                      </button>
+                    </div>
+
+                    <div className="mt-4 space-y-2">
+                      <div className="flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
+                        <span>{status}</span>
+                        <span>
+                          {isProcessing
+                            ? `${Math.round((progress ?? 0) * 100)}%`
+                            : isInspecting
+                              ? "Loading..."
+                              : "-"}
+                        </span>
+                      </div>
+                      <div className="h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                        {isProcessing ? (
+                          <div
+                            className="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 dark:from-amber-400 dark:to-orange-400"
+                            style={{
+                              width: `${Math.round((progress ?? 0) * 100)}%`,
+                            }}
+                          />
+                        ) : isInspecting ? (
+                          <div className="h-full w-1/3 animate-pulse rounded-full bg-amber-400/70 dark:bg-amber-500/50" />
+                        ) : (
+                          <div className="h-full w-0 rounded-full bg-amber-500 dark:bg-amber-400" />
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                ) : null}
+
+                {error ? (
+                  <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-800/40 dark:bg-rose-950/30 dark:text-rose-300">
+                    {error}
+                  </div>
+                ) : null}
               </div>
 
-              <input
-                ref={inputRef}
-                type="file"
-                accept="application/pdf,.pdf"
-                multiple
-                className="hidden"
-                onChange={(event) => handleFiles(event.target.files)}
-              />
+              <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div className="flex items-center justify-between gap-3">
+                  <div>
+                    <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                      Compression level
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                      Pick the balance you want between file size and visual
+                      fidelity.
+                    </p>
+                  </div>
+                  <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                    {preset.badge}
+                  </span>
+                </div>
+
+                <div className="mt-4 grid gap-3 md:grid-cols-3">
+                  {Object.values(PRESETS).map((item) => {
+                    const active = item.id === selectedPreset;
+
+                    return (
+                      <button
+                        key={item.id}
+                        type="button"
+                        onClick={() => setSelectedPreset(item.id)}
+                        className={[
+                          "rounded-2xl border p-4 text-left transition",
+                          active
+                            ? "border-amber-300 bg-amber-50 shadow-sm dark:border-amber-500/50 dark:bg-amber-950/30"
+                            : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:border-slate-600 dark:hover:bg-slate-700/50",
+                        ].join(" ")}
+                      >
+                        <div className="flex items-center justify-between gap-2">
+                          <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                            {item.label}
+                          </span>
+                          <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500 dark:bg-slate-700/50 dark:text-slate-400">
+                            {item.badge}
+                          </span>
+                        </div>
+                        <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-400">
+                          {item.description}
+                        </p>
+                      </button>
+                    );
+                  })}
+                </div>
+              </div>
 
               {fileCount ? (
-                <div className="mt-5 rounded-2xl border border-slate-200 bg-slate-50 p-4">
-                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                    <div>
-                      <p className="text-sm font-semibold text-slate-900">
-                        {fileCount === 1
-                          ? entries[0].file.name
-                          : `${fileCount} PDF files selected`}
-                      </p>
-                      <p className="mt-1 text-sm text-slate-600">
-                        {formatBytes(summaryOriginal)}
-                        {entries.some((item) => item.pages)
-                          ? " | page counts loaded"
-                          : ""}
-                      </p>
-                    </div>
-                    <button
-                      type="button"
-                      onClick={resetTool}
-                      className="inline-flex items-center justify-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
-                    >
-                      Clear
-                    </button>
-                  </div>
-
-                  <div className="mt-4 space-y-2">
-                    <div className="flex items-center justify-between text-xs font-medium text-slate-500">
-                      <span>{status}</span>
-                      <span>
-                        {isProcessing
-                          ? `${Math.round((progress ?? 0) * 100)}%`
-                          : isInspecting
-                            ? "Loading..."
-                            : "-"}
-                      </span>
-                    </div>
-                    <div className="h-2 overflow-hidden rounded-full bg-slate-200">
-                      {isProcessing ? (
-                        <div
-                          className="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300"
-                          style={{
-                            width: `${Math.round((progress ?? 0) * 100)}%`,
-                          }}
-                        />
-                      ) : isInspecting ? (
-                        <div className="h-full w-1/3 animate-pulse rounded-full bg-amber-400/70" />
-                      ) : (
-                        <div className="h-full w-0 rounded-full bg-amber-500" />
-                      )}
-                    </div>
-                  </div>
-                </div>
-              ) : null}
-
-              {error ? (
-                <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                  {error}
-                </div>
-              ) : null}
-            </div>
-
-            <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur">
-              <div className="flex items-center justify-between gap-3">
-                <div>
-                  <h3 className="text-base font-semibold text-slate-900">
-                    Compression level
+                <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                  <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                    Selected files
                   </h3>
-                  <p className="mt-1 text-sm text-slate-600">
-                    Pick the balance you want between file size and visual
-                    fidelity.
-                  </p>
-                </div>
-                <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
-                  {preset.badge}
-                </span>
-              </div>
-
-              <div className="mt-4 grid gap-3 md:grid-cols-3">
-                {Object.values(PRESETS).map((item) => {
-                  const active = item.id === selectedPreset;
-
-                  return (
-                    <button
-                      key={item.id}
-                      type="button"
-                      onClick={() => setSelectedPreset(item.id)}
-                      className={[
-                        "rounded-2xl border p-4 text-left transition",
-                        active
-                          ? "border-amber-300 bg-amber-50 shadow-sm"
-                          : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50",
-                      ].join(" ")}
-                    >
-                      <div className="flex items-center justify-between gap-2">
-                        <span className="text-sm font-semibold text-slate-900">
-                          {item.label}
-                        </span>
-                        <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500">
-                          {item.badge}
-                        </span>
-                      </div>
-                      <p className="mt-2 text-xs leading-5 text-slate-600">
-                        {item.description}
-                      </p>
-                    </button>
-                  );
-                })}
-              </div>
-            </div>
-
-            {fileCount ? (
-              <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur">
-                <h3 className="text-base font-semibold text-slate-900">
-                  Selected files
-                </h3>
-                <div className="mt-4 space-y-3">
-                  {entries.map((entry) => (
-                    <div
-                      key={`${entry.file.name}-${entry.file.lastModified}`}
-                      className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3"
-                    >
-                      <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
-                        <div>
-                          <p className="text-sm font-semibold text-slate-900">
-                            {entry.file.name}
-                          </p>
-                          <p className="mt-1 text-sm text-slate-600">
-                            {formatBytes(entry.originalBytes)}
-                            {entry.pages
-                              ? ` | ${entry.pages} pages`
-                              : " | page count loading"}
-                          </p>
+                  <div className="mt-4 space-y-3">
+                    {entries.map((entry) => (
+                      <div
+                        key={`${entry.file.name}-${entry.file.lastModified}`}
+                        className="rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-700/50 dark:bg-slate-800/30"
+                      >
+                        <div className="flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
+                          <div>
+                            <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                              {entry.file.name}
+                            </p>
+                            <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                              {formatBytes(entry.originalBytes)}
+                              {entry.pages
+                                ? ` | ${entry.pages} pages`
+                                : " | page count loading"}
+                            </p>
+                          </div>
+                          <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-500 dark:bg-slate-800/50 dark:text-slate-400">
+                            Ready
+                          </span>
                         </div>
-                        <span className="rounded-full bg-white px-3 py-1 text-xs font-semibold text-slate-500">
-                          Ready
-                        </span>
                       </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ) : null}
-
-            <div className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-lg">
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                <div>
-                  <h3 className="text-base font-semibold">Ready to compress</h3>
-                  <p className="mt-1 text-sm text-slate-300">
-                    Compress a single file or many files, then download the
-                    result in one step.
-                  </p>
-                </div>
-                <button
-                  type="button"
-                  onClick={runCompression}
-                  disabled={!entries.length || isInspecting || isProcessing}
-                  className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60"
-                >
-                  {isProcessing
-                    ? "Compressing..."
-                    : hasBatch
-                      ? "Compress PDFs to ZIP"
-                      : "Compress PDF"}
-                </button>
-              </div>
-
-              {resultNote ? (
-                <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-200">
-                  {resultNote}
+                    ))}
+                  </div>
                 </div>
               ) : null}
-            </div>
-          </div>
 
-          <aside className="space-y-6">
-            <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur">
-              <h3 className="text-base font-semibold text-slate-900">
-                Output summary
-              </h3>
-              <div className="mt-4 space-y-4">
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">Original size</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {summaryOriginal ? formatBytes(summaryOriginal) : "-"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">
-                    Compressed size
-                  </span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {summaryCompressed ? formatBytes(summaryCompressed) : "-"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">Savings</span>
-                  <span className="text-sm font-semibold text-emerald-700">
-                    {summaryCompressed ? formatPercent(savings) : "-"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">Files</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {fileCount || "-"}
-                  </span>
-                </div>
-              </div>
-
-              {downloadUrl ? (
-                <div className="mt-5 space-y-3">
-                  <a
-                    href={downloadUrl}
-                    download={downloadName}
-                    className="flex w-full items-center justify-center rounded-full bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600"
+              <div className="rounded-3xl border border-slate-200 dark:border-slate-700 bg-slate-950 p-5 text-white shadow-lg dark:bg-slate-900">
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                  <div>
+                    <h3 className="text-base font-semibold">
+                      Ready to compress
+                    </h3>
+                    <p className="mt-1 text-sm text-slate-300">
+                      Compress a single file or many files, then download the
+                      result in one step.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={runCompression}
+                    disabled={!entries.length || isInspecting || isProcessing}
+                    className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-amber-400 dark:text-slate-950 dark:hover:bg-amber-300"
                   >
-                    {downloadLabel}
-                  </a>
-                  <p className="text-xs leading-5 text-slate-500">
-                    The file is saved locally in your browser. Refreshing the
-                    page will clear this link.
-                  </p>
+                    {isProcessing
+                      ? "Compressing..."
+                      : hasBatch
+                        ? "Compress PDFs to ZIP"
+                        : "Compress PDF"}
+                  </button>
                 </div>
-              ) : null}
+
+                {resultNote ? (
+                  <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-200">
+                    {resultNote}
+                  </div>
+                ) : null}
+              </div>
             </div>
 
-            {results.length ? (
-              <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm">
-                <h3 className="text-base font-semibold text-slate-900">
-                  Compressed files
+            <aside className="space-y-6">
+              <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                  Output summary
                 </h3>
-                <div className="mt-4 space-y-3">
-                  {results.map((item) => (
-                    <div
-                      key={`${item.name}-${item.outputName}`}
-                      className="rounded-2xl border border-slate-200 bg-white px-4 py-3"
-                    >
-                      <p className="text-sm font-semibold text-slate-900">
-                        {item.name}
-                      </p>
-                      <p className="mt-1 text-xs leading-5 text-slate-600">
-                        {formatBytes(item.originalBytes)} {" -> "}{" "}
-                        {formatBytes(item.compressedBytes)}
-                        {item.pages ? ` | ${item.pages} pages` : ""}
-                      </p>
-                    </div>
-                  ))}
+                <div className="mt-4 space-y-4">
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Original size
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {summaryOriginal ? formatBytes(summaryOriginal) : "-"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Compressed size
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {summaryCompressed ? formatBytes(summaryCompressed) : "-"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Savings
+                    </span>
+                    <span className="text-sm font-semibold text-emerald-700 dark:text-emerald-400">
+                      {summaryCompressed ? formatPercent(savings) : "-"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Files
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {fileCount || "-"}
+                    </span>
+                  </div>
                 </div>
+
+                {downloadUrl ? (
+                  <div className="mt-5 space-y-3">
+                    <a
+                      href={downloadUrl}
+                      download={downloadName}
+                      className="flex w-full items-center justify-center rounded-full bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600 dark:bg-amber-500 dark:hover:bg-amber-600"
+                    >
+                      {downloadLabel}
+                    </a>
+                    <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                      The file is saved locally in your browser. Refreshing the
+                      page will clear this link.
+                    </p>
+                  </div>
+                ) : null}
               </div>
-            ) : null}
-          </aside>
-        </div>
+
+              {results.length ? (
+                <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm dark:border-slate-700/50 dark:from-slate-800/50 dark:to-slate-800/30">
+                  <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                    Compressed files
+                  </h3>
+                  <div className="mt-4 space-y-3">
+                    {results.map((item) => (
+                      <div
+                        key={`${item.name}-${item.outputName}`}
+                        className="rounded-2xl border border-slate-200 bg-white px-4 py-3 dark:border-slate-700/50 dark:bg-slate-800/30"
+                      >
+                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          {item.name}
+                        </p>
+                        <p className="mt-1 text-xs leading-5 text-slate-600 dark:text-slate-400">
+                          {formatBytes(item.originalBytes)} {" -> "}{" "}
+                          {formatBytes(item.compressedBytes)}
+                          {item.pages ? ` | ${item.pages} pages` : ""}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ) : null}
+            </aside>
+          </div>
         </div>
       </section>
     </ToolPageShell>

@@ -45,13 +45,13 @@ const ParentTools = () => {
   };
 
   return (
-    <div className="bg-white py-26 px-2" id="tools">
+    <div className="bg-white dark:bg-gray-950 py-26 px-2 text-gray-900 dark:text-white transition-colors duration-300" id="tools">
       <div className="w-11/12 mx-auto">
         <div className="mb-16 text-center lg:text-left">
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Powerful simple tools
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
             Everything you need to stay productive, all in one place.
           </p>
         </div>
@@ -80,7 +80,7 @@ const ParentTools = () => {
               placeholder="Search tools by name or description..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-brandColor focus:border-brandColor sm:text-sm"
+              className="block w-full pl-10 pr-3 py-2 border border-gray-300 dark:border-gray-800 rounded-lg leading-5 bg-white dark:bg-gray-900 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-450 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-brandColor focus:border-brandColor sm:text-sm"
             />
             {searchTerm && (
               <button
@@ -113,15 +113,15 @@ const ParentTools = () => {
                 className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 border cursor-pointer ${
                   selectedCategory === category
                     ? "bg-brandColor text-white border-brandColor"
-                    : "bg-gray-100 text-gray-700 hover:bg-gray-200 border-gray-300"
+                    : "bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-300 dark:border-gray-800"
                 }`}
               >
                 {category === "all" ? "All Tools" : category}
                 <span
                   className={`ml-2 text-xs ${
                     selectedCategory === category
-                      ? "text-blue-200"
-                      : "text-gray-500"
+                      ? "text-blue-200 dark:text-blue-300"
+                      : "text-gray-500 dark:text-gray-400"
                   }`}
                 >
                   ({getCategoryCount(category)})
@@ -131,7 +131,7 @@ const ParentTools = () => {
           </div>
 
           {/* Results Count */}
-          <div className="text-sm text-gray-500">
+          <div className="text-sm text-gray-500 dark:text-gray-400">
             Showing {filteredTools.length} of {toolsData.length} tools
             {(searchTerm || selectedCategory !== "all") && (
               <button
@@ -139,7 +139,7 @@ const ParentTools = () => {
                   setSearchTerm("");
                   setSelectedCategory("all");
                 }}
-                className="ml-3 text-blue-600 hover:text-blue-800 underline"
+                className="ml-3 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline"
               >
                 Clear filters
               </button>
@@ -169,10 +169,10 @@ const ParentTools = () => {
                 d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
               />
             </svg>
-            <h3 className="mt-2 text-sm font-medium text-gray-900">
+            <h3 className="mt-2 text-sm font-medium text-gray-900 dark:text-white">
               No tools found
             </h3>
-            <p className="mt-1 text-sm text-gray-500">
+            <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
               Try adjusting your search or filter criteria.
             </p>
           </div>

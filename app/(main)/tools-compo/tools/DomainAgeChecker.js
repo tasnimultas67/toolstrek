@@ -103,14 +103,14 @@ export default function DomainAgeChecker() {
   };
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
+    <ToolPageShell widthClassName="max-w-7xl px-1 pt-20 pb-10">
       <div>
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-400 dark:to-indigo-400 bg-clip-text text-transparent">
             Domain Age Checker
           </h1>
-          <p className="text-gray-600 mt-2">
+          <p className="text-gray-600 dark:text-gray-400 mt-2">
             Get detailed information about any domain name
           </p>
         </div>
@@ -120,8 +120,8 @@ export default function DomainAgeChecker() {
           {/* Left Column - Input Options */}
           <div className="space-y-6">
             {/* Search Card */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 px-6 py-4">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 overflow-hidden">
+              <div className="bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700 px-6 py-4">
                 <h2 className="text-xl font-semibold text-white flex items-center gap-2">
                   <svg
                     className="w-5 h-5"
@@ -142,7 +142,7 @@ export default function DomainAgeChecker() {
               <div className="p-6">
                 <form onSubmit={handleSubmit} className="space-y-4">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Domain Name
                     </label>
                     <input
@@ -150,16 +150,16 @@ export default function DomainAgeChecker() {
                       value={domain}
                       onChange={(e) => setDomain(e.target.value)}
                       placeholder="example.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition outline-none text-lg"
+                      className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition outline-none text-lg bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500"
                       disabled={loading}
                     />
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       Enter domain without http:// or www
                     </p>
                   </div>
 
                   {error && (
-                    <div className="bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg flex items-start gap-2">
+                    <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 text-red-700 dark:text-red-400 px-4 py-3 rounded-lg flex items-start gap-2">
                       <svg
                         className="w-5 h-5 flex-shrink-0 mt-0.5"
                         fill="none"
@@ -180,7 +180,7 @@ export default function DomainAgeChecker() {
                   <button
                     type="submit"
                     disabled={loading}
-                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-700 hover:to-indigo-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                    className="w-full bg-gradient-to-r from-blue-600 to-indigo-600 dark:from-blue-700 dark:to-indigo-700 text-white font-semibold py-3 px-4 rounded-lg hover:from-blue-700 hover:to-indigo-700 dark:hover:from-blue-600 dark:hover:to-indigo-600 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                   >
                     {loading ? (
                       <>
@@ -230,11 +230,11 @@ export default function DomainAgeChecker() {
             </div>
 
             {/* Information Card */}
-            <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-              <div className="bg-gray-50 px-6 py-4 border-b border-gray-100">
-                <h3 className="font-semibold text-gray-800 flex items-center gap-2">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 overflow-hidden">
+              <div className="bg-gray-50 dark:bg-gray-700/50 px-6 py-4 border-b border-gray-100 dark:border-gray-700">
+                <h3 className="font-semibold text-gray-800 dark:text-gray-200 flex items-center gap-2">
                   <svg
-                    className="w-5 h-5 text-blue-600"
+                    className="w-5 h-5 text-blue-600 dark:text-blue-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -250,7 +250,7 @@ export default function DomainAgeChecker() {
                 </h3>
               </div>
               <div className="p-6">
-                <div className="space-y-3 text-sm text-gray-600">
+                <div className="space-y-3 text-sm text-gray-600 dark:text-gray-400">
                   <p>Domain age is an important factor that indicates:</p>
                   <ul className="list-disc list-inside space-y-1 ml-2">
                     <li>Domain trustworthiness and credibility</li>
@@ -258,8 +258,8 @@ export default function DomainAgeChecker() {
                     <li>SEO ranking potential</li>
                     <li>Business legitimacy indicator</li>
                   </ul>
-                  <div className="bg-blue-50 rounded-lg p-3 mt-4">
-                    <p className="text-xs text-blue-800">
+                  <div className="bg-blue-50 dark:bg-blue-900/20 rounded-lg p-3 mt-4">
+                    <p className="text-xs text-blue-800 dark:text-blue-300">
                       <span className="font-semibold">💡 Tip:</span> Older
                       domains often have better SEO authority and trust signals.
                     </p>
@@ -270,8 +270,8 @@ export default function DomainAgeChecker() {
           </div>
 
           {/* Right Column - Results */}
-          <div className="bg-white rounded-2xl shadow-lg border border-gray-100 overflow-hidden">
-            <div className="bg-gradient-to-r from-green-600 to-teal-600 px-6 py-4">
+          <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg dark:shadow-gray-900/50 border border-gray-100 dark:border-gray-700 overflow-hidden">
+            <div className="bg-gradient-to-r from-green-600 to-teal-600 dark:from-green-700 dark:to-teal-700 px-6 py-4">
               <h2 className="text-xl font-semibold text-white flex items-center gap-2">
                 <svg
                   className="w-5 h-5"
@@ -293,7 +293,7 @@ export default function DomainAgeChecker() {
               {!result && !loading && (
                 <div className="text-center py-12">
                   <svg
-                    className="w-20 h-20 mx-auto text-gray-300 mb-4"
+                    className="w-20 h-20 mx-auto text-gray-300 dark:text-gray-600 mb-4"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -305,7 +305,7 @@ export default function DomainAgeChecker() {
                       d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
-                  <p className="text-gray-500">
+                  <p className="text-gray-500 dark:text-gray-400">
                     Enter a domain name to see detailed information
                   </p>
                 </div>
@@ -313,8 +313,8 @@ export default function DomainAgeChecker() {
 
               {loading && (
                 <div className="text-center py-12">
-                  <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent"></div>
-                  <p className="text-gray-600 mt-4">
+                  <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 dark:border-blue-400 border-t-transparent"></div>
+                  <p className="text-gray-600 dark:text-gray-400 mt-4">
                     Fetching domain information...
                   </p>
                 </div>
@@ -323,16 +323,18 @@ export default function DomainAgeChecker() {
               {result && (
                 <div className="space-y-4">
                   {/* Domain Name Header */}
-                  <div className="bg-gray-50 rounded-lg p-4 text-center border border-gray-200">
-                    <p className="text-sm text-gray-600">Domain Name</p>
-                    <p className="text-2xl font-bold text-gray-900 break-all">
+                  <div className="bg-gray-50 dark:bg-gray-700/50 rounded-lg p-4 text-center border border-gray-200 dark:border-gray-700">
+                    <p className="text-sm text-gray-600 dark:text-gray-400">
+                      Domain Name
+                    </p>
+                    <p className="text-2xl font-bold text-gray-900 dark:text-gray-100 break-all">
                       {result.domain}
                     </p>
                   </div>
 
                   {/* Age Section */}
-                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-100">
-                    <p className="text-sm text-gray-600 mb-2 flex items-center gap-1">
+                  <div className="bg-gradient-to-r from-blue-50 to-indigo-50 dark:from-blue-900/20 dark:to-indigo-900/20 rounded-lg p-4 border border-blue-100 dark:border-blue-800/50">
+                    <p className="text-sm text-gray-600 dark:text-gray-400 mb-2 flex items-center gap-1">
                       <svg
                         className="w-4 h-4"
                         fill="none"
@@ -350,7 +352,7 @@ export default function DomainAgeChecker() {
                     </p>
                     <div className="grid grid-cols-2 gap-3">
                       <div>
-                        <p className="text-3xl font-bold text-blue-600">
+                        <p className="text-3xl font-bold text-blue-600 dark:text-blue-400">
                           {result.years > 0 && `${result.years}y `}
                           {result.months > 0 && `${result.months}m `}
                           {result.days > 0 && `${result.days}d`}
@@ -359,13 +361,15 @@ export default function DomainAgeChecker() {
                             result.days === 0 &&
                             "<1d"}
                         </p>
-                        <p className="text-xs text-gray-500">Formatted Age</p>
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
+                          Formatted Age
+                        </p>
                       </div>
                       <div>
-                        <p className="text-2xl font-bold text-indigo-600">
+                        <p className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
                           {result.ageInDays.toLocaleString()} days
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-500 dark:text-gray-400">
                           Total Age in Days
                         </p>
                       </div>
@@ -374,75 +378,83 @@ export default function DomainAgeChecker() {
 
                   {/* Registration Details */}
                   <div className="space-y-3">
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
                         Registered On:
                       </span>
-                      <span className="text-sm font-semibold text-gray-900">
+                      <span className="text-sm font-semibold text-gray-900 dark:text-gray-100">
                         {result.creationDate}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
                         Full Date & Time:
                       </span>
-                      <span className="text-sm text-gray-700">
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
                         {result.fullCreationDate}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">Registrar:</span>
-                      <span className="text-sm text-gray-700 break-all text-right max-w-[60%]">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                        Registrar:
+                      </span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300 break-all text-right max-w-[60%]">
                         {result.registrar}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">Status:</span>
-                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                        Status:
+                      </span>
+                      <span className="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 dark:bg-green-900/30 text-green-800 dark:text-green-300">
                         {result.status}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
                         Organization:
                       </span>
-                      <span className="text-sm text-gray-700 break-all text-right max-w-[60%]">
+                      <span className="text-sm text-gray-700 dark:text-gray-300 break-all text-right max-w-[60%]">
                         {result.organization}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">Country:</span>
-                      <span className="text-sm text-gray-700">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
+                        Country:
+                      </span>
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
                         {result.country}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
                         Last Updated:
                       </span>
-                      <span className="text-sm text-gray-700">
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
                         {result.updatedDate}
                       </span>
                     </div>
-                    <div className="flex justify-between items-center py-2 border-b border-gray-100">
-                      <span className="text-sm text-gray-600">
+                    <div className="flex justify-between items-center py-2 border-b border-gray-100 dark:border-gray-700">
+                      <span className="text-sm text-gray-600 dark:text-gray-400">
                         Expiry Date:
                       </span>
-                      <span className="text-sm text-gray-700">
+                      <span className="text-sm text-gray-700 dark:text-gray-300">
                         {result.expiryDate}
                       </span>
                     </div>
                     <div className="py-2">
-                      <p className="text-sm text-gray-600 mb-1">Nameservers:</p>
-                      <p className="text-sm text-gray-700 break-all">
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mb-1">
+                        Nameservers:
+                      </p>
+                      <p className="text-sm text-gray-700 dark:text-gray-300 break-all">
                         {result.nameservers}
                       </p>
                     </div>
                   </div>
 
                   {/* SEO Note */}
-                  <div className="bg-yellow-50 rounded-lg p-3 border border-yellow-100 mt-4">
-                    <p className="text-xs text-yellow-800 flex items-start gap-2">
+                  <div className="bg-yellow-50 dark:bg-yellow-900/20 rounded-lg p-3 border border-yellow-100 dark:border-yellow-800/50 mt-4">
+                    <p className="text-xs text-yellow-800 dark:text-yellow-300 flex items-start gap-2">
                       <span className="font-bold">ℹ️</span>
                       Domain age is one of many factors that search engines
                       consider for ranking. Older domains may have an advantage,

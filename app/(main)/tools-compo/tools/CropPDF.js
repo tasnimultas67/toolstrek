@@ -816,588 +816,597 @@ const CropPDF = () => {
       : null;
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
-      <div>
-      {toast.show && (
-        <div className="fixed bottom-4 right-4 z-50 animate-slide-in">
-          <div
-            className={`min-w-[280px] max-w-md rounded-lg px-4 py-3 text-white shadow-lg ${
-              toast.type === "success"
-                ? "bg-emerald-600"
-                : toast.type === "error"
-                  ? "bg-red-600"
-                  : toast.type === "warning"
-                    ? "bg-amber-500"
-                    : "bg-blue-600"
-            }`}
-          >
-            {toast.message}
+    <ToolPageShell widthClassName="max-w-7xl px-1 pt-20 pb-10">
+      <div className="dark:text-slate-100">
+        {toast.show && (
+          <div className="fixed bottom-4 right-4 z-50 animate-slide-in">
+            <div
+              className={`min-w-[280px] max-w-md rounded-lg px-4 py-3 text-white shadow-lg ${
+                toast.type === "success"
+                  ? "bg-emerald-600 dark:bg-emerald-500"
+                  : toast.type === "error"
+                    ? "bg-red-600 dark:bg-red-500"
+                    : toast.type === "warning"
+                      ? "bg-amber-500 dark:bg-amber-400"
+                      : "bg-blue-600 dark:bg-blue-500"
+              }`}
+            >
+              {toast.message}
+            </div>
           </div>
-        </div>
-      )}
+        )}
 
-      <div className="mx-auto w-full md:w-11/12">
-        <div className="mb-8 text-center">
-          <h1 className="mb-2 text-4xl font-bold tracking-tight text-slate-900">
-            Crop PDF Tool
-          </h1>
-          <p className="text-lg text-slate-600">
-            Upload a PDF, choose a crop area, and export the trimmed result.
-          </p>
-        </div>
+        <div className="mx-auto w-full md:w-11/12">
+          <div className="mb-8 text-center">
+            <h1 className="mb-2 text-4xl font-bold tracking-tight text-slate-900 dark:text-slate-100">
+              Crop PDF Tool
+            </h1>
+            <p className="text-lg text-slate-600 dark:text-slate-400">
+              Upload a PDF, choose a crop area, and export the trimmed result.
+            </p>
+          </div>
 
-        <div className="overflow-hidden rounded-2xl bg-white shadow-xl">
-          <div className="p-6 md:p-8">
-            {!pdfDocument ? (
-              <div
-                onDragOver={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                }}
-                onDrop={handleDrop}
-                onClick={() => fileInputRef.current?.click()}
-                className="cursor-pointer rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-12 text-center transition hover:border-blue-500 hover:bg-slate-100"
-              >
-                <input
-                  ref={fileInputRef}
-                  type="file"
-                  accept="application/pdf,.pdf"
-                  className="hidden"
-                  onChange={async (e) => {
-                    const file = e.target.files?.[0];
-                    if (file) await handleFileUpload(file);
-                    e.target.value = "";
+          <div className="overflow-hidden rounded-2xl bg-white shadow-xl dark:bg-slate-800">
+            <div className="p-6 md:p-8">
+              {!pdfDocument ? (
+                <div
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
                   }}
-                />
-                <div className="mx-auto flex max-w-sm flex-col items-center">
-                  <div className="mb-4 rounded-full bg-blue-100 p-4 text-blue-600">
-                    <svg
-                      className="h-10 w-10"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
-                      />
-                    </svg>
-                  </div>
-                  <div className="text-lg font-semibold text-slate-800">
-                    Upload PDF File
-                  </div>
-                  <div className="mt-1 text-sm text-slate-500">
-                    Drag and drop a PDF here, or click to browse
+                  onDrop={handleDrop}
+                  onClick={() => fileInputRef.current?.click()}
+                  className="cursor-pointer rounded-xl border-2 border-dashed border-slate-300 bg-slate-50 p-12 text-center transition hover:border-blue-500 hover:bg-slate-100 dark:border-slate-600 dark:bg-slate-700/50 dark:hover:border-blue-400 dark:hover:bg-slate-700"
+                >
+                  <input
+                    ref={fileInputRef}
+                    type="file"
+                    accept="application/pdf,.pdf"
+                    className="hidden"
+                    onChange={async (e) => {
+                      const file = e.target.files?.[0];
+                      if (file) await handleFileUpload(file);
+                      e.target.value = "";
+                    }}
+                  />
+                  <div className="mx-auto flex max-w-sm flex-col items-center">
+                    <div className="mb-4 rounded-full bg-blue-100 p-4 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                      <svg
+                        className="h-10 w-10"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
+                        />
+                      </svg>
+                    </div>
+                    <div className="text-lg font-semibold text-slate-800 dark:text-slate-200">
+                      Upload PDF File
+                    </div>
+                    <div className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                      Drag and drop a PDF here, or click to browse
+                    </div>
                   </div>
                 </div>
-              </div>
-            ) : (
-              <>
-                <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b pb-4">
-                  <div className="flex items-center gap-3">
-                    <span className="text-sm font-medium text-slate-700">
-                      File:
-                    </span>
-                    <span className="max-w-xs truncate text-sm text-slate-600">
-                      {fileName}
-                    </span>
-                  </div>
-
-                  <div className="flex flex-wrap items-center gap-3">
-                    <div className="flex items-center gap-2 rounded-lg bg-slate-100 p-1">
-                      <button
-                        onClick={() => handleZoomChange(zoom - ZOOM_STEP)}
-                        disabled={zoom <= MIN_ZOOM || isLoading}
-                        className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50"
-                      >
-                        -
-                      </button>
-                      <span className="min-w-[64px] text-center text-sm font-medium text-slate-700">
-                        {Math.round(zoom * 100)}%
+              ) : (
+                <>
+                  <div className="mb-6 flex flex-wrap items-center justify-between gap-4 border-b pb-4 dark:border-slate-700">
+                    <div className="flex items-center gap-3">
+                      <span className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                        File:
                       </span>
-                      <button
-                        onClick={() => handleZoomChange(zoom + ZOOM_STEP)}
-                        disabled={zoom >= MAX_ZOOM || isLoading}
-                        className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50"
-                      >
-                        +
-                      </button>
-                      <button
-                        onClick={() => handleZoomChange(1)}
-                        disabled={zoom === 1 || isLoading}
-                        className="rounded-md bg-white px-3 py-2 text-xs shadow-sm transition hover:bg-slate-50 disabled:opacity-50"
-                      >
-                        Reset
-                      </button>
+                      <span className="max-w-xs truncate text-sm text-slate-600 dark:text-slate-400">
+                        {fileName}
+                      </span>
                     </div>
 
-                    {numPages > 0 && (
-                      <div className="flex items-center gap-2 rounded-lg bg-slate-100 p-1">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <div className="flex items-center gap-2 rounded-lg bg-slate-100 p-1 dark:bg-slate-700">
                         <button
-                          onClick={() => handlePageChange("prev")}
-                          disabled={currentPage === 1 || isLoading}
-                          className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50"
+                          onClick={() => handleZoomChange(zoom - ZOOM_STEP)}
+                          disabled={zoom <= MIN_ZOOM || isLoading}
+                          className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                         >
-                          Prev
+                          -
                         </button>
-                        <span className="min-w-[90px] text-center text-sm font-medium text-slate-700">
-                          Page {currentPage} / {numPages}
+                        <span className="min-w-[64px] text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+                          {Math.round(zoom * 100)}%
                         </span>
                         <button
-                          onClick={() => handlePageChange("next")}
-                          disabled={currentPage === numPages || isLoading}
-                          className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50"
+                          onClick={() => handleZoomChange(zoom + ZOOM_STEP)}
+                          disabled={zoom >= MAX_ZOOM || isLoading}
+                          className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
                         >
-                          Next
+                          +
                         </button>
+                        <button
+                          onClick={() => handleZoomChange(1)}
+                          disabled={zoom === 1 || isLoading}
+                          className="rounded-md bg-white px-3 py-2 text-xs shadow-sm transition hover:bg-slate-50 disabled:opacity-50 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+                        >
+                          Reset
+                        </button>
+                      </div>
+
+                      {numPages > 0 && (
+                        <div className="flex items-center gap-2 rounded-lg bg-slate-100 p-1 dark:bg-slate-700">
+                          <button
+                            onClick={() => handlePageChange("prev")}
+                            disabled={currentPage === 1 || isLoading}
+                            className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+                          >
+                            Prev
+                          </button>
+                          <span className="min-w-[90px] text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+                            Page {currentPage} / {numPages}
+                          </span>
+                          <button
+                            onClick={() => handlePageChange("next")}
+                            disabled={currentPage === numPages || isLoading}
+                            className="rounded-md bg-white px-3 py-2 text-sm shadow-sm transition hover:bg-slate-50 disabled:opacity-50 dark:bg-slate-800 dark:text-slate-200 dark:hover:bg-slate-700"
+                          >
+                            Next
+                          </button>
+                        </div>
+                      )}
+
+                      {numPages > 1 && (
+                        <label className="flex items-center gap-2 text-sm text-slate-700 dark:text-slate-300">
+                          <input
+                            type="checkbox"
+                            checked={applyToAll}
+                            onChange={(e) => setApplyToAll(e.target.checked)}
+                            className="dark:bg-slate-700"
+                          />
+                          Apply to all pages
+                        </label>
+                      )}
+
+                      <button
+                        onClick={resetCrop}
+                        disabled={isLoading}
+                        className="rounded-md bg-slate-500 px-4 py-2 text-sm text-white shadow-sm transition hover:bg-slate-600 disabled:opacity-50 dark:bg-slate-600 dark:hover:bg-slate-500"
+                      >
+                        Reset Crop
+                      </button>
+
+                      <button
+                        onClick={() => {
+                          clearDocumentState();
+                        }}
+                        className="rounded-md bg-red-500 px-4 py-2 text-sm text-white shadow-sm transition hover:bg-red-600 dark:bg-red-600 dark:hover:bg-red-700"
+                      >
+                        Remove PDF
+                      </button>
+                    </div>
+                  </div>
+
+                  <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-3 dark:border-blue-800/40 dark:bg-blue-950/30">
+                    <p className="text-sm text-blue-800 dark:text-blue-300">
+                      Drag the crop box or its handles to choose what to keep.
+                      Then click Apply Crop.
+                    </p>
+                  </div>
+
+                  <div className="relative flex min-h-[500px] justify-center overflow-auto rounded-lg bg-slate-100 p-4 dark:bg-slate-700/50">
+                    {isLoading && (
+                      <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/75 dark:bg-slate-800/75">
+                        <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600 dark:border-blue-400" />
                       </div>
                     )}
 
-                    {numPages > 1 && (
-                      <label className="flex items-center gap-2 text-sm text-slate-700">
-                        <input
-                          type="checkbox"
-                          checked={applyToAll}
-                          onChange={(e) => setApplyToAll(e.target.checked)}
-                        />
-                        Apply to all pages
-                      </label>
-                    )}
-
-                    <button
-                      onClick={resetCrop}
-                      disabled={isLoading}
-                      className="rounded-md bg-slate-500 px-4 py-2 text-sm text-white shadow-sm transition hover:bg-slate-600 disabled:opacity-50"
+                    <div
+                      className="relative inline-block"
+                      onMouseMove={handleMouseMove}
+                      onMouseUp={handleMouseUp}
+                      onMouseLeave={handleMouseUp}
                     >
-                      Reset Crop
-                    </button>
+                      <canvas
+                        ref={canvasRef}
+                        className="block max-w-full rounded border border-slate-300 shadow-lg dark:border-slate-600"
+                      />
 
-                    <button
-                      onClick={() => {
-                        clearDocumentState();
-                      }}
-                      className="rounded-md bg-red-500 px-4 py-2 text-sm text-white shadow-sm transition hover:bg-red-600"
-                    >
-                      Remove PDF
-                    </button>
-                  </div>
-                </div>
+                      {cropRect && !isLoading && (
+                        <>
+                          <div className="absolute inset-0 z-10 pointer-events-none">
+                            <div
+                              className="absolute bg-black/50"
+                              style={{
+                                left: 0,
+                                top: 0,
+                                width: "100%",
+                                height: `${cropRect.top}%`,
+                              }}
+                            />
+                            <div
+                              className="absolute bg-black/50"
+                              style={{
+                                left: 0,
+                                top: `${cropRect.top}%`,
+                                width: `${cropRect.left}%`,
+                                height: `${cropRect.height}%`,
+                              }}
+                            />
+                            <div
+                              className="absolute bg-black/50"
+                              style={{
+                                left: `${cropRect.left + cropRect.width}%`,
+                                top: `${cropRect.top}%`,
+                                width: `${Math.max(
+                                  0,
+                                  100 - cropRect.left - cropRect.width,
+                                )}%`,
+                                height: `${cropRect.height}%`,
+                              }}
+                            />
+                            <div
+                              className="absolute bg-black/50"
+                              style={{
+                                left: 0,
+                                top: `${cropRect.top + cropRect.height}%`,
+                                width: "100%",
+                                height: `${Math.max(
+                                  0,
+                                  100 - cropRect.top - cropRect.height,
+                                )}%`,
+                              }}
+                            />
+                          </div>
 
-                <div className="mb-6 rounded-lg border border-blue-200 bg-blue-50 p-3">
-                  <p className="text-sm text-blue-800">
-                    Drag the crop box or its handles to choose what to keep.
-                    Then click Apply Crop.
-                  </p>
-                </div>
-
-                <div className="relative flex min-h-[500px] justify-center overflow-auto rounded-lg bg-slate-100 p-4">
-                  {isLoading && (
-                    <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/75">
-                      <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600" />
-                    </div>
-                  )}
-
-                  <div
-                    className="relative inline-block"
-                    onMouseMove={handleMouseMove}
-                    onMouseUp={handleMouseUp}
-                    onMouseLeave={handleMouseUp}
-                  >
-                    <canvas
-                      ref={canvasRef}
-                      className="block max-w-full rounded border border-slate-300 shadow-lg"
-                    />
-
-                    {cropRect && !isLoading && (
-                      <>
-                        <div className="absolute inset-0 z-10 pointer-events-none">
                           <div
-                            className="absolute bg-black/50"
+                            className="absolute z-20 cursor-move border-2 border-blue-500 dark:border-blue-400"
                             style={{
-                              left: 0,
-                              top: 0,
-                              width: "100%",
-                              height: `${cropRect.top}%`,
-                            }}
-                          />
-                          <div
-                            className="absolute bg-black/50"
-                            style={{
-                              left: 0,
+                              left: `${cropRect.left}%`,
                               top: `${cropRect.top}%`,
-                              width: `${cropRect.left}%`,
+                              width: `${cropRect.width}%`,
                               height: `${cropRect.height}%`,
                             }}
+                            onMouseDown={(e) => handleMouseDown(e, "move")}
                           />
+
+                          {[
+                            ["top-left", "nw-resize", 0, 0],
+                            ["top", "n-resize", 50, 0],
+                            ["top-right", "ne-resize", 100, 0],
+                            ["left", "w-resize", 0, 50],
+                            ["right", "e-resize", 100, 50],
+                            ["bottom-left", "sw-resize", 0, 100],
+                            ["bottom", "s-resize", 50, 100],
+                            ["bottom-right", "se-resize", 100, 100],
+                          ].map(([handle, cursor, x, y]) => (
+                            <div
+                              key={handle}
+                              className="absolute z-30 h-3 w-3 rounded-full border-2 border-blue-500 bg-white dark:border-blue-400 dark:bg-slate-800"
+                              style={{
+                                left: `calc(${cropRect.left + (cropRect.width * x) / 100}% - 6px)`,
+                                top: `calc(${cropRect.top + (cropRect.height * y) / 100}% - 6px)`,
+                                cursor,
+                              }}
+                              onMouseDown={(e) => handleMouseDown(e, handle)}
+                            />
+                          ))}
+
                           <div
-                            className="absolute bg-black/50"
+                            className="absolute z-30 pointer-events-none rounded bg-blue-600 px-2 py-1 text-xs text-white shadow dark:bg-blue-500"
                             style={{
-                              left: `${cropRect.left + cropRect.width}%`,
-                              top: `${cropRect.top}%`,
-                              width: `${Math.max(
-                                0,
-                                100 - cropRect.left - cropRect.width,
-                              )}%`,
-                              height: `${cropRect.height}%`,
+                              left: `calc(${cropRect.left + cropRect.width / 2}% )`,
+                              top: `calc(${cropRect.top}% - 28px)`,
+                              transform: "translateX(-50%)",
                             }}
-                          />
-                          <div
-                            className="absolute bg-black/50"
-                            style={{
-                              left: 0,
-                              top: `${cropRect.top + cropRect.height}%`,
-                              width: "100%",
-                              height: `${Math.max(
-                                0,
-                                100 - cropRect.top - cropRect.height,
-                              )}%`,
-                            }}
-                          />
-                        </div>
-
-                        <div
-                          className="absolute z-20 cursor-move border-2 border-blue-500"
-                          style={{
-                            left: `${cropRect.left}%`,
-                            top: `${cropRect.top}%`,
-                            width: `${cropRect.width}%`,
-                            height: `${cropRect.height}%`,
-                          }}
-                          onMouseDown={(e) => handleMouseDown(e, "move")}
-                        />
-
-                        {[
-                          ["top-left", "nw-resize", 0, 0],
-                          ["top", "n-resize", 50, 0],
-                          ["top-right", "ne-resize", 100, 0],
-                          ["left", "w-resize", 0, 50],
-                          ["right", "e-resize", 100, 50],
-                          ["bottom-left", "sw-resize", 0, 100],
-                          ["bottom", "s-resize", 50, 100],
-                          ["bottom-right", "se-resize", 100, 100],
-                        ].map(([handle, cursor, x, y]) => (
-                          <div
-                            key={handle}
-                            className="absolute z-30 h-3 w-3 rounded-full border-2 border-blue-500 bg-white"
-                            style={{
-                              left: `calc(${cropRect.left + (cropRect.width * x) / 100}% - 6px)`,
-                              top: `calc(${cropRect.top + (cropRect.height * y) / 100}% - 6px)`,
-                              cursor,
-                            }}
-                            onMouseDown={(e) => handleMouseDown(e, handle)}
-                          />
-                        ))}
-
-                        <div
-                          className="absolute z-30 pointer-events-none rounded bg-blue-600 px-2 py-1 text-xs text-white shadow"
-                          style={{
-                            left: `calc(${cropRect.left + cropRect.width / 2}% )`,
-                            top: `calc(${cropRect.top}% - 28px)`,
-                            transform: "translateX(-50%)",
-                          }}
-                        >
-                          {Math.round(cropArea.width)} ×{" "}
-                          {Math.round(cropArea.height)} px
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </div>
-
-                {numPages > 1 && (
-                  <div className="mt-6 overflow-x-auto">
-                    <div className="flex justify-center gap-2 pb-2">
-                      {Array.from({ length: numPages }, (_, i) => i + 1).map(
-                        (pageNum) => {
-                          const preview =
-                            croppedImages[pageNum]?.src ||
-                            pageImages[pageNum]?.src;
-
-                          return (
-                            <button
-                              key={pageNum}
-                              onClick={() => showPage(pageNum)}
-                              className={`relative h-20 w-16 flex-shrink-0 overflow-hidden rounded-lg border-2 transition ${
-                                pageNum === currentPage
-                                  ? "scale-105 border-blue-500 shadow-lg"
-                                  : "border-slate-300 hover:border-slate-400"
-                              }`}
-                            >
-                              {preview ? (
-                                <img
-                                  src={preview}
-                                  alt={`Page ${pageNum}`}
-                                  className="h-full w-full object-cover"
-                                />
-                              ) : (
-                                <div className="flex h-full w-full items-center justify-center bg-slate-100 text-xs text-slate-400">
-                                  {pageNum}
-                                </div>
-                              )}
-
-                              {croppedImages[pageNum] && (
-                                <div className="absolute right-0 top-0 rounded-bl bg-emerald-500 px-1 text-xs text-white">
-                                  ✓
-                                </div>
-                              )}
-                            </button>
-                          );
-                        },
+                          >
+                            {Math.round(cropArea.width)} ×{" "}
+                            {Math.round(cropArea.height)} px
+                          </div>
+                        </>
                       )}
                     </div>
                   </div>
-                )}
 
-                <div className="mt-6 flex justify-center gap-4">
-                  <button
-                    onClick={applyCrop}
-                    disabled={isLoading || !cropArea}
-                    className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-blue-700 disabled:opacity-50"
-                  >
-                    Apply Crop
-                  </button>
+                  {numPages > 1 && (
+                    <div className="mt-6 overflow-x-auto">
+                      <div className="flex justify-center gap-2 pb-2">
+                        {Array.from({ length: numPages }, (_, i) => i + 1).map(
+                          (pageNum) => {
+                            const preview =
+                              croppedImages[pageNum]?.src ||
+                              pageImages[pageNum]?.src;
 
-                  <button
-                    onClick={downloadCroppedPDF}
-                    disabled={
-                      isLoading || Object.keys(croppedImages).length === 0
-                    }
-                    className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-emerald-700 disabled:opacity-50"
+                            return (
+                              <button
+                                key={pageNum}
+                                onClick={() => showPage(pageNum)}
+                                className={`relative h-20 w-16 flex-shrink-0 overflow-hidden rounded-lg border-2 transition ${
+                                  pageNum === currentPage
+                                    ? "scale-105 border-blue-500 shadow-lg dark:border-blue-400"
+                                    : "border-slate-300 hover:border-slate-400 dark:border-slate-600 dark:hover:border-slate-500"
+                                }`}
+                              >
+                                {preview ? (
+                                  <img
+                                    src={preview}
+                                    alt={`Page ${pageNum}`}
+                                    className="h-full w-full object-cover"
+                                  />
+                                ) : (
+                                  <div className="flex h-full w-full items-center justify-center bg-slate-100 text-xs text-slate-400 dark:bg-slate-700 dark:text-slate-500">
+                                    {pageNum}
+                                  </div>
+                                )}
+
+                                {croppedImages[pageNum] && (
+                                  <div className="absolute right-0 top-0 rounded-bl bg-emerald-500 px-1 text-xs text-white dark:bg-emerald-400">
+                                    ✓
+                                  </div>
+                                )}
+                              </button>
+                            );
+                          },
+                        )}
+                      </div>
+                    </div>
+                  )}
+
+                  <div className="mt-6 flex justify-center gap-4">
+                    <button
+                      onClick={applyCrop}
+                      disabled={isLoading || !cropArea}
+                      className="inline-flex items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-blue-700 disabled:opacity-50 dark:bg-blue-500 dark:hover:bg-blue-600"
+                    >
+                      Apply Crop
+                    </button>
+
+                    <button
+                      onClick={downloadCroppedPDF}
+                      disabled={
+                        isLoading || Object.keys(croppedImages).length === 0
+                      }
+                      className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-6 py-3 font-semibold text-white shadow-md transition hover:bg-emerald-700 disabled:opacity-50 dark:bg-emerald-500 dark:hover:bg-emerald-600"
+                    >
+                      Download PDF
+                    </button>
+                  </div>
+                </>
+              )}
+            </div>
+          </div>
+
+          {/* Features Section */}
+          <div className="mt-12">
+            <h2 className="mb-8 text-center text-3xl font-bold text-slate-900 dark:text-slate-100">
+              Why Choose Our Crop PDF Tool?
+            </h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-slate-800 dark:shadow-slate-900/30">
+                <div className="mb-4 inline-flex rounded-lg bg-blue-100 p-3 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
                   >
-                    Download PDF
-                  </button>
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"
+                    />
+                  </svg>
                 </div>
-              </>
-            )}
+                <h3 className="mb-2 text-xl font-semibold text-slate-800 dark:text-slate-200">
+                  Precise Cropping
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  Drag and resize the crop box with 8 handles for pixel-perfect
+                  accuracy.
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-slate-800 dark:shadow-slate-900/30">
+                <div className="mb-4 inline-flex rounded-lg bg-blue-100 p-3 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-slate-800 dark:text-slate-200">
+                  Multi-Page Support
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  Navigate through pages with thumbnails and apply crops to all
+                  pages at once.
+                </p>
+              </div>
+
+              <div className="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg dark:bg-slate-800 dark:shadow-slate-900/30">
+                <div className="mb-4 inline-flex rounded-lg bg-blue-100 p-3 text-blue-600 dark:bg-blue-900/30 dark:text-blue-400">
+                  <svg
+                    className="h-6 w-6"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-2 text-xl font-semibold text-slate-800 dark:text-slate-200">
+                  Privacy First
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  All processing happens locally in your browser. Your files
+                  never leave your device.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* How to Use Guide */}
+          <div className="mt-12 rounded-2xl bg-white p-8 shadow-md dark:bg-slate-800 dark:shadow-slate-900/30">
+            <h2 className="mb-6 text-center text-3xl font-bold text-slate-900 dark:text-slate-100">
+              How to Use
+            </h2>
+            <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
+              <div className="text-center">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white dark:bg-blue-500">
+                  1
+                </div>
+                <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
+                  Upload PDF
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Click or drag & drop your PDF file to get started
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white dark:bg-blue-500">
+                  2
+                </div>
+                <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
+                  Select Area
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Drag the blue box or its corners to choose what to keep
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white dark:bg-blue-500">
+                  3
+                </div>
+                <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
+                  Apply Crop
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Click "Apply Crop" to trim your selected area
+                </p>
+              </div>
+              <div className="text-center">
+                <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white dark:bg-blue-500">
+                  4
+                </div>
+                <h3 className="mb-2 font-semibold text-slate-800 dark:text-slate-200">
+                  Download
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Save your cropped PDF with one click
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Use Cases Section */}
+          <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 p-8 shadow-md dark:from-blue-950/30 dark:to-indigo-950/30">
+            <h2 className="mb-6 text-center text-3xl font-bold text-slate-900 dark:text-slate-100">
+              Common Use Cases
+            </h2>
+            <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+              <div className="rounded-lg bg-white p-5 dark:bg-slate-800">
+                <h3 className="mb-2 font-semibold text-blue-700 dark:text-blue-400">
+                  📄 Remove Margins
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Trim excessive whitespace from scanned documents or PDFs with
+                  large borders
+                </p>
+              </div>
+              <div className="rounded-lg bg-white p-5 dark:bg-slate-800">
+                <h3 className="mb-2 font-semibold text-blue-700 dark:text-blue-400">
+                  🎯 Focus Content
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Highlight specific content areas by removing headers, footers,
+                  or sidebars
+                </p>
+              </div>
+              <div className="rounded-lg bg-white p-5 dark:bg-slate-800">
+                <h3 className="mb-2 font-semibold text-blue-700 dark:text-blue-400">
+                  📐 Standardize Pages
+                </h3>
+                <p className="text-sm text-slate-600 dark:text-slate-400">
+                  Make all pages the same size by cropping to uniform dimensions
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* FAQ Section */}
+          <div className="mt-12 rounded-2xl bg-white p-8 shadow-md dark:bg-slate-800 dark:shadow-slate-900/30">
+            <h2 className="mb-6 text-center text-3xl font-bold text-slate-900 dark:text-slate-100">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-200">
+                  Does cropping permanently remove content?
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  Yes, cropping removes content outside the selected area. Keep
+                  a backup of your original file if needed.
+                </p>
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-200">
+                  Can I crop different pages differently?
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  Yes! You can crop each page individually. Simply navigate to
+                  each page and apply different crop settings.
+                </p>
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-200">
+                  Will cropping affect text/image quality?
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  No, cropping only removes areas outside the crop boundary. The
+                  remaining content maintains its original quality.
+                </p>
+              </div>
+              <div>
+                <h3 className="mb-2 text-lg font-semibold text-slate-800 dark:text-slate-200">
+                  Is my data secure?
+                </h3>
+                <p className="text-slate-600 dark:text-slate-400">
+                  Absolutely! All processing happens locally in your browser.
+                  Your PDF files never leave your computer.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Features Section */}
-        <div className="mt-12">
-          <h2 className="mb-8 text-center text-3xl font-bold text-slate-900">
-            Why Choose Our Crop PDF Tool?
-          </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg">
-              <div className="mb-4 inline-flex rounded-lg bg-blue-100 p-3 text-blue-600">
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 5v2m0 4v2m0 4v2M5 5h14a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V7a2 2 0 012-2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-slate-800">
-                Precise Cropping
-              </h3>
-              <p className="text-slate-600">
-                Drag and resize the crop box with 8 handles for pixel-perfect
-                accuracy.
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg">
-              <div className="mb-4 inline-flex rounded-lg bg-blue-100 p-3 text-blue-600">
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-slate-800">
-                Multi-Page Support
-              </h3>
-              <p className="text-slate-600">
-                Navigate through pages with thumbnails and apply crops to all
-                pages at once.
-              </p>
-            </div>
-
-            <div className="rounded-xl bg-white p-6 shadow-md transition hover:shadow-lg">
-              <div className="mb-4 inline-flex rounded-lg bg-blue-100 p-3 text-blue-600">
-                <svg
-                  className="h-6 w-6"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-slate-800">
-                Privacy First
-              </h3>
-              <p className="text-slate-600">
-                All processing happens locally in your browser. Your files never
-                leave your device.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* How to Use Guide */}
-        <div className="mt-12 rounded-2xl bg-white p-8 shadow-md">
-          <h2 className="mb-6 text-center text-3xl font-bold text-slate-900">
-            How to Use
-          </h2>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
-                1
-              </div>
-              <h3 className="mb-2 font-semibold text-slate-800">Upload PDF</h3>
-              <p className="text-sm text-slate-600">
-                Click or drag & drop your PDF file to get started
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
-                2
-              </div>
-              <h3 className="mb-2 font-semibold text-slate-800">Select Area</h3>
-              <p className="text-sm text-slate-600">
-                Drag the blue box or its corners to choose what to keep
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
-                3
-              </div>
-              <h3 className="mb-2 font-semibold text-slate-800">Apply Crop</h3>
-              <p className="text-sm text-slate-600">
-                Click "Apply Crop" to trim your selected area
-              </p>
-            </div>
-            <div className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-xl font-bold text-white">
-                4
-              </div>
-              <h3 className="mb-2 font-semibold text-slate-800">Download</h3>
-              <p className="text-sm text-slate-600">
-                Save your cropped PDF with one click
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Use Cases Section */}
-        <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 p-8 shadow-md">
-          <h2 className="mb-6 text-center text-3xl font-bold text-slate-900">
-            Common Use Cases
-          </h2>
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
-            <div className="rounded-lg bg-white p-5">
-              <h3 className="mb-2 font-semibold text-blue-700">
-                📄 Remove Margins
-              </h3>
-              <p className="text-sm text-slate-600">
-                Trim excessive whitespace from scanned documents or PDFs with
-                large borders
-              </p>
-            </div>
-            <div className="rounded-lg bg-white p-5">
-              <h3 className="mb-2 font-semibold text-blue-700">
-                🎯 Focus Content
-              </h3>
-              <p className="text-sm text-slate-600">
-                Highlight specific content areas by removing headers, footers,
-                or sidebars
-              </p>
-            </div>
-            <div className="rounded-lg bg-white p-5">
-              <h3 className="mb-2 font-semibold text-blue-700">
-                📐 Standardize Pages
-              </h3>
-              <p className="text-sm text-slate-600">
-                Make all pages the same size by cropping to uniform dimensions
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* FAQ Section */}
-        <div className="mt-12 rounded-2xl bg-white p-8 shadow-md">
-          <h2 className="mb-6 text-center text-3xl font-bold text-slate-900">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="mb-2 text-lg font-semibold text-slate-800">
-                Does cropping permanently remove content?
-              </h3>
-              <p className="text-slate-600">
-                Yes, cropping removes content outside the selected area. Keep a
-                backup of your original file if needed.
-              </p>
-            </div>
-            <div>
-              <h3 className="mb-2 text-lg font-semibold text-slate-800">
-                Can I crop different pages differently?
-              </h3>
-              <p className="text-slate-600">
-                Yes! You can crop each page individually. Simply navigate to
-                each page and apply different crop settings.
-              </p>
-            </div>
-            <div>
-              <h3 className="mb-2 text-lg font-semibold text-slate-800">
-                Will cropping affect text/image quality?
-              </h3>
-              <p className="text-slate-600">
-                No, cropping only removes areas outside the crop boundary. The
-                remaining content maintains its original quality.
-              </p>
-            </div>
-            <div>
-              <h3 className="mb-2 text-lg font-semibold text-slate-800">
-                Is my data secure?
-              </h3>
-              <p className="text-slate-600">
-                Absolutely! All processing happens locally in your browser. Your
-                PDF files never leave your computer.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <style jsx>{`
-        @keyframes slide-in {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
+        <style jsx>{`
+          @keyframes slide-in {
+            from {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+            to {
+              transform: translateX(0);
+              opacity: 1;
+            }
           }
-          to {
-            transform: translateX(0);
-            opacity: 1;
+          .animate-slide-in {
+            animation: slide-in 0.3s ease-out;
           }
-        }
-        .animate-slide-in {
-          animation: slide-in 0.3s ease-out;
-        }
-      `}</style>
+        `}</style>
       </div>
     </ToolPageShell>
   );

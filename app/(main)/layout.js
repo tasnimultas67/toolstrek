@@ -22,7 +22,7 @@ export const metadata = {
 export default function MainLayout({ children }) {
   return (
     <>
-      <div className={`${outfit.className}`}>
+      <div className={`${outfit.className}`} suppressHydrationWarning>
         <Header />
         <RecentToolsTracker />
         {children}

@@ -327,7 +327,7 @@ const QRCodeGenerator = () => {
       case "WhatsApp":
         return (
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
               {destination === "URL" && "Enter URL"}
               {destination === "Email" && "Enter Email Address"}
               {destination === "Phone" && "Enter Phone Number"}
@@ -341,7 +341,7 @@ const QRCodeGenerator = () => {
                 destinationOptions.find((opt) => opt.id === destination)
                   ?.placeholder
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
           </div>
         );
@@ -351,7 +351,7 @@ const QRCodeGenerator = () => {
         return (
           <>
             <div>
-              <label className="block text-sm font-semibold text-gray-700 mb-2">
+              <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                 {destination === "Text" ? "Enter Text" : "Enter Phone Number"}
               </label>
               <input
@@ -362,12 +362,12 @@ const QRCodeGenerator = () => {
                   destinationOptions.find((opt) => opt.id === destination)
                     ?.placeholder
                 }
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
               />
             </div>
             {destination === "SMS" && (
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                   Message Content (Optional)
                 </label>
                 <textarea
@@ -375,7 +375,7 @@ const QRCodeGenerator = () => {
                   onChange={(e) => setCustomText(e.target.value)}
                   placeholder="Enter your message..."
                   rows="2"
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
+                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
                 />
               </div>
             )}
@@ -392,7 +392,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setVCardData({ ...vCardData, name: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <input
               type="tel"
@@ -401,7 +401,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setVCardData({ ...vCardData, phone: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <input
               type="email"
@@ -410,7 +410,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setVCardData({ ...vCardData, email: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <div className="grid grid-cols-2 gap-2">
               <input
@@ -420,7 +420,7 @@ const QRCodeGenerator = () => {
                 onChange={(e) =>
                   setVCardData({ ...vCardData, company: e.target.value })
                 }
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
               />
               <input
                 type="text"
@@ -429,7 +429,7 @@ const QRCodeGenerator = () => {
                 onChange={(e) =>
                   setVCardData({ ...vCardData, title: e.target.value })
                 }
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
               />
             </div>
             <input
@@ -439,7 +439,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setVCardData({ ...vCardData, website: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <input
               type="text"
@@ -448,7 +448,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setVCardData({ ...vCardData, address: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
           </div>
         );
@@ -464,7 +464,7 @@ const QRCodeGenerator = () => {
                 onChange={(e) =>
                   setGeoData({ ...geoData, latitude: e.target.value })
                 }
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
               />
               <input
                 type="text"
@@ -473,7 +473,7 @@ const QRCodeGenerator = () => {
                 onChange={(e) =>
                   setGeoData({ ...geoData, longitude: e.target.value })
                 }
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
               />
             </div>
             <input
@@ -483,7 +483,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setGeoData({ ...geoData, altitude: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
           </div>
         );
@@ -498,7 +498,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setWifiData({ ...wifiData, ssid: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <input
               type="text"
@@ -507,14 +507,14 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setWifiData({ ...wifiData, password: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <select
               value={wifiData.encryption}
               onChange={(e) =>
                 setWifiData({ ...wifiData, encryption: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:focus:ring-indigo-400"
             >
               <option value="WPA">WPA/WPA2</option>
               <option value="WEP">WEP</option>
@@ -533,7 +533,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setEventData({ ...eventData, title: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <div className="grid grid-cols-2 gap-2">
               <input
@@ -543,7 +543,7 @@ const QRCodeGenerator = () => {
                 onChange={(e) =>
                   setEventData({ ...eventData, startDate: e.target.value })
                 }
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:focus:ring-indigo-400"
               />
               <input
                 type="date"
@@ -552,7 +552,7 @@ const QRCodeGenerator = () => {
                 onChange={(e) =>
                   setEventData({ ...eventData, endDate: e.target.value })
                 }
-                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+                className="px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:focus:ring-indigo-400"
               />
             </div>
             <input
@@ -562,7 +562,7 @@ const QRCodeGenerator = () => {
               onChange={(e) =>
                 setEventData({ ...eventData, location: e.target.value })
               }
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
             <textarea
               placeholder="Description"
@@ -571,7 +571,7 @@ const QRCodeGenerator = () => {
                 setEventData({ ...eventData, description: e.target.value })
               }
               rows="2"
-              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm"
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-indigo-400"
             />
           </div>
         );
@@ -582,25 +582,25 @@ const QRCodeGenerator = () => {
   };
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
-      <div>
+    <ToolPageShell widthClassName="max-w-7xl px-2 pt-20 pb-10">
+      <div className="dark:text-slate-100">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+          <h1 className="text-3xl font-bold text-gray-900 mb-2 dark:text-slate-100">
             QR Code Generator
           </h1>
-          <p className="text-gray-600">
+          <p className="text-gray-600 dark:text-slate-400">
             Create custom QR codes with advanced styling options
           </p>
         </div>
 
-        <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-slate-900 dark:shadow-slate-900/50">
           <div className="grid lg:grid-cols-2 gap-6 p-6">
             {/* Left Panel - Input Section */}
             <div className="space-y-5">
               {/* Destination Cards */}
               <div>
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                   Select Destination Type
                 </label>
                 <div className="grid grid-cols-5 gap-2">
@@ -614,16 +614,16 @@ const QRCodeGenerator = () => {
                       }}
                       className={`p-2 rounded-lg border-2 transition-all text-center ${
                         destination === option.id
-                          ? "border-indigo-600 bg-indigo-50 shadow-sm"
-                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50"
+                          ? "border-indigo-600 bg-indigo-50 shadow-sm dark:border-indigo-400 dark:bg-indigo-950/30"
+                          : "border-gray-200 hover:border-indigo-300 hover:bg-gray-50 dark:border-slate-600 dark:hover:border-indigo-400/50 dark:hover:bg-slate-700/50"
                       }`}
                     >
                       <div className="text-xl">{option.icon}</div>
                       <div
                         className={`text-xs font-medium ${
                           destination === option.id
-                            ? "text-indigo-700"
-                            : "text-gray-700"
+                            ? "text-indigo-700 dark:text-indigo-400"
+                            : "text-gray-700 dark:text-slate-300"
                         }`}
                       >
                         {option.name}
@@ -637,12 +637,12 @@ const QRCodeGenerator = () => {
               {renderDynamicFields()}
 
               {/* Advanced Options */}
-              <div className="border-t border-gray-200 pt-4">
+              <div className="border-t border-gray-200 pt-4 dark:border-slate-700">
                 <button
                   onClick={() => setShowAdvanced(!showAdvanced)}
-                  className="w-full flex items-center justify-between px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg transition"
+                  className="w-full flex items-center justify-between px-4 py-2 bg-gray-50 hover:bg-gray-100 rounded-lg transition dark:bg-slate-700/50 dark:hover:bg-slate-700"
                 >
-                  <span className="font-semibold text-gray-700 flex items-center gap-2">
+                  <span className="font-semibold text-gray-700 flex items-center gap-2 dark:text-slate-300">
                     <svg
                       className="w-5 h-5"
                       fill="none"
@@ -665,7 +665,7 @@ const QRCodeGenerator = () => {
                     Advanced Options
                   </span>
                   <svg
-                    className={`w-5 h-5 transition-transform ${showAdvanced ? "rotate-180" : ""}`}
+                    className={`w-5 h-5 transition-transform ${showAdvanced ? "rotate-180" : ""} text-gray-500 dark:text-slate-400`}
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -680,11 +680,11 @@ const QRCodeGenerator = () => {
                 </button>
 
                 {showAdvanced && (
-                  <div className="mt-3 space-y-4 p-4 bg-gray-50 rounded-lg">
+                  <div className="mt-3 space-y-4 p-4 bg-gray-50 rounded-lg dark:bg-slate-700/30">
                     {/* Colors */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                           QR Color
                         </label>
                         <div className="flex items-center gap-2">
@@ -692,18 +692,18 @@ const QRCodeGenerator = () => {
                             type="color"
                             value={qrColor}
                             onChange={(e) => setQrColor(e.target.value)}
-                            className="w-10 h-8 rounded border cursor-pointer"
+                            className="w-10 h-8 rounded border cursor-pointer dark:border-slate-600"
                           />
                           <input
                             type="text"
                             value={qrColor}
                             onChange={(e) => setQrColor(e.target.value)}
-                            className="flex-1 px-2 py-1 border rounded text-sm"
+                            className="flex-1 px-2 py-1 border rounded text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
                           />
                         </div>
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                           Background Color
                         </label>
                         <div className="flex items-center gap-2">
@@ -711,13 +711,13 @@ const QRCodeGenerator = () => {
                             type="color"
                             value={qrBgColor}
                             onChange={(e) => setQrBgColor(e.target.value)}
-                            className="w-10 h-8 rounded border cursor-pointer"
+                            className="w-10 h-8 rounded border cursor-pointer dark:border-slate-600"
                           />
                           <input
                             type="text"
                             value={qrBgColor}
                             onChange={(e) => setQrBgColor(e.target.value)}
-                            className="flex-1 px-2 py-1 border rounded text-sm"
+                            className="flex-1 px-2 py-1 border rounded text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
                           />
                         </div>
                       </div>
@@ -726,7 +726,7 @@ const QRCodeGenerator = () => {
                     {/* Margin & Error Correction */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                           Margin: {margin}
                         </label>
                         <input
@@ -735,17 +735,17 @@ const QRCodeGenerator = () => {
                           max="10"
                           value={margin}
                           onChange={(e) => setMargin(Number(e.target.value))}
-                          className="w-full"
+                          className="w-full accent-indigo-500 dark:accent-indigo-400"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                           Error Correction
                         </label>
                         <select
                           value={errorLevel}
                           onChange={(e) => setErrorLevel(e.target.value)}
-                          className="w-full px-3 py-2 border rounded-lg text-sm"
+                          className="w-full px-3 py-2 border rounded-lg text-sm dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
                         >
                           <option value="L">L - 7% (Smallest)</option>
                           <option value="M">M - 15% (Medium)</option>
@@ -758,7 +758,7 @@ const QRCodeGenerator = () => {
                     {/* Size Settings */}
                     <div className="grid grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                           Preview Size: {qrSize}px
                         </label>
                         <input
@@ -768,11 +768,11 @@ const QRCodeGenerator = () => {
                           step="10"
                           value={qrSize}
                           onChange={(e) => setQrSize(Number(e.target.value))}
-                          className="w-full"
+                          className="w-full accent-indigo-500 dark:accent-indigo-400"
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                           Download Size: {downloadSize}px
                         </label>
                         <input
@@ -784,9 +784,9 @@ const QRCodeGenerator = () => {
                           onChange={(e) =>
                             setDownloadSize(Number(e.target.value))
                           }
-                          className="w-full"
+                          className="w-full accent-indigo-500 dark:accent-indigo-400"
                         />
-                        <p className="text-xs text-gray-500 mt-1">
+                        <p className="text-xs text-gray-500 mt-1 dark:text-slate-400">
                           Higher = Better quality
                         </p>
                       </div>
@@ -798,7 +798,7 @@ const QRCodeGenerator = () => {
               {/* Generate Button */}
               <button
                 onClick={generateQRCode}
-                className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white py-2.5 rounded-lg font-semibold hover:from-indigo-700 hover:to-blue-700 transition transform hover:scale-[1.02]"
+                className="w-full bg-gradient-to-r from-indigo-600 to-blue-600 text-white py-2.5 rounded-lg font-semibold hover:from-indigo-700 hover:to-blue-700 transition transform hover:scale-[1.02] dark:from-indigo-500 dark:to-blue-500 dark:hover:from-indigo-600 dark:hover:to-blue-600"
               >
                 Generate QR Code
               </button>
@@ -806,7 +806,7 @@ const QRCodeGenerator = () => {
 
             {/* Right Panel - QR Code Display */}
             <div className="flex flex-col items-center justify-center space-y-5">
-              <div className="bg-gray-50 rounded-xl p-6 border-2 border-dashed border-gray-200">
+              <div className="bg-gray-50 rounded-xl p-6 border-2 border-dashed border-gray-200 dark:bg-slate-700/50 dark:border-slate-600">
                 {qrValue ? (
                   <div className="flex flex-col items-center">
                     <QRCodeSVG
@@ -822,7 +822,7 @@ const QRCodeGenerator = () => {
                   </div>
                 ) : (
                   <div
-                    className="flex items-center justify-center text-gray-400"
+                    className="flex items-center justify-center text-gray-400 dark:text-slate-500"
                     style={{ width: qrSize, height: qrSize }}
                   >
                     <svg
@@ -844,7 +844,7 @@ const QRCodeGenerator = () => {
 
               {/* Format Selection */}
               <div className="w-full">
-                <label className="block text-sm font-semibold text-gray-700 mb-2 text-center">
+                <label className="block text-sm font-semibold text-gray-700 mb-2 text-center dark:text-slate-300">
                   Download Format
                 </label>
                 <div className="flex gap-2 justify-center">
@@ -854,8 +854,8 @@ const QRCodeGenerator = () => {
                       onClick={() => setFormat(fmt)}
                       className={`px-4 py-1.5 rounded-lg font-medium transition text-sm ${
                         format === fmt
-                          ? "bg-indigo-600 text-white shadow-md"
-                          : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                          ? "bg-indigo-600 text-white shadow-md dark:bg-indigo-500"
+                          : "bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
                       }`}
                     >
                       {fmt}
@@ -868,7 +868,7 @@ const QRCodeGenerator = () => {
               <button
                 onClick={downloadQRCode}
                 disabled={!qrValue}
-                className="px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm"
+                className="px-6 py-2 bg-green-600 text-white rounded-lg font-medium hover:bg-green-700 transition disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2 text-sm dark:bg-green-500 dark:hover:bg-green-600"
               >
                 <svg
                   className="w-4 h-4"
@@ -887,13 +887,13 @@ const QRCodeGenerator = () => {
               </button>
 
               {qrValue && (
-                <div className="text-xs text-gray-500 text-center space-y-1">
-                  <p className="font-mono text-indigo-600 break-all max-w-md">
+                <div className="text-xs text-gray-500 text-center space-y-1 dark:text-slate-400">
+                  <p className="font-mono text-indigo-600 break-all max-w-md dark:text-indigo-400">
                     {qrValue.length > 80
                       ? `${qrValue.substring(0, 80)}...`
                       : qrValue}
                   </p>
-                  <p className="text-green-600">
+                  <p className="text-green-600 dark:text-green-400">
                     ✓ {downloadSize}x{downloadSize}px high-resolution {format}
                   </p>
                 </div>
@@ -904,30 +904,50 @@ const QRCodeGenerator = () => {
 
         {/* Features Section */}
         <div className="mt-6 grid grid-cols-2 md:grid-cols-5 gap-3">
-          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition">
+          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition dark:bg-slate-800 dark:shadow-slate-900/30 dark:hover:shadow-slate-900/50">
             <div className="text-xl mb-1">🎯</div>
-            <h3 className="font-semibold text-xs">10 Destinations</h3>
-            <p className="text-xs text-gray-500">URL, vCard, WiFi & more</p>
+            <h3 className="font-semibold text-xs dark:text-slate-200">
+              10 Destinations
+            </h3>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              URL, vCard, WiFi & more
+            </p>
           </div>
-          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition">
+          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition dark:bg-slate-800 dark:shadow-slate-900/30 dark:hover:shadow-slate-900/50">
             <div className="text-xl mb-1">📥</div>
-            <h3 className="font-semibold text-xs">3 Formats</h3>
-            <p className="text-xs text-gray-500">SVG, PNG, JPG</p>
+            <h3 className="font-semibold text-xs dark:text-slate-200">
+              3 Formats
+            </h3>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              SVG, PNG, JPG
+            </p>
           </div>
-          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition">
+          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition dark:bg-slate-800 dark:shadow-slate-900/30 dark:hover:shadow-slate-900/50">
             <div className="text-xl mb-1">🎨</div>
-            <h3 className="font-semibold text-xs">Custom Colors</h3>
-            <p className="text-xs text-gray-500">Any color combination</p>
+            <h3 className="font-semibold text-xs dark:text-slate-200">
+              Custom Colors
+            </h3>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              Any color combination
+            </p>
           </div>
-          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition">
+          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition dark:bg-slate-800 dark:shadow-slate-900/30 dark:hover:shadow-slate-900/50">
             <div className="text-xl mb-1">📏</div>
-            <h3 className="font-semibold text-xs">Margin Control</h3>
-            <p className="text-xs text-gray-500">Adjust spacing</p>
+            <h3 className="font-semibold text-xs dark:text-slate-200">
+              Margin Control
+            </h3>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              Adjust spacing
+            </p>
           </div>
-          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition">
+          <div className="bg-white rounded-lg p-3 text-center shadow text-sm hover:shadow-md transition dark:bg-slate-800 dark:shadow-slate-900/30 dark:hover:shadow-slate-900/50">
             <div className="text-xl mb-1">⚡</div>
-            <h3 className="font-semibold text-xs">Error Correction</h3>
-            <p className="text-xs text-gray-500">Up to 30% recovery</p>
+            <h3 className="font-semibold text-xs dark:text-slate-200">
+              Error Correction
+            </h3>
+            <p className="text-xs text-gray-500 dark:text-slate-400">
+              Up to 30% recovery
+            </p>
           </div>
         </div>
       </div>

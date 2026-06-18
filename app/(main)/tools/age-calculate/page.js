@@ -9,8 +9,8 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="bg-[#f3f4f6]">
-      <div className="md:max-w-300 md:w-290 mx-auto px-1 py-3 ">
+    <div className="pt-24 pb-10">
+      <div className=" px-1 py-3 ">
         <AgeCal></AgeCal>
       </div>
     </div>
