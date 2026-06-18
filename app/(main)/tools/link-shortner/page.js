@@ -8,8 +8,8 @@ export const metadata = {
 
 const page = () => {
   return (
-    <div className="md:w-250 mx-auto">
-      <div className="p-5">
+    <div className="">
+      <div className="pt-20 pb-5">
         <ShortenerForm />
       </div>
     </div>

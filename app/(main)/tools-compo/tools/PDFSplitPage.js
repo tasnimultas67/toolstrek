@@ -112,7 +112,7 @@ export default function PDFSplitPage() {
             url,
             name: `${fileName}_page_${pageNum}.pdf`,
             pageNumber: pageNum,
-            blob: blob, // Store blob for ZIP creation
+            blob: blob,
           });
         }
         setDownloadedFiles(files);
@@ -135,7 +135,7 @@ export default function PDFSplitPage() {
             url,
             name: `${fileName}_extracted_${pagesToExtract.length}_${rangeText}.pdf`,
             pageCount: pagesToExtract.length,
-            blob: blob, // Store blob for ZIP creation
+            blob: blob,
           },
         ]);
         setSplitStatus(
@@ -168,21 +168,17 @@ export default function PDFSplitPage() {
   const handleDownloadAll = async () => {
     if (downloadedFiles.length === 0) return;
 
-    // If only one file, download it directly
     if (downloadedFiles.length === 1) {
       handleDownload(downloadedFiles[0]);
       return;
     }
 
-    // Show downloading status
     setSplitStatus("Creating ZIP archive...");
 
     try {
       const zip = new JSZip();
 
-      // Add each file to the ZIP
       for (const file of downloadedFiles) {
-        // Use blob if available, otherwise fetch from URL
         if (file.blob) {
           zip.file(file.name, file.blob);
         } else {
@@ -192,10 +188,8 @@ export default function PDFSplitPage() {
         }
       }
 
-      // Generate ZIP file
       const zipBlob = await zip.generateAsync({ type: "blob" });
 
-      // Create download link for ZIP
       const zipUrl = URL.createObjectURL(zipBlob);
       const link = document.createElement("a");
       link.href = zipUrl;
@@ -204,14 +198,12 @@ export default function PDFSplitPage() {
       link.click();
       document.body.removeChild(link);
 
-      // Clean up
       URL.revokeObjectURL(zipUrl);
 
       setSplitStatus(
         `Successfully created ZIP archive with ${downloadedFiles.length} files!`,
       );
 
-      // Clear status after 3 seconds
       setTimeout(() => {
         if (splitStatus.includes("ZIP archive")) {
           setSplitStatus("");
@@ -224,7 +216,6 @@ export default function PDFSplitPage() {
   };
 
   const clearAll = () => {
-    // Clean up object URLs
     downloadedFiles.forEach((file) => {
       if (file.url) {
         URL.revokeObjectURL(file.url);
@@ -243,39 +234,39 @@ export default function PDFSplitPage() {
 
   return (
     <ToolPageShell widthClassName="max-w-5xl">
-      <div>
+      <div className="dark:text-slate-100">
         {/* Header with Logo/Brand */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3">
+          <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-3 dark:from-blue-400 dark:to-purple-400">
             PDF Split Tool
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto dark:text-gray-400">
             Split your PDF files by page range, extract specific pages, or split
             each page into separate files
           </p>
         </div>
 
         {/* Main Card */}
-        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden">
+        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden dark:bg-slate-800 dark:shadow-slate-900/50">
           <div className="p-6 md:p-8">
             {/* File Upload Section */}
             <div className="mb-8">
-              <label className="block text-sm font-semibold text-gray-700 mb-3">
+              <label className="block text-sm font-semibold text-gray-700 mb-3 dark:text-slate-300">
                 📄 Upload PDF File
               </label>
               <div className="flex items-center justify-center w-full">
                 <label
                   className={`flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-200 ${
                     pdfFile
-                      ? "border-green-400 bg-green-50"
-                      : "border-gray-300 bg-gray-50 hover:bg-gray-100"
+                      ? "border-green-400 bg-green-50 dark:border-green-500/50 dark:bg-green-950/30"
+                      : "border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-slate-600 dark:bg-slate-700/50 dark:hover:bg-slate-700"
                   }`}
                 >
                   <div className="flex flex-col items-center justify-center pt-5 pb-6">
                     {pdfFile ? (
                       <>
                         <svg
-                          className="w-12 h-12 mb-3 text-green-500"
+                          className="w-12 h-12 mb-3 text-green-500 dark:text-green-400"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -287,14 +278,14 @@ export default function PDFSplitPage() {
                             d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
                           ></path>
                         </svg>
-                        <p className="text-sm text-green-600 font-medium">
+                        <p className="text-sm text-green-600 font-medium dark:text-green-400">
                           File ready!
                         </p>
                       </>
                     ) : (
                       <>
                         <svg
-                          className="w-12 h-12 mb-3 text-gray-400"
+                          className="w-12 h-12 mb-3 text-gray-400 dark:text-slate-500"
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -306,11 +297,11 @@ export default function PDFSplitPage() {
                             d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"
                           ></path>
                         </svg>
-                        <p className="mb-2 text-sm text-gray-500">
+                        <p className="mb-2 text-sm text-gray-500 dark:text-slate-400">
                           <span className="font-semibold">Click to upload</span>{" "}
                           or drag and drop
                         </p>
-                        <p className="text-xs text-gray-500">
+                        <p className="text-xs text-gray-500 dark:text-slate-400">
                           PDF files only (Max 50MB)
                         </p>
                       </>
@@ -327,10 +318,10 @@ export default function PDFSplitPage() {
                 </label>
               </div>
               {pdfFile && (
-                <div className="mt-3 flex items-center justify-between bg-gray-50 p-3 rounded-lg border border-gray-200">
+                <div className="mt-3 flex items-center justify-between bg-gray-50 p-3 rounded-lg border border-gray-200 dark:bg-slate-700/50 dark:border-slate-600">
                   <div className="flex items-center flex-1 min-w-0">
                     <svg
-                      className="w-5 h-5 text-red-500 mr-2 shrink-0"
+                      className="w-5 h-5 text-red-500 mr-2 shrink-0 dark:text-red-400"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -340,16 +331,16 @@ export default function PDFSplitPage() {
                         clipRule="evenodd"
                       />
                     </svg>
-                    <span className="text-sm text-gray-700 truncate">
+                    <span className="text-sm text-gray-700 truncate dark:text-slate-300">
                       {pdfFile.name}
                     </span>
-                    <span className="ml-2 text-xs text-gray-400 shrink-0">
+                    <span className="ml-2 text-xs text-gray-400 shrink-0 dark:text-slate-500">
                       ({(pdfFile.size / 1024 / 1024).toFixed(2)} MB)
                     </span>
                   </div>
                   <button
                     onClick={clearAll}
-                    className="ml-3 text-red-500 hover:text-red-700 text-sm font-medium shrink-0"
+                    className="ml-3 text-red-500 hover:text-red-700 text-sm font-medium shrink-0 dark:text-red-400 dark:hover:text-red-300"
                   >
                     Remove
                   </button>
@@ -360,7 +351,7 @@ export default function PDFSplitPage() {
             {/* Split Mode Selection */}
             {pdfFile && (
               <div className="mb-8">
-                <label className="block text-sm font-semibold text-gray-700 mb-3">
+                <label className="block text-sm font-semibold text-gray-700 mb-3 dark:text-slate-300">
                   ⚙️ Select Split Mode
                 </label>
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -368,14 +359,14 @@ export default function PDFSplitPage() {
                     onClick={() => setSplitMode("range")}
                     className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                       splitMode === "range"
-                        ? "border-blue-500 bg-blue-50 shadow-md"
-                        : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                        ? "border-blue-500 bg-blue-50 shadow-md dark:border-blue-400 dark:bg-blue-950/30"
+                        : "border-gray-200 hover:border-gray-300 hover:shadow-sm dark:border-slate-600 dark:hover:border-slate-500 dark:text-slate-300"
                     }`}
                   >
-                    <div className="text-lg font-semibold mb-1">
+                    <div className="text-lg font-semibold mb-1 dark:text-slate-200">
                       📖 Page Range
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 dark:text-slate-400">
                       Split by range (e.g., 1-5, 8, 10-15)
                     </div>
                   </button>
@@ -383,14 +374,14 @@ export default function PDFSplitPage() {
                     onClick={() => setSplitMode("extract")}
                     className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                       splitMode === "extract"
-                        ? "border-blue-500 bg-blue-50 shadow-md"
-                        : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                        ? "border-blue-500 bg-blue-50 shadow-md dark:border-blue-400 dark:bg-blue-950/30"
+                        : "border-gray-200 hover:border-gray-300 hover:shadow-sm dark:border-slate-600 dark:hover:border-slate-500 dark:text-slate-300"
                     }`}
                   >
-                    <div className="text-lg font-semibold mb-1">
+                    <div className="text-lg font-semibold mb-1 dark:text-slate-200">
                       🎯 Extract Pages
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 dark:text-slate-400">
                       Extract specific pages only
                     </div>
                   </button>
@@ -398,14 +389,14 @@ export default function PDFSplitPage() {
                     onClick={() => setSplitMode("each")}
                     className={`p-4 rounded-xl border-2 transition-all duration-200 text-left ${
                       splitMode === "each"
-                        ? "border-blue-500 bg-blue-50 shadow-md"
-                        : "border-gray-200 hover:border-gray-300 hover:shadow-sm"
+                        ? "border-blue-500 bg-blue-50 shadow-md dark:border-blue-400 dark:bg-blue-950/30"
+                        : "border-gray-200 hover:border-gray-300 hover:shadow-sm dark:border-slate-600 dark:hover:border-slate-500 dark:text-slate-300"
                     }`}
                   >
-                    <div className="text-lg font-semibold mb-1">
+                    <div className="text-lg font-semibold mb-1 dark:text-slate-200">
                       🔪 Split Each Page
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-gray-600 dark:text-slate-400">
                       Create one PDF per page
                     </div>
                   </button>
@@ -416,7 +407,7 @@ export default function PDFSplitPage() {
             {/* Page Range Input */}
             {pdfFile && splitMode === "range" && (
               <div className="mb-8">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                   📝 Page Range
                 </label>
                 <input
@@ -424,10 +415,10 @@ export default function PDFSplitPage() {
                   value={pageRange}
                   onChange={(e) => setPageRange(e.target.value)}
                   placeholder="e.g., 1-5, 8, 10-15"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
                   disabled={isProcessing}
                 />
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-gray-500 mt-2 dark:text-slate-400">
                   💡 Enter page numbers or ranges separated by commas. Example:
                   1-5, 8, 10-15
                 </p>
@@ -437,7 +428,7 @@ export default function PDFSplitPage() {
             {/* Extract Pages Input */}
             {pdfFile && splitMode === "extract" && (
               <div className="mb-8">
-                <label className="block text-sm font-semibold text-gray-700 mb-2">
+                <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
                   🎯 Pages to Extract
                 </label>
                 <input
@@ -445,10 +436,10 @@ export default function PDFSplitPage() {
                   value={extractPages}
                   onChange={(e) => setExtractPages(e.target.value)}
                   placeholder="e.g., 1, 3, 5-7"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
                   disabled={isProcessing}
                 />
-                <p className="text-xs text-gray-500 mt-2">
+                <p className="text-xs text-gray-500 mt-2 dark:text-slate-400">
                   💡 Enter the page numbers you want to extract, separated by
                   commas
                 </p>
@@ -463,8 +454,8 @@ export default function PDFSplitPage() {
                   disabled={isProcessing}
                   className={`w-full py-4 px-6 rounded-xl font-semibold text-white transition-all duration-200 transform ${
                     isProcessing
-                      ? "bg-gray-400 cursor-not-allowed"
-                      : "bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:scale-[1.02]"
+                      ? "bg-gray-400 cursor-not-allowed dark:bg-slate-600"
+                      : "bg-linear-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 hover:shadow-lg hover:scale-[1.02] dark:from-blue-500 dark:to-purple-500"
                   }`}
                 >
                   {isProcessing ? (
@@ -503,8 +494,8 @@ export default function PDFSplitPage() {
               <div
                 className={`mb-8 p-4 rounded-xl ${
                   splitStatus.includes("Error")
-                    ? "bg-red-50 text-red-700 border border-red-200"
-                    : "bg-green-50 text-green-700 border border-green-200"
+                    ? "bg-red-50 text-red-700 border border-red-200 dark:bg-red-950/30 dark:text-red-300 dark:border-red-800/40"
+                    : "bg-green-50 text-green-700 border border-green-200 dark:bg-green-950/30 dark:text-green-300 dark:border-green-800/40"
                 }`}
               >
                 <div className="flex items-center gap-2">
@@ -540,9 +531,9 @@ export default function PDFSplitPage() {
 
             {/* Download Section */}
             {downloadedFiles.length > 0 && (
-              <div className="border-t pt-6 mt-4">
+              <div className="border-t pt-6 mt-4 dark:border-slate-700">
                 <div className="flex justify-between items-center mb-4 flex-wrap gap-3">
-                  <h3 className="text-lg font-bold text-gray-900">
+                  <h3 className="text-lg font-bold text-gray-900 dark:text-slate-100">
                     📥{" "}
                     {downloadedFiles.length === 1
                       ? "Your PDF is Ready"
@@ -551,7 +542,7 @@ export default function PDFSplitPage() {
                   {downloadedFiles.length > 1 && (
                     <button
                       onClick={handleDownloadAll}
-                      className="px-5 py-2 bg-linear-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all shadow-md hover:shadow-lg font-medium flex items-center gap-2"
+                      className="px-5 py-2 bg-linear-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-700 hover:to-emerald-700 transition-all shadow-md hover:shadow-lg font-medium flex items-center gap-2 dark:from-green-500 dark:to-emerald-500"
                     >
                       <svg
                         className="w-4 h-4"
@@ -574,11 +565,11 @@ export default function PDFSplitPage() {
                   {downloadedFiles.map((file, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all group"
+                      className="flex items-center justify-between p-4 bg-gray-50 rounded-xl hover:bg-gray-100 transition-all group dark:bg-slate-700/50 dark:hover:bg-slate-700"
                     >
                       <div className="flex items-center flex-1 min-w-0">
                         <svg
-                          className="w-6 h-6 text-red-500 mr-3 shrink-0"
+                          className="w-6 h-6 text-red-500 mr-3 shrink-0 dark:text-red-400"
                           fill="currentColor"
                           viewBox="0 0 20 20"
                         >
@@ -589,11 +580,11 @@ export default function PDFSplitPage() {
                           />
                         </svg>
                         <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-gray-900 truncate">
+                          <p className="text-sm font-medium text-gray-900 truncate dark:text-slate-200">
                             {file.name}
                           </p>
                           {(file.pageNumber || file.pageCount) && (
-                            <p className="text-xs text-gray-500 mt-0.5">
+                            <p className="text-xs text-gray-500 mt-0.5 dark:text-slate-400">
                               {file.pageNumber
                                 ? `Page ${file.pageNumber}`
                                 : `${file.pageCount} pages`}
@@ -603,7 +594,7 @@ export default function PDFSplitPage() {
                       </div>
                       <button
                         onClick={() => handleDownload(file)}
-                        className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-sm font-medium shadow-sm hover:shadow"
+                        className="ml-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-all text-sm font-medium shadow-sm hover:shadow dark:bg-blue-500 dark:hover:bg-blue-600"
                       >
                         Download
                       </button>
@@ -614,29 +605,37 @@ export default function PDFSplitPage() {
             )}
 
             {/* Instructions */}
-            <div className="mt-6 p-5 bg-linear-to-r from-blue-50 to-purple-50 rounded-xl">
-              <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2">
+            <div className="mt-6 p-5 bg-linear-to-r from-blue-50 to-purple-50 rounded-xl dark:from-blue-950/30 dark:to-purple-950/30">
+              <h4 className="font-bold text-gray-800 mb-3 flex items-center gap-2 dark:text-slate-200">
                 <span>📘</span> How to Use
               </h4>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
                 <div className="flex items-start gap-2">
-                  <span className="font-bold text-blue-600">1.</span>
-                  <span className="text-gray-700">Upload your PDF file</span>
+                  <span className="font-bold text-blue-600 dark:text-blue-400">
+                    1.
+                  </span>
+                  <span className="text-gray-700 dark:text-slate-300">
+                    Upload your PDF file
+                  </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="font-bold text-blue-600">2.</span>
-                  <span className="text-gray-700">
+                  <span className="font-bold text-blue-600 dark:text-blue-400">
+                    2.
+                  </span>
+                  <span className="text-gray-700 dark:text-slate-300">
                     Choose split mode and enter pages
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
-                  <span className="font-bold text-blue-600">3.</span>
-                  <span className="text-gray-700">
+                  <span className="font-bold text-blue-600 dark:text-blue-400">
+                    3.
+                  </span>
+                  <span className="text-gray-700 dark:text-slate-300">
                     Click &quot;Split PDF Now&quot; and download
                   </span>
                 </div>
               </div>
-              <div className="mt-3 text-xs text-gray-600 bg-white/50 p-3 rounded-lg">
+              <div className="mt-3 text-xs text-gray-600 bg-white/50 p-3 rounded-lg dark:bg-slate-800/50 dark:text-slate-400">
                 <strong>💡 Pro tip:</strong> Use &quot;Page Range&quot; for
                 continuous sections, &quot;Extract Pages&quot; for specific
                 pages, or &quot;Split Each Page&quot; to separate every page

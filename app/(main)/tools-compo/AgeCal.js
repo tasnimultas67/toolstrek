@@ -233,8 +233,8 @@ export function AgeCal() {
           animate={{ opacity: 1, x: 0 }}
         >
           <Card className="bg-white dark:bg-gray-900 rounded-3xl shadow-[0_20px_50px_rgba(0,0,0,0.05)] border-none overflow-hidden">
-            <div className="px-8 py-6 border-b border-gray-50 dark:border-gray-800 bg-white/50 backdrop-blur-md flex items-center gap-3">
-              <div className="p-2 bg-blue-600 rounded-lg shadow-lg shadow-blue-100">
+            <div className="px-8 py-6 border-b border-gray-50 dark:border-gray-800 bg-white/50 dark:bg-gray-800/50 backdrop-blur-md flex items-center gap-3">
+              <div className="p-2 bg-blue-600 rounded-lg shadow-lg shadow-blue-100 dark:shadow-blue-900/20">
                 <Timer className="w-5 h-5 text-white" />
               </div>
               <h1 className="text-xl font-bold text-gray-800 dark:text-white">

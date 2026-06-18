@@ -465,16 +465,20 @@ function ToggleSwitch({
         transition-all duration-200
         ${
           checked
-            ? "border-emerald-200 bg-emerald-50"
-            : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50"
+            ? "border-emerald-200 bg-emerald-50 dark:border-emerald-800/40 dark:bg-emerald-950/30"
+            : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:border-slate-600 dark:hover:bg-slate-700/50"
         } 
         ${disabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"}
       `}
     >
       <div className="flex-1">
-        <p className="text-sm font-semibold text-slate-900">{label}</p>
+        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+          {label}
+        </p>
         {description && (
-          <p className="mt-0.5 text-xs text-slate-500">{description}</p>
+          <p className="mt-0.5 text-xs text-slate-500 dark:text-slate-400">
+            {description}
+          </p>
         )}
       </div>
 
@@ -483,7 +487,7 @@ function ToggleSwitch({
           relative inline-flex h-6 w-11 flex-shrink-0 
           items-center rounded-full border-0 
           transition-colors duration-200 ease-in-out
-          ${checked ? "bg-emerald-500" : "bg-slate-200"}
+          ${checked ? "bg-emerald-500" : "bg-slate-200 dark:bg-slate-600"}
         `}
       >
         <span
@@ -513,7 +517,9 @@ function TextField({
 }) {
   return (
     <label className="block space-y-1.5">
-      <span className="text-sm font-semibold text-slate-900">{label}</span>
+      <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+        {label}
+      </span>
       <input
         type={type}
         value={value}
@@ -523,9 +529,11 @@ function TextField({
         max={max}
         step={step}
         disabled={disabled}
-        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 disabled:cursor-not-allowed disabled:bg-slate-100"
+        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 disabled:cursor-not-allowed disabled:bg-slate-100 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-100 dark:focus:border-indigo-400 dark:focus:ring-indigo-500/20 dark:disabled:bg-slate-800/30"
       />
-      {help ? <p className="text-xs text-slate-500">{help}</p> : null}
+      {help ? (
+        <p className="text-xs text-slate-500 dark:text-slate-400">{help}</p>
+      ) : null}
     </label>
   );
 }
@@ -540,15 +548,19 @@ function SelectField({
 }) {
   return (
     <label className="block space-y-1.5">
-      <span className="text-sm font-semibold text-slate-900">{label}</span>
+      <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+        {label}
+      </span>
       {description ? (
-        <p className="text-xs leading-relaxed text-slate-500">{description}</p>
+        <p className="text-xs leading-relaxed text-slate-500 dark:text-slate-400">
+          {description}
+        </p>
       ) : null}
       <select
         value={value}
         onChange={onChange}
         disabled={disabled}
-        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 disabled:cursor-not-allowed disabled:bg-slate-100"
+        className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 disabled:cursor-not-allowed disabled:bg-slate-100 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-100 dark:focus:border-indigo-400 dark:focus:ring-indigo-500/20 dark:disabled:bg-slate-800/30"
       >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
@@ -562,16 +574,20 @@ function SelectField({
 
 function StatCard({ icon: Icon, label, value, hint }) {
   return (
-    <div className="rounded-3xl border border-white/10 bg-white/10 p-4 text-white shadow-lg shadow-slate-950/10 backdrop-blur">
+    <div className="rounded-3xl border border-white/10 bg-white/10 p-4 text-white shadow-lg shadow-slate-950/10 backdrop-blur dark:border-white/5 dark:bg-white/5">
       <div className="flex items-start justify-between gap-3">
         <div>
-          <p className="text-[11px] uppercase tracking-[0.22em] text-slate-300">
+          <p className="text-[11px] uppercase tracking-[0.22em] text-slate-300 dark:text-slate-400">
             {label}
           </p>
           <p className="mt-1 text-2xl font-semibold tracking-tight">{value}</p>
-          {hint ? <p className="mt-1 text-sm text-slate-300">{hint}</p> : null}
+          {hint ? (
+            <p className="mt-1 text-sm text-slate-300 dark:text-slate-400">
+              {hint}
+            </p>
+          ) : null}
         </div>
-        <div className="rounded-2xl bg-white/10 p-2 text-cyan-200">
+        <div className="rounded-2xl bg-white/10 p-2 text-cyan-200 dark:bg-white/5">
           <Icon className="h-5 w-5" />
         </div>
       </div>
@@ -590,15 +606,15 @@ function UploadStatus({ items, progress }) {
     <motion.div
       initial={{ opacity: 0, y: -16 }}
       animate={{ opacity: 1, y: 0 }}
-      className="fixed right-4 top-4 z-50 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/10"
+      className="fixed right-4 top-4 z-50 w-[calc(100vw-2rem)] max-w-sm overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-2xl shadow-slate-900/10 dark:border-slate-700/50 dark:bg-slate-800 dark:shadow-slate-950/30"
     >
-      <div className="bg-slate-950 px-4 py-3 text-white">
+      <div className="bg-slate-950 px-4 py-3 text-white dark:bg-slate-900">
         <div className="flex items-center justify-between gap-3">
           <h3 className="flex items-center gap-2 text-sm font-semibold">
             <Loader2 className="h-4 w-4 animate-spin" />
             Upload queue
           </h3>
-          <span className="text-xs text-slate-300">
+          <span className="text-xs text-slate-300 dark:text-slate-400">
             {completedCount}/{items.length}
           </span>
         </div>
@@ -610,45 +626,47 @@ function UploadStatus({ items, progress }) {
           return (
             <div
               key={upload.id}
-              className="border-b border-slate-100 p-3 last:border-b-0"
+              className="border-b border-slate-100 p-3 last:border-b-0 dark:border-slate-700/50"
             >
               <div className="mb-2 flex items-start justify-between gap-3">
                 <div className="min-w-0">
-                  <p className="truncate text-sm font-medium text-slate-900">
+                  <p className="truncate text-sm font-medium text-slate-900 dark:text-slate-100">
                     {upload.name}
                   </p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-slate-500 dark:text-slate-400">
                     {formatBytes(upload.size)}
                   </p>
                 </div>
                 {upload.status === "uploading" ? (
-                  <Clock className="h-4 w-4 flex-none text-indigo-500" />
+                  <Clock className="h-4 w-4 flex-none text-indigo-500 dark:text-indigo-400" />
                 ) : null}
                 {upload.status === "completed" ? (
-                  <CheckCircle className="h-4 w-4 flex-none text-emerald-500" />
+                  <CheckCircle className="h-4 w-4 flex-none text-emerald-500 dark:text-emerald-400" />
                 ) : null}
                 {upload.status === "error" ? (
-                  <AlertTriangle className="h-4 w-4 flex-none text-red-500" />
+                  <AlertTriangle className="h-4 w-4 flex-none text-red-500 dark:text-red-400" />
                 ) : null}
               </div>
 
               {upload.status === "uploading" ? (
                 <div>
-                  <div className="h-2 overflow-hidden rounded-full bg-slate-200">
+                  <div className="h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
                     <motion.div
                       initial={{ width: 0 }}
                       animate={{ width: `${barValue}%` }}
-                      className="h-2 rounded-full bg-indigo-600"
+                      className="h-2 rounded-full bg-indigo-600 dark:bg-indigo-500"
                     />
                   </div>
-                  <p className="mt-1 text-xs text-slate-500">
+                  <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
                     {Math.round(barValue)}% - preparing image
                   </p>
                 </div>
               ) : null}
 
               {upload.status === "error" ? (
-                <p className="text-xs text-red-600">{upload.error}</p>
+                <p className="text-xs text-red-600 dark:text-red-400">
+                  {upload.error}
+                </p>
               ) : null}
             </div>
           );
@@ -1257,970 +1275,978 @@ export default function ImageToPDF() {
     : "Drag files here or use the button to start the queue.";
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
-      <div className="text-slate-900">
-      <UploadStatus items={uploadingImages} progress={uploadProgress} />
+    <div>
+      <div className="text-slate-900 dark:text-slate-100">
+        <UploadStatus items={uploadingImages} progress={uploadProgress} />
 
-      <section className="relative overflow-hidden bg-slate-950 text-white min-h-screen flex items-center pt-16 md:pt-0">
-        <div className="absolute inset-0">
-          <div className="absolute -left-16 top-8 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
-          <div className="absolute right-0 top-14 h-80 w-80 rounded-full bg-emerald-500/20 blur-3xl" />
-          <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
-        </div>
-
-        <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
-          <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-cyan-200">
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              Browser-only
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              Private by design
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              Metadata aware
-            </span>
-            <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
-              Batch friendly
-            </span>
+        <section className="relative overflow-hidden bg-slate-950 text-white min-h-screen flex items-center pt-16 md:pt-0 dark:bg-slate-950">
+          <div className="absolute inset-0">
+            <div className="absolute -left-16 top-8 h-72 w-72 rounded-full bg-cyan-500/20 blur-3xl" />
+            <div className="absolute right-0 top-14 h-80 w-80 rounded-full bg-emerald-500/20 blur-3xl" />
+            <div className="absolute inset-x-0 bottom-0 h-px bg-white/10" />
           </div>
 
-          <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
-            <div>
-              <h1 className="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
-                Image to PDF, rebuilt for a more polished workflow.
-              </h1>
-              <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
-                Convert images into professional PDFs with presets, metadata,
-                smarter compression, page numbers, custom sizes, and a cleaner
-                layout that feels like a real production tool instead of a form.
-              </p>
-
-              <div className="mt-8 flex flex-wrap gap-3">
-                <button
-                  type="button"
-                  onClick={openFilePicker}
-                  disabled={hasActiveUploads || isConverting}
-                  className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  <Upload className="h-4 w-4" />
-                  Add images
-                </button>
-                <button
-                  type="button"
-                  onClick={convertToPDF}
-                  disabled={
-                    isConverting || hasActiveUploads || images.length === 0
-                  }
-                  className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50"
-                >
-                  {isConverting ? (
-                    <Loader2 className="h-4 w-4 animate-spin" />
-                  ) : (
-                    <Download className="h-4 w-4" />
-                  )}
-                  Convert to PDF
-                </button>
-              </div>
+          <div className="relative mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
+            <div className="flex flex-wrap items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-cyan-200">
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Browser-only
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Private by design
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Metadata aware
+              </span>
+              <span className="rounded-full border border-white/10 bg-white/5 px-3 py-1">
+                Batch friendly
+              </span>
             </div>
 
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-              <StatCard
-                icon={FileImage}
-                label="Images"
-                value={images.length.toString().padStart(2, "0")}
-                hint="Ready to place in the PDF."
-              />
-              <StatCard
-                icon={ShieldCheck}
-                label="Saved"
-                value={formatBytes(savedBytes)}
-                hint="Potential space saved by preprocessing."
-              />
-              <StatCard
-                icon={LayoutGrid}
-                label="Preset"
-                value={currentPresetLabel}
-                hint="Switch between photo, document, compact, and poster."
-              />
-            </div>
-          </div>
-        </div>
-      </section>
+            <div className="mt-8 grid gap-8 lg:grid-cols-[1.2fr_0.8fr] lg:items-end">
+              <div>
+                <h1 className="max-w-3xl text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+                  Image to PDF, rebuilt for a more polished workflow.
+                </h1>
+                <p className="mt-5 max-w-2xl text-base leading-7 text-slate-300 sm:text-lg">
+                  Convert images into professional PDFs with presets, metadata,
+                  smarter compression, page numbers, custom sizes, and a cleaner
+                  layout that feels like a real production tool instead of a
+                  form.
+                </p>
 
-      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-        {notice ? (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            className={`mb-6 flex items-start justify-between gap-4 rounded-3xl border px-4 py-3 ${
-              notice.kind === "success"
-                ? "border-emerald-200 bg-emerald-50 text-emerald-900"
-                : notice.kind === "error"
-                  ? "border-red-200 bg-red-50 text-red-900"
-                  : "border-sky-200 bg-sky-50 text-sky-900"
-            }`}
-          >
-            <div className="flex items-start gap-3">
-              <NoticeIcon className="mt-0.5 h-5 w-5 flex-none" />
-              <p className="text-sm font-medium">{notice.text}</p>
-            </div>
-            <button
-              type="button"
-              onClick={() => setNotice(null)}
-              className="rounded-full p-1 transition hover:bg-black/5"
-            >
-              <X className="h-4 w-4" />
-            </button>
-          </motion.div>
-        ) : null}
-
-        <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
-          <motion.aside
-            initial={{ opacity: 0, x: -18 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-6"
-          >
-            <div className="sticky top-6 space-y-6">
-              <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/5">
-                <div className="mb-4 flex items-start justify-between gap-3">
-                  <div>
-                    <h2 className="text-xl font-semibold tracking-tight">
-                      Settings
-                    </h2>
-                    <p className="mt-1 text-sm text-slate-500">
-                      Tune the basics here, then open Advance Options for the
-                      rest.
-                    </p>
-                  </div>
+                <div className="mt-8 flex flex-wrap gap-3">
                   <button
                     type="button"
-                    onClick={resetSettings}
-                    className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-50"
+                    onClick={openFilePicker}
+                    disabled={hasActiveUploads || isConverting}
+                    className="inline-flex items-center gap-2 rounded-full bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 shadow-lg shadow-cyan-500/20 transition hover:bg-cyan-300 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-cyan-500 dark:text-slate-950 dark:hover:bg-cyan-400"
                   >
-                    Reset
+                    <Upload className="h-4 w-4" />
+                    Add images
+                  </button>
+                  <button
+                    type="button"
+                    onClick={convertToPDF}
+                    disabled={
+                      isConverting || hasActiveUploads || images.length === 0
+                    }
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/10 px-5 py-3 text-sm font-semibold text-white transition hover:bg-white/15 disabled:cursor-not-allowed disabled:opacity-50 dark:border-white/10 dark:bg-white/5 dark:hover:bg-white/10"
+                  >
+                    {isConverting ? (
+                      <Loader2 className="h-4 w-4 animate-spin" />
+                    ) : (
+                      <Download className="h-4 w-4" />
+                    )}
+                    Convert to PDF
                   </button>
                 </div>
+              </div>
 
-                <div className="space-y-5">
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <SlidersHorizontal className="h-4 w-4 text-slate-500" />
-                      <p className="text-sm font-semibold text-slate-900">
-                        Layout
+              <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                <StatCard
+                  icon={FileImage}
+                  label="Images"
+                  value={images.length.toString().padStart(2, "0")}
+                  hint="Ready to place in the PDF."
+                />
+                <StatCard
+                  icon={ShieldCheck}
+                  label="Saved"
+                  value={formatBytes(savedBytes)}
+                  hint="Potential space saved by preprocessing."
+                />
+                <StatCard
+                  icon={LayoutGrid}
+                  label="Preset"
+                  value={currentPresetLabel}
+                  hint="Switch between photo, document, compact, and poster."
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
+          {notice ? (
+            <motion.div
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              className={`mb-6 flex items-start justify-between gap-4 rounded-3xl border px-4 py-3 ${
+                notice.kind === "success"
+                  ? "border-emerald-200 bg-emerald-50 text-emerald-900 dark:border-emerald-800/40 dark:bg-emerald-950/30 dark:text-emerald-300"
+                  : notice.kind === "error"
+                    ? "border-red-200 bg-red-50 text-red-900 dark:border-red-800/40 dark:bg-red-950/30 dark:text-red-300"
+                    : "border-sky-200 bg-sky-50 text-sky-900 dark:border-sky-800/40 dark:bg-sky-950/30 dark:text-sky-300"
+              }`}
+            >
+              <div className="flex items-start gap-3">
+                <NoticeIcon className="mt-0.5 h-5 w-5 flex-none" />
+                <p className="text-sm font-medium">{notice.text}</p>
+              </div>
+              <button
+                type="button"
+                onClick={() => setNotice(null)}
+                className="rounded-full p-1 transition hover:bg-black/5 dark:hover:bg-white/5"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </motion.div>
+          ) : null}
+
+          <div className="grid gap-6 xl:grid-cols-[360px_minmax(0,1fr)]">
+            <motion.aside
+              initial={{ opacity: 0, x: -18 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
+            >
+              <div className="sticky top-6 space-y-6">
+                <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-xl shadow-slate-900/5 dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-slate-950/30">
+                  <div className="mb-4 flex items-start justify-between gap-3">
+                    <div>
+                      <h2 className="text-xl font-semibold tracking-tight dark:text-slate-100">
+                        Settings
+                      </h2>
+                      <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+                        Tune the basics here, then open Advance Options for the
+                        rest.
                       </p>
                     </div>
+                    <button
+                      type="button"
+                      onClick={resetSettings}
+                      className="rounded-full border border-slate-200 px-3 py-1.5 text-xs font-medium text-slate-600 transition hover:bg-slate-50 dark:border-slate-700/50 dark:text-slate-400 dark:hover:bg-slate-700/30"
+                    >
+                      Reset
+                    </button>
+                  </div>
 
-                    <div className="space-y-3">
-                      <label className="block space-y-1.5">
-                        <span className="text-sm font-semibold text-slate-900">
-                          PDF filename
-                        </span>
-                        <input
-                          type="text"
+                  <div className="space-y-5">
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <SlidersHorizontal className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          Layout
+                        </p>
+                      </div>
+
+                      <div className="space-y-3">
+                        <TextField
+                          label="PDF filename"
                           value={settings.outputName}
                           onChange={(event) =>
                             updateSetting("outputName", event.target.value)
                           }
                           placeholder="image-to-pdf"
-                          className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
                         />
-                      </label>
+
+                        <label className="block space-y-1.5">
+                          <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                            Page size
+                          </span>
+                          <select
+                            value={settings.pageSize}
+                            onChange={(event) =>
+                              updateSetting("pageSize", event.target.value)
+                            }
+                            className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-100 dark:focus:border-indigo-400 dark:focus:ring-indigo-500/20"
+                          >
+                            <option value="image">
+                              Match image dimensions
+                            </option>
+                            <option value="A4">A4</option>
+                            <option value="A5">A5</option>
+                            <option value="A3">A3</option>
+                            <option value="Letter">Letter</option>
+                            <option value="Legal">Legal</option>
+                            <option value="Square">Square</option>
+                            <option value="custom">Custom size</option>
+                          </select>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                            PDFCraft-inspired page sizing with image-match and
+                            print-ready presets.
+                          </p>
+                        </label>
+
+                        {settings.pageSize === "custom" ? (
+                          <div className="grid grid-cols-2 gap-3">
+                            <TextField
+                              label="Width (mm)"
+                              type="number"
+                              value={settings.customWidth}
+                              min={10}
+                              step={1}
+                              onChange={(event) =>
+                                updateSetting(
+                                  "customWidth",
+                                  Number(event.target.value),
+                                )
+                              }
+                            />
+                            <TextField
+                              label="Height (mm)"
+                              type="number"
+                              value={settings.customHeight}
+                              min={10}
+                              step={1}
+                              onChange={(event) =>
+                                updateSetting(
+                                  "customHeight",
+                                  Number(event.target.value),
+                                )
+                              }
+                            />
+                          </div>
+                        ) : null}
+                      </div>
+                    </div>
+
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-2">
+                        <Sparkles className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                        <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          Basics
+                        </p>
+                      </div>
 
                       <label className="block space-y-1.5">
-                        <span className="text-sm font-semibold text-slate-900">
-                          Page size
+                        <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          Margin: {settings.margin} mm
                         </span>
-                        <select
-                          value={settings.pageSize}
+                        <input
+                          type="range"
+                          min="0"
+                          max="24"
+                          value={settings.margin}
                           onChange={(event) =>
-                            updateSetting("pageSize", event.target.value)
+                            updateSetting("margin", Number(event.target.value))
                           }
-                          className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-2.5 text-sm text-slate-900 outline-none transition focus:border-indigo-500 focus:ring-4 focus:ring-indigo-100"
-                        >
-                          <option value="image">Match image dimensions</option>
-                          <option value="A4">A4</option>
-                          <option value="A5">A5</option>
-                          <option value="A3">A3</option>
-                          <option value="Letter">Letter</option>
-                          <option value="Legal">Legal</option>
-                          <option value="Square">Square</option>
-                          <option value="custom">Custom size</option>
-                        </select>
-                        <p className="text-xs text-slate-500">
-                          PDFCraft-inspired page sizing with image-match and
-                          print-ready presets.
+                          className="w-full accent-indigo-500 dark:accent-indigo-400"
+                        />
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          Creates breathing room around the image and page
+                          number footer.
                         </p>
                       </label>
 
-                      {settings.pageSize === "custom" ? (
-                        <div className="grid grid-cols-2 gap-3">
-                          <TextField
-                            label="Width (mm)"
-                            type="number"
-                            value={settings.customWidth}
-                            min={10}
-                            step={1}
+                      <label className="block space-y-1.5">
+                        <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          Quality: {Math.round(settings.quality * 100)}%
+                        </span>
+                        <input
+                          type="range"
+                          min="0.5"
+                          max="1"
+                          step="0.01"
+                          value={settings.quality}
+                          onChange={(event) =>
+                            updateSetting("quality", Number(event.target.value))
+                          }
+                          className="w-full accent-indigo-500 dark:accent-indigo-400"
+                        />
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          Affects upload compression and JPEG export quality.
+                        </p>
+                      </label>
+
+                      <button
+                        type="button"
+                        onClick={() => setShowAdvanceOptions((prev) => !prev)}
+                        className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:bg-slate-100 dark:border-slate-700/50 dark:bg-slate-800/30 dark:hover:bg-slate-700/30"
+                      >
+                        <div className="text-left">
+                          <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                            Advance Options
+                          </p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                            Orientation, fit, color, compression, metadata, and
+                            PDF extras.
+                          </p>
+                        </div>
+                        {showAdvanceOptions ? (
+                          <ChevronUp className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                        ) : (
+                          <ChevronDown className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                        )}
+                      </button>
+
+                      {showAdvanceOptions ? (
+                        <div className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-800/30">
+                          <SelectField
+                            label="Quick presets"
+                            description="Pick a ready-made setup, then adjust the details below."
+                            value={settings.quickPreset}
+                            onChange={handleQuickPresetChange}
+                            options={PRESETS.map((preset) => ({
+                              value: preset.id,
+                              label: preset.title,
+                            }))}
+                          />
+
+                          <SelectField
+                            label="Orientation"
+                            description="Use auto to match the page to the image whenever possible."
+                            value={settings.orientation}
+                            onChange={(event) =>
+                              updateSetting("orientation", event.target.value)
+                            }
+                            disabled={settings.pageSize === "image"}
+                            options={[
+                              {
+                                value: "auto",
+                                label: "Auto",
+                              },
+                              {
+                                value: "portrait",
+                                label: "Portrait",
+                              },
+                              {
+                                value: "landscape",
+                                label: "Landscape",
+                              },
+                            ]}
+                          />
+
+                          <SelectField
+                            label="Fit mode"
+                            description="Contain keeps the full image. Cover fills the page. Stretch can distort."
+                            value={settings.fitMode}
+                            onChange={(event) =>
+                              updateSetting("fitMode", event.target.value)
+                            }
+                            options={[
+                              {
+                                value: "contain",
+                                label: "Contain",
+                              },
+                              {
+                                value: "cover",
+                                label: "Cover",
+                              },
+                              {
+                                value: "stretch",
+                                label: "Stretch",
+                              },
+                            ]}
+                          />
+
+                          <SelectField
+                            label="Color mode"
+                            description="Color, grayscale, or mono for document-style exports."
+                            value={settings.colorMode}
+                            onChange={(event) =>
+                              updateSetting("colorMode", event.target.value)
+                            }
+                            options={[
+                              {
+                                value: "color",
+                                label: "Color",
+                              },
+                              {
+                                value: "grayscale",
+                                label: "Gray",
+                              },
+                              {
+                                value: "mono",
+                                label: "Mono",
+                              },
+                            ]}
+                          />
+
+                          {settings.colorMode === "mono" ? (
+                            <label className="block space-y-1.5">
+                              <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                                Mono threshold: {settings.bwThreshold}
+                              </span>
+                              <input
+                                type="range"
+                                min="80"
+                                max="220"
+                                value={settings.bwThreshold}
+                                onChange={(event) =>
+                                  updateSetting(
+                                    "bwThreshold",
+                                    Number(event.target.value),
+                                  )
+                                }
+                                className="w-full accent-indigo-500 dark:accent-indigo-400"
+                              />
+                              <p className="text-xs text-slate-500 dark:text-slate-400">
+                                Lower values keep more ink; higher values
+                                sharpen the background.
+                              </p>
+                            </label>
+                          ) : null}
+
+                          <SelectField
+                            label="Compression profile"
+                            description="Choose how hard the browser should optimize the images before export."
+                            value={settings.processorProfile}
                             onChange={(event) =>
                               updateSetting(
-                                "customWidth",
-                                Number(event.target.value),
+                                "processorProfile",
+                                event.target.value,
+                              )
+                            }
+                            options={[
+                              {
+                                value: "quality",
+                                label: "High",
+                              },
+                              {
+                                value: "balanced",
+                                label: "Balanced",
+                              },
+                              {
+                                value: "compact",
+                                label: "Compact",
+                              },
+                            ]}
+                          />
+
+                          <ToggleSwitch
+                            label="Auto compress uploads"
+                            description="Resize and compress images in the browser before PDF generation."
+                            checked={settings.optimizeUploads}
+                            onToggle={() =>
+                              updateSetting(
+                                "optimizeUploads",
+                                !settings.optimizeUploads,
                               )
                             }
                           />
-                          <TextField
-                            label="Height (mm)"
-                            type="number"
-                            value={settings.customHeight}
-                            min={10}
-                            step={1}
-                            onChange={(event) =>
+
+                          <ToggleSwitch
+                            label="Auto rotate"
+                            description="Rotate images to better match the chosen page orientation."
+                            checked={settings.autoRotate}
+                            onToggle={() =>
+                              updateSetting("autoRotate", !settings.autoRotate)
+                            }
+                          />
+
+                          <ToggleSwitch
+                            label="Page transparency"
+                            description="Keep PNG alpha when possible instead of flattening everything."
+                            checked={settings.preserveTransparency}
+                            onToggle={() =>
                               updateSetting(
-                                "customHeight",
-                                Number(event.target.value),
+                                "preserveTransparency",
+                                !settings.preserveTransparency,
                               )
                             }
                           />
+
+                          <ToggleSwitch
+                            label="Page numbers"
+                            description="Add a small footer badge on every PDF page."
+                            checked={settings.pageNumbers}
+                            onToggle={() =>
+                              updateSetting(
+                                "pageNumbers",
+                                !settings.pageNumbers,
+                              )
+                            }
+                          />
+
+                          <button
+                            type="button"
+                            onClick={() =>
+                              setShowMetadataOptions((prev) => !prev)
+                            }
+                            className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 transition hover:bg-slate-50 dark:border-slate-700/50 dark:bg-slate-800/30 dark:hover:bg-slate-700/30"
+                          >
+                            <div className="text-left">
+                              <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                                PDF metadata
+                              </p>
+                              <p className="text-xs text-slate-500 dark:text-slate-400">
+                                Add title, author, subject, keywords, and
+                                creator.
+                              </p>
+                            </div>
+                            {showMetadataOptions ? (
+                              <ChevronUp className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                            ) : (
+                              <ChevronDown className="h-4 w-4 text-slate-500 dark:text-slate-400" />
+                            )}
+                          </button>
+
+                          {showMetadataOptions ? (
+                            <div className="rounded-2xl border border-slate-200 bg-white p-4 dark:border-slate-700/50 dark:bg-slate-800/50">
+                              <div className="grid gap-3">
+                                <TextField
+                                  label="Title"
+                                  value={settings.title}
+                                  onChange={(event) =>
+                                    updateSetting("title", event.target.value)
+                                  }
+                                  placeholder="Image to PDF"
+                                />
+                                <TextField
+                                  label="Author"
+                                  value={settings.author}
+                                  onChange={(event) =>
+                                    updateSetting("author", event.target.value)
+                                  }
+                                  placeholder="Your name"
+                                />
+                                <TextField
+                                  label="Subject"
+                                  value={settings.subject}
+                                  onChange={(event) =>
+                                    updateSetting("subject", event.target.value)
+                                  }
+                                  placeholder="Document subject"
+                                />
+                                <TextField
+                                  label="Keywords"
+                                  value={settings.keywords}
+                                  onChange={(event) =>
+                                    updateSetting(
+                                      "keywords",
+                                      event.target.value,
+                                    )
+                                  }
+                                  placeholder="image, pdf, archive"
+                                />
+                                <TextField
+                                  label="Creator"
+                                  value={settings.creator}
+                                  onChange={(event) =>
+                                    updateSetting("creator", event.target.value)
+                                  }
+                                  placeholder="ImageToPDF"
+                                />
+                              </div>
+                            </div>
+                          ) : null}
                         </div>
                       ) : null}
                     </div>
                   </div>
 
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-2">
-                      <Sparkles className="h-4 w-4 text-slate-500" />
-                      <p className="text-sm font-semibold text-slate-900">
-                        Basics
-                      </p>
-                    </div>
-
-                    <label className="block space-y-1.5">
-                      <span className="text-sm font-semibold text-slate-900">
-                        Margin: {settings.margin} mm
-                      </span>
-                      <input
-                        type="range"
-                        min="0"
-                        max="24"
-                        value={settings.margin}
-                        onChange={(event) =>
-                          updateSetting("margin", Number(event.target.value))
-                        }
-                        className="w-full"
-                      />
-                      <p className="text-xs text-slate-500">
-                        Creates breathing room around the image and page number
-                        footer.
-                      </p>
-                    </label>
-
-                    <label className="block space-y-1.5">
-                      <span className="text-sm font-semibold text-slate-900">
-                        Quality: {Math.round(settings.quality * 100)}%
-                      </span>
-                      <input
-                        type="range"
-                        min="0.5"
-                        max="1"
-                        step="0.01"
-                        value={settings.quality}
-                        onChange={(event) =>
-                          updateSetting("quality", Number(event.target.value))
-                        }
-                        className="w-full"
-                      />
-                      <p className="text-xs text-slate-500">
-                        Affects upload compression and JPEG export quality.
-                      </p>
-                    </label>
-
-                    <button
-                      type="button"
-                      onClick={() => setShowAdvanceOptions((prev) => !prev)}
-                      className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 transition hover:bg-slate-100"
-                    >
-                      <div className="text-left">
-                        <p className="text-sm font-semibold text-slate-900">
-                          Advance Options
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          Orientation, fit, color, compression, metadata, and
-                          PDF extras.
-                        </p>
-                      </div>
-                      {showAdvanceOptions ? (
-                        <ChevronUp className="h-4 w-4 text-slate-500" />
-                      ) : (
-                        <ChevronDown className="h-4 w-4 text-slate-500" />
-                      )}
-                    </button>
-
-                    {showAdvanceOptions ? (
-                      <div className="space-y-4 rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                        <SelectField
-                          label="Quick presets"
-                          description="Pick a ready-made setup, then adjust the details below."
-                          value={settings.quickPreset}
-                          onChange={handleQuickPresetChange}
-                          options={PRESETS.map((preset) => ({
-                            value: preset.id,
-                            label: preset.title,
-                          }))}
-                        />
-
-                        <SelectField
-                          label="Orientation"
-                          description="Use auto to match the page to the image whenever possible."
-                          value={settings.orientation}
-                          onChange={(event) =>
-                            updateSetting("orientation", event.target.value)
-                          }
-                          disabled={settings.pageSize === "image"}
-                          options={[
-                            {
-                              value: "auto",
-                              label: "Auto",
-                            },
-                            {
-                              value: "portrait",
-                              label: "Portrait",
-                            },
-                            {
-                              value: "landscape",
-                              label: "Landscape",
-                            },
-                          ]}
-                        />
-
-                        <SelectField
-                          label="Fit mode"
-                          description="Contain keeps the full image. Cover fills the page. Stretch can distort."
-                          value={settings.fitMode}
-                          onChange={(event) =>
-                            updateSetting("fitMode", event.target.value)
-                          }
-                          options={[
-                            {
-                              value: "contain",
-                              label: "Contain",
-                            },
-                            {
-                              value: "cover",
-                              label: "Cover",
-                            },
-                            {
-                              value: "stretch",
-                              label: "Stretch",
-                            },
-                          ]}
-                        />
-
-                        <SelectField
-                          label="Color mode"
-                          description="Color, grayscale, or mono for document-style exports."
-                          value={settings.colorMode}
-                          onChange={(event) =>
-                            updateSetting("colorMode", event.target.value)
-                          }
-                          options={[
-                            {
-                              value: "color",
-                              label: "Color",
-                            },
-                            {
-                              value: "grayscale",
-                              label: "Gray",
-                            },
-                            {
-                              value: "mono",
-                              label: "Mono",
-                            },
-                          ]}
-                        />
-
-                        {settings.colorMode === "mono" ? (
-                          <label className="block space-y-1.5">
-                            <span className="text-sm font-semibold text-slate-900">
-                              Mono threshold: {settings.bwThreshold}
-                            </span>
-                            <input
-                              type="range"
-                              min="80"
-                              max="220"
-                              value={settings.bwThreshold}
-                              onChange={(event) =>
-                                updateSetting(
-                                  "bwThreshold",
-                                  Number(event.target.value),
-                                )
-                              }
-                              className="w-full"
-                            />
-                            <p className="text-xs text-slate-500">
-                              Lower values keep more ink; higher values sharpen
-                              the background.
-                            </p>
-                          </label>
-                        ) : null}
-
-                        <SelectField
-                          label="Compression profile"
-                          description="Choose how hard the browser should optimize the images before export."
-                          value={settings.processorProfile}
-                          onChange={(event) =>
-                            updateSetting(
-                              "processorProfile",
-                              event.target.value,
-                            )
-                          }
-                          options={[
-                            {
-                              value: "quality",
-                              label: "High",
-                            },
-                            {
-                              value: "balanced",
-                              label: "Balanced",
-                            },
-                            {
-                              value: "compact",
-                              label: "Compact",
-                            },
-                          ]}
-                        />
-
-                        <ToggleSwitch
-                          label="Auto compress uploads"
-                          description="Resize and compress images in the browser before PDF generation."
-                          checked={settings.optimizeUploads}
-                          onToggle={() =>
-                            updateSetting(
-                              "optimizeUploads",
-                              !settings.optimizeUploads,
-                            )
-                          }
-                        />
-
-                        <ToggleSwitch
-                          label="Auto rotate"
-                          description="Rotate images to better match the chosen page orientation."
-                          checked={settings.autoRotate}
-                          onToggle={() =>
-                            updateSetting("autoRotate", !settings.autoRotate)
-                          }
-                        />
-
-                        <ToggleSwitch
-                          label="Page transparency"
-                          description="Keep PNG alpha when possible instead of flattening everything."
-                          checked={settings.preserveTransparency}
-                          onToggle={() =>
-                            updateSetting(
-                              "preserveTransparency",
-                              !settings.preserveTransparency,
-                            )
-                          }
-                        />
-
-                        <ToggleSwitch
-                          label="Page numbers"
-                          description="Add a small footer badge on every PDF page."
-                          checked={settings.pageNumbers}
-                          onToggle={() =>
-                            updateSetting("pageNumbers", !settings.pageNumbers)
-                          }
-                        />
-
-                        <button
-                          type="button"
-                          onClick={() =>
-                            setShowMetadataOptions((prev) => !prev)
-                          }
-                          className="flex w-full items-center justify-between rounded-2xl border border-slate-200 bg-white px-4 py-3 transition hover:bg-slate-50"
-                        >
-                          <div className="text-left">
-                            <p className="text-sm font-semibold text-slate-900">
-                              PDF metadata
-                            </p>
-                            <p className="text-xs text-slate-500">
-                              Add title, author, subject, keywords, and creator.
-                            </p>
-                          </div>
-                          {showMetadataOptions ? (
-                            <ChevronUp className="h-4 w-4 text-slate-500" />
-                          ) : (
-                            <ChevronDown className="h-4 w-4 text-slate-500" />
-                          )}
-                        </button>
-
-                        {showMetadataOptions ? (
-                          <div className="rounded-2xl border border-slate-200 bg-white p-4">
-                            <div className="grid gap-3">
-                              <TextField
-                                label="Title"
-                                value={settings.title}
-                                onChange={(event) =>
-                                  updateSetting("title", event.target.value)
-                                }
-                                placeholder="Image to PDF"
-                              />
-                              <TextField
-                                label="Author"
-                                value={settings.author}
-                                onChange={(event) =>
-                                  updateSetting("author", event.target.value)
-                                }
-                                placeholder="Your name"
-                              />
-                              <TextField
-                                label="Subject"
-                                value={settings.subject}
-                                onChange={(event) =>
-                                  updateSetting("subject", event.target.value)
-                                }
-                                placeholder="Document subject"
-                              />
-                              <TextField
-                                label="Keywords"
-                                value={settings.keywords}
-                                onChange={(event) =>
-                                  updateSetting("keywords", event.target.value)
-                                }
-                                placeholder="image, pdf, archive"
-                              />
-                              <TextField
-                                label="Creator"
-                                value={settings.creator}
-                                onChange={(event) =>
-                                  updateSetting("creator", event.target.value)
-                                }
-                                placeholder="ImageToPDF"
-                              />
-                            </div>
-                          </div>
-                        ) : null}
-                      </div>
-                    ) : null}
-                  </div>
-                </div>
-
-                <div className="mt-6 space-y-3">
-                  <button
-                    type="button"
-                    onClick={openFilePicker}
-                    disabled={hasActiveUploads || isConverting}
-                    className={`flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50`}
-                  >
-                    {hasActiveUploads ? (
-                      <>
-                        <Loader2 className="h-5 w-5 animate-spin" />
-                        Uploading {activeUploadCount} image(s)...
-                      </>
-                    ) : (
-                      <>
-                        <Plus className="h-5 w-5" />
-                        Add images
-                      </>
-                    )}
-                  </button>
-
-                  {images.length > 0 ? (
-                    <>
-                      <button
-                        type="button"
-                        onClick={clearAllImages}
-                        disabled={isConverting || hasActiveUploads}
-                        className="flex w-full items-center justify-center gap-2 rounded-2xl border border-red-200 bg-red-50 px-5 py-3 font-semibold text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        <Trash2 className="h-4 w-4" />
-                        Clear all ({images.length})
-                      </button>
-
-                      <button
-                        type="button"
-                        onClick={convertToPDF}
-                        disabled={isConverting || hasActiveUploads}
-                        className="flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-5 py-3 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        {isConverting ? (
-                          <>
-                            <Loader2 className="h-5 w-5 animate-spin" />
-                            Converting {images.length} page(s)...
-                          </>
-                        ) : (
-                          <>
-                            <Download className="h-5 w-5" />
-                            Convert to PDF
-                          </>
-                        )}
-                      </button>
-                    </>
-                  ) : null}
-                </div>
-              </div>
-            </div>
-          </motion.aside>
-
-          <motion.main
-            initial={{ opacity: 0, x: 18 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="space-y-6"
-          >
-            {isConverting ? (
-              <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5">
-                <div className="flex items-center justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-semibold text-slate-900">
-                      {exportStage || "Exporting"}
-                    </p>
-                    <p className="text-xs text-slate-500">
-                      This stays local in your browser. No uploads.
-                    </p>
-                  </div>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {exportProgress}%
-                  </span>
-                </div>
-                <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200">
-                  <motion.div
-                    initial={{ width: 0 }}
-                    animate={{ width: `${exportProgress}%` }}
-                    className="h-2 rounded-full bg-emerald-600"
-                  />
-                </div>
-              </div>
-            ) : null}
-
-            <div
-              onDragEnter={handleDragEnterFiles}
-              onDragOver={(event) => event.preventDefault()}
-              onDragLeave={handleDragLeaveFiles}
-              onDrop={handleFilesDrop}
-              className={`rounded-3xl border-2 border-dashed p-6 shadow-xl shadow-slate-900/5 transition-all ${
-                isDraggingFiles
-                  ? "border-cyan-400 bg-cyan-50"
-                  : "border-slate-200 bg-white"
-              }`}
-            >
-              {images.length === 0 && uploadingImages.length === 0 ? (
-                <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
-                  <div>
-                    <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600">
-                      <Sparkles className="h-3.5 w-3.5" />
-                      {dragDropHint}
-                    </div>
-                    <h3 className="mt-4 text-2xl font-semibold tracking-tight">
-                      Drop images here or use the button on the left.
-                    </h3>
-                    <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600">
-                      Build a PDF page by page, reorder your images, add
-                      document metadata, and choose whether you want print-ready
-                      output or compact sharing files.
-                    </p>
-
-                    <div className="mt-5 flex flex-wrap gap-2">
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                        Local processing
-                      </span>
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                        Drag to reorder
-                      </span>
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                        Page numbers
-                      </span>
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600">
-                        Metadata
-                      </span>
-                    </div>
-                  </div>
-
-                  <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5">
-                    <div className="flex items-center gap-3">
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white">
-                        <Upload className="h-5 w-5" />
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold text-slate-900">
-                          Start a batch
-                        </p>
-                        <p className="text-xs text-slate-500">
-                          Supports JPG, PNG, WebP, BMP, GIF, and SVG in modern
-                          browsers.
-                        </p>
-                      </div>
-                    </div>
+                  <div className="mt-6 space-y-3">
                     <button
                       type="button"
                       onClick={openFilePicker}
-                      className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300"
+                      disabled={hasActiveUploads || isConverting}
+                      className={`flex w-full items-center justify-center gap-2 rounded-2xl bg-slate-950 px-5 py-3 font-semibold text-white transition hover:bg-slate-800 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-700 dark:hover:bg-slate-600`}
                     >
-                      <FilePlus className="h-4 w-4" />
-                      Choose images
+                      {hasActiveUploads ? (
+                        <>
+                          <Loader2 className="h-5 w-5 animate-spin" />
+                          Uploading {activeUploadCount} image(s)...
+                        </>
+                      ) : (
+                        <>
+                          <Plus className="h-5 w-5" />
+                          Add images
+                        </>
+                      )}
                     </button>
+
+                    {images.length > 0 ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={clearAllImages}
+                          disabled={isConverting || hasActiveUploads}
+                          className="flex w-full items-center justify-center gap-2 rounded-2xl border border-red-200 bg-red-50 px-5 py-3 font-semibold text-red-700 transition hover:bg-red-100 disabled:cursor-not-allowed disabled:opacity-50 dark:border-red-800/40 dark:bg-red-950/30 dark:text-red-300 dark:hover:bg-red-900/30"
+                        >
+                          <Trash2 className="h-4 w-4" />
+                          Clear all ({images.length})
+                        </button>
+
+                        <button
+                          type="button"
+                          onClick={convertToPDF}
+                          disabled={isConverting || hasActiveUploads}
+                          className="flex w-full items-center justify-center gap-2 rounded-2xl bg-emerald-600 px-5 py-3 font-semibold text-white transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-emerald-500 dark:hover:bg-emerald-600"
+                        >
+                          {isConverting ? (
+                            <>
+                              <Loader2 className="h-5 w-5 animate-spin" />
+                              Converting {images.length} page(s)...
+                            </>
+                          ) : (
+                            <>
+                              <Download className="h-5 w-5" />
+                              Convert to PDF
+                            </>
+                          )}
+                        </button>
+                      </>
+                    ) : null}
                   </div>
                 </div>
-              ) : (
-                <>
-                  <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+              </div>
+            </motion.aside>
+
+            <motion.main
+              initial={{ opacity: 0, x: 18 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="space-y-6"
+            >
+              {isConverting ? (
+                <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5 dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-slate-950/30">
+                  <div className="flex items-center justify-between gap-4">
                     <div>
-                      <p className="text-sm font-medium text-slate-700">
-                        {images.length} image{images.length === 1 ? "" : "s"}{" "}
-                        ready
+                      <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                        {exportStage || "Exporting"}
                       </p>
-                      <p className="text-xs text-slate-500">
-                        Drag cards to reorder, then export when you are ready.
+                      <p className="text-xs text-slate-500 dark:text-slate-400">
+                        This stays local in your browser. No uploads.
                       </p>
                     </div>
-                    <div className="flex flex-wrap gap-2">
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {exportProgress}%
+                    </span>
+                  </div>
+                  <div className="mt-3 h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      animate={{ width: `${exportProgress}%` }}
+                      className="h-2 rounded-full bg-emerald-600 dark:bg-emerald-500"
+                    />
+                  </div>
+                </div>
+              ) : null}
+
+              <div
+                onDragEnter={handleDragEnterFiles}
+                onDragOver={(event) => event.preventDefault()}
+                onDragLeave={handleDragLeaveFiles}
+                onDrop={handleFilesDrop}
+                className={`rounded-3xl border-2 border-dashed p-6 shadow-xl shadow-slate-900/5 transition-all ${
+                  isDraggingFiles
+                    ? "border-cyan-400 bg-cyan-50 dark:border-cyan-500/50 dark:bg-cyan-950/20"
+                    : "border-slate-200 bg-white dark:border-slate-700/50 dark:bg-slate-800/50"
+                }`}
+              >
+                {images.length === 0 && uploadingImages.length === 0 ? (
+                  <div className="grid gap-6 lg:grid-cols-[1.2fr_0.8fr] lg:items-center">
+                    <div>
+                      <div className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-3 py-1 text-xs font-medium text-slate-600 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-400">
+                        <Sparkles className="h-3.5 w-3.5" />
+                        {dragDropHint}
+                      </div>
+                      <h3 className="mt-4 text-2xl font-semibold tracking-tight dark:text-slate-100">
+                        Drop images here or use the button on the left.
+                      </h3>
+                      <p className="mt-3 max-w-2xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+                        Build a PDF page by page, reorder your images, add
+                        document metadata, and choose whether you want
+                        print-ready output or compact sharing files.
+                      </p>
+
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                          Local processing
+                        </span>
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                          Drag to reorder
+                        </span>
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                          Page numbers
+                        </span>
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-medium text-slate-600 dark:bg-slate-800 dark:text-slate-400">
+                          Metadata
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="rounded-3xl border border-slate-200 bg-slate-50 p-5 dark:border-slate-700/50 dark:bg-slate-800/30">
+                      <div className="flex items-center gap-3">
+                        <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-slate-950 text-white dark:bg-slate-700">
+                          <Upload className="h-5 w-5" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                            Start a batch
+                          </p>
+                          <p className="text-xs text-slate-500 dark:text-slate-400">
+                            Supports JPG, PNG, WebP, BMP, GIF, and SVG in modern
+                            browsers.
+                          </p>
+                        </div>
+                      </div>
                       <button
                         type="button"
                         onClick={openFilePicker}
-                        disabled={hasActiveUploads || isConverting}
-                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
+                        className="mt-5 inline-flex w-full items-center justify-center gap-2 rounded-2xl bg-cyan-400 px-5 py-3 text-sm font-semibold text-slate-950 transition hover:bg-cyan-300 dark:bg-cyan-500 dark:text-slate-950 dark:hover:bg-cyan-400"
                       >
                         <FilePlus className="h-4 w-4" />
-                        Add more
-                      </button>
-                      <button
-                        type="button"
-                        onClick={sortImagesByName}
-                        disabled={isConverting || hasActiveUploads}
-                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        <LayoutGrid className="h-4 w-4" />
-                        Sort A-Z
-                      </button>
-                      <button
-                        type="button"
-                        onClick={reverseImages}
-                        disabled={isConverting || hasActiveUploads}
-                        className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                      >
-                        <RotateCw className="h-4 w-4" />
-                        Reverse
+                        Choose images
                       </button>
                     </div>
                   </div>
-
-                  <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
-                    <AnimatePresence>
-                      {images.map((image, index) => (
-                        <motion.div
-                          key={image.id}
-                          layout
-                          draggable={!isConverting && !hasActiveUploads}
-                          onDragStart={() => handleDragStart(index)}
-                          onDragOver={handleDragOver}
-                          onDrop={() => handleDrop(index)}
-                          onDragEnd={() => setDraggedIndex(null)}
-                          initial={{ opacity: 0, scale: 0.95 }}
-                          animate={{ opacity: 1, scale: 1 }}
-                          exit={{ opacity: 0, scale: 0.9 }}
-                          whileHover={{ scale: 1.01 }}
-                          className={`group overflow-hidden rounded-3xl border bg-white shadow-lg shadow-slate-900/5 transition ${
-                            draggedIndex === index
-                              ? "ring-2 ring-indigo-500"
-                              : "border-slate-200"
-                          } ${isConverting ? "cursor-not-allowed opacity-70" : "cursor-move"}`}
+                ) : (
+                  <>
+                    <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+                      <div>
+                        <p className="text-sm font-medium text-slate-700 dark:text-slate-300">
+                          {images.length} image
+                          {images.length === 1 ? "" : "s"} ready
+                        </p>
+                        <p className="text-xs text-slate-500 dark:text-slate-400">
+                          Drag cards to reorder, then export when you are ready.
+                        </p>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        <button
+                          type="button"
+                          onClick={openFilePicker}
+                          disabled={hasActiveUploads || isConverting}
+                          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
                         >
-                          <div className="relative bg-slate-100">
-                            <div className="relative h-56 overflow-hidden">
-                              <img
-                                src={image.preview}
-                                alt={image.name}
-                                className="h-full w-full object-contain"
-                                style={{
-                                  transform: `rotate(${image.rotation}deg) scale(${image.zoom}) scaleX(${
-                                    image.flipH ? -1 : 1
-                                  }) scaleY(${image.flipV ? -1 : 1})`,
-                                  transition: "transform 0.2s ease",
-                                }}
-                              />
+                          <FilePlus className="h-4 w-4" />
+                          Add more
+                        </button>
+                        <button
+                          type="button"
+                          onClick={sortImagesByName}
+                          disabled={isConverting || hasActiveUploads}
+                          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
+                        >
+                          <LayoutGrid className="h-4 w-4" />
+                          Sort A-Z
+                        </button>
+                        <button
+                          type="button"
+                          onClick={reverseImages}
+                          disabled={isConverting || hasActiveUploads}
+                          className="inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:bg-slate-700/50"
+                        >
+                          <RotateCw className="h-4 w-4" />
+                          Reverse
+                        </button>
+                      </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+                      <AnimatePresence>
+                        {images.map((image, index) => (
+                          <motion.div
+                            key={image.id}
+                            layout
+                            draggable={!isConverting && !hasActiveUploads}
+                            onDragStart={() => handleDragStart(index)}
+                            onDragOver={handleDragOver}
+                            onDrop={() => handleDrop(index)}
+                            onDragEnd={() => setDraggedIndex(null)}
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0.9 }}
+                            whileHover={{ scale: 1.01 }}
+                            className={`group overflow-hidden rounded-3xl border shadow-lg shadow-slate-900/5 transition ${
+                              draggedIndex === index
+                                ? "ring-2 ring-indigo-500 dark:ring-indigo-400"
+                                : "border-slate-200 dark:border-slate-700/50"
+                            } ${isConverting ? "cursor-not-allowed opacity-70" : "cursor-move"} bg-white dark:bg-slate-800/50`}
+                          >
+                            <div className="relative bg-slate-100 dark:bg-slate-800">
+                              <div className="relative h-56 overflow-hidden">
+                                <img
+                                  src={image.preview}
+                                  alt={image.name}
+                                  className="h-full w-full object-contain"
+                                  style={{
+                                    transform: `rotate(${image.rotation}deg) scale(${image.zoom}) scaleX(${
+                                      image.flipH ? -1 : 1
+                                    }) scaleY(${image.flipV ? -1 : 1})`,
+                                    transition: "transform 0.2s ease",
+                                  }}
+                                />
+                              </div>
+
+                              <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-slate-950/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur dark:bg-slate-900/80">
+                                <GripVertical className="h-3.5 w-3.5" />
+                                {index + 1}
+                              </div>
+
+                              <div className="absolute right-3 top-3 flex gap-1 opacity-0 transition group-hover:opacity-100">
+                                <button
+                                  type="button"
+                                  onClick={() => rotateImage(image.id)}
+                                  disabled={isConverting || hasActiveUploads}
+                                  className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-800 dark:hover:bg-slate-700"
+                                  title="Rotate"
+                                >
+                                  <RotateCw className="h-4 w-4 dark:text-slate-300" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => flipImage(image.id, "flipH")}
+                                  disabled={isConverting || hasActiveUploads}
+                                  className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-800 dark:hover:bg-slate-700"
+                                  title="Flip horizontal"
+                                >
+                                  <FlipHorizontal className="h-4 w-4 dark:text-slate-300" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => flipImage(image.id, "flipV")}
+                                  disabled={isConverting || hasActiveUploads}
+                                  className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-800 dark:hover:bg-slate-700"
+                                  title="Flip vertical"
+                                >
+                                  <FlipVertical className="h-4 w-4 dark:text-slate-300" />
+                                </button>
+                                <button
+                                  type="button"
+                                  onClick={() => removeImage(image.id)}
+                                  disabled={isConverting || hasActiveUploads}
+                                  className="rounded-xl bg-red-500 p-2 text-white shadow-md transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-red-600 dark:hover:bg-red-700"
+                                  title="Remove"
+                                >
+                                  <X className="h-4 w-4" />
+                                </button>
+                              </div>
+
+                              <div className="absolute bottom-3 right-3 flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
+                                <button
+                                  type="button"
+                                  onClick={() => zoomImage(image.id, "out")}
+                                  disabled={isConverting || hasActiveUploads}
+                                  className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-800 dark:hover:bg-slate-700"
+                                  title="Zoom out"
+                                >
+                                  <ZoomOut className="h-4 w-4 dark:text-slate-300" />
+                                </button>
+                                <span className="rounded-xl bg-white/95 px-2.5 py-1 text-xs font-semibold shadow-md dark:bg-slate-800/95 dark:text-slate-300">
+                                  {Math.round(image.zoom * 100)}%
+                                </span>
+                                <button
+                                  type="button"
+                                  onClick={() => zoomImage(image.id, "in")}
+                                  disabled={isConverting || hasActiveUploads}
+                                  className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50 dark:bg-slate-800 dark:hover:bg-slate-700"
+                                  title="Zoom in"
+                                >
+                                  <ZoomIn className="h-4 w-4 dark:text-slate-300" />
+                                </button>
+                              </div>
                             </div>
 
-                            <div className="absolute left-3 top-3 flex items-center gap-2 rounded-full bg-slate-950/80 px-3 py-1 text-xs font-semibold text-white backdrop-blur">
-                              <GripVertical className="h-3.5 w-3.5" />
-                              {index + 1}
-                            </div>
-
-                            <div className="absolute right-3 top-3 flex gap-1 opacity-0 transition group-hover:opacity-100">
-                              <button
-                                type="button"
-                                onClick={() => rotateImage(image.id)}
-                                disabled={isConverting || hasActiveUploads}
-                                className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                                title="Rotate"
-                              >
-                                <RotateCw className="h-4 w-4" />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => flipImage(image.id, "flipH")}
-                                disabled={isConverting || hasActiveUploads}
-                                className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                                title="Flip horizontal"
-                              >
-                                <FlipHorizontal className="h-4 w-4" />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => flipImage(image.id, "flipV")}
-                                disabled={isConverting || hasActiveUploads}
-                                className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                                title="Flip vertical"
-                              >
-                                <FlipVertical className="h-4 w-4" />
-                              </button>
-                              <button
-                                type="button"
-                                onClick={() => removeImage(image.id)}
-                                disabled={isConverting || hasActiveUploads}
-                                className="rounded-xl bg-red-500 p-2 text-white shadow-md transition hover:bg-red-600 disabled:cursor-not-allowed disabled:opacity-50"
-                                title="Remove"
-                              >
-                                <X className="h-4 w-4" />
-                              </button>
-                            </div>
-
-                            <div className="absolute bottom-3 right-3 flex items-center gap-1 opacity-0 transition group-hover:opacity-100">
-                              <button
-                                type="button"
-                                onClick={() => zoomImage(image.id, "out")}
-                                disabled={isConverting || hasActiveUploads}
-                                className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                                title="Zoom out"
-                              >
-                                <ZoomOut className="h-4 w-4" />
-                              </button>
-                              <span className="rounded-xl bg-white/95 px-2.5 py-1 text-xs font-semibold shadow-md">
-                                {Math.round(image.zoom * 100)}%
-                              </span>
-                              <button
-                                type="button"
-                                onClick={() => zoomImage(image.id, "in")}
-                                disabled={isConverting || hasActiveUploads}
-                                className="rounded-xl bg-white p-2 shadow-md transition hover:bg-slate-50 disabled:cursor-not-allowed disabled:opacity-50"
-                                title="Zoom in"
-                              >
-                                <ZoomIn className="h-4 w-4" />
-                              </button>
-                            </div>
-                          </div>
-
-                          <div className="space-y-2 p-4">
-                            <div className="flex items-start justify-between gap-3">
-                              <p className="truncate text-sm font-semibold text-slate-900">
-                                {image.name}
-                              </p>
-                              <p className="text-xs text-slate-400">
-                                {formatBytes(image.size)}
-                              </p>
-                            </div>
-                            <div className="flex items-center justify-between gap-3 text-xs text-slate-500">
-                              <p>
-                                {image.width} x {image.height}
-                              </p>
-                              {image.originalSize ? (
-                                <p className="text-emerald-600">
-                                  Saved{" "}
-                                  {formatBytes(
-                                    Math.max(
-                                      0,
-                                      image.originalSize - image.size,
-                                    ),
-                                  )}
+                            <div className="space-y-2 p-4">
+                              <div className="flex items-start justify-between gap-3">
+                                <p className="truncate text-sm font-semibold text-slate-900 dark:text-slate-100">
+                                  {image.name}
                                 </p>
-                              ) : null}
+                                <p className="text-xs text-slate-400 dark:text-slate-500">
+                                  {formatBytes(image.size)}
+                                </p>
+                              </div>
+                              <div className="flex items-center justify-between gap-3 text-xs text-slate-500 dark:text-slate-400">
+                                <p>
+                                  {image.width} x {image.height}
+                                </p>
+                                {image.originalSize ? (
+                                  <p className="text-emerald-600 dark:text-emerald-400">
+                                    Saved{" "}
+                                    {formatBytes(
+                                      Math.max(
+                                        0,
+                                        image.originalSize - image.size,
+                                      ),
+                                    )}
+                                  </p>
+                                ) : null}
+                              </div>
+                              <div className="flex flex-wrap gap-2 text-[11px] text-slate-500 dark:text-slate-400">
+                                <span className="rounded-full bg-slate-100 px-2 py-1 dark:bg-slate-700/50">
+                                  Rotate {image.rotation}deg
+                                </span>
+                                <span className="rounded-full bg-slate-100 px-2 py-1 dark:bg-slate-700/50">
+                                  Flip {image.flipH ? "H" : ""}
+                                  {image.flipV ? "V" : ""}
+                                </span>
+                                <span className="rounded-full bg-slate-100 px-2 py-1 dark:bg-slate-700/50">
+                                  Zoom {Math.round(image.zoom * 100)}%
+                                </span>
+                              </div>
                             </div>
-                            <div className="flex flex-wrap gap-2 text-[11px] text-slate-500">
-                              <span className="rounded-full bg-slate-100 px-2 py-1">
-                                Rotate {image.rotation}deg
-                              </span>
-                              <span className="rounded-full bg-slate-100 px-2 py-1">
-                                Flip {image.flipH ? "H" : ""}
-                                {image.flipV ? "V" : ""}
-                              </span>
-                              <span className="rounded-full bg-slate-100 px-2 py-1">
-                                Zoom {Math.round(image.zoom * 100)}%
-                              </span>
-                            </div>
-                          </div>
-                        </motion.div>
-                      ))}
-                    </AnimatePresence>
+                          </motion.div>
+                        ))}
+                      </AnimatePresence>
+                    </div>
+                  </>
+                )}
+              </div>
+
+              {images.length > 0 ? (
+                <div className="grid gap-4 md:grid-cols-3">
+                  <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5 dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-slate-950/30">
+                    <p className="text-xs uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                      Images
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold dark:text-slate-100">
+                      {images.length}
+                    </p>
                   </div>
-                </>
-              )}
-            </div>
+                  <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5 dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-slate-950/30">
+                    <p className="text-xs uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                      Total size
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold dark:text-slate-100">
+                      {formatBytes(totalOptimizedSize)}
+                    </p>
+                  </div>
+                  <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5 dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-slate-950/30">
+                    <p className="text-xs uppercase tracking-[0.22em] text-slate-400 dark:text-slate-500">
+                      Page mode
+                    </p>
+                    <p className="mt-2 text-2xl font-semibold dark:text-slate-100">
+                      {settings.pageSize === "image"
+                        ? "Image match"
+                        : settings.pageSize}
+                    </p>
+                  </div>
+                </div>
+              ) : null}
 
-            {images.length > 0 ? (
-              <div className="grid gap-4 md:grid-cols-3">
-                <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5">
-                  <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
-                    Images
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold">{images.length}</p>
-                </div>
-                <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5">
-                  <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
-                    Total size
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold">
-                    {formatBytes(totalOptimizedSize)}
-                  </p>
-                </div>
-                <div className="rounded-3xl border border-slate-200 bg-white p-4 shadow-lg shadow-slate-900/5">
-                  <p className="text-xs uppercase tracking-[0.22em] text-slate-400">
-                    Page mode
-                  </p>
-                  <p className="mt-2 text-2xl font-semibold">
-                    {settings.pageSize === "image"
-                      ? "Image match"
-                      : settings.pageSize}
-                  </p>
+              <div className="rounded-3xl border border-sky-200 bg-sky-50 p-5 dark:border-sky-800/40 dark:bg-sky-950/20">
+                <div className="flex items-start gap-3">
+                  <AlertCircle className="mt-0.5 h-5 w-5 text-sky-700 dark:text-sky-400" />
+                  <div>
+                    <p className="text-sm font-semibold text-sky-950 dark:text-sky-300">
+                      Tips
+                    </p>
+                    <ul className="mt-2 space-y-1 text-sm text-sky-900 dark:text-sky-300/80">
+                      <li>
+                        Use the document preset for notes, scans, and forms.
+                      </li>
+                      <li>
+                        Use mono mode with page numbers for clean archive PDFs.
+                      </li>
+                      <li>
+                        Try custom sizes when you need exact print dimensions.
+                      </li>
+                      <li>
+                        Metadata is written into the PDF properties before
+                        download.
+                      </li>
+                      <li>
+                        All processing stays in the browser, which matches the
+                        PDFCraft approach.
+                      </li>
+                    </ul>
+                  </div>
                 </div>
               </div>
-            ) : null}
-
-            <div className="rounded-3xl border border-sky-200 bg-sky-50 p-5">
-              <div className="flex items-start gap-3">
-                <AlertCircle className="mt-0.5 h-5 w-5 text-sky-700" />
-                <div>
-                  <p className="text-sm font-semibold text-sky-950">Tips</p>
-                  <ul className="mt-2 space-y-1 text-sm text-sky-900">
-                    <li>
-                      Use the document preset for notes, scans, and forms.
-                    </li>
-                    <li>
-                      Use mono mode with page numbers for clean archive PDFs.
-                    </li>
-                    <li>
-                      Try custom sizes when you need exact print dimensions.
-                    </li>
-                    <li>
-                      Metadata is written into the PDF properties before
-                      download.
-                    </li>
-                    <li>
-                      All processing stays in the browser, which matches the
-                      PDFCraft approach.
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-          </motion.main>
+            </motion.main>
+          </div>
         </div>
-      </div>
 
-      <input
-        ref={fileInputRef}
-        type="file"
-        multiple
-        accept="image/*"
-        onChange={handleImageUpload}
-        className="hidden"
-      />
+        <input
+          ref={fileInputRef}
+          type="file"
+          multiple
+          accept="image/*"
+          onChange={handleImageUpload}
+          className="hidden"
+        />
       </div>
-    </ToolPageShell>
+    </div>
   );
 }

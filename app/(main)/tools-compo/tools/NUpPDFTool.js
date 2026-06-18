@@ -472,569 +472,596 @@ export default function NUpPDFTool() {
   const pagesPerSheetText = `${pagesPerSheet}-up`;
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
-      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white/85 px-3 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur sm:px-6 lg:px-8">
-      <div className="pointer-events-none absolute inset-0">
-        <div className="absolute -left-20 top-6 h-56 w-56 rounded-full bg-amber-200/40 blur-3xl" />
-        <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-sky-200/30 blur-3xl" />
-      </div>
-
-      <div className="relative mx-auto w-full md:w-11/12">
-        <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
-          <div className="max-w-3xl">
-            <p className="mb-3 inline-flex rounded-full border border-amber-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700">
-              Organize &amp; Print
-            </p>
-            <h1 className="text-3xl font-semibold tracking-tight text-slate-900 sm:text-4xl">
-              N-Up PDF
-            </h1>
-            <p className="mt-3 text-sm leading-7 text-slate-600 sm:text-base">
-              Put multiple PDF pages onto a single sheet for compact printing
-              and quick review. Upload a PDF to unlock the preview, rules, and
-              full control panel.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-3 gap-3 text-center">
-            <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
-              <div className="text-lg font-semibold text-slate-900">100%</div>
-              <div className="text-xs text-slate-500">Private</div>
-            </div>
-            <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
-              <div className="text-lg font-semibold text-slate-900">
-                {pagesPerSheetText}
-              </div>
-              <div className="text-xs text-slate-500">Layout</div>
-            </div>
-            <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur">
-              <div className="text-lg font-semibold text-slate-900">Local</div>
-              <div className="text-xs text-slate-500">Processing</div>
-            </div>
-          </div>
+    <ToolPageShell widthClassName="max-w-7xl px-1 pt-20 pb-10">
+      <section className="relative overflow-hidden rounded-[2rem] border border-slate-200 bg-white/85 px-3 py-6 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] sm:px-6 lg:px-8">
+        <div className="pointer-events-none absolute inset-0">
+          <div className="absolute -left-20 top-6 h-56 w-56 rounded-full bg-amber-200/40 blur-3xl dark:bg-amber-500/10" />
+          <div className="absolute right-0 top-24 h-64 w-64 rounded-full bg-sky-200/30 blur-3xl dark:bg-sky-500/10" />
         </div>
 
-        <div className="grid gap-5 lg:grid-cols-[1.4fr_0.9fr]">
-          <div className="space-y-6">
-            <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur">
-              <div
-                className="flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-200 bg-gradient-to-b from-slate-50 to-white px-5 py-8 text-center transition hover:border-amber-300 hover:bg-amber-50/30"
-                onClick={openPicker}
-                onDragOver={(event) => event.preventDefault()}
-                onDrop={(event) => {
-                  event.preventDefault();
-                  event.stopPropagation();
-                  handleFile(event.dataTransfer.files?.[0] || null);
-                }}
-                role="button"
-                tabIndex={0}
-                onKeyDown={(event) => {
-                  if (event.key === "Enter" || event.key === " ") {
-                    event.preventDefault();
-                    openPicker();
-                  }
-                }}
-              >
-                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-sm font-semibold text-amber-800">
-                  PDF
-                </div>
-                <h2 className="text-lg font-semibold text-slate-900">
-                  Upload PDF
-                </h2>
-                <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600">
-                  Drop a single PDF here, or click to browse from your device.
-                </p>
-              </div>
-
-              <input
-                ref={inputRef}
-                type="file"
-                accept="application/pdf,.pdf"
-                className="hidden"
-                onChange={(event) =>
-                  handleFile(event.target.files?.[0] || null)
-                }
-              />
-
-              <div className="mt-5 space-y-3">
-                <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500">
-                  <span className="rounded-full bg-slate-100 px-3 py-1">
-                    Pages: {pageCount || "-"}
-                  </span>
-                  <span className="rounded-full bg-slate-100 px-3 py-1">
-                    Output sheets: {outputSheets || "-"}
-                  </span>
-                  <span className="rounded-full bg-slate-100 px-3 py-1">
-                    Output size: {outputBytes ? formatBytes(outputBytes) : "-"}
-                  </span>
-                </div>
-
-                <div className="h-2 overflow-hidden rounded-full bg-slate-200">
-                  {isProcessing ? (
-                    <div
-                      className="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300"
-                      style={{ width: `${Math.round((progress ?? 0) * 100)}%` }}
-                    />
-                  ) : workspaceReady ? (
-                    <div className="h-full w-full rounded-full bg-amber-200" />
-                  ) : (
-                    <div className="h-full w-0 rounded-full bg-amber-500" />
-                  )}
-                </div>
-
-                <div className="flex items-center justify-between text-xs font-medium text-slate-500">
-                  <span>{status}</span>
-                  <span>
-                    {isProcessing
-                      ? `${Math.round((progress ?? 0) * 100)}%`
-                      : workspaceReady
-                        ? "Ready"
-                        : "-"}
-                  </span>
-                </div>
-              </div>
-
-              {error ? (
-                <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                  {error}
-                </div>
-              ) : null}
+        <div className="relative mx-auto w-full">
+          <div className="mb-8 flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-3xl">
+              <p className="mb-3 inline-flex rounded-full border border-amber-200 bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-amber-700 dark:border-amber-800/40 dark:bg-amber-950/30 dark:text-amber-300">
+                Organize &amp; Print
+              </p>
+              <h1 className="text-3xl font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-4xl">
+                N-Up PDF
+              </h1>
+              <p className="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-400 sm:text-base">
+                Put multiple PDF pages onto a single sheet for compact printing
+                and quick review. Upload a PDF to unlock the preview, rules, and
+                full control panel.
+              </p>
             </div>
 
-            {workspaceReady ? (
-              <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <h3 className="text-base font-semibold text-slate-900">
-                      Preview layout
-                    </h3>
-                    <p className="mt-1 text-sm text-slate-600">
-                      Real page thumbnails show how the first output sheet will
-                      look.
-                    </p>
+            <div className="grid grid-cols-3 gap-3 text-center">
+              <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  100%
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  Private
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  {pagesPerSheetText}
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  Layout
+                </div>
+              </div>
+              <div className="rounded-2xl border border-white/80 bg-white/90 px-4 py-3 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                  Local
+                </div>
+                <div className="text-xs text-slate-500 dark:text-slate-400">
+                  Processing
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="grid gap-5 lg:grid-cols-[1.4fr_0.9fr]">
+            <div className="space-y-6">
+              <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <div
+                  className="flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed border-slate-200 bg-gradient-to-b from-slate-50 to-white px-5 py-8 text-center transition hover:border-amber-300 hover:bg-amber-50/30 dark:border-slate-700/50 dark:from-slate-800/30 dark:to-slate-800/50 dark:hover:border-amber-500/50 dark:hover:bg-amber-500/10"
+                  onClick={openPicker}
+                  onDragOver={(event) => event.preventDefault()}
+                  onDrop={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    handleFile(event.dataTransfer.files?.[0] || null);
+                  }}
+                  role="button"
+                  tabIndex={0}
+                  onKeyDown={(event) => {
+                    if (event.key === "Enter" || event.key === " ") {
+                      event.preventDefault();
+                      openPicker();
+                    }
+                  }}
+                >
+                  <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-amber-100 text-sm font-semibold text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                    PDF
                   </div>
-                  <div className="flex items-center gap-2">
-                    {previewLoading ? (
-                      <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600">
-                        Rendering
-                      </span>
-                    ) : null}
-                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
-                      {pagesPerSheetText}
+                  <h2 className="text-lg font-semibold text-slate-900 dark:text-slate-100">
+                    Upload PDF
+                  </h2>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    Drop a single PDF here, or click to browse from your device.
+                  </p>
+                </div>
+
+                <input
+                  ref={inputRef}
+                  type="file"
+                  accept="application/pdf,.pdf"
+                  className="hidden"
+                  onChange={(event) =>
+                    handleFile(event.target.files?.[0] || null)
+                  }
+                />
+
+                <div className="mt-5 space-y-3">
+                  <div className="flex flex-wrap items-center gap-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                    <span className="rounded-full bg-slate-100 px-3 py-1 dark:bg-slate-700/50">
+                      Pages: {pageCount || "-"}
+                    </span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 dark:bg-slate-700/50">
+                      Output sheets: {outputSheets || "-"}
+                    </span>
+                    <span className="rounded-full bg-slate-100 px-3 py-1 dark:bg-slate-700/50">
+                      Output size:{" "}
+                      {outputBytes ? formatBytes(outputBytes) : "-"}
+                    </span>
+                  </div>
+
+                  <div className="h-2 overflow-hidden rounded-full bg-slate-200 dark:bg-slate-700">
+                    {isProcessing ? (
+                      <div
+                        className="h-full rounded-full bg-gradient-to-r from-amber-500 to-orange-500 transition-all duration-300 dark:from-amber-400 dark:to-orange-400"
+                        style={{
+                          width: `${Math.round((progress ?? 0) * 100)}%`,
+                        }}
+                      />
+                    ) : workspaceReady ? (
+                      <div className="h-full w-full rounded-full bg-amber-200 dark:bg-amber-500/20" />
+                    ) : (
+                      <div className="h-full w-0 rounded-full bg-amber-500 dark:bg-amber-400" />
+                    )}
+                  </div>
+
+                  <div className="flex items-center justify-between text-xs font-medium text-slate-500 dark:text-slate-400">
+                    <span>{status}</span>
+                    <span>
+                      {isProcessing
+                        ? `${Math.round((progress ?? 0) * 100)}%`
+                        : workspaceReady
+                          ? "Ready"
+                          : "-"}
                     </span>
                   </div>
                 </div>
 
-                <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-3">
-                  <div className="mx-auto flex max-w-[280px] flex-col items-center gap-3">
-                    <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400">
-                      {sheet.label} {orientation}
-                    </div>
-                    <div
-                      className="grid w-full gap-2"
-                      style={{
-                        gridTemplateColumns: `repeat(${grid.columns}, minmax(0, 1fr))`,
-                      }}
-                    >
-                      {previewSlots.map((slot) => {
-                        const hasPage = slot <= pageCount;
-                        const thumb = previewThumbs[slot - 1];
-                        return (
-                          <div
-                            key={slot}
-                            className={[
-                              "aspect-[3/4] rounded-2xl border p-1.5 overflow-hidden",
-                              hasPage
-                                ? "border-amber-300 bg-white shadow-sm"
-                                : "border-dashed border-slate-300 bg-slate-100",
-                            ].join(" ")}
-                          >
-                            {hasPage && thumb ? (
-                              <img
-                                src={thumb}
-                                alt={`Preview page ${slot}`}
-                                className="h-full w-full rounded-[0.95rem] object-contain bg-white"
-                              />
-                            ) : hasPage && previewLoading ? (
-                              <div className="flex h-full items-center justify-center rounded-[0.95rem] bg-white text-[10px] font-medium text-slate-500">
-                                Loading...
-                              </div>
-                            ) : (
-                              <div className="flex h-full flex-col items-center justify-center text-center">
-                                <div className="text-xs font-semibold text-slate-900">
-                                  Blank
-                                </div>
-                                <div className="mt-1 text-[10px] text-slate-500">
-                                  Unused slot
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
-                    <p className="text-center text-xs leading-5 text-slate-500">
-                      Pages are filled left to right, top to bottom, and extra
-                      slots stay blank.
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur">
-                <h3 className="text-base font-semibold text-slate-900">
-                  Preview layout
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-slate-600">
-                  Upload a PDF to unlock the live N-up preview.
-                </p>
-              </div>
-            )}
-
-            {workspaceReady ? (
-              <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <h3 className="text-base font-semibold text-slate-900">
-                      Layout
-                    </h3>
-                    <p className="mt-1 text-sm text-slate-600">
-                      Choose how many pages should appear on each sheet.
-                    </p>
-                  </div>
-                  <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800">
-                    {pagesPerSheetText}
-                  </span>
-                </div>
-
-                <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
-                  {NUP_OPTIONS.map((item) => {
-                    const active = item.id === selectedNUp;
-                    return (
-                      <button
-                        key={item.id}
-                        type="button"
-                        onClick={() => setSelectedNUp(item.id)}
-                        className={[
-                          "rounded-2xl border px-3 py-2.5 text-left transition",
-                          active
-                            ? "border-amber-300 bg-amber-50 shadow-sm"
-                            : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50",
-                        ].join(" ")}
-                      >
-                        <div className="flex items-center justify-between gap-2">
-                          <span className="text-sm font-semibold text-slate-900">
-                            {item.label}
-                          </span>
-                          <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500">
-                            {item.pagesPerSheet}
-                          </span>
-                        </div>
-                        <p className="mt-2 text-xs leading-5 text-slate-600">
-                          {item.description}
-                        </p>
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            ) : null}
-
-            {workspaceReady ? (
-              <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur">
-                <div className="flex items-center justify-between gap-3">
-                  <div>
-                    <h3 className="text-base font-semibold text-slate-900">
-                      Sheet settings
-                    </h3>
-                    <p className="mt-1 text-sm text-slate-600">
-                      Tune the output sheet size and arrangement.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                  <div className="space-y-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                      Sheet size
-                    </p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {Object.entries(SHEET_SIZES).map(([id, item]) => {
-                        const active = id === sheetSizeId;
-                        return (
-                          <button
-                            key={id}
-                            type="button"
-                            onClick={() => setSheetSizeId(id)}
-                            className={[
-                              "rounded-2xl border px-3 py-2.5 text-left transition",
-                              active
-                                ? "border-amber-300 bg-amber-50"
-                                : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50",
-                            ].join(" ")}
-                          >
-                            <div className="text-sm font-semibold text-slate-900">
-                              {item.label}
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-
-                  <div className="space-y-3">
-                    <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400">
-                      Orientation
-                    </p>
-                    <div className="grid grid-cols-2 gap-2">
-                      {[
-                        { id: "portrait", label: "Portrait" },
-                        { id: "landscape", label: "Landscape" },
-                      ].map((item) => {
-                        const active = item.id === orientation;
-                        return (
-                          <button
-                            key={item.id}
-                            type="button"
-                            onClick={() => setOrientation(item.id)}
-                            className={[
-                              "rounded-2xl border px-4 py-3 text-left transition",
-                              active
-                                ? "border-amber-300 bg-amber-50"
-                                : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50",
-                            ].join(" ")}
-                          >
-                            <div className="text-sm font-semibold text-slate-900">
-                              {item.label}
-                            </div>
-                          </button>
-                        );
-                      })}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="mt-3 grid gap-3 sm:grid-cols-2">
-                  <label className="block rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="text-sm font-semibold text-slate-900">
-                        Margin
-                      </span>
-                      <span className="text-sm text-slate-600">
-                        {margin} pt
-                      </span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0"
-                      max="40"
-                      step="1"
-                      value={margin}
-                      onChange={(event) =>
-                        setMargin(Number(event.target.value))
-                      }
-                      className="mt-3 w-full accent-amber-500"
-                    />
-                  </label>
-
-                  <label className="block rounded-2xl border border-slate-200 bg-slate-50 p-3">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="text-sm font-semibold text-slate-900">
-                        Spacing
-                      </span>
-                      <span className="text-sm text-slate-600">{gap} pt</span>
-                    </div>
-                    <input
-                      type="range"
-                      min="0"
-                      max="32"
-                      step="1"
-                      value={gap}
-                      onChange={(event) => setGap(Number(event.target.value))}
-                      className="mt-3 w-full accent-amber-500"
-                    />
-                  </label>
-                </div>
-
-                <div className="mt-3 flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5">
-                  <div>
-                    <div className="text-sm font-semibold text-slate-900">
-                      Show borders
-                    </div>
-                    <div className="text-sm text-slate-600">
-                      Draw outlines around each cell.
-                    </div>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={() => setShowBorders((current) => !current)}
-                    className={[
-                      "relative h-7 w-12 rounded-full transition",
-                      showBorders ? "bg-amber-500" : "bg-slate-300",
-                    ].join(" ")}
-                  >
-                    <span
-                      className={[
-                        "absolute top-1 h-5 w-5 rounded-full bg-white shadow transition",
-                        showBorders ? "left-6" : "left-1",
-                      ].join(" ")}
-                    />
-                  </button>
-                </div>
-              </div>
-            ) : null}
-
-            {workspaceReady ? (
-              <div className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-lg">
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                  <div>
-                    <h3 className="text-base font-semibold">Ready to build</h3>
-                    <p className="mt-1 text-sm text-slate-300">
-                      Combine the uploaded PDF into a compact N-up sheet layout.
-                    </p>
-                  </div>
-                  <button
-                    type="button"
-                    onClick={handleCombine}
-                    disabled={!pdfFile || isProcessing}
-                    className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60"
-                  >
-                    {isProcessing ? "Building..." : "Create N-Up PDF"}
-                  </button>
-                </div>
-
-                {resultNote ? (
-                  <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-200">
-                    {resultNote}
+                {error ? (
+                  <div className="mt-4 rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 dark:border-rose-800/40 dark:bg-rose-950/30 dark:text-rose-300">
+                    {error}
                   </div>
                 ) : null}
               </div>
-            ) : (
-              <div className="rounded-3xl border border-slate-200 bg-slate-950 p-5 text-white shadow-lg">
-                <h3 className="text-base font-semibold">Ready to build</h3>
-                <p className="mt-1 text-sm text-slate-300">
-                  Upload a PDF first, then the preview and controls will unlock.
-                </p>
-              </div>
-            )}
-          </div>
-
-          <aside className="space-y-6">
-            <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur">
-              <h3 className="text-base font-semibold text-slate-900">
-                Output summary
-              </h3>
-              <div className="mt-4 space-y-4">
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">Input pages</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {pageCount || "-"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">
-                    Pages per sheet
-                  </span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {pagesPerSheetText}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">Output sheets</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {outputSheets || "-"}
-                  </span>
-                </div>
-                <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3">
-                  <span className="text-sm text-slate-600">Sheet size</span>
-                  <span className="text-sm font-semibold text-slate-900">
-                    {sheet.label}
-                  </span>
-                </div>
-              </div>
 
               {workspaceReady ? (
-                <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                  <h4 className="text-sm font-semibold text-slate-900">
-                    Rules
-                  </h4>
-                  <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
-                    <li>
-                      - Pages are placed in the order they appear in the source
-                      PDF.
-                    </li>
-                    <li>
-                      - Each sheet uses the selected page count, size, and
-                      orientation.
-                    </li>
-                    <li>
-                      - Margin controls the outer whitespace around the grid.
-                    </li>
-                    <li>- Spacing controls the gap between cells.</li>
-                    <li>
-                      - Borders help separate pages when the grid is dense.
-                    </li>
-                  </ul>
+                <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                        Preview layout
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                        Real page thumbnails show how the first output sheet
+                        will look.
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      {previewLoading ? (
+                        <span className="rounded-full bg-slate-100 px-3 py-1 text-xs font-semibold text-slate-600 dark:bg-slate-700/50 dark:text-slate-400">
+                          Rendering
+                        </span>
+                      ) : null}
+                      <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                        {pagesPerSheetText}
+                      </span>
+                    </div>
+                  </div>
+
+                  <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-700/50 dark:bg-slate-800/30">
+                    <div className="mx-auto flex max-w-[280px] flex-col items-center gap-3">
+                      <div className="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-400 dark:text-slate-500">
+                        {sheet.label} {orientation}
+                      </div>
+                      <div
+                        className="grid w-full gap-2"
+                        style={{
+                          gridTemplateColumns: `repeat(${grid.columns}, minmax(0, 1fr))`,
+                        }}
+                      >
+                        {previewSlots.map((slot) => {
+                          const hasPage = slot <= pageCount;
+                          const thumb = previewThumbs[slot - 1];
+                          return (
+                            <div
+                              key={slot}
+                              className={[
+                                "aspect-[3/4] rounded-2xl border p-1.5 overflow-hidden",
+                                hasPage
+                                  ? "border-amber-300 bg-white shadow-sm dark:border-amber-500/50 dark:bg-slate-700"
+                                  : "border-dashed border-slate-300 bg-slate-100 dark:border-slate-600 dark:bg-slate-700/30",
+                              ].join(" ")}
+                            >
+                              {hasPage && thumb ? (
+                                <img
+                                  src={thumb}
+                                  alt={`Preview page ${slot}`}
+                                  className="h-full w-full rounded-[0.95rem] object-contain bg-white dark:bg-slate-800"
+                                />
+                              ) : hasPage && previewLoading ? (
+                                <div className="flex h-full items-center justify-center rounded-[0.95rem] bg-white text-[10px] font-medium text-slate-500 dark:bg-slate-700 dark:text-slate-400">
+                                  Loading...
+                                </div>
+                              ) : (
+                                <div className="flex h-full flex-col items-center justify-center text-center">
+                                  <div className="text-xs font-semibold text-slate-900 dark:text-slate-100">
+                                    Blank
+                                  </div>
+                                  <div className="mt-1 text-[10px] text-slate-500 dark:text-slate-400">
+                                    Unused slot
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+                      <p className="text-center text-xs leading-5 text-slate-500 dark:text-slate-400">
+                        Pages are filled left to right, top to bottom, and extra
+                        slots stay blank.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               ) : (
-                <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4">
-                  <h4 className="text-sm font-semibold text-slate-900">
-                    What you will see
-                  </h4>
-                  <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600">
-                    <li>- A live preview of the first output sheet.</li>
-                    <li>- The full layout and sheet settings.</li>
-                    <li>- The combine button and download panel.</li>
-                  </ul>
+                <div className="rounded-3xl border border-slate-200 bg-white/90 p-5 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                  <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                    Preview layout
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                    Upload a PDF to unlock the live N-up preview.
+                  </p>
                 </div>
               )}
 
-              {downloadUrl ? (
-                <div className="mt-5 space-y-3">
-                  <a
-                    href={downloadUrl}
-                    download={downloadName}
-                    className="flex w-full items-center justify-center rounded-full bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600"
-                  >
-                    Download PDF
-                  </a>
-                  <p className="text-xs leading-5 text-slate-500">
-                    The generated PDF stays local in your browser until you
-                    refresh or clear the tool.
-                  </p>
+              {workspaceReady ? (
+                <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                        Layout
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                        Choose how many pages should appear on each sheet.
+                      </p>
+                    </div>
+                    <span className="rounded-full bg-amber-100 px-3 py-1 text-xs font-semibold text-amber-800 dark:bg-amber-900/30 dark:text-amber-300">
+                      {pagesPerSheetText}
+                    </span>
+                  </div>
+
+                  <div className="mt-3 grid grid-cols-2 gap-2 sm:grid-cols-3">
+                    {NUP_OPTIONS.map((item) => {
+                      const active = item.id === selectedNUp;
+                      return (
+                        <button
+                          key={item.id}
+                          type="button"
+                          onClick={() => setSelectedNUp(item.id)}
+                          className={[
+                            "rounded-2xl border px-3 py-2.5 text-left transition",
+                            active
+                              ? "border-amber-300 bg-amber-50 shadow-sm dark:border-amber-500/50 dark:bg-amber-950/30"
+                              : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:border-slate-600 dark:hover:bg-slate-700/50",
+                          ].join(" ")}
+                        >
+                          <div className="flex items-center justify-between gap-2">
+                            <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                              {item.label}
+                            </span>
+                            <span className="rounded-full bg-slate-100 px-2 py-0.5 text-[11px] font-semibold text-slate-500 dark:bg-slate-700/50 dark:text-slate-400">
+                              {item.pagesPerSheet}
+                            </span>
+                          </div>
+                          <p className="mt-2 text-xs leading-5 text-slate-600 dark:text-slate-400">
+                            {item.description}
+                          </p>
+                        </button>
+                      );
+                    })}
+                  </div>
                 </div>
               ) : null}
+
+              {workspaceReady ? (
+                <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                  <div className="flex items-center justify-between gap-3">
+                    <div>
+                      <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                        Sheet settings
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
+                        Tune the output sheet size and arrangement.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <div className="space-y-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                        Sheet size
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {Object.entries(SHEET_SIZES).map(([id, item]) => {
+                          const active = id === sheetSizeId;
+                          return (
+                            <button
+                              key={id}
+                              type="button"
+                              onClick={() => setSheetSizeId(id)}
+                              className={[
+                                "rounded-2xl border px-3 py-2.5 text-left transition",
+                                active
+                                  ? "border-amber-300 bg-amber-50 dark:border-amber-500/50 dark:bg-amber-950/30"
+                                  : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:border-slate-600 dark:hover:bg-slate-700/50",
+                              ].join(" ")}
+                            >
+                              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                                {item.label}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+
+                    <div className="space-y-3">
+                      <p className="text-xs font-semibold uppercase tracking-[0.18em] text-slate-400 dark:text-slate-500">
+                        Orientation
+                      </p>
+                      <div className="grid grid-cols-2 gap-2">
+                        {[
+                          { id: "portrait", label: "Portrait" },
+                          { id: "landscape", label: "Landscape" },
+                        ].map((item) => {
+                          const active = item.id === orientation;
+                          return (
+                            <button
+                              key={item.id}
+                              type="button"
+                              onClick={() => setOrientation(item.id)}
+                              className={[
+                                "rounded-2xl border px-4 py-3 text-left transition",
+                                active
+                                  ? "border-amber-300 bg-amber-50 dark:border-amber-500/50 dark:bg-amber-950/30"
+                                  : "border-slate-200 bg-white hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700/50 dark:bg-slate-800/50 dark:hover:border-slate-600 dark:hover:bg-slate-700/50",
+                              ].join(" ")}
+                            >
+                              <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                                {item.label}
+                              </div>
+                            </button>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="mt-3 grid gap-3 sm:grid-cols-2">
+                    <label className="block rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-700/50 dark:bg-slate-800/30">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          Margin
+                        </span>
+                        <span className="text-sm text-slate-600 dark:text-slate-400">
+                          {margin} pt
+                        </span>
+                      </div>
+                      <input
+                        type="range"
+                        min="0"
+                        max="40"
+                        step="1"
+                        value={margin}
+                        onChange={(event) =>
+                          setMargin(Number(event.target.value))
+                        }
+                        className="mt-3 w-full accent-amber-500 dark:accent-amber-400"
+                      />
+                    </label>
+
+                    <label className="block rounded-2xl border border-slate-200 bg-slate-50 p-3 dark:border-slate-700/50 dark:bg-slate-800/30">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                          Spacing
+                        </span>
+                        <span className="text-sm text-slate-600 dark:text-slate-400">
+                          {gap} pt
+                        </span>
+                      </div>
+                      <input
+                        type="range"
+                        min="0"
+                        max="32"
+                        step="1"
+                        value={gap}
+                        onChange={(event) => setGap(Number(event.target.value))}
+                        className="mt-3 w-full accent-amber-500 dark:accent-amber-400"
+                      />
+                    </label>
+                  </div>
+
+                  <div className="mt-3 flex items-center justify-between rounded-2xl border border-slate-200 bg-slate-50 px-3 py-2.5 dark:border-slate-700/50 dark:bg-slate-800/30">
+                    <div>
+                      <div className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                        Show borders
+                      </div>
+                      <div className="text-sm text-slate-600 dark:text-slate-400">
+                        Draw outlines around each cell.
+                      </div>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => setShowBorders((current) => !current)}
+                      className={[
+                        "relative h-7 w-12 rounded-full transition",
+                        showBorders
+                          ? "bg-amber-500"
+                          : "bg-slate-300 dark:bg-slate-600",
+                      ].join(" ")}
+                    >
+                      <span
+                        className={[
+                          "absolute top-1 h-5 w-5 rounded-full bg-white shadow transition",
+                          showBorders ? "left-6" : "left-1",
+                        ].join(" ")}
+                      />
+                    </button>
+                  </div>
+                </div>
+              ) : null}
+
+              {workspaceReady ? (
+                <div className="rounded-3xl border border-slate-200 dark:border-slate-700 bg-slate-950 p-5 text-white shadow-lg dark:bg-slate-900">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+                    <div>
+                      <h3 className="text-base font-semibold">
+                        Ready to build
+                      </h3>
+                      <p className="mt-1 text-sm text-slate-300">
+                        Combine the uploaded PDF into a compact N-up sheet
+                        layout.
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={handleCombine}
+                      disabled={!pdfFile || isProcessing}
+                      className="inline-flex items-center justify-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-amber-200 disabled:cursor-not-allowed disabled:opacity-60 dark:bg-amber-400 dark:text-slate-950 dark:hover:bg-amber-300"
+                    >
+                      {isProcessing ? "Building..." : "Create N-Up PDF"}
+                    </button>
+                  </div>
+
+                  {resultNote ? (
+                    <div className="mt-4 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm leading-6 text-slate-200">
+                      {resultNote}
+                    </div>
+                  ) : null}
+                </div>
+              ) : (
+                <div className="rounded-3xl border border-slate-200 dark:border-slate-700 bg-slate-950 p-5 text-white shadow-lg dark:bg-slate-900">
+                  <h3 className="text-base font-semibold">Ready to build</h3>
+                  <p className="mt-1 text-sm text-slate-300">
+                    Upload a PDF first, then the preview and controls will
+                    unlock.
+                  </p>
+                </div>
+              )}
             </div>
 
-            <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm">
-              <h3 className="text-base font-semibold text-slate-900">
-                Good to know
-              </h3>
-              <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600">
-                <li>
-                  - N-up puts multiple pages on one sheet for printing or
-                  review.
-                </li>
-                <li>
-                  - Landscape works best for 2-up, 6-up, 8-up, and 12-up
-                  layouts.
-                </li>
-                <li>
-                  - Borders can help separate pages visually when the grid is
-                  dense.
-                </li>
-                <li>- Everything happens locally in your browser.</li>
-              </ul>
-            </div>
+            <aside className="space-y-6">
+              <div className="rounded-3xl border border-slate-200 bg-white/90 p-4 shadow-sm backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50">
+                <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                  Output summary
+                </h3>
+                <div className="mt-4 space-y-4">
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Input pages
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {pageCount || "-"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Pages per sheet
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {pagesPerSheetText}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Output sheets
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {outputSheets || "-"}
+                    </span>
+                  </div>
+                  <div className="flex items-center justify-between gap-3 rounded-2xl bg-slate-50 px-4 py-3 dark:bg-slate-800/30">
+                    <span className="text-sm text-slate-600 dark:text-slate-400">
+                      Sheet size
+                    </span>
+                    <span className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {sheet.label}
+                    </span>
+                  </div>
+                </div>
 
-            <button
-              type="button"
-              onClick={clearAll}
-              className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100"
-            >
-              Clear All
-            </button>
-          </aside>
-        </div>
+                {workspaceReady ? (
+                  <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-800/30">
+                    <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      Rules
+                    </h4>
+                    <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                      <li>
+                        - Pages are placed in the order they appear in the
+                        source PDF.
+                      </li>
+                      <li>
+                        - Each sheet uses the selected page count, size, and
+                        orientation.
+                      </li>
+                      <li>
+                        - Margin controls the outer whitespace around the grid.
+                      </li>
+                      <li>- Spacing controls the gap between cells.</li>
+                      <li>
+                        - Borders help separate pages when the grid is dense.
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="mt-4 rounded-3xl border border-slate-200 bg-slate-50 p-4 dark:border-slate-700/50 dark:bg-slate-800/30">
+                    <h4 className="text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      What you will see
+                    </h4>
+                    <ul className="mt-3 space-y-2 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                      <li>- A live preview of the first output sheet.</li>
+                      <li>- The full layout and sheet settings.</li>
+                      <li>- The combine button and download panel.</li>
+                    </ul>
+                  </div>
+                )}
+
+                {downloadUrl ? (
+                  <div className="mt-5 space-y-3">
+                    <a
+                      href={downloadUrl}
+                      download={downloadName}
+                      className="flex w-full items-center justify-center rounded-full bg-amber-500 px-4 py-3 text-sm font-semibold text-white transition hover:bg-amber-600 dark:bg-amber-500 dark:hover:bg-amber-600"
+                    >
+                      Download PDF
+                    </a>
+                    <p className="text-xs leading-5 text-slate-500 dark:text-slate-400">
+                      The generated PDF stays local in your browser until you
+                      refresh or clear the tool.
+                    </p>
+                  </div>
+                ) : null}
+              </div>
+
+              <div className="rounded-3xl border border-slate-200 bg-gradient-to-br from-white to-slate-50 p-5 shadow-sm dark:border-slate-700/50 dark:from-slate-800/50 dark:to-slate-800/30">
+                <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100">
+                  Good to know
+                </h3>
+                <ul className="mt-4 space-y-3 text-sm leading-6 text-slate-600 dark:text-slate-400">
+                  <li>
+                    - N-up puts multiple pages on one sheet for printing or
+                    review.
+                  </li>
+                  <li>
+                    - Landscape works best for 2-up, 6-up, 8-up, and 12-up
+                    layouts.
+                  </li>
+                  <li>
+                    - Borders can help separate pages visually when the grid is
+                    dense.
+                  </li>
+                  <li>- Everything happens locally in your browser.</li>
+                </ul>
+              </div>
+
+              <button
+                type="button"
+                onClick={clearAll}
+                className="w-full rounded-2xl border border-slate-200 bg-white px-4 py-3 text-sm font-semibold text-slate-700 transition hover:border-slate-300 hover:bg-slate-100 dark:border-slate-700/50 dark:bg-slate-800/50 dark:text-slate-300 dark:hover:border-slate-600 dark:hover:bg-slate-700/50"
+              >
+                Clear All
+              </button>
+            </aside>
+          </div>
         </div>
       </section>
     </ToolPageShell>

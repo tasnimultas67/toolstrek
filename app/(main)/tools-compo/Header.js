@@ -167,7 +167,7 @@ export default function Header() {
   return (
     <div className="sticky top-2 z-50 w-full" suppressHydrationWarning>
       <div
-        className="absolute top-0 left-0 right-0 border border-gray-900/10 dark:border-white/10 bg-white/60 dark:bg-gray-950/60 backdrop-blur-xl rounded-lg w-11/12 mx-auto px-2 py-2 shadow-md"
+        className="absolute top-0 left-0 right-0 border border-gray-900/10 dark:border-white/10 bg-white/60 dark:bg-white/10 backdrop-blur-xl rounded-lg w-11/12 mx-auto px-2 py-2 shadow-md"
         suppressHydrationWarning
       >
         <header className="w-full">
@@ -377,7 +377,7 @@ export default function Header() {
                 <button
                   onClick={openGlobalSearch}
                   aria-label="Search tools"
-                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-gray-900 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer group"
+                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-white/15 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 text-gray-500 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer group"
                 >
                   <MagnifyingGlassIcon className="size-4 shrink-0" />
                   <span className="text-sm text-gray-400 group-hover:text-gray-500 transition-colors duration-200 pr-2">

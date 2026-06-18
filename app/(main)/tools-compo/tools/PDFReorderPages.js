@@ -282,25 +282,27 @@ const PDFReorderPages = () => {
   if (!mounted) {
     return (
       <ToolPageShell widthClassName="max-w-7xl">
-        <div className="flex items-center justify-center rounded-[2rem] border border-slate-200 bg-white/85 py-20 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur">
-        <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent"></div>
-          <p className="mt-4 text-gray-600">Loading PDF tools...</p>
-        </div>
+        <div className="flex items-center justify-center rounded-[2rem] border border-slate-200 bg-white/85 py-20 shadow-[0_20px_60px_rgba(15,23,42,0.08)] backdrop-blur dark:border-slate-700/50 dark:bg-slate-800/50 dark:shadow-slate-950/30">
+          <div className="text-center">
+            <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent dark:border-blue-400"></div>
+            <p className="mt-4 text-gray-600 dark:text-slate-400">
+              Loading PDF tools...
+            </p>
+          </div>
         </div>
       </ToolPageShell>
     );
   }
 
   return (
-    <ToolPageShell widthClassName="max-w-7xl">
-      <div>
+    <ToolPageShell widthClassName="max-w-7xl px-1 pt-20 pb-10">
+      <div className="dark:text-slate-100">
         {/* Header */}
         <div className="text-center mb-8">
-          <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold bg-linear-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent mb-4 dark:from-blue-400 dark:to-indigo-400">
             PDF Page Reorder
           </h1>
-          <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+          <p className="text-gray-600 text-lg max-w-2xl mx-auto dark:text-slate-400">
             Drag and drop pages to reorganize your PDF document with live
             previews
           </p>
@@ -308,10 +310,10 @@ const PDFReorderPages = () => {
 
         {/* Upload Area */}
         {!pdfFile && (
-          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border-2 border-dashed border-blue-200 hover:border-blue-400 transition-all duration-300">
+          <div className="bg-white rounded-2xl shadow-xl p-8 mb-8 border-2 border-dashed border-blue-200 hover:border-blue-400 transition-all duration-300 dark:bg-slate-800 dark:border-blue-800/40 dark:hover:border-blue-500/50 dark:shadow-slate-900/50">
             <div className="text-center">
               <svg
-                className="mx-auto h-16 w-16 text-blue-500 mb-4"
+                className="mx-auto h-16 w-16 text-blue-500 mb-4 dark:text-blue-400"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -330,11 +332,11 @@ const PDFReorderPages = () => {
                   onChange={handleFileUpload}
                   className="hidden"
                 />
-                <div className="bg-linear-to-r from-blue-500 to-indigo-500 text-white px-8 py-3 rounded-xl font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 shadow-md hover:shadow-lg">
+                <div className="bg-linear-to-r from-blue-500 to-indigo-500 text-white px-8 py-3 rounded-xl font-semibold hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 shadow-md hover:shadow-lg dark:from-blue-600 dark:to-indigo-600 dark:hover:from-blue-700 dark:hover:to-indigo-700">
                   Choose PDF File
                 </div>
               </label>
-              <p className="text-gray-500 mt-4 text-sm">
+              <p className="text-gray-500 mt-4 text-sm dark:text-slate-400">
                 Supported format: PDF (Max 100MB)
               </p>
             </div>
@@ -343,29 +345,29 @@ const PDFReorderPages = () => {
 
         {/* Loading Modal */}
         {loading && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 dark:bg-black/70">
+            <div className="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl dark:bg-slate-800">
               <div className="text-center">
-                <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mb-4"></div>
-                <h3 className="text-xl font-semibold text-gray-800 mb-2">
+                <div className="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-500 border-t-transparent mb-4 dark:border-blue-400"></div>
+                <h3 className="text-xl font-semibold text-gray-800 mb-2 dark:text-slate-200">
                   {uploadProgress < 100
                     ? "Processing PDF..."
                     : "Generating Previews..."}
                 </h3>
-                <p className="text-gray-600 mb-4">
+                <p className="text-gray-600 mb-4 dark:text-slate-400">
                   {uploadProgress < 100
                     ? "Loading your document"
                     : "Creating page thumbnails, please wait"}
                 </p>
                 {uploadProgress > 0 && (
                   <>
-                    <div className="w-full bg-gray-200 rounded-full h-2">
+                    <div className="w-full bg-gray-200 rounded-full h-2 dark:bg-slate-700">
                       <div
                         className="bg-linear-to-r from-blue-500 to-indigo-500 h-2 rounded-full transition-all duration-300"
                         style={{ width: `${uploadProgress}%` }}
                       ></div>
                     </div>
-                    <p className="text-sm text-gray-500 mt-2">
+                    <p className="text-sm text-gray-500 mt-2 dark:text-slate-400">
                       {uploadProgress}%
                     </p>
                   </>
@@ -377,19 +379,19 @@ const PDFReorderPages = () => {
 
         {/* Error Display */}
         {error && (
-          <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-8">
+          <div className="bg-red-50 border-l-4 border-red-500 text-red-700 p-4 rounded-lg mb-8 dark:bg-red-950/30 dark:border-red-400 dark:text-red-300">
             <p>{error}</p>
           </div>
         )}
 
         {/* Delete Confirmation Modal */}
         {showDeleteConfirm && (
-          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-            <div className="bg-white rounded-2xl p-6 max-w-md w-full mx-4">
+          <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 dark:bg-black/70">
+            <div className="bg-white rounded-2xl p-6 max-w-md w-full mx-4 dark:bg-slate-800">
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center dark:bg-red-900/30">
                   <svg
-                    className="w-5 h-5 text-red-600"
+                    className="w-5 h-5 text-red-600 dark:text-red-400"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -402,26 +404,28 @@ const PDFReorderPages = () => {
                     />
                   </svg>
                 </div>
-                <h3 className="text-xl font-semibold text-gray-800">
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-slate-200">
                   Delete Pages
                 </h3>
               </div>
-              <p className="text-gray-600 mb-6">
+              <p className="text-gray-600 mb-6 dark:text-slate-400">
                 Are you sure you want to delete{" "}
-                <strong className="text-red-600">{selectedPages.length}</strong>{" "}
+                <strong className="text-red-600 dark:text-red-400">
+                  {selectedPages.length}
+                </strong>{" "}
                 selected {selectedPages.length === 1 ? "page" : "pages"}? This
                 action cannot be undone.
               </p>
               <div className="flex gap-3 justify-end">
                 <button
                   onClick={() => setShowDeleteConfirm(false)}
-                  className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all duration-200 font-medium"
+                  className="px-4 py-2 text-gray-700 bg-gray-100 rounded-lg hover:bg-gray-200 transition-all duration-200 font-medium dark:bg-slate-700 dark:text-slate-300 dark:hover:bg-slate-600"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={deleteSelectedPages}
-                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-200 font-medium"
+                  className="px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600 transition-all duration-200 font-medium dark:bg-red-600 dark:hover:bg-red-700"
                 >
                   Delete Pages
                 </button>
@@ -432,20 +436,20 @@ const PDFReorderPages = () => {
 
         {/* PDF Pages Reorder Interface */}
         {pdfFile && pages.length > 0 && (
-          <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
+          <div className="bg-white rounded-2xl shadow-xl overflow-hidden dark:bg-slate-800 dark:shadow-slate-900/50">
             {/* Toolbar */}
-            <div className="bg-linear-to-r from-gray-50 to-gray-100 border-b border-gray-200 px-6 py-4">
+            <div className="bg-linear-to-r from-gray-50 to-gray-100 border-b border-gray-200 px-6 py-4 dark:from-slate-700 dark:to-slate-800 dark:border-slate-600">
               <div className="flex flex-wrap gap-4 justify-between items-center">
                 <div className="flex items-center gap-3 flex-wrap">
-                  <div className="bg-linear-to-r from-blue-500 to-indigo-500 text-white px-3 py-1 rounded-lg text-sm font-semibold shadow-sm">
+                  <div className="bg-linear-to-r from-blue-500 to-indigo-500 text-white px-3 py-1 rounded-lg text-sm font-semibold shadow-sm dark:from-blue-600 dark:to-indigo-600">
                     {pages.length} {pages.length === 1 ? "Page" : "Pages"}
                   </div>
                   {totalPages > pages.length && (
-                    <div className="bg-red-100 text-red-700 px-3 py-1 rounded-lg text-sm font-semibold">
+                    <div className="bg-red-100 text-red-700 px-3 py-1 rounded-lg text-sm font-semibold dark:bg-red-900/30 dark:text-red-400">
                       {totalPages - pages.length} deleted
                     </div>
                   )}
-                  <div className="text-gray-600 text-sm truncate max-w-xs flex items-center gap-2">
+                  <div className="text-gray-600 text-sm truncate max-w-xs flex items-center gap-2 dark:text-slate-400">
                     <svg
                       className="w-4 h-4"
                       fill="none"
@@ -462,7 +466,7 @@ const PDFReorderPages = () => {
                     {fileName}
                   </div>
                   {selectedPages.length > 0 && (
-                    <div className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-semibold animate-pulse">
+                    <div className="bg-indigo-100 text-indigo-700 px-3 py-1 rounded-lg text-sm font-semibold animate-pulse dark:bg-indigo-900/30 dark:text-indigo-400">
                       {selectedPages.length} selected
                     </div>
                   )}
@@ -474,8 +478,8 @@ const PDFReorderPages = () => {
                     onClick={() => setViewMode("grid")}
                     className={`p-2 rounded-lg transition-all duration-200 ${
                       viewMode === "grid"
-                        ? "bg-linear-to-r from-blue-500 to-indigo-500 text-white shadow-md"
-                        : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                        ? "bg-linear-to-r from-blue-500 to-indigo-500 text-white shadow-md dark:from-blue-600 dark:to-indigo-600"
+                        : "bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-slate-600 dark:text-slate-300 dark:hover:bg-slate-500"
                     }`}
                     title="Grid View"
                   >
@@ -497,8 +501,8 @@ const PDFReorderPages = () => {
                     onClick={() => setViewMode("list")}
                     className={`p-2 rounded-lg transition-all duration-200 ${
                       viewMode === "list"
-                        ? "bg-linear-to-r from-blue-500 to-indigo-500 text-white shadow-md"
-                        : "bg-gray-200 text-gray-600 hover:bg-gray-300"
+                        ? "bg-linear-to-r from-blue-500 to-indigo-500 text-white shadow-md dark:from-blue-600 dark:to-indigo-600"
+                        : "bg-gray-200 text-gray-600 hover:bg-gray-300 dark:bg-slate-600 dark:text-slate-300 dark:hover:bg-slate-500"
                     }`}
                     title="List View"
                   >
@@ -520,7 +524,7 @@ const PDFReorderPages = () => {
                   {/* Select All */}
                   <button
                     onClick={selectAllPages}
-                    className="px-3 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all duration-200 text-sm font-medium"
+                    className="px-3 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all duration-200 text-sm font-medium dark:bg-slate-600 dark:text-slate-300 dark:hover:bg-slate-500"
                   >
                     {selectedPages.length === pages.length
                       ? "Deselect All"
@@ -532,7 +536,7 @@ const PDFReorderPages = () => {
                     <>
                       <button
                         onClick={() => moveSelectedPages("up")}
-                        className="p-2 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition-all duration-200"
+                        className="p-2 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition-all duration-200 dark:bg-slate-600 dark:text-slate-300 dark:hover:bg-slate-500"
                         title="Move Up"
                       >
                         <svg
@@ -551,7 +555,7 @@ const PDFReorderPages = () => {
                       </button>
                       <button
                         onClick={() => moveSelectedPages("down")}
-                        className="p-2 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition-all duration-200"
+                        className="p-2 bg-gray-200 text-gray-600 rounded-lg hover:bg-gray-300 transition-all duration-200 dark:bg-slate-600 dark:text-slate-300 dark:hover:bg-slate-500"
                         title="Move Down"
                       >
                         <svg
@@ -570,7 +574,7 @@ const PDFReorderPages = () => {
                       </button>
                       <button
                         onClick={() => setShowDeleteConfirm(true)}
-                        className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-all duration-200"
+                        className="p-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition-all duration-200 dark:bg-red-900/30 dark:text-red-400 dark:hover:bg-red-900/50"
                         title="Delete Selected"
                       >
                         <svg
@@ -592,14 +596,14 @@ const PDFReorderPages = () => {
 
                   <button
                     onClick={handleReset}
-                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all duration-200 font-medium"
+                    className="px-4 py-2 text-gray-700 bg-gray-200 rounded-lg hover:bg-gray-300 transition-all duration-200 font-medium dark:bg-slate-600 dark:text-slate-300 dark:hover:bg-slate-500"
                   >
                     Upload New
                   </button>
                   <button
                     onClick={handleReorderAndSave}
                     disabled={loading}
-                    className="px-6 py-2 bg-linear-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 font-semibold shadow-md disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="px-6 py-2 bg-linear-to-r from-blue-500 to-indigo-500 text-white rounded-lg hover:from-blue-600 hover:to-indigo-600 transition-all duration-200 font-semibold shadow-md disabled:opacity-50 disabled:cursor-not-allowed dark:from-blue-600 dark:to-indigo-600 dark:hover:from-blue-700 dark:hover:to-indigo-700"
                   >
                     {loading ? "Processing..." : "Download PDF"}
                   </button>
@@ -618,7 +622,9 @@ const PDFReorderPages = () => {
                     {...provided.droppableProps}
                     ref={provided.innerRef}
                     className={`p-6 transition-all duration-200 max-h-[70vh] overflow-y-auto ${
-                      snapshot.isDraggingOver ? "bg-blue-50" : ""
+                      snapshot.isDraggingOver
+                        ? "bg-blue-50 dark:bg-blue-950/20"
+                        : ""
                     }`}
                   >
                     <div
@@ -645,7 +651,7 @@ const PDFReorderPages = () => {
                                   : ""
                               } ${
                                 selectedPages.includes(page.id)
-                                  ? "ring-2 ring-blue-500 ring-offset-2 rounded-lg"
+                                  ? "ring-2 ring-blue-500 ring-offset-2 rounded-lg dark:ring-blue-400"
                                   : ""
                               }`}
                             >
@@ -656,18 +662,18 @@ const PDFReorderPages = () => {
                                   checked={selectedPages.includes(page.id)}
                                   onChange={() => togglePageSelection(page.id)}
                                   onClick={(e) => e.stopPropagation()}
-                                  className="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer"
+                                  className="w-5 h-5 text-blue-600 rounded border-gray-300 focus:ring-blue-500 cursor-pointer dark:bg-slate-700 dark:border-slate-600"
                                 />
                               </div>
 
                               {/* Current Page Number Badge */}
-                              <div className="absolute top-2 right-2 z-10 bg-linear-to-br from-blue-500 to-indigo-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg">
+                              <div className="absolute top-2 right-2 z-10 bg-linear-to-br from-blue-500 to-indigo-500 text-white text-xs font-bold px-2 py-1 rounded-full shadow-lg dark:from-blue-600 dark:to-indigo-600">
                                 {page.pageNumber}
                               </div>
 
                               {/* Drag Handle Indicator */}
                               <div className="absolute bottom-2 left-2 z-10 opacity-0 group-hover:opacity-100 transition-opacity">
-                                <div className="bg-black/50 backdrop-blur-sm p-1 rounded-full">
+                                <div className="bg-black/50 backdrop-blur-sm p-1 rounded-full dark:bg-black/70">
                                   <svg
                                     className="w-4 h-4 text-white"
                                     fill="none"
@@ -686,8 +692,8 @@ const PDFReorderPages = () => {
 
                               {/* Page Content */}
                               {viewMode === "grid" ? (
-                                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-200 cursor-move">
-                                  <div className="relative bg-gray-50">
+                                <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-200 cursor-move dark:bg-slate-700 dark:shadow-slate-900/50">
+                                  <div className="relative bg-gray-50 dark:bg-slate-600">
                                     <img
                                       src={page.thumbnail}
                                       alt={`Page ${page.pageNumber}`}
@@ -699,13 +705,13 @@ const PDFReorderPages = () => {
                                       <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent pointer-events-none"></div>
                                     )}
                                   </div>
-                                  <div className="p-3 text-center bg-white border-t border-gray-100">
-                                    <p className="text-sm font-semibold text-gray-800">
+                                  <div className="p-3 text-center bg-white border-t border-gray-100 dark:bg-slate-700 dark:border-slate-600">
+                                    <p className="text-sm font-semibold text-gray-800 dark:text-slate-200">
                                       Page {page.pageNumber}
                                     </p>
                                     {page.originalPageNumber !==
                                       page.pageNumber && (
-                                      <p className="text-xs text-amber-600 mt-1 font-medium">
+                                      <p className="text-xs text-amber-600 mt-1 font-medium dark:text-amber-400">
                                         Originally page{" "}
                                         {page.originalPageNumber}
                                       </p>
@@ -713,28 +719,28 @@ const PDFReorderPages = () => {
                                   </div>
                                 </div>
                               ) : (
-                                <div className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-4 cursor-move p-3">
+                                <div className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-4 cursor-move p-3 dark:bg-slate-700 dark:shadow-slate-900/50">
                                   <div className="shrink-0 relative">
                                     <img
                                       src={page.thumbnail}
                                       alt={`Page ${page.pageNumber}`}
-                                      className="w-16 h-auto rounded border border-gray-200"
+                                      className="w-16 h-auto rounded border border-gray-200 dark:border-slate-600"
                                     />
                                   </div>
                                   <div className="flex-1">
                                     <div className="flex items-center gap-2">
-                                      <p className="font-semibold text-gray-800">
+                                      <p className="font-semibold text-gray-800 dark:text-slate-200">
                                         Page {page.pageNumber}
                                       </p>
                                       {page.originalPageNumber !==
                                         page.pageNumber && (
-                                        <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full">
+                                        <span className="text-xs bg-amber-100 text-amber-700 px-2 py-0.5 rounded-full dark:bg-amber-900/30 dark:text-amber-400">
                                           Originally #{page.originalPageNumber}
                                         </span>
                                       )}
                                     </div>
                                   </div>
-                                  <div className="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity">
+                                  <div className="text-gray-400 opacity-0 group-hover:opacity-100 transition-opacity dark:text-slate-500">
                                     <svg
                                       className="w-6 h-6"
                                       fill="none"
@@ -766,8 +772,8 @@ const PDFReorderPages = () => {
 
         {/* Instructions */}
         {pdfFile && (
-          <div className="mt-6 bg-linear-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-100">
-            <div className="flex items-start gap-2 text-blue-800">
+          <div className="mt-6 bg-linear-to-r from-blue-50 to-indigo-50 rounded-lg p-4 border border-blue-100 dark:from-blue-950/30 dark:to-indigo-950/30 dark:border-blue-800/40">
+            <div className="flex items-start gap-2 text-blue-800 dark:text-blue-300">
               <svg
                 className="w-5 h-5 shrink-0 mt-0.5"
                 fill="none"
@@ -782,8 +788,10 @@ const PDFReorderPages = () => {
                 />
               </svg>
               <div className="text-sm">
-                <p className="font-semibold mb-1">Quick Tips:</p>
-                <ul className="space-y-1 text-blue-700">
+                <p className="font-semibold mb-1 dark:text-blue-300">
+                  Quick Tips:
+                </p>
+                <ul className="space-y-1 text-blue-700 dark:text-blue-300/80">
                   <li>
                     • <strong>Drag & Drop</strong> - Click and drag any page
                     card to reorder
