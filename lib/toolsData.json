@@ -194,5 +194,12 @@
     "description": "Convert length, weight, temperature, area, volume, speed, time, and data storage units instantly.",
     "icon": "Scale",
     "category": "Calculator"
+  },
+  {
+    "title": "Color Palette Extractor",
+    "link": "/tools/color-palette-extractor",
+    "description": "Extract dominant color palettes from any image. Pick pixel colors, copy HEX/RGB/HSL values, and export as CSS or Tailwind config.",
+    "icon": "Palette",
+    "category": "Image"
   }
 ]
