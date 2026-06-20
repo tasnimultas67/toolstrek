@@ -4,202 +4,231 @@
     "link": "/tools/link-shortner",
     "description": "Shorten your links for easy sharing",
     "icon": "Link",
-    "category": "Productivity"
+    "category": "Productivity",
+    "keywords": ["link shortener", "url shortener", "shorten links", "link management", "share links", "productivity"]
   },
   {
     "title": "Numbers to Words Converter",
     "link": "/tools/numbers-to-words",
     "description": "Convert numbers to their word representation",
     "icon": "Text",
-    "category": "Productivity"
+    "category": "Productivity",
+    "keywords": ["numbers to words", "number to text", "convert numbers", "spell numbers", "word representation", "productivity"]
   },
   {
     "title": "Fake Info Generator",
     "link": "/tools/fake-info-generator",
     "description": "Generate realistic fake information for testing purposes",
     "icon": "User",
-    "category": "Productivity"
+    "category": "Productivity",
+    "keywords": ["fake info", "fake information", "data generator", "test data", "dummy data", "mock data", "productivity"]
   },
   {
     "title": "Wifi QR Code Generator",
     "link": "/tools/wifi-qr",
     "description": "Generate QR codes for your wifi network",
     "icon": "QrCode",
-    "category": "QR Code"
+    "category": "QR Code",
+    "keywords": ["wifi qr code", "wifi qr generator", "qr code generator", "wifi network", "scan wifi", "qr code"]
   },
   {
     "title": "Age Calculator",
     "link": "/tools/age-calculate",
     "description": "Calculate your age in years, months, and days",
     "icon": "Calculator",
-    "category": "Calculator"
+    "category": "Calculator",
+    "keywords": ["age calculator", "calculate age", "age in years", "birthday calculator", "age in months", "age in days", "calculator"]
   },
   {
     "title": "QR Code Scanner",
     "link": "/tools/qr-scanner",
     "description": "Scan QR codes using your device's camera",
     "icon": "ScanQrCode",
-    "category": "QR Code"
+    "category": "QR Code",
+    "keywords": ["qr code scanner", "scan qr code", "qr reader", "barcode scanner", "camera scan", "qr code"]
   },
   {
     "title": "Days Tracker",
     "link": "/tools/days-tracker",
     "description": "Calculate the end date based on start date",
     "icon": "Calendar",
-    "category": "Calculator"
+    "category": "Calculator",
+    "keywords": ["days tracker", "date calculator", "end date", "start date", "date difference", "date tracker", "calculator"]
   },
   {
     "title": "BMI Calculator",
     "link": "/tools/bmi-calculator",
     "description": "Calculate your Body Mass Index (BMI)",
     "icon": "Calculator",
-    "category": "Calculator"
+    "category": "Calculator",
+    "keywords": ["bmi calculator", "body mass index", "bmi check", "health calculator", "weight index", "bmi", "calculator"]
   },
   {
     "title": "NU CGPA Calculator",
     "link": "/tools/cgpa-calculator",
     "description": "Calculate National University Bangladesh CGPA from subject grades and credits.",
     "icon": "Calculator",
-    "category": "Calculator"
+    "category": "Calculator",
+    "keywords": ["nu cgpa", "cgpa calculator", "national university bangladesh", "cgpa", "grade calculator", "credit calculator", "calculator"]
   },
   {
     "title": "Password Generator",
     "link": "/tools/password-generator",
     "description": "A secure tool that creates strong, randomized passwords",
     "icon": "Lock",
-    "category": "Security"
+    "category": "Security",
+    "keywords": ["password generator", "secure password", "random password", "strong password", "password creator", "security"]
   },
   {
     "title": "Markdown Previewer",
     "link": "/tools/markdown-previewer",
     "description": "Edit your GitHub README in real-time with our Markdown and HTML previewer.",
     "icon": "Eye",
-    "category": "Developer"
+    "category": "Developer",
+    "keywords": ["markdown previewer", "markdown editor", "github readme", "markdown to html", "real-time preview", "markdown", "developer"]
   },
   {
     "title": "Domain Age Checker",
     "link": "/tools/domain-age-checker",
     "description": "Check the age of any domain name.",
     "icon": "Globe",
-    "category": "Developer"
+    "category": "Developer",
+    "keywords": ["domain age checker", "domain age", "domain checker", "website age", "domain info", "domain lookup", "developer"]
   },
   {
     "title": "Case Converter",
     "link": "/tools/case-converter",
     "description": "Convert text between different case formats.",
     "icon": "SplinePointer",
-    "category": "Text"
+    "category": "Text",
+    "keywords": ["case converter", "text converter", "uppercase", "lowercase", "title case", "sentence case", "camel case", "text"]
   },
   {
     "title": "PDF to Image Converter",
     "link": "/tools/pdf-to-image",
     "description": "Convert PDF pages into high-resolution images.",
     "icon": "FileImage",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["pdf to image", "pdf converter", "pdf to png", "pdf to jpg", "extract pdf pages", "pdf to image converter", "pdf"]
   },
-    {
+  {
     "title": "Image to Text Converter",
     "link": "/tools/image-to-text",
     "description": "Extract text from images locally and securely.",
     "icon": "FileText",
-    "category": "Image"
+    "category": "Image",
+    "keywords": ["image to text", "ocr converter", "extract text", "text from image", "image ocr", "scan text", "image"]
   },
   {
     "title": "AVIF Converter",
     "link": "/tools/avif-converter",
     "description": "Convert images to and from the AVIF format for better compression and quality.",
     "icon": "FileImage",
-    "category": "Image"
+    "category": "Image",
+    "keywords": ["avif converter", "image converter", "avif to png", "png to avif", "avif format", "image compression", "image"]
   },
   {
     "title": "Image to PDF Converter",
     "link": "/tools/image-to-pdf",
     "description": "Convert images into PDF documents.",
     "icon": "File",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["image to pdf", "jpg to pdf", "png to pdf", "image converter", "create pdf", "image to pdf converter", "pdf"]
   },
   {
     "title": "Compress PDF Tool",
     "link": "/tools/compress-pdf",
     "description": "Reduce the file size of your PDF documents without losing quality.",
     "icon": "FileZip",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["compress pdf", "pdf compressor", "reduce pdf size", "pdf optimizer", "pdf compression", "pdf"]
   },
   {
     "title": "Crop PDF Tool",
     "link": "/tools/crop-pdf",
     "description": "Trim and cut PDF pages online.",
     "icon": "Crop",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["crop pdf", "pdf cropper", "trim pdf", "cut pdf", "pdf editing", "crop pdf pages", "pdf"]
   },
   {
     "title": "PDF Merger",
     "link": "/tools/pdf-merger",
     "description": "Merge multiple PDF files into a single document.",
     "icon": "FileStack",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["pdf merger", "merge pdf", "combine pdf", "pdf combiner", "join pdf", "pdf merge", "pdf"]
   },
   {
     "title": "PDF Splitter",
     "link": "/tools/pdf-split",
     "description": "Split PDF files into separate pages or sections.",
     "icon": "SquareSplitHorizontal",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["pdf splitter", "split pdf", "separate pdf", "extract pdf pages", "pdf split", "pdf"]
   },
   {
     "title": "PDF Reorder",
     "link": "/tools/pdf-reorder",
     "description": "Rearrange the pages of your PDF files.",
     "icon": "ArrowRightLeft",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["pdf reorder", "rearrange pdf", "pdf pages", "organize pdf", "reorder pdf pages", "pdf"]
   },
   {
     "title": "Add Attachments to PDF",
     "link": "/tools/add-attachments",
     "description": "Add attachments to your PDF files.",
     "icon": "Paperclip",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["add attachments to pdf", "pdf attachments", "attach file to pdf", "pdf attachment", "embed files in pdf", "pdf"]
   },
   {
     "title": "Combine PDF Files",
     "link": "/tools/combine-files-to-pdf",
     "description": "Combine multiple PDF files into a single document.",
     "icon": "FileStack",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["combine pdf", "pdf combiner", "merge pdf", "join pdf", "combine pdf files", "pdf"]
   },
   {
     "title": "N-Up PDF",
     "link": "/tools/n-up-pdf",
     "description": "Rearrange your PDF layout to print multiple pages on a single sheet.",
     "icon": "FileStack",
-    "category": "PDF"
+    "category": "PDF",
+    "keywords": ["n-up pdf", "pdf layout", "multiple pages per sheet", "pdf printing", "imposition", "pdf arrange", "pdf"]
   },
   {
     "title": "QR Code Generator",
     "link": "/tools/qr-code-generator",
     "description": "Generate custom QR codes for any purpose.",
     "icon": "QrCode",
-    "category": "QR Code"
+    "category": "QR Code",
+    "keywords": ["qr code generator", "qr code", "generate qr", "custom qr code", "create qr", "qr creator", "qr code"]
   },
   {
     "title": "Text Repeater",
     "link": "/tools/text-repeater",
     "description": "Repeat any text multiple times with customizable options.",
     "icon": "Repeat",
-    "category": "Text"
+    "category": "Text",
+    "keywords": ["text repeater", "repeat text", "text duplication", "copy text", "text generator", "text"]
   },
   {
     "title": "Unit Converter",
     "link": "/tools/unit-converter",
     "description": "Convert length, weight, temperature, area, volume, speed, time, and data storage units instantly.",
     "icon": "Scale",
-    "category": "Calculator"
+    "category": "Calculator",
+    "keywords": ["unit converter", "length converter", "weight converter", "temperature converter", "area converter", "volume converter", "speed converter", "time converter", "data storage converter", "calculator"]
   },
   {
     "title": "Color Palette Extractor",
     "link": "/tools/color-palette-extractor",
     "description": "Extract dominant color palettes from any image. Pick pixel colors, copy HEX/RGB/HSL values, and export as CSS or Tailwind config.",
     "icon": "Palette",
-    "category": "Image"
+    "category": "Image",
+    "keywords": ["color palette extractor", "color palette", "extract colors", "hex colors", "rgb colors", "hsl colors", "css config", "tailwind config", "image color", "palette generator", "image"]
   }
 ]
