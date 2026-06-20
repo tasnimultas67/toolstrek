@@ -187,5 +187,12 @@
     "description": "Repeat any text multiple times with customizable options.",
     "icon": "Repeat",
     "category": "Text"
+  },
+  {
+    "title": "Unit Converter",
+    "link": "/tools/unit-converter",
+    "description": "Convert length, weight, temperature, area, volume, speed, time, and data storage units instantly.",
+    "icon": "Scale",
+    "category": "Calculator"
   }
 ]
