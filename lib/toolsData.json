@@ -230,5 +230,13 @@
     "icon": "Palette",
     "category": "Image",
     "keywords": ["color palette extractor", "color palette", "extract colors", "hex colors", "rgb colors", "hsl colors", "css config", "tailwind config", "image color", "palette generator", "image"]
+  },
+  {
+    "title": "SVG Converter",
+    "link": "/tools/svg-converter",
+    "description": "Convert SVG vector files to PNG, JPEG, or WebP format with customizable dimensions and aspect-ratio locking.",
+    "icon": "FileCode",
+    "category": "Image",
+    "keywords": ["svg converter", "svg to png", "svg to jpg", "svg to webp", "vector converter", "rasterize svg", "image"]
   }
 ]

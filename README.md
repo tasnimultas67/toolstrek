@@ -1,6 +1,6 @@
 # ToolsTrek
 
-**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 27+ tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 30 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## 🛠️ Tool Library (27 Tools)
+## 🛠️ Tool Library (30 Tools)
 
 ### 📝 Text
 
@@ -37,6 +37,7 @@
 | BMI Calculator     | Calculate Body Mass Index with health category classification     |
 | Days Tracker       | Find an end date by adding days to a start date                   |
 | NU CGPA Calculator | Calculate National University Bangladesh CGPA from subject grades |
+| Unit Converter     | Convert length, weight, temperature, area, volume, speed, and more|
 
 ### 🔧 Productivity
 
@@ -68,10 +69,12 @@
 
 ### 🖼️ Image
 
-| Tool                | Description                                                   |
-| ------------------- | ------------------------------------------------------------- |
-| AVIF Converter      | Convert images to/from the AVIF format for better compression |
-| Image to Text (OCR) | Extract text from images locally using Tesseract.js           |
+| Tool                    | Description                                                                        |
+| ----------------------- | ---------------------------------------------------------------------------------- |
+| AVIF Converter          | Convert images to/from the AVIF format for better compression                      |
+| Image to Text (OCR)     | Extract text from images locally using Tesseract.js                                 |
+| Color Palette Extractor | Extract color palettes from images, pick colors, copy HEX/RGB/HSL, export configs |
+| SVG Converter           | Convert SVG vectors to PNG, JPEG, or WebP with custom dimensions and aspect locks |
 
 ### 📄 PDF
 
@@ -170,13 +173,14 @@ toolstrek/
 │   │   ├── favorites/                 # ⭐ Favorites page
 │   │   ├── privacy-policy/            # Privacy Policy page
 │   │   ├── recent/                    # 🕐 Recently visited tools page
-│   │   ├── tools/                     # Individual tool pages (28 routes)
+│   │   ├── tools/                     # Individual tool pages (30 routes)
 │   │   │   ├── add-attachments/
 │   │   │   ├── age-calculate/
 │   │   │   ├── avif-converter/
 │   │   │   ├── bmi-calculator/
 │   │   │   ├── case-converter/
 │   │   │   ├── cgpa-calculator/
+│   │   │   ├── color-palette-extractor/
 │   │   │   ├── combine-files-to-pdf/
 │   │   │   ├── compress-pdf/
 │   │   │   ├── crop-pdf/
@@ -196,7 +200,9 @@ toolstrek/
 │   │   │   ├── pdf-to-image/
 │   │   │   ├── qr-code-generator/
 │   │   │   ├── qr-scanner/
+│   │   │   ├── svg-converter/
 │   │   │   ├── text-repeater/
+│   │   │   ├── unit-converter/
 │   │   │   └── wifi-qr/
 │   │   ├── tools-compo/               # Shared UI components & page shells
 │   │   │   ├── Home-Compo/            #   Homepage-specific components
@@ -208,6 +214,7 @@ toolstrek/
 │   │   │   │   ├── AvifConverter.js
 │   │   │   │   ├── BMICal.js
 │   │   │   │   ├── CGPACalculator.js
+│   │   │   │   ├── ColorPaletteExtractor.jsx
 │   │   │   │   ├── CombineFilesToPDFTool.jsx
 │   │   │   │   ├── CompressPDFTool.js
 │   │   │   │   ├── CropPDF.js
@@ -222,6 +229,7 @@ toolstrek/
 │   │   │   │   ├── PDFSplitPage.js
 │   │   │   │   ├── PdfToImage.js
 │   │   │   │   ├── QRCodeGenerator.js
+│   │   │   │   ├── SvgConverter.js
 │   │   │   │   ├── TextRepeater.js
 │   │   │   │   └── cgpaSubjectData.json
 │   │   │   ├── AgeCal.js              #   Age Calculator component
