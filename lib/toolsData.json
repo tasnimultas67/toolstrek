@@ -238,5 +238,13 @@
     "icon": "FileCode",
     "category": "Image",
     "keywords": ["svg converter", "svg to png", "svg to jpg", "svg to webp", "vector converter", "rasterize svg", "image"]
+  },
+  {
+    "title": "Favicon Generator",
+    "link": "/tools/favicon-generator",
+    "description": "Create a professional favicon pack from any image in seconds. Apply rounded corners, background color, and custom padding, then download all standard sizes (16×16 to 512×512) as a ready-to-use ZIP — fully client-side with no uploads required.",
+    "icon": "ImageIcon",
+    "category": "Image",
+    "keywords": ["favicon generator", "favicon maker", "favicon ico", "favicon png", "pwa icon", "apple touch icon", "favicon pack", "website icon", "image"]
   }
 ]
