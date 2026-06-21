@@ -8,7 +8,7 @@
     "keywords": ["link shortener", "url shortener", "shorten links", "link management", "share links", "productivity"]
   },
   {
-    "title": "Numbers to Words Converter",
+    "title": "Numbers to Words",
     "link": "/tools/numbers-to-words",
     "description": "Instantly convert numerical values into their full written text representation. Ideal for writing out official financial checks, drafting legal documents, completing banking forms, or verifying the correct spelling of large numbers.",
     "icon": "Text",
@@ -270,5 +270,13 @@
     "icon": "BookMarked",
     "category": "Text",
     "keywords": ["braille decoder", "braille encoder", "bangla braille", "bengali braille", "braille translator", "text to braille", "braille to text", "braille converter", "grade 1 braille", "text"]
+  },
+  {
+    "title": "Binary Decoder & Encoder",
+    "link": "/tools/binary-decoder",
+    "description": "Instantly convert text to binary code and decode binary back to plain text. Customize byte separators (spaces, commas, none), explore bit-level editing, check character statistics, and view a complete ASCII binary reference chart.",
+    "icon": "Binary",
+    "category": "Text",
+    "keywords": ["binary code decoder", "binary encoder", "binary to text", "text to binary", "binary translator", "binary converter", "ascii to binary", "binary to ascii", "text"]
   }
 ]
