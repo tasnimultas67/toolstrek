@@ -11,7 +11,7 @@ export default function FavoritesClient() {
   const { favorites } = useFavorites();
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 dark:from-gray-950 to-brandBackground dark:to-gray-900 pt-20 md:pt-24 pb-20 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 dark:from-gray-950 to-brandBackground dark:to-transparent pt-20 md:pt-24 pb-20 relative overflow-hidden">
       {/* Background Decorative Elements for Premium Aesthetics */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
         <div className="absolute top-24 left-10 w-72 h-72 bg-brandColor/20 rounded-full blur-3xl" />

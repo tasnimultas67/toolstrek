@@ -27,7 +27,7 @@ const ToolsCard = ({
         transition={{ delay: index * 0.08 }}
         className="h-full relative overflow-hidden rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 p-5 group-hover:bg-white dark:group-hover:bg-gray-950 group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.05)] dark:group-hover:shadow-[0_20px_50px_rgba(0,0,0,0.2)] group-hover:-translate-y-1 hover:border-brandColor/40 dark:hover:border-brandColor/60 transitions-all duration-300"
       >
-        <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-white dark:bg-gray-800 transition-all duration-500 group-hover:scale-[3] group-hover:bg-indigo-50 dark:group-hover:bg-indigo-950/20" />
+        <div className="absolute -right-4 -top-4 h-24 w-24 rounded-full bg-white dark:bg-gray-900 transition-all duration-500 group-hover:scale-[3] group-hover:bg-indigo-50 dark:group-hover:bg-indigo-950/20" />
 
         {/* Favorite Button container with absolute positioning and high z-index */}
         <div className="absolute right-4 top-4 z-20">
