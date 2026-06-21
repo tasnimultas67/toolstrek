@@ -254,5 +254,13 @@
     "icon": "FileText",
     "category": "Text",
     "keywords": ["dummy text generator", "lorem ipsum", "placeholder text", "lorem ipsum generator", "random text", "lipsum", "text"]
+  },
+  {
+    "title": "Morse Code Decoder",
+    "link": "/tools/morse-code-decoder",
+    "description": "Instantly translate text to Morse code or decode Morse signals back to readable text. Features real-time translation, audio playback with adjustable speed and tone, a visual dot/dash display, and a complete A–Z reference chart — all client-side with no uploads needed.",
+    "icon": "Radio",
+    "category": "Text",
+    "keywords": ["morse code decoder", "morse code encoder", "morse code translator", "text to morse code", "morse code to text", "morse code converter", "learn morse code", "text"]
   }
 ]
