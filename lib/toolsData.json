@@ -246,5 +246,13 @@
     "icon": "ImageIcon",
     "category": "Image",
     "keywords": ["favicon generator", "favicon maker", "favicon ico", "favicon png", "pwa icon", "apple touch icon", "favicon pack", "website icon", "image"]
+  },
+  {
+    "title": "Dummy Text Generator",
+    "link": "/tools/dummy-text-generator",
+    "description": "Generate customized dummy text locally. Specify exact word count, character limits, or paragraph quantities. Choose from classic Lorem Ipsum, modern Tech Speak, or Sci-Fi Space vocabularies, with support for standard HTML paragraph tags.",
+    "icon": "FileText",
+    "category": "Text",
+    "keywords": ["dummy text generator", "lorem ipsum", "placeholder text", "lorem ipsum generator", "random text", "lipsum", "text"]
   }
 ]

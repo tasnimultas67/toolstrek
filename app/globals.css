@@ -71,20 +71,35 @@ html::-webkit-scrollbar {
 .tool-page-shell {
   position: relative;
   overflow: hidden;
-  padding: 4.5rem 0.5rem 2.75rem;
+  padding: 7.5rem 0.5rem 2.75rem;
   background:
-    radial-gradient(circle at top left, rgba(124, 0, 254, 0.14), transparent 26%),
-    radial-gradient(circle at top right, rgba(52, 211, 153, 0.12), transparent 24%),
+    radial-gradient(
+      circle at top left,
+      rgba(124, 0, 254, 0.14),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(52, 211, 153, 0.12),
+      transparent 24%
+    ),
     linear-gradient(180deg, #f8fafc 0%, #ffffff 38%, #f8fafc 100%);
 }
 
 .dark .tool-page-shell {
   background:
-    radial-gradient(circle at top left, rgba(124, 0, 254, 0.08), transparent 26%),
-    radial-gradient(circle at top right, rgba(16, 185, 129, 0.06), transparent 24%),
+    radial-gradient(
+      circle at top left,
+      rgba(124, 0, 254, 0.08),
+      transparent 26%
+    ),
+    radial-gradient(
+      circle at top right,
+      rgba(16, 185, 129, 0.06),
+      transparent 24%
+    ),
     linear-gradient(180deg, #09090b 0%, #0c0c0e 38%, #09090b 100%);
 }
-
 
 .tool-page-shell::before,
 .tool-page-shell::after {

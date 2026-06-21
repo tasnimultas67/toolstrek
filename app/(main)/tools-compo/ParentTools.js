@@ -99,7 +99,7 @@ const ParentTools = () => {
 
   return (
     <div
-      className="pt-26 pb-26 px-2 text-gray-900 dark:text-white transition-colors duration-300"
+      className="pt-26 pb-10 px-2 text-gray-900 dark:text-white transition-colors duration-300"
       id="tools"
     >
       <div className="w-11/12 mx-auto relative">
@@ -149,7 +149,7 @@ const ParentTools = () => {
               ))}
             </div>
             {/* Results Count & Pagination */}
-            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mt-2 border-t border-gray-100 dark:border-gray-950 pt-6">
+            <div className="flex flex-col items-center md:flex-row md:items-center md:justify-between gap-4 mt-2 border-t border-gray-100 dark:border-gray-950 pt-1">
               <div className="text-sm text-gray-500 dark:text-gray-400 order-2 md:order-1">
                 Showing{" "}
                 <span className="font-semibold text-gray-950 dark:text-white">
