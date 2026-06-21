@@ -603,7 +603,7 @@ export default function CGPACalculator() {
 
   return (
     <div
-      className={`${hindSiliguri.className} cgpa-calculator-shell min-h-screen bg-[#f9fafb] dark:bg-gray-900 px-2 pb-10 pt-26 text-gray-900 dark:text-gray-100`}
+      className={`${hindSiliguri.className} cgpa-calculator-shell min-h-screen bg-[#f9fafb] dark:bg-gray-900 px-2 pb-10 pt-20 text-gray-900 dark:text-gray-100`}
     >
       <div className="mx-auto max-w-4xl">
         <div className="mb-6 text-center">

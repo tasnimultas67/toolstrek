@@ -101,7 +101,7 @@ const PDFMerger = () => {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 pb-8 pt-26 px-4 dark:from-blue-950/30 dark:via-slate-900 dark:to-indigo-950/30">
+    <div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-indigo-50 pb-8 pt-20 px-4 dark:from-blue-950/30 dark:via-slate-900 dark:to-indigo-950/30">
       <div className="max-w-5xl mx-auto">
         {/* Header Section */}
         <div className="text-center mb-8">

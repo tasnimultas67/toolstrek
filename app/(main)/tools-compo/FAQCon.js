@@ -63,7 +63,7 @@ const FAQCon = () => {
 
   return (
     <motion.div
-      className="container w-11/12 pb-12 pt-26 px-2 sm:px-3 m-auto"
+      className="container w-11/12 pb-12 pt-20 px-2 sm:px-3 m-auto"
       initial="hidden"
       animate="visible"
       variants={containerVariants}

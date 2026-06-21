@@ -250,7 +250,7 @@ const AvifConverter = () => {
   const selectedFormatObj = formats.find((f) => f.id === selectedFormat);
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-10 pt-24 px-2">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950 pb-10 pt-20 px-2">
       <div className="max-w-7xl mx-auto">
         {/* Main Card */}
         <div className="bg-white dark:bg-gray-900 rounded-2xl shadow-sm dark:shadow-gray-900/50 border border-gray-200 dark:border-gray-700 p-6 md:p-8">

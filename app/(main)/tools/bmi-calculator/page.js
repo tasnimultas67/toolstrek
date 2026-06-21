@@ -46,11 +46,7 @@ export const metadata = {
 };
 
 const page = () => {
-  return (
-    <div className="pt-24 pb-10 px-1">
-      <BMICal />
-    </div>
-  );
+  return <BMICal />;
 };
 
 export default page;

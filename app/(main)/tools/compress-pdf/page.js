@@ -24,11 +24,7 @@ export const metadata = {
 };
 
 const page = () => {
-  return (
-    <div className="px-1 pt-20 pb-10">
-      <CompressPDFTool />
-    </div>
-  );
+  return <CompressPDFTool />;
 };
 
 export default page;

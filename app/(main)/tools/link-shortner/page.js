@@ -7,13 +7,7 @@ export const metadata = {
 };
 
 const page = () => {
-  return (
-    <div className="">
-      <div className="pt-20 pb-5">
-        <ShortenerForm />
-      </div>
-    </div>
-  );
+  return <ShortenerForm />;
 };
 
 export default page;

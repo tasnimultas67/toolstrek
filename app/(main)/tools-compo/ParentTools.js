@@ -99,7 +99,7 @@ const ParentTools = () => {
 
   return (
     <div
-      className="py-26 px-2 text-gray-900 dark:text-white transition-colors duration-300"
+      className="pt-26 pb-26 px-2 text-gray-900 dark:text-white transition-colors duration-300"
       id="tools"
     >
       <div className="w-11/12 mx-auto relative">

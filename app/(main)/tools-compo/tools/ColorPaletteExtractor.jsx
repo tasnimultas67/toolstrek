@@ -545,7 +545,7 @@ export default function ColorPaletteExtractor() {
 
   return (
     <ToolPageShell widthClassName="max-w-7xl overflow-x-hidden">
-      <div className="pb-8 pt-24 px-3 sm:px-6 space-y-6 sm:space-y-8">
+      <div className="pb-8 px-3 sm:px-6 space-y-6 sm:space-y-8">
         {/* ── Hero Header ── */}
         <div className="text-center max-w-2xl mx-auto">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-purple-100 dark:bg-purple-900/30 text-purple-700 dark:text-purple-300 text-sm font-semibold mb-4">

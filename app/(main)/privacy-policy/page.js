@@ -53,7 +53,7 @@ const PrivacyPolicy = () => {
   return (
     <div className="bg-gray-50 dark:bg-gray-950 min-h-screen text-gray-900 dark:text-white transition-colors duration-300">
       <motion.div
-        className="max-w-5xl mx-auto px-4 pb-12 pt-26"
+        className="max-w-5xl mx-auto px-4 pb-12 pt-20"
         initial="hidden"
         animate="visible"
         variants={containerVariants}

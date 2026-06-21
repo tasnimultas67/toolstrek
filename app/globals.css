@@ -71,7 +71,7 @@ html::-webkit-scrollbar {
 .tool-page-shell {
   position: relative;
   overflow: hidden;
-  padding: 6.5rem 0.5rem 2.75rem;
+  padding: 4.5rem 0.5rem 2.75rem;
   background:
     radial-gradient(circle at top left, rgba(124, 0, 254, 0.14), transparent 26%),
     radial-gradient(circle at top right, rgba(52, 211, 153, 0.12), transparent 24%),

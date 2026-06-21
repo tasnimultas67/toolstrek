@@ -49,14 +49,12 @@ export default function Page() {
   };
 
   return (
-    <div className="pt-24 pb-10">
+    <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <div className="px-1 py-3">
-        <UnitConverter />
-      </div>
-    </div>
+      <UnitConverter />
+    </>
   );
 }

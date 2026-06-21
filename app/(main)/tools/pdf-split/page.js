@@ -38,11 +38,7 @@ export const metadata = {
 };
 
 const page = () => {
-  return (
-    <div className="px-1 pt-20 pb-10">
-      <PDFSplitPage />
-    </div>
-  );
+  return <PDFSplitPage />;
 };
 
 export default page;

@@ -8,13 +8,7 @@ export const metadata = {
 };
 
 const page = () => {
-  return (
-    <div className="pt-24 pb-10">
-      <div className=" px-1 py-3 ">
-        <AgeCal></AgeCal>
-      </div>
-    </div>
-  );
+  return <AgeCal />;
 };
 
 export default page;
