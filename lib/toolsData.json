@@ -262,5 +262,13 @@
     "icon": "Radio",
     "category": "Text",
     "keywords": ["morse code decoder", "morse code encoder", "morse code translator", "text to morse code", "morse code to text", "morse code converter", "learn morse code", "text"]
+  },
+  {
+    "title": "Braille Decoder & Encoder",
+    "link": "/tools/braille-decoder",
+    "description": "Encode text into Braille or decode Braille back to readable text. Supports Bangla (Bengali Braille) and English (Grade 1 Standard Braille) with a full visual dot-pattern reference chart. Real-time conversion — all client-side with no uploads needed.",
+    "icon": "BookMarked",
+    "category": "Text",
+    "keywords": ["braille decoder", "braille encoder", "bangla braille", "bengali braille", "braille translator", "text to braille", "braille to text", "braille converter", "grade 1 braille", "text"]
   }
 ]
