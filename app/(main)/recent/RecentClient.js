@@ -28,7 +28,7 @@ export default function RecentClient() {
   };
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 dark:from-gray-950 to-white dark:to-gray-900 pt-20 md:pt-24 pb-20 relative overflow-hidden">
+    <div className="min-h-screen bg-linear-to-b from-gray-50 dark:from-gray-950 to-brandBackground dark:to-gray-900 pt-20 md:pt-24 pb-20 relative overflow-hidden">
       {/* Background Blurs for Premium Aesthetics */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
         <div className="absolute top-24 left-10 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl" />
@@ -122,7 +122,7 @@ export default function RecentClient() {
             {/* Background glows inside empty state card */}
             <div className="absolute -top-12 -left-12 w-36 h-36 bg-indigo-50 dark:bg-indigo-950/20 rounded-full blur-2xl pointer-events-none" />
             <div className="absolute -bottom-12 -right-12 w-36 h-36 bg-brandColor/5 rounded-full blur-2xl pointer-events-none" />
- 
+
             <div className="relative z-10 flex flex-col items-center">
               <div className="mb-6 inline-flex items-center justify-center size-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-100 dark:border-indigo-900/50 text-indigo-500 dark:text-indigo-450 shadow-sm">
                 <History className="size-8" />
@@ -156,7 +156,8 @@ export default function RecentClient() {
               Clear History?
             </DialogTitle>
             <DialogDescription className="text-center text-gray-500 dark:text-gray-400 leading-relaxed">
-              Are you sure you want to clear your recently used tools history? This action cannot be undone.
+              Are you sure you want to clear your recently used tools history?
+              This action cannot be undone.
             </DialogDescription>
           </DialogHeader>
           <DialogFooter className="mt-4 flex flex-col-reverse sm:flex-row justify-end gap-2">
