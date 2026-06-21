@@ -33,7 +33,7 @@ const FadeIn = ({ children, delay = 0, x = 0, y = 20 }) => (
 // Reusable Value Card Component
 const ValueCard = ({ icon, title, description, delay = 0 }) => (
   <FadeIn x={-20} y={0} delay={delay}>
-    <div className="p-8 bg-white dark:bg-slate-900 rounded-xl border border-border/50 hover:border-brandColor/50 transition-colors h-full">
+    <div className="p-8 bg-white dark:bg-slate-900 rounded-xl border border-border hover:border-brandColor/50 transition-colors h-full">
       <div className="w-12 h-12 bg-brandColor/10 rounded-lg flex items-center justify-center mb-4">
         {icon}
       </div>
@@ -48,7 +48,7 @@ const ValueCard = ({ icon, title, description, delay = 0 }) => (
 // Reusable Tech Stack Item Component
 const TechItem = ({ name, icon, delay = 0 }) => (
   <FadeIn delay={delay}>
-    <div className="px-6 py-3 bg-white dark:bg-slate-900 rounded-lg border border-border/50 flex items-center gap-2">
+    <div className="px-6 py-3 bg-gray-100 dark:bg-slate-900 rounded-lg border border-border/50 flex items-center gap-2">
       <span className="text-xl">{icon}</span>
       <span className="font-medium">{name}</span>
     </div>
@@ -121,6 +121,69 @@ const Page = () => {
         </svg>
       ),
     },
+    {
+      id: 4,
+      title: "Open Source",
+      description:
+        "Transparent by nature. Our codebase is completely open for inspection, modification, and community contributions on GitHub.",
+      icon: (
+        <svg
+          className="w-6 h-6 text-brandColor"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"
+          />
+        </svg>
+      ),
+    },
+    {
+      id: 5,
+      title: "Free Forever",
+      description:
+        "No paywalls, no hidden premium tiers, and no subscriptions. Enjoy full, unrestricted access to all our tools without spending a dime.",
+      icon: (
+        <svg
+          className="w-6 h-6 text-brandColor"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+          />
+        </svg>
+      ),
+    },
+    {
+      id: 6,
+      title: "Accessible Everywhere",
+      description:
+        "Designed to work smoothly across all devices. Access your favorite web tools on mobile, tablet, or desktop with full responsiveness.",
+      icon: (
+        <svg
+          className="w-6 h-6 text-brandColor"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9h18"
+          />
+        </svg>
+      ),
+    },
   ];
 
   // Tech stack data array
@@ -154,19 +217,6 @@ const Page = () => {
                 </p>
               </FadeIn>
             </div>
-            {/* <FadeIn delay={0.3} x={20} y={0}>
-              <div className="relative group">
-                <div className="absolute -inset-1 bg-linear-to-r from-brandColor to-accent rounded-lg blur opacity-25 group-hover:opacity-50 transition duration-1000"></div>
-                <Image
-                  src="https://images.unsplash.com/photo-1576961457745-955300ee1a71?q=80&w=2070&auto=format&fit=crop"
-                  width={1400}
-                  height={800}
-                  alt="Productivity workspace"
-                  className="relative object-cover aspect-video rounded-xl shadow-2xl"
-                  priority
-                />
-              </div>
-            </FadeIn> */}
           </div>
         </section>
 
@@ -212,7 +262,7 @@ const Page = () => {
         </section>
 
         {/* --- Values Section --- */}
-        <section className="py-20">
+        <section className="pt-20 pb-10">
           <div className="text-center mb-12">
             <FadeIn>
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
@@ -223,7 +273,7 @@ const Page = () => {
               </p>
             </FadeIn>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {values.map((value, index) => (
               <ValueCard
                 key={value.id}
@@ -237,7 +287,7 @@ const Page = () => {
         </section>
 
         {/* --- Tech Stack Section --- */}
-        <section className="py-12 bg-secondary/20 rounded-3xl px-6 md:px-12 border border-border/50">
+        <section className="py-12 bg-white dark:bg-slate-950 rounded-3xl px-6 md:px-12 border border-border/50 mb-10">
           <div className="text-center">
             <FadeIn>
               <h2 className="text-2xl md:text-3xl font-bold mb-4">
