@@ -136,7 +136,7 @@ const WifiQRGen = () => {
   return (
     <ToolPageShell widthClassName="max-w-6xl pt-24 pb-10">
       <div className="space-y-6">
-        <div className="mx-auto flex flex-col justify-between rounded-[2rem] border border-slate-200 dark:border-neutral-700 bg-white/85 dark:bg-neutral-900/85 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] backdrop-blur lg:flex-row">
+        <div className="mx-auto flex flex-col justify-between rounded-4xl border border-slate-200 dark:border-neutral-700 bg-white/85 dark:bg-neutral-900/85 p-5 shadow-[0_20px_60px_rgba(15,23,42,0.08)] dark:shadow-[0_20px_60px_rgba(0,0,0,0.3)] backdrop-blur lg:flex-row">
           <div className="w-full lg:w-2/3">
             <form
               onSubmit={(e) => {
@@ -214,7 +214,7 @@ const WifiQRGen = () => {
                     }
                   }}
                 >
-                  <SelectTrigger className="w-[180px] bg-white dark:bg-neutral-800 dark:text-gray-200 dark:border-neutral-600">
+                  <SelectTrigger className="w-45 bg-white dark:bg-neutral-800 dark:text-gray-200 dark:border-neutral-600">
                     <SelectValue placeholder="Select encryption" />
                   </SelectTrigger>
                   <SelectContent className="dark:bg-neutral-800 dark:border-neutral-700">
@@ -267,7 +267,7 @@ const WifiQRGen = () => {
                         <HexColorPicker
                           color={qrColor}
                           onChange={setQrColor}
-                          className="!w-full"
+                          className="w-full!"
                         />
                         <div className="flex items-center gap-2 p-2 bg-white dark:bg-neutral-800 border border-t-0 border-gray-300 dark:border-neutral-600 rounded-b-md">
                           <input
@@ -302,7 +302,7 @@ const WifiQRGen = () => {
                         <HexColorPicker
                           color={bgColor}
                           onChange={setBgColor}
-                          className="!w-full"
+                          className="w-full!"
                         />
                         <div className="flex items-center gap-2 p-2 bg-white dark:bg-neutral-800 border border-t-0 border-gray-300 dark:border-neutral-600 rounded-b-md">
                           <input
@@ -337,7 +337,7 @@ const WifiQRGen = () => {
           {/* QR Code Preview & Buttons */}
           <div className="w-full lg:w-1/3 flex flex-col items-center lg:items-end justify-center mt-6 lg:mt-0">
             {!qrCode ? (
-              <div className="w-full max-w-[250px] h-[300px] flex items-center justify-center border border-dashed border-gray-300 dark:border-neutral-600 rounded-xl bg-gray-50 dark:bg-neutral-800">
+              <div className="w-full max-w-62.5 h-75 flex items-center justify-center border border-dashed border-gray-300 dark:border-neutral-600 rounded-xl bg-gray-50 dark:bg-neutral-800">
                 <p className="text-sm text-gray-500 dark:text-gray-400 text-center px-4">
                   Your WiFi QR Code will appear here after generation
                 </p>
@@ -347,7 +347,7 @@ const WifiQRGen = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5 }}
-                className="w-full max-w-[250px]"
+                className="w-full max-w-62.5"
               >
                 <div
                   className="p-4 flex flex-col items-center justify-start border border-gray-300 dark:border-neutral-600 rounded-xl"
@@ -356,7 +356,7 @@ const WifiQRGen = () => {
                   <img
                     src={qrCode}
                     alt="WiFi QR Code"
-                    className="m-2 w-[200px] h-[200px]"
+                    className="m-2 w-50 h-50"
                   />
                   <button
                     className="flex items-center justify-center gap-2 text-xs bg-brandColor hover:bg-brandColorHover transition-all text-white px-4 py-2 rounded-md w-full cursor-pointer mt-2"

@@ -193,7 +193,7 @@ const CaseConverter = () => {
             <button
               onClick={copyToClipboard}
               disabled={!text}
-              className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-bold transition-all active:scale-95 shadow-lg min-w-[140px] justify-center
+              className={`flex items-center gap-2 px-8 py-3 rounded-2xl font-bold transition-all active:scale-95 shadow-lg min-w-35 justify-center
                 ${
                   copied
                     ? "bg-green-500 dark:bg-green-600 text-white shadow-green-100 dark:shadow-green-900/30"

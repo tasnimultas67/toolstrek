@@ -186,7 +186,7 @@ const ParentTools = () => {
                       handlePageChange(Math.max(activePage - 1, 1))
                     }
                     disabled={activePage === 1}
-                    className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800/55 hover:border-brandColor/50 transition-all duration-200 disabled:opacity-40 disabled:hover:bg-white disabled:hover:bg-gray-900 disabled:hover:border-gray-200 disabled:hover:border-gray-800 disabled:cursor-not-allowed cursor-pointer"
+                    className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800/55 hover:border-brandColor/50 transition-all duration-200 disabled:opacity-40 disabled:hover:bg-white disabled:hover:border-gray-200 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <ChevronLeft className="h-4 w-4" />
                     <span className="hidden sm:inline">Previous</span>
@@ -227,7 +227,7 @@ const ParentTools = () => {
                       handlePageChange(Math.min(activePage + 1, totalPages))
                     }
                     disabled={activePage === totalPages}
-                    className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800/55 hover:border-brandColor/50 transition-all duration-200 disabled:opacity-40 disabled:hover:bg-white disabled:hover:bg-gray-900 disabled:hover:border-gray-200 disabled:hover:border-gray-800 disabled:cursor-not-allowed cursor-pointer"
+                    className="inline-flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-lg border border-gray-200 dark:border-gray-800 text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-900 hover:bg-gray-50 dark:hover:bg-gray-800/55 hover:border-brandColor/50 transition-all duration-200 disabled:opacity-40 disabled:hover:bg-white  disabled:hover:border-gray-200 disabled:cursor-not-allowed cursor-pointer"
                   >
                     <span className="hidden sm:inline">Next</span>
                     <ChevronRight className="h-4 w-4" />

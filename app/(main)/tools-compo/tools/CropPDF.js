@@ -821,7 +821,7 @@ const CropPDF = () => {
         {toast.show && (
           <div className="fixed bottom-4 right-4 z-50 animate-slide-in">
             <div
-              className={`min-w-[280px] max-w-md rounded-lg px-4 py-3 text-white shadow-lg ${
+              className={`min-w-70 max-w-md rounded-lg px-4 py-3 text-white shadow-lg ${
                 toast.type === "success"
                   ? "bg-emerald-600 dark:bg-emerald-500"
                   : toast.type === "error"
@@ -914,7 +914,7 @@ const CropPDF = () => {
                         >
                           -
                         </button>
-                        <span className="min-w-[64px] text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+                        <span className="min-w-16 text-center text-sm font-medium text-slate-700 dark:text-slate-300">
                           {Math.round(zoom * 100)}%
                         </span>
                         <button
@@ -942,7 +942,7 @@ const CropPDF = () => {
                           >
                             Prev
                           </button>
-                          <span className="min-w-[90px] text-center text-sm font-medium text-slate-700 dark:text-slate-300">
+                          <span className="min-w-22.5 text-center text-sm font-medium text-slate-700 dark:text-slate-300">
                             Page {currentPage} / {numPages}
                           </span>
                           <button
@@ -993,7 +993,7 @@ const CropPDF = () => {
                     </p>
                   </div>
 
-                  <div className="relative flex min-h-[500px] justify-center overflow-auto rounded-lg bg-slate-100 p-4 dark:bg-slate-700/50">
+                  <div className="relative flex min-h-125 justify-center overflow-auto rounded-lg bg-slate-100 p-4 dark:bg-slate-700/50">
                     {isLoading && (
                       <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/75 dark:bg-slate-800/75">
                         <div className="h-12 w-12 animate-spin rounded-full border-b-2 border-blue-600 dark:border-blue-400" />
@@ -1120,7 +1120,7 @@ const CropPDF = () => {
                               <button
                                 key={pageNum}
                                 onClick={() => showPage(pageNum)}
-                                className={`relative h-20 w-16 flex-shrink-0 overflow-hidden rounded-lg border-2 transition ${
+                                className={`relative h-20 w-16 shrink-0 overflow-hidden rounded-lg border-2 transition ${
                                   pageNum === currentPage
                                     ? "scale-105 border-blue-500 shadow-lg dark:border-blue-400"
                                     : "border-slate-300 hover:border-slate-400 dark:border-slate-600 dark:hover:border-slate-500"
@@ -1294,7 +1294,7 @@ const CropPDF = () => {
                   Apply Crop
                 </h3>
                 <p className="text-sm text-slate-600 dark:text-slate-400">
-                  Click "Apply Crop" to trim your selected area
+                  Click &quot;Apply Crop&quot; to trim your selected area
                 </p>
               </div>
               <div className="text-center">
@@ -1312,7 +1312,7 @@ const CropPDF = () => {
           </div>
 
           {/* Use Cases Section */}
-          <div className="mt-12 rounded-2xl bg-gradient-to-r from-blue-50 to-indigo-50 p-8 shadow-md dark:from-blue-950/30 dark:to-indigo-950/30">
+          <div className="mt-12 rounded-2xl bg-linear-to-r from-blue-50 to-indigo-50 p-8 shadow-md dark:from-blue-950/30 dark:to-indigo-950/30">
             <h2 className="mb-6 text-center text-3xl font-bold text-slate-900 dark:text-slate-100">
               Common Use Cases
             </h2>
