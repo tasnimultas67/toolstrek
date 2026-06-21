@@ -7,7 +7,10 @@ import { Button } from "@/components/ui/button";
 
 const HServices = () => {
   return (
-    <section className="bg-white dark:bg-gray-950 py-20 px-2" id="tools">
+    <section
+      className="border-b border-gray-100 dark:border-gray-800 py-20 px-2"
+      id="tools"
+    >
       <div className="w-11/12 mx-auto">
         <div className="mb-16 text-center">
           <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">

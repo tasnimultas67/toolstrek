@@ -18,7 +18,7 @@ const RecentToolsHome = () => {
 
   return (
     <section
-      className="bg-slate-50/50 dark:bg-gray-900/20 py-16 px-2 border-b border-gray-100 dark:border-gray-800"
+      className=" py-16 px-2 border-b border-gray-100 dark:border-gray-800"
       id="recent-tools"
     >
       <div className="w-11/12 mx-auto">

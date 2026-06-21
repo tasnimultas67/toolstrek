@@ -44,6 +44,8 @@
 @theme {
   --color-brandColor: #7c00fe;
   --color-brandColorHover: #4635b1;
+  --color-brandBackground: #f6f6f6;
+  --color-brandBackgroundHover: #f8f8f8;
 }
 
 ::selection {
@@ -154,7 +156,7 @@ html::-webkit-scrollbar {
 }
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
+  --background: #f6f6f6;
   --foreground: oklch(0.145 0 0);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
@@ -193,7 +195,7 @@ html::-webkit-scrollbar {
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
+  --background: #09090b;
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);

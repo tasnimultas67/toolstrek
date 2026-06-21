@@ -167,7 +167,7 @@ export default function Header() {
   return (
     <div className="sticky top-2 z-50 w-full" suppressHydrationWarning>
       <div
-        className="absolute top-0 left-0 right-0 border border-gray-900/10 dark:border-white/10 bg-white/60 dark:bg-white/10 backdrop-blur-xl rounded-lg w-11/12 mx-auto px-2 py-2 shadow-md"
+        className="absolute top-0 left-0 right-0 border border-gray-900/10 dark:border-white/10 bg-white/60 dark:bg-white/10 backdrop-blur-xl rounded-lg w-11/12 mx-auto px-2 py-2"
         suppressHydrationWarning
       >
         <header className="w-full">

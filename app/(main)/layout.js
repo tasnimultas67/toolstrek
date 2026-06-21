@@ -1,4 +1,4 @@
-import { Outfit } from "next/font/google";
+import { Outfit, Google_Sans } from "next/font/google";
 import "../globals.css";
 
 import Header from "./tools-compo/Header";
@@ -8,6 +8,11 @@ import GlobalSearchModal from "@/components/ui/GlobalSearchModal";
 import RecentToolsTracker from "@/components/RecentToolsTracker";
 
 const outfit = Outfit({
+  subsets: ["latin"],
+  display: "swap",
+  preload: true,
+});
+const google_sans = Google_Sans({
   subsets: ["latin"],
   display: "swap",
   preload: true,
@@ -22,7 +27,7 @@ export const metadata = {
 export default function MainLayout({ children }) {
   return (
     <>
-      <div className={`${outfit.className}`} suppressHydrationWarning>
+      <div className={`${google_sans.className}`} suppressHydrationWarning>
         <Header />
         <RecentToolsTracker />
         {children}

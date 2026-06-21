@@ -99,7 +99,7 @@ const ParentTools = () => {
 
   return (
     <div
-      className="bg-white dark:bg-gray-950 py-26 px-2 text-gray-900 dark:text-white transition-colors duration-300"
+      className="py-26 px-2 text-gray-900 dark:text-white transition-colors duration-300"
       id="tools"
     >
       <div className="w-11/12 mx-auto relative">
@@ -124,7 +124,7 @@ const ParentTools = () => {
               className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 border cursor-pointer ${
                 selectedCategory === category
                   ? "bg-brandColor text-white border-brandColor"
-                  : "bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-300 dark:border-gray-800"
+                  : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-300 dark:border-gray-800"
               }`}
             >
               {category === "all" ? "All Tools" : category}

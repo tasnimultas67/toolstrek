@@ -62,7 +62,7 @@ const whychoose = [
 export default function Home() {
   return (
     <div
-      className="min-h-screen bg-white dark:bg-gray-950 text-gray-900 dark:text-white transition-colors duration-300"
+      className="min-h-screen  text-gray-900 dark:text-white transition-colors duration-300"
       suppressHydrationWarning
     >
       {/* Hero Section */}
@@ -77,13 +77,7 @@ export default function Home() {
       <HServices />
 
       {/* Modern Why Choose Us Section */}
-      <section className="relative py-24 overflow-hidden">
-        {/* Background Decorative Elements */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30">
-          <div className="absolute top-24 left-10 w-72 h-72 bg-brandColor/20 rounded-full blur-3xl" />
-          <div className="absolute bottom-24 right-10 w-72 h-72 bg-blue-200/20 rounded-full blur-3xl" />
-        </div>
-
+      <section className="relative py-24 overflow-hidden ">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wider text-brandColor uppercase bg-brandColor/10 rounded-full">
@@ -102,7 +96,7 @@ export default function Home() {
             {whychoose.map((item, index) => (
               <div
                 key={index}
-                className="group relative bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300  overflow-hidden"
+                className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300  overflow-hidden"
               >
                 {/* Icon Container */}
                 <div
@@ -124,18 +118,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
-      {/* Reviews */}
-      <div className="bg-gray-50 dark:bg-gray-900/50 py-16">
-        <div className="max-w-7xl mx-auto px-4">
-          <Reviews />
-        </div>
-      </div>
-
-      {/* Call to Action */}
-      <div className="py-12 bg-white dark:bg-gray-950">
-        <CTA />
-      </div>
     </div>
   );
 }

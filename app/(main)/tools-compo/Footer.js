@@ -1,10 +1,9 @@
 "use client";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
-import { ArrowUpRight, Github, Mail, SplinePointer } from "lucide-react";
+import { ArrowUpRight, Github, Mail } from "lucide-react";
 import { Staatliches } from "next/font/google";
 import Link from "next/link";
 import React from "react";
-import toolsData from "../../../lib/toolsData.json";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 
@@ -108,7 +107,7 @@ const Footer = () => {
                   </h3>
                 </Link>
               </div>
-              <p className="text-sm text-gray-200 font-light w-full leading-normal">
+              <p className="text-sm md:text-base text-gray-200 font-light w-full leading-normal">
                 In today’s fast-paced digital world, efficiency is everything.
                 ToolsTrek is your go-to platform for seamless online utilities
                 designed to simplify and optimize everyday digital tasks.
@@ -118,11 +117,11 @@ const Footer = () => {
                 accomplish more with minimal effort.
               </p>
               {/* Social Icons */}
-              <div className="space-y-2 flex flex-col md:flex-row items-start md:items-center justify-start gap-4">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-start gap-4">
                 <Link
                   href="mailto:contact.toolstrek@gmail.com"
                   suppressHydrationWarning
-                  className="text-gray-300 text-sm flex items-center justify-start gap-2"
+                  className="text-gray-300 text-sm md:text-base flex items-center justify-start gap-2"
                 >
                   <Mail className="size-4 text-gray-300" />{" "}
                   contact.toolstrek@gmail.com
@@ -131,7 +130,7 @@ const Footer = () => {
                   href="https://github.com/tasnimultas67/toolstrek"
                   target="_blank"
                   suppressHydrationWarning
-                  className="text-gray-300 text-sm flex items-center justify-start gap-2"
+                  className="text-gray-300 text-sm md:text-base flex items-center justify-start gap-2"
                 >
                   <Github className="size-4 text-gray-300" /> Github Project
                   Repository
@@ -151,7 +150,7 @@ const Footer = () => {
           {/* Divider */}
           <div className="w-full h-px bg-white/20" />
           <div>
-            <p className="text-gray-300 text-sm">
+            <p className="text-gray-300 text-sm md:text-base">
               Copyright {copyrightYear} Toolstrek. All Rights Reserved.
               Developed by{" "}
               <Link
