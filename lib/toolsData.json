@@ -278,5 +278,13 @@
     "icon": "Binary",
     "category": "Text",
     "keywords": ["binary code decoder", "binary encoder", "binary to text", "text to binary", "binary translator", "binary converter", "ascii to binary", "binary to ascii", "text"]
+  },
+  {
+    "title": "IP Checker",
+    "link": "/tools/ip-checker",
+    "description": "Inspect your public IP address or look up any IP address/domain to get detailed geolocation, network provider (ISP), timezone, local time, security flags, and an interactive map location.",
+    "icon": "Network",
+    "category": "Developer",
+    "keywords": ["ip checker", "ip lookup", "my ip address", "dns lookup", "ip details", "find ip location", "developer"]
   }
 ]
