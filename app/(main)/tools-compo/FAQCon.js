@@ -102,7 +102,7 @@ const FAQCon = () => {
                 >
                   <AccordionItem
                     value={`item-${section.id}-${index}`}
-                    className="border rounded-lg px-2 hover:border-primary/30 transition-all duration-200 bg-white dark:bg-neutral-900 "
+                    className="border rounded-lg px-4 hover:border-primary/30 transition-all duration-200 bg-white dark:bg-neutral-900 "
                   >
                     <AccordionTrigger className="text-base font-medium hover:text-primary transition-colors py-4 cursor-pointer">
                       {faq.question}
@@ -116,26 +116,6 @@ const FAQCon = () => {
             </div>
           </motion.section>
         ))}
-      </motion.div>
-
-      {/* CTA Section */}
-      <motion.div
-        className="mt-16 text-center bg-muted/30 rounded-lg p-8 border border-border"
-        variants={itemVariants}
-      >
-        <h2 className="text-2xl font-semibold mb-2 text-foreground">
-          Still have questions?
-        </h2>
-        <p className="text-muted-foreground mb-6">
-          If you can't find the answer you're looking for, feel free to contact
-          us directly.
-        </p>
-        <Button asChild size="lg">
-          <Link href="/contact-us" className="inline-flex items-center gap-2">
-            Contact Us
-            <MessageCircle className="w-4 h-4" />
-          </Link>
-        </Button>
       </motion.div>
     </motion.div>
   );
