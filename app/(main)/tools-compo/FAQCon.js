@@ -102,7 +102,7 @@ const FAQCon = () => {
                 >
                   <AccordionItem
                     value={`item-${section.id}-${index}`}
-                    className="border rounded-lg px-2 hover:border-primary/30 transition-all duration-200 "
+                    className="border rounded-lg px-2 hover:border-primary/30 transition-all duration-200 bg-white dark:bg-neutral-900 "
                   >
                     <AccordionTrigger className="text-base font-medium hover:text-primary transition-colors py-4 cursor-pointer">
                       {faq.question}

@@ -10,7 +10,7 @@
     },
     {
       "question": "What kinds of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek currently includes PDF tools such as merge, split, reorder, crop, compress, combine, N-up, add attachments, and image/PDF conversion. It also includes QR tools, calculators, text tools, a password generator, markdown previewing, domain lookup, and more."
+      "answer": "ToolsTrek currently includes PDF tools (merge, split, reorder, crop, compress, combine, N-up, add attachments, and image/PDF conversion), QR tools, calculators, text utilities (case converter, text repeater, dummy text generation, binary, Braille, and Morse code converters), security utilities (password generator), and developer helpers (domain age checker, IP address geolocation lookup, and markdown previewing)."
     },
     {
       "question": "Can I use ToolsTrek on mobile or tablet devices?",
@@ -29,6 +29,10 @@
     {
       "question": "Is sensitive information like WiFi data or passwords stored by ToolsTrek?",
       "answer": "ToolsTrek is built to keep sensitive tool input local where possible. If you generate a WiFi QR code or a password, remember that the downloaded result or any QR code you share may expose that information to anyone who can access it."
+    },
+    {
+      "question": "Does the IP Checker store my IP address or lookup logs?",
+      "answer": "No. The IP Geolocation Checker fetches details in real-time from secure public geo-databases on demand. We do not store, log, or share your public IP or any of your lookup history."
     },
     {
       "question": "How should I report a bug or privacy concern?",
@@ -70,11 +74,15 @@
   "imagesAndText": [
     {
       "question": "Can ToolsTrek convert images to PDF or extract text from images?",
-      "answer": "Yes. ToolsTrek includes Image to PDF for turning images into PDF documents, Image to Text for OCR-based text extraction, PDF to Image for exporting PDF pages as images, and an AVIF Converter for image format conversion."
+      "answer": "Yes. ToolsTrek includes Image to PDF for turning images into PDF documents, Image to Text for OCR-based text extraction, PDF to Image for exporting PDF pages as images, an AVIF Converter for image format conversion, and a Favicon Generator to build web favicon packages client-side."
     },
     {
       "question": "Does the Image to Text tool process images locally?",
       "answer": "The OCR workflow is designed to run in the browser, which helps keep your source image on your device during text extraction."
+    },
+    {
+      "question": "Do the Morse, Braille, Binary, or Favicon tools send inputs to a server?",
+      "answer": "No. These encoding, decoding, and favicon generation tools operate 100% client-side inside your browser. No files, text inputs, or generated outputs ever leave your device."
     },
     {
       "question": "Which image formats work best with the image tools?",
@@ -84,7 +92,7 @@
   "productivityAndCalculators": [
     {
       "question": "What other utilities are included besides PDF and QR tools?",
-      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, NU CGPA Calculator, Case Converter, Text Repeater, Numbers to Words, Markdown Previewer, Domain Age Checker, Fake Info Generator, and Password Generator."
+      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, NU CGPA Calculator, Case Converter, Text Repeater, Numbers to Words, Dummy Text Generator, Binary Decoder, Braille Decoder, Morse Code Decoder, IP Checker, Markdown Previewer, Domain Age Checker, Fake Info Generator, and Password Generator."
     },
     {
       "question": "Is the NU CGPA Calculator specific to National University Bangladesh?",

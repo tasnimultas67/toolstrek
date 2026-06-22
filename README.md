@@ -1,6 +1,6 @@
 # ToolsTrek
 
-**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 30 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 36 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## 🛠️ Tool Library (30 Tools)
+## 🛠️ Tool Library (36 Tools)
 
 ### 📝 Text
 
@@ -28,6 +28,10 @@
 | Text Repeater      | Repeat any text multiple times with customizable separator options |
 | Markdown Previewer | Real-time GitHub-flavored Markdown & HTML preview editor           |
 | Numbers to Words   | Convert any number into its full English word representation       |
+| Dummy Text Generator | Generate customized Lorem Ipsum, Tech Speak, or Sci-Fi placeholder text |
+| Morse Code Decoder | Translate text to Morse code and decode audio/text Morse back to plain text |
+| Braille Decoder & Encoder | Convert text to/from Grade 1 English and Bangla Braille with visual guides |
+| Binary Decoder & Encoder | Instantly convert text to binary code representations and vice-versa |
 
 ### 📊 Calculator
 
@@ -58,6 +62,7 @@
 | ------------------ | -------------------------------------------------- |
 | Domain Age Checker | Look up when any domain was first registered       |
 | Markdown Previewer | Live preview with syntax highlighting (GFM + HTML) |
+| IP Checker         | Inspect public IP addresses or query domain/IP geolocations, networks, and maps |
 
 ### 📷 QR Code
 
@@ -75,6 +80,7 @@
 | Image to Text (OCR)     | Extract text from images locally using Tesseract.js                                 |
 | Color Palette Extractor | Extract color palettes from images, pick colors, copy HEX/RGB/HSL, export configs |
 | SVG Converter           | Convert SVG vectors to PNG, JPEG, or WebP with custom dimensions and aspect locks |
+| Favicon Generator       | Generate standard web favicon packages (ico, png, pwa icons) client-side from images |
 
 ### 📄 PDF
 
@@ -165,6 +171,7 @@ toolstrek/
 │   ├── (main)/                        # Main route group
 │   │   ├── api/                       # Server-side API routes
 │   │   │   ├── check-domain-age/      #   Domain WHOIS lookup
+│   │   │   ├── check-ip/              #   IP geolocation lookup (new)
 │   │   │   ├── contact/               #   Contact form (Nodemailer + SMTP)
 │   │   │   └── verify-recaptcha/      #   Google reCAPTCHA verification
 │   │   ├── about-us/                  # About page
@@ -173,11 +180,13 @@ toolstrek/
 │   │   ├── favorites/                 # ⭐ Favorites page
 │   │   ├── privacy-policy/            # Privacy Policy page
 │   │   ├── recent/                    # 🕐 Recently visited tools page
-│   │   ├── tools/                     # Individual tool pages (30 routes)
+│   │   ├── tools/                     # Individual tool pages (36 routes)
 │   │   │   ├── add-attachments/
 │   │   │   ├── age-calculate/
 │   │   │   ├── avif-converter/
+│   │   │   ├── binary-decoder/
 │   │   │   ├── bmi-calculator/
+│   │   │   ├── braille-decoder/
 │   │   │   ├── case-converter/
 │   │   │   ├── cgpa-calculator/
 │   │   │   ├── color-palette-extractor/
@@ -186,11 +195,15 @@ toolstrek/
 │   │   │   ├── crop-pdf/
 │   │   │   ├── days-tracker/
 │   │   │   ├── domain-age-checker/
+│   │   │   ├── dummy-text-generator/
 │   │   │   ├── fake-info-generator/
+│   │   │   ├── favicon-generator/
 │   │   │   ├── image-to-pdf/
 │   │   │   ├── image-to-text/
+│   │   │   ├── ip-checker/
 │   │   │   ├── link-shortner/
 │   │   │   ├── markdown-previewer/
+│   │   │   ├── morse-code-decoder/
 │   │   │   ├── n-up-pdf/
 │   │   │   ├── numbers-to-words/
 │   │   │   ├── password-generator/
@@ -213,16 +226,22 @@ toolstrek/
 │   │   │   │   ├── AddAttachmentsTool.js
 │   │   │   │   ├── AvifConverter.js
 │   │   │   │   ├── BMICal.js
+│   │   │   │   ├── BinaryDecoder.js
+│   │   │   │   ├── BrailleDecoder.js
 │   │   │   │   ├── CGPACalculator.js
 │   │   │   │   ├── ColorPaletteExtractor.jsx
 │   │   │   │   ├── CombineFilesToPDFTool.jsx
 │   │   │   │   ├── CompressPDFTool.js
 │   │   │   │   ├── CropPDF.js
 │   │   │   │   ├── DomainAgeChecker.js
+│   │   │   │   ├── DummyTextGenerator.js
 │   │   │   │   ├── FakeInfoGenerator.js
+│   │   │   │   ├── FaviconGenerator.js
+│   │   │   │   ├── IPChecker.js
 │   │   │   │   ├── ImageToPDF.js
 │   │   │   │   ├── ImageToText.js
 │   │   │   │   ├── MarkdownPreviewer.js
+│   │   │   │   ├── MorseCodeDecoder.js
 │   │   │   │   ├── NUpPDFTool.js
 │   │   │   │   ├── NumbersToWords.js
 │   │   │   │   ├── PDFReorderPages.js
