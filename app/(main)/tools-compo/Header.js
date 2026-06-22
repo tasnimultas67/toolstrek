@@ -17,13 +17,15 @@ import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { SplinePointer, Star } from "lucide-react";
+import { SplinePointer, Star, History, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { getIcon } from "./dynamicIcon";
 import toolsData from "../../../lib/toolsData.json";
 import { openGlobalSearch } from "@/lib/useGlobalSearch";
 import { useFavorites } from "@/hooks/useFavorites";
+import { useRecentTools } from "@/hooks/useRecentTools";
+import { formatRelativeTime } from "@/lib/utils";
 
 const staatliches = Staatliches({
   subsets: ["latin"],
@@ -34,6 +36,7 @@ const staatliches = Staatliches({
 
 export default function Header() {
   const { favorites } = useFavorites();
+  const { recentTools, clearRecentTools } = useRecentTools();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [megaMenuAnimation, setMegaMenuAnimation] = useState(false);
@@ -44,6 +47,26 @@ export default function Header() {
     left: 0,
     width: 0,
   });
+
+  // History Dropdown State
+  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
+  const [historyAnimation, setHistoryAnimation] = useState(false);
+  const historyDropdownRef = useRef(null);
+
+  const openHistoryDropdown = () => {
+    setIsHistoryOpen(true);
+    setTimeout(() => setHistoryAnimation(true), 10);
+  };
+
+  const closeHistoryDropdown = () => {
+    setHistoryAnimation(false);
+    setTimeout(() => setIsHistoryOpen(false), 200);
+  };
+
+  const toggleHistoryDropdown = () => {
+    if (isHistoryOpen) closeHistoryDropdown();
+    else openHistoryDropdown();
+  };
 
   // Detect Mac for shortcut label
   const [isMac, setIsMac] = useState(false);
@@ -141,6 +164,44 @@ export default function Header() {
       document.removeEventListener("keydown", handleEscKey);
     };
   }, [isMegaMenuOpen]);
+
+  // Close history dropdown on click outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        isHistoryOpen &&
+        historyDropdownRef.current &&
+        !historyDropdownRef.current.contains(event.target)
+      ) {
+        closeHistoryDropdown();
+      }
+    };
+
+    if (isHistoryOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isHistoryOpen]);
+
+  // Close history dropdown on Escape
+  useEffect(() => {
+    const handleEscKey = (event) => {
+      if (event.key === "Escape" && isHistoryOpen) {
+        closeHistoryDropdown();
+      }
+    };
+
+    if (isHistoryOpen) {
+      document.addEventListener("keydown", handleEscKey);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [isHistoryOpen]);
 
   const openMegaMenu = () => {
     setIsMegaMenuOpen(true);
@@ -428,6 +489,98 @@ export default function Header() {
                   )}
                 </Link>
 
+                {/* History Dropdown */}
+                <div className="relative" ref={historyDropdownRef}>
+                  <button
+                    onClick={toggleHistoryDropdown}
+                    className="p-2 text-gray-700 dark:text-gray-200 hover:text-brandColor hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors cursor-pointer size-9 flex items-center justify-center relative"
+                    aria-label="Recent tools history"
+                  >
+                    <History className="size-5" />
+                    {recentTools.length > 0 && (
+                      <span className="absolute top-1 right-1 h-2 w-2 rounded-full bg-brandColor"></span>
+                    )}
+                  </button>
+
+                  {isHistoryOpen && (
+                    <div
+                      className={`absolute right-0 mt-2 w-80 bg-white dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden z-50 transition-all duration-200 ease-out transform origin-top-right
+                        ${
+                          historyAnimation
+                            ? "opacity-100 scale-100 translate-y-0"
+                            : "opacity-0 scale-95 -translate-y-2"
+                        }`}
+                    >
+                      <div className="p-3 border-b border-gray-100 dark:border-gray-900 flex items-center justify-between">
+                        <span className="text-sm font-semibold text-gray-900 dark:text-white flex items-center gap-1.5">
+                          <History className="size-4 text-brandColor" /> Recent
+                          Tools
+                        </span>
+                        {recentTools.length > 5 && (
+                          <div>
+                            <Link
+                              href="/recent"
+                              onClick={closeHistoryDropdown}
+                              className="text-xs text-gray-500 hover:text-red-500 dark:text-gray-455 dark:hover:text-red-400 transition-colors cursor-pointer"
+                            >
+                              See All
+                            </Link>
+                          </div>
+                        )}
+                      </div>
+
+                      <div className="max-h-[300px] overflow-y-auto">
+                        {recentTools.length === 0 ? (
+                          <div className="py-8 px-4 text-center">
+                            <Clock className="size-8 mx-auto text-gray-300 dark:text-gray-700 mb-2" />
+                            <p className="text-xs text-gray-500 dark:text-gray-400">
+                              No recent tools yet.
+                            </p>
+                            <p className="text-[10px] text-gray-455 dark:text-gray-500 mt-1">
+                              Your recently visited tools will show up here.
+                            </p>
+                          </div>
+                        ) : (
+                          <div className="divide-y divide-gray-50 dark:divide-gray-900">
+                            {recentTools.slice(0, 5).map((item) => {
+                              const IconComponent = getIcon(item.icon);
+                              return (
+                                <Link
+                                  key={item.link}
+                                  href={item.link}
+                                  onClick={closeHistoryDropdown}
+                                  className="flex items-center justify-between gap-3 p-3 hover:bg-brandColor/5 dark:hover:bg-brandColor/10 transition-colors"
+                                >
+                                  <div className="flex items-center gap-3 min-w-0 flex-1">
+                                    <div className="flex size-8 flex-none items-center justify-center rounded-lg bg-gray-50 dark:bg-gray-800 shadow-sm border border-gray-100 dark:border-gray-700">
+                                      <IconComponent className="size-4 text-gray-600 dark:text-gray-355" />
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                      <div className="text-xs font-semibold text-gray-900 dark:text-gray-100 truncate">
+                                        {item.title}
+                                      </div>
+                                      <div className="text-[10px] text-gray-500 dark:text-gray-455 truncate mt-0.5">
+                                        {item.category}
+                                      </div>
+                                    </div>
+                                  </div>
+                                  {item.lastUsedAt && (
+                                    <span className="text-[9px] text-gray-400 dark:text-gray-500 shrink-0 select-none">
+                                      {formatRelativeTime(
+                                        item.lastUsedAt,
+                                      ).replace("Used ", "")}
+                                    </span>
+                                  )}
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
                 {/* Theme Toggler */}
                 <AnimatedThemeToggler className="p-2 text-gray-700 dark:text-gray-200 hover:text-brandColor hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors cursor-pointer size-9 flex items-center justify-center" />
 
@@ -560,6 +713,59 @@ export default function Header() {
                           >
                             See All Tools →
                           </Link>
+                        </DisclosurePanel>
+                      </>
+                    )}
+                  </Disclosure>
+
+                  {/* Mobile Recent Tools Disclosure */}
+                  <Disclosure as="div" className="-mx-3">
+                    {({ close, open }) => (
+                      <>
+                        <DisclosureButton className="group flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold text-gray-900 dark:text-white hover:bg-gray-50 dark:hover:bg-gray-805 transition-colors duration-200">
+                          <span className="flex items-center gap-2">
+                            <History className="size-4 text-brandColor" />{" "}
+                            Recent Tools
+                          </span>
+                          <ChevronDownIcon
+                            className={`size-5 transition-transform duration-200 ${open ? "rotate-180" : ""}`}
+                          />
+                        </DisclosureButton>
+                        <DisclosurePanel className="mt-2 space-y-2 transition-all duration-200">
+                          {recentTools.length === 0 ? (
+                            <div className="text-sm text-gray-500 dark:text-gray-400 pl-6 py-2">
+                              No recent tools yet.
+                            </div>
+                          ) : (
+                            <>
+                              {recentTools.slice(0, 5).map((item) => (
+                                <Link
+                                  key={item.link}
+                                  href={item.link}
+                                  className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold text-gray-900 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-200 hover:pl-8 truncate"
+                                  onClick={() => {
+                                    close();
+                                    setMobileMenuOpen(false);
+                                  }}
+                                >
+                                  {item.title}
+                                </Link>
+                              ))}
+                              {recentTools.length > 5 && (
+                                <Link
+                                  key="view-all-recent"
+                                  href="/recent"
+                                  className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold text-brandColor hover:bg-brandColor/10 transition-all duration-200 hover:pl-8"
+                                  onClick={() => {
+                                    close();
+                                    setMobileMenuOpen(false);
+                                  }}
+                                >
+                                  View All Recent Tools →
+                                </Link>
+                              )}
+                            </>
+                          )}
                         </DisclosurePanel>
                       </>
                     )}
