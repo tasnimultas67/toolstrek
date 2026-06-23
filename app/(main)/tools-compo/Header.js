@@ -516,17 +516,15 @@ export default function Header() {
                           <History className="size-4 text-brandColor" /> Recent
                           Tools
                         </span>
-                        {recentTools.length > 5 && (
-                          <div>
-                            <Link
-                              href="/recent"
-                              onClick={closeHistoryDropdown}
-                              className="text-xs text-gray-500 hover:text-red-500 dark:text-gray-455 dark:hover:text-red-400 transition-colors cursor-pointer"
-                            >
-                              See All
-                            </Link>
-                          </div>
-                        )}
+                        <div>
+                          <Link
+                            href="/recent"
+                            onClick={closeHistoryDropdown}
+                            className="text-xs text-gray-500 hover:text-red-500 dark:text-gray-455 dark:hover:text-red-400 transition-colors cursor-pointer"
+                          >
+                            See All
+                          </Link>
+                        </div>
                       </div>
 
                       <div className="max-h-[300px] overflow-y-auto">
