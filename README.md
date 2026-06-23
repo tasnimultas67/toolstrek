@@ -1,6 +1,6 @@
 # ToolsTrek
 
-**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 37 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 38 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## 🛠️ Tool Library (37 Tools)
+## 🛠️ Tool Library (38 Tools)
 
 ### 📝 Text
 
@@ -36,13 +36,14 @@
 
 ### 📊 Calculator
 
-| Tool               | Description                                                       |
-| ------------------ | ----------------------------------------------------------------- |
-| Age Calculator     | Calculate exact age in years, months, days, hours, and minutes    |
-| BMI Calculator     | Calculate Body Mass Index with health category classification     |
-| Days Tracker       | Find an end date by adding days to a start date                   |
-| NU CGPA Calculator | Calculate National University Bangladesh CGPA from subject grades |
-| Unit Converter     | Convert length, weight, temperature, area, volume, speed, and more|
+| Tool               | Description                                                                                          |
+| ------------------ | ---------------------------------------------------------------------------------------------------- |
+| Age Calculator     | Calculate exact age in years, months, days, hours, and minutes                                       |
+| BMI Calculator     | Calculate Body Mass Index with health category classification                                        |
+| Days Tracker       | Find an end date by adding days to a start date                                                      |
+| EMI Calculator     | Calculate loan EMI with amortization schedule, interest breakdown, processing fee & insurance options |
+| NU CGPA Calculator | Calculate National University Bangladesh CGPA from subject grades                                    |
+| Unit Converter     | Convert length, weight, temperature, area, volume, speed, and more                                   |
 
 ### 🔧 Productivity
 
@@ -181,7 +182,7 @@ toolstrek/
 │   │   ├── favorites/                 # ⭐ Favorites page
 │   │   ├── privacy-policy/            # Privacy Policy page
 │   │   ├── recent/                    # 🕐 Recently visited tools page
-│   │   ├── tools/                     # Individual tool pages (36 routes)
+│   │   ├── tools/                     # Individual tool pages (37 routes)
 │   │   │   ├── add-attachments/
 │   │   │   ├── age-calculate/
 │   │   │   ├── avif-converter/
@@ -197,6 +198,7 @@ toolstrek/
 │   │   │   ├── days-tracker/
 │   │   │   ├── domain-age-checker/
 │   │   │   ├── dummy-text-generator/
+│   │   │   ├── emi-calculator/
 │   │   │   ├── fake-info-generator/
 │   │   │   ├── favicon-generator/
 │   │   │   ├── image-to-pdf/
@@ -236,6 +238,7 @@ toolstrek/
 │   │   │   │   ├── CropPDF.js
 │   │   │   │   ├── DomainAgeChecker.js
 │   │   │   │   ├── DummyTextGenerator.js
+│   │   │   │   ├── EMICalculator.js
 │   │   │   │   ├── FakeInfoGenerator.js
 │   │   │   │   ├── FaviconGenerator.js
 │   │   │   │   ├── IPChecker.js

@@ -96,7 +96,7 @@
   "productivityAndCalculators": [
     {
       "question": "What other utilities are included besides PDF and QR tools?",
-      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, NU CGPA Calculator, Case Converter, Text Repeater, Numbers to Words, Dummy Text Generator, Binary Decoder, Braille Decoder, Morse Code Decoder, IP Checker, Markdown Previewer, Domain Age Checker, Fake Info Generator, and Password Generator."
+      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, EMI Calculator, NU CGPA Calculator, Case Converter, Text Repeater, Numbers to Words, Dummy Text Generator, Binary Decoder, Braille Decoder, Morse Code Decoder, IP Checker, Markdown Previewer, Domain Age Checker, Fake Info Generator, and Password Generator."
     },
     {
       "question": "Is the NU CGPA Calculator specific to National University Bangladesh?",
@@ -105,6 +105,40 @@
     {
       "question": "Can I request a new tool or feature?",
       "answer": "Yes. Send a request through the contact page and describe the workflow you want to solve, along with example input and output if possible. That makes feature planning much easier."
+    }
+  ],
+  "emiCalculator": [
+    {
+      "question": "What is the EMI Calculator and how does it work?",
+      "answer": "The EMI (Equated Monthly Installment) Calculator computes your fixed monthly loan repayment amount using the standard reducing-balance formula: EMI = [P × r × (1+r)^n] / [(1+r)^n – 1], where P is the principal, r is the monthly interest rate, and n is the number of months. It runs entirely in your browser with no data sent to a server."
+    },
+    {
+      "question": "What types of loans can I calculate with the EMI Calculator?",
+      "answer": "You can use it for any reducing-balance loan — home loans, car loans, personal loans, education loans, or business loans. Simply enter the loan amount, annual interest rate, and repayment tenure."
+    },
+    {
+      "question": "What advanced options does the EMI Calculator offer?",
+      "answer": "Clicking 'Show Advanced Options' reveals three additional fields: Processing Fee (a one-time charge added to your total cost), Annual Insurance Percentage (a recurring premium added monthly to your EMI), and Loan Start Month (used to label each row of the amortization schedule with the correct calendar month)."
+    },
+    {
+      "question": "What is an amortization schedule?",
+      "answer": "An amortization schedule is a month-by-month table showing how each EMI is split between principal repayment and interest. In the early months, a larger share goes toward interest; over time, the principal component grows as the outstanding balance decreases. You can view it under the 'Amortization Schedule' tab."
+    },
+    {
+      "question": "Which currencies does the EMI Calculator support?",
+      "answer": "The EMI Calculator supports INR (₹), USD ($), EUR (€), GBP (£), JPY (¥), and BDT (৳). Selecting a currency changes the display symbol throughout the results — the underlying mathematics remains the same regardless of currency."
+    },
+    {
+      "question": "Does the EMI Calculator store my financial data?",
+      "answer": "No. All calculations happen locally in your browser using JavaScript. No loan amount, interest rate, tenure, or personal data is ever transmitted to or stored on any server."
+    },
+    {
+      "question": "How do I interpret the donut chart in the results?",
+      "answer": "The donut chart visualises the total repayment split: the violet segment represents the original principal (the amount borrowed), and the rose/red segment represents the total interest paid over the loan tenure. Together they add up to the total amount you will pay by the end of the loan."
+    },
+    {
+      "question": "Can I use the EMI Calculator to compare different loan scenarios?",
+      "answer": "Yes. You can adjust the loan amount, interest rate, and tenure independently using the sliders or input fields. The results update instantly, making it easy to compare scenarios — for example, a 20-year mortgage vs. a 15-year one, or two lenders offering different rates."
     }
   ]
 }

@@ -56,6 +56,14 @@
     "keywords": ["days tracker", "date calculator", "end date", "start date", "date difference", "date tracker", "calculator"]
   },
   {
+    "title": "EMI Calculator",
+    "link": "/tools/emi-calculator",
+    "description": "Calculate your Equated Monthly Installment (EMI) for home, car, or personal loans. Get a full amortization schedule, principal vs. interest breakdown, processing fee, insurance add-on, and an interactive repayment chart — all in your browser.",
+    "icon": "Calculator",
+    "category": "Calculator",
+    "keywords": ["emi calculator", "loan emi", "home loan calculator", "car loan emi", "personal loan calculator", "amortization schedule", "loan repayment", "monthly installment", "interest calculator", "calculator"]
+  },
+  {
     "title": "BMI Calculator",
     "link": "/tools/bmi-calculator",
     "description": "Evaluate body composition by calculating your Body Mass Index (BMI) using your height and weight parameters. This health tool categorizes results according to standard medical ranges to help you monitor your overall fitness and wellness.",

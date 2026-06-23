@@ -19,6 +19,7 @@ const formatSectionTitle = (sectionKey) => {
     qrAndSharing: "QR Codes & Sharing",
     imagesAndText: "Images & Text",
     productivityAndCalculators: "Productivity & Calculators",
+    emiCalculator: "EMI Calculator",
   };
 
   return (
