@@ -286,5 +286,13 @@
     "icon": "Network",
     "category": "Developer",
     "keywords": ["ip checker", "ip lookup", "my ip address", "dns lookup", "ip details", "find ip location", "developer"]
+  },
+  {
+    "title": "Fancy Text Generator",
+    "link": "/tools/fancy-text-generator",
+    "description": "Transform plain text into cool Unicode styles, cursive fonts, gothic calligraphy, and glitch styles for profiles and social posts.",
+    "icon": "Sparkles",
+    "category": "Text",
+    "keywords": ["fancy text generator", "fancy font generator", "cool text generator", "unicode fonts", "social media fonts", "cursive text generator", "gothic text", "bubble letters", "text"]
   }
 ]

@@ -1,6 +1,6 @@
 # ToolsTrek
 
-**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 36 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 37 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## 🛠️ Tool Library (36 Tools)
+## 🛠️ Tool Library (37 Tools)
 
 ### 📝 Text
 
@@ -32,6 +32,7 @@
 | Morse Code Decoder | Translate text to Morse code and decode audio/text Morse back to plain text |
 | Braille Decoder & Encoder | Convert text to/from Grade 1 English and Bangla Braille with visual guides |
 | Binary Decoder & Encoder | Instantly convert text to binary code representations and vice-versa |
+| Fancy Text Generator | Transform plain text into Unicode styles, cursive fonts, gothic, and glitch styles |
 
 ### 📊 Calculator
 

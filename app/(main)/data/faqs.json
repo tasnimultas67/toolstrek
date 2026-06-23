@@ -81,8 +81,12 @@
       "answer": "The OCR workflow is designed to run in the browser, which helps keep your source image on your device during text extraction."
     },
     {
-      "question": "Do the Morse, Braille, Binary, or Favicon tools send inputs to a server?",
-      "answer": "No. These encoding, decoding, and favicon generation tools operate 100% client-side inside your browser. No files, text inputs, or generated outputs ever leave your device."
+      "question": "Do the Morse, Braille, Binary, Fancy Text, or Favicon tools send inputs to a server?",
+      "answer": "No. These encoding, decoding, fancy text, and favicon generation tools operate 100% client-side inside your browser. No files, text inputs, or generated outputs ever leave your device."
+    },
+    {
+      "question": "How does the Fancy Text Generator work, and why do some styles look different?",
+      "answer": "The Fancy Text Generator maps standard letters to mathematical symbols, cursive scripts, gothic alphabets, and Zalgo/glitch markings from the extended Unicode character set. Because these are standard text characters and not custom font files, some older browsers, games, or social networks may not display all styles correctly."
     },
     {
       "question": "Which image formats work best with the image tools?",
