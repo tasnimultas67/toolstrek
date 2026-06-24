@@ -302,5 +302,13 @@
     "icon": "Sparkles",
     "category": "Text",
     "keywords": ["fancy text generator", "fancy font generator", "cool text generator", "unicode fonts", "social media fonts", "cursive text generator", "gothic text", "bubble letters", "text"]
+  },
+  {
+    "title": "VAT / GST Calculator",
+    "link": "/tools/vat-gst-calculator",
+    "description": "Calculate VAT, GST, Sales Tax, and Tax-Inclusive Prices instantly. Add or remove tax, calculate tax amount only, download professional PDF reports, and use country presets.",
+    "icon": "Calculator",
+    "category": "Calculator",
+    "keywords": ["VAT Calculator", "GST Calculator", "Sales Tax Calculator", "Tax Calculator Online", "VAT Calculator UK", "GST Calculator India", "VAT Calculator Bangladesh", "calculator"]
   }
 ]
