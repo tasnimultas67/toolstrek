@@ -684,5 +684,23 @@
       "charity calculator",
       "calculator"
     ]
+  },
+  {
+    "title": "Remove Duplicate Lines",
+    "link": "/tools/remove-duplicate-lines",
+    "description": "Instantly remove duplicate lines from any text. Supports case-insensitive matching, leading/trailing whitespace trimming, blank line removal, regex-based line filtering, 6 sort modes (A–Z, Z–A, length, reverse, shuffle), and optional line-number prepending. Copy or download your clean output in one click.",
+    "icon": "Layers",
+    "category": "Text",
+    "keywords": [
+      "remove duplicate lines",
+      "deduplicate text",
+      "remove duplicates",
+      "unique lines",
+      "text deduplicator",
+      "sort lines",
+      "remove blank lines",
+      "text cleaner",
+      "text"
+    ]
   }
-]
+]
