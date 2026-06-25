@@ -310,5 +310,13 @@
     "icon": "Calculator",
     "category": "Calculator",
     "keywords": ["VAT Calculator", "GST Calculator", "Sales Tax Calculator", "Tax Calculator Online", "VAT Calculator UK", "GST Calculator India", "VAT Calculator Bangladesh", "calculator"]
+  },
+  {
+    "title": "Zakat Calculator",
+    "link": "/tools/zakat-calculator",
+    "description": "Calculate your yearly Zakat obligation easily. Enter cash, gold, silver, investments, and liabilities to find your net wealth and due Zakat with advanced Nisab, calendar rate adjustments, and custom settings.",
+    "icon": "Coins",
+    "category": "Calculator",
+    "keywords": ["zakat calculator", "zakat on gold", "zakat on silver", "nisab calculator", "islamic finance calculator", "charity calculator", "calculator"]
   }
 ]
