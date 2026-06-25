@@ -79,6 +79,12 @@ export default function DomainAgeChecker() {
       const ageInDays = getAgeInDays(data.creationDate);
       const createdDate = new Date(data.creationDate);
 
+      const formatMetaDate = (dateStr) => {
+        if (!dateStr || dateStr === "Not available") return "Not available";
+        const d = new Date(dateStr);
+        return isNaN(d.getTime()) ? dateStr : d.toLocaleDateString();
+      };
+
       setResult({
         domain: data.domain,
         creationDate: createdDate.toLocaleDateString(),
@@ -90,8 +96,8 @@ export default function DomainAgeChecker() {
         registrar: data.registrar,
         nameservers: data.nameservers || "Not available",
         status: data.status || "Registered",
-        updatedDate: data.updatedDate || "Not available",
-        expiryDate: data.expiryDate || "Not available",
+        updatedDate: formatMetaDate(data.updatedDate),
+        expiryDate: formatMetaDate(data.expiryDate),
         organization: data.organization || "Not available",
         country: data.country || "Not available",
       });
