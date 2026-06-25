@@ -1,5 +1,23 @@
 [
   {
+    "title": "Color Converter",
+    "link": "/tools/color-converter",
+    "description": "Convert color codes between HEX, RGB, HSL, HSV, and CMYK formats. Adjust interactive sliders in real-time, generate color harmonies, verify WCAG readability contrast, simulate color blindness, and inspect tints & shades.",
+    "icon": "Palette",
+    "category": "Developer",
+    "keywords": [
+      "color converter",
+      "hex to rgb",
+      "rgb to hsl",
+      "cmyk converter",
+      "hsv converter",
+      "color palette generator",
+      "wcag contrast checker",
+      "color blindness simulator",
+      "developer"
+    ]
+  },
+  {
     "title": "Link Shortener",
     "link": "/tools/link-shortner",
     "description": "Transform long, clunky URLs into neat, compact, and easily shareable links. This tool is perfect for maximizing character counts on social media, improving click-through rates, and tracking link management seamlessly.",
