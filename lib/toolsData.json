@@ -1,5 +1,13 @@
 [
   {
+    "title": "Video Downloader",
+    "link": "/tools/video-downloader",
+    "description": "Download videos from YouTube, Facebook, Instagram, TikTok, Twitter, Vimeo, Reddit and 20+ other platforms. Paste any video URL and save it as MP4 in up to 8K quality, or extract audio as MP3, WAV, FLAC — completely free, no signup needed.",
+    "icon": "Download",
+    "category": "Media",
+    "keywords": ["video downloader", "youtube downloader", "facebook video downloader", "instagram downloader", "tiktok downloader", "twitter video", "mp4 download", "audio extractor", "media downloader", "media"]
+  },
+  {
     "title": "Link Shortener",
     "link": "/tools/link-shortner",
     "description": "Transform long, clunky URLs into neat, compact, and easily shareable links. This tool is perfect for maximizing character counts on social media, improving click-through rates, and tracking link management seamlessly.",
