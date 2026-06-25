@@ -10,7 +10,7 @@
     },
     {
       "question": "What kinds of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek currently includes PDF tools (merge, split, reorder, crop, compress, combine, N-up, add attachments, and image/PDF conversion), QR tools, calculators, text utilities (case converter, text repeater, dummy text generation, binary, Braille, and Morse code converters), security utilities (password generator), and developer helpers (domain age checker, IP address geolocation lookup, and markdown previewing)."
+      "answer": "ToolsTrek currently includes PDF tools (merge, split, reorder, crop, compress, combine, N-up, add attachments, and image/PDF conversion), QR tools, calculators, text utilities (case converter, text repeater, dummy text generation, binary, Braille, and Morse code converters), image tools (Color Palette Extractor, AVIF converter, Favicon Generator, SVG Converter), a Color Converter (HEX, RGB, HSL, HSV, CMYK), an SSL Certificate Checker, security utilities (password generator), and developer helpers (domain age checker, IP address geolocation lookup, markdown previewing)."
     },
     {
       "question": "Can I use ToolsTrek on mobile or tablet devices?",
@@ -24,7 +24,7 @@
     },
     {
       "question": "Are all ToolsTrek features fully offline?",
-      "answer": "No. Many file-processing tools work in the browser after the page loads, but some features still depend on network services, such as the Link Shortener, Domain Age Checker, reCAPTCHA verification, and contact form delivery."
+      "answer": "No. Many file-processing tools work in the browser after the page loads, but some features still depend on network services, such as the Link Shortener, Domain Age Checker, IP Checker, SSL Certificate Checker, reCAPTCHA verification, and contact form delivery."
     },
     {
       "question": "Is sensitive information like WiFi data or passwords stored by ToolsTrek?",
@@ -96,7 +96,7 @@
   "productivityAndCalculators": [
     {
       "question": "What other utilities are included besides PDF and QR tools?",
-      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, EMI Calculator, NU CGPA Calculator, Case Converter, Text Repeater, Numbers to Words, Dummy Text Generator, Binary Decoder, Braille Decoder, Morse Code Decoder, IP Checker, Markdown Previewer, Domain Age Checker, Fake Info Generator, and Password Generator."
+      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, EMI Calculator, NU CGPA Calculator, Unit Converter, Case Converter, Text Repeater, Numbers to Words, Dummy Text Generator, Binary Decoder, Braille Decoder, Morse Code Decoder, IP Checker, Markdown Previewer, Domain Age Checker, Fake Info Generator, Password Generator, Color Converter, and SSL Certificate Checker."
     },
     {
       "question": "Is the NU CGPA Calculator specific to National University Bangladesh?",
@@ -139,6 +139,32 @@
     {
       "question": "Can I use the EMI Calculator to compare different loan scenarios?",
       "answer": "Yes. You can adjust the loan amount, interest rate, and tenure independently using the sliders or input fields. The results update instantly, making it easy to compare scenarios — for example, a 20-year mortgage vs. a 15-year one, or two lenders offering different rates."
+    }
+  ],
+  "colorAndSSL": [
+    {
+      "question": "What does the Color Converter tool do?",
+      "answer": "The Color Converter lets you instantly convert any color between HEX, RGB, HSL, HSV, and CMYK formats using live-sync inputs or an interactive color wheel. Changing any field automatically updates all other formats in real-time. It runs 100% in your browser — no data is ever sent to a server."
+    },
+    {
+      "question": "What are the Advanced Options in the Color Converter?",
+      "answer": "Clicking 'Advanced Options' reveals four extra panels: Color Harmonies (Complementary, Analogous, Triadic, Split Complementary, Monochromatic, Tetradic), a WCAG Contrast Checker to verify text accessibility against a custom background color, a Tints & Shades generator with 9-step gradients, and a Color Blindness Simulator showing how the color appears to people with Protanopia, Deuteranopia, Tritanopia, or Achromatopsia."
+    },
+    {
+      "question": "What does the SSL Certificate Checker tool do?",
+      "answer": "The SSL Certificate Checker connects to any domain over a live TLS connection and retrieves its SSL/TLS certificate. It shows you validity dates, the issuer, subject details (Common Name, Organization, Country), certificate type (DV/OV/EV), Subject Alternative Names (SANs), and whether the certificate is trusted by the system's CA bundle."
+    },
+    {
+      "question": "What are the Advanced Options in the SSL Certificate Checker?",
+      "answer": "Clicking 'Advanced Options' shows four deeper inspection panels: a Security Score (0–100) with specific pass/fail checks, TLS Protocol & Cipher details (protocol version, cipher name, key strength), SHA-1 and SHA-256 certificate fingerprints (both copyable), and a full Certificate Chain visualization showing End-Entity, Intermediate CA, and Root CA certificates in the trust path."
+    },
+    {
+      "question": "Does the SSL Certificate Checker store any domain or certificate data?",
+      "answer": "No. Each check is a live, on-demand server-side TLS connection made solely for your request. No certificate data, domain names, or results are logged or stored anywhere by ToolsTrek."
+    },
+    {
+      "question": "Can the SSL Certificate Checker detect expired or untrusted certificates?",
+      "answer": "Yes. The tool reports the exact expiry date and a real-time days-remaining countdown. It also clearly flags whether the certificate is trusted (based on the Node.js CA bundle), expired, or not yet valid — with colour-coded status banners and actionable security score penalties."
     }
   ]
 }

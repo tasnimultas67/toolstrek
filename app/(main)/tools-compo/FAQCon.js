@@ -20,6 +20,7 @@ const formatSectionTitle = (sectionKey) => {
     imagesAndText: "Images & Text",
     productivityAndCalculators: "Productivity & Calculators",
     emiCalculator: "EMI Calculator",
+    colorAndSSL: "Color Converter & SSL Certificate Checker",
   };
 
   return (

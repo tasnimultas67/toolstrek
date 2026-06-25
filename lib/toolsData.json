@@ -1,5 +1,22 @@
 [
   {
+    "title": "SSL Certificate Checker",
+    "link": "/tools/ssl-checker",
+    "description": "Instantly inspect any domain's SSL/TLS certificate. View issuer, expiry dates, Subject Alternative Names (SANs), certificate type (DV/OV/EV), security score, TLS protocol & cipher suites, SHA fingerprints, and a full certificate chain — all free and server-side.",
+    "icon": "ShieldCheck",
+    "category": "Developer",
+    "keywords": [
+      "ssl certificate checker",
+      "tls checker",
+      "ssl expiry checker",
+      "ssl validator",
+      "ssl cert details",
+      "certificate chain",
+      "cipher suite checker",
+      "developer"
+    ]
+  },
+  {
     "title": "Color Converter",
     "link": "/tools/color-converter",
     "description": "Convert color codes between HEX, RGB, HSL, HSV, and CMYK formats. Adjust interactive sliders in real-time, generate color harmonies, verify WCAG readability contrast, simulate color blindness, and inspect tints & shades.",

@@ -1,6 +1,6 @@
 # ToolsTrek
 
-**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 38 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 40 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## 🛠️ Tool Library (38 Tools)
+## 🛠️ Tool Library (40 Tools)
 
 ### 📝 Text
 
@@ -54,17 +54,19 @@
 
 ### 🔒 Security
 
-| Tool               | Description                                           |
-| ------------------ | ----------------------------------------------------- |
-| Password Generator | Create strong, randomized passwords with custom rules |
+| Tool                    | Description                                                                   |
+| ----------------------- | ----------------------------------------------------------------------------- |
+| Password Generator      | Create strong, randomized passwords with custom rules                         |
+| SSL Certificate Checker | Validate SSL certificates, inspect trust chain, protocol, and cipher strength |
 
 ### 🌐 Developer
 
-| Tool               | Description                                        |
-| ------------------ | -------------------------------------------------- |
-| Domain Age Checker | Look up when any domain was first registered       |
-| Markdown Previewer | Live preview with syntax highlighting (GFM + HTML) |
-| IP Checker         | Inspect public IP addresses or query domain/IP geolocations, networks, and maps |
+| Tool                    | Description                                                                                     |
+| ----------------------- | ----------------------------------------------------------------------------------------------- |
+| Domain Age Checker      | Look up when any domain was first registered                                                    |
+| IP Checker              | Inspect public IP addresses or query domain/IP geolocations, networks, and maps                 |
+| Color Converter         | Convert HEX, RGB, HSL, HSV, CMYK in real-time with harmonies, WCAG checker & blindness sim    |
+| SSL Certificate Checker | Inspect any domain's SSL/TLS cert — validity, issuer, SANs, fingerprints & full chain of trust |
 
 ### 📷 QR Code
 
@@ -173,7 +175,8 @@ toolstrek/
 │   ├── (main)/                        # Main route group
 │   │   ├── api/                       # Server-side API routes
 │   │   │   ├── check-domain-age/      #   Domain WHOIS lookup
-│   │   │   ├── check-ip/              #   IP geolocation lookup (new)
+│   │   │   ├── check-ip/              #   IP geolocation lookup
+│   │   │   ├── check-ssl/             #   SSL/TLS certificate inspection (Node tls)
 │   │   │   ├── contact/               #   Contact form (Nodemailer + SMTP)
 │   │   │   └── verify-recaptcha/      #   Google reCAPTCHA verification
 │   │   ├── about-us/                  # About page
@@ -182,7 +185,7 @@ toolstrek/
 │   │   ├── favorites/                 # ⭐ Favorites page
 │   │   ├── privacy-policy/            # Privacy Policy page
 │   │   ├── recent/                    # 🕐 Recently visited tools page
-│   │   ├── tools/                     # Individual tool pages (37 routes)
+│   │   ├── tools/                     # Individual tool pages (40 routes)
 │   │   │   ├── add-attachments/
 │   │   │   ├── age-calculate/
 │   │   │   ├── avif-converter/
@@ -191,6 +194,7 @@ toolstrek/
 │   │   │   ├── braille-decoder/
 │   │   │   ├── case-converter/
 │   │   │   ├── cgpa-calculator/
+│   │   │   ├── color-converter/          # 🆕 Color Converter (HEX/RGB/HSL/HSV/CMYK)
 │   │   │   ├── color-palette-extractor/
 │   │   │   ├── combine-files-to-pdf/
 │   │   │   ├── compress-pdf/
@@ -216,6 +220,7 @@ toolstrek/
 │   │   │   ├── pdf-to-image/
 │   │   │   ├── qr-code-generator/
 │   │   │   ├── qr-scanner/
+│   │   │   ├── ssl-checker/              # 🆕 SSL Certificate Checker
 │   │   │   ├── svg-converter/
 │   │   │   ├── text-repeater/
 │   │   │   ├── unit-converter/
@@ -232,6 +237,7 @@ toolstrek/
 │   │   │   │   ├── BinaryDecoder.js
 │   │   │   │   ├── BrailleDecoder.js
 │   │   │   │   ├── CGPACalculator.js
+│   │   │   │   ├── ColorConverter.jsx         # 🆕 Color Converter component
 │   │   │   │   ├── ColorPaletteExtractor.jsx
 │   │   │   │   ├── CombineFilesToPDFTool.jsx
 │   │   │   │   ├── CompressPDFTool.js
@@ -252,6 +258,7 @@ toolstrek/
 │   │   │   │   ├── PDFSplitPage.js
 │   │   │   │   ├── PdfToImage.js
 │   │   │   │   ├── QRCodeGenerator.js
+│   │   │   │   ├── SSLChecker.jsx             # 🆕 SSL Certificate Checker component
 │   │   │   │   ├── SvgConverter.js
 │   │   │   │   ├── TextRepeater.js
 │   │   │   │   └── cgpaSubjectData.json
