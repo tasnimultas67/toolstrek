@@ -719,5 +719,22 @@
       "text cleaner",
       "text"
     ]
+  },
+  {
+    "title": "Timezone Clock & Converter",
+    "link": "/tools/timezone-clock",
+    "description": "View real-time clocks for multiple cities, compare timezones with an interactive meeting planner slider, set local alarms, and customize your dashboard. Keep track of UTC offsets, day/night cycles, and local times worldwide.",
+    "icon": "Clock",
+    "category": "Productivity",
+    "keywords": [
+      "timezone clock",
+      "world clock",
+      "timezone converter",
+      "meeting planner",
+      "utc offset",
+      "timezone calculator",
+      "local time converter",
+      "productivity"
+    ]
   }
 ]
