@@ -241,6 +241,23 @@
     ]
   },
   {
+    "title": "Typing Test",
+    "link": "/tools/typing-test",
+    "description": "Improve your typing speed and accuracy with this interactive typing speed test. Features live stats, real-time WPM graphs, key-by-key response heatmap, synthesized mechanical sound effects, and dynamic certificate downloads.",
+    "icon": "Keyboard",
+    "category": "Productivity",
+    "keywords": [
+      "typing test",
+      "typing speed test",
+      "wpm checker",
+      "typing certificate",
+      "typing practice",
+      "speed typing test",
+      "keyboard speed test",
+      "productivity"
+    ]
+  },
+  {
     "title": "Case Converter",
     "link": "/tools/case-converter",
     "description": "Streamline text editing by instantly shifting code or copy blocks between standard string schemas. Safely swap formatting between UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, and kebab-case.",
