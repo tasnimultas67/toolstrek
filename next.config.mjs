@@ -12,9 +12,13 @@ const nextConfig = {
   // Stable top-level key
   serverExternalPackages: ["pdfjs-dist"],
 
-  // MOVE THIS HERE: Next.js 16 expects turbopack at the top level
-  // This satisfies the "empty turbopack config" requirement mentioned in your error log
+  // Turbopack configuration
   turbopack: {},
+
+  // Exclude node_modules from output file tracing to reduce FS scanning
+  outputFileTracingExcludes: {
+    "*": ["./node_modules/**/*"],
+  },
 
   // Keep Webpack as a fallback/parallel config
   webpack: (config) => {

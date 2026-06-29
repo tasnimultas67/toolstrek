@@ -35,6 +35,24 @@
     ]
   },
   {
+    "title": "Gradient Generator",
+    "link": "/tools/gradient-generator",
+    "description": "Create beautiful CSS and Tailwind gradients. Customize colors, add multiple stops, choose linear, radial, or conic styles, and access advanced options like image export (PNG/SVG) and repeating gradients.",
+    "icon": "Paintbrush",
+    "category": "Developer",
+    "keywords": [
+      "gradient generator",
+      "css gradient",
+      "tailwind gradient",
+      "color stops",
+      "linear gradient",
+      "radial gradient",
+      "conic gradient",
+      "export gradient to image",
+      "developer"
+    ]
+  },
+  {
     "title": "Link Shortener",
     "link": "/tools/link-shortner",
     "description": "Transform long, clunky URLs into neat, compact, and easily shareable links. This tool is perfect for maximizing character counts on social media, improving click-through rates, and tracking link management seamlessly.",
@@ -737,4 +755,4 @@
       "productivity"
     ]
   }
-]
+]
