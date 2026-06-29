@@ -770,5 +770,23 @@
       "bogo calculator",
       "finance"
     ]
+  },
+  {
+    "title": "TrekGlyph Encoder & Decoder",
+    "link": "/tools/trekglyph-encoder-decoder",
+    "description": "Instantly translate plain text into exclusive custom geometric TrekGlyph cipher using '▲' and '▼' symbols, and decode it back in real-time. Features real-time interactive conversion, a click-to-insert symbol pad, and a complete symbol reference dictionary.",
+    "icon": "Shapes",
+    "category": "Text",
+    "keywords": [
+      "trekglyph encoder",
+      "trekglyph decoder",
+      "trekglyph translator",
+      "geometric code",
+      "custom geometric cipher",
+      "text to trekglyph",
+      "trekglyph to text",
+      "exclusive cipher decoder",
+      "text"
+    ]
   }
 ]
