@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useMemo, useState, useRef, useEffect } from "react";
+import ReactDOM from "react-dom";
 import {
   AlertCircle,
   Calculator,
@@ -88,10 +89,13 @@ function ResultTable({ rows, compact = false }) {
   );
 }
 
-// Modern GradeSelect with custom dropdown
+// Modern GradeSelect with portal-based dropdown to escape table overflow clipping
 function GradeSelect({ value, onChange }) {
   const [isOpen, setIsOpen] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  const [dropdownStyle, setDropdownStyle] = useState({});
+  const buttonRef = useRef(null);
+  const inputRef = useRef(null);
 
   const filteredGrades = GRADES.filter((item) =>
     item.grade.toLowerCase().includes(searchTerm.toLowerCase()),
@@ -99,9 +103,105 @@ function GradeSelect({ value, onChange }) {
 
   const selectedGrade = GRADES.find((item) => item.grade === value);
 
+  // Recalculate dropdown position whenever it opens or on scroll/resize
+  useEffect(() => {
+    if (!isOpen || !buttonRef.current) return;
+
+    const updatePosition = () => {
+      const rect = buttonRef.current?.getBoundingClientRect();
+      if (!rect) return;
+      // Estimate full height: search box (~44px) + each item (~36px) + padding (~8px)
+      const estimatedHeight = 44 + filteredGrades.length * 36 + 8;
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const showAbove = spaceBelow < estimatedHeight && rect.top > estimatedHeight;
+
+      setDropdownStyle({
+        position: "fixed",
+        left: rect.left,
+        width: Math.max(rect.width, 160),
+        zIndex: 9999,
+        ...(showAbove
+          ? { bottom: window.innerHeight - rect.top + 4 }
+          : { top: rect.bottom + 4 }),
+      });
+    };
+
+    updatePosition();
+    // Focus search input without scrolling the page
+    inputRef.current?.focus({ preventScroll: true });
+
+    window.addEventListener("scroll", updatePosition, true);
+    window.addEventListener("resize", updatePosition);
+    return () => {
+      window.removeEventListener("scroll", updatePosition, true);
+      window.removeEventListener("resize", updatePosition);
+    };
+  }, [isOpen, filteredGrades.length]);
+
+  const dropdown = isOpen ? (
+    <>
+      {/* Backdrop to close on outside click */}
+      <div
+        className="fixed inset-0"
+        style={{ zIndex: 9998 }}
+        onClick={() => {
+          setIsOpen(false);
+          setSearchTerm("");
+        }}
+      />
+      {/* Dropdown: no max-height so all items show without a scrollbar */}
+      <div
+        style={dropdownStyle}
+        className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-xl overflow-hidden"
+      >
+        <div className="bg-white dark:bg-gray-800 p-2 border-b border-gray-100 dark:border-gray-700">
+          <input
+            ref={inputRef}
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Search grade..."
+            className="w-full rounded-md border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 px-2 py-1 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+        <div className="py-1">
+          {filteredGrades.map((item) => (
+            <button
+              key={item.grade}
+              onClick={() => {
+                onChange(item.grade);
+                setIsOpen(false);
+                setSearchTerm("");
+              }}
+              className={`w-full px-3 py-2 text-left text-sm transition-colors duration-150 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 ${
+                value === item.grade
+                  ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400"
+                  : "text-gray-700 dark:text-gray-300"
+              }`}
+            >
+              <div className="flex items-center justify-between">
+                <span>{item.grade}</span>
+                <span className="text-xs text-gray-400 dark:text-gray-500">
+                  {item.point.toFixed(2)}
+                </span>
+              </div>
+            </button>
+          ))}
+          {filteredGrades.length === 0 && (
+            <div className="px-3 py-2 text-sm text-gray-400 dark:text-gray-500">
+              No grades found
+            </div>
+          )}
+        </div>
+      </div>
+    </>
+  ) : null;
+
   return (
     <div className="relative inline-block w-24">
       <button
+        ref={buttonRef}
         type="button"
         onClick={() => setIsOpen(!isOpen)}
         className="flex h-9 w-full items-center justify-between rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 px-2 text-sm text-gray-900 dark:text-gray-100 transition-all duration-200 hover:border-indigo-400 dark:hover:border-indigo-500 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
@@ -119,56 +219,9 @@ function GradeSelect({ value, onChange }) {
           className={`h-4 w-4 transition-transform duration-200 ${isOpen ? "rotate-180" : ""}`}
         />
       </button>
-
-      {isOpen && (
-        <>
-          <div
-            className="fixed inset-0 z-40"
-            onClick={() => setIsOpen(false)}
-          />
-          <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-auto rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-lg shadow-black/5 animate-in slide-in-from-top-2 duration-200">
-            <div className="sticky top-0 bg-white dark:bg-gray-800 p-2 border-b border-gray-100 dark:border-gray-700">
-              <input
-                type="text"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                placeholder="Search grade..."
-                className="w-full rounded-md border border-gray-200 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 px-2 py-1 text-sm text-gray-900 dark:text-gray-100 placeholder:text-gray-400 dark:placeholder:text-gray-500 focus:border-indigo-500 focus:outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900"
-                onClick={(e) => e.stopPropagation()}
-              />
-            </div>
-            <div className="py-1">
-              {filteredGrades.map((item) => (
-                <button
-                  key={item.grade}
-                  onClick={() => {
-                    onChange(item.grade);
-                    setIsOpen(false);
-                    setSearchTerm("");
-                  }}
-                  className={`w-full px-3 py-2 text-left text-sm transition-colors duration-150 hover:bg-indigo-50 dark:hover:bg-indigo-900/30 ${
-                    value === item.grade
-                      ? "bg-indigo-50 dark:bg-indigo-900/30 text-indigo-700 dark:text-indigo-400"
-                      : "text-gray-700 dark:text-gray-300"
-                  }`}
-                >
-                  <div className="flex items-center justify-between">
-                    <span>{item.grade}</span>
-                    <span className="text-xs text-gray-400 dark:text-gray-500">
-                      {item.point.toFixed(2)}
-                    </span>
-                  </div>
-                </button>
-              ))}
-              {filteredGrades.length === 0 && (
-                <div className="px-3 py-2 text-sm text-gray-400 dark:text-gray-500">
-                  No grades found
-                </div>
-              )}
-            </div>
-          </div>
-        </>
-      )}
+      {/* Portal: renders outside the table DOM to avoid overflow clipping */}
+      {typeof document !== "undefined" &&
+        ReactDOM.createPortal(dropdown, document.body)}
     </div>
   );
 }
@@ -743,14 +796,14 @@ export default function CGPACalculator() {
               </table>
             </div>
           )}
-
+          {/* Error */}
           {error && (
             <div className="mt-5 flex items-center justify-center gap-2 rounded-md bg-red-50 dark:bg-red-900/20 px-4 py-3 text-center text-sm font-medium text-red-700 dark:text-red-400">
               <AlertCircle className="h-4 w-4 shrink-0" />
               <span>{error}</span>
             </div>
           )}
-
+          {/* Calculate Button */}
           <div className="mt-6 text-center">
             <button
               type="button"
@@ -784,7 +837,7 @@ export default function CGPACalculator() {
               </thead>
               <tbody>
                 {GRADES.map((item) => (
-                  <tr key={item.grade}>
+                  <tr key={item.grade} className="relative">
                     <td className="border border-gray-300 dark:border-gray-600 px-3 py-2 text-center font-medium text-gray-900 dark:text-gray-100">
                       {item.grade}
                     </td>
