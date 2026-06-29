@@ -754,5 +754,21 @@
       "local time converter",
       "productivity"
     ]
+  },
+  {
+    "title": "Discount Calculator",
+    "link": "/tools/discount-calculator",
+    "description": "Calculate discount savings, sale prices, double discounts, tax rates, BOGO deals, and compare unit prices. Features history tracking, custom currencies, and exportable PDF summaries.",
+    "icon": "Percent",
+    "category": "Calculator",
+    "keywords": [
+      "discount calculator",
+      "sale calculator",
+      "percent off calculator",
+      "double discount calculator",
+      "coupon calculator",
+      "bogo calculator",
+      "finance"
+    ]
   }
 ]
