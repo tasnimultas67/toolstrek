@@ -212,6 +212,24 @@
     ]
   },
   {
+    "title": "University CGPA Calculator (Private & Public)",
+    "link": "/tools/uni-cgpa-calculator",
+    "description": "A versatile academic calculator designed for Private and Public University students in Bangladesh. Calculate semester GPA or cumulative CGPA, choose from BUET, NSU, BRAC, UIU, AIUB, AUST presets, design custom grading scales, and download your result card as an image.",
+    "icon": "Calculator",
+    "category": "Calculator",
+    "keywords": [
+      "university cgpa",
+      "cgpa calculator",
+      "private university cgpa",
+      "public university cgpa",
+      "nsu cgpa calculator",
+      "brac cgpa calculator",
+      "buet cgpa calculator",
+      "calculator",
+      "bangladesh university gpa"
+    ]
+  },
+  {
     "title": "Password Generator",
     "link": "/tools/password-generator",
     "description": "Protect your digital accounts with a powerful utility that generates strong, randomized passwords. Fully customize your security preferences by toggling uppercase letters, lowercase letters, numbers, and specialized symbols.",
