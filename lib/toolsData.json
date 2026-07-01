@@ -806,5 +806,20 @@
       "exclusive cipher decoder",
       "text"
     ]
+  },
+  {
+    "title": "Savings Calculator",
+    "link": "/tools/savings-calculator",
+    "description": "Calculate how your savings grow over time. Plan with initial deposits, recurring contributions, compound interest intervals, and advanced options like inflation, taxes, and annual increase step-ups. Export clean PDF reports.",
+    "icon": "PiggyBank",
+    "category": "Calculator",
+    "keywords": [
+      "savings calculator",
+      "compound interest calculator",
+      "wealth calculator",
+      "interest calculator",
+      "financial planning tool",
+      "calculator"
+    ]
   }
 ]
