@@ -1,5 +1,23 @@
 [
   {
+    "title": "Website Technology Detector",
+    "link": "/tools/website-tech-detector",
+    "description": "Instantly detect the full technology stack powering any website. Identifies CMS, JavaScript frameworks (React, Vue, Next.js, Angular), web servers (Nginx, Apache), CDNs (Cloudflare, Vercel), analytics tools, and analyzes HTTP security headers with a score.",
+    "icon": "ScanSearch",
+    "category": "Developer",
+    "keywords": [
+      "website technology detector",
+      "tech stack detector",
+      "cms detector",
+      "what framework is this site using",
+      "wappalyzer alternative",
+      "detect web server",
+      "security header checker",
+      "javascript framework detector",
+      "developer"
+    ]
+  },
+  {
     "title": "SSL Certificate Checker",
     "link": "/tools/ssl-checker",
     "description": "Instantly inspect any domain's SSL/TLS certificate. View issuer, expiry dates, Subject Alternative Names (SANs), certificate type (DV/OV/EV), security score, TLS protocol & cipher suites, SHA fingerprints, and a full certificate chain — all free and server-side.",
