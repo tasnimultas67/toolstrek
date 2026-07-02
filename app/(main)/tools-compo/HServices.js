@@ -1,11 +1,28 @@
 "use client";
 import React from "react";
+import { useState, useEffect } from "react";
 import ToolsCard from "./ToolsCard";
 import toolsData from "../../../lib/toolsData.json";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
 const HServices = () => {
+  const [cardsToShow, setCardsToShow] = useState(4);
+
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        // lg breakpoint
+        setCardsToShow(8);
+      } else {
+        setCardsToShow(4);
+      }
+    };
+
+    handleResize(); // Set initial value
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
   return (
     <section
       className="border-b border-gray-100 dark:border-gray-800 py-20 px-2"
@@ -23,8 +40,7 @@ const HServices = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
           {[...toolsData]
-            .slice(0, 4)
-            .slice()
+            .slice(0, cardsToShow)
             .reverse()
             .map((tool, index) => (
               <ToolsCard key={tool.id || index} index={index} {...tool} />
