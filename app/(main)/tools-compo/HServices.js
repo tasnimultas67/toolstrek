@@ -1,13 +1,26 @@
 "use client";
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import ToolsCard from "./ToolsCard";
 import toolsData from "../../../lib/toolsData.json";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { useRecentTools } from "@/hooks/useRecentTools";
+import { formatRelativeTime } from "@/lib/utils";
 
 const HServices = () => {
   const [cardsToShow, setCardsToShow] = useState(4);
+  const { recentTools } = useRecentTools();
+
+  const recentToolsMap = useMemo(() => {
+    const map = {};
+    if (Array.isArray(recentTools)) {
+      recentTools.forEach((t) => {
+        if (t.link) map[t.link] = t.lastUsedAt;
+      });
+    }
+    return map;
+  }, [recentTools]);
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,7 +56,7 @@ const HServices = () => {
             .slice(0, cardsToShow)
             .reverse()
             .map((tool, index) => (
-              <ToolsCard key={tool.id || index} index={index} {...tool} />
+              <ToolsCard key={tool.id || index} index={index} {...tool} lastUsed={formatRelativeTime(recentToolsMap[tool.link])} />
             ))}
         </div>
         <div className="mt-10 flex items-center justify-center">

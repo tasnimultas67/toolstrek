@@ -1,9 +1,6 @@
 import Hero from "./tools-compo/Hero";
 import HServices from "./tools-compo/HServices";
-import Reviews from "./tools-compo/Home-Compo/Reviews";
-import CTA from "./tools-compo/Home-Compo/CTA";
 import { Suspense } from "react";
-import RecentToolsHome from "./tools-compo/RecentToolsHome";
 import HeroSkeleton from "./tools-compo/Home-Compo/HeroSkeleton";
 import {
   Zap,
@@ -69,9 +66,6 @@ export default function Home() {
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>
-
-      {/* Recently Used Tools Section */}
-      <RecentToolsHome />
 
       {/* Services Section */}
       <HServices />

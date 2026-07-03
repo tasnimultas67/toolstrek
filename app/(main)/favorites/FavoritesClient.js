@@ -1,14 +1,27 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import { Star, ArrowLeft, Compass } from "lucide-react";
 import { useFavorites } from "@/hooks/useFavorites";
 import ToolsCard from "../tools-compo/ToolsCard";
+import { useRecentTools } from "@/hooks/useRecentTools";
+import { formatRelativeTime } from "@/lib/utils";
 
 export default function FavoritesClient() {
   const { favorites } = useFavorites();
+  const { recentTools } = useRecentTools();
+
+  const recentToolsMap = useMemo(() => {
+    const map = {};
+    if (Array.isArray(recentTools)) {
+      recentTools.forEach((t) => {
+        if (t.link) map[t.link] = t.lastUsedAt;
+      });
+    }
+    return map;
+  }, [recentTools]);
 
   return (
     <div className="min-h-screen bg-linear-to-b from-gray-50 dark:from-gray-950 to-brandBackground dark:to-transparent pt-20 md:pt-24 pb-20 relative overflow-hidden">
@@ -70,7 +83,7 @@ export default function FavoritesClient() {
                     transition={{ duration: 0.35, ease: "easeInOut" }}
                     className="h-full"
                   >
-                    <ToolsCard index={index} {...tool} />
+                    <ToolsCard index={index} {...tool} lastUsed={formatRelativeTime(recentToolsMap[tool.link])} />
                   </motion.div>
                 ))}
               </AnimatePresence>

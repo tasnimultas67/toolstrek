@@ -1,13 +1,26 @@
 "use client";
 
-import React from "react";
+import React, { useMemo } from "react";
 import { usePathname } from "next/navigation";
 import toolsData from "@/lib/toolsData.json";
 import ToolsCard from "@/app/(main)/tools-compo/ToolsCard";
 import { Sparkles } from "lucide-react";
+import { useRecentTools } from "@/hooks/useRecentTools";
+import { formatRelativeTime } from "@/lib/utils";
 
 export default function RelatedTools() {
   const pathname = usePathname();
+  const { recentTools } = useRecentTools();
+
+  const recentToolsMap = useMemo(() => {
+    const map = {};
+    if (Array.isArray(recentTools)) {
+      recentTools.forEach((t) => {
+        if (t.link) map[t.link] = t.lastUsedAt;
+      });
+    }
+    return map;
+  }, [recentTools]);
   if (!pathname) return null;
 
   const cleanPathname = pathname.replace(/\/$/, "");
@@ -59,7 +72,7 @@ export default function RelatedTools() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
           {finalRelated.map((tool, index) => (
-            <ToolsCard key={tool.link} index={index} {...tool} />
+            <ToolsCard key={tool.link} index={index} {...tool} lastUsed={formatRelativeTime(recentToolsMap[tool.link])} />
           ))}
         </div>
       </div>

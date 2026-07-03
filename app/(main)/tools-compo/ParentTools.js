@@ -3,12 +3,26 @@ import React, { useState, useMemo } from "react";
 import toolsData from "../../../lib/toolsData.json";
 import ToolsCard from "./ToolsCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useRecentTools } from "@/hooks/useRecentTools";
+import { formatRelativeTime } from "@/lib/utils";
 
 const ParentTools = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("all");
   const [currentPage, setCurrentPage] = useState(1);
   const ITEMS_PER_PAGE = 12;
+  const { recentTools } = useRecentTools();
+
+  // Build a lookup map: tool.link -> lastUsedAt for O(1) access per card
+  const recentToolsMap = useMemo(() => {
+    const map = {};
+    if (Array.isArray(recentTools)) {
+      recentTools.forEach((t) => {
+        if (t.link) map[t.link] = t.lastUsedAt;
+      });
+    }
+    return map;
+  }, [recentTools]);
 
   // Extract unique categories from tools data
   const categories = useMemo(() => {
@@ -145,7 +159,14 @@ const ParentTools = () => {
           <div className="flex flex-col gap-8">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
               {paginatedTools.map((tool, index) => (
-                <ToolsCard key={tool.id || index} index={index} {...tool} />
+                <ToolsCard
+                  key={tool.id || index}
+                  index={index}
+                  {...tool}
+                  lastUsed={formatRelativeTime(
+                    recentToolsMap[tool.link],
+                  )}
+                />
               ))}
             </div>
             {/* Results Count & Pagination */}
