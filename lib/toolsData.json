@@ -1,5 +1,23 @@
 [
   {
+    "title": "Disposable Email Detector",
+    "link": "/tools/disposable-email-detector",
+    "description": "Detect temporary and disposable emails instantly. Verify syntax, check live MX records, find role-based addresses, correct common spelling typos, and process email lists in bulk.",
+    "icon": "MailWarning",
+    "category": "Developer",
+    "keywords": [
+      "disposable email detector",
+      "temporary email checker",
+      "temp mail detector",
+      "check disposable email",
+      "bulk email verifier",
+      "email deliverability score",
+      "role based email detector",
+      "email typo checker",
+      "developer"
+    ]
+  },
+  {
     "title": "Website Technology Detector",
     "link": "/tools/website-tech-detector",
     "description": "Instantly detect the full technology stack powering any website. Identifies CMS, JavaScript frameworks (React, Vue, Next.js, Angular), web servers (Nginx, Apache), CDNs (Cloudflare, Vercel), analytics tools, and analyzes HTTP security headers with a score.",
