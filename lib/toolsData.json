@@ -857,5 +857,24 @@
       "financial planning tool",
       "calculator"
     ]
+  },
+  {
+    "title": "View Metadata",
+    "link": "/tools/view-metadata",
+    "description": "Instantly reveal every hidden metadata detail inside any file — images (EXIF, GPS, camera info), PDFs, audio, video, documents, and more. No upload needed; everything runs 100% in your browser.",
+    "icon": "FileSearch",
+    "category": "Developer",
+    "keywords": [
+      "view metadata",
+      "file metadata viewer",
+      "exif viewer",
+      "image metadata",
+      "pdf metadata",
+      "audio metadata",
+      "video metadata",
+      "file inspector",
+      "developer",
+      "exif reader"
+    ]
   }
 ]
