@@ -876,5 +876,23 @@
       "developer",
       "exif reader"
     ]
+  },
+  {
+    "title": "Edit Metadata",
+    "link": "/tools/edit-metadata",
+    "description": "Modify, inject, or strip metadata (EXIF, GPS, camera settings, author details) from your images, PDFs, and documents. 100% private, client-side, zero server uploads.",
+    "icon": "FileEdit",
+    "category": "Developer",
+    "keywords": [
+      "edit metadata",
+      "modify metadata",
+      "remove exif",
+      "gps spoofing image",
+      "change camera model metadata",
+      "pdf author edit",
+      "strip metadata",
+      "privacy protection EXIF",
+      "developer"
+    ]
   }
 ]

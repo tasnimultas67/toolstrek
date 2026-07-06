@@ -78,30 +78,48 @@ function parseExif(buffer) {
 }
 
 const EXIF_TAGS = {
+  0x0100: "ImageWidth", 0x0101: "ImageLength", 0x0102: "BitsPerSample",
+  0x0103: "Compression", 0x0106: "PhotometricInterpretation",
   0x010e: "ImageDescription", 0x010f: "Make", 0x0110: "Model",
   0x0112: "Orientation", 0x011a: "XResolution", 0x011b: "YResolution",
-  0x0128: "ResolutionUnit", 0x0131: "Software", 0x0132: "DateTime",
-  0x013b: "Artist", 0x8298: "Copyright", 0x8769: "ExifIFD", 0x8825: "GPSIFD",
-  0x9000: "ExifVersion", 0x9003: "DateTimeOriginal", 0x9004: "DateTimeDigitized",
-  0x9201: "ShutterSpeedValue", 0x9202: "ApertureValue", 0x9204: "ExposureBiasValue",
-  0x9205: "MaxApertureValue", 0x9207: "MeteringMode", 0x9208: "LightSource",
-  0x9209: "Flash", 0x920a: "FocalLength", 0xa000: "FlashpixVersion",
-  0xa001: "ColorSpace", 0xa002: "PixelXDimension", 0xa003: "PixelYDimension",
+  0x011c: "PlanarConfiguration", 0x0128: "ResolutionUnit", 0x0131: "Software",
+  0x0132: "DateTime", 0x013b: "Artist", 0x0213: "YCbCrPositioning",
+  0x0214: "ReferenceBlackWhite", 0x8298: "Copyright", 0x829a: "ExposureTime",
+  0x829d: "FNumber", 0x8769: "ExifIFD", 0x8822: "ExposureProgram",
+  0x8825: "GPSIFD", 0x8827: "ISOSpeedRatings", 0x9000: "ExifVersion",
+  0x9003: "DateTimeOriginal", 0x9004: "DateTimeDigitized",
+  0x9101: "ComponentsConfiguration", 0x9102: "CompressedBitsPerPixel",
+  0x9201: "ShutterSpeedValue", 0x9202: "ApertureValue", 0x9203: "BrightnessValue",
+  0x9204: "ExposureBiasValue", 0x9205: "MaxApertureValue", 0x9206: "SubjectDistance",
+  0x9207: "MeteringMode", 0x9208: "LightSource", 0x9209: "Flash",
+  0x920a: "FocalLength", 0x9214: "SubjectArea", 0x927c: "MakerNote",
+  0x9286: "UserComment", 0x9290: "SubSecTime", 0x9291: "SubSecTimeOriginal",
+  0x9292: "SubSecTimeDigitized", 0xa000: "FlashpixVersion", 0xa001: "ColorSpace",
+  0xa002: "PixelXDimension", 0xa003: "PixelYDimension", 0xa005: "InteroperabilityIFD",
+  0xa20e: "FocalPlaneXResolution", 0xa20f: "FocalPlaneYResolution",
+  0xa210: "FocalPlaneResolutionUnit", 0xa215: "SensingMethod",
+  0xa300: "FileSource", 0xa301: "SceneType", 0xa302: "CFAPattern",
   0xa401: "CustomRendered", 0xa402: "ExposureMode", 0xa403: "WhiteBalance",
   0xa404: "DigitalZoomRatio", 0xa405: "FocalLengthIn35mmFilm",
-  0xa406: "SceneCaptureType", 0xa408: "Contrast", 0xa409: "Saturation",
-  0xa40a: "Sharpness", 0xa420: "ImageUniqueID", 0xa430: "CameraOwnerName",
-  0xa431: "BodySerialNumber", 0xa432: "LensSpecification", 0xa433: "LensMake",
-  0xa434: "LensModel", 0xa435: "LensSerialNumber", 0x8827: "ISOSpeedRatings",
-  0x9286: "UserComment", 0x9290: "SubSecTime", 0x9291: "SubSecTimeOriginal",
+  0xa406: "SceneCaptureType", 0xa407: "GainControl", 0xa408: "Contrast",
+  0xa409: "Saturation", 0xa40a: "Sharpness", 0xa40c: "SubjectDistanceRange",
+  0xa420: "ImageUniqueID", 0xa430: "CameraOwnerName", 0xa431: "BodySerialNumber",
+  0xa432: "LensSpecification", 0xa433: "LensMake", 0xa434: "LensModel",
+  0xa435: "LensSerialNumber"
 };
 
 const GPS_TAGS = {
   0: "GPSVersionID", 1: "GPSLatitudeRef", 2: "GPSLatitude",
   3: "GPSLongitudeRef", 4: "GPSLongitude", 5: "GPSAltitudeRef",
   6: "GPSAltitude", 7: "GPSTimeStamp", 8: "GPSSatellites",
-  12: "GPSSpeedRef", 13: "GPSSpeed", 18: "GPSMapDatum",
-  27: "GPSProcessingMethod", 29: "GPSDateStamp",
+  9: "GPSStatus", 10: "GPSMeasureMode", 11: "GPSDOP",
+  12: "GPSSpeedRef", 13: "GPSSpeed", 14: "GPSTrackRef", 15: "GPSTrack",
+  16: "GPSImgDirectionRef", 17: "GPSImgDirection", 18: "GPSMapDatum",
+  19: "GPSDestLatitudeRef", 20: "GPSDestLatitude", 21: "GPSDestLongitudeRef",
+  22: "GPSDestLongitude", 23: "GPSDestBearingRef", 24: "GPSDestBearing",
+  25: "GPSDestDistanceRef", 26: "GPSDestDistance", 27: "GPSProcessingMethod",
+  28: "GPSAreaInformation", 29: "GPSDateStamp", 30: "GPSDifferential",
+  31: "GPSHPositioningError"
 };
 
 function parseTIFF(buffer, start) {
