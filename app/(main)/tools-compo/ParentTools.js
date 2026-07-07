@@ -127,7 +127,7 @@ const ParentTools = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap w-fit gap-2 md:sticky top-18 z-30 p-2 bg-white/20 dark:bg-white/10 backdrop-blur-xl rounded-md mt-4 mb-6 border border-gray-200 dark:border-white/10">
+        <div className="flex flex-wrap w-fit gap-2 z-30 p-2 bg-white/20 dark:bg-white/10 backdrop-blur-xl rounded-md mt-4 mb-6 border border-gray-200 dark:border-white/10">
           {categories.map((category) => (
             <button
               key={category}
@@ -163,9 +163,7 @@ const ParentTools = () => {
                   key={tool.id || index}
                   index={index}
                   {...tool}
-                  lastUsed={formatRelativeTime(
-                    recentToolsMap[tool.link],
-                  )}
+                  lastUsed={formatRelativeTime(recentToolsMap[tool.link])}
                 />
               ))}
             </div>
