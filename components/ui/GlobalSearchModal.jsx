@@ -46,21 +46,22 @@ function scoreMatch(tool, query) {
 
 const ANIM_STYLES = `
 @keyframes tt-backdrop-in {
-  from { opacity: 0; }
-  to   { opacity: 1; }
+  from { opacity: 0; backdrop-filter: blur(0px); }
+  to   { opacity: 1; backdrop-filter: blur(6px); }
 }
 @keyframes tt-modal-in {
-  from { opacity: 0; transform: scale(0.96) translateY(-10px); }
-  to   { opacity: 1; transform: scale(1)    translateY(0);     }
+  0%   { opacity: 0; transform: scale(0.90) translateY(-14px); filter: blur(8px); }
+  55%  { opacity: 1; transform: scale(1.012) translateY(0px);  filter: blur(0px); }
+  100% { opacity: 1; transform: scale(1)     translateY(0px);  filter: blur(0px); }
 }
 @keyframes tt-modal-out {
-  from { opacity: 1; transform: scale(1)    translateY(0);     }
-  to   { opacity: 0; transform: scale(0.96) translateY(-10px); }
+  from { opacity: 1; transform: scale(1)    translateY(0px);  filter: blur(0px); }
+  to   { opacity: 0; transform: scale(0.94) translateY(-8px); filter: blur(4px); }
 }
-.tt-backdrop     { animation: tt-backdrop-in 180ms ease both; }
-.tt-backdrop-out { animation: tt-backdrop-in 140ms ease reverse both; }
-.tt-modal        { animation: tt-modal-in    210ms cubic-bezier(0.22,1,0.36,1) both; }
-.tt-modal-out    { animation: tt-modal-out   140ms ease both; }
+.tt-backdrop     { animation: tt-backdrop-in 260ms cubic-bezier(0.32, 0.72, 0, 1) both; }
+.tt-backdrop-out { animation: tt-backdrop-in 180ms cubic-bezier(0.32, 0.72, 0, 1) reverse both; }
+.tt-modal        { animation: tt-modal-in    420ms cubic-bezier(0.16, 1, 0.3, 1) both; }
+.tt-modal-out    { animation: tt-modal-out   180ms cubic-bezier(0.32, 0.72, 0, 1) both; }
 `;
 
 export default function GlobalSearchModal() {
@@ -79,13 +80,12 @@ export default function GlobalSearchModal() {
     tag.textContent = ANIM_STYLES;
     document.head.appendChild(tag);
   }, []);
-
   const closeModal = useCallback(() => {
     setClosing(true);
     setTimeout(() => {
       setOpen(false);
       setClosing(false);
-    }, 140);
+    }, 180); // was 140 — matches tt-modal-out duration
   }, []);
 
   useEffect(() => {
