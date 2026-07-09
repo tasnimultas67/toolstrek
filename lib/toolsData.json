@@ -894,5 +894,26 @@
       "privacy protection EXIF",
       "developer"
     ]
+  },
+  {
+    "title": "Media Format Converter",
+    "link": "/tools/media-format-converter",
+    "description": "Convert video and audio files (MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC) directly in your browser. Local, private, and hardware-accelerated transcoding powered by MediaBunny.",
+    "icon": "Video",
+    "category": "Developer",
+    "keywords": [
+      "media converter",
+      "video format converter",
+      "audio format converter",
+      "mp4 converter",
+      "webm converter",
+      "mkv converter",
+      "mov to mp4",
+      "mp3 converter",
+      "wav to mp3",
+      "mediabunny",
+      "webcodecs transcoding",
+      "developer"
+    ]
   }
 ]
