@@ -19,6 +19,9 @@ const formatSectionTitle = (sectionKey) => {
     qrAndSharing: "QR Codes & Sharing",
     imagesAndText: "Images & Text",
     productivityAndCalculators: "Productivity & Calculators",
+    mediaFormatConverter: "Media Format Converter",
+    metadataTools: "Metadata Tools (View & Edit)",
+    developerTools: "Developer Tools",
     emiCalculator: "EMI Calculator",
     colorAndSSL: "Color Converter & SSL Certificate Checker",
   };

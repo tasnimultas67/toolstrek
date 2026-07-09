@@ -1,6 +1,6 @@
 # ToolsTrek
 
-**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 46 tools across text, PDF, image, QR, calculator, security, and developer categories — all in one fast, responsive, and privacy-friendly interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 58 tools across text, PDF, image, QR, calculator, security, media, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
 ---
 
@@ -18,35 +18,39 @@
 
 ---
 
-## 🛠️ Tool Library (46 Tools)
+## 🛠️ Tool Library (58 Tools)
 
 ### 📝 Text
 
-| Tool                     | Description                                                                          |
-| ------------------------ | ------------------------------------------------------------------------------------ |
-| Case Converter           | Convert text between UPPER, lower, Title, Sentence case, and more                   |
-| Text Repeater            | Repeat any text multiple times with customizable separator options                   |
-| Markdown Previewer       | Real-time GitHub-flavored Markdown & HTML preview editor                             |
-| Numbers to Words         | Convert any number into its full English word representation                         |
-| Dummy Text Generator     | Generate customized Lorem Ipsum, Tech Speak, or Sci-Fi placeholder text              |
-| Morse Code Decoder       | Translate text to Morse code and decode audio/text Morse back to plain text          |
-| Braille Decoder & Encoder| Convert text to/from Grade 1 English and Bangla Braille with visual guides          |
-| Binary Decoder & Encoder | Instantly convert text to binary code representations and vice-versa                 |
-| Fancy Text Generator     | Transform plain text into Unicode styles, cursive fonts, gothic, and glitch styles   |
-| Remove Duplicate Lines   | Remove repeated lines, sort, filter by regex, and clean text output in one click     |
+| Tool                          | Description                                                                          |
+| ----------------------------- | ------------------------------------------------------------------------------------ |
+| Case Converter                | Convert text between UPPER, lower, Title, Sentence, camelCase, snake_case, and more |
+| Text Repeater                 | Repeat any text multiple times with customizable separator options                   |
+| Markdown Previewer            | Real-time GitHub-flavored Markdown & HTML preview editor                             |
+| Numbers to Words              | Convert any number into its full English word representation                         |
+| Dummy Text Generator          | Generate customized Lorem Ipsum, Tech Speak, or Sci-Fi placeholder text              |
+| Morse Code Decoder            | Translate text to Morse code and decode audio/text Morse back to plain text          |
+| Braille Decoder & Encoder     | Convert text to/from Grade 1 English and Bangla Braille with visual guides           |
+| Binary Decoder & Encoder      | Instantly convert text to binary code representations and vice-versa                 |
+| Fancy Text Generator          | Transform plain text into Unicode styles, cursive fonts, gothic, and glitch styles   |
+| Remove Duplicate Lines        | Remove repeated lines, sort, filter by regex, and clean text output in one click     |
+| TrekGlyph Encoder & Decoder   | Encode/decode text using the exclusive geometric TrekGlyph cipher (▲/▼ symbols)     |
 
 ### 📊 Calculator
 
-| Tool                   | Description                                                                                          |
-| ---------------------- | ---------------------------------------------------------------------------------------------------- |
-| Age Calculator         | Calculate exact age in years, months, days, hours, and minutes                                       |
-| BMI Calculator         | Calculate Body Mass Index with health category classification                                        |
-| Days Tracker           | Find an end date by adding days to a start date                                                      |
-| EMI Calculator         | Calculate loan EMI with amortization schedule, interest breakdown, processing fee & insurance options |
-| NU CGPA Calculator     | Calculate National University Bangladesh CGPA from subject grades                                    |
-| Unit Converter         | Convert length, weight, temperature, area, volume, speed, and more                                   |
-| VAT / GST Calculator   | Calculate VAT, GST, and Sales Tax with country presets, PDF export, and add/remove tax modes         |
-| Zakat Calculator       | Compute annual Zakat on cash, gold, silver, investments, and liabilities with Nisab adjustment       |
+| Tool                                    | Description                                                                                          |
+| --------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| Age Calculator                          | Calculate exact age in years, months, days, hours, and minutes                                       |
+| BMI Calculator                          | Calculate Body Mass Index with health category classification                                        |
+| Days Tracker                            | Find an end date by adding or subtracting days from a start date                                     |
+| EMI Calculator                          | Calculate loan EMI with amortization schedule, interest breakdown, processing fee & insurance options |
+| NU CGPA Calculator                      | Calculate National University Bangladesh CGPA from subject grades                                    |
+| University CGPA Calculator              | Private & public university CGPA — BUET, NSU, BRAC, UIU, AIUB, AUST presets + custom scales         |
+| Unit Converter                          | Convert length, weight, temperature, area, volume, speed, and more                                   |
+| VAT / GST Calculator                    | Calculate VAT, GST, and Sales Tax with country presets, PDF export, and add/remove tax modes         |
+| Zakat Calculator                        | Compute annual Zakat on cash, gold, silver, investments, and liabilities with Nisab adjustment       |
+| Discount Calculator                     | Calculate discounts, double discounts, BOGO deals, tax rates, and unit price comparisons             |
+| Savings Calculator                      | Project savings growth with compound interest, inflation, tax, and recurring contributions           |
 
 ### 🔧 Productivity
 
@@ -65,13 +69,18 @@
 
 ### 🌐 Developer
 
-| Tool                    | Description                                                                                     |
-| ----------------------- | ----------------------------------------------------------------------------------------------- |
-| Domain Age Checker      | Look up when any domain was first registered                                                    |
-| IP Checker              | Inspect public IP addresses or query domain/IP geolocations, networks, and maps                 |
-| Color Converter         | Convert HEX, RGB, HSL, HSV, CMYK in real-time with harmonies, WCAG checker & blindness sim     |
-| SSL Certificate Checker | Inspect any domain's SSL/TLS cert — validity, issuer, SANs, fingerprints & full chain of trust |
-| Gradient Generator      | Build CSS & Tailwind gradients with custom stops, linear/radial/conic types, and PNG/SVG export |
+| Tool                        | Description                                                                                     |
+| --------------------------- | ----------------------------------------------------------------------------------------------- |
+| Domain Age Checker          | Look up when any domain was first registered                                                    |
+| IP Checker                  | Inspect public IP addresses or query domain/IP geolocations, networks, and maps                 |
+| Color Converter             | Convert HEX, RGB, HSL, HSV, CMYK in real-time with harmonies, WCAG checker & blindness sim     |
+| SSL Certificate Checker     | Inspect any domain's SSL/TLS cert — validity, issuer, SANs, fingerprints & full chain of trust |
+| Gradient Generator          | Build CSS & Tailwind gradients with custom stops, linear/radial/conic types, and PNG/SVG export |
+| Disposable Email Detector   | Detect temporary/disposable emails, check MX records, verify syntax, and bulk-process lists     |
+| Website Tech Detector       | Identify CMS, JS frameworks, web servers, CDNs, analytics tools, and HTTP security headers      |
+| View Metadata               | Reveal hidden metadata (EXIF, GPS, camera info) from images, PDFs, audio, and video files      |
+| Edit Metadata               | Modify, inject, or strip EXIF/GPS/author metadata from images, PDFs, and documents             |
+| Media Format Converter      | Convert MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC in-browser via WebCodecs (MediaBunny)        |
 
 ### 📷 QR Code
 
@@ -86,10 +95,10 @@
 | Tool                    | Description                                                                        |
 | ----------------------- | ---------------------------------------------------------------------------------- |
 | AVIF Converter          | Convert images to/from the AVIF format for better compression                      |
-| Image to Text (OCR)     | Extract text from images locally using Tesseract.js                                 |
+| Image to Text (OCR)     | Extract text from images locally using Tesseract.js                                |
 | Color Palette Extractor | Extract color palettes from images, pick colors, copy HEX/RGB/HSL, export configs |
-| SVG Converter           | Convert SVG vectors to PNG, JPEG, or WebP with custom dimensions and aspect locks |
-| Favicon Generator       | Generate standard web favicon packages (ico, png, pwa icons) client-side from images |
+| SVG Converter           | Convert SVG vectors to PNG, JPEG, or WebP with custom dimensions and aspect locks  |
+| Favicon Generator       | Generate standard web favicon packages (ico, png, pwa icons) client-side           |
 
 ### 📄 PDF
 
@@ -122,6 +131,7 @@
 | **QR Code**       | qrcode, qrcode.react, @zxing/library, jsqr                                            |
 | **OCR**           | Tesseract.js                                                                          |
 | **Image**         | browser-image-compression, react-dropzone, react-colorful                             |
+| **Media**         | mediabunny, @mediabunny/mp3-encoder, @mediabunny/flac-encoder (WebCodecs transcoding) |
 | **Markdown**      | react-markdown, remark-gfm, remark-breaks, rehype-highlight, rehype-raw, highlight.js |
 | **Drag & Drop**   | @hello-pangea/dnd                                                                     |
 | **Utilities**     | date-fns, jszip, clsx, tailwind-merge, class-variance-authority                       |
@@ -183,12 +193,12 @@ toolstrek/
 │   │   │   ├── contact/               #   Contact form (Nodemailer + SMTP)
 │   │   │   └── verify-recaptcha/      #   Google reCAPTCHA verification
 │   │   ├── about-us/                  # About page
-│   │   ├── data/                      # Static data pages
+│   │   ├── data/                      # Static data (faqs.json, etc.)
 │   │   ├── faq/                       # FAQ page
 │   │   ├── favorites/                 # ⭐ Favorites page
 │   │   ├── privacy-policy/            # Privacy Policy page
 │   │   ├── recent/                    # 🕐 Recently visited tools page
-│   │   ├── tools/                     # Individual tool pages (40 routes)
+│   │   ├── tools/                     # Individual tool pages (56 routes)
 │   │   │   ├── add-attachments/
 │   │   │   ├── age-calculate/
 │   │   │   ├── avif-converter/
@@ -203,8 +213,11 @@ toolstrek/
 │   │   │   ├── compress-pdf/
 │   │   │   ├── crop-pdf/
 │   │   │   ├── days-tracker/
+│   │   │   ├── discount-calculator/   # NEW
+│   │   │   ├── disposable-email-detector/ # NEW
 │   │   │   ├── domain-age-checker/
 │   │   │   ├── dummy-text-generator/
+│   │   │   ├── edit-metadata/         # NEW
 │   │   │   ├── emi-calculator/
 │   │   │   ├── fake-info-generator/
 │   │   │   ├── fancy-text-generator/
@@ -215,10 +228,12 @@ toolstrek/
 │   │   │   ├── ip-checker/
 │   │   │   ├── link-shortner/
 │   │   │   ├── markdown-previewer/
+│   │   │   ├── media-format-converter/ # NEW
 │   │   │   ├── morse-code-decoder/
 │   │   │   ├── n-up-pdf/
 │   │   │   ├── numbers-to-words/
 │   │   │   ├── password-generator/
+│   │   │   ├── pdf-compression/
 │   │   │   ├── pdf-merger/
 │   │   │   ├── pdf-reorder/
 │   │   │   ├── pdf-split/
@@ -226,13 +241,18 @@ toolstrek/
 │   │   │   ├── qr-code-generator/
 │   │   │   ├── qr-scanner/
 │   │   │   ├── remove-duplicate-lines/
+│   │   │   ├── savings-calculator/    # NEW
 │   │   │   ├── ssl-checker/
 │   │   │   ├── svg-converter/
 │   │   │   ├── text-repeater/
 │   │   │   ├── timezone-clock/
+│   │   │   ├── trekglyph-encoder-decoder/ # NEW
 │   │   │   ├── typing-test/
+│   │   │   ├── uni-cgpa-calculator/   # NEW
 │   │   │   ├── unit-converter/
 │   │   │   ├── vat-gst-calculator/
+│   │   │   ├── view-metadata/         # NEW
+│   │   │   ├── website-tech-detector/ # NEW
 │   │   │   ├── wifi-qr/
 │   │   │   └── zakat-calculator/
 │   │   ├── tools-compo/               # Shared UI components & page shells
@@ -252,6 +272,8 @@ toolstrek/
 │   │   │   │   ├── CombineFilesToPDFTool.jsx
 │   │   │   │   ├── CompressPDFTool.js
 │   │   │   │   ├── CropPDF.js
+│   │   │   │   ├── DiscountCalculator.jsx      # NEW
+│   │   │   │   ├── DisposableEmailDetector.js  # NEW
 │   │   │   │   ├── DomainAgeChecker.js
 │   │   │   │   ├── DummyTextGenerator.js
 │   │   │   │   ├── EMICalculator.js
@@ -263,6 +285,9 @@ toolstrek/
 │   │   │   │   ├── ImageToPDF.js
 │   │   │   │   ├── ImageToText.js
 │   │   │   │   ├── MarkdownPreviewer.js
+│   │   │   │   ├── MediaFormatConverter.jsx    # NEW
+│   │   │   │   ├── MetadataEditor.jsx          # NEW
+│   │   │   │   ├── MetadataViewer.jsx          # NEW
 │   │   │   │   ├── MorseCodeDecoder.js
 │   │   │   │   ├── NUpPDFTool.js
 │   │   │   │   ├── NumbersToWords.js
@@ -274,11 +299,15 @@ toolstrek/
 │   │   │   │   ├── SSLChecker.jsx
 │   │   │   │   ├── SvgConverter.js
 │   │   │   │   ├── TextRepeater.js
-│   │   │   │   ├── TimezoneClock.js
-│   │   │   │   ├── TypingTest.js
-│   │   │   │   ├── VatGstCalculator.js
+│   │   │   │   ├── TimezoneClock.jsx
+│   │   │   │   ├── TrekGlyphEncoderDecoder.js  # NEW
+│   │   │   │   ├── TypingTest.jsx
+│   │   │   │   ├── UniCGPACalculator.js        # NEW
+│   │   │   │   ├── WebTechDetector.jsx         # NEW
 │   │   │   │   ├── ZakatCalculator.js
-│   │   │   │   └── cgpaSubjectData.json
+│   │   │   │   ├── cgpaSubjectData.json
+│   │   │   │   ├── savings-calculator/         # NEW (sub-folder)
+│   │   │   │   └── vat-calculator/             # (sub-folder)
 │   │   │   ├── AgeCal.js              #   Age Calculator component
 │   │   │   ├── DaysTracker.js         #   Days Tracker component
 │   │   │   ├── FAQCon.js              #   FAQ content component

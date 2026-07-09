@@ -2,37 +2,41 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a browser-based collection of everyday utilities built with Next.js. It brings together PDF workflows, QR and link tools, image converters, text utilities, calculators, and developer helpers in one place."
+      "answer": "ToolsTrek is a browser-based collection of everyday utilities built with Next.js. It brings together PDF workflows, QR and link tools, image converters, text utilities, calculators, media conversion, metadata tools, and developer helpers — 58 tools in one place."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need an account?",
-      "answer": "Yes. The current ToolsTrek tool library is free to use, and you can access the tools without creating an account or logging in."
+      "answer": "Yes. The entire ToolsTrek tool library is free to use, and you can access every tool without creating an account or logging in."
     },
     {
       "question": "What kinds of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek currently includes PDF tools (merge, split, reorder, crop, compress, combine, N-up, add attachments, and image/PDF conversion), QR tools, calculators, text utilities (case converter, text repeater, dummy text generation, binary, Braille, and Morse code converters), image tools (Color Palette Extractor, AVIF converter, Favicon Generator, SVG Converter), a Color Converter (HEX, RGB, HSL, HSV, CMYK), an SSL Certificate Checker, security utilities (password generator), and developer helpers (domain age checker, IP address geolocation lookup, markdown previewing)."
+      "answer": "ToolsTrek includes: PDF tools (merge, split, reorder, crop, compress, combine, N-up, attachments, and PDF/image conversion), QR tools, text utilities (case converter, text repeater, binary, Braille, Morse code, fancy text, TrekGlyph cipher, remove duplicate lines, dummy text), calculator tools (age, BMI, EMI, CGPA, unit converter, VAT/GST, Zakat, discount, savings), image tools (AVIF converter, OCR, color palette, SVG converter, favicon generator), media conversion (MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC), metadata tools (view & edit EXIF/GPS/PDF metadata), developer tools (domain age, IP checker, SSL checker, color converter, gradient generator, disposable email detector, website tech detector), and productivity tools (link shortener, fake info generator, typing test, timezone clock, password generator)."
     },
     {
       "question": "Can I use ToolsTrek on mobile or tablet devices?",
-      "answer": "Yes. The interface is responsive and designed to work across desktop, tablet, and mobile browsers, although larger file workflows may feel more comfortable on a desktop or laptop."
+      "answer": "Yes. The interface is responsive and designed to work across desktop, tablet, and mobile browsers, although larger file workflows and media conversion may feel more comfortable on a desktop or laptop."
+    },
+    {
+      "question": "How do I quickly find a specific tool?",
+      "answer": "Use the global search — press the search icon in the header or use the keyboard shortcut to open the command palette. You can type any tool name or keyword to jump straight to it. You can also browse by category, check your Favorites, or revisit tools from the Recent Tools page."
     }
   ],
   "privacyAndSecurity": [
     {
       "question": "Do my files get uploaded to a server?",
-      "answer": "For file-based workflows such as PDF, image, and OCR tools, processing is designed to happen directly in your browser, which helps keep your files on your device while you work."
+      "answer": "For the vast majority of tools — including all PDF, image, OCR, media conversion, metadata, and text tools — processing happens entirely inside your browser. Your files never leave your device."
     },
     {
       "question": "Are all ToolsTrek features fully offline?",
-      "answer": "No. Many file-processing tools work in the browser after the page loads, but some features still depend on network services, such as the Link Shortener, Domain Age Checker, IP Checker, SSL Certificate Checker, reCAPTCHA verification, and contact form delivery."
+      "answer": "No. Many file-processing tools work in the browser after the page loads, but some features depend on network services: Link Shortener, Domain Age Checker, IP Checker, SSL Certificate Checker, Disposable Email Detector (MX record checks), Website Tech Detector, reCAPTCHA verification, and contact form delivery."
     },
     {
       "question": "Is sensitive information like WiFi data or passwords stored by ToolsTrek?",
-      "answer": "ToolsTrek is built to keep sensitive tool input local where possible. If you generate a WiFi QR code or a password, remember that the downloaded result or any QR code you share may expose that information to anyone who can access it."
+      "answer": "No. Sensitive tool inputs — WiFi credentials, passwords, metadata edits — are processed locally and never sent to a server. Be mindful that downloaded files or shared QR codes may expose that information to anyone who accesses them."
     },
     {
       "question": "Does the IP Checker store my IP address or lookup logs?",
-      "answer": "No. The IP Geolocation Checker fetches details in real-time from secure public geo-databases on demand. We do not store, log, or share your public IP or any of your lookup history."
+      "answer": "No. The IP Geolocation Checker fetches details in real-time from public geo-databases on demand. We do not store, log, or share your public IP or any lookup history."
     },
     {
       "question": "How should I report a bug or privacy concern?",
@@ -42,29 +46,29 @@
   "pdfTools": [
     {
       "question": "What can I do with PDFs on ToolsTrek?",
-      "answer": "You can compress, merge, split, reorder, crop, convert PDF to image, convert images to PDF, combine mixed files into one PDF, create N-up layouts, and add attachments to PDFs."
+      "answer": "You can compress, merge, split, reorder, crop, convert PDF to image, convert images to PDF, combine mixed files (PDFs and images) into one PDF, create N-up layouts for printing, and add file attachments directly inside a PDF."
     },
     {
       "question": "Which files can be combined into one PDF?",
-      "answer": "The Combine Files to PDF tool is built for PDFs plus image and SVG files in one queue. If you are starting only with images and want more control over page setup, the Image to PDF tool is usually the better fit."
+      "answer": "The Combine Files to PDF tool accepts both PDF and image files in one queue. If you are starting only with images and want more page layout control, the Image to PDF tool is usually the better fit."
     },
     {
       "question": "Are PDF edits private?",
-      "answer": "The PDF-focused tools are designed for in-browser processing, and the generated files stay on your device until you download them, clear the tool, or refresh the page."
+      "answer": "Yes. All PDF tools process files entirely in your browser using pdf-lib and pdfjs-dist. Generated files stay on your device until you download them, clear the tool, or refresh the page."
     },
     {
       "question": "Can I work with more than one PDF at a time?",
-      "answer": "Yes. Several PDF tools support multi-file workflows, including merging, batch-style compression, and combining multiple assets into one PDF. Practical limits depend on your browser, available memory, and file sizes."
+      "answer": "Yes. Several PDF tools support multi-file workflows — merging, combining, and reordering all support multiple files. Practical limits depend on your browser's available memory and the file sizes involved."
     }
   ],
   "qrAndSharing": [
     {
       "question": "What is the difference between the QR Code Generator, WiFi QR tool, QR Scanner, and Link Shortener?",
-      "answer": "The QR Code Generator creates custom QR codes for text, links, and similar content. The WiFi QR tool creates a scannable code for joining a wireless network. The QR Scanner reads QR codes from a camera or image. The Link Shortener turns a long URL into a shorter share link and also shows a QR code for that shortened result."
+      "answer": "The QR Code Generator creates custom QR codes for text, links, and similar content. The WiFi QR tool creates a scannable code for joining a wireless network. The QR Scanner reads QR codes from a camera or image. The Link Shortener turns a long URL into a shorter share link and also displays a QR code for the shortened result."
     },
     {
       "question": "Can I download the QR codes I create?",
-      "answer": "Yes. ToolsTrek includes download options for generated QR output, and the WiFi QR tool also offers a printable PDF template for sharing access more neatly."
+      "answer": "Yes. ToolsTrek includes download options for all generated QR output, and the WiFi QR tool also offers a printable PDF template for sharing network access more neatly."
     },
     {
       "question": "Why does the Link Shortener need an internet connection?",
@@ -74,15 +78,19 @@
   "imagesAndText": [
     {
       "question": "Can ToolsTrek convert images to PDF or extract text from images?",
-      "answer": "Yes. ToolsTrek includes Image to PDF for turning images into PDF documents, Image to Text for OCR-based text extraction, PDF to Image for exporting PDF pages as images, an AVIF Converter for image format conversion, and a Favicon Generator to build web favicon packages client-side."
+      "answer": "Yes. ToolsTrek includes Image to PDF for turning images into PDF documents, Image to Text (OCR) for text extraction, PDF to Image for exporting PDF pages as images, an AVIF Converter for image format conversion, and a Favicon Generator to build full favicon packs — all client-side."
     },
     {
       "question": "Does the Image to Text tool process images locally?",
-      "answer": "The OCR workflow is designed to run in the browser, which helps keep your source image on your device during text extraction."
+      "answer": "Yes. The OCR workflow is powered by Tesseract.js and runs entirely inside your browser. Your source images never leave your device during text extraction."
     },
     {
-      "question": "Do the Morse, Braille, Binary, Fancy Text, or Favicon tools send inputs to a server?",
-      "answer": "No. These encoding, decoding, fancy text, and favicon generation tools operate 100% client-side inside your browser. No files, text inputs, or generated outputs ever leave your device."
+      "question": "Do the Morse, Braille, Binary, Fancy Text, TrekGlyph, or Favicon tools send inputs to a server?",
+      "answer": "No. All encoding, decoding, fancy text, TrekGlyph cipher, and favicon generation tools operate 100% client-side inside your browser. No files, text inputs, or generated outputs ever leave your device."
+    },
+    {
+      "question": "What is the TrekGlyph Encoder & Decoder?",
+      "answer": "TrekGlyph is an exclusive custom geometric cipher built for ToolsTrek. It maps every letter of the alphabet to a unique pattern of ▲ (up-triangle) and ▼ (down-triangle) symbols. You can encode plain text into TrekGlyph and decode it back in real-time, using a click-to-insert symbol pad and a full reference dictionary."
     },
     {
       "question": "How does the Fancy Text Generator work, and why do some styles look different?",
@@ -90,21 +98,91 @@
     },
     {
       "question": "Which image formats work best with the image tools?",
-      "answer": "Common web-friendly image formats usually work best, but supported file types can vary by tool. If a file does not load cleanly, converting it first or using the AVIF Converter can help."
+      "answer": "Common web-friendly formats (PNG, JPEG, WebP, SVG) work best. Supported file types vary by tool. If a file does not load cleanly, converting it first or using the AVIF Converter can help."
+    }
+  ],
+  "mediaFormatConverter": [
+    {
+      "question": "What is the Media Format Converter?",
+      "answer": "The Media Format Converter lets you convert video and audio files directly in your browser — no server uploads required. It is powered by MediaBunny and the WebCodecs API for hardware-accelerated transcoding. Supported output formats are MP4, WebM, MKV, MOV (video) and MP3, WAV, OGG, FLAC (audio)."
+    },
+    {
+      "question": "Which input formats does the Media Format Converter support?",
+      "answer": "You can upload MP4, WebM, MKV, MOV, AVI, MP3, WAV, OGG, FLAC, M4A, and AAC files. If your file plays in a modern browser, it can typically be converted."
+    },
+    {
+      "question": "Is media conversion private? Are my video/audio files uploaded?",
+      "answer": "Yes, it is fully private. All conversion happens inside your browser using the WebCodecs API. Your media files never leave your device or touch any server."
+    },
+    {
+      "question": "Why does my browser need to be Chrome or Edge for some formats?",
+      "answer": "The converter relies on WebCodecs, which is best supported in Chrome and Edge. OGG output specifically uses Opus encoding via WebCodecs, which is not available in Firefox. MP3 and FLAC output use WASM-based encoders (@mediabunny/mp3-encoder and @mediabunny/flac-encoder) which work across all modern browsers that support WebAssembly."
+    },
+    {
+      "question": "Can I convert a video file to an audio-only format like MP3?",
+      "answer": "Yes. When you select an audio output format (MP3, WAV, OGG, FLAC), the video track is automatically discarded. You will get a clean audio-only output file."
+    },
+    {
+      "question": "What advanced settings can I configure?",
+      "answer": "The converter supports trim (set start/end time), video resolution presets (1080p, 720p, 480p, 360p, or custom), video rotation (0°, 90°, 180°, 270°), frame rate control, video and audio bitrate presets, audio channel selection (mono/stereo), and individual mute options for the video or audio track."
+    }
+  ],
+  "metadataTools": [
+    {
+      "question": "What does the View Metadata tool show?",
+      "answer": "The View Metadata tool reveals every hidden metadata field inside any file — images (EXIF data including camera model, lens, shutter speed, ISO, GPS coordinates), PDFs (author, creator, creation date, keywords), audio and video files, documents, and more. Everything runs 100% in your browser with no file uploads."
+    },
+    {
+      "question": "What can I edit with the Edit Metadata tool?",
+      "answer": "The Edit Metadata tool lets you modify, inject, or strip metadata from image files and PDFs. For images, you can change or remove EXIF fields including GPS coordinates, camera make/model, author info, dates, and copyright. For PDFs, you can edit author, title, creator, and keywords. All changes are applied client-side and you download the modified file."
+    },
+    {
+      "question": "Is my file data safe when using the metadata tools?",
+      "answer": "Yes. Both the View Metadata and Edit Metadata tools process your files entirely in the browser using JavaScript. No file content, metadata, or personal information is ever sent to a server."
+    },
+    {
+      "question": "Can I remove GPS location data from photos using these tools?",
+      "answer": "Yes. The Edit Metadata tool lets you clear or overwrite GPS coordinates (latitude, longitude, altitude) in your image files. This is useful for protecting your location privacy before sharing photos online."
     }
   ],
   "productivityAndCalculators": [
     {
-      "question": "What other utilities are included besides PDF and QR tools?",
-      "answer": "ToolsTrek also includes Age Calculator, Days Tracker, BMI Calculator, EMI Calculator, NU CGPA Calculator, Unit Converter, Case Converter, Text Repeater, Numbers to Words, Dummy Text Generator, Binary Decoder, Braille Decoder, Morse Code Decoder, IP Checker, Markdown Previewer, Domain Age Checker, Fake Info Generator, Password Generator, Color Converter, and SSL Certificate Checker."
+      "question": "What calculator tools does ToolsTrek offer?",
+      "answer": "ToolsTrek includes: Age Calculator, BMI Calculator, Days Tracker, EMI Calculator (with amortization schedule), NU CGPA Calculator (for National University Bangladesh), University CGPA Calculator (for private & public universities with presets for BUET, NSU, BRAC, UIU, AIUB, AUST), Unit Converter, VAT/GST Calculator, Zakat Calculator, Discount Calculator, and Savings Calculator."
     },
     {
-      "question": "Is the NU CGPA Calculator specific to National University Bangladesh?",
-      "answer": "Yes. That calculator is tailored for National University Bangladesh grading workflows rather than being a fully generic CGPA tool."
+      "question": "What does the Discount Calculator do?",
+      "answer": "The Discount Calculator computes sale prices, savings amounts, double discounts (discount on top of a discount), BOGO deals, tax-inclusive pricing, and unit price comparisons. It tracks a history of past calculations and lets you export summaries as a PDF."
+    },
+    {
+      "question": "What does the Savings Calculator do?",
+      "answer": "The Savings Calculator projects how your savings grow over time. You can configure an initial deposit, recurring monthly contributions, compound interest frequency (daily, monthly, annually), and advanced options like inflation rate, tax on interest, and annual contribution step-ups. Results include a year-by-year breakdown and a downloadable PDF report."
+    },
+    {
+      "question": "Is the NU CGPA Calculator different from the University CGPA Calculator?",
+      "answer": "Yes. The NU CGPA Calculator is tailored specifically for National University Bangladesh's grading system. The University CGPA Calculator is designed for private and public universities and includes institution presets (BUET, NSU, BRAC, UIU, AIUB, AUST) as well as a custom grading scale builder and a downloadable result card."
     },
     {
       "question": "Can I request a new tool or feature?",
       "answer": "Yes. Send a request through the contact page and describe the workflow you want to solve, along with example input and output if possible. That makes feature planning much easier."
+    }
+  ],
+  "developerTools": [
+    {
+      "question": "What developer tools does ToolsTrek include?",
+      "answer": "ToolsTrek includes: Domain Age Checker, IP Checker (geolocation, ISP, map), SSL Certificate Checker, Color Converter (HEX/RGB/HSL/HSV/CMYK), Gradient Generator, Markdown Previewer, Disposable Email Detector, Website Technology Detector, View Metadata, Edit Metadata, and Media Format Converter."
+    },
+    {
+      "question": "What does the Disposable Email Detector do?",
+      "answer": "The Disposable Email Detector checks whether an email address belongs to a temporary or throwaway email service. It verifies email syntax, performs live MX record lookups, detects role-based addresses (like admin@ or no-reply@), identifies common typos and suggests corrections, and supports bulk email list processing."
+    },
+    {
+      "question": "What does the Website Technology Detector do?",
+      "answer": "The Website Technology Detector analyzes any website's technology stack. It identifies the CMS (WordPress, Shopify, etc.), JavaScript frameworks (React, Vue, Next.js, Angular), web servers (Nginx, Apache), CDNs (Cloudflare, Vercel, Fastly), analytics tools, and evaluates HTTP security headers with a security score."
+    },
+    {
+      "question": "Does the Website Technology Detector or Disposable Email Detector require API keys?",
+      "answer": "No. Both tools work by sending requests through ToolsTrek's server-side API routes, so no API keys are needed on your end. The Website Tech Detector fetches public HTTP headers and performs detection heuristics server-side."
     }
   ],
   "emiCalculator": [
