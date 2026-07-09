@@ -40,7 +40,7 @@ const Footer = () => {
   const currentUrl = usePathname();
   return (
     <div className="pb-4">
-      <div className="bg-black dark:bg-neutral-900 border border-transparent dark:border-neutral-800 pt-10 pb-5 px-4 md:px-8 w-[98%] m-auto rounded-2xl">
+      <div className="bg-linear-to-tr from-slate-900 to-violet-900 pt-10 pb-5 px-4 md:px-8 w-[98%] m-auto rounded-2xl">
         <div className=" space-y-7 md:space-y-8 ">
           {/* Menus */}
           <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-6 md:mb-16">
