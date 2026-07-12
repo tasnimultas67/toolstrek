@@ -915,5 +915,19 @@
       "webcodecs transcoding",
       "developer"
     ]
+  },
+  {
+    "title": "Time Converter",
+    "link": "/tools/time-converter",
+    "description": "Instantly convert between different units of time. Convert hours to minutes, days to seconds, years to milliseconds, and more with this versatile time converter.",
+    "icon": "Clock",
+    "category": "Time",
+    "keywords": [
+      "time converter",
+      "convert hours to minutes",
+      "convert days to seconds",
+      "time units",
+      "time calculator"
+    ]
   }
 ]
