@@ -963,5 +963,25 @@
       "time units",
       "time calculator"
     ]
+  },
+  {
+    "title": "Social Media URL Preview",
+    "link": "/tools/social-preview",
+    "description": "Preview and customize how your web links appear across social media platforms like Facebook, X (Twitter), LinkedIn, Slack, and Discord. Scrape live metadata, simulate card layouts, design cover images, and generate ready-to-use HTML/JSON-LD codes.",
+    "icon": "Eye",
+    "category": "Developer",
+    "keywords": [
+      "social media preview",
+      "url preview generator",
+      "meta tag generator",
+      "og tag tester",
+      "open graph simulator",
+      "twitter card preview",
+      "facebook link preview",
+      "seo metadata validator",
+      "slack preview tester",
+      "discord rich embed designer",
+      "developer"
+    ]
   }
 ]
