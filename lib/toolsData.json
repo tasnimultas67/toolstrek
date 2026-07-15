@@ -329,6 +329,24 @@
     ]
   },
   {
+    "title": "CSV Viewer & Editor",
+    "link": "/tools/csv-viewer",
+    "description": "An advanced, interactive CSV viewer and editor. Upload or paste CSV data to explore dynamically with table pagination, cell editing, column visibility toggles, descriptive column data profiling, custom SVG chart generation, and multi-format exports.",
+    "icon": "Table",
+    "category": "Developer",
+    "keywords": [
+      "csv viewer",
+      "csv editor",
+      "csv reader",
+      "comma separated values",
+      "visualize csv",
+      "excel to csv",
+      "data analysis",
+      "developer",
+      "spreadsheet"
+    ]
+  },
+  {
     "title": "Typing Test",
     "link": "/tools/typing-test",
     "description": "Improve your typing speed and accuracy with this interactive typing speed test. Features live stats, real-time WPM graphs, key-by-key response heatmap, synthesized mechanical sound effects, and dynamic certificate downloads.",
