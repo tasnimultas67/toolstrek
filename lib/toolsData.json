@@ -281,6 +281,22 @@
     ]
   },
   {
+    "title": "Password Strength Tester",
+    "link": "/tools/password-strength-tester",
+    "description": "Analyze your password strength with entropy calculation, crack time estimation, security checklist, and advanced character analysis — all locally in your browser.",
+    "icon": "ShieldCheck",
+    "category": "Security",
+    "keywords": [
+      "password strength tester",
+      "password analyzer",
+      "password security",
+      "entropy calculator",
+      "crack time estimator",
+      "password checker",
+      "security"
+    ]
+  },
+  {
     "title": "Markdown Previewer",
     "link": "/tools/markdown-previewer",
     "description": "An interactive, side-by-side editing suite designed to write and review Markdown prose. Watch your raw text convert to fully rendered HTML code in real-time, making it perfect for perfecting GitHub repositories and project READMEs.",
