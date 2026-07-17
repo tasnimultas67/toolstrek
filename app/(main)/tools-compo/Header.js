@@ -17,7 +17,7 @@ import {
   ChevronDownIcon,
   MagnifyingGlassIcon,
 } from "@heroicons/react/24/outline";
-import { SplinePointer, Star, History, Clock } from "lucide-react";
+import { SplinePointer, Star, History, Clock, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { AnimatedThemeToggler } from "@/components/ui/animated-theme-toggler";
 import { getIcon } from "./dynamicIcon";
@@ -228,7 +228,7 @@ export default function Header() {
   return (
     <div className="sticky top-2 z-50 w-full" suppressHydrationWarning>
       <div
-        className="absolute top-0 left-0 right-0 border border-gray-900/10 dark:border-white/10 bg-white/60 dark:bg-white/10 backdrop-blur-xl rounded-lg w-11/12 mx-auto px-2 py-2"
+        className="absolute top-0 left-0 right-0 border border-gray-900/10 dark:border-white/10 bg-white/60 dark:bg-white/10 backdrop-blur-xl rounded-lg w-[95%] mx-auto px-2 py-2"
         suppressHydrationWarning
       >
         <header className="w-full">
@@ -305,10 +305,9 @@ export default function Header() {
                       <div className="w-full mx-auto overflow-hidden">
                         <div
                           className={`bg-white dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden transition-all duration-200 ease-out transform origin-top
-                            ${
-                              megaMenuAnimation
-                                ? "opacity-100 scale-100 translate-y-0"
-                                : "opacity-0 scale-95 -translate-y-2"
+                            ${megaMenuAnimation
+                              ? "opacity-100 scale-100 translate-y-0"
+                              : "opacity-0 scale-95 -translate-y-2"
                             }`}
                         >
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -320,10 +319,9 @@ export default function Header() {
                                   href={item.link}
                                   onClick={() => closeMegaMenu()}
                                   className={`group relative flex items-start gap-x-4 p-6 transition-all hover:bg-brandColor/5 dark:hover:bg-brandColor/10 border-b border-r border-gray-100 dark:border-gray-900
-                                    ${
-                                      megaMenuAnimation
-                                        ? "opacity-100 translate-x-0"
-                                        : "opacity-0 -translate-x-4"
+                                    ${megaMenuAnimation
+                                      ? "opacity-100 translate-x-0"
+                                      : "opacity-0 -translate-x-4"
                                     }`}
                                   style={{
                                     transitionDelay: megaMenuAnimation
@@ -354,10 +352,9 @@ export default function Header() {
                               href="/tools"
                               onClick={() => closeMegaMenu()}
                               className={`group flex items-center justify-between rounded-lg px-4 py-3 transition-all duration-200 hover:bg-brandColor/10
-                                ${
-                                  megaMenuAnimation
-                                    ? "opacity-100 translate-y-0"
-                                    : "opacity-0 translate-y-2"
+                                ${megaMenuAnimation
+                                  ? "opacity-100 translate-y-0"
+                                  : "opacity-0 translate-y-2"
                                 }`}
                               style={{
                                 transitionDelay: megaMenuAnimation
@@ -431,63 +428,9 @@ export default function Header() {
               </div>
 
               <div
-                className="flex items-center gap-2 border-l border-white/20 dark:border-gray-600 pl-4"
+                className="flex items-center gap-1.5 border-l border-white/20 dark:border-gray-600 pl-4"
                 suppressHydrationWarning
               >
-                {/* ── Search pill — opens GlobalSearchModal ── */}
-                <button
-                  onClick={openGlobalSearch}
-                  aria-label="Search tools"
-                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-white/20 bg-white/40 dark:bg-white/15 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 text-gray-700 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer group"
-                >
-                  <MagnifyingGlassIcon className="size-4 shrink-0" />
-                  <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-500 transition-colors duration-200 pr-2">
-                    Search
-                  </span>
-                  {/* Shortcut badge */}
-                  <span className="flex items-center gap-0.5 ml-auto">
-                    <kbd className="inline-flex items-center justify-center h-5 min-w-5 px-1 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[10px] font-mono text-gray-400 dark:text-gray-350 shadow-sm leading-none">
-                      {isMac ? "⌘" : "Ctrl"}
-                    </kbd>
-                    <kbd className="inline-flex items-center justify-center h-5 min-w-5 px-1 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[10px] font-mono text-gray-400 dark:text-gray-350 shadow-sm leading-none">
-                      K
-                    </kbd>
-                  </span>
-                </button>
-
-                {/* GitHub Stars Button */}
-                <Link
-                  href="https://github.com/tasnimultas67/toolstrek"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-3 py-1.5 text-sm font-medium text-gray-700 dark:text-gray-200 bg-white/50 dark:bg-white/20 border border-gray-200 dark:border-white/30 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 rounded-lg"
-                  suppressHydrationWarning
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 24 24"
-                    fill="currentColor"
-                    className="size-4 text-gray-800 dark:text-white"
-                  >
-                    <path
-                      fillRule="evenodd"
-                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
-                      clipRule="evenodd"
-                    />
-                  </svg>
-                  <span>Star</span>
-                  {!isLoadingStars && starCount !== null && (
-                    <span className="flex items-center gap-1">
-                      <span className="text-gray-400">•</span>
-                      <span className="font-mono text-xs font-semibold text-gray-700 dark:text-gray-300">
-                        {formatStarCount(starCount)}
-                      </span>
-                    </span>
-                  )}
-                  {isLoadingStars && (
-                    <div className="h-4 w-8 animate-pulse bg-gray-200 dark:bg-gray-800 rounded"></div>
-                  )}
-                </Link>
 
                 {/* History Dropdown */}
                 <div className="relative" ref={historyDropdownRef}>
@@ -504,11 +447,10 @@ export default function Header() {
 
                   {isHistoryOpen && (
                     <div
-                      className={`absolute right-0 mt-2 w-80 bg-white dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden z-50 transition-all duration-200 ease-out transform origin-top-right
-                        ${
-                          historyAnimation
-                            ? "opacity-100 scale-100 translate-y-0"
-                            : "opacity-0 scale-95 -translate-y-2"
+                      className={`absolute right-0 left-[-140px] mt-2.5 w-80 bg-white  dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden z-50 transition-all duration-200 ease-out transform origin-top-right
+                        ${historyAnimation
+                          ? "opacity-100 scale-100 translate-y-0 "
+                          : "opacity-0 scale-95 -translate-y-2"
                         }`}
                     >
                       <div className="p-3 border-b border-gray-100 dark:border-gray-900 flex items-center justify-between">
@@ -581,6 +523,73 @@ export default function Header() {
 
                 {/* Theme Toggler */}
                 <AnimatedThemeToggler className="p-2 text-gray-700 dark:text-gray-200 hover:text-brandColor hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition-colors cursor-pointer size-9 flex items-center justify-center" />
+
+                {/* ── Search pill — opens GlobalSearchModal ── */}
+                <button
+                  onClick={openGlobalSearch}
+                  aria-label="Search tools"
+                  className="flex items-center gap-2.5 px-3 py-1.5 rounded-lg border border-gray-200 dark:border-white/20 bg-white/40 dark:bg-white/15 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 text-gray-700 dark:text-gray-400 hover:text-gray-700 dark:hover:text-gray-200 transition-all duration-200 cursor-pointer group"
+                >
+                  <MagnifyingGlassIcon className="size-4 shrink-0" />
+                  <span className="text-sm text-gray-700 dark:text-gray-300 group-hover:text-gray-500 transition-colors duration-200 pr-2">
+                    Search
+                  </span>
+                  {/* Shortcut badge */}
+                  <span className="flex items-center gap-0.5 ml-auto">
+                    <kbd className="inline-flex items-center justify-center h-5 min-w-5 px-1 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[10px] font-mono text-gray-400 dark:text-gray-350 shadow-sm leading-none">
+                      {isMac ? "⌘" : "Ctrl"}
+                    </kbd>
+                    <kbd className="inline-flex items-center justify-center h-5 min-w-5 px-1 rounded border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-[10px] font-mono text-gray-400 dark:text-gray-350 shadow-sm leading-none">
+                      K
+                    </kbd>
+                  </span>
+                </button>
+
+                {/* GitHub Stars Button */}
+                <Link
+                  href="https://github.com/tasnimultas67/toolstrek"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-2 py-1.5 h-auto text-sm font-medium text-gray-700 dark:text-gray-200 bg-white/50 dark:bg-white/20 border border-gray-200 dark:border-white/30 hover:bg-gray-100 dark:hover:bg-gray-800 hover:border-gray-300 dark:hover:border-gray-700 transition-all duration-200 rounded-lg"
+                  suppressHydrationWarning
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    className="size-4 text-gray-800 dark:text-white"
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
+                  <span>Star</span>
+                  {!isLoadingStars && starCount !== null && (
+                    <span className="flex items-center gap-1">
+                      <span className="text-gray-400">•</span>
+                      <span className="font-mono text-xs font-semibold text-gray-700 dark:text-gray-300">
+                        {formatStarCount(starCount)}
+                      </span>
+                    </span>
+                  )}
+                  {isLoadingStars && (
+                    <div className="h-4 w-8 animate-pulse bg-gray-200 dark:bg-gray-800 rounded"></div>
+                  )}
+                </Link>
+                {/* Sponsor / Heart Button */}
+                <Link
+                  href="https://buymeacoffee.com/tasnimulhaque"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  suppressHydrationWarning
+                >
+                  <Button className="bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/30 dark:hover:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 text-sm! font-medium shadow-none flex items-center gap-2 transition-all duration-300 cursor-pointer group rounded-lg h-9 px-3.5">
+                    <Heart className="size-4 text-rose-500 fill-rose-500/20 group-hover:fill-rose-500 group-hover:scale-110 transition-all duration-300" />
+                    <span className="hidden sm:inline">Sponsor</span>
+                  </Button>
+                </Link>
 
                 <Link
                   href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
@@ -788,13 +797,25 @@ export default function Header() {
                     About
                   </Link>
                 </div>
-                <div className="py-6">
+                <div className="py-6 flex flex-col gap-3">
                   <Link
                     href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
                     target="_blank"
+                    className="w-full"
                   >
                     <Button className="w-full bg-brandColor hover:bg-brandColorHover transition-all duration-200 hover:scale-105 cursor-pointer">
                       Request a Tool
+                    </Button>
+                  </Link>
+                  <Link
+                    href="https://buymeacoffee.com/tasnimulhaque"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-full"
+                  >
+                    <Button className="w-full bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/30 dark:hover:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 transition-all duration-200 hover:scale-105 cursor-pointer flex items-center justify-center gap-2 group">
+                      <Heart className="size-4 text-rose-500 fill-rose-500/20 group-hover:fill-rose-500 group-hover:scale-110 transition-all duration-300" />
+                      Support the Creator
                     </Button>
                   </Link>
                 </div>
