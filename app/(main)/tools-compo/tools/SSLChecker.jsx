@@ -230,6 +230,23 @@ export default function SSLChecker() {
       return;
     }
 
+    // Clean up domain if it is a full URL or has extra characters
+    let cleanedDomain = trimmed;
+    // Strip protocol
+    cleanedDomain = cleanedDomain.replace(/^https?:\/\//i, "");
+
+    // Extract port if specified in the domain string (e.g. google.com:443)
+    const portMatch = cleanedDomain.match(/:(\d+)(?:\/|\?|#|$)/);
+    let targetPort = parseInt(port) || 443;
+    if (portMatch) {
+      targetPort = parseInt(portMatch[1]);
+      setPort(portMatch[1]);
+    }
+
+    // Remove path/query/fragment/port from domain
+    cleanedDomain = cleanedDomain.split(/[/?#]/)[0].split(":")[0];
+    setDomain(cleanedDomain);
+
     setLoading(true);
     setError("");
     setResult(null);
@@ -240,10 +257,21 @@ export default function SSLChecker() {
       const response = await fetch("/api/check-ssl", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain: trimmed, port: parseInt(port) || 443 }),
+        body: JSON.stringify({ domain: cleanedDomain, port: targetPort }),
       });
 
-      const data = await response.json();
+      let data;
+      const contentType = response.headers.get("content-type");
+      if (contentType && contentType.includes("application/json")) {
+        data = await response.json();
+      } else {
+        const text = await response.text();
+        throw new Error(
+          `Server returned an invalid response (${response.status}): ${
+            text.substring(0, 100) || "Unknown error"
+          }`
+        );
+      }
 
       if (!response.ok) {
         throw new Error(data.error || "Failed to retrieve certificate data.");

@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import tls from "tls";
 import net from "net";
+import dns from "dns";
 
 // ─────────────────────────────────────────────
 // Helper: fetch cert details from a domain
@@ -8,34 +9,55 @@ import net from "net";
 function fetchSSLCert(hostname, port = 443) {
   return new Promise((resolve, reject) => {
     const timeoutMs = 12000;
+    let completed = false;
 
-    const socket = tls.connect(
-      {
-        host: hostname,
-        port,
-        servername: hostname, // SNI support
-        rejectUnauthorized: false, // We want to inspect even invalid certs
-        timeout: timeoutMs,
-      },
-      () => {
-        const cert = socket.getPeerCertificate(true); // detailed chain
-        const authorized = socket.authorized;
-        const authorizationError = socket.authorizationError || null;
-        const protocol = socket.getProtocol();
-        const cipher = socket.getCipher();
-        socket.destroy();
-        resolve({ cert, authorized, authorizationError, protocol, cipher });
+    const done = (err, data) => {
+      if (completed) return;
+      completed = true;
+      try {
+        if (socket) socket.destroy();
+      } catch (e) {}
+      if (err) {
+        reject(err);
+      } else {
+        resolve(data);
       }
-    );
+    };
 
-    socket.setTimeout(timeoutMs, () => {
-      socket.destroy();
-      reject(new Error("Connection timed out"));
-    });
+    let socket;
+    try {
+      socket = tls.connect(
+        {
+          host: hostname,
+          port,
+          servername: hostname, // SNI support
+          rejectUnauthorized: false, // We want to inspect even invalid certs
+          timeout: timeoutMs,
+        },
+        () => {
+          try {
+            const cert = socket.getPeerCertificate(true); // detailed chain
+            const authorized = socket.authorized;
+            const authorizationError = socket.authorizationError || null;
+            const protocol = socket.getProtocol();
+            const cipher = socket.getCipher();
+            done(null, { cert, authorized, authorizationError, protocol, cipher });
+          } catch (err) {
+            done(err);
+          }
+        }
+      );
 
-    socket.on("error", (err) => {
-      reject(err);
-    });
+      socket.setTimeout(timeoutMs, () => {
+        done(new Error("Connection timed out"));
+      });
+
+      socket.on("error", (err) => {
+        done(err);
+      });
+    } catch (err) {
+      done(err);
+    }
   });
 }
 
@@ -119,7 +141,6 @@ function buildChain(cert) {
 // Resolve hostname to IP
 // ─────────────────────────────────────────────
 function resolveHostname(hostname) {
-  const dns = require("dns");
   return new Promise((resolve) => {
     dns.lookup(hostname, (err, address) => {
       resolve(err ? null : address);
@@ -143,18 +164,22 @@ export async function POST(request) {
     }
 
     // Strip protocol if included
-    domain = domain
-      .replace(/^https?:\/\//i, "")
-      .replace(/\/.*$/, "")
-      .trim()
-      .toLowerCase();
+    domain = domain.replace(/^https?:\/\//i, "").trim().toLowerCase();
+
+    // Extract port if specified in the domain string (e.g. google.com:443)
+    const portMatch = domain.match(/:(\d+)(?:\/|\?|#|$)/);
+    if (portMatch) {
+      port = Number(portMatch[1]);
+    }
+
+    // Remove path/query/fragment/port to get clean domain
+    const domainClean = domain.split(/[/?#]/)[0].split(":")[0];
 
     // Basic domain validation
     const domainRegex =
-      /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}(?::\d+)?$/;
-    const domainClean = domain.split(":")[0];
+      /^(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?\.)+[a-zA-Z]{2,}$/;
 
-    if (!domainRegex.test(domain)) {
+    if (!domainRegex.test(domainClean)) {
       return NextResponse.json(
         { error: "Please enter a valid domain (e.g., google.com)" },
         { status: 400 }
