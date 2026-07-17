@@ -1,6 +1,7 @@
 // app/not-found.jsx
 import Link from "next/link";
-import { Home, Search, ArrowLeft, Wrench, Zap, Shield } from "lucide-react";
+import { Home, Search, Wrench, Zap, Shield } from "lucide-react";
+import BackButton from "@/components/BackButton";
 
 // Metadata for SEO
 export const metadata = {
@@ -56,16 +57,6 @@ export default function NotFound() {
             first place.
           </p>
 
-          {/* Search Suggestion */}
-          <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-200 dark:border-gray-700 p-4 mb-8 max-w-md mx-auto">
-            <div className="flex items-center gap-3 text-gray-500 dark:text-gray-400">
-              <Search size={20} />
-              <span className="text-sm">
-                Try searching for &quot;image compressor&quot;, &quot;PDF
-                editor&quot;, or &quot;color picker&quot;
-              </span>
-            </div>
-          </div>
 
           {/* Action Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -76,38 +67,9 @@ export default function NotFound() {
               <Home size={18} />
               Back to Home
             </Link>
-            <Link
-              href="javascript:history.back()"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 transition-all duration-200"
-            >
-              <ArrowLeft size={18} />
-              Go Back
-            </Link>
+            <BackButton className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-200 font-medium rounded-lg hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer transition-all duration-200" />
           </div>
 
-          {/* Helpful Links */}
-          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-gray-700">
-            <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">
-              Here are some popular tools you might find useful:
-            </p>
-            <div className="flex flex-wrap gap-3 justify-center">
-              {[
-                "Image Optimizer",
-                "PDF Compressor",
-                "Color Converter",
-                "Text Diff Checker",
-                "QR Generator",
-              ].map((tool) => (
-                <Link
-                  key={tool}
-                  href={`/tools/${tool.toLowerCase().replace(/\s+/g, "-")}`}
-                  className="text-sm px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors"
-                >
-                  {tool}
-                </Link>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
     </div>
