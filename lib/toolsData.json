@@ -912,6 +912,26 @@
     ]
   },
   {
+    "title": "Monitor Hz Test",
+    "link": "/tools/monitor-hz-test",
+    "description": "Detect your display refresh rate using interactive flicker, pulse, and motion tests. Supports 30Hz, 60Hz, 120Hz, 144Hz, 240Hz and custom frequencies. 100% private and runs entirely in your browser.",
+    "icon": "Monitor",
+    "category": "Developer",
+    "keywords": [
+      "monitor hz test",
+      "refresh rate test",
+      "display hz test",
+      "check monitor refresh rate",
+      "120hz test",
+      "144hz test",
+      "60hz test",
+      "240hz test",
+      "monitor frequency",
+      "display refresh rate checker",
+      "ToolsTrek"
+    ]
+  },
+  {
     "title": "Edit Metadata",
     "link": "/tools/edit-metadata",
     "description": "Modify, inject, or strip metadata (EXIF, GPS, camera settings, author details) from your images, PDFs, and documents. 100% private, client-side, zero server uploads.",
