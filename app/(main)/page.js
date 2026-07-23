@@ -101,23 +101,25 @@ const WhyChooseUs = ({ item, index }) => {
   return (
     <div
       key={index}
-      className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300  overflow-hidden"
+      className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300  overflow-hidden space-y-10 md:space-y-14"
     >
       {/* Icon Container */}
       <div
-        className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-linear-to-br ${item.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 text-gray-800 dark:text-white`}
+        className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-linear-to-br ${item.gradient} text-gray-800 dark:text-white`}
       >
         {/* Render Lucide Icon directly */}
         {item.icon}
       </div>
 
-      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-        {item.title}
-      </h3>
+      <div className="">
+        <h3 className="text-2xl font-semibold text-gray-900 dark:text-white mb-3">
+          {item.title}
+        </h3>
 
-      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-        {item.description}
-      </p>
+        <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+          {item.description}
+        </p>
+      </div>
     </div>
   );
 };
