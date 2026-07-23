@@ -148,7 +148,11 @@
   "productivityAndCalculators": [
     {
       "question": "What calculator tools does ToolsTrek offer?",
-      "answer": "ToolsTrek includes: Age Calculator, BMI Calculator, Days Tracker, EMI Calculator (with amortization schedule), NU CGPA Calculator (for National University Bangladesh), University CGPA Calculator (for private & public universities with presets for BUET, NSU, BRAC, UIU, AIUB, AUST), Unit Converter, VAT/GST Calculator, Zakat Calculator, Discount Calculator, and Savings Calculator."
+      "answer": "ToolsTrek includes: Age Calculator, BMI Calculator, Days Tracker, EMI Calculator (with amortization schedule), NU CGPA Calculator, University CGPA Calculator, Unit Converter, VAT/GST Calculator, Zakat Calculator, Discount Calculator, Savings Calculator, and Smoking Cost Calculator."
+    },
+    {
+      "question": "What does the Smoking Cost Calculator do?",
+      "answer": "The Smoking Cost Calculator computes how much money you spend on cigarettes, vape, or tobacco over 1 day, 7 days, 1 month, 6 months, 1 year, 5 years, 10 years, and 20 years. It features BDT as the default currency alongside 30+ global currencies, tabs for Per Pack and Per Piece calculations, real-world purchase equivalents, health recovery metrics, and compound interest investment growth."
     },
     {
       "question": "What does the Discount Calculator do?",

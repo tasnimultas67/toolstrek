@@ -1003,5 +1003,24 @@
       "discord rich embed designer",
       "developer"
     ]
+  },
+  {
+    "title": "Smoking Cost Calculator",
+    "link": "/tools/smoking-cost-calculator",
+    "description": "Calculate the true financial and health cost of smoking cigarettes, vape, or tobacco. View expenses per day, 7 days, 1 month, 6 months, 1 year, 5 years, 10 years, and 20 years. Features BDT default and 30+ global currencies, tabs for Per Pack, Per Pcs, Vape, and compound interest investment growth.",
+    "icon": "CigaretteOff",
+    "category": "Calculator",
+    "keywords": [
+      "smoking cost calculator",
+      "cigarette cost calculator",
+      "vape cost calculator",
+      "smoking expense calculator",
+      "tobacco cost calculator",
+      "bdt smoking calculator",
+      "quit smoking savings calculator",
+      "cigarette per pack calculator",
+      "cigarette per pcs calculator",
+      "calculator"
+    ]
   }
 ]
