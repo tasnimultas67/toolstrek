@@ -1,6 +1,6 @@
 # ToolsTrek
 
-**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 58 tools across text, PDF, image, QR, calculator, security, media, and developer categories — all in one fast, responsive, and privacy-friendly interface.
+**ToolsTrek** is a modern, browser-first online utility hub built with **Next.js 16** and **React 19**. It brings together 60 tools across text, PDF, image, QR, calculator, security, media, and developer categories — all in one fast, responsive, and privacy-friendly interface.
 
 ---
 
@@ -18,7 +18,7 @@
 
 ---
 
-## 🛠️ Tool Library (58 Tools)
+## 🛠️ Tool Library (60 Tools)
 
 ### 📝 Text
 
@@ -51,6 +51,8 @@
 | Zakat Calculator                        | Compute annual Zakat on cash, gold, silver, investments, and liabilities with Nisab adjustment       |
 | Discount Calculator                     | Calculate discounts, double discounts, BOGO deals, tax rates, and unit price comparisons             |
 | Savings Calculator                      | Project savings growth with compound interest, inflation, tax, and recurring contributions           |
+| Smoking Cost Calculator                 | Calculate smoking/vape expenses with per pack/pcs tabs, 30+ currencies & investment projections     |
+| Water Intake Calculator                 | Calculate daily fluid needs by weight, activity, climate, diet & stage with log tracker & PDF report |
 
 ### 🔧 Productivity
 
@@ -254,7 +256,8 @@ toolstrek/
 │   │   │   ├── view-metadata/         # NEW
 │   │   │   ├── website-tech-detector/ # NEW
 │   │   │   ├── wifi-qr/
-│   │   │   └── zakat-calculator/
+│   │   │   ├── zakat-calculator/
+│   │   │   └── water-intake-calculator/ # NEW
 │   │   ├── tools-compo/               # Shared UI components & page shells
 │   │   │   ├── Home-Compo/            #   Homepage-specific components
 │   │   │   │   ├── CTA.js             #     Call-to-action section
@@ -304,6 +307,7 @@ toolstrek/
 │   │   │   │   ├── TypingTest.jsx
 │   │   │   │   ├── UniCGPACalculator.js        # NEW
 │   │   │   │   ├── WebTechDetector.jsx         # NEW
+│   │   │   │   ├── WaterIntakeCalculator.jsx   # NEW
 │   │   │   │   ├── ZakatCalculator.js
 │   │   │   │   ├── cgpaSubjectData.json
 │   │   │   │   ├── savings-calculator/         # NEW (sub-folder)

@@ -1022,5 +1022,23 @@
       "cigarette per pcs calculator",
       "calculator"
     ]
+  },
+  {
+    "title": "Water Intake Calculator",
+    "link": "/tools/water-intake-calculator",
+    "description": "Calculate your daily fluid and water requirements based on body weight, age, gender, activity level, climate, pregnancy/breastfeeding, caffeine, and diet. Features advanced options, metric & imperial unit toggles, an interactive daily intake logger, hourly schedules, and downloadable PDF reports.",
+    "icon": "Droplets",
+    "category": "Calculator",
+    "keywords": [
+      "water intake calculator",
+      "hydration calculator",
+      "daily water requirement",
+      "fluid intake calculator",
+      "how much water should i drink",
+      "water calculator by weight",
+      "water logger",
+      "hydration schedule",
+      "calculator"
+    ]
   }
 ]

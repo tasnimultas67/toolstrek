@@ -247,6 +247,14 @@
     {
       "question": "Can the SSL Certificate Checker detect expired or untrusted certificates?",
       "answer": "Yes. The tool reports the exact expiry date and a real-time days-remaining countdown. It also clearly flags whether the certificate is trusted (based on the Node.js CA bundle), expired, or not yet valid — with colour-coded status banners and actionable security score penalties."
+    },
+    {
+      "question": "How does the Water Intake Calculator determine daily fluid recommendations?",
+      "answer": "The calculator uses scientific baseline ratios based on body weight (~31ml to 35ml per kg) according to EFSA and Institute of Medicine guidelines, then dynamically adjusts for your activity level, climate environment, health stage (pregnancy or lactation), and dietary factors like caffeine, protein, or sodium."
+    },
+    {
+      "question": "What advanced options are available in the Water Intake Calculator?",
+      "answer": "Clicking 'Advanced Options' lets you customize your climate (Hot/Humid, Cold/Altitude, Dry Heat), health/life stages (Pregnancy, Breastfeeding, Fever/Flu), dietary factors (Coffee/Tea, High Sodium, High Protein, Alcohol), and preferred glass or bottle container sizes for tailored daily tracking."
     }
   ]
 }
