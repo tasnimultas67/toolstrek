@@ -88,26 +88,7 @@ export default function Home() {
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
             {whychoose.map((item, index) => (
-              <div
-                key={index}
-                className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300  overflow-hidden"
-              >
-                {/* Icon Container */}
-                <div
-                  className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-linear-to-br ${item.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 text-gray-800 dark:text-white`}
-                >
-                  {/* Render Lucide Icon directly */}
-                  {item.icon}
-                </div>
-
-                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
-                  {item.title}
-                </h3>
-
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-                  {item.description}
-                </p>
-              </div>
+              <WhyChooseUs key={index} index={index} item={item} />
             ))}
           </div>
         </div>
@@ -115,3 +96,28 @@ export default function Home() {
     </div>
   );
 }
+
+const WhyChooseUs = ({ item, index }) => {
+  return (
+    <div
+      key={index}
+      className="group relative bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-2xl p-8 transition-all duration-300  overflow-hidden"
+    >
+      {/* Icon Container */}
+      <div
+        className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-linear-to-br ${item.gradient} mb-6 group-hover:scale-110 transition-transform duration-300 text-gray-800 dark:text-white`}
+      >
+        {/* Render Lucide Icon directly */}
+        {item.icon}
+      </div>
+
+      <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-3">
+        {item.title}
+      </h3>
+
+      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+        {item.description}
+      </p>
+    </div>
+  );
+};
