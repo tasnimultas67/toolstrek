@@ -1320,5 +1320,26 @@
       "Productivity",
       "Calculator"
     ]
+  },
+  {
+    "title": "Wedding Budget Allocator",
+    "link": "/tools/wedding-budget-allocator",
+    "description": "Allocate, customize, and track your wedding budget. Features guest count sliders, interactive priority profiles, manual category sliders, estimated vs. actual itemized trackers, custom categories, a dynamic SVG donut chart, and high-quality PDF exports.",
+    "icon": "Heart",
+    "keywords": [
+      "wedding budget allocator",
+      "wedding cost calculator",
+      "wedding budget planner",
+      "marriage cost estimator",
+      "wedding expense tracker",
+      "budget variance calculator",
+      "finance",
+      "calculator"
+    ],
+    "categories": [
+      "Finance",
+      "Calculator",
+      "Productivity"
+    ]
   }
 ]
