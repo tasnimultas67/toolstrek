@@ -1,5 +1,26 @@
 [
   {
+    "title": "Zodiac Sign Calculator",
+    "link": "/tools/zodiac-sign-calculator",
+    "description": "Calculate your exact Zodiac Sun Sign, Vedic Rashi, Chinese Zodiac animal, Decan sub-ruler, Cusp traits, and love compatibility with an interactive astrological breakdown, personality matrix, and exportable PNG profile card.",
+    "icon": "Sparkles",
+    "category": "Fun",
+    "keywords": [
+      "zodiac sign calculator",
+      "zodiac sign finder",
+      "what is my zodiac sign",
+      "astrology calculator",
+      "vedic rashi calculator",
+      "chinese zodiac calculator",
+      "zodiac decan calculator",
+      "zodiac cusp detector",
+      "zodiac compatibility test",
+      "sun sign finder",
+      "horoscope calculator",
+      "fun"
+    ]
+  },
+  {
     "title": "Class Schedule Maker",
     "link": "/tools/class-schedule-maker",
     "description": "Build and export your perfect weekly class schedule. Add classes with colors, choose from 6 stunning themes (Modern Dark, Ocean, Forest, Sunset, Clean Light, Minimal), and export as a high-quality PDF or PNG image. Includes live preview, advanced settings, time range control, and toggle for rooms, professors, and credits.",
