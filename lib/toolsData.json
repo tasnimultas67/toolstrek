@@ -1296,5 +1296,29 @@
       "Developer",
       "Productivity"
     ]
+  },
+  {
+    "title": "Currency Converter",
+    "link": "/tools/currency-converter",
+    "description": "Convert currencies in real-time with live exchange rates. Features custom markup/service fee adjustments, interactive historical trend mock charts, travel bills/cash breakdown, and multi-currency comparison grids. Supports 36 major currencies with a search-enabled dropdown and offline fallback.",
+    "icon": "RefreshCw",
+    "keywords": [
+      "currency converter",
+      "exchange rate calculator",
+      "usd to bdt",
+      "live currency rates",
+      "forex converter",
+      "foreign exchange calculator",
+      "money converter",
+      "currency exchange fee calculator",
+      "remittance converter",
+      "travel cash calculator",
+      "productivity",
+      "finance"
+    ],
+    "categories": [
+      "Productivity",
+      "Calculator"
+    ]
   }
 ]
