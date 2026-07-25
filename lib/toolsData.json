@@ -1270,5 +1270,31 @@
       "Calculator",
       "Health"
     ]
+  },
+  {
+    "title": "JSON Editor",
+    "link": "/tools/json-editor",
+    "description": "An advanced online JSON editor and viewer. Format, minify, sort, query, diff, and validate JSON against schema. Interactively edit, add, and delete nodes using the visual tree view. Instantly convert between JSON and XML/YAML/CSV formats.",
+    "icon": "Braces",
+    "keywords": [
+      "json editor",
+      "json viewer",
+      "json validator",
+      "beautify json",
+      "minify json",
+      "json diff",
+      "compare json",
+      "json path query",
+      "json converter",
+      "json to xml",
+      "json to yaml",
+      "json to csv",
+      "json tree view",
+      "developer"
+    ],
+    "categories": [
+      "Developer",
+      "Productivity"
+    ]
   }
 ]
