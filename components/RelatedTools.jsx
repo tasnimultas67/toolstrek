@@ -34,12 +34,18 @@ export default function RelatedTools() {
   );
   if (!currentTool) return null;
 
-  // Filter tools by category and exclude current tool
-  let related = toolsData.filter(
-    (t) =>
-      t.category === currentTool.category &&
-      t.link.replace(/\/$/, "") !== cleanPathname
-  );
+  // Filter tools by category (supports array categories) and exclude current tool
+  const currentCats = Array.isArray(currentTool.categories)
+    ? currentTool.categories
+    : [currentTool.category || 'General'];
+
+  let related = toolsData.filter((t) => {
+    const toolCats = Array.isArray(t.categories)
+      ? t.categories
+      : [t.category || 'General'];
+    const sharesCategory = toolCats.some((c) => currentCats.includes(c));
+    return sharesCategory && t.link.replace(/\/$/, '') !== cleanPathname;
+  });
 
   // If we have fewer than 3 tools, add tools from other categories
   if (related.length < 4) {
@@ -66,7 +72,7 @@ export default function RelatedTools() {
             Related Tools
           </h2>
           <p className="mt-2 text-sm text-gray-500 dark:text-gray-400">
-            Explore other utilities in the <span className="font-semibold text-brandColor">{currentTool.category}</span> category to boost your productivity.
+            Explore other utilities in the <span className="font-semibold text-brandColor">{currentCats.join(' / ')}</span> category to boost your productivity.
           </p>
         </div>
 

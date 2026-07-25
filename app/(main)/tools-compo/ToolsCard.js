@@ -6,17 +6,39 @@ import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
 import { getIcon } from "./dynamicIcon";
 import FavoriteButton from "@/components/FavoriteButton";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
+
+// Helper: category name → URL slug
+const toSlug = (cat) => cat.toLowerCase().replace(/\s+/g, "-");
 
 const ToolsCard = ({
   title,
   link,
   description,
   icon,
-  category,
+  categories,
+  category, // backward-compat fallback
   lastUsed,
   index,
 }) => {
   const IconComponent = getIcon(icon);
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
+
+  // Normalise to array
+  const toolCategories = Array.isArray(categories)
+    ? categories
+    : [category || "General"];
+
+  const handleCategoryClick = (e, cat) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const params = new URLSearchParams(searchParams.toString());
+    params.set("category", toSlug(cat));
+    // Always navigate to /tools page for category filter
+    router.push(`/tools?${params.toString()}`);
+  };
 
   return (
     <Link href={link} className="group relative" suppressHydrationWarning>
@@ -30,7 +52,7 @@ const ToolsCard = ({
         {/* Card Content */}
         <div className="relative z-10 flex flex-col h-full space-y-2">
           <div className="p-5">
-            <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+            <div className="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gray-100 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
               {IconComponent && <IconComponent className="h-6 w-6" />}
             </div>
             {/* Card Content */}
@@ -38,6 +60,20 @@ const ToolsCard = ({
               <h3 className="text-xl tracking-tight font-semibold text-gray-900 dark:text-white mb-2">
                 {title}
               </h3>
+
+              {/* Category badges */}
+              <div className="flex flex-wrap gap-1.5 mb-2">
+                {toolCategories.map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={(e) => handleCategoryClick(e, cat)}
+                    className="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-medium bg-gray-100 dark:bg-gray-800 text-gray-500 dark:text-gray-400 hover:bg-brandColor/10 hover:text-brandColor dark:hover:text-brandColor transition-colors duration-150 cursor-pointer border border-transparent hover:border-brandColor/20"
+                  >
+                    {cat}
+                  </button>
+                ))}
+              </div>
+
               <p className="text-sm leading-relaxed text-gray-500 dark:text-gray-400 line-clamp-3">
                 {description}
               </p>
@@ -56,10 +92,10 @@ const ToolsCard = ({
               Get started
               <ArrowRightIcon className="ml-2 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
             </div>
-            {/* Favorite Button container with absolute positioning and high z-index */}
+            {/* Favorite Button */}
             <div className="">
               <FavoriteButton
-                tool={{ title, link, description, icon, category }}
+                tool={{ title, link, description, icon, categories: toolCategories }}
               />
             </div>
           </div>

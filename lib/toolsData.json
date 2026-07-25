@@ -4,7 +4,6 @@
     "link": "/tools/zodiac-sign-calculator",
     "description": "Calculate your exact Zodiac Sun Sign, Vedic Rashi, Chinese Zodiac animal, Decan sub-ruler, Cusp traits, and love compatibility with an interactive astrological breakdown, personality matrix, and exportable PNG profile card.",
     "icon": "Sparkles",
-    "category": "Fun",
     "keywords": [
       "zodiac sign calculator",
       "zodiac sign finder",
@@ -18,6 +17,9 @@
       "sun sign finder",
       "horoscope calculator",
       "fun"
+    ],
+    "categories": [
+      "Fun"
     ]
   },
   {
@@ -25,7 +27,6 @@
     "link": "/tools/class-schedule-maker",
     "description": "Build and export your perfect weekly class schedule. Add classes with colors, choose from 6 stunning themes (Modern Dark, Ocean, Forest, Sunset, Clean Light, Minimal), and export as a high-quality PDF or PNG image. Includes live preview, advanced settings, time range control, and toggle for rooms, professors, and credits.",
     "icon": "CalendarDays",
-    "category": "Education",
     "keywords": [
       "class schedule maker",
       "weekly timetable maker",
@@ -38,6 +39,10 @@
       "course schedule builder",
       "education",
       "school timetable"
+    ],
+    "categories": [
+      "Education",
+      "Productivity"
     ]
   },
   {
@@ -45,7 +50,6 @@
     "link": "/tools/love-compatibility-test",
     "description": "Discover how compatible you are with your partner using name numerology, zodiac astrology, love languages, MBTI personality types, and relationship goals. A fun and insightful multi-dimensional compatibility analysis.",
     "icon": "Heart",
-    "category": "Fun",
     "keywords": [
       "love compatibility test",
       "zodiac compatibility",
@@ -57,6 +61,10 @@
       "soulmate test",
       "MBTI compatibility",
       "fun"
+    ],
+    "categories": [
+      "Fun",
+      "Calculator"
     ]
   },
   {
@@ -64,7 +72,6 @@
     "link": "/tools/disposable-email-detector",
     "description": "Detect temporary and disposable emails instantly. Verify syntax, check live MX records, find role-based addresses, correct common spelling typos, and process email lists in bulk.",
     "icon": "MailWarning",
-    "category": "Developer",
     "keywords": [
       "disposable email detector",
       "temporary email checker",
@@ -75,6 +82,9 @@
       "role based email detector",
       "email typo checker",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -82,7 +92,6 @@
     "link": "/tools/website-tech-detector",
     "description": "Instantly detect the full technology stack powering any website. Identifies CMS, JavaScript frameworks (React, Vue, Next.js, Angular), web servers (Nginx, Apache), CDNs (Cloudflare, Vercel), analytics tools, and analyzes HTTP security headers with a score.",
     "icon": "ScanSearch",
-    "category": "Developer",
     "keywords": [
       "website technology detector",
       "tech stack detector",
@@ -93,6 +102,9 @@
       "security header checker",
       "javascript framework detector",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -100,7 +112,6 @@
     "link": "/tools/ssl-checker",
     "description": "Instantly inspect any domain's SSL/TLS certificate. View issuer, expiry dates, Subject Alternative Names (SANs), certificate type (DV/OV/EV), security score, TLS protocol & cipher suites, SHA fingerprints, and a full certificate chain — all free and server-side.",
     "icon": "ShieldCheck",
-    "category": "Developer",
     "keywords": [
       "ssl certificate checker",
       "tls checker",
@@ -110,6 +121,9 @@
       "certificate chain",
       "cipher suite checker",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -117,7 +131,6 @@
     "link": "/tools/color-converter",
     "description": "Convert color codes between HEX, RGB, HSL, HSV, and CMYK formats. Adjust interactive sliders in real-time, generate color harmonies, verify WCAG readability contrast, simulate color blindness, and inspect tints & shades.",
     "icon": "Palette",
-    "category": "Developer",
     "keywords": [
       "color converter",
       "hex to rgb",
@@ -128,6 +141,10 @@
       "wcag contrast checker",
       "color blindness simulator",
       "developer"
+    ],
+    "categories": [
+      "Developer",
+      "Design"
     ]
   },
   {
@@ -135,7 +152,6 @@
     "link": "/tools/gradient-generator",
     "description": "Create beautiful CSS and Tailwind gradients. Customize colors, add multiple stops, choose linear, radial, or conic styles, and access advanced options like image export (PNG/SVG) and repeating gradients.",
     "icon": "Paintbrush",
-    "category": "Developer",
     "keywords": [
       "gradient generator",
       "css gradient",
@@ -146,6 +162,10 @@
       "conic gradient",
       "export gradient to image",
       "developer"
+    ],
+    "categories": [
+      "Developer",
+      "Design"
     ]
   },
   {
@@ -153,7 +173,6 @@
     "link": "/tools/link-shortner",
     "description": "Transform long, clunky URLs into neat, compact, and easily shareable links. This tool is perfect for maximizing character counts on social media, improving click-through rates, and tracking link management seamlessly.",
     "icon": "Link",
-    "category": "Productivity",
     "keywords": [
       "link shortener",
       "url shortener",
@@ -161,6 +180,9 @@
       "link management",
       "share links",
       "productivity"
+    ],
+    "categories": [
+      "Productivity"
     ]
   },
   {
@@ -168,7 +190,6 @@
     "link": "/tools/numbers-to-words",
     "description": "Instantly convert numerical values into their full written text representation. Ideal for writing out official financial checks, drafting legal documents, completing banking forms, or verifying the correct spelling of large numbers.",
     "icon": "Text",
-    "category": "Productivity",
     "keywords": [
       "numbers to words",
       "number to text",
@@ -176,6 +197,9 @@
       "spell numbers",
       "word representation",
       "productivity"
+    ],
+    "categories": [
+      "Productivity"
     ]
   },
   {
@@ -183,7 +207,6 @@
     "link": "/tools/fake-info-generator",
     "description": "Generate comprehensive, realistic mock data and user identities for development and QA testing. Create randomized names, addresses, phone numbers, and emails instantly without exposing real or sensitive user information.",
     "icon": "User",
-    "category": "Productivity",
     "keywords": [
       "fake info",
       "fake information",
@@ -192,6 +215,9 @@
       "dummy data",
       "mock data",
       "productivity"
+    ],
+    "categories": [
+      "Productivity"
     ]
   },
   {
@@ -199,7 +225,6 @@
     "link": "/tools/wifi-qr",
     "description": "Create a custom QR code that allows guests to instantly connect to your local Wi-Fi network without manually typing complex passwords. Simply fill in your network name and security type, then print or display the generated image.",
     "icon": "QrCode",
-    "category": "QR Code",
     "keywords": [
       "wifi qr code",
       "wifi qr generator",
@@ -207,6 +232,10 @@
       "wifi network",
       "scan wifi",
       "qr code"
+    ],
+    "categories": [
+      "QR Code",
+      "Productivity"
     ]
   },
   {
@@ -214,7 +243,6 @@
     "link": "/tools/age-calculate",
     "description": "Calculate your precise chronological age or the exact duration between two dates down to the exact number of years, months, weeks, and days. Perfect for birthday countdowns, milestone tracking, and administrative record-keeping.",
     "icon": "Calculator",
-    "category": "Calculator",
     "keywords": [
       "age calculator",
       "calculate age",
@@ -223,6 +251,9 @@
       "age in months",
       "age in days",
       "calculator"
+    ],
+    "categories": [
+      "Calculator"
     ]
   },
   {
@@ -230,7 +261,6 @@
     "link": "/tools/qr-scanner",
     "description": "Use your smartphone or computer's built-in camera to quickly decode any QR code or barcode. Instantly read URLs, contact information, text payloads, or Wi-Fi configurations without needing to download external native applications.",
     "icon": "ScanQrCode",
-    "category": "QR Code",
     "keywords": [
       "qr code scanner",
       "scan qr code",
@@ -238,6 +268,9 @@
       "barcode scanner",
       "camera scan",
       "qr code"
+    ],
+    "categories": [
+      "QR Code"
     ]
   },
   {
@@ -245,7 +278,6 @@
     "link": "/tools/days-tracker",
     "description": "An intuitive calendar planning utility that calculates the exact target end date by adding or subtracting a specific number of days from your chosen starting point. Great for project timelines, deadline tracking, and shipping estimations.",
     "icon": "Calendar",
-    "category": "Calculator",
     "keywords": [
       "days tracker",
       "date calculator",
@@ -254,6 +286,9 @@
       "date difference",
       "date tracker",
       "calculator"
+    ],
+    "categories": [
+      "Calculator"
     ]
   },
   {
@@ -261,7 +296,6 @@
     "link": "/tools/emi-calculator",
     "description": "Calculate your Equated Monthly Installment (EMI) for home, car, or personal loans. Get a full amortization schedule, principal vs. interest breakdown, processing fee, insurance add-on, and an interactive repayment chart — all in your browser.",
     "icon": "Calculator",
-    "category": "Calculator",
     "keywords": [
       "emi calculator",
       "loan emi",
@@ -273,6 +307,10 @@
       "monthly installment",
       "interest calculator",
       "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Finance"
     ]
   },
   {
@@ -280,7 +318,6 @@
     "link": "/tools/bmi-calculator",
     "description": "Evaluate body composition by calculating your Body Mass Index (BMI) using your height and weight parameters. This health tool categorizes results according to standard medical ranges to help you monitor your overall fitness and wellness.",
     "icon": "Calculator",
-    "category": "Calculator",
     "keywords": [
       "bmi calculator",
       "body mass index",
@@ -289,6 +326,10 @@
       "weight index",
       "bmi",
       "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Health"
     ]
   },
   {
@@ -296,7 +337,6 @@
     "link": "/tools/cgpa-calculator",
     "description": "A tailored academic grading tool engineered specifically for National University Bangladesh students. Easily compute your semester-wise and cumulative CGPA based on the university's official credit hours and letter-grade scoring system.",
     "icon": "Calculator",
-    "category": "Calculator",
     "keywords": [
       "nu cgpa",
       "cgpa calculator",
@@ -305,6 +345,10 @@
       "grade calculator",
       "credit calculator",
       "calculator"
+    ],
+    "categories": [
+      "Education",
+      "Calculator"
     ]
   },
   {
@@ -312,7 +356,6 @@
     "link": "/tools/uni-cgpa-calculator",
     "description": "A versatile academic calculator designed for Private and Public University students in Bangladesh. Calculate semester GPA or cumulative CGPA, choose from BUET, NSU, BRAC, UIU, AIUB, AUST presets, design custom grading scales, and download your result card as an image.",
     "icon": "Calculator",
-    "category": "Calculator",
     "keywords": [
       "university cgpa",
       "cgpa calculator",
@@ -323,6 +366,10 @@
       "buet cgpa calculator",
       "calculator",
       "bangladesh university gpa"
+    ],
+    "categories": [
+      "Education",
+      "Calculator"
     ]
   },
   {
@@ -330,7 +377,6 @@
     "link": "/tools/password-generator",
     "description": "Protect your digital accounts with a powerful utility that generates strong, randomized passwords. Fully customize your security preferences by toggling uppercase letters, lowercase letters, numbers, and specialized symbols.",
     "icon": "Lock",
-    "category": "Security",
     "keywords": [
       "password generator",
       "secure password",
@@ -338,6 +384,9 @@
       "strong password",
       "password creator",
       "security"
+    ],
+    "categories": [
+      "Security"
     ]
   },
   {
@@ -345,7 +394,6 @@
     "link": "/tools/password-strength-tester",
     "description": "Analyze your password strength with entropy calculation, crack time estimation, security checklist, and advanced character analysis — all locally in your browser.",
     "icon": "ShieldCheck",
-    "category": "Security",
     "keywords": [
       "password strength tester",
       "password analyzer",
@@ -354,6 +402,9 @@
       "crack time estimator",
       "password checker",
       "security"
+    ],
+    "categories": [
+      "Security"
     ]
   },
   {
@@ -361,7 +412,6 @@
     "link": "/tools/markdown-previewer",
     "description": "An interactive, side-by-side editing suite designed to write and review Markdown prose. Watch your raw text convert to fully rendered HTML code in real-time, making it perfect for perfecting GitHub repositories and project READMEs.",
     "icon": "Eye",
-    "category": "Developer",
     "keywords": [
       "markdown previewer",
       "markdown editor",
@@ -370,6 +420,9 @@
       "real-time preview",
       "markdown",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -377,7 +430,6 @@
     "link": "/tools/domain-age-checker",
     "description": "Uncover critical web history insights by looking up the exact registration date and age of any website domain. Essential for digital marketers, SEO specialists, and cybersecurity researchers analyzing site authority and trustworthiness.",
     "icon": "Globe",
-    "category": "Developer",
     "keywords": [
       "domain age checker",
       "domain age",
@@ -386,6 +438,9 @@
       "domain info",
       "domain lookup",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -393,7 +448,6 @@
     "link": "/tools/csv-viewer",
     "description": "An advanced, interactive CSV viewer and editor. Upload or paste CSV data to explore dynamically with table pagination, cell editing, column visibility toggles, descriptive column data profiling, custom SVG chart generation, and multi-format exports.",
     "icon": "Table",
-    "category": "Developer",
     "keywords": [
       "csv viewer",
       "csv editor",
@@ -404,6 +458,9 @@
       "data analysis",
       "developer",
       "spreadsheet"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -411,7 +468,6 @@
     "link": "/tools/typing-test",
     "description": "Improve your typing speed and accuracy with this interactive typing speed test. Features live stats, real-time WPM graphs, key-by-key response heatmap, synthesized mechanical sound effects, and dynamic certificate downloads.",
     "icon": "Keyboard",
-    "category": "Productivity",
     "keywords": [
       "typing test",
       "typing speed test",
@@ -421,6 +477,9 @@
       "speed typing test",
       "keyboard speed test",
       "productivity"
+    ],
+    "categories": [
+      "Productivity"
     ]
   },
   {
@@ -428,7 +487,6 @@
     "link": "/tools/case-converter",
     "description": "Streamline text editing by instantly shifting code or copy blocks between standard string schemas. Safely swap formatting between UPPERCASE, lowercase, Title Case, Sentence case, camelCase, PascalCase, snake_case, and kebab-case.",
     "icon": "SplinePointer",
-    "category": "Text",
     "keywords": [
       "case converter",
       "text converter",
@@ -438,6 +496,9 @@
       "sentence case",
       "camel case",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -445,7 +506,6 @@
     "link": "/tools/pdf-to-image",
     "description": "Extract individual elements or complete document layouts from cumbersome portable files. Convert distinct PDF pages into high-resolution PNG, JPEG, or WebP graphic assets for seamless inclusion in web galleries or presentation decks.",
     "icon": "FileImage",
-    "category": "PDF",
     "keywords": [
       "pdf to image",
       "pdf converter",
@@ -454,6 +514,9 @@
       "extract pdf pages",
       "pdf to image converter",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -461,7 +524,6 @@
     "link": "/tools/image-to-text",
     "description": "Utilize powerful Optical Character Recognition (OCR) technology to extract typography and legible text directly from uploaded graphics, screenshots, or receipts. All operations are processed safely and locally within your browser.",
     "icon": "FileText",
-    "category": "Image",
     "keywords": [
       "image to text",
       "ocr converter",
@@ -470,6 +532,9 @@
       "image ocr",
       "scan text",
       "image"
+    ],
+    "categories": [
+      "Image"
     ]
   },
   {
@@ -477,7 +542,6 @@
     "link": "/tools/avif-converter",
     "description": "Optimize your web presence by processing raw image assets into next-generation AVIF files. Experience ultra-efficient, state-of-the-art compression algorithms that slash loading times while keeping original visual details crisp and clean.",
     "icon": "FileImage",
-    "category": "Image",
     "keywords": [
       "avif converter",
       "image converter",
@@ -486,6 +550,9 @@
       "avif format",
       "image compression",
       "image"
+    ],
+    "categories": [
+      "Image"
     ]
   },
   {
@@ -493,7 +560,6 @@
     "link": "/tools/image-to-pdf",
     "description": "Compile distinct photographs, graphical designs, or scanned documents directly into a standardized multi-page PDF document. Arrange image orders dynamically to create polished digital portfolios, reports, or shared handouts.",
     "icon": "File",
-    "category": "PDF",
     "keywords": [
       "image to pdf",
       "jpg to pdf",
@@ -502,6 +568,10 @@
       "create pdf",
       "image to pdf converter",
       "pdf"
+    ],
+    "categories": [
+      "PDF",
+      "Image"
     ]
   },
   {
@@ -509,7 +579,6 @@
     "link": "/tools/compress-pdf",
     "description": "Shrink heavy, resource-intensive document file sizes down to lightweight profiles perfect for email attachments or web portals. Intelligently optimizes resolution and asset sizes without sacrificing text legibility.",
     "icon": "FileZip",
-    "category": "PDF",
     "keywords": [
       "compress pdf",
       "pdf compressor",
@@ -517,6 +586,9 @@
       "pdf optimizer",
       "pdf compression",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -524,7 +596,6 @@
     "link": "/tools/crop-pdf",
     "description": "Trim unnecessary outer edges, modify visible document canvas margins, and cut precise page selections out of standard PDF formats. Perfect for cleaning up skewed scans, adjusting white space, or isolating specific layout regions.",
     "icon": "Crop",
-    "category": "PDF",
     "keywords": [
       "crop pdf",
       "pdf cropper",
@@ -533,6 +604,9 @@
       "pdf editing",
       "crop pdf pages",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -540,7 +614,6 @@
     "link": "/tools/pdf-merger",
     "description": "Combine independent document streams, distinct reports, or split records directly into one cohesive, sequential PDF booklet. Organize file priority pipelines before merging to guarantee proper organizational layouts.",
     "icon": "FileStack",
-    "category": "PDF",
     "keywords": [
       "pdf merger",
       "merge pdf",
@@ -549,6 +622,9 @@
       "join pdf",
       "pdf merge",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -556,7 +632,6 @@
     "link": "/tools/pdf-split",
     "description": "Break down large, bulky PDF records into targeted standalone files. Extract specific page ranges, divide individual chapters, or isolate single-page certificates quickly and efficiently without modifying original structures.",
     "icon": "SquareSplitHorizontal",
-    "category": "PDF",
     "keywords": [
       "pdf splitter",
       "split pdf",
@@ -564,6 +639,9 @@
       "extract pdf pages",
       "pdf split",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -571,7 +649,6 @@
     "link": "/tools/pdf-reorder",
     "description": "Fix misaligned page sequencing errors by dragging, dropping, and flipping document layouts into their correct placements. Instantly restructure internal page ordering prior to executing final outputs or distribution tasks.",
     "icon": "ArrowRightLeft",
-    "category": "PDF",
     "keywords": [
       "pdf reorder",
       "rearrange pdf",
@@ -579,6 +656,9 @@
       "organize pdf",
       "reorder pdf pages",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -586,7 +666,6 @@
     "link": "/tools/add-attachments",
     "description": "Supercharge document packets by embedding supplementary files, supporting spread-sheets, or media assets directly within the internal architecture of your target PDF. Keep all project context bound inside one neat container.",
     "icon": "Paperclip",
-    "category": "PDF",
     "keywords": [
       "add attachments to pdf",
       "pdf attachments",
@@ -594,6 +673,9 @@
       "pdf attachment",
       "embed files in pdf",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -601,7 +683,6 @@
     "link": "/tools/combine-files-to-pdf",
     "description": "An advanced file assembly hub designed to stitch independent document fragments into unified, high-quality portfolios. Easily organize diverse pages in logical sequences and lock them down within a single clean master file.",
     "icon": "FileStack",
-    "category": "PDF",
     "keywords": [
       "combine pdf",
       "pdf combiner",
@@ -609,6 +690,9 @@
       "join pdf",
       "combine pdf files",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -616,7 +700,6 @@
     "link": "/tools/n-up-pdf",
     "description": "Optimize layout designs and printing overhead costs by packing multiple distinct target pages onto a single sheet of paper. Fully customize grid distributions ($2$-up, $4$-up, etc.) for streamlined hand-out creation and material conservation.",
     "icon": "FileStack",
-    "category": "PDF",
     "keywords": [
       "n-up pdf",
       "pdf layout",
@@ -625,6 +708,9 @@
       "imposition",
       "pdf arrange",
       "pdf"
+    ],
+    "categories": [
+      "PDF"
     ]
   },
   {
@@ -632,7 +718,6 @@
     "link": "/tools/qr-code-generator",
     "description": "Generate scalable, bespoke QR codes tailored for marketing campaigns, physical inventory tags, business cards, or product labels. Supports direct input mapping for custom web links, plain text messages, or email drafts.",
     "icon": "QrCode",
-    "category": "QR Code",
     "keywords": [
       "qr code generator",
       "qr code",
@@ -641,6 +726,10 @@
       "create qr",
       "qr creator",
       "qr code"
+    ],
+    "categories": [
+      "QR Code",
+      "Productivity"
     ]
   },
   {
@@ -648,7 +737,6 @@
     "link": "/tools/text-repeater",
     "description": "Automate tedious data generation tasks by replicating text loops thousands of times instantly. Configure tailored styling constraints such as custom item delimiters, specific spacing additions, or programmatic line breaks.",
     "icon": "Repeat",
-    "category": "Text",
     "keywords": [
       "text repeater",
       "repeat text",
@@ -656,6 +744,9 @@
       "copy text",
       "text generator",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -663,7 +754,6 @@
     "link": "/tools/unit-converter",
     "description": "An all-in-one dimensional calculator capable of instantly transforming measurement metrics. Calculate scales across length, mass weight, temperature variations, square area limits, speed intervals, time zones, and data storage.",
     "icon": "Scale",
-    "category": "Calculator",
     "keywords": [
       "unit converter",
       "length converter",
@@ -675,6 +765,9 @@
       "time converter",
       "data storage converter",
       "calculator"
+    ],
+    "categories": [
+      "Calculator"
     ]
   },
   {
@@ -682,7 +775,6 @@
     "link": "/tools/color-palette-extractor",
     "description": "Analyze digital artwork or photos to capture dominant visual theme colors. Grab precise individual coordinates, extract detailed HEX, RGB, and HSL palettes, and export configurations directly into clean CSS sheets or Tailwind styling structures.",
     "icon": "Palette",
-    "category": "Image",
     "keywords": [
       "color palette extractor",
       "color palette",
@@ -695,6 +787,10 @@
       "image color",
       "palette generator",
       "image"
+    ],
+    "categories": [
+      "Image",
+      "Design"
     ]
   },
   {
@@ -702,7 +798,6 @@
     "link": "/tools/svg-converter",
     "description": "Rasterize scalable vector assets into standard fixed image layouts without breaking structural dependencies. Safely convert SVG layers into high-quality PNG background files, flat JPEGs, or lightweight modern WebP items.",
     "icon": "FileCode",
-    "category": "Image",
     "keywords": [
       "svg converter",
       "svg to png",
@@ -711,6 +806,9 @@
       "vector converter",
       "rasterize svg",
       "image"
+    ],
+    "categories": [
+      "Image"
     ]
   },
   {
@@ -718,7 +816,6 @@
     "link": "/tools/favicon-generator",
     "description": "Create a professional favicon pack from any image in seconds. Apply rounded corners, background color, and custom padding, then download all standard sizes (16×16 to 512×512) as a ready-to-use ZIP — fully client-side with no uploads required.",
     "icon": "ImageIcon",
-    "category": "Image",
     "keywords": [
       "favicon generator",
       "favicon maker",
@@ -729,6 +826,10 @@
       "favicon pack",
       "website icon",
       "image"
+    ],
+    "categories": [
+      "Image",
+      "Design"
     ]
   },
   {
@@ -736,7 +837,6 @@
     "link": "/tools/dummy-text-generator",
     "description": "Generate customized dummy text locally. Specify exact word count, character limits, or paragraph quantities. Choose from classic Lorem Ipsum, modern Tech Speak, or Sci-Fi Space vocabularies, with support for standard HTML paragraph tags.",
     "icon": "FileText",
-    "category": "Text",
     "keywords": [
       "dummy text generator",
       "lorem ipsum",
@@ -745,6 +845,9 @@
       "random text",
       "lipsum",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -752,7 +855,6 @@
     "link": "/tools/morse-code-decoder",
     "description": "Instantly translate text to Morse code or decode Morse signals back to readable text. Features real-time translation, audio playback with adjustable speed and tone, a visual dot/dash display, and a complete A–Z reference chart — all client-side with no uploads needed.",
     "icon": "Radio",
-    "category": "Text",
     "keywords": [
       "morse code decoder",
       "morse code encoder",
@@ -762,6 +864,9 @@
       "morse code converter",
       "learn morse code",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -769,7 +874,6 @@
     "link": "/tools/braille-decoder",
     "description": "Encode text into Braille or decode Braille back to readable text. Supports Bangla (Bengali Braille) and English (Grade 1 Standard Braille) with a full visual dot-pattern reference chart. Real-time conversion — all client-side with no uploads needed.",
     "icon": "BookMarked",
-    "category": "Text",
     "keywords": [
       "braille decoder",
       "braille encoder",
@@ -781,6 +885,9 @@
       "braille converter",
       "grade 1 braille",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -788,7 +895,6 @@
     "link": "/tools/binary-decoder",
     "description": "Instantly convert text to binary code and decode binary back to plain text. Customize byte separators (spaces, commas, none), explore bit-level editing, check character statistics, and view a complete ASCII binary reference chart.",
     "icon": "Binary",
-    "category": "Text",
     "keywords": [
       "binary code decoder",
       "binary encoder",
@@ -799,6 +905,9 @@
       "ascii to binary",
       "binary to ascii",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -806,7 +915,6 @@
     "link": "/tools/ip-checker",
     "description": "Inspect your public IP address or look up any IP address/domain to get detailed geolocation, network provider (ISP), timezone, local time, security flags, and an interactive map location.",
     "icon": "Network",
-    "category": "Developer",
     "keywords": [
       "ip checker",
       "ip lookup",
@@ -815,6 +923,9 @@
       "ip details",
       "find ip location",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -822,7 +933,6 @@
     "link": "/tools/fancy-text-generator",
     "description": "Transform plain text into cool Unicode styles, cursive fonts, gothic calligraphy, and glitch styles for profiles and social posts.",
     "icon": "Sparkles",
-    "category": "Text",
     "keywords": [
       "fancy text generator",
       "fancy font generator",
@@ -833,6 +943,9 @@
       "gothic text",
       "bubble letters",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -840,7 +953,6 @@
     "link": "/tools/vat-gst-calculator",
     "description": "Calculate VAT, GST, Sales Tax, and Tax-Inclusive Prices instantly. Add or remove tax, calculate tax amount only, download professional PDF reports, and use country presets.",
     "icon": "Calculator",
-    "category": "Calculator",
     "keywords": [
       "VAT Calculator",
       "GST Calculator",
@@ -850,6 +962,10 @@
       "GST Calculator India",
       "VAT Calculator Bangladesh",
       "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Finance"
     ]
   },
   {
@@ -857,7 +973,6 @@
     "link": "/tools/zakat-calculator",
     "description": "Calculate your yearly Zakat obligation easily. Enter cash, gold, silver, investments, and liabilities to find your net wealth and due Zakat with advanced Nisab, calendar rate adjustments, and custom settings.",
     "icon": "Coins",
-    "category": "Calculator",
     "keywords": [
       "zakat calculator",
       "zakat on gold",
@@ -866,6 +981,10 @@
       "islamic finance calculator",
       "charity calculator",
       "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Finance"
     ]
   },
   {
@@ -873,7 +992,6 @@
     "link": "/tools/remove-duplicate-lines",
     "description": "Instantly remove duplicate lines from any text. Supports case-insensitive matching, leading/trailing whitespace trimming, blank line removal, regex-based line filtering, 6 sort modes (A–Z, Z–A, length, reverse, shuffle), and optional line-number prepending. Copy or download your clean output in one click.",
     "icon": "Layers",
-    "category": "Text",
     "keywords": [
       "remove duplicate lines",
       "deduplicate text",
@@ -884,6 +1002,9 @@
       "remove blank lines",
       "text cleaner",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -891,7 +1012,6 @@
     "link": "/tools/timezone-clock",
     "description": "View real-time clocks for multiple cities, compare timezones with an interactive meeting planner slider, set local alarms, and customize your dashboard. Keep track of UTC offsets, day/night cycles, and local times worldwide.",
     "icon": "Clock",
-    "category": "Productivity",
     "keywords": [
       "timezone clock",
       "world clock",
@@ -901,6 +1021,9 @@
       "timezone calculator",
       "local time converter",
       "productivity"
+    ],
+    "categories": [
+      "Productivity"
     ]
   },
   {
@@ -908,7 +1031,6 @@
     "link": "/tools/discount-calculator",
     "description": "Calculate discount savings, sale prices, double discounts, tax rates, BOGO deals, and compare unit prices. Features history tracking, custom currencies, and exportable PDF summaries.",
     "icon": "Percent",
-    "category": "Calculator",
     "keywords": [
       "discount calculator",
       "sale calculator",
@@ -917,6 +1039,10 @@
       "coupon calculator",
       "bogo calculator",
       "finance"
+    ],
+    "categories": [
+      "Calculator",
+      "Finance"
     ]
   },
   {
@@ -924,7 +1050,6 @@
     "link": "/tools/trekglyph-encoder-decoder",
     "description": "Instantly translate plain text into exclusive custom geometric TrekGlyph cipher using '▲' and '▼' symbols, and decode it back in real-time. Features real-time interactive conversion, a click-to-insert symbol pad, and a complete symbol reference dictionary.",
     "icon": "Shapes",
-    "category": "Text",
     "keywords": [
       "trekglyph encoder",
       "trekglyph decoder",
@@ -935,6 +1060,9 @@
       "trekglyph to text",
       "exclusive cipher decoder",
       "text"
+    ],
+    "categories": [
+      "Text"
     ]
   },
   {
@@ -942,7 +1070,6 @@
     "link": "/tools/savings-calculator",
     "description": "Calculate how your savings grow over time. Plan with initial deposits, recurring contributions, compound interest intervals, and advanced options like inflation, taxes, and annual increase step-ups. Export clean PDF reports.",
     "icon": "PiggyBank",
-    "category": "Calculator",
     "keywords": [
       "savings calculator",
       "compound interest calculator",
@@ -950,6 +1077,10 @@
       "interest calculator",
       "financial planning tool",
       "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Finance"
     ]
   },
   {
@@ -957,7 +1088,6 @@
     "link": "/tools/view-metadata",
     "description": "Instantly reveal every hidden metadata detail inside any file — images (EXIF, GPS, camera info), PDFs, audio, video, documents, and more. No upload needed; everything runs 100% in your browser.",
     "icon": "FileSearch",
-    "category": "Developer",
     "keywords": [
       "view metadata",
       "file metadata viewer",
@@ -969,6 +1099,9 @@
       "file inspector",
       "developer",
       "exif reader"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -976,7 +1109,6 @@
     "link": "/tools/monitor-hz-test",
     "description": "Detect your display refresh rate using interactive flicker, pulse, and motion tests. Supports 30Hz, 60Hz, 120Hz, 144Hz, 240Hz and custom frequencies. 100% private and runs entirely in your browser.",
     "icon": "Monitor",
-    "category": "Developer",
     "keywords": [
       "monitor hz test",
       "refresh rate test",
@@ -989,6 +1121,9 @@
       "monitor frequency",
       "display refresh rate checker",
       "ToolsTrek"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -996,7 +1131,6 @@
     "link": "/tools/edit-metadata",
     "description": "Modify, inject, or strip metadata (EXIF, GPS, camera settings, author details) from your images, PDFs, and documents. 100% private, client-side, zero server uploads.",
     "icon": "FileEdit",
-    "category": "Developer",
     "keywords": [
       "edit metadata",
       "modify metadata",
@@ -1007,6 +1141,9 @@
       "strip metadata",
       "privacy protection EXIF",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -1014,7 +1151,6 @@
     "link": "/tools/media-format-converter",
     "description": "Convert video and audio files (MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC) directly in your browser. Local, private, and hardware-accelerated transcoding powered by MediaBunny.",
     "icon": "Video",
-    "category": "Developer",
     "keywords": [
       "media converter",
       "video format converter",
@@ -1028,6 +1164,9 @@
       "mediabunny",
       "webcodecs transcoding",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -1035,13 +1174,15 @@
     "link": "/tools/time-converter",
     "description": "Instantly convert between different units of time. Convert hours to minutes, days to seconds, years to milliseconds, and more with this versatile time converter.",
     "icon": "Clock",
-    "category": "Time",
     "keywords": [
       "time converter",
       "convert hours to minutes",
       "convert days to seconds",
       "time units",
       "time calculator"
+    ],
+    "categories": [
+      "Time"
     ]
   },
   {
@@ -1049,7 +1190,6 @@
     "link": "/tools/social-preview",
     "description": "Preview and customize how your web links appear across social media platforms like Facebook, X (Twitter), LinkedIn, Slack, and Discord. Scrape live metadata, simulate card layouts, design cover images, and generate ready-to-use HTML/JSON-LD codes.",
     "icon": "Eye",
-    "category": "Developer",
     "keywords": [
       "social media preview",
       "url preview generator",
@@ -1062,6 +1202,9 @@
       "slack preview tester",
       "discord rich embed designer",
       "developer"
+    ],
+    "categories": [
+      "Developer"
     ]
   },
   {
@@ -1069,7 +1212,6 @@
     "link": "/tools/smoking-cost-calculator",
     "description": "Calculate the true financial and health cost of smoking cigarettes, vape, or tobacco. View expenses per day, 7 days, 1 month, 6 months, 1 year, 5 years, 10 years, and 20 years. Features BDT default and 30+ global currencies, tabs for Per Pack, Per Pcs, Vape, and compound interest investment growth.",
     "icon": "CigaretteOff",
-    "category": "Calculator",
     "keywords": [
       "smoking cost calculator",
       "cigarette cost calculator",
@@ -1081,6 +1223,10 @@
       "cigarette per pack calculator",
       "cigarette per pcs calculator",
       "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Health"
     ]
   },
   {
@@ -1088,7 +1234,6 @@
     "link": "/tools/water-intake-calculator",
     "description": "Calculate your daily fluid and water requirements based on body weight, age, gender, activity level, climate, pregnancy/breastfeeding, caffeine, and diet. Features advanced options, metric & imperial unit toggles, an interactive daily intake logger, hourly schedules, and downloadable PDF reports.",
     "icon": "Droplets",
-    "category": "Calculator",
     "keywords": [
       "water intake calculator",
       "hydration calculator",
@@ -1099,6 +1244,10 @@
       "water logger",
       "hydration schedule",
       "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Health"
     ]
   }
 ]

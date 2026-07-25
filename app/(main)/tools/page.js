@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Suspense } from "react";
 import ParentTools from "../tools-compo/ParentTools";
 
 // Metadata for the Tools directory page
@@ -18,7 +18,9 @@ export const metadata = {
 const page = () => {
   return (
     <div>
-      <ParentTools />
+      <Suspense fallback={null}>
+        <ParentTools />
+      </Suspense>
     </div>
   );
 };

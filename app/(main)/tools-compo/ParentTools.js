@@ -1,17 +1,30 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useCallback } from "react";
+import { useRouter, useSearchParams, usePathname } from "next/navigation";
 import toolsData from "../../../lib/toolsData.json";
 import ToolsCard from "./ToolsCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
 
+// Helper: category name → URL slug
+const toSlug = (cat) => cat.toLowerCase().replace(/\s+/g, "-");
+
+// Helper: URL slug → category name (find from known categories)
+const fromSlug = (slug, categories) =>
+  categories.find((c) => toSlug(c) === slug) || "all";
+
 const ParentTools = () => {
-  const [searchTerm, setSearchTerm] = useState("");
-  const [selectedCategory, setSelectedCategory] = useState("all");
-  const [currentPage, setCurrentPage] = useState(1);
-  const ITEMS_PER_PAGE = 12;
+  const router = useRouter();
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
   const { recentTools } = useRecentTools();
+
+  const [searchTerm, setSearchTerm] = useState("");
+  const ITEMS_PER_PAGE = 12;
+
+  // Read page from URL query param (defaults to 1)
+  const currentPage = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
 
   // Build a lookup map: tool.link -> lastUsedAt for O(1) access per card
   const recentToolsMap = useMemo(() => {
@@ -24,21 +37,64 @@ const ParentTools = () => {
     return map;
   }, [recentTools]);
 
-  // Extract unique categories from tools data
+  // Extract unique categories from tools data (supports array categories)
   const categories = useMemo(() => {
-    const cats = new Set(toolsData.map((tool) => tool.category || "General"));
+    const cats = new Set();
+    toolsData.forEach((tool) => {
+      const toolCats = Array.isArray(tool.categories)
+        ? tool.categories
+        : [tool.category || "General"];
+      toolCats.forEach((c) => cats.add(c));
+    });
     return ["all", ...Array.from(cats).sort()];
   }, []);
+
+  // Derive selected category from URL query param
+  const categorySlug = searchParams.get("category") || "all";
+  const selectedCategory = useMemo(
+    () => (categorySlug === "all" ? "all" : fromSlug(categorySlug, categories)),
+    [categorySlug, categories]
+  );
+
+  // Helper: update URL query params without full navigation
+  const pushParams = useCallback(
+    (updates) => {
+      const params = new URLSearchParams(searchParams.toString());
+      Object.entries(updates).forEach(([key, val]) => {
+        if (val === null || val === undefined) {
+          params.delete(key);
+        } else {
+          params.set(key, String(val));
+        }
+      });
+      router.push(`${pathname}?${params.toString()}`, { scroll: false });
+    },
+    [router, pathname, searchParams]
+  );
+
+  // Category button click → update URL, reset page to 1
+  const handleCategoryChange = useCallback(
+    (category) => {
+      pushParams({
+        category: category === "all" ? null : toSlug(category),
+        page: null, // reset to page 1
+      });
+    },
+    [pushParams]
+  );
 
   // Filter tools based on search term and category
   const filteredTools = useMemo(() => {
     let filtered = [...toolsData];
 
-    // Filter by category
+    // Filter by category (supports array categories)
     if (selectedCategory !== "all") {
-      filtered = filtered.filter(
-        (tool) => (tool.category || "General") === selectedCategory,
-      );
+      filtered = filtered.filter((tool) => {
+        const toolCats = Array.isArray(tool.categories)
+          ? tool.categories
+          : [tool.category || "General"];
+        return toolCats.includes(selectedCategory);
+      });
     }
 
     // Filter by search term
@@ -47,7 +103,7 @@ const ParentTools = () => {
       filtered = filtered.filter(
         (tool) =>
           tool.title.toLowerCase().includes(term) ||
-          tool.description.toLowerCase().includes(term),
+          tool.description.toLowerCase().includes(term)
       );
     }
 
@@ -75,40 +131,36 @@ const ParentTools = () => {
         pages.push(i);
       }
     } else {
-      // Always include 1
       pages.push(1);
-
       const start = Math.max(2, activePage - 1);
       const end = Math.min(totalPages - 1, activePage + 1);
-
-      if (start > 2) {
-        pages.push("...");
-      }
-
-      for (let i = start; i <= end; i++) {
-        pages.push(i);
-      }
-
-      if (end < totalPages - 1) {
-        pages.push("...");
-      }
-
-      // Always include last page
+      if (start > 2) pages.push("...");
+      for (let i = start; i <= end; i++) pages.push(i);
+      if (end < totalPages - 1) pages.push("...");
       pages.push(totalPages);
     }
     return pages;
   };
 
   const handlePageChange = (page) => {
-    setCurrentPage(page);
+    pushParams({ page: page === 1 ? null : page });
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
 
-  // Get category counts
+  // Get category counts (supports array categories)
   const getCategoryCount = (category) => {
     if (category === "all") return toolsData.length;
-    return toolsData.filter((tool) => (tool.category || "General") === category)
-      .length;
+    return toolsData.filter((tool) => {
+      const toolCats = Array.isArray(tool.categories)
+        ? tool.categories
+        : [tool.category || "General"];
+      return toolCats.includes(category);
+    }).length;
+  };
+
+  const handleClearFilters = () => {
+    setSearchTerm("");
+    pushParams({ category: null, page: null });
   };
 
   return (
@@ -131,10 +183,8 @@ const ParentTools = () => {
           {categories.map((category) => (
             <button
               key={category}
-              onClick={() => {
-                setSelectedCategory(category);
-                setCurrentPage(1);
-              }}
+              id={`category-btn-${toSlug(category)}`}
+              onClick={() => handleCategoryChange(category)}
               className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 border cursor-pointer ${
                 selectedCategory === category
                   ? "bg-brandColor text-white border-brandColor"
@@ -154,6 +204,7 @@ const ParentTools = () => {
             </button>
           ))}
         </div>
+
         {/* Tools Grid */}
         {filteredTools.length > 0 ? (
           <div className="flex flex-col gap-8">
@@ -185,11 +236,7 @@ const ParentTools = () => {
                 tools
                 {(searchTerm || selectedCategory !== "all") && (
                   <button
-                    onClick={() => {
-                      setSearchTerm("");
-                      setSelectedCategory("all");
-                      setCurrentPage(1);
-                    }}
+                    onClick={handleClearFilters}
                     className="ml-3 text-blue-600 dark:text-blue-400 hover:text-blue-800 dark:hover:text-blue-300 underline cursor-pointer"
                   >
                     Clear filters

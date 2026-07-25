@@ -18,7 +18,8 @@ function scoreMatch(tool, query) {
   if (!q) return 0;
 
   const title = tool.title.toLowerCase();
-  const category = tool.category.toLowerCase();
+  const toolCats = Array.isArray(tool.categories) ? tool.categories : [tool.category || 'General'];
+  const category = toolCats.join(' ').toLowerCase();
   const description = tool.description.toLowerCase();
   const keywords = tool.keywords || [];
 
@@ -154,8 +155,9 @@ export default function GlobalSearchModal() {
   if (!open) return null;
 
   const grouped = results.reduce((acc, tool) => {
-    if (!acc[tool.category]) acc[tool.category] = [];
-    acc[tool.category].push(tool);
+    const primaryCat = (Array.isArray(tool.categories) ? tool.categories[0] : tool.category) || 'General';
+    if (!acc[primaryCat]) acc[primaryCat] = [];
+    acc[primaryCat].push(tool);
     return acc;
   }, {});
 
@@ -335,7 +337,7 @@ function ToolRow({ tool, index, active, onSelect, onHover }) {
               "transform 180ms ease, opacity 180ms ease, color 180ms ease",
           }}
         >
-          {tool.category}
+          {(Array.isArray(tool.categories) ? tool.categories : [tool.category || 'General']).join(' / ')}
         </span>
 
         {/* Arrow - fades + slides in from the right */}
