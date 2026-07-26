@@ -1431,5 +1431,28 @@
       "Design",
       "Productivity"
     ]
+  },
+  {
+    "title": "GIF Maker",
+    "link": "/tools/gif-maker",
+    "description": "Create animated GIFs from multiple images entirely in your browser. Upload frames, drag to reorder, set per-frame delays, choose output size and quality, enable ping-pong loops, dithering, transparency and more. No server uploads — 100% private.",
+    "icon": "Film",
+    "keywords": [
+      "gif maker",
+      "create gif",
+      "animated gif",
+      "gif creator online",
+      "image to gif",
+      "free gif maker",
+      "animated image maker",
+      "gif from photos",
+      "gif animation",
+      "make gif online"
+    ],
+    "categories": [
+      "Image",
+      "Design",
+      "Media"
+    ]
   }
 ]
