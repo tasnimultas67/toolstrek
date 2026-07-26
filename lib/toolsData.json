@@ -1386,5 +1386,27 @@
       "Travel",
       "Productivity"
     ]
+  },
+  {
+    "title": "Travel Budget Splitter",
+    "link": "/tools/travel-budget-splitter",
+    "description": "Plan, track, and split travel expenses with group members. Supports customizable travel categories, budget limits, multi-currency conversion, custom exchange rates, complex split rules (equal, weights, percentages, unequal, exclusions), debt simplification settlement, and PDF export.",
+    "icon": "Wallet",
+    "keywords": [
+      "travel budget splitter",
+      "split trip bills",
+      "group travel expense calculator",
+      "trip budget planner",
+      "debt simplification",
+      "who owes who",
+      "travel cost calculator",
+      "split expenses with friends",
+      "travel budgeting tool"
+    ],
+    "categories": [
+      "Travel",
+      "Calculator",
+      "Finance"
+    ]
   }
 ]
