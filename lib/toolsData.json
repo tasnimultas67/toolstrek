@@ -1363,5 +1363,28 @@
       "Calculator",
       "Productivity"
     ]
+  },
+  {
+    "title": "Packing List Generator",
+    "link": "/tools/packing-list-generator",
+    "description": "Build a fully customizable travel packing checklist with collapsible categories, priority levels (High / Medium / Low), add/edit/delete items and categories, trip settings (name, destination, dates, travelers, trip type), mark-all / clear-all, filter by packed/unpacked, and one-click PDF export.",
+    "icon": "Luggage",
+    "keywords": [
+      "packing list generator",
+      "travel checklist",
+      "travel packing list",
+      "trip packing planner",
+      "packing list PDF",
+      "travel organizer",
+      "luggage checklist",
+      "vacation packing list",
+      "customizable packing list",
+      "travel tool",
+      "productivity"
+    ],
+    "categories": [
+      "Travel",
+      "Productivity"
+    ]
   }
 ]
