@@ -1408,5 +1408,28 @@
       "Calculator",
       "Finance"
     ]
+  },
+  {
+    "title": "Image Resizer",
+    "link": "/tools/image-resizer",
+    "description": "Resize your images online for free. Adjust dimensions using pixels or percentages, lock aspect ratios, and choose from popular social media presets. Supports advanced canvas scaling (Fill/Crop, Fit/Pad, Stretch), quality controls, rotation, flipping, and formats like PNG, JPEG, and WebP.",
+    "icon": "Image",
+    "keywords": [
+      "image resizer",
+      "resize image online",
+      "resize photo",
+      "crop image",
+      "social media image sizes",
+      "aspect ratio lock",
+      "image compressor",
+      "convert image",
+      "photo crop",
+      "picture resizer"
+    ],
+    "categories": [
+      "Image",
+      "Design",
+      "Productivity"
+    ]
   }
 ]
