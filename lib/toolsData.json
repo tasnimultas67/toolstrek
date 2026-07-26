@@ -1,5 +1,27 @@
 [
   {
+    "title": "Text Analyzer Hub",
+    "link": "/tools/text-analyzer-hub",
+    "description": "An all-in-one text processing utility hub. Analyze character, word, sentence, and line counts. Perform advanced case conversions, text cleanup (duplicate/empty line removal), find & replace with regular expressions, and base64/hex/binary/url encoding and decoding.",
+    "icon": "FileText",
+    "keywords": [
+      "text analyzer",
+      "word counter",
+      "character counter",
+      "line counter",
+      "case converter",
+      "text cleaner",
+      "find and replace",
+      "base64 encoder",
+      "url encoder",
+      "text formatter",
+      "productivity"
+    ],
+    "categories": [
+      "Productivity"
+    ]
+  },
+  {
     "title": "Email to PDF Converter",
     "link": "/tools/email-to-pdf",
     "description": "Convert EML email files to high-quality PDF documents right in your browser. Configure paper size (A4, Letter, A3), orientation, margins, headers toggle, font styles, and color modes, while extracting and downloading attachments.",
