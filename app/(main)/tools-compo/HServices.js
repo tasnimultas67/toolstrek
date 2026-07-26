@@ -43,6 +43,9 @@ const HServices = () => {
     >
       <div className="w-11/12 mx-auto">
         <div className="mb-16 text-center">
+          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wider text-brandColor uppercase bg-brandColor/10 rounded-full">
+            Browse by Tools
+          </span>
           <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
             Powerful simple tools
           </h2>
@@ -56,7 +59,12 @@ const HServices = () => {
             .slice(0, cardsToShow)
             .reverse()
             .map((tool, index) => (
-              <ToolsCard key={tool.id || index} index={index} {...tool} lastUsed={formatRelativeTime(recentToolsMap[tool.link])} />
+              <ToolsCard
+                key={tool.id || index}
+                index={index}
+                {...tool}
+                lastUsed={formatRelativeTime(recentToolsMap[tool.link])}
+              />
             ))}
         </div>
         <div className="mt-10 flex items-center justify-center">

@@ -1,5 +1,6 @@
 import Hero from "./tools-compo/Hero";
 import HServices from "./tools-compo/HServices";
+import HCategories from "./tools-compo/HCategories";
 import { Suspense } from "react";
 import HeroSkeleton from "./tools-compo/Home-Compo/HeroSkeleton";
 import {
@@ -69,6 +70,9 @@ export default function Home() {
 
       {/* Services Section */}
       <HServices />
+
+      {/* Categories Section */}
+      <HCategories />
 
       {/* Modern Why Choose Us Section */}
       <section className="relative py-24 overflow-hidden ">
