@@ -1454,5 +1454,28 @@
       "Design",
       "Media"
     ]
+  },
+  {
+    "title": "Bra Size Calculator",
+    "link": "/tools/bra-size-calculator",
+    "description": "Calculate your professional and accurate bra size using the gold-standard r/ABraThatFits 6-measurement algorithm or standard basic sizing. Supports international conversions, sister sizing, shape adjustments, AMAB trans-inclusive sizing, and features an interactive SVG visualizer with exportable PDF fit reports.",
+    "icon": "Ruler",
+    "keywords": [
+      "bra size calculator",
+      "bra fitting calculator",
+      "a bra that fits",
+      "cup size calculator",
+      "breast size calculator",
+      "sister sizes finder",
+      "bra sizing converter",
+      "how to measure bra size",
+      "professional bra fitting",
+      "health",
+      "wellness"
+    ],
+    "categories": [
+      "Calculator",
+      "Health"
+    ]
   }
 ]
