@@ -1545,5 +1545,26 @@
       "Productivity",
       "Writing"
     ]
+  },
+  {
+    "title": "Roman Numeral Converter",
+    "link": "/tools/roman-numeral-converter",
+    "description": "Convert numbers to Roman numerals and back with ease. Features real-time conversion, step-by-step mathematical breakdown, interactive Roman keyboard, historical presets, and a detailed reference cheat sheet.",
+    "icon": "Hash",
+    "keywords": [
+      "roman numeral converter",
+      "roman numerals",
+      "arabic to roman",
+      "roman to arabic",
+      "roman numeral translator",
+      "roman numbers",
+      "math converter",
+      "roman digit calculator"
+    ],
+    "categories": [
+      "Utility",
+      "Productivity",
+      "Education"
+    ]
   }
 ]
