@@ -7,6 +7,99 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
 
+// Hero content per category
+const CATEGORY_CONTENT = {
+  all: {
+    title: "Powerful simple tools",
+    description: "Everything you need to stay productive, all in one place.",
+  },
+  Calculator: {
+    title: "Smart Calculators",
+    description:
+      "Crunch numbers effortlessly — from BMI and EMI to savings and unit conversions.",
+  },
+  Design: {
+    title: "Design Tools",
+    description:
+      "Craft beautiful gradients, palettes, and visual assets with ease.",
+  },
+  Developer: {
+    title: "Developer Utilities",
+    description:
+      "Essential tools for coders — format, validate, encode, and debug faster.",
+  },
+  Education: {
+    title: "Education Tools",
+    description:
+      "Learn smarter with CGPA calculators, schedule makers, and more.",
+  },
+  Finance: {
+    title: "Finance Tools",
+    description:
+      "Plan budgets, split costs, and calculate finances with confidence.",
+  },
+  Fun: {
+    title: "Fun & Entertainment",
+    description:
+      "Explore playful tools — from zodiac signs to love compatibility tests.",
+  },
+  Health: {
+    title: "Health & Wellness Tools",
+    description:
+      "Track, calculate, and monitor your health metrics with ease.",
+  },
+  Image: {
+    title: "Image Tools",
+    description:
+      "Resize, convert, extract colors, and manipulate images in seconds.",
+  },
+  Media: {
+    title: "Media Tools",
+    description:
+      "Convert, compress, and manage audio and video files effortlessly.",
+  },
+  PDF: {
+    title: "PDF Tools",
+    description:
+      "Merge, split, compress, convert, and manage PDF files effortlessly.",
+  },
+  Productivity: {
+    title: "Productivity Tools",
+    description:
+      "Stay organized and efficient with tools that streamline your workflow.",
+  },
+  "QR Code": {
+    title: "QR Code Tools",
+    description:
+      "Generate and scan QR codes for links, Wi-Fi, and more instantly.",
+  },
+  Security: {
+    title: "Security & Privacy",
+    description:
+      "Test passwords, detect disposable emails, and keep your data safe.",
+  },
+  Text: {
+    title: "Text & Writing Tools",
+    description:
+      "Analyze, format, transform, and enhance your text with powerful utilities.",
+  },
+  Time: {
+    title: "Time & Date Tools",
+    description:
+      "Convert time zones, track days, and manage schedules effortlessly.",
+  },
+  Travel: {
+    title: "Travel Tools",
+    description:
+      "Plan trips, split budgets, and stay prepared wherever you go.",
+  },
+  Writing: {
+    title: "Writing Tools",
+    description:
+      "Polish your prose, generate dummy text, and enhance your writing.",
+  },
+};
+
 // Helper: category name → URL slug
 const toSlug = (cat) => cat.toLowerCase().replace(/\s+/g, "-");
 
@@ -170,11 +263,17 @@ const ParentTools = () => {
     >
       <div className="w-11/12 mx-auto relative">
         <div className="mb-10 md:mb-16">
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Powerful simple tools
+          <h2
+            key={selectedCategory + "-title"}
+            className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl animate-fadeIn"
+          >
+            {(CATEGORY_CONTENT[selectedCategory] || CATEGORY_CONTENT["all"]).title}
           </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            Everything you need to stay productive, all in one place.
+          <p
+            key={selectedCategory + "-desc"}
+            className="mt-4 text-lg text-gray-600 dark:text-gray-400 animate-fadeIn"
+          >
+            {(CATEGORY_CONTENT[selectedCategory] || CATEGORY_CONTENT["all"]).description}
           </p>
         </div>
 
