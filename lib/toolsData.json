@@ -1477,5 +1477,27 @@
       "Calculator",
       "Health"
     ]
+  },
+  {
+    "title": "Code Formatter & Beautifier",
+    "link": "/tools/code-formatter",
+    "description": "Format and beautify your source code instantly. Supports JavaScript, TypeScript, HTML, CSS, JSON, XML, and SQL with customizable indent sizing, theme support, line wrapping options, and direct file upload/download capabilities.",
+    "icon": "Code2",
+    "keywords": [
+      "code formatter",
+      "code beautifier",
+      "beautify javascript",
+      "format html",
+      "format css",
+      "format json",
+      "format sql",
+      "prettify code",
+      "xml beautifier",
+      "developer tools"
+    ],
+    "categories": [
+      "Developer",
+      "Productivity"
+    ]
   }
 ]
