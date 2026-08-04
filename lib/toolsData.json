@@ -1499,5 +1499,27 @@
       "Developer",
       "Productivity"
     ]
+  },
+  {
+    "title": "Paragraph Formatter",
+    "link": "/tools/paragraph-formatter",
+    "description": "Clean, format, and adjust alignments, line-spacings, case types, and styling of text paragraphs. Generate styled HTML or download clean text instantly.",
+    "icon": "AlignLeft",
+    "keywords": [
+      "paragraph formatter",
+      "text alignment",
+      "line spacing",
+      "paragraph spacing",
+      "case converter",
+      "clean paragraphs",
+      "text editor",
+      "writing assistant",
+      "remove extra spaces"
+    ],
+    "categories": [
+      "Productivity",
+      "Developer",
+      "Writing"
+    ]
   }
 ]
