@@ -1521,5 +1521,29 @@
       "Developer",
       "Writing"
     ]
+  },
+  {
+    "title": "NATO Phonetic Alphabet Converter",
+    "link": "/tools/nato-phonetic-converter",
+    "description": "Convert any text to the NATO phonetic alphabet (Alpha, Bravo, Charlie…) used by military, aviation, and emergency services worldwide. Features real-time conversion, character-by-character breakdown with pronunciations, bidirectional decoding, and a full interactive reference chart.",
+    "icon": "Radio",
+    "keywords": [
+      "nato phonetic alphabet",
+      "nato alphabet converter",
+      "phonetic alphabet translator",
+      "military alphabet",
+      "alpha bravo charlie",
+      "icao phonetic alphabet",
+      "text to nato",
+      "nato decoder",
+      "phonetic spelling",
+      "aviation alphabet",
+      "communication tool"
+    ],
+    "categories": [
+      "Utility",
+      "Productivity",
+      "Writing"
+    ]
   }
 ]
