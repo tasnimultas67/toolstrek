@@ -1566,5 +1566,28 @@
       "Productivity",
       "Education"
     ]
+  },
+  {
+    "title": "JWT Decoder",
+    "link": "/tools/jwt-decoder",
+    "description": "Decode and analyze JSON Web Tokens (JWT) in real-time. Inspect the header, payload, signature, and verify signatures using a custom secret or public key. Adheres to strict security checks.",
+    "icon": "ShieldCheck",
+    "keywords": [
+      "jwt decoder",
+      "jwt",
+      "json web token",
+      "decode jwt",
+      "jwt verify",
+      "jwt signature",
+      "jwt claims",
+      "jwt parser",
+      "token debugger",
+      "security tool"
+    ],
+    "categories": [
+      "Utility",
+      "Productivity",
+      "Developer"
+    ]
   }
 ]
