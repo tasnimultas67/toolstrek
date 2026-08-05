@@ -1611,5 +1611,28 @@
       "Productivity",
       "Developer"
     ]
+  },
+  {
+    "title": "SVG Editor & Visualizer",
+    "link": "/tools/svg-editor",
+    "description": "Create, edit, optimize, and preview SVG code in real-time. Featuring viewBox/dimension adjustment, a global color palette replacement system, SVG optimization/prettification, and flexible format exports.",
+    "icon": "FileCode",
+    "keywords": [
+      "svg editor",
+      "svg viewer",
+      "svg previewer",
+      "svg color changer",
+      "svg optimizer",
+      "svg formatter",
+      "svg creator",
+      "svg to png",
+      "vector editor",
+      "developer tools"
+    ],
+    "categories": [
+      "Developer",
+      "Design",
+      "Productivity"
+    ]
   }
 ]
