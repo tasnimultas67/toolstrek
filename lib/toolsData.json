@@ -954,6 +954,28 @@
     ]
   },
   {
+    "title": "Base64 Nexus",
+    "link": "/tools/base64-encoder-decoder",
+    "description": "A professional and feature-rich Base64 encoder and decoder. Supports standard Base64, URL-safe Base64, custom alphabets, file upload encoding, live previews of images/PDFs, detailed byte stats, and code snippet examples.",
+    "icon": "Shield",
+    "keywords": [
+      "base64 encoder",
+      "base64 decoder",
+      "base64 translator",
+      "base64 converter",
+      "urlsafe base64",
+      "base64 to image",
+      "image to base64",
+      "base64 custom alphabet",
+      "productivity",
+      "developer"
+    ],
+    "categories": [
+      "Productivity",
+      "Developer"
+    ]
+  },
+  {
     "title": "IP Checker",
     "link": "/tools/ip-checker",
     "description": "Inspect your public IP address or look up any IP address/domain to get detailed geolocation, network provider (ISP), timezone, local time, security flags, and an interactive map location.",
