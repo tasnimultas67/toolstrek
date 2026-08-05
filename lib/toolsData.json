@@ -1,5 +1,26 @@
 [
   {
+    "title": "Responsive Viewport Tester",
+    "link": "/tools/responsive-viewport",
+    "description": "Preview any website across 80+ real device viewports including iPhones, Android phones, tablets, laptops, desktops, TVs, and wearables. Check breakpoints, measure dimensions in px/em/rem/cm, inspect DPR, generate CSS media queries, and add custom device sizes.",
+    "icon": "ScreenShare",
+    "keywords": [
+      "responsive viewport tester",
+      "responsive design checker",
+      "mobile preview tool",
+      "device viewport simulator",
+      "screen size tester",
+      "breakpoint checker",
+      "responsive web design",
+      "CSS media query generator",
+      "DPR checker",
+      "developer tools"
+    ],
+    "categories": [
+      "Developer Tools"
+    ]
+  },
+  {
     "title": "Email Signature Editor",
     "link": "/tools/email-signature-editor",
     "description": "Create stunning professional email signatures online for free. Customize fonts, colors, layouts, social icons, profile photos, company logos, CTA buttons, legal disclaimers, and more. Export HTML for Gmail, Outlook, Apple Mail, Thunderbird, and Office 365.",
