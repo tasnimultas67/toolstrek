@@ -1,5 +1,29 @@
 [
   {
+    "title": "Email Signature Editor",
+    "link": "/tools/email-signature-editor",
+    "description": "Create stunning professional email signatures online for free. Customize fonts, colors, layouts, social icons, profile photos, company logos, CTA buttons, legal disclaimers, and more. Export HTML for Gmail, Outlook, Apple Mail, Thunderbird, and Office 365.",
+    "icon": "Mail",
+    "keywords": [
+      "email signature editor",
+      "email signature generator",
+      "professional email signature",
+      "html email signature",
+      "gmail signature maker",
+      "outlook signature generator",
+      "custom email signature",
+      "free email signature",
+      "email signature template",
+      "email signature with photo",
+      "business email signature",
+      "email signature design",
+      "productivity"
+    ],
+    "categories": [
+      "Productivity"
+    ]
+  },
+  {
     "title": "Text Analyzer Hub",
     "link": "/tools/text-analyzer-hub",
     "description": "An all-in-one text processing utility hub. Analyze character, word, sentence, and line counts. Perform advanced case conversions, text cleanup (duplicate/empty line removal), find & replace with regular expressions, and base64/hex/binary/url encoding and decoding.",
