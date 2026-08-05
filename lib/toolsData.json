@@ -1,5 +1,25 @@
 [
   {
+    "title": "Full Page Screenshot Tool",
+    "link": "/tools/full-page-screenshot",
+    "description": "Capture high-quality full-page screenshots of any website. Customize viewports, enforce minimum font sizes (12px on mobile, 14px on desktop), block cookie banners/ads, and download as PNG, JPG, PDF, or WebP.",
+    "icon": "Camera",
+    "keywords": [
+      "full page screenshot",
+      "website screenshot",
+      "webpage capture",
+      "convert website to pdf",
+      "convert website to image",
+      "screenshot api",
+      "responsive screenshot",
+      "developer tools"
+    ],
+    "categories": [
+      "Developer Tools",
+      "Productivity"
+    ]
+  },
+  {
     "title": "Responsive Viewport Tester",
     "link": "/tools/responsive-viewport",
     "description": "Preview any website across 80+ real device viewports including iPhones, Android phones, tablets, laptops, desktops, TVs, and wearables. Check breakpoints, measure dimensions in px/em/rem/cm, inspect DPR, generate CSS media queries, and add custom device sizes.",
