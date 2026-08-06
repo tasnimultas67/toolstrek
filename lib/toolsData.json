@@ -1699,5 +1699,25 @@
       "Design",
       "Productivity"
     ]
+  },
+  {
+    "title": "Bijoy ⇄ Unicode Converter",
+    "link": "/tools/bijoy-unicode-converter",
+    "description": "Convert Bengali text seamlessly between legacy Bijoy (SutonnyMJ/ANSI) and modern Unicode layouts. Includes support for SomewhereIn and Boishakhi keyboard formats, dynamic font scaling, file imports, character references, and instant downloads.",
+    "icon": "Languages",
+    "keywords": [
+      "bijoy to unicode",
+      "unicode to bijoy",
+      "sutonnymj converter",
+      "bangla font converter",
+      "avro converter",
+      "somewherein bangla",
+      "boishakhi converter",
+      "bangla text formatter"
+    ],
+    "categories": [
+      "Text",
+      "Productivity"
+    ]
   }
 ]
