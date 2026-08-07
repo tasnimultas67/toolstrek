@@ -1719,5 +1719,25 @@
       "Text",
       "Productivity"
     ]
+  },
+  {
+    "title": "Tip Calculator",
+    "link": "/tools/tip-calculator",
+    "description": "Calculate tips, split bills, rate service quality, apply tax/discounts, and split costs evenly or by custom shares. Keeps history stored locally and offers advanced calculation options.",
+    "icon": "UtensilsCrossed",
+    "keywords": [
+      "tip calculator",
+      "bill splitter",
+      "restaurant tip",
+      "split bill",
+      "gratuity calculator",
+      "dining cost",
+      "finance"
+    ],
+    "categories": [
+      "Calculator",
+      "Finance",
+      "Productivity"
+    ]
   }
 ]
