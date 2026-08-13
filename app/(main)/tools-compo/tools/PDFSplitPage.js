@@ -15,6 +15,20 @@ export default function PDFSplitPage() {
   const [isProcessing, setIsProcessing] = useState(false);
   const [downloadedFiles, setDownloadedFiles] = useState([]);
 
+  // Drag and Drop & Customization States
+  const [isDragging, setIsDragging] = useState(false);
+  const [rangeOutputMode, setRangeOutputMode] = useState("multiple"); // "multiple" or "single"
+  const [showAdvanced, setShowAdvanced] = useState(false);
+  const [filenamePattern, setFilenamePattern] = useState("{filename}_part_{range}");
+  const [zipFilenamePattern, setZipFilenamePattern] = useState("{filename}_split_archive");
+  const [pdfTitle, setPdfTitle] = useState("");
+  const [pdfAuthor, setPdfAuthor] = useState("");
+  const [pdfSubject, setPdfSubject] = useState("");
+  const [pdfKeywords, setPdfKeywords] = useState("");
+  const [pdfCreator, setPdfCreator] = useState("ToolsTrek");
+  const [autoDownload, setAutoDownload] = useState(false);
+  const [useObjectStreams, setUseObjectStreams] = useState(true);
+
   const handleFileUpload = useCallback((event) => {
     const file = event.target.files[0];
     if (file && file.type === "application/pdf") {
@@ -27,6 +41,15 @@ export default function PDFSplitPage() {
       setPdfFile(null);
     }
   }, []);
+
+  const formatFileName = (pattern, data) => {
+    let name = pattern;
+    for (const key in data) {
+      name = name.replaceAll(`{${key}}`, data[key]);
+    }
+    // Clean name from illegal characters
+    return name.replace(/[\\/:*?"<>|]/g, "_") + ".pdf";
+  };
 
   const processPageRange = (rangeStr, totalPages) => {
     const pages = new Set();
@@ -52,6 +75,51 @@ export default function PDFSplitPage() {
     return Array.from(pages).sort((a, b) => a - b);
   };
 
+  const applyMetadataAndSave = async (pdfDoc) => {
+    if (pdfTitle.trim()) pdfDoc.setTitle(pdfTitle.trim());
+    if (pdfAuthor.trim()) pdfDoc.setAuthor(pdfAuthor.trim());
+    if (pdfSubject.trim()) pdfDoc.setSubject(pdfSubject.trim());
+    if (pdfKeywords.trim()) {
+      pdfDoc.setKeywords(pdfKeywords.split(",").map((k) => k.trim()).filter(Boolean));
+    }
+    if (pdfCreator.trim()) pdfDoc.setCreator(pdfCreator.trim());
+    
+    return await pdfDoc.save({ useObjectStreams });
+  };
+
+  const downloadZIP = async (filesList, baseName) => {
+    setSplitStatus("Creating ZIP archive...");
+    try {
+      const zip = new JSZip();
+      for (const file of filesList) {
+        if (file.blob) {
+          zip.file(file.name, file.blob);
+        } else {
+          const response = await fetch(file.url);
+          const blob = await response.blob();
+          zip.file(file.name, blob);
+        }
+      }
+      const zipBlob = await zip.generateAsync({ type: "blob" });
+      const zipUrl = URL.createObjectURL(zipBlob);
+      const link = document.createElement("a");
+      link.href = zipUrl;
+      
+      const rawZipName = zipFilenamePattern || "{filename}_split_archive";
+      const zipNameFormatted = rawZipName.replaceAll("{filename}", baseName) + ".zip";
+      
+      link.download = zipNameFormatted;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(zipUrl);
+      setSplitStatus(`Successfully created ZIP archive with ${filesList.length} files!`);
+    } catch (error) {
+      console.error("Error creating ZIP:", error);
+      setSplitStatus(`Error creating ZIP: ${error.message}`);
+    }
+  };
+
   const extractPagesFromPDF = async () => {
     if (!pdfFile) {
       setSplitStatus("Please select a PDF file first.");
@@ -67,50 +135,30 @@ export default function PDFSplitPage() {
       const sourcePdf = await PDFDocument.load(sourcePdfBytes);
       const totalPages = sourcePdf.getPageCount();
 
-      let pagesToExtract = [];
-
-      if (splitMode === "range") {
-        if (!pageRange.trim()) {
-          setSplitStatus("Please enter page range.");
-          setIsProcessing(false);
-          return;
-        }
-        pagesToExtract = processPageRange(pageRange, totalPages);
-        if (pagesToExtract.length === 0) {
-          setSplitStatus("Invalid page range. Please check your input.");
-          setIsProcessing(false);
-          return;
-        }
-      } else if (splitMode === "extract") {
-        if (!extractPages.trim()) {
-          setSplitStatus("Please enter page numbers to extract.");
-          setIsProcessing(false);
-          return;
-        }
-        pagesToExtract = processPageRange(extractPages, totalPages);
-        if (pagesToExtract.length === 0) {
-          setSplitStatus("Invalid page numbers. Please check your input.");
-          setIsProcessing(false);
-          return;
-        }
-      } else if (splitMode === "each") {
-        pagesToExtract = Array.from({ length: totalPages }, (_, i) => i + 1);
-      }
+      const files = [];
 
       if (splitMode === "each") {
-        // Create separate PDF for each page
-        const files = [];
-        for (const pageNum of pagesToExtract) {
+        const pagesToExtract = Array.from({ length: totalPages }, (_, i) => i + 1);
+        for (let i = 0; i < pagesToExtract.length; i++) {
+          const pageNum = pagesToExtract[i];
           const newPdf = await PDFDocument.create();
           const [copiedPage] = await newPdf.copyPages(sourcePdf, [pageNum - 1]);
           newPdf.addPage(copiedPage);
-          const pdfBytes = await newPdf.save();
+          const pdfBytes = await applyMetadataAndSave(newPdf);
 
           const blob = new Blob([pdfBytes], { type: "application/pdf" });
           const url = URL.createObjectURL(blob);
+          const formattedName = formatFileName(filenamePattern || "{filename}_page_{page}", {
+            filename: fileName,
+            range: pageNum.toString(),
+            index: (i + 1).toString(),
+            page: pageNum.toString(),
+            total_pages: totalPages.toString(),
+          });
+          
           files.push({
             url,
-            name: `${fileName}_page_${pageNum}.pdf`,
+            name: formattedName,
             pageNumber: pageNum,
             blob: blob,
           });
@@ -119,28 +167,124 @@ export default function PDFSplitPage() {
         setSplitStatus(
           `Successfully split ${totalPages} pages into ${files.length} separate PDF files.`,
         );
+      } else if (splitMode === "range" && rangeOutputMode === "multiple") {
+        if (!pageRange.trim()) {
+          setSplitStatus("Please enter page range.");
+          setIsProcessing(false);
+          return;
+        }
+
+        const rangeParts = pageRange.split(",").map((p) => p.trim()).filter(Boolean);
+        if (rangeParts.length === 0) {
+          setSplitStatus("Invalid page range. Please check your input.");
+          setIsProcessing(false);
+          return;
+        }
+
+        for (let i = 0; i < rangeParts.length; i++) {
+          const part = rangeParts[i];
+          const partPages = processPageRange(part, totalPages);
+          if (partPages.length === 0) continue; // Skip invalid parts
+
+          const newPdf = await PDFDocument.create();
+          const pagesToCopy = partPages.map((pageNum) => pageNum - 1);
+          const copiedPages = await newPdf.copyPages(sourcePdf, pagesToCopy);
+          copiedPages.forEach((page) => newPdf.addPage(page));
+          const pdfBytes = await applyMetadataAndSave(newPdf);
+
+          const blob = new Blob([pdfBytes], { type: "application/pdf" });
+          const url = URL.createObjectURL(blob);
+          const formattedName = formatFileName(filenamePattern || "{filename}_range_{range}", {
+            filename: fileName,
+            range: part.replace(/\s+/g, ""),
+            index: (i + 1).toString(),
+            page: part.replace(/\s+/g, ""),
+            total_pages: totalPages.toString(),
+          });
+
+          files.push({
+            url,
+            name: formattedName,
+            rangeText: part,
+            blob: blob,
+          });
+        }
+
+        if (files.length === 0) {
+          setSplitStatus("No pages matched the specified ranges.");
+          setIsProcessing(false);
+          return;
+        }
+
+        setDownloadedFiles(files);
+        setSplitStatus(`Successfully split into ${files.length} PDF files by range.`);
       } else {
-        // Create single PDF with selected pages
+        // Single PDF extraction (for single range or extract mode)
+        let pagesToExtract = [];
+        let rawRangeInput = "";
+
+        if (splitMode === "range") {
+          if (!pageRange.trim()) {
+            setSplitStatus("Please enter page range.");
+            setIsProcessing(false);
+            return;
+          }
+          pagesToExtract = processPageRange(pageRange, totalPages);
+          rawRangeInput = pageRange;
+        } else if (splitMode === "extract") {
+          if (!extractPages.trim()) {
+            setSplitStatus("Please enter page numbers to extract.");
+            setIsProcessing(false);
+            return;
+          }
+          pagesToExtract = processPageRange(extractPages, totalPages);
+          rawRangeInput = extractPages;
+        }
+
+        if (pagesToExtract.length === 0) {
+          setSplitStatus("Invalid pages. Please check your input.");
+          setIsProcessing(false);
+          return;
+        }
+
         const newPdf = await PDFDocument.create();
         const pagesToCopy = pagesToExtract.map((pageNum) => pageNum - 1);
         const copiedPages = await newPdf.copyPages(sourcePdf, pagesToCopy);
         copiedPages.forEach((page) => newPdf.addPage(page));
-        const pdfBytes = await newPdf.save();
+        const pdfBytes = await applyMetadataAndSave(newPdf);
 
         const blob = new Blob([pdfBytes], { type: "application/pdf" });
         const url = URL.createObjectURL(blob);
         const rangeText = pagesToExtract.length === 1 ? "page" : "pages";
-        setDownloadedFiles([
-          {
-            url,
-            name: `${fileName}_extracted_${pagesToExtract.length}_${rangeText}.pdf`,
-            pageCount: pagesToExtract.length,
-            blob: blob,
-          },
-        ]);
-        setSplitStatus(
-          `Successfully extracted ${pagesToExtract.length} ${rangeText}.`,
-        );
+        
+        const cleanRangeText = rawRangeInput.replace(/,/g, "_").replace(/\s/g, "");
+        const formattedName = formatFileName(filenamePattern || "{filename}_split_{range}", {
+          filename: fileName,
+          range: cleanRangeText,
+          index: "1",
+          page: cleanRangeText,
+          total_pages: totalPages.toString(),
+        });
+
+        const singleFile = {
+          url,
+          name: formattedName,
+          pageCount: pagesToExtract.length,
+          blob: blob,
+        };
+
+        files.push(singleFile);
+        setDownloadedFiles(files);
+        setSplitStatus(`Successfully extracted ${pagesToExtract.length} ${rangeText}.`);
+      }
+
+      // Auto-download handling
+      if (autoDownload && files.length > 0) {
+        if (files.length === 1) {
+          handleDownload(files[0]);
+        } else {
+          await downloadZIP(files, fileName);
+        }
       }
     } catch (error) {
       console.error("Error splitting PDF:", error);
@@ -173,46 +317,7 @@ export default function PDFSplitPage() {
       return;
     }
 
-    setSplitStatus("Creating ZIP archive...");
-
-    try {
-      const zip = new JSZip();
-
-      for (const file of downloadedFiles) {
-        if (file.blob) {
-          zip.file(file.name, file.blob);
-        } else {
-          const response = await fetch(file.url);
-          const blob = await response.blob();
-          zip.file(file.name, blob);
-        }
-      }
-
-      const zipBlob = await zip.generateAsync({ type: "blob" });
-
-      const zipUrl = URL.createObjectURL(zipBlob);
-      const link = document.createElement("a");
-      link.href = zipUrl;
-      link.download = `${fileName}_split_files.zip`;
-      document.body.appendChild(link);
-      link.click();
-      document.body.removeChild(link);
-
-      URL.revokeObjectURL(zipUrl);
-
-      setSplitStatus(
-        `Successfully created ZIP archive with ${downloadedFiles.length} files!`,
-      );
-
-      setTimeout(() => {
-        if (splitStatus.includes("ZIP archive")) {
-          setSplitStatus("");
-        }
-      }, 3000);
-    } catch (error) {
-      console.error("Error creating ZIP:", error);
-      setSplitStatus(`Error creating ZIP: ${error.message}`);
-    }
+    await downloadZIP(downloadedFiles, fileName);
   };
 
   const clearAll = () => {
@@ -256,9 +361,33 @@ export default function PDFSplitPage() {
               </label>
               <div className="flex items-center justify-center w-full">
                 <label
-                  className={`flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-200 ${
+                  onDragOver={(e) => {
+                    e.preventDefault();
+                    setIsDragging(true);
+                  }}
+                  onDragLeave={(e) => {
+                    e.preventDefault();
+                    setIsDragging(false);
+                  }}
+                  onDrop={(e) => {
+                    e.preventDefault();
+                    setIsDragging(false);
+                    const file = e.dataTransfer.files[0];
+                    if (file && file.type === "application/pdf") {
+                      setPdfFile(file);
+                      setFileName(file.name.replace(".pdf", ""));
+                      setSplitStatus("");
+                      setDownloadedFiles([]);
+                    } else {
+                      setSplitStatus("Please upload a valid PDF file.");
+                      setPdfFile(null);
+                    }
+                  }}
+                  className={`flex flex-col items-center justify-center w-full h-40 border-2 border-dashed rounded-xl cursor-pointer transition-all duration-300 ${
                     pdfFile
                       ? "border-green-400 bg-green-50 dark:border-green-500/50 dark:bg-green-950/30"
+                      : isDragging
+                      ? "border-blue-500 bg-blue-50/50 dark:border-blue-400 dark:bg-blue-950/40 scale-[1.01] shadow-lg animate-pulse"
                       : "border-gray-300 bg-gray-50 hover:bg-gray-100 dark:border-slate-600 dark:bg-slate-700/50 dark:hover:bg-slate-700"
                   }`}
                 >
@@ -406,22 +535,65 @@ export default function PDFSplitPage() {
 
             {/* Page Range Input */}
             {pdfFile && splitMode === "range" && (
-              <div className="mb-8">
-                <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
-                  📝 Page Range
-                </label>
-                <input
-                  type="text"
-                  value={pageRange}
-                  onChange={(e) => setPageRange(e.target.value)}
-                  placeholder="e.g., 1-5, 8, 10-15"
-                  className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
-                  disabled={isProcessing}
-                />
-                <p className="text-xs text-gray-500 mt-2 dark:text-slate-400">
-                  💡 Enter page numbers or ranges separated by commas. Example:
-                  1-5, 8, 10-15
-                </p>
+              <div className="mb-8 space-y-4">
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
+                    📝 Page Range
+                  </label>
+                  <input
+                    type="text"
+                    value={pageRange}
+                    onChange={(e) => setPageRange(e.target.value)}
+                    placeholder="e.g., 33-35, 36-43, 44-49"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200 dark:placeholder:text-slate-400 dark:focus:ring-blue-400"
+                    disabled={isProcessing}
+                  />
+                  <p className="text-xs text-gray-500 mt-2 dark:text-slate-400">
+                    💡 Enter page numbers or ranges separated by commas. Example: 33-35, 36-43, 44-49
+                  </p>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2 dark:text-slate-300">
+                    📂 Export Options
+                  </label>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setRangeOutputMode("multiple")}
+                      className={`p-3 rounded-xl border-2 text-left transition-all duration-200 flex items-start gap-3 ${
+                        rangeOutputMode === "multiple"
+                          ? "border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-950/30"
+                          : "border-gray-200 hover:border-gray-300 dark:border-slate-700 dark:hover:border-slate-600 dark:text-slate-300"
+                      }`}
+                    >
+                      <div className="mt-0.5 font-bold">📂</div>
+                      <div>
+                        <div className="font-semibold text-sm dark:text-slate-200">Split into Multiple PDFs</div>
+                        <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">
+                          Creates a separate file for each range (e.g. 33-35.pdf, 36-43.pdf)
+                        </p>
+                      </div>
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => setRangeOutputMode("single")}
+                      className={`p-3 rounded-xl border-2 text-left transition-all duration-200 flex items-start gap-3 ${
+                        rangeOutputMode === "single"
+                          ? "border-blue-500 bg-blue-50 dark:border-blue-400 dark:bg-blue-950/30"
+                          : "border-gray-200 hover:border-gray-300 dark:border-slate-700 dark:hover:border-slate-600 dark:text-slate-300"
+                      }`}
+                    >
+                      <div className="mt-0.5 font-bold">📄</div>
+                      <div>
+                        <div className="font-semibold text-sm dark:text-slate-200">Merge into Single PDF</div>
+                        <p className="text-xs text-gray-500 dark:text-slate-400 mt-0.5">
+                          Combines all selected ranges into one file containing all pages
+                        </p>
+                      </div>
+                    </button>
+                  </div>
+                </div>
               </div>
             )}
 
@@ -486,6 +658,180 @@ export default function PDFSplitPage() {
                     "Split PDF Now"
                   )}
                 </button>
+              </div>
+            )}
+
+            {/* Advanced Options Section */}
+            {pdfFile && (
+              <div className="mb-8 border border-gray-200 rounded-xl overflow-hidden dark:border-slate-700 bg-gray-50/50 dark:bg-slate-900/10">
+                <button
+                  type="button"
+                  onClick={() => setShowAdvanced(!showAdvanced)}
+                  className="w-full flex items-center justify-between p-4 font-semibold text-gray-700 dark:text-slate-300 hover:bg-gray-100/50 dark:hover:bg-slate-800/30 transition-all"
+                >
+                  <div className="flex items-center gap-2">
+                    <span>⚙️</span>
+                    <span>Advanced Customization Options</span>
+                  </div>
+                  <svg
+                    className={`w-5 h-5 transform transition-transform duration-200 ${
+                      showAdvanced ? "rotate-180" : ""
+                    }`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {showAdvanced && (
+                  <div className="p-5 border-t border-gray-200 dark:border-slate-700 bg-white dark:bg-slate-800/40 space-y-6">
+                    {/* Filename Patterns */}
+                    <div>
+                      <h4 className="text-sm font-bold text-gray-800 dark:text-slate-200 mb-3 flex items-center gap-1.5">
+                        <span>📝</span> File Naming Customization
+                      </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-medium text-gray-500 mb-1.5 dark:text-slate-400">
+                            PDF Filename Pattern
+                          </label>
+                          <input
+                            type="text"
+                            value={filenamePattern}
+                            onChange={(e) => setFilenamePattern(e.target.value)}
+                            placeholder="{filename}_part_{range}"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
+                          />
+                          <p className="text-[10px] text-gray-400 mt-1">
+                            Available: <code className="bg-gray-100 dark:bg-slate-800 px-1 rounded">{"{filename}"}</code>, <code className="bg-gray-100 dark:bg-slate-800 px-1 rounded">{"{range}"}</code>, <code className="bg-gray-100 dark:bg-slate-800 px-1 rounded">{"{index}"}</code>, <code className="bg-gray-100 dark:bg-slate-800 px-1 rounded">{"{page}"}</code>, <code className="bg-gray-100 dark:bg-slate-800 px-1 rounded">{"{total_pages}"}</code>
+                          </p>
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-gray-500 mb-1.5 dark:text-slate-400">
+                            ZIP Archive Name Pattern
+                          </label>
+                          <input
+                            type="text"
+                            value={zipFilenamePattern}
+                            onChange={(e) => setZipFilenamePattern(e.target.value)}
+                            placeholder="{filename}_split_archive"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
+                          />
+                          <p className="text-[10px] text-gray-400 mt-1">
+                            Available: <code className="bg-gray-100 dark:bg-slate-800 px-1 rounded">{"{filename}"}</code>
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* PDF Document Metadata */}
+                    <div className="border-t pt-4 border-gray-200 dark:border-slate-700">
+                      <h4 className="text-sm font-bold text-gray-800 dark:text-slate-200 mb-3 flex items-center gap-1.5">
+                        <span>🏷️</span> Output PDF Metadata
+                      </h4>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                          <label className="block text-xs font-medium text-gray-500 mb-1.5 dark:text-slate-400">
+                            Title
+                          </label>
+                          <input
+                            type="text"
+                            value={pdfTitle}
+                            onChange={(e) => setPdfTitle(e.target.value)}
+                            placeholder="e.g. My Document"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-gray-500 mb-1.5 dark:text-slate-400">
+                            Author
+                          </label>
+                          <input
+                            type="text"
+                            value={pdfAuthor}
+                            onChange={(e) => setPdfAuthor(e.target.value)}
+                            placeholder="e.g. John Doe"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-gray-500 mb-1.5 dark:text-slate-400">
+                            Subject
+                          </label>
+                          <input
+                            type="text"
+                            value={pdfSubject}
+                            onChange={(e) => setPdfSubject(e.target.value)}
+                            placeholder="e.g. Document Chapter"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-medium text-gray-500 mb-1.5 dark:text-slate-400">
+                            Keywords (comma-separated)
+                          </label>
+                          <input
+                            type="text"
+                            value={pdfKeywords}
+                            onChange={(e) => setPdfKeywords(e.target.value)}
+                            placeholder="e.g. invoice, split, pdf"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
+                          />
+                        </div>
+                        <div className="md:col-span-2">
+                          <label className="block text-xs font-medium text-gray-500 mb-1.5 dark:text-slate-400">
+                            Creator Application
+                          </label>
+                          <input
+                            type="text"
+                            value={pdfCreator}
+                            onChange={(e) => setPdfCreator(e.target.value)}
+                            placeholder="ToolsTrek"
+                            className="w-full px-3 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600 dark:text-slate-200"
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Behavior and Saving Options */}
+                    <div className="border-t pt-4 border-gray-200 dark:border-slate-700">
+                      <h4 className="text-sm font-bold text-gray-800 dark:text-slate-200 mb-3 flex items-center gap-1.5">
+                        <span>⚙️</span> Processing Options
+                      </h4>
+                      <div className="flex flex-col gap-3">
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={autoDownload}
+                            onChange={(e) => setAutoDownload(e.target.checked)}
+                            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600"
+                          />
+                          <span className="text-sm text-gray-700 dark:text-slate-300">
+                            Automatically download files after processing (ZIP for multiple files)
+                          </span>
+                        </label>
+                        <label className="flex items-center gap-2 cursor-pointer">
+                          <input
+                            type="checkbox"
+                            checked={useObjectStreams}
+                            onChange={(e) => setUseObjectStreams(e.target.checked)}
+                            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500 dark:bg-slate-700 dark:border-slate-600"
+                          />
+                          <span className="text-sm text-gray-700 dark:text-slate-300">
+                            Enable Object Stream compression (smaller output size)
+                          </span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             )}
 
@@ -583,10 +929,12 @@ export default function PDFSplitPage() {
                           <p className="text-sm font-medium text-gray-900 truncate dark:text-slate-200">
                             {file.name}
                           </p>
-                          {(file.pageNumber || file.pageCount) && (
+                          {(file.pageNumber || file.pageCount || file.rangeText) && (
                             <p className="text-xs text-gray-500 mt-0.5 dark:text-slate-400">
                               {file.pageNumber
                                 ? `Page ${file.pageNumber}`
+                                : file.rangeText
+                                ? `Range: ${file.rangeText}`
                                 : `${file.pageCount} pages`}
                             </p>
                           )}
@@ -615,7 +963,7 @@ export default function PDFSplitPage() {
                     1.
                   </span>
                   <span className="text-gray-700 dark:text-slate-300">
-                    Upload your PDF file
+                    Upload your PDF file (via click or drag & drop)
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
@@ -623,7 +971,7 @@ export default function PDFSplitPage() {
                     2.
                   </span>
                   <span className="text-gray-700 dark:text-slate-300">
-                    Choose split mode and enter pages
+                    Choose split mode, enter page range & output type
                   </span>
                 </div>
                 <div className="flex items-start gap-2">
@@ -631,17 +979,12 @@ export default function PDFSplitPage() {
                     3.
                   </span>
                   <span className="text-gray-700 dark:text-slate-300">
-                    Click &quot;Split PDF Now&quot; and download
+                    Customize Advanced settings if needed & click Split
                   </span>
                 </div>
               </div>
               <div className="mt-3 text-xs text-gray-600 bg-white/50 p-3 rounded-lg dark:bg-slate-800/50 dark:text-slate-400">
-                <strong>💡 Pro tip:</strong> Use &quot;Page Range&quot; for
-                continuous sections, &quot;Extract Pages&quot; for specific
-                pages, or &quot;Split Each Page&quot; to separate every page
-                into individual PDFs. When splitting multiple pages, use
-                &quot;Download All as ZIP&quot; to get all files in a single
-                compressed archive.
+                <strong>💡 Pro tip:</strong> Use &quot;Page Range&quot; to split by range, and select whether to output separate PDF files for each range or merge them. Use the collapsible &quot;Advanced Customization Options&quot; panel to change filename naming pattern templates (e.g. using <code>{"{filename}"}</code>, <code>{"{range}"}</code>, or <code>{"{index}"}</code> placeholders), edit PDF metadata (title, author), or enable automatic downloads.
               </div>
             </div>
           </div>
