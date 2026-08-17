@@ -1739,5 +1739,28 @@
       "Finance",
       "Productivity"
     ]
+  },
+  {
+    "title": "Todo Tool",
+    "link": "/tools/todo-tool",
+    "description": "A comprehensive todo tool for task management, planning, and productivity with subtasks, reminders, priority levels, categories, custom views, and intelligent filtering. Supports tags, file attachments, and export/import features.",
+    "icon": "ListTodo",
+    "keywords": [
+      "todo list",
+      "task manager",
+      "productivity",
+      "planning",
+      "subtasks",
+      "reminders",
+      "priorities",
+      "categories",
+      "file attachments",
+      "export import",
+      "task tracking"
+    ],
+    "categories": [
+      "Productivity",
+      "Utility"
+    ]
   }
 ]
