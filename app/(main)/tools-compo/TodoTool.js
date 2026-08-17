@@ -39,6 +39,8 @@ import {
   EyeOff,
   Award,
   BookOpen,
+  RotateCcw,
+  FileText,
 } from "lucide-react";
 import ToolPageShell from "./ToolPageShell";
 import { motion, AnimatePresence } from "framer-motion";
@@ -424,6 +426,318 @@ export function TodoTool() {
     setNewSubtask("");
   };
 
+  // ── Reset Filters ──
+  const resetFilters = () => {
+    setFilter("all");
+    setCategoryFilter("all");
+    setPriorityFilter("all");
+    setSearchQuery("");
+    setSortBy("created_desc");
+    setShowCompleted(true);
+    notify("Filters reset! 🔄", "info");
+  };
+
+  // ── Export PDF ──
+  const exportPdf = async () => {
+    if (filteredTodos.length === 0) { notify("No tasks to export.", "info"); return; }
+    notify("Generating PDF...", "info");
+
+    try {
+      const { jsPDF } = await import("jspdf");
+
+      // ── Pure ASCII helpers (no emoji/unicode — Helvetica can't render them) ──
+      const priorityLabel = (p) => ({ urgent: "URGENT", high: "HIGH", medium: "MEDIUM", low: "LOW" }[p] || p.toUpperCase());
+      const priorityColor = (p) => ({
+        urgent: [220, 38, 38],
+        high:   [234, 88, 12],
+        medium: [161, 98, 7],
+        low:    [29, 78, 216],
+      }[p] || [75, 85, 99]);
+      // Light background for priority badge: blend color with white at 85% white
+      const priorityBg = (p) => {
+        const [r, g, b] = priorityColor(p);
+        return [Math.round(r * 0.15 + 255 * 0.85), Math.round(g * 0.15 + 255 * 0.85), Math.round(b * 0.15 + 255 * 0.85)];
+      };
+
+      const categoryLabel = (id) => CATEGORIES.find((c) => c.id === id)?.label || id;
+      const formatDate = (d) => d ? new Date(d).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" }) : "N/A";
+
+      const hexRgb = (hex) => [
+        parseInt(hex.slice(1, 3), 16),
+        parseInt(hex.slice(3, 5), 16),
+        parseInt(hex.slice(5, 7), 16),
+      ];
+      const [ar, ag, ab] = hexRgb(accentColor.value);
+      // Light accent bg (10% accent + 90% white)
+      const accentBg = [Math.round(ar * 0.1 + 255 * 0.9), Math.round(ag * 0.1 + 255 * 0.9), Math.round(ab * 0.1 + 255 * 0.9)];
+
+      const doc = new jsPDF({ orientation: "portrait", unit: "mm", format: "a4" });
+      const pageW = doc.internal.pageSize.getWidth();
+      const pageH = doc.internal.pageSize.getHeight();
+      const margin = 14;
+      const contentW = pageW - margin * 2;
+      const SITE_NAME = "ToolsTrek";
+      const SITE_URL  = "toolstrek.vercel.app";
+      const TOOL_NAME = "Task Manager";
+      let y = 0;
+
+      // ─────────────────────────────────────────────────────────────────────
+      // HEADER BAND
+      // ─────────────────────────────────────────────────────────────────────
+      // Accent band across full width
+      doc.setFillColor(ar, ag, ab);
+      doc.rect(0, 0, pageW, 28, "F");
+
+      // Site name (top-left, white, small)
+      doc.setTextColor(255, 255, 255);
+      doc.setFontSize(8);
+      doc.setFont("helvetica", "normal");
+      doc.text(SITE_NAME + "  |  " + SITE_URL, margin, 7);
+
+      // Tool name (large title)
+      doc.setFontSize(17);
+      doc.setFont("helvetica", "bold");
+      doc.text(TOOL_NAME + " - Export", margin, 18);
+
+      // Export date on the right
+      doc.setFontSize(7.5);
+      doc.setFont("helvetica", "normal");
+      doc.text("Exported: " + new Date().toLocaleString(), pageW - margin, 18, { align: "right" });
+
+      y = 34;
+
+      // ─────────────────────────────────────────────────────────────────────
+      // STATS ROW
+      // ─────────────────────────────────────────────────────────────────────
+      const statItems = [
+        { label: "Total Tasks",   value: String(stats.total) },
+        { label: "Completed",     value: String(stats.completed) },
+        { label: "Progress",      value: stats.completionRate + "%" },
+        { label: "Overdue",       value: String(stats.overdue) },
+        { label: "Urgent",        value: String(stats.urgent) },
+        { label: "Starred",       value: String(stats.starred) },
+      ];
+      const statW = contentW / statItems.length;
+      statItems.forEach((s, i) => {
+        const sx = margin + i * statW;
+        doc.setFillColor(...accentBg);
+        doc.setDrawColor(ar, ag, ab);
+        doc.roundedRect(sx + 0.5, y, statW - 1.5, 17, 2, 2, "FD");
+        doc.setTextColor(ar, ag, ab);
+        doc.setFontSize(12);
+        doc.setFont("helvetica", "bold");
+        doc.text(s.value, sx + statW / 2 - 0.75, y + 8, { align: "center" });
+        doc.setTextColor(100, 100, 100);
+        doc.setFontSize(6.5);
+        doc.setFont("helvetica", "normal");
+        doc.text(s.label, sx + statW / 2 - 0.75, y + 13.5, { align: "center" });
+      });
+      y += 21;
+
+      // ─────────────────────────────────────────────────────────────────────
+      // PROGRESS BAR
+      // ─────────────────────────────────────────────────────────────────────
+      doc.setFillColor(220, 220, 220);
+      doc.roundedRect(margin, y, contentW, 3.5, 1.5, 1.5, "F");
+      if (stats.completionRate > 0) {
+        doc.setFillColor(ar, ag, ab);
+        doc.roundedRect(margin, y, (contentW * stats.completionRate) / 100, 3.5, 1.5, 1.5, "F");
+      }
+      doc.setTextColor(120, 120, 120);
+      doc.setFontSize(6.5);
+      doc.setFont("helvetica", "normal");
+      doc.text("Overall completion: " + stats.completionRate + "%", margin, y + 7);
+      y += 11;
+
+      // ─────────────────────────────────────────────────────────────────────
+      // TABLE
+      // ─────────────────────────────────────────────────────────────────────
+      const cols = [
+        { label: "Task Title",  w: contentW * 0.36 },
+        { label: "Priority",    w: contentW * 0.12 },
+        { label: "Category",    w: contentW * 0.15 },
+        { label: "Due Date",    w: contentW * 0.15 },
+        { label: "Subtasks",    w: contentW * 0.11 },
+        { label: "Status",      w: contentW * 0.11 },
+      ];
+
+      const drawTableHeader = (startY) => {
+        doc.setFillColor(ar, ag, ab);
+        doc.rect(margin, startY, contentW, 7.5, "F");
+        doc.setTextColor(255, 255, 255);
+        doc.setFontSize(7.5);
+        doc.setFont("helvetica", "bold");
+        let hx = margin + 2;
+        cols.forEach((col) => { doc.text(col.label, hx, startY + 5); hx += col.w; });
+        return startY + 7.5;
+      };
+
+      y = drawTableHeader(y);
+
+      filteredTodos.forEach((t, idx) => {
+        const rowH = 13;
+
+        // Page break
+        if (y + rowH > pageH - 16) {
+          doc.addPage();
+          y = 10;
+          y = drawTableHeader(y);
+        }
+
+        // Alternating row bg
+        doc.setFillColor(idx % 2 === 0 ? 255 : 247, idx % 2 === 0 ? 255 : 248, idx % 2 === 0 ? 255 : 252);
+        doc.rect(margin, y, contentW, rowH, "F");
+
+        // Left status stripe
+        if (t.completed) {
+          doc.setFillColor(22, 163, 74);   // green
+          doc.rect(margin, y, 2.5, rowH, "F");
+        } else if (isOverdue(t.dueDate)) {
+          doc.setFillColor(220, 38, 38);   // red
+          doc.rect(margin, y, 2.5, rowH, "F");
+        } else {
+          doc.setFillColor(200, 200, 200);
+          doc.rect(margin, y, 2.5, rowH, "F");
+        }
+
+        let cx = margin + 4;
+
+        // ── Title ──
+        const titleClr = t.completed ? [130, 130, 130] : [20, 20, 20];
+        doc.setTextColor(...titleClr);
+        doc.setFont("helvetica", t.starred ? "bolditalic" : "bold");
+        doc.setFontSize(8);
+        const starPrefix = t.starred ? "[*] " : "";
+        const titleLine = doc.splitTextToSize(starPrefix + t.title, cols[0].w - 5)[0];
+        doc.text(titleLine, cx, y + 5);
+        if (t.desc) {
+          doc.setFont("helvetica", "normal");
+          doc.setTextColor(130, 130, 130);
+          doc.setFontSize(6);
+          const descLine = doc.splitTextToSize(t.desc, cols[0].w - 5)[0];
+          doc.text(descLine, cx, y + 10);
+        }
+        cx += cols[0].w;
+
+        // ── Priority badge ──
+        const [pr, pg, pb] = priorityColor(t.priority);
+        const [pbr, pbg, pbb] = priorityBg(t.priority);
+        doc.setFillColor(pbr, pbg, pbb);
+        doc.setDrawColor(pr, pg, pb);
+        doc.roundedRect(cx, y + 2, cols[1].w - 3, 6, 1.5, 1.5, "FD");
+        doc.setTextColor(pr, pg, pb);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(6.5);
+        doc.text(priorityLabel(t.priority), cx + (cols[1].w - 3) / 2, y + 6.2, { align: "center" });
+        cx += cols[1].w;
+
+        // ── Category ──
+        doc.setTextColor(60, 60, 60);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7.5);
+        doc.text(categoryLabel(t.category), cx + 1, y + 5);
+        cx += cols[2].w;
+
+        // ── Due date ──
+        const isOvr = !t.completed && isOverdue(t.dueDate);
+        doc.setTextColor(isOvr ? 200 : 60, isOvr ? 30 : 60, isOvr ? 30 : 60);
+        doc.setFont("helvetica", isOvr ? "bold" : "normal");
+        doc.setFontSize(7.5);
+        doc.text(formatDate(t.dueDate), cx + 1, y + 5);
+        if (isOvr) {
+          doc.setFontSize(6);
+          doc.text("OVERDUE", cx + 1, y + 10);
+        }
+        cx += cols[3].w;
+
+        // ── Subtasks ──
+        const stTotal = t.subtasks?.length || 0;
+        const stDone  = t.subtasks?.filter((s) => s.done).length || 0;
+        const stTxt   = stTotal > 0 ? stDone + "/" + stTotal : "-";
+        doc.setTextColor(100, 100, 100);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(7.5);
+        doc.text(stTxt, cx + cols[4].w / 2, y + 5, { align: "center" });
+        if (stTotal > 0) {
+          // mini progress bar
+          const barW = cols[4].w - 6;
+          doc.setFillColor(210, 210, 210);
+          doc.roundedRect(cx + 3, y + 7, barW, 2, 1, 1, "F");
+          if (stDone > 0) {
+            doc.setFillColor(ar, ag, ab);
+            doc.roundedRect(cx + 3, y + 7, (barW * stDone) / stTotal, 2, 1, 1, "F");
+          }
+        }
+        cx += cols[4].w;
+
+        // ── Status ──
+        if (t.completed) {
+          doc.setFillColor(220, 252, 231);
+          doc.setDrawColor(22, 163, 74);
+          doc.roundedRect(cx, y + 2, cols[5].w - 3, 6, 1.5, 1.5, "FD");
+          doc.setTextColor(22, 163, 74);
+          doc.setFont("helvetica", "bold");
+          doc.setFontSize(6.5);
+          doc.text("DONE", cx + (cols[5].w - 3) / 2, y + 6.2, { align: "center" });
+        } else {
+          doc.setFillColor(243, 244, 246);
+          doc.setDrawColor(180, 180, 180);
+          doc.roundedRect(cx, y + 2, cols[5].w - 3, 6, 1.5, 1.5, "FD");
+          doc.setTextColor(130, 130, 130);
+          doc.setFont("helvetica", "normal");
+          doc.setFontSize(6.5);
+          doc.text("PENDING", cx + (cols[5].w - 3) / 2, y + 6.2, { align: "center" });
+        }
+
+        // Row divider
+        doc.setDrawColor(230, 230, 230);
+        doc.line(margin, y + rowH, margin + contentW, y + rowH);
+
+        y += rowH;
+      });
+
+      // ─────────────────────────────────────────────────────────────────────
+      // FOOTER — on every page
+      // ─────────────────────────────────────────────────────────────────────
+      const totalPages = doc.internal.getNumberOfPages();
+      for (let p = 1; p <= totalPages; p++) {
+        doc.setPage(p);
+
+        // Footer separator line
+        doc.setDrawColor(ar, ag, ab);
+        doc.setLineWidth(0.4);
+        doc.line(margin, pageH - 12, pageW - margin, pageH - 12);
+        doc.setLineWidth(0.2);
+
+        // Left: site name + tool
+        doc.setTextColor(ar, ag, ab);
+        doc.setFont("helvetica", "bold");
+        doc.setFontSize(7);
+        doc.text(SITE_NAME, margin, pageH - 7.5);
+
+        doc.setTextColor(100, 100, 100);
+        doc.setFont("helvetica", "normal");
+        doc.setFontSize(6.5);
+        doc.text("  " + SITE_URL + "  |  " + TOOL_NAME, margin + doc.getTextWidth(SITE_NAME), pageH - 7.5);
+
+        // Right: page number
+        doc.setTextColor(130, 130, 130);
+        doc.setFontSize(6.5);
+        doc.text("Page " + p + " of " + totalPages, pageW - margin, pageH - 7.5, { align: "right" });
+
+        // Center: date
+        doc.text(new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" }), pageW / 2, pageH - 7.5, { align: "center" });
+      }
+
+      // ── Instant download ──
+      doc.save("ToolsTrek-Tasks-" + new Date().toISOString().split("T")[0] + ".pdf");
+      notify("PDF downloaded!");
+    } catch (err) {
+      console.error("PDF export error:", err);
+      notify("PDF export failed. Try again.", "error");
+    }
+  };
+
   // ── Export / Import ──
   const exportData = () => {
     const data = JSON.stringify({ todos, exportedAt: new Date().toISOString() }, null, 2);
@@ -517,15 +831,40 @@ export function TodoTool() {
               )}
 
               {todos.length > 0 && (
-                <button
-                  onClick={exportData}
-                  className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                  title="Export todos"
-                  id="export-todos-btn"
-                >
-                  <Download size={16} />
-                </button>
+                <>
+                  <button
+                    onClick={exportData}
+                    className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+                    title="Export JSON"
+                    id="export-todos-btn"
+                  >
+                    <Download size={16} />
+                  </button>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={exportPdf}
+                    className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium text-white shadow-md transition-all"
+                    style={{ background: `linear-gradient(135deg, #e11d48, #f43f5e)` }}
+                    title="Export as PDF"
+                    id="export-pdf-btn"
+                  >
+                    <FileText size={14} /> PDF
+                  </motion.button>
+                </>
               )}
+
+              <motion.button
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={resetFilters}
+                className="flex items-center gap-1.5 px-3 py-2 rounded-xl text-sm font-medium border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-all"
+                title="Reset all filters"
+                id="reset-filters-btn"
+              >
+                <RotateCcw size={14} /> Reset
+              </motion.button>
 
               <label className="p-2 rounded-xl text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors cursor-pointer" title="Import todos">
                 <Upload size={16} />
