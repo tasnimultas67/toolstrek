@@ -2,6 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import * as motion from "motion/react-client";
 import { Button } from "@/components/ui/button";
+import { Playfair_Display } from "next/font/google";
+
+const playfairDisplay = Playfair_Display({
+  display: "swap",
+  preload: true,
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+});
 
 const Hero = () => {
   // Animation variants
@@ -52,7 +60,7 @@ const Hero = () => {
         }}
       />
 
-      <div className="relative isolate px-6 lg:px-8 z-10 w-full">
+      <div className="relative isolate px-6 lg:px-0 z-10 w-full">
         {/* Modernized Gradient Blob */}
         <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
@@ -69,7 +77,7 @@ const Hero = () => {
         </motion.div>
 
         <motion.div
-          className="mx-auto max-w-4xl text-center"
+          className="mx-auto max-w-5xl text-center"
           initial="hidden"
           animate="visible"
           variants={containerVariants}
@@ -85,14 +93,16 @@ const Hero = () => {
           </motion.div>
 
           <motion.h1
-            className="text-5xl font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-7xl lg:text-8xl"
+            className="text-5xl font-semibold tracking-tight text-gray-900 dark:text-white sm:text-6xl lg:text-7xl"
             variants={itemVariants}
           >
-            Your Digital{" "}
-            <span className="relative">
-              <span className="bg-linear-to-r from-brandColor via-emerald-600 to-brandColor bg-size-[200%_auto] animate-gradient-x bg-clip-text text-transparent">
-                Toolbox
-              </span>
+            Your Free Everyday
+            <br />
+            <span
+              className={`bg-linear-to-r from-brandColor via-emerald-600 to-brandColor bg-size-[200%_auto] animate-gradient-x bg-clip-text text-transparent ${playfairDisplay.className}`}
+              style={{ fontStyle: "italic" }}
+            >
+              Digital Toolbox.
             </span>
           </motion.h1>
 
@@ -111,7 +121,7 @@ const Hero = () => {
             variants={itemVariants}
           >
             <Link href="#tools">
-              <Button className="w-full bg-brandColor dark:text-white hover:bg-brandColorHover transition-all duration-200  cursor-pointer">
+              <Button className="w-full bg-brandColor dark:text-white hover:bg-brandColorHover transition-all duration-200 cursor-pointer">
                 Get started free
               </Button>
             </Link>
