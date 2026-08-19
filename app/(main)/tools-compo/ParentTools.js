@@ -6,95 +6,95 @@ import ToolsCard from "./ToolsCard";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
+import SectionInfo from "./SectionInfo";
 
 // Hero content per category
 const CATEGORY_CONTENT = {
   all: {
-    title: "Powerful simple tools",
+    title: "Powerful simple *tools*.",
     description: "Everything you need to stay productive, all in one place.",
   },
   Calculator: {
-    title: "Smart Calculators",
+    title: "Smart *Calculators*.",
     description:
       "Crunch numbers effortlessly — from BMI and EMI to savings and unit conversions.",
   },
   Design: {
-    title: "Design Tools",
+    title: "Design *Tools*.",
     description:
       "Craft beautiful gradients, palettes, and visual assets with ease.",
   },
   Developer: {
-    title: "Developer Utilities",
+    title: "Developer *Utilities*.",
     description:
       "Essential tools for coders — format, validate, encode, and debug faster.",
   },
   Education: {
-    title: "Education Tools",
+    title: "Education *Tools*.",
     description:
       "Learn smarter with CGPA calculators, schedule makers, and more.",
   },
   Finance: {
-    title: "Finance Tools",
+    title: "Finance *Tools*.",
     description:
       "Plan budgets, split costs, and calculate finances with confidence.",
   },
   Fun: {
-    title: "Fun & Entertainment",
+    title: "Fun & *Entertainment*.",
     description:
       "Explore playful tools — from zodiac signs to love compatibility tests.",
   },
   Health: {
-    title: "Health & Wellness Tools",
-    description:
-      "Track, calculate, and monitor your health metrics with ease.",
+    title: "Health & Wellness *Tools*.",
+    description: "Track, calculate, and monitor your health metrics with ease.",
   },
   Image: {
-    title: "Image Tools",
+    title: "Image *Tools*.",
     description:
       "Resize, convert, extract colors, and manipulate images in seconds.",
   },
   Media: {
-    title: "Media Tools",
+    title: "Media *Tools*.",
     description:
       "Convert, compress, and manage audio and video files effortlessly.",
   },
   PDF: {
-    title: "PDF Tools",
+    title: "PDF *Tools*.",
     description:
       "Merge, split, compress, convert, and manage PDF files effortlessly.",
   },
   Productivity: {
-    title: "Productivity Tools",
+    title: "Productivity *Tools*.",
     description:
       "Stay organized and efficient with tools that streamline your workflow.",
   },
   "QR Code": {
-    title: "QR Code Tools",
+    title: "QR Code *Tools*.",
     description:
       "Generate and scan QR codes for links, Wi-Fi, and more instantly.",
   },
   Security: {
-    title: "Security & Privacy",
+    title: "Security & *Privacy*.",
     description:
       "Test passwords, detect disposable emails, and keep your data safe.",
   },
   Text: {
-    title: "Text & Writing Tools",
+    title: "Text & Writing *Tools*.",
     description:
       "Analyze, format, transform, and enhance your text with powerful utilities.",
   },
   Time: {
-    title: "Time & Date Tools",
+    title: "Time & Date *Tools*.",
     description:
       "Convert time zones, track days, and manage schedules effortlessly.",
   },
   Travel: {
-    title: "Travel Tools",
+    title: "Travel *Tools*.",
     description:
       "Plan trips, split budgets, and stay prepared wherever you go.",
   },
   Writing: {
-    title: "Writing Tools",
+    title: "Writing *Tools*.",
     description:
       "Polish your prose, generate dummy text, and enhance your writing.",
   },
@@ -117,7 +117,10 @@ const ParentTools = () => {
   const ITEMS_PER_PAGE = 12;
 
   // Read page from URL query param (defaults to 1)
-  const currentPage = Math.max(1, parseInt(searchParams.get("page") || "1", 10));
+  const currentPage = Math.max(
+    1,
+    parseInt(searchParams.get("page") || "1", 10),
+  );
 
   // Build a lookup map: tool.link -> lastUsedAt for O(1) access per card
   const recentToolsMap = useMemo(() => {
@@ -146,7 +149,7 @@ const ParentTools = () => {
   const categorySlug = searchParams.get("category") || "all";
   const selectedCategory = useMemo(
     () => (categorySlug === "all" ? "all" : fromSlug(categorySlug, categories)),
-    [categorySlug, categories]
+    [categorySlug, categories],
   );
 
   // Helper: update URL query params without full navigation
@@ -162,7 +165,7 @@ const ParentTools = () => {
       });
       router.push(`${pathname}?${params.toString()}`, { scroll: false });
     },
-    [router, pathname, searchParams]
+    [router, pathname, searchParams],
   );
 
   // Category button click → update URL, reset page to 1
@@ -173,7 +176,7 @@ const ParentTools = () => {
         page: null, // reset to page 1
       });
     },
-    [pushParams]
+    [pushParams],
   );
 
   // Filter tools based on search term and category
@@ -196,7 +199,7 @@ const ParentTools = () => {
       filtered = filtered.filter(
         (tool) =>
           tool.title.toLowerCase().includes(term) ||
-          tool.description.toLowerCase().includes(term)
+          tool.description.toLowerCase().includes(term),
       );
     }
 
@@ -262,23 +265,21 @@ const ParentTools = () => {
       id="tools"
     >
       <div className="w-11/12 mx-auto relative">
-        <div className="mb-10 md:mb-16">
-          <h2
-            key={selectedCategory + "-title"}
-            className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl animate-fadeIn"
-          >
-            {(CATEGORY_CONTENT[selectedCategory] || CATEGORY_CONTENT["all"]).title}
-          </h2>
-          <p
-            key={selectedCategory + "-desc"}
-            className="mt-4 text-lg text-gray-600 dark:text-gray-400 animate-fadeIn"
-          >
-            {(CATEGORY_CONTENT[selectedCategory] || CATEGORY_CONTENT["all"]).description}
-          </p>
+        <div className="mb-8 md:mb-10">
+          <SectionInfo
+            subtitle={`${
+              (CATEGORY_CONTENT[selectedCategory] || CATEGORY_CONTENT["all"])
+                .title
+            }`}
+            description={`${
+              (CATEGORY_CONTENT[selectedCategory] || CATEGORY_CONTENT["all"])
+                .description
+            }`}
+          />
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap w-fit gap-2 z-30 p-2 bg-white/20 dark:bg-white/10 backdrop-blur-xl rounded-md mt-4 mb-6 border border-gray-200 dark:border-white/10">
+        <div className="flex flex-wrap justify-center w-fit gap-2 z-30 mb-8 lg:mb-9">
           {categories.map((category) => (
             <button
               key={category}

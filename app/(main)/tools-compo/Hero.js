@@ -2,14 +2,6 @@ import Image from "next/image";
 import Link from "next/link";
 import * as motion from "motion/react-client";
 import { Button } from "@/components/ui/button";
-import { Playfair_Display } from "next/font/google";
-
-const playfairDisplay = Playfair_Display({
-  display: "swap",
-  preload: true,
-  weight: ["400", "500", "600", "700", "800", "900"],
-  subsets: ["latin"],
-});
 
 const Hero = () => {
   // Animation variants
@@ -99,7 +91,7 @@ const Hero = () => {
             Your Free Everyday
             <br />
             <span
-              className={`bg-linear-to-r from-brandColor via-emerald-600 to-brandColor bg-size-[200%_auto] animate-gradient-x bg-clip-text text-transparent ${playfairDisplay.className}`}
+              className={`bg-linear-to-r from-brandColor via-emerald-600 to-brandColor bg-size-[200%_auto] animate-gradient-x bg-clip-text text-transparent font-playfairDisplay`}
               style={{ fontStyle: "italic" }}
             >
               Digital Toolbox.

@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import * as motion from "motion/react-client";
 import CTA from "../tools-compo/Home-Compo/CTA";
+import SectionInfo from "../tools-compo/SectionInfo";
 
 export const metadata = {
   title: "About Us — ToolsTrek",
@@ -202,15 +202,20 @@ const Page = () => {
         {/* --- Hero Section --- */}
         <section className="py-16 md:py-24">
           <div className=" items-center">
-            <div className="space-y-6">
+            <div className="space-y-6 text-center">
               <FadeIn>
-                <h1 className="text-3xl md:text-6xl font-bold leading-tight tracking-tight">
+                <h1 className="text-3xl md:text-6xl font-semibold leading-tight tracking-tight">
                   Empowering Developers, <br />
-                  <span className="text-brandColor">One Tool at a Time</span>
+                  <span
+                    className={`bg-linear-to-r from-brandColor via-emerald-600 to-brandColor bg-size-[200%_auto] animate-gradient-x bg-clip-text text-transparent font-playfairDisplay`}
+                    style={{ fontStyle: "italic" }}
+                  >
+                    One Tool at a Time.
+                  </span>
                 </h1>
               </FadeIn>
               <FadeIn delay={0.2}>
-                <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl">
+                <p className="text-base md:text-lg text-muted-foreground leading-relaxed w-full lg:w-8/12 mx-auto">
                   ToolsTrek is a curated collection of open-source utilities
                   designed to simplify daily workflows for developers,
                   designers, and digital professionals worldwide.
@@ -264,14 +269,10 @@ const Page = () => {
         {/* --- Values Section --- */}
         <section className="pt-20 pb-10">
           <div className="text-center mb-12">
-            <FadeIn>
-              <h2 className="text-2xl md:text-3xl font-bold mb-4">
-                Our Core Values
-              </h2>
-              <p className="text-muted-foreground max-w-2xl mx-auto">
-                Principles that guide our development and community engagement
-              </p>
-            </FadeIn>
+            <SectionInfo
+              subtitle="Our Core *Values*"
+              description="Principles that guide our development and community engagement."
+            />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
             {values.map((value, index) => (

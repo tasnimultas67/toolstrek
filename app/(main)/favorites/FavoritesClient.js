@@ -8,6 +8,7 @@ import { useFavorites } from "@/hooks/useFavorites";
 import ToolsCard from "../tools-compo/ToolsCard";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
+import SectionInfo from "../tools-compo/SectionInfo";
 
 export default function FavoritesClient() {
   const { favorites } = useFavorites();
@@ -44,18 +45,13 @@ export default function FavoritesClient() {
         </div>
 
         {/* Header */}
-        <div className="mb-12 text-center lg:text-left">
-          <span className="inline-flex items-center gap-1.5 px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-amber-600 dark:text-amber-400 uppercase bg-amber-50 dark:bg-amber-950/20 border border-amber-200 dark:border-amber-900/50 rounded-full">
-            <Star className="size-3.5 fill-amber-500 text-amber-500" /> Saved
-            Favorites
-          </span>
-          <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Your Favorite Tools
-          </h1>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
-            Quickly access your most-used online utilities. Everything is saved
-            locally in your browser for instant load times and absolute privacy.
-          </p>
+        <div className="mb-12 w-full lg:w-7/12 mx-auto">
+          <SectionInfo
+            title="Saved Favorites"
+            subtitle=" Your Favorite *Tools*."
+            description="Quickly access your most-used online utilities. Everything is saved
+            locally in your browser for instant load times and absolute privacy."
+          />
         </div>
 
         {/* Content Section */}
@@ -83,7 +79,11 @@ export default function FavoritesClient() {
                     transition={{ duration: 0.35, ease: "easeInOut" }}
                     className="h-full"
                   >
-                    <ToolsCard index={index} {...tool} lastUsed={formatRelativeTime(recentToolsMap[tool.link])} />
+                    <ToolsCard
+                      index={index}
+                      {...tool}
+                      lastUsed={formatRelativeTime(recentToolsMap[tool.link])}
+                    />
                   </motion.div>
                 ))}
               </AnimatePresence>

@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
+import SectionInfo from "./SectionInfo";
 
 const HServices = () => {
   const [cardsToShow, setCardsToShow] = useState(4);
@@ -42,16 +43,12 @@ const HServices = () => {
       id="tools"
     >
       <div className="w-11/12 mx-auto">
-        <div className="mb-16 text-center">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wider text-brandColor uppercase bg-brandColor/10 rounded-full">
-            Browse by Tools
-          </span>
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Powerful simple tools
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400">
-            Everything you need to stay productive, all in one place.
-          </p>
+        <div className="mb-10 text-center">
+          <SectionInfo
+            title="Browse by Tools"
+            subtitle="Powerful simple *tools*."
+            description="Everything you need to stay productive, all in one place."
+          />
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">

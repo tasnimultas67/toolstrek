@@ -48,6 +48,11 @@
   --color-brandBackgroundHover: #f8f8f8;
 }
 
+@theme {
+  --font-playfairDisplay: var(--font-playfairDisplay), serif;
+  --font-googleSansFlex: var(--font-googleSansFlex), serif;
+}
+
 @keyframes fadeIn {
   from {
     opacity: 0;

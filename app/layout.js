@@ -1,11 +1,32 @@
 import "./globals.css";
 import ThemeProvider from "./theme-context.jsx";
-import Script from 'next/script';
 import { Analytics } from "@vercel/analytics/next";
+import { Google_Sans_Flex, Playfair_Display } from "next/font/google";
+
+const playfairDisplay = Playfair_Display({
+  display: "swap",
+  preload: true,
+  weight: ["400", "500", "600", "700", "800", "900"],
+  subsets: ["latin"],
+  variable: "--font-playfairDisplay",
+});
+
+const googleSansFlex = Google_Sans_Flex({
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal"],
+  fallback: ["system-ui", "sans-serif"],
+  subsets: ["latin"],
+  display: "swap",
+  variable: "--font-googleSansFlex",
+});
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html
+      lang="en"
+      suppressHydrationWarning
+      className={`${playfairDisplay.variable} ${googleSansFlex.variable}`}
+    >
       <head>
         <script
           dangerouslySetInnerHTML={{
@@ -65,12 +86,9 @@ export default function RootLayout({ children }) {
         />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider>
-          {children}
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
         <Analytics />
       </body>
     </html>
   );
 }
-

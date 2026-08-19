@@ -22,6 +22,7 @@ import {
   Film,
   ChevronRight,
 } from "lucide-react";
+import SectionInfo from "./SectionInfo";
 
 // Category metadata: icon, gradient colors, description
 const categoryMeta = {
@@ -205,17 +206,13 @@ const HCategories = () => {
 
       <div className="relative w-11/12 mx-auto">
         {/* Section Header */}
-        <div className="mb-12 text-center">
-          <span className="inline-block px-4 py-1.5 mb-4 text-sm font-semibold tracking-wider text-brandColor uppercase bg-brandColor/10 rounded-full">
-            Browse by Category
-          </span>
-          <h2 className="text-3xl lg:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-            Find the Right Tool, Fast
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
-            {orderedCategories.length} categories. One destination. Everything
-            you need is just a click away.
-          </p>
+        <div className="mb-10 text-center">
+          <SectionInfo
+            title="Browse by Category"
+            subtitle="Find the  *Right Tool*, Fast"
+            description={` ${orderedCategories.length} categories. One destination. Everything
+            you need is just a click away.`}
+          />
         </div>
 
         {/* 4-column grid of category cards */}

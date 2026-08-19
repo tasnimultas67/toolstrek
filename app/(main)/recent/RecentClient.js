@@ -18,6 +18,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import SectionInfo from "../tools-compo/SectionInfo";
 
 export default function RecentClient() {
   const { recentTools, clearRecentTools } = useRecentTools();
@@ -49,31 +50,14 @@ export default function RecentClient() {
 
         {/* Header */}
         <div className="mb-12 text-center lg:text-left flex flex-col lg:flex-row lg:items-end justify-between gap-6">
-          <div>
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 mb-4 text-xs font-semibold tracking-wider text-indigo-600 dark:text-indigo-400 uppercase bg-indigo-50 dark:bg-indigo-950/20 border border-indigo-200 dark:border-indigo-900/50 rounded-full">
-              <History className="size-3.5" /> Recent History
-            </span>
-            <h1 className="text-3xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-white">
-              Recently Used Tools
-            </h1>
-            <p className="mt-4 text-lg text-gray-600 dark:text-gray-400 max-w-2xl">
-              Track your most-visited digital utilities. We automatically save
-              your latest 10 tools here for seamless resuming of tasks.
-            </p>
+          <div className="w-full lg:w-7/12 mx-auto">
+            <SectionInfo
+              title="Recent History"
+              subtitle="Recently Used *Tools*."
+              description="Track your most-visited digital utilities. We automatically save
+              your latest 10 tools here for seamless resuming of tasks."
+            />
           </div>
-
-          {recentTools.length > 0 && (
-            <div className="flex justify-center shrink-0">
-              <Button
-                onClick={handleClearHistory}
-                variant="outline"
-                aria-label="Clear all recently used tools history"
-                className="border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-350 hover:border-red-300 dark:hover:border-red-800 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm rounded-xl px-5 py-6"
-              >
-                <Trash2 className="size-4" /> Clear History
-              </Button>
-            </div>
-          )}
         </div>
 
         {/* Content Section */}
@@ -84,6 +68,18 @@ export default function RecentClient() {
                 Showing {recentTools.length} recently used{" "}
                 {recentTools.length === 1 ? "tool" : "tools"}
               </span>
+              {recentTools.length > 0 && (
+                <div className="flex justify-center shrink-0">
+                  <Button
+                    onClick={handleClearHistory}
+                    variant="outline"
+                    aria-label="Clear all recently used tools history"
+                    className="border-red-200 dark:border-red-900/50 text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/20 hover:text-red-700 dark:hover:text-red-350 hover:border-red-300 dark:hover:border-red-800 transition-all duration-200 flex items-center gap-2 cursor-pointer shadow-sm rounded-xl px-5 py-6"
+                  >
+                    <Trash2 className="size-4" /> Clear History
+                  </Button>
+                </div>
+              )}
             </div>
 
             <motion.div
