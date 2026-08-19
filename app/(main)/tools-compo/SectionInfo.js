@@ -30,7 +30,7 @@ const SectionInfo = ({ title, description, subtitle, level = "h2" }) => {
       opacity: 1,
       transition: {
         staggerChildren: 0.2,
-        delayChildren: 0.3,
+        delayChildren: 0.2,
       },
     },
   };
@@ -41,7 +41,7 @@ const SectionInfo = ({ title, description, subtitle, level = "h2" }) => {
       y: 0,
       opacity: 1,
       transition: {
-        duration: 0.6,
+        duration: 0.3,
         ease: "easeOut",
       },
     },
