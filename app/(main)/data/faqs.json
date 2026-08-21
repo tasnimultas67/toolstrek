@@ -256,5 +256,19 @@
       "question": "What advanced options are available in the Water Intake Calculator?",
       "answer": "Clicking 'Advanced Options' lets you customize your climate (Hot/Humid, Cold/Altitude, Dry Heat), health/life stages (Pregnancy, Breastfeeding, Fever/Flu), dietary factors (Coffee/Tea, High Sodium, High Protein, Alcohol), and preferred glass or bottle container sizes for tailored daily tracking."
     }
+  ],
+  "zipTools": [
+    {
+      "question": "How does the ZIP File Creator & Compressor work?",
+      "answer": "The ZIP File Creator lets you drag and drop any number of files or folders from your computer. You can organize files into custom folders, rename them, select a Deflate compression level (from Store to Maximum Deflate), and generate a standard downloadable .zip file instantly in your browser."
+    },
+    {
+      "question": "Are my files uploaded to a server when creating or extracting a ZIP?",
+      "answer": "No. All compression, decompression, and archive creation happens 100% locally inside your web browser via client-side JavaScript. Your files never leave your device."
+    },
+    {
+      "question": "Can I preserve entire folder structures when making a ZIP?",
+      "answer": "Yes. When you drag and drop folders or use the 'Choose Entire Folder' button, the full directory structure with nested subfolders is automatically preserved inside the ZIP archive."
+    }
   ]
 }

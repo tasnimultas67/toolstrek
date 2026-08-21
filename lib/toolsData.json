@@ -1762,5 +1762,31 @@
       "Productivity",
       "Utility"
     ]
+  },
+  {
+    "title": "ZIP File Creator & Compressor",
+    "link": "/tools/zip-creator",
+    "description": "Bundle, compress, and create downloadable ZIP folders from multiple files or entire directory trees directly in your browser. Configure compression levels (Store, Fast, Balanced, Max Deflate), manage folder hierarchies, preview contents, inspect archives, and download instantly with 100% privacy.",
+    "icon": "FolderArchive",
+    "keywords": [
+      "zip creator",
+      "zip maker",
+      "make zip folder",
+      "compress files to zip",
+      "create zip file",
+      "zip compressor",
+      "folder to zip",
+      "archive creator",
+      "zip extractor",
+      "unzip files",
+      "file compressor",
+      "zip folder maker",
+      "productivity",
+      "developer tools"
+    ],
+    "categories": [
+      "Productivity",
+      "Developer"
+    ]
   }
 ]
