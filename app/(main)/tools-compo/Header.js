@@ -26,6 +26,7 @@ import { openGlobalSearch } from "@/lib/useGlobalSearch";
 import { useFavorites } from "@/hooks/useFavorites";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
+import SupportModal from "@/components/ui/SupportModal";
 
 const staatliches = Staatliches({
   subsets: ["latin"],
@@ -38,6 +39,7 @@ export default function Header() {
   const { favorites } = useFavorites();
   const { recentTools, clearRecentTools } = useRecentTools();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSupportModalOpen, setIsSupportModalOpen] = useState(false);
   const [isMegaMenuOpen, setIsMegaMenuOpen] = useState(false);
   const [megaMenuAnimation, setMegaMenuAnimation] = useState(false);
   const megaMenuRef = useRef(null);
@@ -578,18 +580,14 @@ export default function Header() {
                     <div className="h-4 w-8 animate-pulse bg-gray-200 dark:bg-gray-800 rounded"></div>
                   )}
                 </Link>
-                {/* Sponsor / Heart Button */}
-                <Link
-                  href="https://buymeacoffee.com/tasnimulhaque"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  suppressHydrationWarning
+                {/* Support / Heart Button */}
+                <Button
+                  onClick={() => setIsSupportModalOpen(true)}
+                  className="bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/30 dark:hover:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 text-sm! font-medium shadow-none flex items-center gap-2 transition-all duration-300 cursor-pointer group rounded-lg h-9 px-3.5"
                 >
-                  <Button className="bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/30 dark:hover:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 text-sm! font-medium shadow-none flex items-center gap-2 transition-all duration-300 cursor-pointer group rounded-lg h-9 px-3.5">
-                    <Heart className="size-4 text-rose-500 fill-rose-500/20 group-hover:fill-rose-500 group-hover:scale-110 transition-all duration-300" />
-                    <span className="hidden sm:inline">Sponsor</span>
-                  </Button>
-                </Link>
+                  <Heart className="size-4 text-rose-500 fill-rose-500/20 group-hover:fill-rose-500 group-hover:scale-110 transition-all duration-300" />
+                  <span className="hidden sm:inline">Support</span>
+                </Button>
 
                 <Link
                   href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
@@ -807,22 +805,27 @@ export default function Header() {
                       Request a Tool
                     </Button>
                   </Link>
-                  <Link
-                    href="https://buymeacoffee.com/tasnimulhaque"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full"
+                  <Button
+                    onClick={() => {
+                      setMobileMenuOpen(false);
+                      setIsSupportModalOpen(true);
+                    }}
+                    className="w-full bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/30 dark:hover:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 transition-all duration-200 hover:scale-105 cursor-pointer flex items-center justify-center gap-2 group"
                   >
-                    <Button className="w-full bg-rose-50 hover:bg-rose-100 dark:bg-rose-950/30 dark:hover:bg-rose-950/50 border border-rose-200 dark:border-rose-900/50 text-rose-600 dark:text-rose-400 transition-all duration-200 hover:scale-105 cursor-pointer flex items-center justify-center gap-2 group">
-                      <Heart className="size-4 text-rose-500 fill-rose-500/20 group-hover:fill-rose-500 group-hover:scale-110 transition-all duration-300" />
-                      Support the Creator
-                    </Button>
-                  </Link>
+                    <Heart className="size-4 text-rose-500 fill-rose-500/20 group-hover:fill-rose-500 group-hover:scale-110 transition-all duration-300" />
+                    Support the Creator
+                  </Button>
                 </div>
               </div>
             </div>
           </DialogPanel>
         </Dialog>
+
+        {/* Support Modal */}
+        <SupportModal
+          isOpen={isSupportModalOpen}
+          onClose={setIsSupportModalOpen}
+        />
       </div>
     </div>
   );
