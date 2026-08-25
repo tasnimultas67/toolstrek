@@ -1,5 +1,29 @@
 [
   {
+    "title": "Hash Generator & Verifier",
+    "link": "/tools/hash-generator",
+    "description": "Generate, verify, benchmark, and analyze cryptographic hashes (SHA-256, MD5, SHA-1, SHA-512, SHA-3, Keccak-256, RIPEMD-160, CRC32, HMAC, PBKDF2). Features custom salt, HMAC keys, batch multi-line mode, file checksums, live matrix, and code generator.",
+    "icon": "Hash",
+    "keywords": [
+      "hash generator",
+      "sha256 generator",
+      "md5 generator",
+      "sha512 generator",
+      "keccak256",
+      "file checksum",
+      "hmac generator",
+      "hash verifier",
+      "hash identifier",
+      "pbkdf2",
+      "developer tools",
+      "cryptography"
+    ],
+    "categories": [
+      "Developer Tools",
+      "Security"
+    ]
+  },
+  {
     "title": "Full Page Screenshot Tool",
     "link": "/tools/full-page-screenshot",
     "description": "Capture high-quality full-page screenshots of any website. Customize viewports, enforce minimum font sizes (12px on mobile, 14px on desktop), block cookie banners/ads, and download as PNG, JPG, PDF, or WebP.",
