@@ -1,5 +1,27 @@
 [
   {
+    "title": "Regex Tester & Debugger",
+    "link": "/tools/regex-tester",
+    "description": "Test, debug, match, replace, split, and explain regular expressions in real-time. Features interactive capture group inspection, AST syntax explainer, multi-language code generator (JS, Python, PHP, Java, C#, Go, Rust, Ruby, Swift, Bash), custom themes, and zero initial demo data with on-demand presets.",
+    "icon": "Code2",
+    "keywords": [
+      "regex tester",
+      "regex debugger",
+      "regular expression tester",
+      "regex match",
+      "regex replace",
+      "regex explainer",
+      "regex ast",
+      "regex code generator",
+      "developer tools",
+      "text tools"
+    ],
+    "categories": [
+      "Developer",
+      "Text"
+    ]
+  },
+  {
     "title": "Hash Generator & Verifier",
     "link": "/tools/hash-generator",
     "description": "Generate, verify, benchmark, and analyze cryptographic hashes (SHA-256, MD5, SHA-1, SHA-512, SHA-3, Keccak-256, RIPEMD-160, CRC32, HMAC, PBKDF2). Features custom salt, HMAC keys, batch multi-line mode, file checksums, live matrix, and code generator.",
@@ -19,7 +41,7 @@
       "cryptography"
     ],
     "categories": [
-      "Developer Tools",
+      "Developer",
       "Security"
     ]
   },
@@ -39,7 +61,7 @@
       "developer tools"
     ],
     "categories": [
-      "Developer Tools",
+      "Developer",
       "Productivity"
     ]
   },
@@ -61,7 +83,7 @@
       "developer tools"
     ],
     "categories": [
-      "Developer Tools"
+      "Developer"
     ]
   },
   {
@@ -666,7 +688,7 @@
       "image"
     ],
     "categories": [
-      "Image"
+      "Media"
     ]
   },
   {
@@ -684,7 +706,7 @@
       "image"
     ],
     "categories": [
-      "Image"
+      "Media"
     ]
   },
   {
@@ -703,7 +725,7 @@
     ],
     "categories": [
       "PDF",
-      "Image"
+      "Media"
     ]
   },
   {
@@ -921,7 +943,7 @@
       "image"
     ],
     "categories": [
-      "Image",
+      "Media",
       "Design"
     ]
   },
@@ -940,7 +962,7 @@
       "image"
     ],
     "categories": [
-      "Image"
+      "Media"
     ]
   },
   {
@@ -960,7 +982,7 @@
       "image"
     ],
     "categories": [
-      "Image",
+      "Media",
       "Design"
     ]
   },
@@ -1538,7 +1560,7 @@
       "picture resizer"
     ],
     "categories": [
-      "Image",
+      "Media",
       "Design",
       "Productivity"
     ]
@@ -1561,9 +1583,8 @@
       "make gif online"
     ],
     "categories": [
-      "Image",
-      "Design",
-      "Media"
+      "Media",
+      "Design"
     ]
   },
   {
@@ -1652,7 +1673,6 @@
       "communication tool"
     ],
     "categories": [
-      "Utility",
       "Productivity",
       "Text"
     ]
@@ -1673,7 +1693,6 @@
       "roman digit calculator"
     ],
     "categories": [
-      "Utility",
       "Productivity",
       "Education"
     ]
@@ -1696,7 +1715,6 @@
       "security tool"
     ],
     "categories": [
-      "Utility",
       "Productivity",
       "Developer"
     ]
@@ -1783,8 +1801,7 @@
       "task tracking"
     ],
     "categories": [
-      "Productivity",
-      "Utility"
+      "Productivity"
     ]
   },
   {

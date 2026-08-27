@@ -183,9 +183,10 @@ const HCategories = () => {
   const categoryData = useMemo(() => {
     const map = {};
     toolsData.forEach((tool) => {
-      const cats = Array.isArray(tool.categories)
+      const rawCats = Array.isArray(tool.categories)
         ? tool.categories
         : [tool.category || "General"];
+      const cats = new Set(rawCats.filter(Boolean));
       cats.forEach((cat) => {
         if (!map[cat]) map[cat] = { count: 0, sampleIcon: tool.icon };
         map[cat].count += 1;

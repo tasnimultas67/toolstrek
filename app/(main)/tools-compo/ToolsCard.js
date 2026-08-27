@@ -26,9 +26,9 @@ const ToolsCard = ({
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
-  // Normalise to array
+  // Normalise to array and deduplicate
   const toolCategories = Array.isArray(categories)
-    ? categories
+    ? [...new Set(categories.filter(Boolean))]
     : [category || "General"];
 
   const handleCategoryClick = (e, cat) => {

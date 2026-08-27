@@ -73,6 +73,7 @@
 
 | Tool                        | Description                                                                                     |
 | --------------------------- | ----------------------------------------------------------------------------------------------- |
+| Regex Tester & Debugger     | Real-time regex matching, AST syntax explainer, substitution, splitting & multi-language code export |
 | Domain Age Checker          | Look up when any domain was first registered                                                    |
 | IP Checker                  | Inspect public IP addresses or query domain/IP geolocations, networks, and maps                 |
 | Color Converter             | Convert HEX, RGB, HSL, HSV, CMYK in real-time with harmonies, WCAG checker & blindness sim     |
