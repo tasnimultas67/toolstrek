@@ -2,10 +2,19 @@ import React from "react";
 import FAQCon from "../tools-compo/FAQCon";
 
 export const metadata = {
-  title: "FAQ — ToolsTrek",
-  keywords: ["faq", "questions", "tools", "frequently asked question"],
+  title: "Frequently Asked Questions — ToolsTrek",
+  keywords: [
+    "faq",
+    "frequently asked questions",
+    "toolstrek help",
+    "online tools documentation",
+    "free web utilities questions",
+    "pdf tools guide",
+    "developer tools faq",
+    "privacy questions",
+  ],
   description:
-    "Find answers to common questions about ToolsTrek and our free online tools",
+    "Find answers to common questions about ToolsTrek, client-side privacy, and our 92 free online web tools.",
 };
 
 const page = () => {

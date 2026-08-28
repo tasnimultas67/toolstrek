@@ -2,273 +2,303 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a browser-based collection of everyday utilities built with Next.js. It brings together PDF workflows, QR and link tools, image converters, text utilities, calculators, media conversion, metadata tools, and developer helpers — 58 tools in one place."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 92 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
-      "question": "Is ToolsTrek free to use, and do I need an account?",
-      "answer": "Yes. The entire ToolsTrek tool library is free to use, and you can access every tool without creating an account or logging in."
+      "question": "Is ToolsTrek free to use, and do I need to create an account?",
+      "answer": "Yes! The entire ToolsTrek suite of 92 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
-      "question": "What kinds of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek includes: PDF tools (merge, split, reorder, crop, compress, combine, N-up, attachments, and PDF/image conversion), QR tools, text utilities (case converter, text repeater, binary, Braille, Morse code, fancy text, TrekGlyph cipher, remove duplicate lines, dummy text), calculator tools (age, BMI, EMI, CGPA, unit converter, VAT/GST, Zakat, discount, savings), image tools (AVIF converter, OCR, color palette, SVG converter, favicon generator), media conversion (MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC), metadata tools (view & edit EXIF/GPS/PDF metadata), developer tools (domain age, IP checker, SSL checker, color converter, gradient generator, disposable email detector, website tech detector), and productivity tools (link shortener, fake info generator, typing test, timezone clock, password generator)."
+      "question": "What categories of tools are available on ToolsTrek?",
+      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Calculators & Academic (CGPA, Age, Days, Unit converter), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
     },
     {
-      "question": "Can I use ToolsTrek on mobile or tablet devices?",
-      "answer": "Yes. The interface is responsive and designed to work across desktop, tablet, and mobile browsers, although larger file workflows and media conversion may feel more comfortable on a desktop or laptop."
+      "question": "Can I use ToolsTrek on mobile devices and tablets?",
+      "answer": "Yes. Every tool is crafted with responsive UI design, touch-friendly controls, and seamless dark/light mode support across mobile phones, tablets, and desktop workstations."
     },
     {
-      "question": "How do I quickly find a specific tool?",
-      "answer": "Use the global search — press the search icon in the header or use the keyboard shortcut to open the command palette. You can type any tool name or keyword to jump straight to it. You can also browse by category, check your Favorites, or revisit tools from the Recent Tools page."
+      "question": "How do I quickly find, favorite, or revisit tools?",
+      "answer": "You can press Cmd+K (or Ctrl+K) anywhere on the site to trigger the global command palette search, click the star icon on any tool to save it to your persistent Favorites list, or visit the Recent Tools page to quickly resume your recent workflows."
+    },
+    {
+      "question": "Can I use ToolsTrek offline?",
+      "answer": "Many of our client-side tools (including text converters, calculators, PDF tools, image resizers, and ciphers) function completely in your browser without requiring an active internet connection once the page has loaded."
     }
   ],
   "privacyAndSecurity": [
     {
-      "question": "Do my files get uploaded to a server?",
-      "answer": "For the vast majority of tools — including all PDF, image, OCR, media conversion, metadata, and text tools — processing happens entirely inside your browser. Your files never leave your device."
+      "question": "Do my files, images, or documents get uploaded to a server?",
+      "answer": "For over 90% of our tools — including all PDF workflows, image editing, GIF creation, OCR extraction, audio/video transcoding, metadata editing, ZIP compression, and text operations — processing occurs 100% client-side inside your browser via WebAssembly and WebCodecs. Your files never leave your computer or device."
     },
     {
-      "question": "Are all ToolsTrek features fully offline?",
-      "answer": "No. Many file-processing tools work in the browser after the page loads, but some features depend on network services: Link Shortener, Domain Age Checker, IP Checker, SSL Certificate Checker, Disposable Email Detector (MX record checks), Website Tech Detector, reCAPTCHA verification, and contact form delivery."
+      "question": "Which specific tools require server-side requests?",
+      "answer": "Only tools that require live external network lookups use secure server API routes: Domain Age Checker (WHOIS lookups), IP Geolocation Checker, SSL Certificate Checker (TLS handshakes), Disposable Email Detector (MX record verification), Website Technology Detector, Link Shortener, and contact form submissions."
     },
     {
-      "question": "Is sensitive information like WiFi data or passwords stored by ToolsTrek?",
-      "answer": "No. Sensitive tool inputs — WiFi credentials, passwords, metadata edits — are processed locally and never sent to a server. Be mindful that downloaded files or shared QR codes may expose that information to anyone who accesses them."
+      "question": "Are sensitive inputs like passwords, WiFi credentials, or private tokens stored?",
+      "answer": "Never. WiFi credentials, generated passwords, cryptographic hashes, JWT tokens, and metadata adjustments are executed in volatile browser memory and never stored, logged, or sent across the network."
     },
     {
-      "question": "Does the IP Checker store my IP address or lookup logs?",
-      "answer": "No. The IP Geolocation Checker fetches details in real-time from public geo-databases on demand. We do not store, log, or share your public IP or any lookup history."
+      "question": "Does ToolsTrek store my IP address or query history?",
+      "answer": "No. ToolsTrek does not log personal search queries, IP addresses, or calculation history. Any saved data (such as Favorites or recent tool history) is stored exclusively in your browser's local localStorage."
     },
     {
-      "question": "How should I report a bug or privacy concern?",
-      "answer": "Use the contact page and include the tool name, the steps you followed, your browser or device, and what happened. That makes it much easier to reproduce and fix the issue quickly."
+      "question": "How can I report a bug or suggest a new tool?",
+      "answer": "You can reach out through our Contact page or submit an issue/pull request directly on our GitHub repository. We welcome community feedback and new tool suggestions!"
     }
   ],
-  "pdfTools": [
+  "healthAndWellness": [
     {
-      "question": "What can I do with PDFs on ToolsTrek?",
-      "answer": "You can compress, merge, split, reorder, crop, convert PDF to image, convert images to PDF, combine mixed files (PDFs and images) into one PDF, create N-up layouts for printing, and add file attachments directly inside a PDF."
+      "question": "How does the Health Checkup Recommender work?",
+      "answer": "The Health Checkup Recommender uses evidence-based medical guidelines (USPSTF, WHO, AHA, CDC) to generate personalized preventive health screening recommendations. It factors in your age, biological sex, BMI vitals, lifestyle habits (smoking, alcohol, exercise, diet), active symptoms, diagnosed conditions, and family medical genetics across 36+ clinical test categories. You can customize the plan and export a high-resolution, branded PDF report for your doctor consultation."
     },
     {
-      "question": "Which files can be combined into one PDF?",
-      "answer": "The Combine Files to PDF tool accepts both PDF and image files in one queue. If you are starting only with images and want more page layout control, the Image to PDF tool is usually the better fit."
+      "question": "How accurate is the Bra Size Calculator?",
+      "answer": "Our Bra Size Calculator implements the gold-standard r/ABraThatFits 6-measurement algorithm (Loose, Snug, Tight underbust + Standing, Leaning, Lying bust) for superior accuracy over traditional +4 methods. It supports international conversions (US, UK, EU, FR, AU, JP), sister sizing, breast shape adjustments, AMAB trans-inclusive sizing, and exportable PDF fit reports."
     },
     {
-      "question": "Are PDF edits private?",
-      "answer": "Yes. All PDF tools process files entirely in your browser using pdf-lib and pdfjs-dist. Generated files stay on your device until you download them, clear the tool, or refresh the page."
+      "question": "How does the Water Intake Calculator determine daily fluid targets?",
+      "answer": "It calculates scientific baseline water needs using European Food Safety Authority (EFSA) and Institute of Medicine (IOM) formulas based on body weight, then dynamically adjusts for physical activity duration, climate conditions (heat, humidity, high altitude), life stages (pregnancy, breastfeeding), and dietary factors like caffeine, sodium, or alcohol intake."
     },
     {
-      "question": "Can I work with more than one PDF at a time?",
-      "answer": "Yes. Several PDF tools support multi-file workflows — merging, combining, and reordering all support multiple files. Practical limits depend on your browser's available memory and the file sizes involved."
-    }
-  ],
-  "qrAndSharing": [
-    {
-      "question": "What is the difference between the QR Code Generator, WiFi QR tool, QR Scanner, and Link Shortener?",
-      "answer": "The QR Code Generator creates custom QR codes for text, links, and similar content. The WiFi QR tool creates a scannable code for joining a wireless network. The QR Scanner reads QR codes from a camera or image. The Link Shortener turns a long URL into a shorter share link and also displays a QR code for the shortened result."
+      "question": "What does the Smoking Cost Calculator measure?",
+      "answer": "It calculates the true financial, health, and opportunity cost of smoking cigarettes, vape, or tobacco across multiple time horizons (1 day to 20 years). It supports 30+ currencies (with BDT and USD presets), per-pack and per-stick calculations, real-world purchase equivalents, health recovery milestones, and compound interest investment growth projections."
     },
     {
-      "question": "Can I download the QR codes I create?",
-      "answer": "Yes. ToolsTrek includes download options for all generated QR output, and the WiFi QR tool also offers a printable PDF template for sharing network access more neatly."
-    },
-    {
-      "question": "Why does the Link Shortener need an internet connection?",
-      "answer": "The Link Shortener creates shortened links through an external shortening service, so it needs internet access to generate the final result. The availability of those shortened links also depends on that provider."
-    }
-  ],
-  "imagesAndText": [
-    {
-      "question": "Can ToolsTrek convert images to PDF or extract text from images?",
-      "answer": "Yes. ToolsTrek includes Image to PDF for turning images into PDF documents, Image to Text (OCR) for text extraction, PDF to Image for exporting PDF pages as images, an AVIF Converter for image format conversion, and a Favicon Generator to build full favicon packs — all client-side."
-    },
-    {
-      "question": "Does the Image to Text tool process images locally?",
-      "answer": "Yes. The OCR workflow is powered by Tesseract.js and runs entirely inside your browser. Your source images never leave your device during text extraction."
-    },
-    {
-      "question": "Do the Morse, Braille, Binary, Fancy Text, TrekGlyph, or Favicon tools send inputs to a server?",
-      "answer": "No. All encoding, decoding, fancy text, TrekGlyph cipher, and favicon generation tools operate 100% client-side inside your browser. No files, text inputs, or generated outputs ever leave your device."
-    },
-    {
-      "question": "What is the TrekGlyph Encoder & Decoder?",
-      "answer": "TrekGlyph is an exclusive custom geometric cipher built for ToolsTrek. It maps every letter of the alphabet to a unique pattern of ▲ (up-triangle) and ▼ (down-triangle) symbols. You can encode plain text into TrekGlyph and decode it back in real-time, using a click-to-insert symbol pad and a full reference dictionary."
-    },
-    {
-      "question": "How does the Fancy Text Generator work, and why do some styles look different?",
-      "answer": "The Fancy Text Generator maps standard letters to mathematical symbols, cursive scripts, gothic alphabets, and Zalgo/glitch markings from the extended Unicode character set. Because these are standard text characters and not custom font files, some older browsers, games, or social networks may not display all styles correctly."
-    },
-    {
-      "question": "Which image formats work best with the image tools?",
-      "answer": "Common web-friendly formats (PNG, JPEG, WebP, SVG) work best. Supported file types vary by tool. If a file does not load cleanly, converting it first or using the AVIF Converter can help."
-    }
-  ],
-  "mediaFormatConverter": [
-    {
-      "question": "What is the Media Format Converter?",
-      "answer": "The Media Format Converter lets you convert video and audio files directly in your browser — no server uploads required. It is powered by MediaBunny and the WebCodecs API for hardware-accelerated transcoding. Supported output formats are MP4, WebM, MKV, MOV (video) and MP3, WAV, OGG, FLAC (audio)."
-    },
-    {
-      "question": "Which input formats does the Media Format Converter support?",
-      "answer": "You can upload MP4, WebM, MKV, MOV, AVI, MP3, WAV, OGG, FLAC, M4A, and AAC files. If your file plays in a modern browser, it can typically be converted."
-    },
-    {
-      "question": "Is media conversion private? Are my video/audio files uploaded?",
-      "answer": "Yes, it is fully private. All conversion happens inside your browser using the WebCodecs API. Your media files never leave your device or touch any server."
-    },
-    {
-      "question": "Why does my browser need to be Chrome or Edge for some formats?",
-      "answer": "The converter relies on WebCodecs, which is best supported in Chrome and Edge. OGG output specifically uses Opus encoding via WebCodecs, which is not available in Firefox. MP3 and FLAC output use WASM-based encoders (@mediabunny/mp3-encoder and @mediabunny/flac-encoder) which work across all modern browsers that support WebAssembly."
-    },
-    {
-      "question": "Can I convert a video file to an audio-only format like MP3?",
-      "answer": "Yes. When you select an audio output format (MP3, WAV, OGG, FLAC), the video track is automatically discarded. You will get a clean audio-only output file."
-    },
-    {
-      "question": "What advanced settings can I configure?",
-      "answer": "The converter supports trim (set start/end time), video resolution presets (1080p, 720p, 480p, 360p, or custom), video rotation (0°, 90°, 180°, 270°), frame rate control, video and audio bitrate presets, audio channel selection (mono/stereo), and individual mute options for the video or audio track."
-    }
-  ],
-  "metadataTools": [
-    {
-      "question": "What does the View Metadata tool show?",
-      "answer": "The View Metadata tool reveals every hidden metadata field inside any file — images (EXIF data including camera model, lens, shutter speed, ISO, GPS coordinates), PDFs (author, creator, creation date, keywords), audio and video files, documents, and more. Everything runs 100% in your browser with no file uploads."
-    },
-    {
-      "question": "What can I edit with the Edit Metadata tool?",
-      "answer": "The Edit Metadata tool lets you modify, inject, or strip metadata from image files and PDFs. For images, you can change or remove EXIF fields including GPS coordinates, camera make/model, author info, dates, and copyright. For PDFs, you can edit author, title, creator, and keywords. All changes are applied client-side and you download the modified file."
-    },
-    {
-      "question": "Is my file data safe when using the metadata tools?",
-      "answer": "Yes. Both the View Metadata and Edit Metadata tools process your files entirely in the browser using JavaScript. No file content, metadata, or personal information is ever sent to a server."
-    },
-    {
-      "question": "Can I remove GPS location data from photos using these tools?",
-      "answer": "Yes. The Edit Metadata tool lets you clear or overwrite GPS coordinates (latitude, longitude, altitude) in your image files. This is useful for protecting your location privacy before sharing photos online."
-    }
-  ],
-  "productivityAndCalculators": [
-    {
-      "question": "What calculator tools does ToolsTrek offer?",
-      "answer": "ToolsTrek includes: Age Calculator, BMI Calculator, Days Tracker, EMI Calculator (with amortization schedule), NU CGPA Calculator, University CGPA Calculator, Unit Converter, VAT/GST Calculator, Zakat Calculator, Discount Calculator, Savings Calculator, and Smoking Cost Calculator."
-    },
-    {
-      "question": "What does the Smoking Cost Calculator do?",
-      "answer": "The Smoking Cost Calculator computes how much money you spend on cigarettes, vape, or tobacco over 1 day, 7 days, 1 month, 6 months, 1 year, 5 years, 10 years, and 20 years. It features BDT as the default currency alongside 30+ global currencies, tabs for Per Pack and Per Piece calculations, real-world purchase equivalents, health recovery metrics, and compound interest investment growth."
-    },
-    {
-      "question": "What does the Discount Calculator do?",
-      "answer": "The Discount Calculator computes sale prices, savings amounts, double discounts (discount on top of a discount), BOGO deals, tax-inclusive pricing, and unit price comparisons. It tracks a history of past calculations and lets you export summaries as a PDF."
-    },
-    {
-      "question": "What does the Savings Calculator do?",
-      "answer": "The Savings Calculator projects how your savings grow over time. You can configure an initial deposit, recurring monthly contributions, compound interest frequency (daily, monthly, annually), and advanced options like inflation rate, tax on interest, and annual contribution step-ups. Results include a year-by-year breakdown and a downloadable PDF report."
-    },
-    {
-      "question": "Is the NU CGPA Calculator different from the University CGPA Calculator?",
-      "answer": "Yes. The NU CGPA Calculator is tailored specifically for National University Bangladesh's grading system. The University CGPA Calculator is designed for private and public universities and includes institution presets (BUET, NSU, BRAC, UIU, AIUB, AUST) as well as a custom grading scale builder and a downloadable result card."
-    },
-    {
-      "question": "Can I request a new tool or feature?",
-      "answer": "Yes. Send a request through the contact page and describe the workflow you want to solve, along with example input and output if possible. That makes feature planning much easier."
+      "question": "What is the BMI Calculator and what categories does it use?",
+      "answer": "The BMI Calculator computes Body Mass Index using metric or imperial measurements, categorizing results into Underweight, Normal, Overweight, and Obese classifications according to WHO guidelines, with tailored Asian BMI cut-offs and ideal body weight targets."
     }
   ],
   "developerTools": [
     {
-      "question": "What developer tools does ToolsTrek include?",
-      "answer": "ToolsTrek includes: Domain Age Checker, IP Checker (geolocation, ISP, map), SSL Certificate Checker, Color Converter (HEX/RGB/HSL/HSV/CMYK), Gradient Generator, Markdown Previewer, Disposable Email Detector, Website Technology Detector, View Metadata, Edit Metadata, and Media Format Converter."
+      "question": "What developer and code utilities are available on ToolsTrek?",
+      "answer": "ToolsTrek provides a comprehensive developer suite including Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
     },
     {
-      "question": "What does the Disposable Email Detector do?",
-      "answer": "The Disposable Email Detector checks whether an email address belongs to a temporary or throwaway email service. It verifies email syntax, performs live MX record lookups, detects role-based addresses (like admin@ or no-reply@), identifies common typos and suggests corrections, and supports bulk email list processing."
+      "question": "What features does the Regex Tester & Debugger provide?",
+      "answer": "The Regex Tester offers real-time pattern matching with interactive capture group highlighting, an AST syntax explanation engine, string substitution/replacement, regex splitting, zero-data starter presets, and instant multi-language code generation for JavaScript, Python, Go, Rust, Java, C#, PHP, Ruby, Swift, and Bash."
     },
     {
-      "question": "What does the Website Technology Detector do?",
-      "answer": "The Website Technology Detector analyzes any website's technology stack. It identifies the CMS (WordPress, Shopify, etc.), JavaScript frameworks (React, Vue, Next.js, Angular), web servers (Nginx, Apache), CDNs (Cloudflare, Vercel, Fastly), analytics tools, and evaluates HTTP security headers with a security score."
+      "question": "Which languages does the Code Formatter & Beautifier support?",
+      "answer": "It supports JavaScript, TypeScript, HTML, CSS, JSON, XML, and SQL with customizable indentation (2 spaces, 4 spaces, tabs), line wrapping, syntax highlighting, dark/light themes, and direct file upload/download options."
     },
     {
-      "question": "Does the Website Technology Detector or Disposable Email Detector require API keys?",
-      "answer": "No. Both tools work by sending requests through ToolsTrek's server-side API routes, so no API keys are needed on your end. The Website Tech Detector fetches public HTTP headers and performs detection heuristics server-side."
+      "question": "How does the JSON Editor & Tree Viewer work?",
+      "answer": "The JSON Editor offers side-by-side visual tree editing, JSON Schema validation, sorting by keys, code minification, diff comparison between JSON objects, and instant two-way conversions to XML, YAML, and CSV formats."
+    },
+    {
+      "question": "How does the JWT Decoder handle token security and validation?",
+      "answer": "The JWT Decoder decodes header and payload JSON objects client-side, color-codes claims (iss, exp, iat, sub), verifies signature authenticity using custom HMAC secrets or RSA/ECDSA public keys, and checks token expiration status — completely offline without sending tokens to any server."
+    },
+    {
+      "question": "What does the Responsive Viewport Tester do?",
+      "answer": "The Responsive Viewport Tester lets you preview how any web application or URL renders across customizable device viewports (iPhone, iPad, MacBook, 4K desktop, Android). It supports orientation rotation, custom zoom levels, device bezel frames, and side-by-side multi-device comparisons."
+    },
+    {
+      "question": "How does the Monitor Hz & Refresh Rate Test work?",
+      "answer": "It measures your monitor's actual display refresh rate (60Hz, 120Hz, 144Hz, 240Hz, 360Hz) using high-precision browser requestAnimationFrame hooks, visualizing frame stability, stutter frequency, and peak versus average refresh rate in real-time."
     }
   ],
-  "emiCalculator": [
+  "networkAndDomain": [
     {
-      "question": "What is the EMI Calculator and how does it work?",
-      "answer": "The EMI (Equated Monthly Installment) Calculator computes your fixed monthly loan repayment amount using the standard reducing-balance formula: EMI = [P × r × (1+r)^n] / [(1+r)^n – 1], where P is the principal, r is the monthly interest rate, and n is the number of months. It runs entirely in your browser with no data sent to a server."
+      "question": "What details does the SSL Certificate Checker inspect?",
+      "answer": "It connects over a live TLS socket to inspect any domain's SSL/TLS certificate. It analyzes valid from/to dates, days remaining, issuing CA, certificate type (DV/OV/EV), Subject Alternative Names (SANs), TLS protocol and cipher suites, SHA-1 and SHA-256 fingerprints, and the entire chain of trust from leaf to Root CA with a security audit score."
     },
     {
-      "question": "What types of loans can I calculate with the EMI Calculator?",
-      "answer": "You can use it for any reducing-balance loan — home loans, car loans, personal loans, education loans, or business loans. Simply enter the loan amount, annual interest rate, and repayment tenure."
+      "question": "What technologies can the Website Technology Detector identify?",
+      "answer": "It inspects web pages to detect CMS platforms (WordPress, Shopify, Ghost), JavaScript frameworks (React, Next.js, Vue, Angular), backend servers (Nginx, Apache, Cloudflare), analytics tools (Google Analytics, Hotjar), UI libraries, and evaluates HTTP security headers (HSTS, CSP, X-Frame-Options)."
     },
     {
-      "question": "What advanced options does the EMI Calculator offer?",
-      "answer": "Clicking 'Show Advanced Options' reveals three additional fields: Processing Fee (a one-time charge added to your total cost), Annual Insurance Percentage (a recurring premium added monthly to your EMI), and Loan Start Month (used to label each row of the amortization schedule with the correct calendar month)."
+      "question": "What checks are performed by the Disposable Email Detector?",
+      "answer": "It verifies email syntax, performs live MX record DNS queries, checks against an extensive database of 70,000+ temporary/throwaway email providers, flags role-based addresses (admin, billing, support), detects common domain typos with one-click corrections, and supports bulk email list uploads."
     },
     {
-      "question": "What is an amortization schedule?",
-      "answer": "An amortization schedule is a month-by-month table showing how each EMI is split between principal repayment and interest. In the early months, a larger share goes toward interest; over time, the principal component grows as the outstanding balance decreases. You can view it under the 'Amortization Schedule' tab."
+      "question": "What details does the IP Geolocation Checker provide?",
+      "answer": "It detects your public IPv4/IPv6 address or looks up any queried IP/domain. It provides geographical location (country, city, region, postal code), coordinates on an interactive map, ISP name, ASN network, organization, and local timezone."
     },
     {
-      "question": "Which currencies does the EMI Calculator support?",
-      "answer": "The EMI Calculator supports INR (₹), USD ($), EUR (€), GBP (£), JPY (¥), and BDT (৳). Selecting a currency changes the display symbol throughout the results — the underlying mathematics remains the same regardless of currency."
-    },
-    {
-      "question": "Does the EMI Calculator store my financial data?",
-      "answer": "No. All calculations happen locally in your browser using JavaScript. No loan amount, interest rate, tenure, or personal data is ever transmitted to or stored on any server."
-    },
-    {
-      "question": "How do I interpret the donut chart in the results?",
-      "answer": "The donut chart visualises the total repayment split: the violet segment represents the original principal (the amount borrowed), and the rose/red segment represents the total interest paid over the loan tenure. Together they add up to the total amount you will pay by the end of the loan."
-    },
-    {
-      "question": "Can I use the EMI Calculator to compare different loan scenarios?",
-      "answer": "Yes. You can adjust the loan amount, interest rate, and tenure independently using the sliders or input fields. The results update instantly, making it easy to compare scenarios — for example, a 20-year mortgage vs. a 15-year one, or two lenders offering different rates."
+      "question": "How does the Domain Age Checker determine domain registration dates?",
+      "answer": "It performs an authoritative WHOIS registry lookup to return the exact registration date, domain age in years, months, and days, current expiration date, registrar information, and domain status codes."
     }
   ],
-  "colorAndSSL": [
+  "pdfTools": [
     {
-      "question": "What does the Color Converter tool do?",
-      "answer": "The Color Converter lets you instantly convert any color between HEX, RGB, HSL, HSV, and CMYK formats using live-sync inputs or an interactive color wheel. Changing any field automatically updates all other formats in real-time. It runs 100% in your browser — no data is ever sent to a server."
+      "question": "What PDF tools are available on ToolsTrek?",
+      "answer": "ToolsTrek includes 11 dedicated PDF utilities: PDF Merger, PDF Splitter, PDF Page Reorder, Compress PDF, Crop PDF Pages, Combine Mixed Files to PDF, N-Up PDF (multi-page per sheet printing), Add Attachments to PDF, PDF to High-Res Image, Image to PDF, and Email to PDF."
     },
     {
-      "question": "What are the Advanced Options in the Color Converter?",
-      "answer": "Clicking 'Advanced Options' reveals four extra panels: Color Harmonies (Complementary, Analogous, Triadic, Split Complementary, Monochromatic, Tetradic), a WCAG Contrast Checker to verify text accessibility against a custom background color, a Tints & Shades generator with 9-step gradients, and a Color Blindness Simulator showing how the color appears to people with Protanopia, Deuteranopia, Tritanopia, or Achromatopsia."
+      "question": "Are PDF files secure and private when processed on ToolsTrek?",
+      "answer": "Yes! All PDF operations run locally inside your browser memory using pdf-lib and pdfjs-dist. Your documents are never uploaded to our servers or stored anywhere online."
     },
     {
-      "question": "What does the SSL Certificate Checker tool do?",
-      "answer": "The SSL Certificate Checker connects to any domain over a live TLS connection and retrieves its SSL/TLS certificate. It shows you validity dates, the issuer, subject details (Common Name, Organization, Country), certificate type (DV/OV/EV), Subject Alternative Names (SANs), and whether the certificate is trusted by the system's CA bundle."
+      "question": "Can I combine both image files and PDF documents into one single PDF?",
+      "answer": "Yes! The Combine Files to PDF tool allows you to upload PNG, JPEG, WebP images alongside existing PDF documents in a single queue, reorder them via drag-and-drop, and bundle them into a unified PDF."
     },
     {
-      "question": "What are the Advanced Options in the SSL Certificate Checker?",
-      "answer": "Clicking 'Advanced Options' shows four deeper inspection panels: a Security Score (0–100) with specific pass/fail checks, TLS Protocol & Cipher details (protocol version, cipher name, key strength), SHA-1 and SHA-256 certificate fingerprints (both copyable), and a full Certificate Chain visualization showing End-Entity, Intermediate CA, and Root CA certificates in the trust path."
+      "question": "How does the Email to PDF Converter work?",
+      "answer": "The Email to PDF tool lets you convert email messages, headers (From, To, Date, Subject), formatting, and attachments into clean, archived, printable PDF documents suitable for legal or administrative records."
     },
     {
-      "question": "Does the SSL Certificate Checker store any domain or certificate data?",
-      "answer": "No. Each check is a live, on-demand server-side TLS connection made solely for your request. No certificate data, domain names, or results are logged or stored anywhere by ToolsTrek."
-    },
-    {
-      "question": "Can the SSL Certificate Checker detect expired or untrusted certificates?",
-      "answer": "Yes. The tool reports the exact expiry date and a real-time days-remaining countdown. It also clearly flags whether the certificate is trusted (based on the Node.js CA bundle), expired, or not yet valid — with colour-coded status banners and actionable security score penalties."
-    },
-    {
-      "question": "How does the Water Intake Calculator determine daily fluid recommendations?",
-      "answer": "The calculator uses scientific baseline ratios based on body weight (~31ml to 35ml per kg) according to EFSA and Institute of Medicine guidelines, then dynamically adjusts for your activity level, climate environment, health stage (pregnancy or lactation), and dietary factors like caffeine, protein, or sodium."
-    },
-    {
-      "question": "What advanced options are available in the Water Intake Calculator?",
-      "answer": "Clicking 'Advanced Options' lets you customize your climate (Hot/Humid, Cold/Altitude, Dry Heat), health/life stages (Pregnancy, Breastfeeding, Fever/Flu), dietary factors (Coffee/Tea, High Sodium, High Protein, Alcohol), and preferred glass or bottle container sizes for tailored daily tracking."
+      "question": "What is the N-Up PDF tool used for?",
+      "answer": "N-Up PDF arranges multiple document pages onto a single sheet of paper (2-up, 4-up, 6-up, 8-up layouts). It is ideal for creating compact handouts, booklets, presentation slide printouts, and saving paper during printing."
     }
   ],
-  "zipTools": [
+  "imageAndMedia": [
+    {
+      "question": "What image and design tools does ToolsTrek provide?",
+      "answer": "Our image suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), Gradient Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
+    },
+    {
+      "question": "How does the Animated GIF Maker work?",
+      "answer": "The GIF Maker lets you upload multiple image frames, arrange their sequence with drag-and-drop, set global or per-frame delay speeds, configure canvas sizing, toggle ping-pong loop animations, and apply color dithering — encoding the GIF 100% in your browser."
+    },
+    {
+      "question": "What features does the Image Resizer include?",
+      "answer": "The Image Resizer lets you scale images by exact pixel dimensions or percentage ratios with aspect lock, crop or pad canvas margins, choose from social media presets (Instagram, YouTube, Twitter, Facebook, LinkedIn), and export in PNG, JPEG, or WebP formats with quality controls."
+    },
+    {
+      "question": "How does the Image to Text (OCR) tool extract text?",
+      "answer": "Powered by Tesseract.js running in WebAssembly, it scans uploaded images, screenshots, receipts, or document scans directly within your browser, accurately recognizing text in multiple languages without uploading images to any server."
+    },
+    {
+      "question": "What formats can the Favicon Generator generate?",
+      "answer": "The Favicon Generator converts any logo or picture into complete web favicon packages, including standard favicon.ico (16x16, 32x32, 48x48), Apple Touch icons (180x180), Android/PWA icons (192x192, 512x512), and generates ready-to-paste HTML link tags."
+    },
+    {
+      "question": "What features does the Color Converter & Palette tool offer?",
+      "answer": "It provides real-time conversions between HEX, RGB, HSL, HSV, and CMYK, automated color harmonies (complementary, triadic, analogous), WCAG 2.1 text contrast ratio verification, color blindness simulations (protanopia, deuteranopia, tritanopia), and 9-step tint/shade generators."
+    }
+  ],
+  "mediaFormatConverter": [
+    {
+      "question": "What is the Media Format Converter and how does it convert media without a server?",
+      "answer": "The Media Format Converter uses the modern WebCodecs API alongside MediaBunny WASM encoders for hardware-accelerated transcoding entirely inside your browser. Supported output formats include MP4, WebM, MKV, MOV for video, and MP3, WAV, OGG, FLAC for audio."
+    },
+    {
+      "question": "Can I convert a video file to an audio-only format like MP3 or FLAC?",
+      "answer": "Yes. When you choose an audio output format (such as MP3, WAV, FLAC, or OGG), the tool automatically strips the video stream and transcodes a high-fidelity audio-only file."
+    },
+    {
+      "question": "What video and audio settings can I customize in the converter?",
+      "answer": "You can set start and end trimming timestamps, select video resolution presets (1080p, 720p, 480p, 360p, or custom dimensions), apply video rotation (90°, 180°, 270°), adjust frame rate, configure video/audio bitrates, choose audio channels (mono/stereo), and toggle audio/video track muting."
+    }
+  ],
+  "metadataTools": [
+    {
+      "question": "What hidden data does the View Metadata tool reveal?",
+      "answer": "It inspects files to reveal complete EXIF metadata, camera manufacturer and lens models, shutter speed, aperture, ISO, exposure compensation, GPS coordinates with an embedded map view, PDF document metadata (author, title, keywords), and audio/video ID3 tags."
+    },
+    {
+      "question": "What can I modify with the Edit Metadata tool?",
+      "answer": "You can edit, inject, or completely wipe EXIF metadata, camera make/model, copyright notices, creation dates, and GPS location coordinates from photos before publishing them online, safeguarding your location privacy."
+    },
+    {
+      "question": "Are my original photos or files altered or sent to a server during metadata edits?",
+      "answer": "No. The tool processes file headers in local browser memory and produces a clean, modified copy for download. Your original files remain untouched and are never transmitted over the internet."
+    }
+  ],
+  "zipAndArchives": [
     {
       "question": "How does the ZIP File Creator & Compressor work?",
-      "answer": "The ZIP File Creator lets you drag and drop any number of files or folders from your computer. You can organize files into custom folders, rename them, select a Deflate compression level (from Store to Maximum Deflate), and generate a standard downloadable .zip file instantly in your browser."
+      "answer": "The ZIP File Creator lets you drag and drop multiple files or entire folders to create a downloadable .zip archive. You can set compression levels (Store, Fast, Balanced, Maximum Deflate), rename files, create custom folders, and download instantly — all processed locally with JSZip."
     },
     {
-      "question": "Are my files uploaded to a server when creating or extracting a ZIP?",
-      "answer": "No. All compression, decompression, and archive creation happens 100% locally inside your web browser via client-side JavaScript. Your files never leave your device."
+      "question": "Can I preserve full nested folder structures when building a ZIP?",
+      "answer": "Yes. When dragging folders or using directory selection, the original nested folder and file hierarchy is preserved inside the generated ZIP file."
+    }
+  ],
+  "textAndLanguage": [
+    {
+      "question": "What text and language tools are available on ToolsTrek?",
+      "answer": "ToolsTrek includes 13 text utilities: Bijoy ⇄ Unicode Converter, NATO Phonetic Alphabet Converter, Text Analyzer Hub, Morse Code Decoder, Braille Decoder & Encoder, Binary Decoder, Base64 Nexus, TrekGlyph Cipher, Fancy Text Generator, Case Converter, Text Repeater, Remove Duplicate Lines, and Paragraph Formatter."
     },
     {
-      "question": "Can I preserve entire folder structures when making a ZIP?",
-      "answer": "Yes. When you drag and drop folders or use the 'Choose Entire Folder' button, the full directory structure with nested subfolders is automatically preserved inside the ZIP archive."
+      "question": "What is the Bijoy ⇄ Unicode Bengali Converter?",
+      "answer": "It provides bidirectional Bengali text conversion between legacy ANSI Bijoy (SutonnyMJ) and modern Unicode layouts, with support for SomewhereIn and Boishakhi keyboard formats, dynamic font scaling, file imports, and one-click copy."
+    },
+    {
+      "question": "How does the NATO Phonetic Alphabet Converter work?",
+      "answer": "It converts any text into standard international military/aviation phonetic spelling (Alpha, Bravo, Charlie, Delta...), featuring interactive character breakdowns with phonetic pronunciations, reverse decoding, and a complete NATO reference chart."
+    },
+    {
+      "question": "What is the TrekGlyph Geometric Cipher?",
+      "answer": "TrekGlyph is ToolsTrek's proprietary cipher that maps alphabet characters to distinct combinations of ▲ (up-triangle) and ▼ (down-triangle) symbols. It features an interactive on-screen symbol keyboard, real-time bidirectional translation, and a glyph dictionary."
+    },
+    {
+      "question": "What metrics does the Text Analyzer Hub compute?",
+      "answer": "It analyzes word count, character count (with and without spaces), sentence count, paragraph count, average reading and speaking times, readability scores (Flesch Reading Ease), and keyword density statistics."
+    }
+  ],
+  "financeAndBudget": [
+    {
+      "question": "What finance and budgeting calculators does ToolsTrek provide?",
+      "answer": "We provide: EMI Loan Calculator (with interactive amortization schedule), Savings Calculator (compound interest & inflation), Discount Calculator (double discounts & BOGO), VAT / GST Calculator (add/remove tax & country presets), Zakat Calculator (Nisab threshold adjustment), Currency Converter (36+ currencies), Wedding Budget Allocator, Travel Budget Splitter, and Tip Calculator."
+    },
+    {
+      "question": "How does the Wedding Budget Allocator help couples plan expenses?",
+      "answer": "It provides total budget scaling based on guest count, customizable category distribution (Venue, Catering, Photography, Attire), itemized estimated vs actual expense tracking, custom expense categories, interactive SVG donut charts, and exportable PDF budget summaries."
+    },
+    {
+      "question": "How does the Travel Budget Splitter manage group vacation expenses?",
+      "answer": "It tracks group trip expenses across multiple currencies with live exchange rates, budget limit alerts, flexible split methods (equal, percentages, shares, custom amounts), and generates an automated debt-simplification settlement matrix with PDF reports."
+    },
+    {
+      "question": "How does the Currency Converter work?",
+      "answer": "It converts between 36+ major global currencies using real-time exchange rates. It features custom markup/fee simulation, travel cash bill denomination breakdowns, multi-currency comparison grids, and offline rate caching."
+    },
+    {
+      "question": "What does the Savings Calculator project over time?",
+      "answer": "It calculates future wealth growth by modeling initial deposits, regular monthly contributions, compound interest compounding frequency (daily, monthly, annually), inflation adjustments, tax on interest, and annual contribution step-ups with detailed year-by-year tables and PDF export."
+    },
+    {
+      "question": "How does the Tip Calculator work?",
+      "answer": "The Tip Calculator calculates tips based on bill amount, custom tip percentages or service quality ratings, splits bills evenly or by custom shares among party members, factors in tax and discounts, and saves past calculations in local history."
+    }
+  ],
+  "productivityAndEducation": [
+    {
+      "question": "What productivity and academic tools are offered on ToolsTrek?",
+      "answer": "ToolsTrek includes: Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+    },
+    {
+      "question": "What features does the Todo Tool offer?",
+      "answer": "The Todo Tool is a complete task management suite featuring subtasks, priority levels (Urgent, High, Medium, Low), due dates with reminder notifications, custom categories, smart filters (Today, Upcoming, Completed), search, file attachments, and local data import/export."
+    },
+    {
+      "question": "How does the Class Schedule Maker work?",
+      "answer": "It provides a visual weekly timetable builder for students and teachers. Add classes with subject name, course code, instructor, room number, custom color codes, time slots, and detect schedule overlaps, exporting high-res timetable images or PDFs."
+    },
+    {
+      "question": "How does the Email Signature Editor work?",
+      "answer": "It is a visual WYSIWYG signature builder with professional templates, custom brand colors, font choices, social icon links, profile photo/logo upload, CTA buttons, and disclaimers. It generates clean HTML that copies directly into Gmail, Outlook, Apple Mail, and Thunderbird."
+    },
+    {
+      "question": "How does the Packing List Generator work?",
+      "answer": "It generates customizable travel checklists tailored to trip destination, duration, weather, and activities. It features collapsible categories, item priority badges, packed/unpacked filters, custom item additions, and exportable PDF checklists."
+    },
+    {
+      "question": "What is the difference between the NU CGPA and University CGPA Calculators?",
+      "answer": "The NU CGPA Calculator is built specifically for National University Bangladesh grading structures. The University CGPA Calculator is built for private and public universities, featuring presets for BUET, NSU, BRAC, UIU, AIUB, AUST, as well as custom grading scale builders and downloadable result cards."
+    }
+  ],
+  "qrAndSecurity": [
+    {
+      "question": "What QR Code tools does ToolsTrek provide?",
+      "answer": "We provide: QR Code Generator (with custom colors, logo embedding, error correction levels), WiFi QR Generator (creates scannable network cards with printable PDF templates), and QR Code Scanner (reads codes in real-time using your webcam or uploaded images)."
+    },
+    {
+      "question": "What security tools are available on ToolsTrek?",
+      "answer": "We offer: Password Generator (customizable character sets, length, and memorable passphrases), Password Strength Tester (entropy calculation, brute-force crack time estimates, and vulnerability checks), and Hash Generator & Verifier (computes MD5, SHA-1, SHA-256, SHA-512, and HMAC checksums)."
+    }
+  ],
+  "funAndAstrology": [
+    {
+      "question": "How does the Zodiac Sign Calculator work?",
+      "answer": "By entering your birth date and time, it determines your Western Sun sign, Vedic Rashi, Chinese Zodiac animal, Decan sub-ruler, astrological element, ruling planet, personality profile, birthstone, and generates a shareable zodiac card."
+    },
+    {
+      "question": "How does the Love Compatibility Test calculate relationship compatibility?",
+      "answer": "It analyzes astrological zodiac harmony, numerological life path numbers, name vibrational frequencies, love language preferences, and communication chemistry to generate an interactive compatibility score and relationship insight card."
     }
   ]
 }
