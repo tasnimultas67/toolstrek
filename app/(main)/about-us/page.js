@@ -255,7 +255,7 @@ const Page = () => {
               </div>
               <FadeIn delay={0.4}>
                 <Link
-                  href="https://github.com/Tasnimul-Haque/ToolsTrek"
+                  href="https://github.com/tasnimultas67/toolstrek"
                   target="_blank"
                   className="inline-block mt-4 px-6 py-3 bg-brandColor text-white font-medium rounded-lg hover:scale-105 transition-transform duration-300"
                 >
