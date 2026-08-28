@@ -1829,5 +1829,32 @@
       "Productivity",
       "Developer"
     ]
+  },
+  {
+    "title": "Health Checkup Recommender",
+    "link": "/tools/health-checkup-recommender",
+    "description": "Generate an evidence-based, fully customizable medical checkup & preventive screening plan based on age, gender, lifestyle habits, vitals (BMI), symptoms, family genetics, and diagnosed conditions. Features 36+ clinical investigations, interactive test checklist, custom test adder, doctor discussion guide, and downloadable high-resolution multi-page PDF reports with custom branding.",
+    "icon": "Stethoscope",
+    "keywords": [
+      "health checkup recommender",
+      "medical test recommendations",
+      "preventive health screening",
+      "personalized health checkup schedule",
+      "annual physical checkup checklist",
+      "diagnostic blood test list",
+      "cardiovascular screening",
+      "cancer screening guide",
+      "diabetes screening",
+      "liver kidney function tests",
+      "doctor visit checklist",
+      "health screening pdf report",
+      "free health tool",
+      "health",
+      "wellness"
+    ],
+    "categories": [
+      "Health",
+      "Productivity"
+    ]
   }
 ]
