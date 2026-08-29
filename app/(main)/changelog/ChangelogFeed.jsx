@@ -374,7 +374,7 @@ export default function ChangelogFeed() {
                     {/* Release Headline Title */}
                     <h2
                       onClick={() => toggleVersion(release.version)}
-                      className="text-xl sm:text-2xl font-bold tracking-tight text-foreground mb-3 leading-snug cursor-pointer hover:text-brandColor transition-colors flex items-start justify-between gap-3"
+                      className="text-lg sm:text-xl 2xl:text-2xl font-semibold tracking-tight text-foreground mb-3 leading-snug cursor-pointer hover:text-brandColor transition-colors flex items-start justify-between gap-3"
                     >
                       <span>{release.title}</span>
                     </h2>
