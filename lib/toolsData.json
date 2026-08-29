@@ -1,5 +1,55 @@
 [
   {
+    "title": "Daily Planner & Time-Blocking Studio",
+    "link": "/tools/daily-planner",
+    "description": "Professional, fully customizable Daily Planner & Time-Blocking Studio. Features hourly time-blocking, Eisenhower Matrix, Top 3 Frog priorities, habit & routine tracking, water & mood logger, integrated Pomodoro timer with ambient sounds, multi-theme styling, and printable PDF sheets.",
+    "icon": "CalendarCheck2",
+    "keywords": [
+      "daily planner",
+      "time blocking planner",
+      "day schedule maker",
+      "daily task planner",
+      "eisenhower matrix",
+      "pomodoro daily planner",
+      "habit tracker",
+      "printable daily planner",
+      "routine checklist",
+      "productivity planner",
+      "time management tool",
+      "schedule template"
+    ],
+    "categories": [
+      "Productivity",
+      "Time & Date"
+    ]
+  },
+  {
+    "title": "Random Number Generator (RNG Studio)",
+    "link": "/tools/random-number-generator",
+    "description": "Cryptographically secure (CSPRNG) and reproducible seeded Random Number Generator. Features customizable ranges, polyhedral RPG dice roller (D20, D6, D100 with Advantage/Disadvantage), Gaussian/Poisson/Binomial probability distributions, lottery & raffle picker, interactive empirical histogram, and multi-format export.",
+    "icon": "Dice5",
+    "keywords": [
+      "random number generator",
+      "rng",
+      "online random number generator",
+      "csprng",
+      "seeded random generator",
+      "d20 roller",
+      "dice roller",
+      "gaussian random generator",
+      "normal distribution generator",
+      "lottery generator",
+      "raffle picker",
+      "calculator tools",
+      "developer tools"
+    ],
+    "categories": [
+      "Calculator",
+      "Developer",
+      "Fun"
+    ]
+  },
+  {
     "title": "Regex Tester & Debugger",
     "link": "/tools/regex-tester",
     "description": "Test, debug, match, replace, split, and explain regular expressions in real-time. Features interactive capture group inspection, AST syntax explainer, multi-language code generator (JS, Python, PHP, Java, C#, Go, Rust, Ruby, Swift, Bash), custom themes, and zero initial demo data with on-demand presets.",

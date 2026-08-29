@@ -14,7 +14,7 @@ export const metadata = {
     "privacy questions",
   ],
   description:
-    "Find answers to common questions about ToolsTrek, client-side privacy, and our 92 free online web tools.",
+    "Find answers to common questions about ToolsTrek, client-side privacy, and our 94 free online web tools.",
 };
 
 const page = () => {

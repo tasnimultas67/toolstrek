@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>92 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>94 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-92_Available-10b981?style=flat-square" alt="92 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-94_Available-10b981?style=flat-square" alt="94 Tools" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -35,7 +35,7 @@
 
 ---
 
-## 🛠️ Tool Library (92 Tools)
+## 🛠️ Tool Library (94 Tools)
 
 ### 🌐 Developer & Code Tools (25)
 
@@ -107,10 +107,11 @@
 
 ---
 
-### 📊 Calculators & Academic Tools (7)
+### 📊 Calculators & Academic Tools (8)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
+| **Random Number Generator (RNG Studio)** | `/tools/random-number-generator` | Cryptographically secure (CSPRNG) and reproducible seeded Random Number Generator. Features customizable ranges, polyhedral RPG dice roller (D20, D6, D100 with Advantage/Disadvantage), Gaussian/Poisson/Binomial probability distributions, lottery & raffle picker, interactive empirical histogram, and multi-format export. |
 | **Age Calculator** | `/tools/age-calculate` | Calculate exact age in years, months, weeks, days, hours, minutes, and seconds with upcoming birthday countdowns. |
 | **Days Tracker** | `/tools/days-tracker` | Calculate the exact duration between two dates or add/subtract days, business days, and weeks from a starting date. |
 | **Unit Converter** | `/tools/unit-converter` | Convert length, mass, temperature, area, volume, speed, digital storage, energy, and pressure across metric and imperial systems. |
@@ -163,10 +164,11 @@
 
 ---
 
-### 🔧 Productivity & Workflow Tools (8)
+### 🔧 Productivity & Workflow Tools (9)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
+| **Daily Planner & Time-Blocking Studio** | `/tools/daily-planner` | Professional, fully customizable Daily Planner & Time-Blocking Studio with hourly schedule blocks, Eisenhower Matrix, Top 3 Frog priorities, habit & routine tracking, water & mood logging, integrated Pomodoro timer with ambient sounds, multi-theme styling, and printable PDF planner sheets. |
 | **Todo Tool** | `/tools/todo-tool` | Feature-packed task manager with subtasks, priority levels, due dates, reminder alerts, category tags, search filters, and import/export. |
 | **Email Signature Editor** | `/tools/email-signature-editor` | WYSIWYG professional email signature builder with customizable templates, social icons, logos, CTA buttons, and one-click HTML copy. |
 | **Packing List Generator** | `/tools/packing-list-generator` | Customizable travel packing checklist with collapsible categories, item priority badges, packed filters, and PDF export. |
@@ -300,12 +302,12 @@ toolstrek/
 │   │   │   ├── contact/                       #   SMTP contact email sender
 │   │   │   └── verify-recaptcha/              #   Google reCAPTCHA v2 verification
 │   │   ├── data/
-│   │   │   └── faqs.json                      # Comprehensive FAQs for all 92 tools
+│   │   │   └── faqs.json                      # Comprehensive FAQs for all 94 tools
 │   │   ├── faq/                               # FAQ page with interactive search
 │   │   ├── favorites/                         # ⭐ Saved Favorite tools view
 │   │   ├── privacy-policy/                    # Privacy Policy documentation
 │   │   ├── recent/                            # 🕐 Recent Tools history view
-│   │   ├── tools/                             # 92 Individual Tool Route Pages
+│   │   ├── tools/                             # 94 Individual Tool Route Pages
 │   │   │   ├── add-attachments/               #   Add Attachments to PDF
 │   │   │   ├── age-calculate/                 #   Age Calculator
 │   │   │   ├── avif-converter/                #   AVIF Converter
@@ -326,6 +328,7 @@ toolstrek/
 │   │   │   ├── crop-pdf/                      #   Crop PDF Pages
 │   │   │   ├── csv-viewer/                    #   CSV Viewer & Editor
 │   │   │   ├── currency-converter/            #   Currency Converter
+│   │   │   ├── daily-planner/                 #   Daily Planner & Time-Blocking Studio
 │   │   │   ├── days-tracker/                  #   Days Tracker
 │   │   │   ├── discount-calculator/           #   Discount Calculator
 │   │   │   ├── disposable-email-detector/     #   Disposable Email Detector
@@ -368,6 +371,7 @@ toolstrek/
 │   │   │   ├── pdf-to-image/                  #   PDF to Image Converter
 │   │   │   ├── qr-code-generator/             #   QR Code Generator
 │   │   │   ├── qr-scanner/                    #   QR Code Scanner
+│   │   │   ├── random-number-generator/       #   Random Number Generator (RNG Studio)
 │   │   │   ├── regex-tester/                  #   Regex Tester & Debugger
 │   │   │   ├── remove-duplicate-lines/        #   Remove Duplicate Lines
 │   │   │   ├── responsive-viewport/           #   Responsive Viewport Tester
@@ -425,7 +429,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 92 tools
+│   ├── toolsData.json                         # Central registry for all 94 tools
 │   ├── cryptoEngine.js                        # Client-side cryptographic algorithms
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── useGlobalSearch.js                     # Global search state logic

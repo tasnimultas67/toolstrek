@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 92 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 94 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 92 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 94 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Calculators & Academic (CGPA, Age, Days, Unit converter), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
+      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -22,7 +22,7 @@
     },
     {
       "question": "Can I use ToolsTrek offline?",
-      "answer": "Many of our client-side tools (including text converters, calculators, PDF tools, image resizers, and ciphers) function completely in your browser without requiring an active internet connection once the page has loaded."
+      "answer": "Many of our client-side tools (including text converters, calculators, PDF tools, image resizers, Daily Planner, RNG Studio, and ciphers) function completely in your browser without requiring an active internet connection once the page has loaded."
     }
   ],
   "privacyAndSecurity": [
@@ -72,7 +72,11 @@
   "developerTools": [
     {
       "question": "What developer and code utilities are available on ToolsTrek?",
-      "answer": "ToolsTrek provides a comprehensive developer suite including Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
+      "answer": "ToolsTrek provides a comprehensive developer suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
+    },
+    {
+      "question": "How secure and customizable is the Random Number Generator (RNG Studio)?",
+      "answer": "The RNG Studio supports both Cryptographically Secure Pseudo-Random Number Generation (CSPRNG via Web Crypto API) for tamper-proof randomness and Seeded PRNG (Mulberry32) for reproducible test sequences. It provides customizable ranges, polyhedral RPG dice rolling (D4, D6, D8, D10, D12, D20, D100 with Advantage/Disadvantage mechanics), probability distributions (Gaussian Bell Curve, Poisson, Binomial), lottery & raffle picker modes, interactive empirical histogram charts, and multi-format data export (JSON, CSV, Python, JavaScript, SQL)."
     },
     {
       "question": "What features does the Regex Tester & Debugger provide?",
@@ -258,7 +262,11 @@
   "productivityAndEducation": [
     {
       "question": "What productivity and academic tools are offered on ToolsTrek?",
-      "answer": "ToolsTrek includes: Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+      "answer": "ToolsTrek includes: Daily Planner & Time-Blocking Studio, Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+    },
+    {
+      "question": "How does the Daily Planner & Time-Blocking Studio work?",
+      "answer": "The Daily Planner Studio is an all-in-one productivity planner that combines hourly time-blocking (15, 30, or 60-minute intervals), an Eisenhower Matrix for urgency/importance prioritization, Top 3 Frog priorities, morning/evening routine checklists, habit tracking, and hydration & mood logging. It also features a built-in Pomodoro focus timer with ambient soundscapes (rain, white noise, coffee shop, forest) and allows you to export your customized daily schedule as a printable PDF sheet or save it locally in your browser."
     },
     {
       "question": "What features does the Todo Tool offer?",

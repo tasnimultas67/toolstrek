@@ -121,7 +121,7 @@ const FAQCon = () => {
       <motion.header className="text-center mb-10" variants={itemVariants}>
         <div className="inline-flex items-center gap-2 bg-brandColor/10 text-brandColor dark:text-emerald-400 px-4 py-1.5 rounded-full mb-4 text-xs font-semibold tracking-wide">
           <HelpCircle className="w-3.5 h-3.5" />
-          <span>92 Tools Supported • 68 Detailed Guides</span>
+          <span>94 Tools Supported • {totalQuestions} Detailed Guides</span>
         </div>
 
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl mb-4 tracking-tight">
@@ -135,7 +135,7 @@ const FAQCon = () => {
         </h1>
 
         <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-          Everything you need to know about ToolsTrek, client-side privacy, and our 92 free online utilities.
+          Everything you need to know about ToolsTrek, client-side privacy, and our 94 free online utilities.
         </p>
 
         {/* Live Search Bar */}
