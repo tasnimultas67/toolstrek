@@ -15,6 +15,7 @@ const staatliches = Staatliches({
 
 const about = [
   { name: "About Us", url: "/about-us" },
+  { name: "Changelog", url: "/changelog" },
   { name: "Request a Tool", url: "/contact-us" },
   { name: "Frequently Asked Questions", url: "/faq" },
   { name: "Privacy Policy", url: "/privacy-policy" },
