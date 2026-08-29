@@ -27,6 +27,7 @@ import { useFavorites } from "@/hooks/useFavorites";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
 import SupportModal from "@/components/ui/SupportModal";
+import { latestVersion } from "@/lib/changelogData";
 
 const staatliches = Staatliches({
   subsets: ["latin"],
@@ -238,7 +239,7 @@ export default function Header() {
             aria-label="Global"
             className="mx-auto flex items-center justify-between"
           >
-            <div className="flex " suppressHydrationWarning>
+            <div className="flex items-end gap-2" suppressHydrationWarning>
               <Link href="/" className="flex items-center justify-start gap-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -262,6 +263,18 @@ export default function Header() {
                   Tools<span className="text-brandColor">Trek</span>
                 </h3>
               </Link>
+
+              {/* Dynamic Version Badge linking to Changelog */}
+              {latestVersion && (
+                <Link
+                  href="/changelog"
+                  title={`View ${latestVersion} release notes`}
+                  className="font-mono text-[10px] font-semibold mb-1"
+                >
+                  {/* <span className="h-1.5 w-1.5 rounded-full bg-brandColor animate-pulse" /> */}
+                  {latestVersion}
+                </Link>
+              )}
             </div>
 
             {/* Mobile Hamburger */}
