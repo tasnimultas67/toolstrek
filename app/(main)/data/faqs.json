@@ -262,7 +262,23 @@
   "productivityAndEducation": [
     {
       "question": "What productivity and academic tools are offered on ToolsTrek?",
-      "answer": "ToolsTrek includes: Daily Planner & Time-Blocking Studio, Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+      "answer": "ToolsTrek includes: Online Notepad & Scratchpad Studio (with multi-tab notes, live Markdown preview, voice typing, TTS, and PDF/HTML/TXT export), Daily Planner & Time-Blocking Studio, Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+    },
+    {
+      "question": "How does the Online Notepad & Scratchpad Studio work?",
+      "answer": "The Online Notepad & Scratchpad Studio is a modern, privacy-focused in-browser writing environment. It provides multi-tab note management, live GitHub-flavored Markdown split preview, custom typography and themes, typewriter sound effects, voice dictation (speech-to-text), text-to-speech reading aloud, client-side PIN/password protection, real-time metrics (word, character, reading time, readability score), and comprehensive multi-format export (TXT, Markdown, PDF, HTML, JSON, and print)."
+    },
+    {
+      "question": "Are my notepad notes private and stored securely?",
+      "answer": "Yes, 100%. All notes, scratchpads, and custom settings are stored exclusively within your browser's local storage (localStorage) or volatile session memory. Nothing is ever sent to, processed by, or stored on any external server or cloud database. You can also lock confidential notes using a client-side PIN or password."
+    },
+    {
+      "question": "What export formats does the Online Notepad support?",
+      "answer": "You can export your notes as Plain Text (.txt), Markdown (.md), formatted PDF documents (.pdf with clean headers and timestamps), standalone styled HTML pages (.html), structured JSON (.json with metadata), copy directly to your clipboard, or print formatted pages."
+    },
+    {
+      "question": "Does the Online Notepad support voice typing and reading aloud?",
+      "answer": "Yes! Built-in voice dictation (speech-to-text) allows you to speak your thoughts hands-free via your microphone, and text-to-speech (TTS) lets you listen to your notes with adjustable playback speeds."
     },
     {
       "question": "How does the Daily Planner & Time-Blocking Studio work?",
