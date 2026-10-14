@@ -1,5 +1,31 @@
 [
   {
+    "title": "Custom Calendar Generator & Print Studio",
+    "link": "/tools/calendar-generator",
+    "description": "Create, customize, and download high-resolution printable calendars for any year (2027 and beyond). Features full year & multi-month views, custom paper sizes (A4, A3, Letter, custom mm/in), holiday database for 10+ countries, custom personal events, lunar moon phases, week numbers, designer themes, and export to crisp PDF, PNG, & JPEG.",
+    "icon": "CalendarDays",
+    "keywords": [
+      "calendar generator",
+      "custom calendar maker",
+      "printable calendar",
+      "calendar 2027",
+      "calendar 2026",
+      "pdf calendar maker",
+      "free printable calendar",
+      "annual calendar maker",
+      "custom page size calendar",
+      "time and date custom calendar",
+      "holiday calendar",
+      "moon phase calendar",
+      "wall calendar maker"
+    ],
+    "categories": [
+      "Productivity",
+      "Time & Date",
+      "Design"
+    ]
+  },
+  {
     "title": "Online Notepad & Scratchpad Studio",
     "link": "/tools/online-notepad",
     "description": "Modern, fully customizable in-browser Online Notepad & Scratchpad Studio. Features multi-tab note management, live Markdown preview, typewriter acoustics, voice dictation, text-to-speech, password protection, real-time statistics, and multi-format exports (TXT, MD, PDF, HTML, JSON).",
@@ -1433,7 +1459,7 @@
       "time calculator"
     ],
     "categories": [
-      "Time"
+      "Time & Date"
     ]
   },
   {
