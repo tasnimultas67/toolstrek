@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 94 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 97 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 94 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 97 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
+      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -22,7 +22,7 @@
     },
     {
       "question": "Can I use ToolsTrek offline?",
-      "answer": "Many of our client-side tools (including text converters, calculators, PDF tools, image resizers, Daily Planner, RNG Studio, and ciphers) function completely in your browser without requiring an active internet connection once the page has loaded."
+      "answer": "Many of our client-side tools (including Dynamic Time Greeting Generator, Custom Calendar Generator, Online Notepad, text converters, calculators, PDF tools, image resizers, Daily Planner, RNG Studio, and ciphers) function completely in your browser without requiring an active internet connection once the page has loaded."
     }
   ],
   "privacyAndSecurity": [
@@ -262,7 +262,23 @@
   "productivityAndEducation": [
     {
       "question": "What productivity and academic tools are offered on ToolsTrek?",
-      "answer": "ToolsTrek includes: Online Notepad & Scratchpad Studio (with multi-tab notes, live Markdown preview, voice typing, TTS, and PDF/HTML/TXT export), Daily Planner & Time-Blocking Studio, Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+      "answer": "ToolsTrek includes: Dynamic Time Greeting Generator (timezone-aware greetings with tone presets and code generation), Custom Calendar Generator & Print Studio (multi-view annual calendars with holiday datasets and print exports), Online Notepad & Scratchpad Studio (with multi-tab notes, live Markdown preview, voice typing, TTS, and PDF/HTML/TXT export), Daily Planner & Time-Blocking Studio, Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+    },
+    {
+      "question": "How does the Dynamic Time Greeting Generator work?",
+      "answer": "The Dynamic Time Greeting Generator creates personalized, real-time time-of-day greetings (Good morning, Good afternoon, Good evening, etc.) tailored to any selected target timezone across 50+ global locations. It features custom time bracket settings (Early Morning, Morning, Afternoon, Evening, Night, Late Night), dynamic recipient placeholders ({name}, {company}, {time}, {date}, {day}, {timezone}), 5 tone presets (Corporate, Casual & Friendly, Energetic & Motivational, Customer Support, Minimalist), 11 native language packs (English, Spanish, French, German, Japanese, Arabic, Bengali, Hindi, Portuguese, Italian, Chinese), an interactive 24-hour time travel simulator, and a visual card designer with PNG image export."
+    },
+    {
+      "question": "Can I export dynamic greeting code for React, Next.js, or email templates?",
+      "answer": "Yes! The tool generates clean, ready-to-deploy code snippets including an SSR hydration-safe React/Next.js hook (useDynamicGreeting), a pure Vanilla JavaScript class, embeddable HTML/CSS widgets, Liquid email template syntax (fully compatible with Klaviyo, Mailchimp, and Customer.io campaigns), and Python scripts."
+    },
+    {
+      "question": "How does the Custom Calendar Generator & Print Studio work?",
+      "answer": "The Custom Calendar Generator & Print Studio is a browser-first calendar creation and printing studio for 2026, 2027, and any upcoming year. It supports full 12-month annual grid layouts, multi-month views, and single-month presentations. You can choose standard print sizes (A4, A3, Letter, Legal, or custom mm/in), portrait or landscape orientations, customize international holiday databases (USA, UK, Canada, Bangladesh, India, Australia, Germany, France), add personal custom events, toggle ISO-8601 week numbers and lunar moon phases, and pick from curated designer color themes."
+    },
+    {
+      "question": "What export and printing options are available for custom calendars?",
+      "answer": "You can export print-ready, high-resolution vector PDF documents or ultra-crisp PNG and JPEG images directly from your browser. The tool features built-in print presets calibrated up to 300 DPI with custom margins, paper dimensions, and dark/light print contrast optimization."
     },
     {
       "question": "How does the Online Notepad & Scratchpad Studio work?",

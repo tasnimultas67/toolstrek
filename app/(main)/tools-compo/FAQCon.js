@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/accordion";
 import * as motion from "motion/react-client";
 import faqs from "../data/faqs.json";
+import toolsData from "@/lib/toolsData.json";
 
 // Helper function to format section title
 const formatSectionTitle = (sectionKey) => {
@@ -121,7 +122,7 @@ const FAQCon = () => {
       <motion.header className="text-center mb-10" variants={itemVariants}>
         <div className="inline-flex items-center gap-2 bg-brandColor/10 text-brandColor dark:text-emerald-400 px-4 py-1.5 rounded-full mb-4 text-xs font-semibold tracking-wide">
           <HelpCircle className="w-3.5 h-3.5" />
-          <span>94 Tools Supported • {totalQuestions} Detailed Guides</span>
+          <span>{toolsData.length} Tools Supported • {totalQuestions} Detailed Guides</span>
         </div>
 
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white sm:text-5xl mb-4 tracking-tight">
@@ -135,7 +136,7 @@ const FAQCon = () => {
         </h1>
 
         <p className="text-muted-foreground text-base sm:text-lg max-w-2xl mx-auto">
-          Everything you need to know about ToolsTrek, client-side privacy, and our 94 free online utilities.
+          Everything you need to know about ToolsTrek, client-side privacy, and our {toolsData.length} free online utilities.
         </p>
 
         {/* Live Search Bar */}
@@ -143,7 +144,7 @@ const FAQCon = () => {
           <Search className="w-5 h-5 absolute left-3.5 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 pointer-events-none" />
           <input
             type="text"
-            placeholder="Search questions by keyword (e.g., PDF, Checkup, Privacy, Regex, Bra size)..."
+            placeholder="Search questions by keyword (e.g., PDF, Checkup, Privacy, Regex, Calendar, Notepad, Greeting, Bra size)..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full pl-11 pr-10 py-3 rounded-2xl border border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 text-sm shadow-sm focus:outline-none focus:ring-2 focus:ring-brandColor/40 focus:border-brandColor transition-all placeholder:text-gray-400 dark:placeholder:text-gray-500"

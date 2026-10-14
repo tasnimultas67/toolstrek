@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>94 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>97 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-94_Available-10b981?style=flat-square" alt="94 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-97_Available-10b981?style=flat-square" alt="97 Tools" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -35,7 +35,7 @@
 
 ---
 
-## 🛠️ Tool Library (94 Tools)
+## 🛠️ Tool Library (97 Tools)
 
 ### 🌐 Developer & Code Tools (25)
 
@@ -164,11 +164,14 @@
 
 ---
 
-### 🔧 Productivity & Workflow Tools (9)
+### 🔧 Productivity & Workflow Tools (12)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
 | **Daily Planner & Time-Blocking Studio** | `/tools/daily-planner` | Professional, fully customizable Daily Planner & Time-Blocking Studio with hourly schedule blocks, Eisenhower Matrix, Top 3 Frog priorities, habit & routine tracking, water & mood logging, integrated Pomodoro timer with ambient sounds, multi-theme styling, and printable PDF planner sheets. |
+| **Dynamic Time Greeting Generator** | `/tools/dynamic-time-greeting-generator` | Personalized real-time time-based greeting generator with target timezone selection, customizable time brackets, recipient placeholders, multilingual language packs (11 languages), 24-hour time travel simulator, visual card themes, and ready-to-deploy React, JS, HTML, and email template snippets. |
+| **Custom Calendar Generator & Print Studio** | `/tools/calendar-generator` | High-resolution, printable annual and multi-month calendar maker with custom paper dimensions (A4, A3, Letter, Legal, custom mm/in), holiday databases for 10+ countries, custom personal events, lunar moon phases, week numbers, designer themes, and crisp PDF, PNG, & JPEG exports. |
+| **Online Notepad & Scratchpad Studio** | `/tools/online-notepad` | Distraction-free in-browser writing environment with multi-tab note management, live Markdown split preview, typewriter sound synthesis, voice typing dictation, text-to-speech reader, client-side passcode lock, real-time readability stats, and multi-format exports (TXT, MD, PDF, HTML, JSON, Print). |
 | **Todo Tool** | `/tools/todo-tool` | Feature-packed task manager with subtasks, priority levels, due dates, reminder alerts, category tags, search filters, and import/export. |
 | **Email Signature Editor** | `/tools/email-signature-editor` | WYSIWYG professional email signature builder with customizable templates, social icons, logos, CTA buttons, and one-click HTML copy. |
 | **Packing List Generator** | `/tools/packing-list-generator` | Customizable travel packing checklist with collapsible categories, item priority badges, packed filters, and PDF export. |
@@ -302,12 +305,12 @@ toolstrek/
 │   │   │   ├── contact/                       #   SMTP contact email sender
 │   │   │   └── verify-recaptcha/              #   Google reCAPTCHA v2 verification
 │   │   ├── data/
-│   │   │   └── faqs.json                      # Comprehensive FAQs for all 94 tools
+│   │   │   └── faqs.json                      # Comprehensive FAQs for all 97 tools (78 detailed guides)
 │   │   ├── faq/                               # FAQ page with interactive search
 │   │   ├── favorites/                         # ⭐ Saved Favorite tools view
 │   │   ├── privacy-policy/                    # Privacy Policy documentation
 │   │   ├── recent/                            # 🕐 Recent Tools history view
-│   │   ├── tools/                             # 94 Individual Tool Route Pages
+│   │   ├── tools/                             # 97 Individual Tool Route Pages
 │   │   │   ├── add-attachments/               #   Add Attachments to PDF
 │   │   │   ├── age-calculate/                 #   Age Calculator
 │   │   │   ├── avif-converter/                #   AVIF Converter
@@ -317,6 +320,7 @@ toolstrek/
 │   │   │   ├── bmi-calculator/                #   BMI Calculator
 │   │   │   ├── bra-size-calculator/           #   Bra Size Calculator
 │   │   │   ├── braille-decoder/               #   Braille Decoder & Encoder
+│   │   │   ├── calendar-generator/            #   Custom Calendar Generator & Print Studio
 │   │   │   ├── case-converter/                #   Case Converter
 │   │   │   ├── cgpa-calculator/               #   NU CGPA Calculator
 │   │   │   ├── class-schedule-maker/          #   Class Schedule Maker
@@ -334,6 +338,7 @@ toolstrek/
 │   │   │   ├── disposable-email-detector/     #   Disposable Email Detector
 │   │   │   ├── domain-age-checker/            #   Domain Age Checker
 │   │   │   ├── dummy-text-generator/          #   Dummy Text Generator
+│   │   │   ├── dynamic-time-greeting-generator/ # Dynamic Time Greeting Generator
 │   │   │   ├── edit-metadata/                 #   Edit Metadata
 │   │   │   ├── email-signature-editor/        #   Email Signature Editor
 │   │   │   ├── email-to-pdf/                  #   Email to PDF Converter
@@ -361,6 +366,7 @@ toolstrek/
 │   │   │   ├── n-up-pdf/                      #   N-Up PDF Layout
 │   │   │   ├── nato-phonetic-converter/       #   NATO Phonetic Alphabet
 │   │   │   ├── numbers-to-words/              #   Numbers to Words
+│   │   │   ├── online-notepad/                #   Online Notepad & Scratchpad Studio
 │   │   │   ├── packing-list-generator/        #   Packing List Generator
 │   │   │   ├── paragraph-formatter/           #   Paragraph Formatter
 │   │   │   ├── password-generator/            #   Password Generator
@@ -429,7 +435,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 94 tools
+│   ├── toolsData.json                         # Central registry for all 97 tools
 │   ├── cryptoEngine.js                        # Client-side cryptographic algorithms
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── useGlobalSearch.js                     # Global search state logic

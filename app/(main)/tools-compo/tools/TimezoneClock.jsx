@@ -22,7 +22,9 @@ import {
   MapPin,
   RefreshCw,
   Info,
-  CalendarDays
+  CalendarDays,
+  SunMedium,
+  ChevronRight
 } from "lucide-react";
 import ReactCountryFlag from "react-country-flag";
 import ToolPageShell from "../ToolPageShell";
@@ -1236,6 +1238,31 @@ export default function TimezoneClock() {
               </div>
             )}
           </div>
+        </div>
+
+        {/* Related Tool Recommendation: Dynamic Time Greeting Generator */}
+        <div className="mt-8 p-5 rounded-2xl bg-gradient-to-r from-purple-500/10 via-indigo-500/10 to-violet-500/10 border border-purple-500/20 dark:border-purple-500/30 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+          <div className="flex items-center gap-3.5">
+            <div className="p-2.5 rounded-xl bg-gradient-to-tr from-purple-600 to-indigo-600 text-white shadow-md flex-shrink-0">
+              <SunMedium className="w-5 h-5" />
+            </div>
+            <div>
+              <h4 className="font-bold text-sm text-slate-800 dark:text-slate-100 flex items-center gap-1.5">
+                Dynamic Time Greeting Generator
+                <span className="text-[10px] font-bold px-2 py-0.5 rounded-full bg-purple-600 text-white">NEW</span>
+              </h4>
+              <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                Build personalized morning, afternoon, and evening greetings with target timezones and exportable React & JavaScript code snippets.
+              </p>
+            </div>
+          </div>
+          <a
+            href="/tools/dynamic-time-greeting-generator"
+            className="self-start sm:self-auto px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white text-xs font-bold rounded-xl transition-all shadow-xs flex items-center gap-1.5 whitespace-nowrap cursor-pointer"
+          >
+            <span>Launch Tool</span>
+            <ChevronRight className="w-3.5 h-3.5" />
+          </a>
         </div>
 
         {/* Privacy Note Footer */}

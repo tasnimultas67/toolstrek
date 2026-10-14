@@ -138,6 +138,14 @@ const categoryMeta = {
     text: "text-cyan-600 dark:text-cyan-400",
     description: "Timezone & time conversions",
   },
+  "Time & Date": {
+    Icon: Clock,
+    gradient: "from-purple-500 to-indigo-500",
+    bg: "from-purple-500/10 to-indigo-500/10",
+    border: "border-purple-500/20",
+    text: "text-purple-600 dark:text-purple-400",
+    description: "Calendars, dynamic greetings & time zones",
+  },
   Travel: {
     Icon: Plane,
     gradient: "from-orange-500 to-amber-500",
@@ -171,6 +179,7 @@ const CATEGORY_ORDER = [
   "Education",
   "Health",
   "Time",
+  "Time & Date",
   "Travel",
   "Fun",
   "Media",

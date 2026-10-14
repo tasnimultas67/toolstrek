@@ -88,6 +88,11 @@ const CATEGORY_CONTENT = {
     description:
       "Convert time zones, track days, and manage schedules effortlessly.",
   },
+  "Time & Date": {
+    title: "Time & Date *Tools*.",
+    description:
+      "Convert time zones, personalize dynamic greetings, and manage schedules effortlessly.",
+  },
   Travel: {
     title: "Travel *Tools*.",
     description:
