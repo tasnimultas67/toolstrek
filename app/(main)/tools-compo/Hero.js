@@ -114,7 +114,7 @@ const Hero = () => {
           >
             <Link href="#tools">
               <Button className="w-full bg-brandColor dark:text-white hover:bg-brandColorHover transition-all duration-200 cursor-pointer">
-                Get started free
+                Get started free - No Signup!
               </Button>
             </Link>
             <Link

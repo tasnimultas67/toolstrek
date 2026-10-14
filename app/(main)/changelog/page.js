@@ -40,7 +40,12 @@ export default function ChangelogPage() {
             {/* Pill Badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brandColor/10 border border-brandColor/20 text-brandColor text-xs font-semibold">
               <Sparkles className="size-3.5" />
-              <span>Continuous Innovation • Version {latestRelease.version}</span>
+              <span>
+                Continuous Innovation •{" "}
+                {latestRelease?.version?.startsWith("v")
+                  ? `Version ${latestRelease.version.slice(1)}`
+                  : `Version ${latestRelease?.version}`}
+              </span>
             </div>
 
             {/* Main Title */}

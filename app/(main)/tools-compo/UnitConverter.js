@@ -246,9 +246,8 @@ const CustomSelect = ({ id, value, onChange, options, label }) => {
           {selectedOption ? selectedOption.label : value}
         </span>
         <ChevronDown
-          className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${
-            isOpen ? "rotate-180" : ""
-          }`}
+          className={`h-4 w-4 text-muted-foreground transition-transform duration-200 ${isOpen ? "rotate-180" : ""
+            }`}
         />
       </button>
 
@@ -292,11 +291,10 @@ const CustomSelect = ({ id, value, onChange, options, label }) => {
                         setIsOpen(false);
                         setSearchTerm("");
                       }}
-                      className={`w-full px-4 py-2.5 text-left text-sm font-semibold transition-colors duration-150 flex items-center justify-between cursor-pointer ${
-                        isSelected
+                      className={`w-full px-4 py-2.5 text-left text-sm font-semibold transition-colors duration-150 flex items-center justify-between cursor-pointer ${isSelected
                           ? "bg-brandColor/10 dark:bg-brandColor/20 text-brandColor"
                           : "hover:bg-muted text-foreground"
-                      }`}
+                        }`}
                     >
                       <span className="truncate">{option.label}</span>
                       {isSelected && (
@@ -483,7 +481,7 @@ export default function UnitConverter() {
     const url =
       typeof window !== "undefined"
         ? window.location.href
-        : "https://toolstrek.com/tools/unit-converter";
+        : "https://toolstrek.vercel.app/tools/unit-converter";
     if (navigator.share) {
       navigator
         .share({
@@ -556,11 +554,10 @@ export default function UnitConverter() {
               <button
                 key={key}
                 onClick={() => setCategory(key)}
-                className={`snap-start flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 cursor-pointer ${
-                  isActive
+                className={`snap-start flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 cursor-pointer ${isActive
                     ? "bg-brandColor text-white border-brandColor shadow-md shadow-brandColor/20 scale-[1.02]"
                     : "bg-card hover:bg-muted text-muted-foreground hover:text-foreground border-border"
-                }`}
+                  }`}
               >
                 <Icon className="w-4 h-4" />
                 <span>{value.name}</span>
@@ -663,11 +660,10 @@ export default function UnitConverter() {
               {output && (
                 <button
                   onClick={handleCopy}
-                  className={`absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full transition-all cursor-pointer ${
-                    copied
+                  className={`absolute right-3 top-1/2 -translate-y-1/2 p-2 rounded-full transition-all cursor-pointer ${copied
                       ? "bg-emerald-500/10 text-emerald-500 border border-emerald-500/20"
                       : "bg-muted hover:bg-muted-foreground/20 text-muted-foreground"
-                  }`}
+                    }`}
                   title="Copy result"
                   aria-label="Copy result"
                 >
@@ -718,11 +714,10 @@ export default function UnitConverter() {
             </button>
             <button
               onClick={handleShare}
-              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl border transition-all cursor-pointer ${
-                copiedShare
+              className={`flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2 text-sm font-semibold rounded-xl border transition-all cursor-pointer ${copiedShare
                   ? "bg-emerald-500/10 text-emerald-500 border-emerald-500/30"
                   : "bg-brandColor/10 dark:bg-brandColor/20 border-brandColor/20 text-brandColor hover:bg-brandColor hover:text-white"
-              }`}
+                }`}
             >
               {copiedShare ? (
                 <>

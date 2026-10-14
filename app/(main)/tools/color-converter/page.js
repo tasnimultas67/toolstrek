@@ -24,7 +24,7 @@ export const metadata = {
     description:
       "Free online color converter tool. Convert between HEX, RGB, HSL, HSV, CMYK color spaces instantly. Generate color harmonies, verify WCAG contrast compliance, simulate color blindness, and inspect tints & shades.",
     type: "website",
-    url: "https://toolstrek.com/tools/color-converter",
+    url: "https://toolstrek.vercel.app/tools/color-converter",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -34,7 +34,7 @@ export const metadata = {
       "Free online color converter tool. Convert between HEX, RGB, HSL, HSV, CMYK color spaces instantly. Generate color harmonies, verify WCAG contrast compliance, simulate color blindness, and inspect tints & shades.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/color-converter",
+    canonical: "https://toolstrek.vercel.app/tools/color-converter",
   },
 };
 
@@ -51,7 +51,7 @@ const page = () => {
             name: "Color Converter",
             description:
               "Convert between HEX, RGB, HSL, HSV, CMYK color spaces instantly. Generate color harmonies, check WCAG contrast ratio, simulate color blindness, and view tints & shades.",
-            url: "https://toolstrek.com/tools/color-converter",
+            url: "https://toolstrek.vercel.app/tools/color-converter",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

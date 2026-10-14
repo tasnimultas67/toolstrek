@@ -28,7 +28,7 @@ export const metadata = {
     description:
       "Preview any website across 80+ real device viewports. Test responsive layouts, check breakpoints, measure dimensions, and inspect pixel density — all in one place.",
     type: "website",
-    url: "https://toolstrek.com/tools/responsive-viewport",
+    url: "https://toolstrek.vercel.app/tools/responsive-viewport",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -38,7 +38,7 @@ export const metadata = {
       "Preview any website across 80+ real device viewports. Test responsive layouts, check breakpoints, measure dimensions, and inspect pixel density.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/responsive-viewport",
+    canonical: "https://toolstrek.vercel.app/tools/responsive-viewport",
   },
 };
 
@@ -54,7 +54,7 @@ const page = () => {
             name: "Responsive Viewport Tester",
             description:
               "Preview any website across 80+ real device viewports. Test responsive layouts, check breakpoints, measure dimensions, and inspect pixel density.",
-            url: "https://toolstrek.com/tools/responsive-viewport",
+            url: "https://toolstrek.vercel.app/tools/responsive-viewport",
             applicationCategory: "DeveloperApplication",
             operatingSystem: "All",
             offers: {

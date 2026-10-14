@@ -21,7 +21,7 @@ export const metadata = {
     description:
       "Detect temporary, disposable, and fake emails instantly. Run syntax validation, live DNS MX lookup, role checks, and bulk lists verification. Free & server-side checks.",
     type: "website",
-    url: "https://toolstrek.com/tools/disposable-email-detector",
+    url: "https://toolstrek.vercel.app/tools/disposable-email-detector",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -31,7 +31,7 @@ export const metadata = {
       "Detect temporary, disposable, and fake emails instantly. Run syntax validation, live DNS MX lookup, role checks, and bulk lists verification. Free & server-side checks.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/disposable-email-detector",
+    canonical: "https://toolstrek.vercel.app/tools/disposable-email-detector",
   },
 };
 
@@ -48,7 +48,7 @@ const page = () => {
             name: "Disposable Email Detector",
             description:
               "Identify temporary, disposable, and fake email addresses. Check syntax, MX records, role accounts, typos, and perform bulk scan verifications.",
-            url: "https://toolstrek.com/tools/disposable-email-detector",
+            url: "https://toolstrek.vercel.app/tools/disposable-email-detector",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

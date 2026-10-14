@@ -21,7 +21,7 @@ export const metadata = {
     description:
       "Check any domain's age, registration date, last updated date, expiration date, registrar, nameservers, registrant organization, and country. Free & instant.",
     type: "website",
-    url: "https://toolstrek.com/tools/domain-age-checker",
+    url: "https://toolstrek.vercel.app/tools/domain-age-checker",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -31,7 +31,7 @@ export const metadata = {
       "Check any domain's age, registration date, last updated date, expiration date, registrar, nameservers, registrant organization, and country. Free & instant.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/domain-age-checker",
+    canonical: "https://toolstrek.vercel.app/tools/domain-age-checker",
   },
 };
 
@@ -48,7 +48,7 @@ const page = () => {
             name: "Domain Age Checker",
             description:
               "Check any domain name's age, registration date, last updated date, expiration date, registrar, status, nameservers, registrant organization, and country.",
-            url: "https://toolstrek.com/tools/domain-age-checker",
+            url: "https://toolstrek.vercel.app/tools/domain-age-checker",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

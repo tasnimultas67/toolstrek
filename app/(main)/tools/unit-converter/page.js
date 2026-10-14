@@ -20,7 +20,7 @@ export const metadata = {
   openGraph: {
     title: "Unit Converter - Convert Length, Weight, Temperature & More | Toolstrek",
     description: "Free online unit converter. Convert length, weight, temperature, area, volume, speed, time and data storage units instantly.",
-    url: "https://toolstrek.com/tools/unit-converter",
+    url: "https://toolstrek.vercel.app/tools/unit-converter",
     siteName: "Toolstrek",
     type: "website",
   },
@@ -36,7 +36,7 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     "name": "Unit Converter - Toolstrek",
-    "url": "https://toolstrek.com/tools/unit-converter",
+    "url": "https://toolstrek.vercel.app/tools/unit-converter",
     "description": "Free online unit converter. Convert length, weight, temperature, area, volume, speed, time and data storage units instantly.",
     "applicationCategory": "UtilityApplication",
     "operatingSystem": "All",

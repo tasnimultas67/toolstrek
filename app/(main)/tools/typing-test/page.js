@@ -21,7 +21,7 @@ export const metadata = {
     description:
       "Measure your typing speed and accuracy with this interactive tool. Features live stats, real-time WPM graphs, key-by-key response heatmap, and free dynamic certificate downloads.",
     type: "website",
-    url: "https://toolstrek.com/tools/typing-test",
+    url: "https://toolstrek.vercel.app/tools/typing-test",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -31,7 +31,7 @@ export const metadata = {
       "Measure your typing speed and accuracy with this interactive tool. Features live stats, real-time WPM graphs, key-by-key response heatmap, and free dynamic certificate downloads.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/typing-test",
+    canonical: "https://toolstrek.vercel.app/tools/typing-test",
   },
 };
 
@@ -48,7 +48,7 @@ const page = () => {
             name: "Professional Typing Test",
             description:
               "Measure your typing speed (WPM) and accuracy with our interactive test. Features mechanical sound effects, key heatmap analysis, sudden death mode, coding typing tests, and dynamic certificate downloads.",
-            url: "https://toolstrek.com/tools/typing-test",
+            url: "https://toolstrek.vercel.app/tools/typing-test",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

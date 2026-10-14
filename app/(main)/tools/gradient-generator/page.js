@@ -24,7 +24,7 @@ export const metadata = {
     description:
       "Free online gradient generator. Create linear, radial, and conic gradients with color stops, custom angles, repeating styles, overlay blend modes, and high-res image exports (PNG/SVG).",
     type: "website",
-    url: "https://toolstrek.com/tools/gradient-generator",
+    url: "https://toolstrek.vercel.app/tools/gradient-generator",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -34,7 +34,7 @@ export const metadata = {
       "Free online gradient generator. Create linear, radial, and conic gradients with color stops, custom angles, repeating styles, overlay blend modes, and high-res image exports (PNG/SVG).",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/gradient-generator",
+    canonical: "https://toolstrek.vercel.app/tools/gradient-generator",
   },
 };
 
@@ -51,7 +51,7 @@ const page = () => {
             name: "Gradient Generator",
             description:
               "Create CSS and Tailwind gradients. Customize colors, add multiple stops, choose linear, radial, or conic styles, and access advanced options like PNG/SVG image export.",
-            url: "https://toolstrek.com/tools/gradient-generator",
+            url: "https://toolstrek.vercel.app/tools/gradient-generator",
             applicationCategory: "DesignApplication",
             operatingSystem: "All",
             offers: {

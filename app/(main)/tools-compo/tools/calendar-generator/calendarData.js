@@ -938,7 +938,7 @@ export function generateICS(events, calendarTitle = "Custom Calendar") {
     const dt = `${y}${m}${d}`;
     ics.push(
       "BEGIN:VEVENT",
-      `UID:toolstrek-${y}-${m}-${d}-${idx}@toolstrek.com`,
+      `UID:toolstrek-${y}-${m}-${d}-${idx}@toolstrek.vercel.app`,
       `DTSTAMP:${y}0101T000000Z`,
       `DTSTART;VALUE=DATE:${dt}`,
       `DTEND;VALUE=DATE:${dt}`,

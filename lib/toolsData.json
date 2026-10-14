@@ -1,5 +1,108 @@
 [
   {
+    "title": "Task Prioritizer & Eisenhower Matrix Studio",
+    "link": "/tools/task-prioritizer",
+    "description": "Professional Eisenhower Decision Matrix and multi-framework task prioritizer. Sort tasks by urgency and importance (Do First, Schedule, Delegate, Eliminate), evaluate Action Priority ROI, view Kanban boards, track deadlines, and export to CSV, JSON, PNG, or Markdown.",
+    "icon": "LayoutGrid",
+    "keywords": [
+      "task prioritizer",
+      "eisenhower matrix",
+      "priority matrix",
+      "eisenhower matrix online",
+      "urgent important matrix",
+      "task priority tool",
+      "action priority matrix",
+      "moscow prioritization",
+      "to do prioritizer",
+      "productivity matrix",
+      "task manager",
+      "decision matrix",
+      "eisenhower box",
+      "time management matrix",
+      "eisenhower task manager"
+    ],
+    "categories": [
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Countdown Timer & Days Until Calculator",
+    "link": "/tools/countdown-timer",
+    "description": "Professional live countdown timer and days until calculator. Track upcoming events, holidays, deadlines, and milestones with timezone precision, working/business days calculations, full-screen presentation mode, Web Audio alerts, confetti celebration, and .ics calendar exports.",
+    "icon": "Hourglass",
+    "keywords": [
+      "countdown timer",
+      "days until calculator",
+      "countdown clock",
+      "days until",
+      "online countdown timer",
+      "days until christmas",
+      "days until new year",
+      "business days calculator",
+      "working days until",
+      "event countdown",
+      "holiday countdown",
+      "milestone tracker",
+      "date duration calculator",
+      "fullscreen countdown",
+      "embed countdown",
+      "how many days until"
+    ],
+    "categories": [
+      "Productivity",
+      "Time & Date",
+      "Calculator"
+    ]
+  },
+  {
+    "title": "Days Until Calculator",
+    "link": "/tools/days-until-calculator",
+    "description": "Calculate exact calendar days, working/business days (excluding weekends), full weeks, and hours until any date or event. Features custom weekend modes, leap year calculations, and live milestone countdowns.",
+    "icon": "CalendarDays",
+    "keywords": [
+      "days until calculator",
+      "days until",
+      "how many days until",
+      "business days calculator",
+      "working days until",
+      "days between dates",
+      "date duration calculator",
+      "days until christmas",
+      "days until new year",
+      "calendar days counter",
+      "workdays calculator"
+    ],
+    "categories": [
+      "Productivity",
+      "Time & Date",
+      "Calculator"
+    ]
+  },
+  {
+    "title": "Pomodoro Timer & Deep Work Studio",
+    "link": "/tools/pomodoro-timer",
+    "description": "Professional Pomodoro focus timer with customizable intervals, synthesized ambient audio (brown noise, rain, 40Hz gamma focus tone), integrated sprint task estimation, daily streak analytics, and distraction-free Zen mode.",
+    "icon": "Timer",
+    "keywords": [
+      "pomodoro timer",
+      "pomodoro technique",
+      "focus timer",
+      "study timer",
+      "deep work timer",
+      "productivity timer",
+      "ambient focus sound",
+      "brown noise timer",
+      "timeboxing tool",
+      "tomato timer",
+      "task timer",
+      "time management tool"
+    ],
+    "categories": [
+      "Productivity",
+      "Time & Date"
+    ]
+  },
+  {
     "title": "Dynamic Time Greeting Generator",
     "link": "/tools/dynamic-time-greeting-generator",
     "description": "Create, customize, and generate personalized time-of-day greetings tailored to any target timezone. Features custom time brackets, recipient placeholders, 11+ multilingual packs, tone presets, 24-hour time simulator, visual card exporter, and ready-to-use React, JS, HTML, and email template snippets.",

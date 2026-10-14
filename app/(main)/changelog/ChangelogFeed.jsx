@@ -526,11 +526,11 @@ export default function ChangelogFeed() {
                 {changelogData.length} releases
               </span>
             </div>
-            <nav className="space-y-1">
+            <nav className="space-y-3">
               {changelogData.map((item) => {
                 const isActive = activeVersion === item.version;
                 return (
-                  <a
+                  <Link
                     key={item.version}
                     href={`#release-${item.version}`}
                     onClick={() => {
@@ -540,9 +540,9 @@ export default function ChangelogFeed() {
                         [item.version]: true,
                       }));
                     }}
-                    className={`flex items-center justify-between p-2.5 rounded-xl text-xs transition-all ${isActive
-                      ? "bg-brandColor/10 text-brandColor font-semibold border-l-2 border-brandColor pl-3"
-                      : "text-muted-foreground hover:text-foreground hover:bg-gray-50 dark:hover:bg-slate-800"
+                    className={`flex items-center justify-between text-xs transition-all ${isActive
+                      ? "text-brandColor font-semibold"
+                      : "text-muted-foreground hover:text-foreground "
                       }`}
                   >
                     <div className="flex items-center gap-2 truncate">
@@ -554,7 +554,7 @@ export default function ChangelogFeed() {
                     <span className="text-[10px] text-muted-foreground shrink-0 ml-2">
                       {item.date.split(" ")[0]}
                     </span>
-                  </a>
+                  </Link>
                 );
               })}
             </nav>

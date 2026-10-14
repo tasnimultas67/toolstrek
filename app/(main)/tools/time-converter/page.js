@@ -21,7 +21,7 @@ export const metadata = {
     title: "Time Converter - Convert Seconds, Minutes, Hours & More | Toolstrek",
     description:
       "Free online time converter. Instantly convert between nanoseconds, milliseconds, seconds, minutes, hours, days, weeks, months, years, and more.",
-    url: "https://toolstrek.com/tools/time-converter",
+    url: "https://toolstrek.vercel.app/tools/time-converter",
     siteName: "Toolstrek",
     type: "website",
   },
@@ -38,7 +38,7 @@ export default function Page() {
     "@context": "https://schema.org",
     "@type": "WebApplication",
     name: "Time Converter - Toolstrek",
-    url: "https://toolstrek.com/tools/time-converter",
+    url: "https://toolstrek.vercel.app/tools/time-converter",
     description:
       "Free online time converter. Instantly convert between nanoseconds, milliseconds, seconds, minutes, hours, days, weeks, months, and years.",
     applicationCategory: "UtilityApplication",

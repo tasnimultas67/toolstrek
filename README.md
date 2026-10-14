@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>97 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>101 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-97_Available-10b981?style=flat-square" alt="97 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-101_Available-10b981?style=flat-square" alt="101 Tools" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -35,7 +35,7 @@
 
 ---
 
-## 🛠️ Tool Library (97 Tools)
+## 🛠️ Tool Library (101 Tools)
 
 ### 🌐 Developer & Code Tools (25)
 
@@ -164,10 +164,14 @@
 
 ---
 
-### 🔧 Productivity & Workflow Tools (12)
+### 🔧 Productivity & Workflow Tools (16)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
+| **Task Prioritizer & Eisenhower Matrix Studio** | `/tools/task-prioritizer` | Professional Eisenhower Decision Matrix (Do First, Schedule, Delegate, Eliminate), Action Priority ROI, and MoSCoW task prioritizer with 2×2 grids, Kanban boards, health diagnostics, subtasks, and PNG/CSV/Markdown exports. |
+| **Countdown Timer & Days Until Calculator** | `/tools/countdown-timer` | Professional live countdown timer and days until calculator with timezone precision, business days calculations, full-screen presentation mode, Web Audio alerts, confetti celebration, and .ics calendar exports. |
+| **Days Until Calculator** | `/tools/days-until-calculator` | Calculate exact calendar days, working/business days (excluding weekends), full weeks, and hours until any date or milestone with custom weekend modes and leap year accuracy. |
+| **Pomodoro Timer & Deep Work Studio** | `/tools/pomodoro-timer` | Professional Pomodoro focus timer with customizable intervals, synthesized ambient audio (brown noise, rain, 40Hz gamma focus tone), sprint task estimation, daily streak analytics, and Zen fullscreen mode. |
 | **Daily Planner & Time-Blocking Studio** | `/tools/daily-planner` | Professional, fully customizable Daily Planner & Time-Blocking Studio with hourly schedule blocks, Eisenhower Matrix, Top 3 Frog priorities, habit & routine tracking, water & mood logging, integrated Pomodoro timer with ambient sounds, multi-theme styling, and printable PDF planner sheets. |
 | **Dynamic Time Greeting Generator** | `/tools/dynamic-time-greeting-generator` | Personalized real-time time-based greeting generator with target timezone selection, customizable time brackets, recipient placeholders, multilingual language packs (11 languages), 24-hour time travel simulator, visual card themes, and ready-to-deploy React, JS, HTML, and email template snippets. |
 | **Custom Calendar Generator & Print Studio** | `/tools/calendar-generator` | High-resolution, printable annual and multi-month calendar maker with custom paper dimensions (A4, A3, Letter, Legal, custom mm/in), holiday databases for 10+ countries, custom personal events, lunar moon phases, week numbers, designer themes, and crisp PDF, PNG, & JPEG exports. |
@@ -305,12 +309,12 @@ toolstrek/
 │   │   │   ├── contact/                       #   SMTP contact email sender
 │   │   │   └── verify-recaptcha/              #   Google reCAPTCHA v2 verification
 │   │   ├── data/
-│   │   │   └── faqs.json                      # Comprehensive FAQs for all 97 tools (78 detailed guides)
+│   │   │   └── faqs.json                      # Comprehensive FAQs for all 101 tools (80+ detailed guides)
 │   │   ├── faq/                               # FAQ page with interactive search
 │   │   ├── favorites/                         # ⭐ Saved Favorite tools view
 │   │   ├── privacy-policy/                    # Privacy Policy documentation
 │   │   ├── recent/                            # 🕐 Recent Tools history view
-│   │   ├── tools/                             # 97 Individual Tool Route Pages
+│   │   ├── tools/                             # 101 Individual Tool Route Pages
 │   │   │   ├── add-attachments/               #   Add Attachments to PDF
 │   │   │   ├── age-calculate/                 #   Age Calculator
 │   │   │   ├── avif-converter/                #   AVIF Converter
@@ -329,11 +333,13 @@ toolstrek/
 │   │   │   ├── color-palette-extractor/       #   Color Palette Extractor
 │   │   │   ├── combine-files-to-pdf/          #   Combine Mixed Files to PDF
 │   │   │   ├── compress-pdf/                  #   Compress PDF
+│   │   │   ├── countdown-timer/               #   Countdown Timer & Days Until Calculator
 │   │   │   ├── crop-pdf/                      #   Crop PDF Pages
 │   │   │   ├── csv-viewer/                    #   CSV Viewer & Editor
 │   │   │   ├── currency-converter/            #   Currency Converter
 │   │   │   ├── daily-planner/                 #   Daily Planner & Time-Blocking Studio
 │   │   │   ├── days-tracker/                  #   Days Tracker
+│   │   │   ├── days-until-calculator/         #   Days Until Calculator
 │   │   │   ├── discount-calculator/           #   Discount Calculator
 │   │   │   ├── disposable-email-detector/     #   Disposable Email Detector
 │   │   │   ├── domain-age-checker/            #   Domain Age Checker
@@ -375,6 +381,7 @@ toolstrek/
 │   │   │   ├── pdf-reorder/                   #   PDF Page Reorder
 │   │   │   ├── pdf-split/                     #   PDF Splitter
 │   │   │   ├── pdf-to-image/                  #   PDF to Image Converter
+│   │   │   ├── pomodoro-timer/                #   Pomodoro Timer & Deep Work Studio
 │   │   │   ├── qr-code-generator/             #   QR Code Generator
 │   │   │   ├── qr-scanner/                    #   QR Code Scanner
 │   │   │   ├── random-number-generator/       #   Random Number Generator (RNG Studio)
@@ -435,7 +442,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 97 tools
+│   ├── toolsData.json                         # Central registry for all 101 tools
 │   ├── cryptoEngine.js                        # Client-side cryptographic algorithms
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── useGlobalSearch.js                     # Global search state logic

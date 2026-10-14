@@ -164,12 +164,12 @@ const Footer = () => {
               </Link>
               &
               <Link
-                href="https://oraclebyte.com/"
+                href="https://axioree.com/"
                 target="_blank"
                 suppressHydrationWarning
                 className="text-yellow-300 ml-1"
               >
-                Oracle Byte
+                Axioree
               </Link>
             </p>
           </div>

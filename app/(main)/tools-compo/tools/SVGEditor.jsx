@@ -384,7 +384,7 @@ export default function SVGEditor() {
 
   // ── Clipboard helpers ────────────────────────────────────────────────────────
   const handleCopy = (type, text) => {
-    navigator.clipboard.writeText(text).catch(() => {});
+    navigator.clipboard.writeText(text).catch(() => { });
     setCopiedType(type);
     setTimeout(() => setCopiedType(null), 2000);
   };
@@ -1041,7 +1041,7 @@ export default function SVGEditor() {
               <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="flex items-center gap-1.5 px-3.5 py-2 bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl text-[12px] font-bold text-slate-200 transition cursor-pointer">
                 <Linkedin className="w-3.5 h-3.5" /> LinkedIn
               </a>
-              <a href="mailto:support@toolstrek.com" className="flex items-center gap-1.5 px-3.5 py-2 bg-brandColor hover:bg-brandColorHover text-white text-[12px] font-bold rounded-xl transition cursor-pointer">
+              <a href="mailto:support@toolstrek.vercel.app" className="flex items-center gap-1.5 px-3.5 py-2 bg-brandColor hover:bg-brandColorHover text-white text-[12px] font-bold rounded-xl transition cursor-pointer">
                 <Mail className="w-3.5 h-3.5" /> Contact Team
               </a>
             </div>

@@ -24,7 +24,7 @@ export const metadata = {
     description:
       "Capture high-resolution, full-page screenshots of any website for free. Enforce minimum font sizes, emulate dark mode, block cookie banners, and download as PNG, JPG, PDF, or WebP.",
     type: "website",
-    url: "https://toolstrek.com/tools/full-page-screenshot",
+    url: "https://toolstrek.vercel.app/tools/full-page-screenshot",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -34,7 +34,7 @@ export const metadata = {
       "Capture high-resolution, full-page screenshots of any website for free. Enforce minimum font sizes, emulate dark mode, block cookie banners, and download as PNG, JPG, PDF, or WebP.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/full-page-screenshot",
+    canonical: "https://toolstrek.vercel.app/tools/full-page-screenshot",
   },
 };
 
@@ -50,7 +50,7 @@ const page = () => {
             name: "Full Page Screenshot Tool",
             description:
               "Capture high-resolution, full-page screenshots of any website for free. Enforce mobile 12px or laptop 14px minimum font sizes, emulate dark mode, block cookie banners, and download as PNG, JPG, PDF, or WebP.",
-            url: "https://toolstrek.com/tools/full-page-screenshot",
+            url: "https://toolstrek.vercel.app/tools/full-page-screenshot",
             applicationCategory: "DeveloperApplication",
             operatingSystem: "All",
             offers: {

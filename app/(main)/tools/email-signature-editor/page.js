@@ -26,7 +26,7 @@ export const metadata = {
     description:
       "Create stunning professional email signatures online for free. Customize fonts, colors, layouts, social icons, photos, logos, CTA buttons, disclaimers & more.",
     type: "website",
-    url: "https://toolstrek.com/tools/email-signature-editor",
+    url: "https://toolstrek.vercel.app/tools/email-signature-editor",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -36,7 +36,7 @@ export const metadata = {
       "Create stunning professional email signatures online for free. Customize fonts, colors, layouts, social icons, photos, logos, CTA buttons & more.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/email-signature-editor",
+    canonical: "https://toolstrek.vercel.app/tools/email-signature-editor",
   },
 };
 
@@ -53,7 +53,7 @@ const page = () => {
             name: "Email Signature Editor",
             description:
               "A professional, fully customizable email signature editor. Create HTML email signatures with photos, logos, social icons, CTA buttons, disclaimers, and advanced design options for Gmail, Outlook, Apple Mail, and more.",
-            url: "https://toolstrek.com/tools/email-signature-editor",
+            url: "https://toolstrek.vercel.app/tools/email-signature-editor",
             applicationCategory: "ProductivityApplication",
             operatingSystem: "All",
             offers: {

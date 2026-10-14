@@ -23,7 +23,7 @@ export const metadata = {
     title: "Dynamic Time Greeting Generator — Target Timezone & Code Snippets | ToolsTrek",
     description:
       "Generate customizable, real-time contextual greetings for any timezone with multi-language support, custom time brackets, card visualizer, and export-ready React & JavaScript code.",
-    url: "https://toolstrek.com/tools/dynamic-time-greeting-generator",
+    url: "https://toolstrek.vercel.app/tools/dynamic-time-greeting-generator",
     siteName: "ToolsTrek",
     type: "website"
   },
@@ -34,7 +34,7 @@ export const metadata = {
       "Generate time-based personalized greetings with target timezone selection, custom time slots, and ready-to-use code snippets."
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/dynamic-time-greeting-generator"
+    canonical: "https://toolstrek.vercel.app/tools/dynamic-time-greeting-generator"
   }
 };
 
@@ -51,7 +51,7 @@ export default function DynamicTimeGreetingGeneratorPage() {
             name: "Dynamic Time Greeting Generator",
             description:
               "Free online dynamic time-based greeting generator. Customize personalized morning, afternoon, evening, and night greetings by target timezone, 24-hour bracket rules, multilingual translations, and code export.",
-            url: "https://toolstrek.com/tools/dynamic-time-greeting-generator",
+            url: "https://toolstrek.vercel.app/tools/dynamic-time-greeting-generator",
             applicationCategory: "UtilityApplication",
             operatingSystem: "All",
             offers: {

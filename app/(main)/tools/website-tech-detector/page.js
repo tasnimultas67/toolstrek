@@ -23,7 +23,7 @@ export const metadata = {
     description:
       "Instantly detect the tech stack behind any website — frameworks, CMS, servers, CDNs, analytics, and security headers. Free & instant.",
     type: "website",
-    url: "https://toolstrek.com/tools/website-tech-detector",
+    url: "https://toolstrek.vercel.app/tools/website-tech-detector",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -33,7 +33,7 @@ export const metadata = {
       "Instantly detect the tech stack behind any website — frameworks, CMS, servers, CDNs, analytics, and security headers. Free & instant.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/website-tech-detector",
+    canonical: "https://toolstrek.vercel.app/tools/website-tech-detector",
   },
 };
 
@@ -50,7 +50,7 @@ const page = () => {
             name: "Website Technology Detector",
             description:
               "Detect the full technology stack of any website. Identifies CMS, JavaScript frameworks, web servers, CDNs, analytics platforms, security headers, and more.",
-            url: "https://toolstrek.com/tools/website-tech-detector",
+            url: "https://toolstrek.vercel.app/tools/website-tech-detector",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

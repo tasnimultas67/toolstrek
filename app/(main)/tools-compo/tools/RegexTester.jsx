@@ -58,7 +58,7 @@ const DEMO_PRESETS = [
     description: "Extracts username, domain, and TLD with named capture groups.",
     pattern: "(?<user>[a-zA-Z0-9._%+-]+)@(?<domain>[a-zA-Z0-9.-]+\\.(?<tld>[a-zA-Z]{2,}))",
     flags: { g: true, i: true, m: true, s: false, u: false, y: false, d: true },
-    testString: `Contact our support team at support@toolstrek.com for general queries.
+    testString: `Contact our support team at support@toolstrek.vercel.app for general queries.
 For enterprise billing, reach out to billing.dept@enterprise-corp.org or sales@cloud-matrix.io.
 Dev inquiries: alex.dev_99@subdomain.example.co.uk or admin@localhost (not matched).
 Legacy backup contacts: old-contact@webmail.net and test.user+filter@gmail.com.`,
@@ -87,8 +87,8 @@ Legacy backup contacts: old-contact@webmail.net and test.user+filter@gmail.com.`
     description: "Extracts protocol, hostname, path, query parameters, and URL fragments.",
     pattern: "(?<protocol>https?):\\/\\/(?<domain>[a-zA-Z0-9.-]+)(?<path>\\/[^\\s?#]*)?(?:\\?(?<query>[^\\s#]*))?(?:#(?<hash>\\S*))?",
     flags: { g: true, i: true, m: true, s: false, u: false, y: false, d: true },
-    testString: `Visit our main portal at https://toolstrek.com/tools/regex-tester?theme=dark&mode=full#demo
-API documentation: https://api.toolstrek.com/v2/docs/authentication?lang=js&strict=true
+    testString: `Visit our main portal at https://toolstrek.vercel.app/tools/regex-tester?theme=dark&mode=full#demo
+API documentation: https://api.toolstrek.vercel.app/v2/docs/authentication?lang=js&strict=true
 External partner service: http://legacy-cdn.internal-network.org:8080/assets/logo.svg
 Short URL: https://bit.ly/3xY89zQ`,
     substitution: "Host: $<domain> | Query: $<query>",
@@ -1554,7 +1554,7 @@ export default function RegexTester() {
   return (
     <ToolPageShell widthClassName="max-w-7xl">
       <div className="flex flex-col gap-6 w-full text-foreground pb-12">
-        
+
         {/* ─── Hero Header & Toolbar ────────────────────────────────────── */}
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-border/60 pb-6">
           <div>
@@ -1806,11 +1806,11 @@ export default function RegexTester() {
         {/* ─── TAB CONTENT 1: MATCH & TEST ────────────────────────────────── */}
         {activeTab === "match" && (
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            
+
             {/* Left Column: Synchronized Highlighting Textarea & Controls (8 cols) */}
             <div className="lg:col-span-7 flex flex-col gap-4">
               <div className="flex flex-col rounded-2xl bg-card border border-border shadow-sm overflow-hidden">
-                
+
                 {/* Editor Header Bar & Customization Controls */}
                 <div className="flex items-center justify-between flex-wrap gap-2 px-4 py-2.5 bg-muted/30 border-b border-border">
                   <div className="flex items-center gap-2">
@@ -1980,7 +1980,7 @@ export default function RegexTester() {
             {/* Right Column: Matches Inspector & Capture Groups Tree (5 cols) */}
             <div className="lg:col-span-5 flex flex-col gap-4">
               <div className="flex flex-col rounded-2xl bg-card border border-border shadow-sm p-4 h-full min-h-[380px]">
-                
+
                 {/* Header with Search Filter & Export */}
                 <div className="flex items-center justify-between gap-2 pb-3 border-b border-border/60">
                   <div className="flex items-center gap-2">
@@ -2501,7 +2501,7 @@ export default function RegexTester() {
         {/* ─── TAB CONTENT 6: CHEATSHEET & LIBRARY ────────────────────────── */}
         {activeTab === "cheatsheet" && (
           <div className="flex flex-col gap-6">
-            
+
             {/* Ready-to-Use Common Recipes */}
             <div className="p-5 rounded-2xl bg-card border border-border shadow-sm flex flex-col gap-4">
               <div>

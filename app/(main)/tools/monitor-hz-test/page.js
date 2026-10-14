@@ -23,7 +23,7 @@ export const metadata = {
     description:
       "Detect your display refresh rate using interactive flicker and motion tests. Supports 60Hz, 120Hz, 144Hz, 240Hz and custom frequencies.",
     type: "website",
-    url: "https://toolstrek.com/tools/monitor-hz-test",
+    url: "https://toolstrek.vercel.app/tools/monitor-hz-test",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -33,7 +33,7 @@ export const metadata = {
       "Detect your display refresh rate using interactive flicker and motion tests. Supports 60Hz, 120Hz, 144Hz, 240Hz and custom frequencies.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/monitor-hz-test",
+    canonical: "https://toolstrek.vercel.app/tools/monitor-hz-test",
   },
 };
 
@@ -49,7 +49,7 @@ const page = () => {
             name: "Monitor Hz Test",
             description:
               "Detect your display refresh rate using interactive flicker and motion tests. Supports 60Hz, 120Hz, 144Hz, 240Hz and custom frequencies.",
-            url: "https://toolstrek.com/tools/monitor-hz-test",
+            url: "https://toolstrek.vercel.app/tools/monitor-hz-test",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

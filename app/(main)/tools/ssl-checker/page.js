@@ -25,7 +25,7 @@ export const metadata = {
     description:
       "Inspect any domain's SSL certificate — validity, issuer, SANs, certificate type, cipher suites, fingerprints, and full certificate chain. Free & instant.",
     type: "website",
-    url: "https://toolstrek.com/tools/ssl-checker",
+    url: "https://toolstrek.vercel.app/tools/ssl-checker",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -35,7 +35,7 @@ export const metadata = {
       "Inspect any domain's SSL certificate — validity, issuer, SANs, certificate type, cipher suites, fingerprints, and full certificate chain. Free & instant.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/ssl-checker",
+    canonical: "https://toolstrek.vercel.app/tools/ssl-checker",
   },
 };
 
@@ -52,7 +52,7 @@ const page = () => {
             name: "SSL Certificate Checker",
             description:
               "Inspect any domain's SSL/TLS certificate. View validity dates, issuer, SANs, certificate type, cipher suites, security score, fingerprints, and full certificate chain.",
-            url: "https://toolstrek.com/tools/ssl-checker",
+            url: "https://toolstrek.vercel.app/tools/ssl-checker",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

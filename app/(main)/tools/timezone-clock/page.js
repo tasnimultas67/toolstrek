@@ -22,7 +22,7 @@ export const metadata = {
     description:
       "Track real-time world clocks, compare timezones with an interactive timeline slider, set local alarms, and sync your favorite cities natively and privately in your browser.",
     type: "website",
-    url: "https://toolstrek.com/tools/timezone-clock",
+    url: "https://toolstrek.vercel.app/tools/timezone-clock",
     siteName: "ToolsTrek",
   },
   twitter: {
@@ -32,7 +32,7 @@ export const metadata = {
       "Track real-time world clocks, compare timezones with an interactive timeline slider, set local alarms, and sync your favorite cities natively and privately in your browser.",
   },
   alternates: {
-    canonical: "https://toolstrek.com/tools/timezone-clock",
+    canonical: "https://toolstrek.vercel.app/tools/timezone-clock",
   },
 };
 
@@ -49,7 +49,7 @@ const page = () => {
             name: "World Timezone Clock & Meeting Planner",
             description:
               "Free online timezone converter and world clock. Track real-time clocks for multiple cities, compare times with an interactive meeting planner slider, set local timezone alarms, and check UTC offsets.",
-            url: "https://toolstrek.com/tools/timezone-clock",
+            url: "https://toolstrek.vercel.app/tools/timezone-clock",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

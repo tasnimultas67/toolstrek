@@ -228,9 +228,8 @@ function CustomDropdown({
                         setIsOpen(false);
                         setSearch("");
                       }}
-                      className={`w-full text-left px-3 py-2 text-xs lg:text-sm hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:text-purple-600 dark:hover:text-purple-400 flex items-center gap-2 transition duration-150 cursor-pointer ${
-                        isSelected ? "bg-purple-500/10 text-purple-600 dark:text-purple-400 font-semibold" : "text-gray-700 dark:text-gray-300"
-                      }`}
+                      className={`w-full text-left px-3 py-2 text-xs lg:text-sm hover:bg-purple-50 dark:hover:bg-purple-950/30 hover:text-purple-600 dark:hover:text-purple-400 flex items-center gap-2 transition duration-150 cursor-pointer ${isSelected ? "bg-purple-500/10 text-purple-600 dark:text-purple-400 font-semibold" : "text-gray-700 dark:text-gray-300"
+                        }`}
                     >
                       {renderOption ? renderOption(opt) : (opt.label || opt.name || opt.code)}
                     </button>
@@ -377,7 +376,7 @@ export default function TravelBudgetSplitter() {
   const [expPaidBy, setExpPaidBy] = useState("");
   const [expDate, setExpDate] = useState("");
   const [expSplitType, setExpSplitType] = useState("equal");
-  
+
   // Custom split values
   const [expExcluded, setExpExcluded] = useState([]);
   const [expWeights, setExpWeights] = useState({});
@@ -433,7 +432,7 @@ export default function TravelBudgetSplitter() {
         const splitMembers = members.filter(m => !excluded.includes(m.id));
         const activeCount = splitMembers.length > 0 ? splitMembers.length : members.length;
         const perPerson = baseAmount / activeCount;
-        
+
         const targetMembers = splitMembers.length > 0 ? splitMembers : members;
         targetMembers.forEach(m => {
           balances[m.id].owed += perPerson;
@@ -877,7 +876,7 @@ export default function TravelBudgetSplitter() {
       doc.text(bal.name, ML + 2, y + 5);
       doc.text(fmt(bal.paid), ML + 50, y + 5);
       doc.text(fmt(bal.owed), ML + 90, y + 5);
-      
+
       if (bal.net >= 0) {
         doc.setTextColor(16, 185, 129); // Green
         doc.text(`+${fmt(bal.net)}`, ML + 130, y + 5);
@@ -886,7 +885,7 @@ export default function TravelBudgetSplitter() {
         doc.text(`-${fmt(Math.abs(bal.net))}`, ML + 130, y + 5);
       }
       doc.setTextColor(55, 65, 81);
-      
+
       doc.line(ML, y + 8, ML + CW, y + 8);
       y += 8;
 
@@ -925,7 +924,7 @@ export default function TravelBudgetSplitter() {
     expenses.forEach((e) => {
       const payer = members.find(m => m.id === e.paidById)?.name || "Unknown";
       const cat = categories.find(c => c.id === e.category)?.name || e.category;
-      
+
       doc.text(e.date, ML + 2, y + 5);
       doc.text(e.name.length > 25 ? e.name.substring(0, 23) + ".." : e.name, ML + 25, y + 5);
       doc.text(payer, ML + 80, y + 5);
@@ -945,7 +944,7 @@ export default function TravelBudgetSplitter() {
     doc.setFont("helvetica", "normal");
     doc.setFontSize(8);
     doc.setTextColor(156, 163, 175);
-    doc.text("Generated via ToolsTrek (toolstrek.com) | © ToolsTrek - All Rights Reserved", ML, PH - 10);
+    doc.text("Generated via ToolsTrek (toolstrek.vercel.app) | © ToolsTrek - All Rights Reserved", ML, PH - 10);
 
     // Save
     doc.save(`${(tripDetails.name || "Untitled Trip").toLowerCase().replace(/\s+/g, "-")}-budget-report.pdf`);
@@ -964,7 +963,7 @@ export default function TravelBudgetSplitter() {
   return (
     <ToolPageShell widthClassName="max-w-7xl">
       <div className="min-h-screen text-gray-900 dark:text-gray-100 pb-12 font-sans select-none">
-        
+
         {/* HEADER SECTION */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
           <div>
@@ -1045,13 +1044,12 @@ export default function TravelBudgetSplitter() {
             {/* Limit progress bar */}
             <div className="w-full bg-gray-100 dark:bg-gray-800 h-1.5 rounded-full mt-3 overflow-hidden">
               <div
-                className={`h-full rounded-full transition-all duration-300 ${
-                  totalSpentBase > tripDetails.budgetLimit
+                className={`h-full rounded-full transition-all duration-300 ${totalSpentBase > tripDetails.budgetLimit
                     ? "bg-rose-500"
                     : totalSpentBase > (tripDetails.budgetLimit * tripDetails.alertThreshold) / 100
-                    ? "bg-amber-500"
-                    : "bg-purple-500"
-                }`}
+                      ? "bg-amber-500"
+                      : "bg-purple-500"
+                  }`}
                 style={{ width: `${Math.min(100, tripDetails.budgetLimit > 0 ? (totalSpentBase / tripDetails.budgetLimit) * 100 : 0)}%` }}
               />
             </div>
@@ -1088,41 +1086,37 @@ export default function TravelBudgetSplitter() {
         <div className="flex border-b border-gray-200 dark:border-gray-800 mb-6 gap-2 overflow-x-auto scrollbar-none">
           <button
             onClick={() => setActiveTab("dashboard")}
-            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${
-              activeTab === "dashboard"
+            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${activeTab === "dashboard"
                 ? "border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400"
                 : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
+              }`}
           >
             Dashboard & Settlements
           </button>
           <button
             onClick={() => setActiveTab("travelers")}
-            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${
-              activeTab === "travelers"
+            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${activeTab === "travelers"
                 ? "border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400"
                 : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
+              }`}
           >
             Trip & Travelers ({members.length})
           </button>
           <button
             onClick={() => setActiveTab("categories")}
-            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${
-              activeTab === "categories"
+            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${activeTab === "categories"
                 ? "border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400"
                 : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
+              }`}
           >
             Category Budgets ({categories.length})
           </button>
           <button
             onClick={() => setActiveTab("currencies")}
-            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${
-              activeTab === "currencies"
+            className={`px-4 py-2 text-sm lg:text-base font-semibold border-b-2 whitespace-nowrap cursor-pointer transition-colors duration-150 ${activeTab === "currencies"
                 ? "border-purple-600 text-purple-600 dark:border-purple-400 dark:text-purple-400"
                 : "border-transparent text-gray-500 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200"
-            }`}
+              }`}
           >
             Exchange Rates
           </button>
@@ -1130,7 +1124,7 @@ export default function TravelBudgetSplitter() {
 
         {/* ACTIVE TAB CONTENT */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
-          
+
           {/* TAB: DASHBOARD & SETTLEMENTS */}
           {activeTab === "dashboard" && (
             <>
@@ -1325,13 +1319,13 @@ export default function TravelBudgetSplitter() {
 
               {/* Right Column: Settlement Instructions */}
               <div className="lg:col-span-4 space-y-6">
-                
+
                 {/* Simplified Settlement Matrix */}
                 <div className="bg-white dark:bg-gray-950 border border-gray-150 dark:border-gray-900 rounded-xl p-5 shadow-sm">
                   <h2 className="text-sm lg:text-base font-bold text-gray-900 dark:text-white mb-3.5 flex items-center gap-2">
                     <Sparkles className="w-5 h-5 text-amber-500" /> Simplified Settlements
                   </h2>
-                  
+
                   {simplifiedPayments.length === 0 ? (
                     <div className="text-center py-8 bg-purple-500/5 border border-purple-100 dark:border-purple-950/30 rounded-xl">
                       <CheckCircle2 className="w-10 h-10 text-emerald-500 mx-auto mb-2" />
@@ -1379,13 +1373,12 @@ export default function TravelBudgetSplitter() {
                       <div key={bal.id} className="text-xs lg:text-sm border-b border-gray-100 dark:border-gray-900 pb-3 last:border-0 last:pb-0">
                         <div className="flex justify-between items-center mb-1">
                           <span className="font-bold text-gray-800 dark:text-gray-200">{bal.name}</span>
-                          <span className={`font-extrabold ${
-                            bal.net >= 0.01
+                          <span className={`font-extrabold ${bal.net >= 0.01
                               ? "text-emerald-600 dark:text-emerald-400"
                               : bal.net < -0.01
-                              ? "text-rose-600 dark:text-rose-400"
-                              : "text-gray-500"
-                          }`}>
+                                ? "text-rose-600 dark:text-rose-400"
+                                : "text-gray-500"
+                            }`}>
                             {bal.net >= 0
                               ? `+${currencySymbol}${bal.net.toFixed(2)}`
                               : `-${currencySymbol}${Math.abs(bal.net).toFixed(2)}`}
@@ -1407,7 +1400,7 @@ export default function TravelBudgetSplitter() {
           {/* TAB: TRIP & TRAVELERS */}
           {activeTab === "travelers" && (
             <div className="lg:col-span-12 space-y-6">
-              
+
               {/* Trip settings detail */}
               <div className="bg-white dark:bg-gray-950 border border-gray-150 dark:border-gray-900 rounded-xl p-6 shadow-sm">
                 <h2 className="text-sm lg:text-base font-bold text-gray-900 dark:text-white mb-4 flex items-center gap-2">
@@ -1706,9 +1699,8 @@ export default function TravelBudgetSplitter() {
                     return (
                       <div
                         key={code}
-                        className={`p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border flex flex-col justify-between gap-3 ${
-                          isBase ? "border-purple-300 dark:border-purple-900/50 bg-purple-500/5" : "border-gray-200/50 dark:border-gray-800/80"
-                        }`}
+                        className={`p-4 bg-gray-50 dark:bg-gray-900 rounded-xl border flex flex-col justify-between gap-3 ${isBase ? "border-purple-300 dark:border-purple-900/50 bg-purple-500/5" : "border-gray-200/50 dark:border-gray-800/80"
+                          }`}
                       >
                         <div className="flex justify-between items-center">
                           <span className="text-sm lg:text-base font-extrabold text-gray-800 dark:text-gray-200">{code}</span>
@@ -1718,7 +1710,7 @@ export default function TravelBudgetSplitter() {
                             </span>
                           )}
                         </div>
-                        
+
                         <div>
                           <label className="block text-[11px] lg:text-xs font-semibold text-gray-400 mb-1">
                             1 {code} =
@@ -1750,18 +1742,18 @@ export default function TravelBudgetSplitter() {
           <h2 className="text-lg lg:text-xl font-bold text-gray-900 dark:text-white border-b border-gray-150 dark:border-gray-850 pb-3 flex items-center gap-2">
             <Info className="w-5.5 h-5.5 text-purple-500" /> Travel Budgeting & Expense Splitting Guide (Bangladesh Edition)
           </h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs lg:text-sm text-gray-600 dark:text-gray-300">
             <div>
               <h3 className="font-extrabold text-gray-900 dark:text-white mb-2 text-sm lg:text-base flex items-center gap-1.5">
                 <Sparkles className="w-4 h-4 text-purple-500" /> 1. Debt Simplification Algorithm
               </h3>
               <p className="leading-relaxed">
-                Our splitter uses a <strong>Minimum Cash Flow (Debt Simplification)</strong> engine. Instead of complex peer-to-peer debts (which can result in a confusing circle of transactions), we aggregate net balances. 
+                Our splitter uses a <strong>Minimum Cash Flow (Debt Simplification)</strong> engine. Instead of complex peer-to-peer debts (which can result in a confusing circle of transactions), we aggregate net balances.
                 The algorithm matches members with negative balances (debtors) to members with positive balances (creditors), minimizing transactions so that everyone settles up in the fewest steps possible.
               </p>
             </div>
-            
+
             <div>
               <h3 className="font-extrabold text-gray-900 dark:text-white mb-2 text-sm lg:text-base flex items-center gap-1.5">
                 <RefreshCw className="w-4 h-4 text-purple-500" /> 2. Multi-Currency Support (BDT Target)
@@ -1811,7 +1803,7 @@ export default function TravelBudgetSplitter() {
               </div>
 
               <form onSubmit={handleSaveExpense} className="p-5 space-y-4">
-                
+
                 {/* Name */}
                 <div>
                   <label className="block text-xs lg:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-1.5">
@@ -1970,11 +1962,10 @@ export default function TravelBudgetSplitter() {
                         <span className="text-[11px] lg:text-xs text-gray-400">
                           Enter target percentage shares (total must equal 100%):
                         </span>
-                        <span className={`text-xs lg:text-sm font-bold ${
-                          Math.abs(members.reduce((s, m) => s + parseFloat(expPercentages[m.id] || 0), 0) - 100) < 0.1
+                        <span className={`text-xs lg:text-sm font-bold ${Math.abs(members.reduce((s, m) => s + parseFloat(expPercentages[m.id] || 0), 0) - 100) < 0.1
                             ? "text-emerald-500"
                             : "text-rose-500 animate-pulse"
-                        }`}>
+                          }`}>
                           Sum: {members.reduce((s, m) => s + parseFloat(expPercentages[m.id] || 0), 0).toFixed(1)}%
                         </span>
                       </div>
@@ -2008,11 +1999,10 @@ export default function TravelBudgetSplitter() {
                         <span className="text-[11px] lg:text-xs text-gray-400">
                           Enter exact shares (must sum to total: {expAmount || 0} {expCurrency}):
                         </span>
-                        <span className={`text-xs lg:text-sm font-bold ${
-                          Math.abs(members.reduce((s, m) => s + parseFloat(expShares[m.id] || 0), 0) - (parseFloat(expAmount) || 0)) < 0.05
+                        <span className={`text-xs lg:text-sm font-bold ${Math.abs(members.reduce((s, m) => s + parseFloat(expShares[m.id] || 0), 0) - (parseFloat(expAmount) || 0)) < 0.05
                             ? "text-emerald-500"
                             : "text-rose-500"
-                        }`}>
+                          }`}>
                           Sum: {members.reduce((s, m) => s + parseFloat(expShares[m.id] || 0), 0).toFixed(2)} / {parseFloat(expAmount) || 0}
                         </span>
                       </div>
