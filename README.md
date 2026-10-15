@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>101 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>103 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-101_Available-10b981?style=flat-square" alt="101 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-103_Available-10b981?style=flat-square" alt="103 Tools" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -35,9 +35,9 @@
 
 ---
 
-## 🛠️ Tool Library (101 Tools)
+## 🛠️ Tool Library (103 Tools)
 
-### 🌐 Developer & Code Tools (25)
+### 🌐 Developer & Code Tools (26)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -64,6 +64,7 @@
 | **Monitor Hz Test** | `/tools/monitor-hz-test` | Measure your display's real refresh rate (60Hz to 360Hz+) via high-precision `requestAnimationFrame` with frame stability and stutter graphs. |
 | **View Metadata** | `/tools/view-metadata` | Inspect hidden EXIF camera details, GPS coordinates, lens parameters, PDF document properties, and audio/video tags. |
 | **Edit Metadata** | `/tools/edit-metadata` | Modify, inject, or completely wipe EXIF metadata, camera info, author tags, and GPS coordinates from images and PDFs for privacy. |
+| **Remove Metadata** | `/tools/remove-metadata` | Strip and sanitize hidden EXIF, GPS, camera details, personal tags, and author info from photos and PDFs in 1-click. Batch processing & 100% private. |
 | **Media Format Converter** | `/tools/media-format-converter` | In-browser WebCodecs & WASM transcoder for MP4, WebM, MKV, MOV, MP3, WAV, OGG, and FLAC with resolution, bitrate, rotation, and trim settings. |
 | **ZIP File Creator & Compressor** | `/tools/zip-creator` | Bundle, compress, and create downloadable ZIP archives from files or entire directory trees with customizable Deflate compression levels. |
 | **Paragraph Formatter** | `/tools/paragraph-formatter` | Clean, reformat, adjust alignments, line spacing, case styles, and extract styled HTML or raw clean text from messy paragraphs. |

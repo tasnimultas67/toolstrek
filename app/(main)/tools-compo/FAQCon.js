@@ -23,7 +23,7 @@ const formatSectionTitle = (sectionKey) => {
     pdfTools: "PDF Management Tools",
     imageAndMedia: "Images, Media & Design Tools",
     mediaFormatConverter: "Media Format Converter (In-Browser)",
-    metadataTools: "Metadata Tools (View & Edit)",
+    metadataTools: "Metadata & Privacy Tools (View, Edit & Remove)",
     zipAndArchives: "ZIP File Creator & Compression",
     textAndLanguage: "Text & Language Utilities",
     financeAndBudget: "Finance & Budget Calculators",

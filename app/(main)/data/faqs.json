@@ -6,7 +6,7 @@
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 102 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 103 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -199,6 +199,22 @@
     {
       "question": "Are my original photos or files altered or sent to a server during metadata edits?",
       "answer": "No. The tool processes file headers in local browser memory and produces a clean, modified copy for download. Your original files remain untouched and are never transmitted over the internet."
+    },
+    {
+      "question": "How does the Remove Metadata & EXIF Cleaner work?",
+      "answer": "The Remove Metadata tool removes all EXIF tags, GPS location coordinates, camera and device serial numbers, timestamps, author details, and software signatures from images (JPG, PNG, WebP) and PDF documents. For JPEGs, it performs lossless APP1 marker stripping without re-encoding image pixels. For other formats, clean canvas rasterization and document metadata dictionary clearing guarantee 100% sanitized output."
+    },
+    {
+      "question": "Why is it important to remove GPS tags before sharing photos online?",
+      "answer": "Modern smartphones and digital cameras embed high-precision GPS latitude, longitude, and altitude in the EXIF metadata of every photo you take. When posting to forums, Craigslist, eBay, or sending photos to acquaintances, anyone can extract these coordinates and pinpoint your home address, workplace, or children's school. Stripping metadata neutralizes this geolocation tracking risk completely."
+    },
+    {
+      "question": "Can I batch clean multiple files and download them as a ZIP archive?",
+      "answer": "Yes! You can drag and drop dozens of photos and PDF documents simultaneously. The tool scans every file, highlights high-risk items (such as exposed GPS coordinates), allows one-click batch stripping, and lets you download all sanitized files packaged in a single ZIP bundle powered by JSZip."
+    },
+    {
+      "question": "Does stripping metadata reduce photo resolution or visual image quality?",
+      "answer": "No. For JPEG images, our tool strips the metadata header segments losslessly without modifying or recompressing the underlying pixel data (DCT coefficients), preserving 100% of the original photo fidelity. For PNG and WebP files, clean canvas raster rendering strips all text chunks and ancillary metadata while maintaining original resolution and alpha transparency."
     }
   ],
   "zipAndArchives": [

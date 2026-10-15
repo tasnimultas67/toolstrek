@@ -75,6 +75,7 @@ const toolPages = [
   { slug: "random-number-generator", lastModified: "2026-09-10" },
   { slug: "regex-tester", lastModified: "2026-09-10" },
   { slug: "remove-duplicate-lines", lastModified: "2026-09-10" },
+  { slug: "remove-metadata", lastModified: "2026-10-15" },
   { slug: "responsive-viewport", lastModified: "2026-09-10" },
   { slug: "roman-numeral-converter", lastModified: "2026-09-10" },
   { slug: "savings-calculator", lastModified: "2026-09-10" },

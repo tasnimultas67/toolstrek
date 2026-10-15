@@ -1573,6 +1573,32 @@
     ]
   },
   {
+    "title": "Remove Metadata & EXIF Cleaner",
+    "link": "/tools/remove-metadata",
+    "description": "Strip hidden EXIF tags, GPS location coordinates, camera models, serial numbers, author info, and tracking details from photos (JPG, PNG, WebP) and PDF documents. 100% private, client-side, zero cloud uploads with batch processing and ZIP download.",
+    "icon": "ShieldOff",
+    "keywords": [
+      "remove metadata",
+      "strip metadata",
+      "exif remover",
+      "remove exif",
+      "photo metadata cleaner",
+      "remove gps from photo",
+      "pdf metadata remover",
+      "image privacy scrubber",
+      "clean exif online",
+      "batch metadata remover",
+      "developer",
+      "security",
+      "image"
+    ],
+    "categories": [
+      "Developer",
+      "Security",
+      "Image"
+    ]
+  },
+  {
     "title": "Media Format Converter",
     "link": "/tools/media-format-converter",
     "description": "Convert video and audio files (MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC) directly in your browser. Local, private, and hardware-accelerated transcoding powered by MediaBunny.",
