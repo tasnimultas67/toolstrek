@@ -6,11 +6,11 @@
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 101 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 102 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
+      "answer": "ToolsTrek features 15 curated categories: Developer & Design (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator, CSS Box Shadow Generator, Gradient Generator, Color Converter), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -72,7 +72,7 @@
   "developerTools": [
     {
       "question": "What developer and code utilities are available on ToolsTrek?",
-      "answer": "ToolsTrek provides a comprehensive developer suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
+      "answer": "ToolsTrek provides a comprehensive developer and design suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, CSS Box Shadow Generator, Gradient Generator, Color Converter, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
     },
     {
       "question": "How secure and customizable is the Random Number Generator (RNG Studio)?",
@@ -150,7 +150,7 @@
   "imageAndMedia": [
     {
       "question": "What image and design tools does ToolsTrek provide?",
-      "answer": "Our image suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), Gradient Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
+      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
     },
     {
       "question": "How does the Animated GIF Maker work?",
@@ -355,6 +355,40 @@
     {
       "question": "How does the Love Compatibility Test calculate relationship compatibility?",
       "answer": "It analyzes astrological zodiac harmony, numerological life path numbers, name vibrational frequencies, love language preferences, and communication chemistry to generate an interactive compatibility score and relationship insight card."
+    }
+  ],
+  "cssShadowTools": [
+    {
+      "question": "What is the CSS Box Shadow Generator and how does it work?",
+      "answer": "The CSS Box Shadow Generator is a free, visual, browser-first tool for designing smooth and modern CSS box shadows without writing code manually. You adjust sliders for horizontal offset (X), vertical offset (Y), blur radius, spread radius, color, and opacity — and see the shadow update live in real-time on an interactive preview canvas. It supports up to 5 stackable shadow layers, a curated preset library, and generates instant CSS, Tailwind CSS, and vendor-prefixed code you can copy with one click."
+    },
+    {
+      "question": "What is the difference between a drop shadow and an inset shadow in CSS?",
+      "answer": "A standard drop shadow (the default box-shadow behavior) is rendered outside the element's bounding box, creating the effect that the element is floating above the page. An inset shadow is drawn inside the element's border, creating the appearance that the element is recessed, pressed, or sunken — ideal for input fields, pressed button states, or neumorphic UI panels. You can toggle between the two modes per layer in the Box Shadow Generator."
+    },
+    {
+      "question": "What do horizontal offset, vertical offset, blur radius, and spread radius mean in a CSS box shadow?",
+      "answer": "Horizontal offset (X) shifts the shadow left (negative) or right (positive). Vertical offset (Y) shifts the shadow up (negative) or down (positive), mimicking a light source above. Blur radius determines how soft or sharp the shadow edge appears — 0px is a crisp hard shadow, higher values create a diffuse soft shadow. Spread radius expands (positive) or shrinks (negative) the entire shadow perimeter relative to the element's bounding box. Negative spread values are particularly useful for creating realistic, photorealistic floating shadows."
+    },
+    {
+      "question": "How do I stack multiple box shadow layers for realistic depth?",
+      "answer": "Professional UI systems like Google Material Design and Stripe layer two or more shadows to simulate realistic light physics: a tight, low-opacity ambient occlusion shadow very close to the element (small Y, small blur) and a larger, softer directional light shadow cast further away (larger Y, higher blur, negative spread). In the Box Shadow Generator, click 'Add Layer' to stack up to 5 independent shadow layers, each with its own offset, color, blur, and opacity settings."
+    },
+    {
+      "question": "How do I use the generated box shadow in Tailwind CSS?",
+      "answer": "Select the 'Tailwind CSS' tab in the Code Output panel and copy the generated arbitrary class — for example, `shadow-[0px_10px_25px_-5px_rgba(0,0,0,0.1),0px_4px_10px_-2px_rgba(0,0,0,0.06)]`. Paste it directly into your JSX or HTML className attribute. Tailwind's arbitrary value syntax (square brackets) supports the full CSS box-shadow spec including multi-layer shadows. This approach requires no custom CSS file or tailwind.config.js extension."
+    },
+    {
+      "question": "Do I need vendor prefixes like -webkit-box-shadow in modern browsers?",
+      "answer": "No, modern browsers (Chrome 88+, Firefox 4+, Safari 5.1+, Edge 12+) have fully supported the unprefixed `box-shadow` property for over a decade. Vendor prefixes are only needed for legacy embedded webviews, very old Android browsers, or niche compatibility requirements. If needed, click the 'Vendor Prefixes' tab in the code output to get -webkit-box-shadow and -moz-box-shadow alongside the standard declaration."
+    },
+    {
+      "question": "Does using CSS box-shadow affect page performance or Core Web Vitals?",
+      "answer": "CSS box shadows are composited on the GPU by modern browsers and have negligible performance impact when applied statically. However, animating box-shadow on hover (using CSS transitions or JavaScript) can trigger paint repaints on every frame, which may hurt Cumulative Layout Shift (CLS) or Interaction to Next Paint (INP) scores on low-end devices. For best performance, animate transform (translateY, scale) instead of box-shadow directly, and use the will-change: transform hint to promote the element to its own compositing layer."
+    },
+    {
+      "question": "Can I generate colored or neon glow shadows with this tool?",
+      "answer": "Yes! You can pick any color — not just black or gray — for each shadow layer. Setting a vibrant color (like brand violet #7c00fe, neon cyan #06b6d4, or warm orange #f97316) with a medium-high blur and zero or negative spread creates a soft colored glow effect identical to modern SaaS UI glow buttons and badge highlights. The tool includes 8 quick-pick color swatches and a native color picker for full creative control."
     }
   ]
 }

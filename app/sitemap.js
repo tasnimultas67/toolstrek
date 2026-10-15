@@ -8,6 +8,7 @@ const toolPages = [
   { slug: "bijoy-unicode-converter", lastModified: "2026-09-20" },
   { slug: "binary-decoder", lastModified: "2026-09-10" },
   { slug: "bmi-calculator", lastModified: "2026-10-01" },
+  { slug: "box-shadow-generator", lastModified: "2026-10-15" },
   { slug: "bra-size-calculator", lastModified: "2026-09-10" },
   { slug: "braille-decoder", lastModified: "2026-09-10" },
   { slug: "calendar-generator", lastModified: "2026-09-10" },

@@ -531,6 +531,27 @@
     ]
   },
   {
+    "title": "Box Shadow Generator",
+    "link": "/tools/box-shadow-generator",
+    "description": "Visually design modern, smooth CSS and Tailwind box shadows. Customize horizontal/vertical offsets, blur radius, spread, colors, and multi-layer depth with 1-click CSS code copy.",
+    "icon": "Box",
+    "keywords": [
+      "box shadow generator",
+      "css box shadow",
+      "tailwind box shadow",
+      "box shadow",
+      "css shadow generator",
+      "multi layer shadow",
+      "inset shadow",
+      "developer",
+      "design"
+    ],
+    "categories": [
+      "Developer",
+      "Design"
+    ]
+  },
+  {
     "title": "Gradient Generator",
     "link": "/tools/gradient-generator",
     "description": "Create beautiful CSS and Tailwind gradients. Customize colors, add multiple stops, choose linear, radial, or conic styles, and access advanced options like image export (PNG/SVG) and repeating gradients.",

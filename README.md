@@ -52,6 +52,7 @@
 | **Hash Generator & Verifier** | `/tools/hash-generator` | Generate and verify cryptographic checksums (MD5, SHA-1, SHA-256, SHA-512, HMAC) locally in your browser. |
 | **Color Converter** | `/tools/color-converter` | Real-time conversion across HEX, RGB, HSL, HSV, and CMYK with color harmonies, WCAG 2.1 contrast checker, and color blindness simulation. |
 | **Gradient Generator** | `/tools/gradient-generator` | Build CSS and Tailwind gradients with custom color stops, linear/radial/conic styles, and PNG/SVG export. |
+| **Box Shadow Generator** | `/tools/box-shadow-generator` | Visually design smooth, multi-layer CSS & Tailwind box shadows with live preview, presets, and 1-click code export. |
 | **Responsive Viewport Tester** | `/tools/responsive-viewport` | Preview web apps across mobile, tablet, laptop, and desktop viewports with custom resolutions, orientation rotation, and bezel frames. |
 | **Full Page Screenshot Tool** | `/tools/full-page-screenshot` | Capture full-page, high-resolution webpage screenshots from any live URL with custom viewport sizes. |
 | **Domain Age Checker** | `/tools/domain-age-checker` | Query authoritative WHOIS registries to discover registration date, exact domain age, expiration status, and registrar data. |
@@ -322,6 +323,7 @@ toolstrek/
 │   │   │   ├── bijoy-unicode-converter/       #   Bijoy ⇄ Unicode Converter
 │   │   │   ├── binary-decoder/                #   Binary Decoder & Encoder
 │   │   │   ├── bmi-calculator/                #   BMI Calculator
+│   │   │   ├── box-shadow-generator/          #   CSS Box Shadow Generator
 │   │   │   ├── bra-size-calculator/           #   Bra Size Calculator
 │   │   │   ├── braille-decoder/               #   Braille Decoder & Encoder
 │   │   │   ├── calendar-generator/            #   Custom Calendar Generator & Print Studio

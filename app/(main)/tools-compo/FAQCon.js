@@ -30,6 +30,7 @@ const formatSectionTitle = (sectionKey) => {
     productivityAndEducation: "Productivity & Education Tools",
     qrAndSecurity: "QR Codes & Security Tools",
     funAndAstrology: "Fun & Astrology Tools",
+    cssShadowTools: "CSS Box Shadow Generator",
   };
 
   return (
