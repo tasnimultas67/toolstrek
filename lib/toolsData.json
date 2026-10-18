@@ -2212,5 +2212,93 @@
       "Design",
       "Developer"
     ]
+  },
+  {
+    "title": "Line Chart Generator",
+    "link": "/tools/line-chart-generator",
+    "description": "Free online line chart and area chart generator with live SVG preview. Enter your data to build straight, smooth or step line charts and stacked area charts with multiple series, curated colour palettes, markers, adjustable axes and gridlines, labels, legends and one-click PNG or SVG export — all 100% in your browser.",
+    "icon": "LineChart",
+    "keywords": [
+      "line chart generator",
+      "line chart maker",
+      "line graph maker",
+      "area chart generator",
+      "area chart maker",
+      "stacked area chart generator",
+      "smooth line chart maker",
+      "multi series line chart",
+      "create line chart online",
+      "free line chart maker",
+      "time series chart maker",
+      "trend chart generator",
+      "line chart png export",
+      "line chart svg",
+      "data visualization tool",
+      "online chart builder",
+      "design",
+      "developer"
+    ],
+    "categories": [
+      "Design",
+      "Developer"
+    ]
+  },
+  {
+    "title": "Radar Chart Generator",
+    "link": "/tools/radar-chart-generator",
+    "description": "Free online radar chart and spider chart generator with live SVG preview. Enter your data to build radial charts with multiple overlapping series, polygon or circular grids, adjustable scale and rotation, vertex points, custom labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
+    "icon": "Radar",
+    "keywords": [
+      "radar chart generator",
+      "radar chart maker",
+      "spider chart generator",
+      "spider chart maker",
+      "web chart generator",
+      "polar chart maker",
+      "star plot generator",
+      "kiviat diagram",
+      "create radar chart online",
+      "free radar chart maker",
+      "radar chart with multiple series",
+      "data visualization tool",
+      "radar chart png export",
+      "radar chart svg",
+      "online chart builder",
+      "design",
+      "developer"
+    ],
+    "categories": [
+      "Design",
+      "Developer"
+    ]
+  },
+  {
+    "title": "Funnel Chart Generator",
+    "link": "/tools/funnel-chart-generator",
+    "description": "Free online funnel chart and conversion chart generator with live SVG preview. Enter your stages to build customisable funnels with funnel, bar or step shapes, conversion and drop-off labels, curated colour palettes, adjustable labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
+    "icon": "Filter",
+    "keywords": [
+      "funnel chart generator",
+      "funnel chart maker",
+      "funnel diagram maker",
+      "conversion funnel generator",
+      "sales funnel chart",
+      "marketing funnel chart",
+      "create funnel chart online",
+      "free funnel chart maker",
+      "funnel chart with percentages",
+      "drop off chart",
+      "conversion rate chart",
+      "funnel chart png export",
+      "funnel chart svg",
+      "data visualization tool",
+      "online chart builder",
+      "design",
+      "developer"
+    ],
+    "categories": [
+      "Design",
+      "Developer"
+    ]
   }
 ]

@@ -320,9 +320,10 @@ export default function Header() {
                       <div className="w-full mx-auto overflow-hidden">
                         <div
                           className={`bg-white dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 overflow-hidden transition-all duration-200 ease-out transform origin-top
-                            ${megaMenuAnimation
-                              ? "opacity-100 scale-100 translate-y-0"
-                              : "opacity-0 scale-95 -translate-y-2"
+                            ${
+                              megaMenuAnimation
+                                ? "opacity-100 scale-100 translate-y-0"
+                                : "opacity-0 scale-95 -translate-y-2"
                             }`}
                         >
                           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -334,9 +335,10 @@ export default function Header() {
                                   href={item.link}
                                   onClick={() => closeMegaMenu()}
                                   className={`group relative flex items-start gap-x-4 p-6 transition-all hover:bg-brandColor/5 dark:hover:bg-brandColor/10 border-b border-r border-gray-100 dark:border-gray-900
-                                    ${megaMenuAnimation
-                                      ? "opacity-100 translate-x-0"
-                                      : "opacity-0 -translate-x-4"
+                                    ${
+                                      megaMenuAnimation
+                                        ? "opacity-100 translate-x-0"
+                                        : "opacity-0 -translate-x-4"
                                     }`}
                                   style={{
                                     transitionDelay: megaMenuAnimation
@@ -367,9 +369,10 @@ export default function Header() {
                               href="/tools"
                               onClick={() => closeMegaMenu()}
                               className={`group flex items-center justify-between rounded-lg px-4 py-3 transition-all duration-200 hover:bg-brandColor/10
-                                ${megaMenuAnimation
-                                  ? "opacity-100 translate-y-0"
-                                  : "opacity-0 translate-y-2"
+                                ${
+                                  megaMenuAnimation
+                                    ? "opacity-100 translate-y-0"
+                                    : "opacity-0 translate-y-2"
                                 }`}
                               style={{
                                 transitionDelay: megaMenuAnimation
@@ -399,7 +402,8 @@ export default function Header() {
                                     See All Tools
                                   </div>
                                   <p className="text-xs text-gray-500 dark:text-gray-400">
-                                    View all {toolsData.length}+ available tools
+                                    View all {toolsData.length - 1}+ available
+                                    tools
                                   </p>
                                 </div>
                               </div>
@@ -446,7 +450,6 @@ export default function Header() {
                 className="flex items-center gap-1.5 border-l border-white/20 dark:border-gray-600 pl-4"
                 suppressHydrationWarning
               >
-
                 {/* History Dropdown */}
                 <div className="relative" ref={historyDropdownRef}>
                   <button
@@ -463,9 +466,10 @@ export default function Header() {
                   {isHistoryOpen && (
                     <div
                       className={`absolute right-0 left-[-140px] mt-2.5 w-80 bg-white  dark:bg-gray-950 rounded-xl border border-gray-200 dark:border-gray-800 shadow-xl overflow-hidden z-50 transition-all duration-200 ease-out transform origin-top-right
-                        ${historyAnimation
-                          ? "opacity-100 scale-100 translate-y-0 "
-                          : "opacity-0 scale-95 -translate-y-2"
+                        ${
+                          historyAnimation
+                            ? "opacity-100 scale-100 translate-y-0 "
+                            : "opacity-0 scale-95 -translate-y-2"
                         }`}
                     >
                       <div className="p-3 border-b border-gray-100 dark:border-gray-900 flex items-center justify-between">
