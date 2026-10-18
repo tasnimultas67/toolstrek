@@ -3,7 +3,7 @@ import React from "react";
 
 // ToolsTrek SEO Metadata for PDF to Image
 export const metadata = {
-  title: "Convert PDF to Image | PDF to JPG & PNG | ToolsTrek",
+  title: "Convert PDF to Image | PDF to JPG & PNG",
   description:
     "Transform your PDF pages into high-quality images instantly. Support for JPG and PNG formats with no file size limits—fast, secure, and free on ToolsTrek.",
   keywords: [

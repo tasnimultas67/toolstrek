@@ -1,7 +1,7 @@
 import RomanNumeralConverter from "@/app/(main)/tools-compo/tools/RomanNumeralConverter";
 
 export const metadata = {
-  title: "Roman Numeral Converter | ToolsTrek",
+  title: "Roman Numeral Converter",
   description:
     "Convert standard numbers to Roman numerals and back with ease. Real-time conversion, step-by-step mathematical breakdown, interactive Roman keyboard, and full reference guide.",
   keywords: [

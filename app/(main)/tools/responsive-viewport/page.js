@@ -2,7 +2,7 @@ import ResponsiveViewport from "@/app/(main)/tools-compo/tools/ResponsiveViewpor
 import React from "react";
 
 export const metadata = {
-  title: "Responsive Viewport Tester | Preview Any Website on Any Device | ToolsTrek",
+  title: "Responsive Viewport Tester | Preview Any Website on Any Device",
   description:
     "Test your website across 80+ real device viewports including iPhones, Android phones, tablets, laptops, desktops, TVs, and wearables. Check breakpoints, measure dimensions in px/em/rem/cm, inspect DPR, generate CSS media queries, and add custom device sizes. 100% free, runs in your browser.",
   keywords: [

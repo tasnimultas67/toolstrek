@@ -4,7 +4,7 @@ import CTA from "../tools-compo/Home-Compo/CTA";
 import SectionInfo from "../tools-compo/SectionInfo";
 
 export const metadata = {
-  title: "About Us — ToolsTrek",
+  title: "About Us",
   keywords: [
     "about",
     "tools",

@@ -1,7 +1,7 @@
 import CGPACalculator from "@/app/(main)/tools-compo/tools/CGPACalculator";
 
 export const metadata = {
-  title: "NU CGPA Calculator - ToolsTrek",
+  title: "NU CGPA Calculator",
   description:
     "Calculate National University Bangladesh CGPA with subject-wise grades, credits, optional subjects, and a downloadable result.",
   keywords: [

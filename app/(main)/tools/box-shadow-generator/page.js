@@ -2,7 +2,7 @@ import BoxShadowGenerator from "@/app/(main)/tools-compo/tools/BoxShadowGenerato
 import React from "react";
 
 export const metadata = {
-  title: "CSS Box Shadow Generator | Visual CSS & Tailwind Shadow Maker | ToolsTrek",
+  title: "CSS Box Shadow Generator | Visual CSS & Tailwind Shadow Maker",
   description:
     "Free online CSS box shadow generator. Design smooth, multi-layer box shadows with live visual preview, customizable blur, spread, offsets, opacity, inset shadows, curated presets, and instant CSS/Tailwind code export.",
   keywords: [

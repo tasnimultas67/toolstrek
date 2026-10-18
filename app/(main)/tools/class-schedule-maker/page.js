@@ -2,7 +2,7 @@ import ClassScheduleMaker from "@/app/(main)/tools-compo/tools/ClassScheduleMake
 import React from "react";
 
 export const metadata = {
-  title: "Class Schedule Maker — Build & Export Your Weekly Timetable | ToolsTrek",
+  title: "Class Schedule Maker — Build & Export Your Weekly Timetable",
   description:
     "Create your perfect weekly class schedule with our free Class Schedule Maker. Add classes, choose from 6 stunning themes, and export as PDF or PNG image. Includes live preview, advanced settings, and customizable time slots.",
   keywords:

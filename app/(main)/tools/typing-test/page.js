@@ -2,7 +2,7 @@ import TypingTest from "@/app/(main)/tools-compo/tools/TypingTest";
 import React from "react";
 
 export const metadata = {
-  title: "Professional Typing Test | Check WPM & Accuracy | ToolsTrek",
+  title: "Professional Typing Test | Check WPM & Accuracy",
   description:
     "Free online typing test. Measure your typing speed (WPM) and accuracy with our interactive test. Features mechanical sound effects, key heatmap analysis, sudden death mode, coding typing tests, and dynamic certificate downloads.",
   keywords: [

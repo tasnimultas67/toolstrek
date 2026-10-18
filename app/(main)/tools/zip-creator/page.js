@@ -2,7 +2,7 @@ import React from "react";
 import ZipCreator from "@/app/(main)/tools-compo/tools/ZipCreator";
 
 export const metadata = {
-  title: "ZIP File Creator & Compressor - Bundle & Compress Files Online | ToolsTrek",
+  title: "ZIP File Creator & Compressor - Bundle & Compress Files Online",
   description:
     "Create, compress, and bundle unlimited files and folders into downloadable ZIP archives online for free. Features recursive folder drag-and-drop, custom compression levels (Store, Deflate), inline file management, zip extraction, and 100% private in-browser processing.",
   keywords: [

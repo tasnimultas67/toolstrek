@@ -2,7 +2,7 @@ import EmailSignatureEditor from "@/app/(main)/tools-compo/tools/EmailSignatureE
 import React from "react";
 
 export const metadata = {
-  title: "Email Signature Editor | Professional Signature Generator | ToolsTrek",
+  title: "Email Signature Editor | Professional Signature Generator",
   description:
     "Create stunning professional email signatures online for free. Customize fonts, colors, layouts, social icons, photos, logos, CTA buttons, disclaimers & more. Export to HTML for Gmail, Outlook, Apple Mail and more.",
   keywords: [

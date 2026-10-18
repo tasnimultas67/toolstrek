@@ -2,7 +2,7 @@ import WebTechDetector from "@/app/(main)/tools-compo/tools/WebTechDetector";
 import React from "react";
 
 export const metadata = {
-  title: "Website Technology Detector | Detect Tech Stack Online | ToolsTrek",
+  title: "Website Technology Detector | Detect Tech Stack Online",
   description:
     "Free online website technology detector. Instantly discover the tech stack powering any website — CMS, JavaScript frameworks, web servers, CDNs, analytics tools, security headers, and more.",
   keywords: [

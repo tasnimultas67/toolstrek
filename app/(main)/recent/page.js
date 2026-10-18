@@ -2,7 +2,7 @@ import React from "react";
 import RecentClient from "./RecentClient";
 
 export const metadata = {
-  title: "Recently Used Tools - ToolsTrek",
+  title: "Recently Used Tools",
   description:
     "View your recently accessed utilities and tools on ToolsTrek. Jump back in quickly or clear your history anytime.",
   openGraph: {

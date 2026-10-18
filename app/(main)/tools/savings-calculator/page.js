@@ -2,7 +2,7 @@ import SavingsCalculator from "@/app/(main)/tools-compo/tools/savings-calculator
 import React from "react";
 
 export const metadata = {
-  title: "Savings Calculator - Calculate Wealth Growth & Compound Interest | ToolsTrek",
+  title: "Savings Calculator - Calculate Wealth Growth & Compound Interest",
   description:
     "Free online Savings Calculator with compound interest. Calculate how your investments grow over time. Explore advanced options like inflation adjustment, tax deduction, annual step-up contribution, and download professional PDF reports.",
   keywords:

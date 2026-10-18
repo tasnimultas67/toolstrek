@@ -3,7 +3,7 @@ import ParentTools from "../tools-compo/ParentTools";
 
 // Metadata for the Tools directory page
 export const metadata = {
-  title: "All Tools - ToolsTrek",
+  title: "All Tools",
   description:
     "Browse our complete collection of online tools at ToolsTrek. Find everything from developer utilities to productivity helpers in one place.",
   openGraph: {

@@ -2,7 +2,7 @@ import TextRepeater from "@/app/(main)/tools-compo/tools/TextRepeater";
 import React from "react";
 
 export const metadata = {
-  title: "Text Repeater - Repeat Text Online | ToolsTrek",
+  title: "Text Repeater - Repeat Text Online",
   description:
     "Free online text repeater tool to repeat any text multiple times. Customize with separators, prefixes, suffixes. Copy or download repeated text instantly.",
   keywords:

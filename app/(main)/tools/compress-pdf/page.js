@@ -3,7 +3,7 @@ import CompressPDFTool from "../../tools-compo/tools/CompressPDFTool";
 
 // This object defines the SEO metadata for the page
 export const metadata = {
-  title: "Compress PDF Online | ToolsTrek",
+  title: "Compress PDF Online",
   description:
     "Easily compress your PDF files without losing quality. ToolsTrek provides a fast, secure, and free way to reduce PDF size online.",
   alternates: {

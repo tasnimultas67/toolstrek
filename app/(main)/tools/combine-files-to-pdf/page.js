@@ -3,7 +3,7 @@ import CombineFilesToPDFTool from "../../tools-compo/tools/CombineFilesToPDFTool
 
 // SEO Metadata for the Combine Files to PDF Tool
 export const metadata = {
-  title: "Combine Files into PDF | ToolsTrek",
+  title: "Combine Files into PDF",
   description:
     "Merge multiple images or documents into a single high-quality PDF. ToolsTrek makes it easy to combine files online without any installation.",
   alternates: {

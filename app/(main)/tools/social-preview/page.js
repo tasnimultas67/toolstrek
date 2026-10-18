@@ -2,7 +2,7 @@ import React from "react";
 import SocialPreview from "./SocialPreview";
 
 export const metadata = {
-  title: "Social Media URL Preview Generator & Editor — ToolsTrek",
+  title: "Social Media URL Preview Generator & Editor",
   keywords: [
     "social media preview",
     "url preview generator",

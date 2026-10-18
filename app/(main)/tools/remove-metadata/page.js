@@ -2,7 +2,7 @@ import RemoveMetadata from "@/app/(main)/tools-compo/tools/RemoveMetadata";
 import React from "react";
 
 export const metadata = {
-  title: "Remove Metadata & EXIF Cleaner | Free Online Photo & PDF Privacy Scrubber | ToolsTrek",
+  title: "Remove Metadata & EXIF Cleaner | Free Online Photo & PDF Privacy Scrubber",
   description:
     "Free online metadata remover and EXIF privacy cleaner. Strip GPS location coordinates, camera models, device serial numbers, author names, timestamps, and hidden tags from images (JPG, PNG, WebP) and PDF documents with 100% private in-browser batch processing.",
   keywords: [

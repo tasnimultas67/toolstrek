@@ -2,7 +2,7 @@ import MonitorHzTest from "@/app/(main)/tools-compo/tools/MonitorHzTest";
 import React from "react";
 
 export const metadata = {
-  title: "Monitor Hz Test | Check Display Refresh Rate Online | ToolsTrek",
+  title: "Monitor Hz Test | Check Display Refresh Rate Online",
   description:
     "Free online monitor Hz test. Detect your display refresh rate using interactive flicker and motion tests. Supports 60Hz, 120Hz, 144Hz, 240Hz and custom frequencies. 100% private, runs entirely in your browser.",
   keywords: [

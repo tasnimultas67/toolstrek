@@ -6,7 +6,7 @@ import { Sparkles, Shield, Zap, Wrench } from "lucide-react";
 import { changelogData } from "@/lib/changelogData";
 
 export const metadata = {
-  title: "Changelog & Product Updates — ToolsTrek",
+  title: "Changelog & Product Updates",
   keywords: [
     "changelog",
     "release notes",

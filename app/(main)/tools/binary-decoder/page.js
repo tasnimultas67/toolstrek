@@ -1,7 +1,7 @@
 import BinaryDecoder from "@/app/(main)/tools-compo/tools/BinaryDecoder";
 
 export const metadata = {
-  title: "Binary Code Decoder & Encoder | ToolsTrek",
+  title: "Binary Code Decoder & Encoder",
   description:
     "Free online Binary Code Decoder and Encoder. Instantly convert text to binary code and decode binary back to plain text. Features real-time translation, customizable spacing/separators, a bit-level interactive byte editor, and an ASCII binary chart.",
   keywords: [

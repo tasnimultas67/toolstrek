@@ -2,7 +2,7 @@ import TipCalculator from "@/app/(main)/tools-compo/tools/TipCalculator";
 import React from "react";
 
 export const metadata = {
-  title: "Tip Calculator - Split Bills & Calculate Tips Instantly | ToolsTrek",
+  title: "Tip Calculator - Split Bills & Calculate Tips Instantly",
   description:
     "Free online Advanced Tip Calculator. Calculate tip amounts, split bills among multiple people, set custom tip percentages, apply service charge, round up amounts, and view your calculation history. Perfect for restaurants, delivery, and group dining.",
   keywords:

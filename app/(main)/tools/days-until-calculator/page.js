@@ -2,7 +2,7 @@ import CountdownTimer from "@/app/(main)/tools-compo/tools/CountdownTimer";
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Days Until Calculator — Exact Days, Business Days & Date Duration | ToolsTrek",
+  title: "Days Until Calculator — Exact Days, Business Days & Date Duration",
   description:
     "Free online Days Until Calculator. Calculate exact calendar days, working/business days, full weeks, and hours until any date. Features custom weekend modes, leap year calculations, and live milestone countdowns.",
   keywords: [

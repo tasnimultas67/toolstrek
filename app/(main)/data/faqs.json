@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 104 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 106 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 104 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 106 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 15 curated categories: Developer & Design (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator, CSS Box Shadow Generator, Gradient Generator, Color Converter), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
+      "answer": "ToolsTrek features 15 curated categories: Developer & Design (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator, CSS Box Shadow Generator, Gradient Generator, Color Converter, Pie Chart Generator, Bar Chart Generator), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -80,7 +80,7 @@
   "developerTools": [
     {
       "question": "What developer and code utilities are available on ToolsTrek?",
-      "answer": "ToolsTrek provides a comprehensive developer and design suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, CSS Box Shadow Generator, Gradient Generator, Color Converter, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
+      "answer": "ToolsTrek provides a comprehensive developer and design suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, CSS Box Shadow Generator, Gradient Generator, Color Converter, Pie Chart Generator, Bar Chart Generator, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
     },
     {
       "question": "How secure and customizable is the Random Number Generator (RNG Studio)?",
@@ -158,7 +158,7 @@
   "imageAndMedia": [
     {
       "question": "What image and design tools does ToolsTrek provide?",
-      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
+      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Pie Chart Generator, Bar Chart Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
     },
     {
       "question": "How does the Animated GIF Maker work?",
@@ -413,6 +413,70 @@
     {
       "question": "Can I generate colored or neon glow shadows with this tool?",
       "answer": "Yes! You can pick any color — not just black or gray — for each shadow layer. Setting a vibrant color (like brand violet #7c00fe, neon cyan #06b6d4, or warm orange #f97316) with a medium-high blur and zero or negative spread creates a soft colored glow effect identical to modern SaaS UI glow buttons and badge highlights. The tool includes 8 quick-pick color swatches and a native color picker for full creative control."
+    }
+  ],
+  "pieChartTools": [
+    {
+      "question": "What is the Pie Chart Generator and how does it work?",
+      "answer": "The Pie Chart Generator is a free, browser-first tool for turning a list of categories and values into a polished pie or donut chart without any spreadsheet or design software. You type your labels and numbers into the data table (or load a ready-made sample dataset), and a live SVG preview updates instantly. You can switch between pie and donut modes, choose from ten curated colour palettes, adjust slice gaps, rounded corners, rotation, direction and exploded slices, fine-tune inside or outside labels, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
+    },
+    {
+      "question": "How are slice angles and percentages calculated in a pie chart?",
+      "answer": "Each slice's share is its value divided by the sum of all values. That fraction is multiplied by 360° to determine the slice's central angle and by 100 to display its percentage. For example, a category with a value of 42 out of a total of 100 occupies 151.2° of the circle and is labelled 42%. The tool recalculates totals and percentages in real time every time you edit, add or delete a value."
+    },
+    {
+      "question": "What is the difference between a pie chart and a donut (doughnut) chart?",
+      "answer": "A pie chart is a full circle divided into slices proportional to each category's share of the whole. A donut chart is exactly the same data with the centre punched out, which both improves readability (people compare arc lengths more accurately than angles) and frees up the centre for a total value, KPI or caption. You can flip between the two at any time and control how thick the ring is with the inner radius slider."
+    },
+    {
+      "question": "Can I export my pie chart as a PNG or SVG image, and is it high resolution?",
+      "answer": "Yes. The Export panel offers Download PNG for a pixel-perfect raster image at up to 4× resolution — ideal for slide decks, reports and social posts — and Download SVG for infinitely scalable vector artwork perfect for print, Figma and websites. You can also copy the raw SVG markup to your clipboard, or download the underlying data as CSV or JSON. Enable the transparent background option for charts that sit on coloured slides or dark dashboards."
+    },
+    {
+      "question": "How do I highlight or pull out a slice for emphasis?",
+      "answer": "Each row in the data table has an explode (crosshair) button. Toggling it pushes that slice outward from the centre, and the Explode distance slider controls how far every pulled-out slice pops. This is the classic technique for drawing attention to your headline number — for example, exploding the single largest slice of a revenue breakdown."
+    },
+    {
+      "question": "What are the best practices for designing a readable pie chart?",
+      "answer": "Keep the number of slices small — five or fewer is ideal — and group minor categories into an 'Other' slice. Always order slices from largest to smallest (use the Sort Largest button) starting at 12 o'clock, ensure the parts sum to a meaningful whole, show percentages when the whole matters and raw values for budgets, and avoid pie charts entirely when you need precise comparisons or have many similar-sized categories (a bar chart communicates better)."
+    },
+    {
+      "question": "Is the Pie Chart Generator private and does it work offline?",
+      "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential financial, survey and business data."
+    }
+  ],
+  "barChartTools": [
+    {
+      "question": "What is the Bar Chart Generator and how does it work?",
+      "answer": "The Bar Chart Generator is a free, browser-first tool for turning a list of categories and values into a polished bar or column chart without any spreadsheet or design software. You type your categories and numbers into the data table (or load a ready-made sample dataset), add one or more data series, and a live SVG preview updates instantly. You can switch between vertical columns and horizontal bars, choose grouped or stacked bars, pick from ten curated colour palettes, adjust bar width, gaps, rounded corners, opacity, gradients and shadows, fine-tune the value axis, gridlines and axis titles, place value labels inside, outside or in the centre, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
+    },
+    {
+      "question": "What is the difference between a bar chart and a column chart?",
+      "answer": "They are the same chart drawn at different angles. A column chart (vertical bars) grows upward from a horizontal category axis and is the default for time-based or ordered categories such as months or quarters. A bar chart (horizontal bars) extends sideways from a vertical category axis and reads better when your category names are long or when you have many categories. The Orientation switch flips between the two instantly and the layout, axis spacing and label positions are recalculated automatically."
+    },
+    {
+      "question": "What is the difference between grouped and stacked bars?",
+      "answer": "Grouped bars place the series side by side inside every category, which makes it easy to compare individual values across series. Stacked bars place the series on top of one another, which emphasises the category total and each series' share of that total. Switch between the two with the Bar mode toggle — the value axis scale and the data labels are recalculated automatically."
+    },
+    {
+      "question": "How does the Bar Chart Generator calculate the value axis?",
+      "answer": "The generator scans every value (including per-category stacks when you are in stacked mode), finds the minimum and maximum, then rounds them outward to human-friendly 'nice' numbers so the tick labels are clean values like 0, 20, 40, 60. The Zero baseline option always anchors the axis at zero — the recommended practice for honest bar charts — and the Tick count slider controls how many gridlines appear."
+    },
+    {
+      "question": "Can I show percentages, currency or custom units on the bar labels?",
+      "answer": "Yes. Data labels can display the raw value, the percentage of the grand total, or both. You can add a prefix (such as a currency symbol) and a suffix (such as %, kg or K), choose 0–4 decimal places, switch on thousands separators, and opt into compact notation (1.2K, 3.4M, 5.6B). Every change re-renders the chart immediately."
+    },
+    {
+      "question": "Can I export the bar chart as a PNG or SVG image, and is it high resolution?",
+      "answer": "Yes. The Export panel offers Download PNG for a pixel-perfect raster image at up to 4× resolution — ideal for slide decks, reports and social posts — and Download SVG for infinitely scalable vector artwork perfect for print, Figma and websites. You can also copy the raw SVG markup to your clipboard, or download the underlying data as CSV or JSON. Enable the transparent background option for charts that sit on coloured slides or dark dashboards."
+    },
+    {
+      "question": "What are the best practices for designing a readable bar chart?",
+      "answer": "Always start the value axis at zero so bar lengths stay proportional to their values, sort categories (largest to smallest) unless they have a natural order, keep the number of series small — grouped bars become hard to read beyond three or four — and label the axes clearly with units. Reserve stacked bars for showing parts of a whole, and avoid truncated axes or 3D effects that distort proportions."
+    },
+    {
+      "question": "Is the Bar Chart Generator private and does it work offline?",
+      "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential financial, survey and business data."
     }
   ]
 }

@@ -2,7 +2,7 @@ import QRCodeGenerator from "@/app/(main)/tools-compo/tools/QRCodeGenerator";
 import React from "react";
 
 export const metadata = {
-  title: "Free QR Code Generator | Custom Colors & 10+ Data Types | ToolsTrek",
+  title: "Free QR Code Generator | Custom Colors & 10+ Data Types",
   description:
     "Create custom QR codes instantly. Choose from 10+ destination types (URL, vCard, WiFi, Event, etc.), download in SVG, PNG, or JPG, and customize with any color combination. 100% free and no registration required.",
   keywords: [

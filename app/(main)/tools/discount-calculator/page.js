@@ -2,7 +2,7 @@ import DiscountCalculator from "@/app/(main)/tools-compo/tools/DiscountCalculato
 import React from "react";
 
 export const metadata = {
-  title: "Discount Calculator - Calculate Sale Price & Savings | ToolsTrek",
+  title: "Discount Calculator - Calculate Sale Price & Savings",
   description:
     "Free online Advanced Discount Calculator. Calculate sale prices, savings, double stacked discounts, sales tax, buy-one-get-one (BOGO) deals, and compare unit prices. Keep a history of your calculations and export reports to PDF.",
   keywords:

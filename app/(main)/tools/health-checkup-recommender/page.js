@@ -2,7 +2,7 @@ import HealthCheckupRecommender from "@/app/(main)/tools-compo/tools/HealthCheck
 import React from "react";
 
 export const metadata = {
-  title: "Health Checkup Recommender – Get Personalized Medical Test Suggestions | ToolsTrek",
+  title: "Health Checkup Recommender – Get Personalized Medical Test Suggestions",
   description:
     "Discover which medical checkups you need based on your age, gender, lifestyle, family history, and existing conditions. Generate a personalized health screening plan and download a professional PDF report.",
   keywords:

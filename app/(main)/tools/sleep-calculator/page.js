@@ -2,7 +2,7 @@ import SleepCalculator from "@/app/(main)/tools-compo/tools/sleep-calculator/Sle
 import React from "react";
 
 export const metadata = {
-  title: "Sleep Calculator - Best Bedtime & Wake-Up Time | ToolsTrek",
+  title: "Sleep Calculator - Best Bedtime & Wake-Up Time",
   description:
     "Free online Sleep Calculator. Find the perfect bedtime or wake-up time using 90-minute sleep cycles. Personalised for your age, time to fall asleep, chronotype, caffeine, screen time and other habits. Includes sleep stage breakdown, nap guide and downloadable PDF report.",
   keywords:

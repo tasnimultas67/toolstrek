@@ -2,7 +2,7 @@ import SSLChecker from "@/app/(main)/tools-compo/tools/SSLChecker";
 import React from "react";
 
 export const metadata = {
-  title: "SSL Certificate Checker | Inspect TLS/SSL Certs Online | ToolsTrek",
+  title: "SSL Certificate Checker | Inspect TLS/SSL Certs Online",
   description:
     "Free online SSL certificate checker. Instantly inspect any domain's SSL/TLS certificate — view validity dates, issuer, Subject Alternative Names (SANs), certificate type (DV/OV/EV), security score, cipher suites, SHA fingerprints, and full chain of trust.",
   keywords: [

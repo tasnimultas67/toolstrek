@@ -3,7 +3,7 @@ import TaskPrioritizer from "@/app/(main)/tools-compo/tools/TaskPrioritizer";
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Task Prioritizer & Eisenhower Decision Matrix Studio | ToolsTrek",
+  title: "Task Prioritizer & Eisenhower Decision Matrix Studio",
   description:
     "Free online Task Prioritizer and Eisenhower Decision Matrix Studio. Organize tasks by urgency and importance (Do First, Schedule, Delegate, Eliminate), calculate Action Priority ROI, view Kanban boards, track deadlines, and export to CSV, JSON, PNG, or Markdown.",
   keywords: [

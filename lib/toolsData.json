@@ -2156,5 +2156,61 @@
       "Calculator",
       "Health"
     ]
+  },
+  {
+    "title": "Pie Chart Generator",
+    "link": "/tools/pie-chart-generator",
+    "description": "Free online pie chart and donut chart generator with live SVG preview. Enter your data to create beautiful charts with curated colour palettes, adjustable labels, legends, exploded slices, rounded corners and one-click PNG or SVG export — all 100% in your browser.",
+    "icon": "PieChart",
+    "keywords": [
+      "pie chart generator",
+      "pie chart maker",
+      "donut chart generator",
+      "doughnut chart maker",
+      "create pie chart online",
+      "free pie chart maker",
+      "pie chart with percentages",
+      "circle graph maker",
+      "data visualization tool",
+      "donut chart with total",
+      "pie chart png export",
+      "pie chart svg",
+      "online chart builder",
+      "design",
+      "developer"
+    ],
+    "categories": [
+      "Design",
+      "Developer"
+    ]
+  },
+  {
+    "title": "Bar Chart Generator",
+    "link": "/tools/bar-chart-generator",
+    "description": "Free online bar chart and column chart generator with live SVG preview. Enter your data to build grouped or stacked bar charts with multiple series, curated colour palettes, adjustable axes and gridlines, labels, legends, rounded bars and one-click PNG or SVG export — all 100% in your browser.",
+    "icon": "BarChart3",
+    "keywords": [
+      "bar chart generator",
+      "bar chart maker",
+      "column chart generator",
+      "column chart maker",
+      "stacked bar chart generator",
+      "grouped bar chart maker",
+      "create bar chart online",
+      "free bar chart maker",
+      "horizontal bar chart",
+      "vertical bar chart",
+      "bar chart with values",
+      "bar chart png export",
+      "bar chart svg",
+      "data visualization tool",
+      "online chart builder",
+      "design",
+      "developer"
+    ],
+    "categories": [
+      "Design",
+      "Developer"
+    ]
   }
 ]

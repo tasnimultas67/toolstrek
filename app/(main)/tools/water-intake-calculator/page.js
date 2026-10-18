@@ -2,7 +2,7 @@ import WaterIntakeCalculator from "@/app/(main)/tools-compo/tools/WaterIntakeCal
 import React from "react";
 
 export const metadata = {
-  title: "Water Intake Calculator - Daily Hydration & Fluid Requirements | ToolsTrek",
+  title: "Water Intake Calculator - Daily Hydration & Fluid Requirements",
   description:
     "Free online Water Intake Calculator. Calculate your daily fluid requirements based on body weight, age, activity level, climate, pregnancy/lactation, caffeine, and diet. Features metric & imperial units, hourly intake schedules, interactive logger, and PDF reports.",
   keywords:

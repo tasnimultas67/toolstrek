@@ -3,7 +3,7 @@ import React from "react";
 
 // ToolsTrek SEO Metadata for Image to Text (OCR)
 export const metadata = {
-  title: "Image to Text Converter | Free Online OCR | ToolsTrek",
+  title: "Image to Text Converter | Free Online OCR",
   description:
     "Extract text from images accurately with our free online OCR tool. Convert JPG, PNG, and scanned documents to editable text instantly on ToolsTrek.",
   keywords: [

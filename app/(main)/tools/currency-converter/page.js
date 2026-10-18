@@ -2,7 +2,7 @@ import CurrencyConverter from "@/app/(main)/tools-compo/tools/CurrencyConverter"
 import React from "react";
 
 export const metadata = {
-  title: "Currency Converter — Real-Time Exchange Rates | ToolsTrek",
+  title: "Currency Converter — Real-Time Exchange Rates",
   description:
     "Convert 36+ major currencies in real-time with live exchange rates. Compare rates, analyze historical trends, calculate bank fees/markup, and view cash breakdowns.",
   keywords:

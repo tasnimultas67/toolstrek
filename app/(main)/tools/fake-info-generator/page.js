@@ -2,7 +2,7 @@ import FakeInfoGenerator from "@/app/(main)/tools-compo/tools/FakeInfoGenerator"
 import React from "react";
 
 export const metadata = {
-  title: "Fake Info Generator | ToolsTrek",
+  title: "Fake Info Generator",
   description:
     "Generate random and realistic fake user data, personal info, and test data quickly for your development and testing needs with ToolsTrek.",
   keywords: [

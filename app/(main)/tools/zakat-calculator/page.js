@@ -2,7 +2,7 @@ import ZakatCalculator from "@/app/(main)/tools-compo/tools/ZakatCalculator";
 import React from "react";
 
 export const metadata = {
-  title: "Zakat Calculator — Calculate Your Zakat Instantly | ToolsTrek",
+  title: "Zakat Calculator — Calculate Your Zakat Instantly",
   description:
     "Calculate your Zakat easily and accurately. Input your assets (gold, silver, cash, investments) and liabilities to determine your payable Zakat based on current Nisab rates.",
   keywords:

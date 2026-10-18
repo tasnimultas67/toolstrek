@@ -3,7 +3,7 @@ import ToolPageShell from "@/app/(main)/tools-compo/ToolPageShell";
 import React from "react";
 
 export const metadata = {
-  title: "File Metadata Viewer | ToolsTrek",
+  title: "File Metadata Viewer",
   description:
     "Instantly reveal every hidden metadata detail inside any file — images (EXIF, GPS, camera info), PDFs, audio, video, documents, and more. 100% private, runs entirely in your browser.",
   keywords: [

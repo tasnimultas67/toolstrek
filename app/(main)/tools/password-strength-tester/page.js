@@ -2,7 +2,7 @@
 import PasswordStrengthTester from "./PasswordStrengthTester";
 
 export const metadata = {
-  title: "Password Strength Tester — ToolsTrek",
+  title: "Password Strength Tester",
   keywords: [
     "password strength tester",
     "password analyzer",

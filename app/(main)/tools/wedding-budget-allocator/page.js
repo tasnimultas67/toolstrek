@@ -2,7 +2,7 @@ import WeddingBudgetAllocator from "@/app/(main)/tools-compo/tools/wedding-budge
 import React from "react";
 
 export const metadata = {
-  title: "Wedding Budget Allocator & Expense Tracker | ToolsTrek",
+  title: "Wedding Budget Allocator & Expense Tracker",
   description:
     "Free online Wedding Budget Allocator and Expense Tracker. Estimate costs, adjust sliders, track estimated vs. actual expenses with variance calculations, choose budget presets (Foodie, Photogenic, Party), view dynamic SVG charts, and download complete PDF reports.",
   keywords:

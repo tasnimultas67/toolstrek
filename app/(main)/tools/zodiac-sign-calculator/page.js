@@ -2,7 +2,7 @@ import ZodiacSignCalculator from "@/app/(main)/tools-compo/tools/ZodiacSignCalcu
 import React from "react";
 
 export const metadata = {
-  title: "Zodiac Sign Calculator — Accurate Sun Sign, Vedic Rashi & Chinese Zodiac | ToolsTrek",
+  title: "Zodiac Sign Calculator — Accurate Sun Sign, Vedic Rashi & Chinese Zodiac",
   description:
     "Calculate your exact Zodiac Sun Sign, Vedic Rashi, Chinese Zodiac animal, Decan sub-ruler, Cusp traits, and love compatibility with our free, professional Zodiac Sign Calculator.",
   keywords: [

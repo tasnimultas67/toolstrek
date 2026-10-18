@@ -1,7 +1,7 @@
 import { TodoTool } from "@/app/(main)/tools-compo/TodoTool";
 
 export const metadata = {
-  title: "Todo Tool — Task Manager | ToolsTrek",
+  title: "Todo Tool — Task Manager",
   description:
     "A professional, fully customizable task manager. Organize tasks with priorities, categories, subtasks, due dates, tags, and more. Export/import your data, track progress with live stats, and personalize with accent colors.",
   keywords: [

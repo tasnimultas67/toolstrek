@@ -1,7 +1,7 @@
 import NATOPhoneticConverter from "@/app/(main)/tools-compo/tools/NATOPhoneticConverter";
 
 export const metadata = {
-  title: "NATO Phonetic Alphabet Converter | ToolsTrek",
+  title: "NATO Phonetic Alphabet Converter",
   description:
     "Convert any text to the NATO phonetic alphabet instantly. Used by military, aviation, and emergency services worldwide. Features real-time conversion, character-by-character breakdown, and a full reference chart with pronunciations.",
   keywords: [

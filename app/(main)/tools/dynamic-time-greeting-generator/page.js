@@ -2,7 +2,7 @@ import DynamicTimeGreetingGenerator from "@/app/(main)/tools-compo/tools/Dynamic
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Dynamic Time Greeting Generator — Target Timezone & Code Snippets | ToolsTrek",
+  title: "Dynamic Time Greeting Generator — Target Timezone & Code Snippets",
   description:
     "Free online dynamic time-based greeting generator. Customize personalized morning, afternoon, evening, and night greetings by target timezone, 24-hour bracket rules, multilingual translations, visual themes, and export copy-pasteable React, JavaScript, HTML, and email template snippets.",
   keywords: [

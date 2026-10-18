@@ -1,7 +1,7 @@
 import UniCGPACalculator from "@/app/(main)/tools-compo/tools/UniCGPACalculator";
 
 export const metadata = {
-  title: "University CGPA Calculator (Private & Public) - ToolsTrek",
+  title: "University CGPA Calculator (Private & Public)",
   description:
     "Calculate GPA/CGPA for Private and Public Universities in Bangladesh. Includes presets for BUET, NSU, BRAC, UIU, AIUB, AUST, custom grading scales, semester CGPA calculator, target GPA planning, and downloadable image results.",
   keywords: [

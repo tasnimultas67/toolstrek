@@ -3,7 +3,7 @@ import React from "react";
 
 // ToolsTrek SEO Metadata for PDF Splitter
 export const metadata = {
-  title: "Split PDF Online | Fast & Secure | ToolsTrek",
+  title: "Split PDF Online | Fast & Secure",
   description:
     "Split PDF files into separate pages or extract specific ranges instantly. Secure, browser-based processing—your files never leave your device.",
   keywords: [

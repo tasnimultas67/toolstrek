@@ -2,7 +2,7 @@ import PomodoroTimer from "@/app/(main)/tools-compo/tools/PomodoroTimer";
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Pomodoro Timer — Productivity & Deep Work Studio | ToolsTrek",
+  title: "Pomodoro Timer — Productivity & Deep Work Studio",
   description:
     "Free online Pomodoro focus timer with customizable intervals, synthesized ambient audio (brown noise, rain, 40Hz gamma tone), integrated task sprint estimation, daily streak analytics, and distraction-free Zen mode.",
   keywords: [

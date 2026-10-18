@@ -31,6 +31,8 @@ const formatSectionTitle = (sectionKey) => {
     qrAndSecurity: "QR Codes & Security Tools",
     funAndAstrology: "Fun & Astrology Tools",
     cssShadowTools: "CSS Box Shadow Generator",
+    pieChartTools: "Pie & Donut Chart Generator",
+    barChartTools: "Bar & Column Chart Generator",
   };
 
   return (

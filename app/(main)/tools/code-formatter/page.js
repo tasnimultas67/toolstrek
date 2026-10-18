@@ -2,7 +2,7 @@ import CodeFormatter from "@/app/(main)/tools-compo/tools/CodeFormatter";
 import React from "react";
 
 export const metadata = {
-  title: "Advanced Code Formatter & Beautifier | ToolsTrek",
+  title: "Advanced Code Formatter & Beautifier",
   description:
     "Free online advanced code formatter and beautifier. Prettify and clean up JavaScript, TypeScript, HTML, CSS, JSON, XML, and SQL. Customize indentation styles, preserve line breaks, and download or upload files directly.",
   keywords: [

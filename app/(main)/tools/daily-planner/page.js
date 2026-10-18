@@ -2,7 +2,7 @@ import DailyPlanner from "@/app/(main)/tools-compo/tools/DailyPlanner";
 import React from "react";
 
 export const metadata = {
-  title: "Daily Planner & Time-Blocking Studio — ToolsTrek",
+  title: "Daily Planner & Time-Blocking Studio",
   description:
     "Free online customizable Daily Planner and Time-Blocking Studio. Plan your day with hourly time-blocks, Eisenhower Matrix, Top 3 Frog priorities, habit & routine tracking, water & mood logging, integrated Pomodoro timer with ambient sounds, customizable themes, and printable PDF planner sheets.",
   keywords: [

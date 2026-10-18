@@ -2,7 +2,7 @@ import RemoveDuplicateLines from "@/app/(main)/tools-compo/tools/RemoveDuplicate
 import React from "react";
 
 export const metadata = {
-  title: "Remove Duplicate Lines | ToolsTrek",
+  title: "Remove Duplicate Lines",
   description:
     "Free online tool to remove duplicate lines from text instantly. Supports case-insensitive matching, whitespace trimming, blank line removal, regex filters, sorting (A-Z, length, shuffle), and line-number prepending. Copy or download results in one click.",
   keywords: [

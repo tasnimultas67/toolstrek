@@ -3,7 +3,7 @@ import ToolPageShell from "@/app/(main)/tools-compo/ToolPageShell";
 import React from "react";
 
 export const metadata = {
-  title: "Media Format Converter | ToolsTrek",
+  title: "Media Format Converter",
   description:
     "Convert video and audio files (MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC) directly in your browser. Local, private, and hardware-accelerated transcoding powered by MediaBunny.",
   keywords: [

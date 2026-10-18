@@ -2,7 +2,7 @@ import IPChecker from "@/app/(main)/tools-compo/tools/IPChecker";
 import React from "react";
 
 export const metadata = {
-  title: "IP Checker & Geolocation - Find IP Details Online | ToolsTrek",
+  title: "IP Checker & Geolocation - Find IP Details Online",
   description:
     "Check your public IP address or look up any IP address/domain to get detailed geolocation, network provider (ISP), timezone, local time, security flags, and map location instantly. 100% free and client-side safe.",
   keywords:

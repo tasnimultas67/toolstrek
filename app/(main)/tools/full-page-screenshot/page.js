@@ -2,7 +2,7 @@ import FullPageScreenshot from "@/app/(main)/tools-compo/tools/FullPageScreensho
 import React from "react";
 
 export const metadata = {
-  title: "Full Page Screenshot Tool | Capture Webpages Online | ToolsTrek",
+  title: "Full Page Screenshot Tool | Capture Webpages Online",
   description:
     "Capture high-resolution, full-page screenshots of any website for free. Enforce mobile 12px or laptop 14px minimum font sizes, emulate dark mode, block cookie banners, and download as PNG, JPG, PDF, or WebP. 100% browser-based screenshot exporter.",
   keywords: [

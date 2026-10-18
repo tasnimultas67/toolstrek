@@ -1,7 +1,7 @@
 import FaviconGenerator from "@/app/(main)/tools-compo/tools/FaviconGenerator";
 
 export const metadata = {
-  title: "Free Favicon Generator | Create Favicon Pack (PNG + ICO) | ToolsTrek",
+  title: "Free Favicon Generator | Create Favicon Pack (PNG + ICO)",
   description:
     "Generate a professional favicon pack in seconds. Upload any image, apply rounded corners, background color, and padding — then download all standard sizes (16×16 to 512×512) as a ZIP. 100% client-side, no uploads.",
   keywords: [

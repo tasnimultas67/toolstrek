@@ -1,7 +1,7 @@
 import TrekGlyphEncoderDecoder from "@/app/(main)/tools-compo/tools/TrekGlyphEncoderDecoder";
 
 export const metadata = {
-  title: "TrekGlyph Encoder & Decoder | ToolsTrek",
+  title: "TrekGlyph Encoder & Decoder",
   description:
     "Free online TrekGlyph Encoder and Decoder. Instantly translate plain text to custom geometric code and decode TrekGlyph symbols back to readable English in real-time.",
   keywords: [

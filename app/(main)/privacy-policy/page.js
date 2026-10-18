@@ -2,7 +2,7 @@ import React from "react";
 import * as motion from "motion/react-client";
 
 export const metadata = {
-  title: "Privacy Policy — ToolsTrek",
+  title: "Privacy Policy",
   keywords: [
     "privacy policy",
     "GDPR compliant",

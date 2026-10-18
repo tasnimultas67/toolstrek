@@ -2,7 +2,7 @@ import WifiQRGen from "@/app/(main)/tools-compo/WifiQRGen";
 import React from "react";
 
 export const metadata = {
-  title: "WiFi QR Code Generator — ToolsTrek",
+  title: "WiFi QR Code Generator",
   keywords: ["wifi", "qr", "code", "generator", "tools"],
   description: "Generate QR codes for WiFi access easily and quickly",
 };

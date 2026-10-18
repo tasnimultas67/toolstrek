@@ -13,11 +13,12 @@ const outfit = Outfit({
   preload: true,
 });
 
+// NOTE: `title` (default + `%s | ToolsTrek` template) is inherited from the root
+// layout in app/layout.js. Declaring it here as well would apply the template to
+// this segment's default title, producing a duplicated brand name
+// (e.g. "ToolsTrek — Your Online Utility Hub | ToolsTrek") on routes such as
+// the homepage that don't set their own title.
 export const metadata = {
-  title: {
-    default: "ToolsTrek — Your Online Utility Hub",
-    template: "%s | ToolsTrek",
-  },
   description:
     "100+ free online tools for developers, students & professionals — QR codes, PDF utilities, image converters, calculators, text tools and more. No sign-up required, 100% in-browser privacy.",
   keywords: [

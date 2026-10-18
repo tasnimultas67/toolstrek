@@ -2,7 +2,7 @@ import React from "react";
 import TimeConverter from "@/app/(main)/tools-compo/TimeConverter";
 
 export const metadata = {
-  title: "Time Converter - Convert Seconds, Minutes, Hours & More | Toolstrek",
+  title: "Time Converter - Convert Seconds, Minutes, Hours & More",
   description:
     "Free online time converter. Instantly convert between nanoseconds, microseconds, milliseconds, seconds, minutes, hours, days, weeks, months, years, decades, and centuries.",
   keywords: [

@@ -2,7 +2,7 @@ import ColorPaletteExtractor from "@/app/(main)/tools-compo/tools/ColorPaletteEx
 import React from "react";
 
 export const metadata = {
-  title: "Color Palette Extractor | Extract Dominant Colors from Any Image | ToolsTrek",
+  title: "Color Palette Extractor | Extract Dominant Colors from Any Image",
   description:
     "Upload any image and instantly extract its dominant color palette. Pick exact pixel colors by clicking on the image, copy HEX, RGB & HSL values, and export palettes as JSON, CSS variables, or Tailwind config. Free, browser-only, no uploads.",
   keywords: [

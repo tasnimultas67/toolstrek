@@ -3,7 +3,7 @@ import AddAttachmentsTool from "../../tools-compo/tools/AddAttachmentsTool";
 
 // SEO Metadata for the Add Attachments Tool
 export const metadata = {
-  title: "Add Attachments to PDF Online | ToolsTrek",
+  title: "Add Attachments to PDF Online",
   description:
     "Attach files, documents, or images directly to your PDF. ToolsTrek offers a secure and easy way to manage PDF attachments online for free.",
   alternates: {

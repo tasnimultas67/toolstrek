@@ -5,7 +5,7 @@ import BackButton from "@/components/BackButton";
 
 // Metadata for SEO
 export const metadata = {
-  title: "404 | Page Not Found - Toolstrek",
+  title: "404 | Page Not Found",
   description:
     "Oops! The page you're looking for doesn't exist or has been moved.",
   robots: {

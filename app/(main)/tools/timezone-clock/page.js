@@ -2,7 +2,7 @@ import TimezoneClock from "@/app/(main)/tools-compo/tools/TimezoneClock";
 import React from "react";
 
 export const metadata = {
-  title: "World Timezone Clock & Meeting Planner | ToolsTrek",
+  title: "World Timezone Clock & Meeting Planner",
   description:
     "Free online timezone converter and world clock. Track real-time clocks for multiple cities, compare times with an interactive meeting planner slider, set local timezone alarms, and check UTC offsets.",
   keywords: [

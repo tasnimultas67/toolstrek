@@ -2,7 +2,7 @@ import DisposableEmailDetector from "@/app/(main)/tools-compo/tools/DisposableEm
 import React from "react";
 
 export const metadata = {
-  title: "Disposable Email Detector | Verify Temporary Email Domains | ToolsTrek",
+  title: "Disposable Email Detector | Verify Temporary Email Domains",
   description:
     "Free online disposable email detector and validator. Instantly verify syntax, check live MX records, identify role-based addresses, detect typos, and bulk scan lists of emails.",
   keywords: [

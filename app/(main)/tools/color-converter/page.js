@@ -2,7 +2,7 @@ import ColorConverter from "@/app/(main)/tools-compo/tools/ColorConverter";
 import React from "react";
 
 export const metadata = {
-  title: "Color Converter | Convert HEX, RGB, HSL, HSV, CMYK | ToolsTrek",
+  title: "Color Converter | Convert HEX, RGB, HSL, HSV, CMYK",
   description:
     "Free online color converter tool. Convert between HEX, RGB, HSL, HSV, CMYK color spaces instantly. Generate color harmonies, verify WCAG contrast compliance, simulate color blindness, and inspect tints & shades.",
   keywords: [

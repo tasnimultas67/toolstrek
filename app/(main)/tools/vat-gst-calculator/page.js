@@ -2,7 +2,7 @@ import VatCalculator from "@/app/(main)/tools-compo/tools/vat-calculator/VatCalc
 import React from "react";
 
 export const metadata = {
-  title: "VAT & GST Calculator - Calculate Tax Online Worldwide | ToolsTrek",
+  title: "VAT & GST Calculator - Calculate Tax Online Worldwide",
   description:
     "Free online VAT and GST calculator. Add tax, remove tax, calculate tax amounts, download PDF reports, and use country-specific tax presets.",
   keywords:

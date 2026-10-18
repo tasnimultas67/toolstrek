@@ -3,7 +3,7 @@ import NUpPDFTool from "../../tools-compo/tools/NUpPDFTool";
 
 // SEO Metadata for the N-Up PDF Tool
 export const metadata = {
-  title: "N-Up PDF - Multiple Pages Per Sheet Online | ToolsTrek",
+  title: "N-Up PDF - Multiple Pages Per Sheet Online",
   description:
     "Rearrange your PDF layout to print multiple pages on a single sheet. Customize your N-Up grid for efficient printing and document viewing with ToolsTrek.",
   alternates: {

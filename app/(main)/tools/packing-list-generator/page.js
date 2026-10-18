@@ -2,7 +2,7 @@ import PackingListGenerator from "@/app/(main)/tools-compo/tools/PackingListGene
 import React from "react";
 
 export const metadata = {
-  title: "Packing List Generator – Build & Export Your Travel Checklist | ToolsTrek",
+  title: "Packing List Generator – Build & Export Your Travel Checklist",
   description:
     "Create a fully customizable travel packing list with priority levels, collapsible categories, and PDF export. Add, edit, and organize items across categories like Clothing, Toiletries, Documents, Electronics, and more. 100% free and browser-based.",
   keywords:

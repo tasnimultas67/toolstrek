@@ -1,7 +1,7 @@
 import HashGenerator from "@/app/(main)/tools-compo/tools/HashGenerator";
 
 export const metadata = {
-  title: "Online Hash Generator & Verifier (SHA-256, MD5, SHA-512, Keccak) | ToolsTrek",
+  title: "Online Hash Generator & Verifier (SHA-256, MD5, SHA-512, Keccak)",
   description:
     "Generate, verify, benchmark, and analyze cryptographic hashes (SHA-256, MD5, SHA-1, SHA-512, SHA-3, Keccak-256, RIPEMD160, CRC32, HMAC, PBKDF2) online. 100% private, client-side, customizable formatting.",
   keywords: [

@@ -2,7 +2,7 @@ import GradientGenerator from "@/app/(main)/tools-compo/tools/GradientGenerator"
 import React from "react";
 
 export const metadata = {
-  title: "Gradient Generator | Create CSS & Tailwind Gradients | ToolsTrek",
+  title: "Gradient Generator | Create CSS & Tailwind Gradients",
   description:
     "Free online gradient generator. Create linear, radial, and conic gradients with color stops, custom angles, repeating styles, overlay blend modes, and high-res image exports (PNG/SVG).",
   keywords: [

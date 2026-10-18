@@ -2,7 +2,7 @@ import EMICalculator from "@/app/(main)/tools-compo/tools/EMICalculator";
 import React from "react";
 
 export const metadata = {
-  title: "EMI Calculator — Loan Repayment Planner | ToolsTrek",
+  title: "EMI Calculator — Loan Repayment Planner",
   description:
     "Calculate your Equated Monthly Installment (EMI) instantly. Get a full amortization schedule, interest breakdown, processing fee, insurance, and repayment chart for home, car, or personal loans.",
   keywords:

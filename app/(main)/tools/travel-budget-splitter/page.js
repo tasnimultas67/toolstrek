@@ -2,7 +2,7 @@ import TravelBudgetSplitter from "@/app/(main)/tools-compo/tools/TravelBudgetSpl
 import React from "react";
 
 export const metadata = {
-  title: "Travel Budget Splitter – Split Trip Costs & Track Group Expenses | ToolsTrek",
+  title: "Travel Budget Splitter – Split Trip Costs & Track Group Expenses",
   description:
     "An advanced and fully customizable travel expense splitter. Add group members, customize splitting ratios (equally, custom weights, percentages, unequal amounts), handle multi-currency conversions with custom exchange rates, set category-wise budget limits, simplify debts, and export complete reports to PDF. 100% browser-based and free.",
   keywords:

@@ -2,7 +2,7 @@ import React from "react";
 import UnitConverter from "@/app/(main)/tools-compo/UnitConverter";
 
 export const metadata = {
-  title: "Unit Converter - Convert Length, Weight, Temperature & More | Toolstrek",
+  title: "Unit Converter - Convert Length, Weight, Temperature & More",
   description: "Free online unit converter. Convert length, weight, temperature, area, volume, speed, time and data storage units instantly.",
   keywords: [
     "unit converter",

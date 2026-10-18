@@ -1,7 +1,7 @@
 import QRScanner from "@/app/(main)/tools-compo/QRScanner";
 import React from "react";
 export const metadata = {
-  title: "QR Scanner — ToolsTrek",
+  title: "QR Scanner",
   keywords: ["qr", "scanner", "tools"],
   description: "Scan QR codes easily and quickly",
 };

@@ -1,7 +1,7 @@
 import JWTDecoder from "@/app/(main)/tools-compo/tools/JWTDecoder";
 
 export const metadata = {
-  title: "JWT Decoder & Debugger | ToolsTrek",
+  title: "JWT Decoder & Debugger",
   description:
     "Decode, verify, and analyze JSON Web Tokens (JWT) online. Inspect Header, Payload, Signature, and validate tokens in real-time with signature verification.",
   keywords: [

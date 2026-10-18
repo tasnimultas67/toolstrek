@@ -3,7 +3,7 @@ import React from "react";
 
 // Metadata for SEO
 export const metadata = {
-  title: "SVG to PNG/JPG/WebP Converter | ToolsTrek",
+  title: "SVG to PNG/JPG/WebP Converter",
   description:
     "Convert SVG vector images to high-quality PNG, JPEG, or WebP formats completely client-side. Free, fast, secure, and customizable dimensions at ToolsTrek.",
   keywords: [

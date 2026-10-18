@@ -2,7 +2,7 @@ import DomainAgeChecker from "@/app/(main)/tools-compo/tools/DomainAgeChecker";
 import React from "react";
 
 export const metadata = {
-  title: "Domain Age Checker | Check Domain Registration Date | ToolsTrek",
+  title: "Domain Age Checker | Check Domain Registration Date",
   description:
     "Free online domain age checker. Instantly check any domain name's age, registration date, last updated date, expiration date, registrar, status, nameservers, registrant organization, and country.",
   keywords: [

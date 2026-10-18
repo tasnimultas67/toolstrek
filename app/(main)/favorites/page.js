@@ -2,7 +2,7 @@ import React from "react";
 import FavoritesClient from "./FavoritesClient";
 
 export const metadata = {
-  title: "Favorite Tools - ToolsTrek",
+  title: "Favorite Tools",
   description:
     "Your curated collection of favorite online tools. Access your most used utilities quickly and easily on ToolsTrek.",
   openGraph: {

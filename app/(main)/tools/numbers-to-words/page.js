@@ -2,7 +2,7 @@ import NumbersToWords from "@/app/(main)/tools-compo/tools/NumbersToWords";
 import React from "react";
 
 export const metadata = {
-  title: "Number to Words Converter | ToolsTrek",
+  title: "Number to Words Converter",
   description:
     "Convert numbers into words instantly and securely with this free, privacy-focused online utility. Designed for performance and clean visual clarity.",
   keywords: [

@@ -2,7 +2,7 @@ import SmokingCostCalculator from "@/app/(main)/tools-compo/tools/SmokingCostCal
 import React from "react";
 
 export const metadata = {
-  title: "Smoking Cost Calculator - Calculate Cigarette, Vape & Tobacco Expenses | ToolsTrek",
+  title: "Smoking Cost Calculator - Calculate Cigarette, Vape & Tobacco Expenses",
   description:
     "Free online Smoking Cost Calculator. Calculate how much money you spend on cigarettes per day, month, 1 year, 5 years, 10 years, and 20 years. Includes BDT default & global currencies, tabs for Per Pack, Per Piece, Vape, and compound interest investment projections.",
   keywords:

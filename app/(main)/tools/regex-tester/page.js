@@ -2,7 +2,7 @@ import RegexTester from "@/app/(main)/tools-compo/tools/RegexTester";
 import React from "react";
 
 export const metadata = {
-  title: "Regex Tester & Debugger - Online Regular Expression Tool | ToolsTrek",
+  title: "Regex Tester & Debugger - Online Regular Expression Tool",
   description:
     "Free online Regex Tester & Debugger. Test, match, replace, split, and explain regular expressions in real-time. Features interactive capture group tree, AST syntax explanation, customizable themes, zero demo data by default, and multi-language code generator (JS, Python, PHP, Java, C#, Go, Rust, Ruby, Swift, Bash).",
   keywords: [

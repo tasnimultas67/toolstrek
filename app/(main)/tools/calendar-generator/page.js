@@ -2,7 +2,7 @@ import CalendarGenerator from "@/app/(main)/tools-compo/tools/CalendarGenerator"
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Custom Calendar Generator — Print & Download PDF/PNG (2027 & Beyond) | ToolsTrek",
+  title: "Custom Calendar Generator — Print & Download PDF/PNG (2027 & Beyond)",
   description:
     "Free online advanced custom calendar generator. Design and download full-year or monthly calendars with custom paper sizes (A4, A3, US Letter, custom mm/in), official holidays for 10+ countries, custom personal events, astronomical moon phases, ISO week numbers, designer themes, and crisp PDF & image exports.",
   keywords: [

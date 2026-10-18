@@ -2,7 +2,7 @@ import OnlineNotepad from "@/app/(main)/tools-compo/tools/OnlineNotepad";
 import React from "react";
 
 export const metadata = {
-  title: "Online Notepad & Scratchpad Studio — ToolsTrek",
+  title: "Online Notepad & Scratchpad Studio",
   description:
     "Free, private, in-browser Online Notepad & Scratchpad Studio. Features multi-tab note management, live Markdown preview, typewriter sound effects, voice dictation, text-to-speech, client-side PIN encryption, live word statistics, and multi-format exports (TXT, MD, PDF, HTML, JSON).",
   keywords: [

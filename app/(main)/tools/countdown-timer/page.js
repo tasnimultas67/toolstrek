@@ -2,7 +2,7 @@ import CountdownTimer from "@/app/(main)/tools-compo/tools/CountdownTimer";
 import React, { Suspense } from "react";
 
 export const metadata = {
-  title: "Countdown Timer & Days Until Calculator | ToolsTrek",
+  title: "Countdown Timer & Days Until Calculator",
   description:
     "Free online Countdown Timer and Days Until Calculator. Track upcoming events, holidays, product launches, and milestones with timezone precision, business days calculation, full-screen mode, audio alerts, confetti celebrations, and calendar exports.",
   keywords: [

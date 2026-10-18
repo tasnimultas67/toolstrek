@@ -2,7 +2,7 @@ import LoveCompatibilityTest from "@/app/(main)/tools-compo/tools/LoveCompatibil
 import React from "react";
 
 export const metadata = {
-  title: "Love Compatibility Test — Zodiac, Numerology & More | ToolsTrek",
+  title: "Love Compatibility Test — Zodiac, Numerology & More",
   description:
     "Discover how compatible you are with your partner using our free Love Compatibility Test. Combines name numerology, zodiac astrology, love languages, MBTI personality types, and relationship goals for a deep, multi-dimensional compatibility analysis.",
   keywords:
