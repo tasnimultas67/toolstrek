@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import ToolPageShell from "../ToolPageShell";
 import { toast } from "sonner";
+import { apiFetch } from "@/lib/apiClient";
 import {
   Search,
   MapPin,
@@ -64,17 +65,10 @@ export default function IPChecker() {
     setLoading(true);
     setError("");
     try {
-      const res = await fetch("/api/check-ip", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ query: searchQuery }),
+      const data = await apiFetch("/api/check-ip", {
+        body: { query: searchQuery },
+        timeoutMs: 30_000,
       });
-      const data = await res.json();
-      
-      if (!res.ok) {
-        throw new Error(data.error || "Failed to fetch IP details");
-      }
-      
       setResult(data);
     } catch (err) {
       setError(err.message);

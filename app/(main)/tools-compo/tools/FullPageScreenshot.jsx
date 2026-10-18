@@ -42,6 +42,7 @@ import {
 import ToolPageShell from "../ToolPageShell";
 import { jsPDF } from "jspdf";
 import { toast } from "sonner";
+import { apiFetch } from "@/lib/apiClient";
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 
@@ -314,17 +315,13 @@ export default function FullPageScreenshot() {
 
       setLoadStep("Rendering page with Headless Chrome…");
 
-      const apiRes = await fetch(`/api/screenshot?${params.toString()}`, {
+      const apiJson = await apiFetch(`/api/screenshot?${params.toString()}`, {
+        method: "GET",
         signal: controller.signal,
+        // The server caps its own Microlink wait at ~55s; give it a little
+        // headroom so we read its JSON first.
+        timeoutMs: 70_000,
       });
-
-      if (!apiRes.ok) {
-        let msg = `Server error ${apiRes.status}`;
-        try { const j = await apiRes.json(); msg = j.error ?? msg; } catch {}
-        throw new Error(msg);
-      }
-
-      const apiJson = await apiRes.json();
 
       if (apiJson.status !== "success" || !apiJson.data?.screenshot?.url) {
         const hint = apiJson.data?.message ?? apiJson.error ?? "Unknown render failure";

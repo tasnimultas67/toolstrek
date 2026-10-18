@@ -1,6 +1,10 @@
 import { NextResponse } from "next/server";
 import { lookup } from "whois";
 
+// Node.js runtime for the WHOIS socket fallback.
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 export async function POST(request) {
   try {
     const body = await request.json();
@@ -96,21 +100,41 @@ export async function POST(request) {
 }
 
 async function queryRdap(domain) {
-  const res = await fetch(`https://rdap.org/domain/${domain}`, {
-    headers: {
-      'Accept': 'application/rdap+json, application/json'
+  // Try the aggregator first, then its mirror. Both proxy to the authoritative
+  // registry RDAP server, which keeps working on serverless platforms where
+  // outbound WHOIS (port 43) may be blocked.
+  const endpoints = [
+    `https://rdap.org/domain/${encodeURIComponent(domain)}`,
+    `https://www.rdap.net/domain/${encodeURIComponent(domain)}`,
+  ];
+
+  let lastError = null;
+  for (const endpoint of endpoints) {
+    try {
+      const res = await fetch(endpoint, {
+        headers: {
+          Accept: "application/rdap+json, application/json",
+        },
+        redirect: "follow",
+        // Never let a stalled registry hang the function until the platform
+        // kills it — bail out and fall back to WHOIS instead.
+        signal: AbortSignal.timeout(8000),
+      });
+      if (!res.ok) {
+        throw new Error(`RDAP HTTP error! status: ${res.status}`);
+      }
+      const json = await res.json();
+      return parseRdapData(json);
+    } catch (err) {
+      lastError = err;
     }
-  });
-  if (!res.ok) {
-    throw new Error(`RDAP HTTP error! status: ${res.status}`);
   }
-  const json = await res.json();
-  return parseRdapData(json);
+  throw lastError || new Error("RDAP lookup failed");
 }
 
 async function queryWhois(domain) {
   return new Promise((resolve, reject) => {
-    lookup(domain, { timeout: 10000 }, (err, data) => {
+    lookup(domain, { timeout: 7000 }, (err, data) => {
       if (err) {
         reject(err);
       } else {

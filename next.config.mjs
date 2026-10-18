@@ -15,10 +15,12 @@ const nextConfig = {
   // Turbopack configuration
   turbopack: {},
 
-  // Exclude node_modules from output file tracing to reduce FS scanning
-  outputFileTracingExcludes: {
-    "*": ["./node_modules/**/*"],
-  },
+  // ⚠️ Do NOT add `outputFileTracingExcludes` for node_modules here.
+  // The Route Handlers under `app/(main)/api/*` rely on Next.js tracing their
+  // runtime dependencies into each function bundle. Excluding node_modules
+  // strips the `next/dist/compiled/*` runtime the handlers require, so every
+  // function crashed on the platform (HTTP 500 on all /api/* routes) while the
+  // pre-rendered pages kept working. Leave the tracing defaults in place.
 
   // Keep Webpack as a fallback/parallel config
   webpack: (config) => {

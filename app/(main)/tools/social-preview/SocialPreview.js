@@ -9,6 +9,7 @@ import {
   ChevronDown, ChevronUp, CheckCircle
 } from "lucide-react";
 import ToolPageShell from "@/app/(main)/tools-compo/ToolPageShell";
+import { apiFetch } from "@/lib/apiClient";
 
 // Preset examples
 const EXAMPLES = [
@@ -121,13 +122,10 @@ export default function SocialPreview() {
     if (!targetUrl.trim()) return;
     setLoading(true); setErrorMsg(""); setWarningMsg(""); setSuccessMsg("");
     try {
-      const res = await fetch("/api/url-preview", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: targetUrl, userAgent: selectedUserAgent }),
+      const data = await apiFetch("/api/url-preview", {
+        body: { url: targetUrl, userAgent: selectedUserAgent },
+        timeoutMs: 25_000,
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to fetch metadata");
       setMetadata({ url: data.url, domain: data.domain, title: data.title || "", description: data.description || "", image: data.image || "", siteName: data.siteName || data.domain || "", type: data.type || "website", icon: data.icon || "", canonical: data.canonical || data.url });
       setSuccessMsg("Metadata scraped successfully!");
     } catch (err) {

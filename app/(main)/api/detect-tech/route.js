@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 // ─────────────────────────────────────────────
 // Technology signature databases
 // ─────────────────────────────────────────────
@@ -245,6 +248,10 @@ export async function POST(request) {
   try {
     const body = await request.json();
     let { url, followRedirects = true, timeout = 10000, userAgent = "default" } = body;
+
+    // Clamp the client-supplied timeout so a single request can never outlive
+    // the function's maxDuration and get replaced by a platform error page.
+    timeout = Math.min(Math.max(Number(timeout) || 10000, 3000), 25000);
 
     if (!url || typeof url !== "string") {
       return NextResponse.json({ error: "URL is required" }, { status: 400 });

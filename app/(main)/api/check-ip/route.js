@@ -2,20 +2,21 @@ import { NextResponse } from "next/server";
 import dns from "dns";
 import net from "net";
 
+// Node.js runtime for raw DNS + request headers.
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
+const PROVIDER_TIMEOUT_MS = 5000;
+
 // Helper to wrap fetch with timeout
-async function fetchWithTimeout(url, options = {}, timeout = 4000) {
+async function fetchWithTimeout(url, options = {}, timeout = PROVIDER_TIMEOUT_MS) {
   const controller = new AbortController();
   const id = setTimeout(() => controller.abort(), timeout);
   try {
-    const response = await fetch(url, {
-      ...options,
-      signal: controller.signal,
-    });
-    clearTimeout(id);
+    const response = await fetch(url, { ...options, signal: controller.signal });
     return response;
-  } catch (error) {
+  } finally {
     clearTimeout(id);
-    throw error;
   }
 }
 
@@ -35,7 +36,8 @@ function getContinentName(code) {
 
 // Format seconds offset to +/-HH:MM format
 function formatUtcOffset(seconds) {
-  const hours = seconds / 3600;
+  const hours = Number(seconds) / 3600;
+  if (!Number.isFinite(hours)) return "N/A";
   const absHours = Math.abs(hours);
   const wholeHours = Math.floor(absHours);
   const minutes = Math.round((absHours - wholeHours) * 60);
@@ -47,7 +49,7 @@ function formatUtcOffset(seconds) {
 function isPrivateIp(ip) {
   if (!ip) return true;
   if (ip === "127.0.0.1" || ip === "::1" || ip === "::ffff:127.0.0.1") return true;
-  
+
   const parts = ip.split(".");
   if (parts.length === 4) {
     const first = parseInt(parts[0], 10);
@@ -59,6 +61,178 @@ function isPrivateIp(ip) {
   return false;
 }
 
+// Read the caller's public IP from platform/proxy headers.
+function getClientIp(request) {
+  const forwarded = request.headers.get("x-forwarded-for");
+  if (forwarded) return forwarded.split(",")[0].trim();
+
+  return (
+    request.headers.get("x-real-ip") ||
+    request.headers.get("x-vercel-forwarded-for") ||
+    ""
+  );
+}
+
+// ─────────────────────────────────────────────────────────────
+// Geolocation providers. Each entry knows how to build its URL,
+// how to tell a usable success apart from a failure, and how to
+// normalise its own shape into ToolsTrek's unified schema.
+// They are queried in parallel and the first successful one wins,
+// so a single provider outage (or datacenter-IP block) never breaks
+// the tool.
+// ─────────────────────────────────────────────────────────────
+const PROVIDERS = [
+  {
+    id: "ipwho.is",
+    url: (ip) => `https://ipwho.is/${encodeURIComponent(ip)}`,
+    isValid: (j) => j && j.success !== false && j.ip,
+    map: (d) => ({
+      ip: d.ip,
+      version: d.type === "IPv6" || String(d.ip).includes(":") ? "IPv6" : "IPv4",
+      city: d.city || "Unknown",
+      region: d.region || "Unknown",
+      regionCode: d.region_code || "",
+      country: d.country || "Unknown",
+      countryCode: d.country_code || "",
+      continent: d.continent || getContinentName(d.continent_code),
+      postal: d.postal || "Unknown",
+      latitude: parseFloat(d.latitude) || 0,
+      longitude: parseFloat(d.longitude) || 0,
+      timezone: d.timezone?.id || "Unknown",
+      timezoneOffset: d.timezone?.utc ? formatUtcOffset(d.timezone.utc) : "N/A",
+      isp: d.connection?.isp || d.connection?.org || "Unknown",
+      org: d.connection?.org || "Unknown",
+      asn: d.connection?.asn ? `AS${d.connection.asn}` : "Unknown",
+      currency: d.currency?.name || "Unknown",
+      currencyCode: d.currency?.code || "",
+      callingCode: d.calling_code || "",
+      languages: "",
+      isProxy: false,
+      isHosting: false,
+      isMobile: false,
+    }),
+  },
+  {
+    id: "freeipapi.com",
+    url: (ip) => `https://freeipapi.com/api/json/${encodeURIComponent(ip)}`,
+    isValid: (j) => j && j.ipAddress,
+    map: (d) => ({
+      ip: d.ipAddress,
+      version: d.ipVersion === 6 ? "IPv6" : "IPv4",
+      city: d.cityName || "Unknown",
+      region: d.regionName || "Unknown",
+      regionCode: "",
+      country: d.countryName || "Unknown",
+      countryCode: d.countryCode || "",
+      continent: d.continent || "Unknown",
+      postal: d.zipCode || "Unknown",
+      latitude: parseFloat(d.latitude) || 0,
+      longitude: parseFloat(d.longitude) || 0,
+      timezone: d.timeZone || "Unknown",
+      timezoneOffset: "N/A",
+      isp: "Unknown",
+      org: "Unknown",
+      asn: "Unknown",
+      currency: "Unknown",
+      currencyCode: "",
+      callingCode: "",
+      languages: "",
+      isProxy: d.isProxy || false,
+      isHosting: false,
+      isMobile: false,
+    }),
+  },
+  {
+    id: "ipapi.co",
+    url: (ip) => `https://ipapi.co/${encodeURIComponent(ip)}/json/`,
+    isValid: (j) => j && j.ip && !j.error,
+    map: (d) => ({
+      ip: d.ip,
+      version: d.version || (String(d.ip).includes(":") ? "IPv6" : "IPv4"),
+      city: d.city || "Unknown",
+      region: d.region || "Unknown",
+      regionCode: d.region_code || "",
+      country: d.country_name || "Unknown",
+      countryCode: d.country_code || "",
+      continent: getContinentName(d.continent_code),
+      postal: d.postal || "Unknown",
+      latitude: parseFloat(d.latitude) || 0,
+      longitude: parseFloat(d.longitude) || 0,
+      timezone: d.timezone || "Unknown",
+      timezoneOffset: d.utc_offset || "N/A",
+      isp: d.org || d.asn || "Unknown",
+      org: d.org || "Unknown",
+      asn: d.asn || "Unknown",
+      currency: d.currency_name || d.currency || "Unknown",
+      currencyCode: d.currency || "",
+      callingCode: d.country_calling_code || "",
+      languages: d.languages || "",
+      isProxy: false,
+      isHosting: false,
+      isMobile: false,
+    }),
+  },
+  {
+    id: "ip-api.com",
+    url: (ip) => {
+      const fields =
+        "status,message,continent,continentCode,country,countryCode,region,regionName,city,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,mobile,proxy,hosting,query";
+      return `http://ip-api.com/json/${encodeURIComponent(ip)}?fields=${fields}`;
+    },
+    isValid: (j) => j && j.status === "success",
+    map: (d) => ({
+      ip: d.query,
+      version: String(d.query).includes(":") ? "IPv6" : "IPv4",
+      city: d.city || "Unknown",
+      region: d.regionName || "Unknown",
+      regionCode: d.region || "",
+      country: d.country || "Unknown",
+      countryCode: d.countryCode || "",
+      continent: d.continent || "Unknown",
+      postal: d.zip || "Unknown",
+      latitude: parseFloat(d.lat) || 0,
+      longitude: parseFloat(d.lon) || 0,
+      timezone: d.timezone || "Unknown",
+      timezoneOffset: d.offset !== undefined ? formatUtcOffset(d.offset) : "N/A",
+      isp: d.isp || "Unknown",
+      org: d.org || "Unknown",
+      asn: d.as || "Unknown",
+      currency: d.currency || "Unknown",
+      currencyCode: d.currency || "",
+      callingCode: "",
+      languages: "",
+      isProxy: d.proxy || false,
+      isHosting: d.hosting || false,
+      isMobile: d.mobile || false,
+    }),
+  },
+];
+
+// Query every provider at once and return the first (by priority) hit.
+async function lookupGeolocation(ip) {
+  const attempts = await Promise.allSettled(
+    PROVIDERS.map(async (provider) => {
+      const res = await fetchWithTimeout(provider.url(ip));
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      const json = await res.json();
+      if (!provider.isValid(json)) throw new Error("Invalid payload");
+      return { source: provider.id, data: provider.map(json) };
+    })
+  );
+
+  for (let i = 0; i < PROVIDERS.length; i++) {
+    const attempt = attempts[i];
+    if (attempt.status === "fulfilled") {
+      return attempt.value;
+    }
+    console.warn(
+      `Geolocation provider ${PROVIDERS[i].id} failed:`,
+      attempt.reason?.message || attempt.reason
+    );
+  }
+  return null;
+}
+
 export async function POST(request) {
   try {
     const body = await request.json().catch(() => ({}));
@@ -66,10 +240,7 @@ export async function POST(request) {
     query = query?.trim() || "";
 
     // 1. Detect client IP
-    let clientIp = request.headers.get("x-forwarded-for")?.split(",")[0].trim() ||
-                   request.headers.get("x-real-ip") ||
-                   request.ip ||
-                   "";
+    let clientIp = getClientIp(request);
 
     // Clean IP representation (like removing ipv4-mapped ipv6 prefix)
     if (clientIp.startsWith("::ffff:")) {
@@ -97,7 +268,7 @@ export async function POST(request) {
         // Query is a domain. Clean domain structure first
         let cleanDomain = query.replace(/^(https?:\/\/)?(www\.)?/, ""); // Remove protocols
         cleanDomain = cleanDomain.split("/")[0].split(":")[0]; // Strip path, queries, and ports
-        
+
         try {
           const lookupResult = await dns.promises.lookup(cleanDomain);
           targetIp = lookupResult.address;
@@ -112,154 +283,22 @@ export async function POST(request) {
       }
     }
 
-    // 3. Query Geolocation Services (Resilient fallback mechanism)
-    let data = null;
-    let source = "";
+    // 3. Query geolocation services (resilient, parallel)
+    const hit = await lookupGeolocation(targetIp);
 
-    // Attempt 1: Fetch from ipapi.co (rich details, timezone offsets, currency, calling codes)
-    try {
-      const res = await fetchWithTimeout(`https://ipapi.co/${targetIp}/json/`);
-      if (res.ok) {
-        const json = await res.json();
-        if (json && json.ip && !json.error) {
-          data = json;
-          source = "ipapi.co";
-        }
-      }
-    } catch (err) {
-      console.warn("ipapi.co fetch failed, trying next provider:", err.message);
-    }
-
-    // Attempt 2: Fetch from ip-api.com (includes detailed connection flags like proxy/vpn/mobile)
-    if (!data) {
-      try {
-        const fields = "status,message,continent,continentCode,country,countryCode,region,regionName,city,zip,lat,lon,timezone,offset,currency,isp,org,as,asname,mobile,proxy,hosting,query";
-        const res = await fetchWithTimeout(`http://ip-api.com/json/${targetIp}?fields=${fields}`);
-        if (res.ok) {
-          const json = await res.json();
-          if (json && json.status === "success") {
-            data = json;
-            source = "ip-api.com";
-          }
-        }
-      } catch (err) {
-        console.warn("ip-api.com fetch failed, trying next provider:", err.message);
-      }
-    }
-
-    // Attempt 3: Fetch from freeipapi.com (reliable fallback)
-    if (!data) {
-      try {
-        const res = await fetchWithTimeout(`https://freeipapi.com/api/json/${targetIp}`);
-        if (res.ok) {
-          const json = await res.json();
-          if (json && json.ipAddress) {
-            data = json;
-            source = "freeipapi.com";
-          }
-        }
-      } catch (err) {
-        console.warn("freeipapi.com fetch failed:", err.message);
-      }
-    }
-
-    // 4. Map API results to unified schema
-    if (!data) {
+    if (!hit) {
       return NextResponse.json(
         { error: "Could not retrieve geolocation data for this IP address. Please try again later." },
         { status: 502 }
       );
     }
 
-    let parsedResult = {};
-
-    if (source === "ipapi.co") {
-      parsedResult = {
-        ip: data.ip,
-        version: data.version || (data.ip.includes(":") ? "IPv6" : "IPv4"),
-        city: data.city || "Unknown",
-        region: data.region || "Unknown",
-        regionCode: data.region_code || "",
-        country: data.country_name || "Unknown",
-        countryCode: data.country_code || "",
-        continent: getContinentName(data.continent_code),
-        postal: data.postal || "Unknown",
-        latitude: parseFloat(data.latitude) || 0,
-        longitude: parseFloat(data.longitude) || 0,
-        timezone: data.timezone || "Unknown",
-        timezoneOffset: data.utc_offset || "N/A",
-        isp: data.org || data.asn || "Unknown",
-        org: data.org || "Unknown",
-        asn: data.asn || "Unknown",
-        currency: data.currency_name || data.currency || "Unknown",
-        currencyCode: data.currency || "",
-        callingCode: data.country_calling_code || "",
-        languages: data.languages || "",
-        isProxy: false,
-        isHosting: false,
-        isMobile: false,
-      };
-    } else if (source === "ip-api.com") {
-      parsedResult = {
-        ip: data.query,
-        version: data.query.includes(":") ? "IPv6" : "IPv4",
-        city: data.city || "Unknown",
-        region: data.regionName || "Unknown",
-        regionCode: data.region || "",
-        country: data.country || "Unknown",
-        countryCode: data.countryCode || "",
-        continent: data.continent || "Unknown",
-        postal: data.zip || "Unknown",
-        latitude: parseFloat(data.lat) || 0,
-        longitude: parseFloat(data.lon) || 0,
-        timezone: data.timezone || "Unknown",
-        timezoneOffset: data.offset !== undefined ? formatUtcOffset(data.offset) : "N/A",
-        isp: data.isp || "Unknown",
-        org: data.org || "Unknown",
-        asn: data.as || "Unknown",
-        currency: data.currency || "Unknown",
-        currencyCode: data.currency || "",
-        callingCode: "",
-        languages: "",
-        isProxy: data.proxy || false,
-        isHosting: data.hosting || false,
-        isMobile: data.mobile || false,
-      };
-    } else if (source === "freeipapi.com") {
-      parsedResult = {
-        ip: data.ipAddress,
-        version: data.ipVersion === 6 ? "IPv6" : "IPv4",
-        city: data.cityName || "Unknown",
-        region: data.regionName || "Unknown",
-        regionCode: "",
-        country: data.countryName || "Unknown",
-        countryCode: data.countryCode || "",
-        continent: data.continent || "Unknown",
-        postal: data.zipCode || "Unknown",
-        latitude: parseFloat(data.latitude) || 0,
-        longitude: parseFloat(data.longitude) || 0,
-        timezone: data.timeZone || "Unknown",
-        timezoneOffset: "N/A",
-        isp: "Unknown",
-        org: "Unknown",
-        asn: "Unknown",
-        currency: "Unknown",
-        currencyCode: "",
-        callingCode: "",
-        languages: "",
-        isProxy: data.isProxy || false,
-        isHosting: false,
-        isMobile: false,
-      };
-    }
-
     return NextResponse.json({
-      ...parsedResult,
+      ...hit.data,
       isLocalhost,
       resolvedFrom,
-      source,
+      source: hit.source,
     });
-
   } catch (error) {
     console.error("IP check endpoint error:", error);
     return NextResponse.json(

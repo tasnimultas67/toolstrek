@@ -33,9 +33,11 @@ import {
   ScreenShare,
   Boxes,
   AlertCircle,
+  Camera,
 } from "lucide-react";
 import ToolPageShell from "../ToolPageShell";
 import { cn } from "@/lib/utils";
+import { apiFetch } from "@/lib/apiClient";
 
 // ─── Device Database ──────────────────────────────────────────────────────────
 const DEVICE_PRESETS = {
@@ -178,12 +180,32 @@ export default function ResponsiveViewport() {
   const [rulerVisible, setRulerVisible] = useState(false);
   const [urlError, setUrlError] = useState("");
   const [iframeError, setIframeError] = useState(false);
+  const [fallbackUrl, setFallbackUrl] = useState("");
+  const [fallbackLoading, setFallbackLoading] = useState(false);
+  const [fallbackError, setFallbackError] = useState("");
   const [baseFont, setBaseFont] = useState(16);
   const [showAllCategories, setShowAllCategories] = useState(false);
 
   const iframeRef = useRef(null);
   const widthInputRef = useRef(null);
   const heightInputRef = useRef(null);
+  const fallbackUrlRef = useRef("");
+  const activeUrlRef = useRef("");
+
+  // Track the latest screenshot object URL so we can revoke it on unmount and
+  // avoid leaking memory when the user leaves the tool.
+  useEffect(() => {
+    fallbackUrlRef.current = fallbackUrl;
+  }, [fallbackUrl]);
+  useEffect(() => {
+    activeUrlRef.current = activeUrl;
+  }, [activeUrl]);
+  useEffect(
+    () => () => {
+      if (fallbackUrlRef.current) URL.revokeObjectURL(fallbackUrlRef.current);
+    },
+    []
+  );
 
   // Derived
   const bpLabel = getBreakpointLabel(width);
@@ -210,11 +232,21 @@ export default function ResponsiveViewport() {
     return "https://" + t;
   };
 
+  // Release the current screenshot (if any) and reset its error state.
+  const clearFallback = useCallback(() => {
+    setFallbackUrl((prev) => {
+      if (prev) URL.revokeObjectURL(prev);
+      return "";
+    });
+    setFallbackError("");
+  }, []);
+
   const handleLoad = () => {
     const norm = normalizeUrl(url);
     if (!norm) { setUrlError("Please enter a URL."); return; }
     setUrlError("");
     setIframeError(false);
+    clearFallback();
     setIsLoading(true);
     setActiveUrl(norm);
     setIframeKey((k) => k + 1);
@@ -223,7 +255,57 @@ export default function ResponsiveViewport() {
   const handleRefresh = () => {
     setIsLoading(true);
     setIframeError(false);
+    clearFallback();
     setIframeKey((k) => k + 1);
+  };
+
+  // Many sites refuse to be embedded (X-Frame-Options / CSP frame-ancestors).
+  // In that case we can still give the user a real preview by rendering a
+  // server-side screenshot of the page at the selected viewport size.
+  const renderFallbackScreenshot = async () => {
+    if (!activeUrl || fallbackLoading) return;
+    const target = activeUrl;
+    setFallbackLoading(true);
+    setFallbackError("");
+    try {
+      const params = new URLSearchParams({
+        url: activeUrl,
+        screenshot: "true",
+        "screenshot.type": "png",
+        "viewport.width": String(effectiveW),
+        "viewport.height": String(effectiveH),
+        "viewport.deviceScaleFactor": String(dpr),
+        waitUntil: "networkidle2",
+      });
+
+      const json = await apiFetch(`/api/screenshot?${params.toString()}`, {
+        method: "GET",
+        timeoutMs: 70_000,
+      });
+
+      const cdnUrl = json?.data?.screenshot?.url;
+      if (!cdnUrl) {
+        throw new Error(
+          json?.data?.message || json?.error || "The screenshot service could not render this page."
+        );
+      }
+
+      const imgRes = await fetch(`/api/screenshot?image_url=${encodeURIComponent(cdnUrl)}`);
+      if (!imgRes.ok) throw new Error("Failed to download the rendered image.");
+
+      const blob = await imgRes.blob();
+      // Ignore the result if the user switched URLs while we were rendering.
+      if (activeUrlRef.current !== target) return;
+      setFallbackUrl((prev) => {
+        if (prev) URL.revokeObjectURL(prev);
+        return URL.createObjectURL(blob);
+      });
+    } catch (err) {
+      if (activeUrlRef.current !== target) return;
+      setFallbackError(err.message || "Could not render a screenshot for this page.");
+    } finally {
+      setFallbackLoading(false);
+    }
   };
 
   const selectDevice = (device) => {
@@ -725,15 +807,94 @@ export default function ResponsiveViewport() {
                   )}
 
                   {iframeError && (
-                    <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 bg-white/95 dark:bg-slate-900/95 z-30">
-                      <AlertCircle className="w-8 h-8 text-amber-500" />
-                      <div className="text-center px-4">
-                        <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">Cannot load this page</p>
-                        <p className="text-xs text-slate-400 mt-1">This site may block embedding via <code className="bg-slate-100 dark:bg-slate-800 px-1 rounded">X-Frame-Options</code></p>
-                      </div>
-                      <a href={activeUrl} target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 text-xs text-violet-600 dark:text-violet-400 underline">
-                        <ExternalLink className="w-3.5 h-3.5" /> Open directly
-                      </a>
+                    <div className="absolute inset-0 z-30 bg-white/95 dark:bg-slate-900/95">
+                      {fallbackUrl ? (
+                        <div className="absolute inset-0 flex flex-col">
+                          <div className="flex-1 overflow-auto bg-slate-100 dark:bg-slate-950">
+                            {/* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */}
+                            <img
+                              src={fallbackUrl}
+                              alt={`Screenshot preview of ${activeUrl}`}
+                              className="block w-full"
+                            />
+                          </div>
+                          <div className="flex items-center justify-between gap-2 px-3 py-2 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
+                            <span className="flex items-center gap-1.5 text-[11px] text-slate-400">
+                              <Camera className="w-3.5 h-3.5" /> Screenshot preview
+                            </span>
+                            <div className="flex items-center gap-2">
+                              <button
+                                type="button"
+                                onClick={() => { clearFallback(); renderFallbackScreenshot(); }}
+                                disabled={fallbackLoading}
+                                className="flex items-center gap-1.5 text-[11px] text-slate-500 hover:text-violet-600 dark:hover:text-violet-400 transition-colors disabled:opacity-50"
+                              >
+                                <RefreshCw className="w-3.5 h-3.5" /> Re-render
+                              </button>
+                              <a
+                                href={activeUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex items-center gap-1.5 text-[11px] text-violet-600 dark:text-violet-400 hover:underline"
+                              >
+                                <ExternalLink className="w-3.5 h-3.5" /> Open directly
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                      ) : (
+                        <div className="w-full h-full flex flex-col items-center justify-center gap-3 px-6">
+                          {fallbackLoading ? (
+                            <>
+                              <RefreshCw className="w-7 h-7 text-violet-500 animate-spin" />
+                              <div className="text-center">
+                                <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">Rendering a screenshot…</p>
+                                <p className="text-xs text-slate-400 mt-1">This can take a few seconds for heavy pages.</p>
+                              </div>
+                            </>
+                          ) : (
+                            <>
+                              <div className={`p-3 rounded-2xl ${fallbackError ? "bg-rose-500/10" : "bg-amber-500/10"}`}>
+                                {fallbackError ? (
+                                  <AlertCircle className="w-7 h-7 text-rose-500" />
+                                ) : (
+                                  <Layout className="w-7 h-7 text-amber-500" />
+                                )}
+                              </div>
+                              <div className="text-center">
+                                <p className="text-sm font-semibold text-slate-700 dark:text-slate-200">
+                                  {fallbackError ? "Screenshot unavailable" : "Cannot load this page"}
+                                </p>
+                                <p className="text-xs text-slate-400 mt-1">
+                                  {fallbackError ? (
+                                    fallbackError
+                                  ) : (
+                                    <>This site may block embedding via <code className="bg-slate-100 dark:bg-slate-800 px-1 rounded">X-Frame-Options</code></>
+                                  )}
+                                </p>
+                              </div>
+                              <div className="flex flex-wrap items-center justify-center gap-2">
+                                <button
+                                  type="button"
+                                  onClick={renderFallbackScreenshot}
+                                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-white bg-violet-600 hover:bg-violet-700 transition-colors shadow-sm"
+                                >
+                                  <Camera className="w-3.5 h-3.5" />
+                                  {fallbackError ? "Try again" : "Render as screenshot"}
+                                </button>
+                                <a
+                                  href={activeUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-slate-600 dark:text-slate-300 border border-slate-200 dark:border-slate-700 hover:border-violet-400 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+                                >
+                                  <ExternalLink className="w-3.5 h-3.5" /> Open directly
+                                </a>
+                              </div>
+                            </>
+                          )}
+                        </div>
+                      )}
                     </div>
                   )}
 

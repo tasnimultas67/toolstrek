@@ -34,6 +34,7 @@ import {
   X,
 } from "lucide-react";
 import ToolPageShell from "../ToolPageShell";
+import { apiFetch } from "@/lib/apiClient";
 
 /* ─────────────────────────────────────────────────────────────
    Custom Modern Dropdown
@@ -442,13 +443,11 @@ export default function WebTechDetector() {
     setActiveTab("technologies");
 
     try {
-      const res = await fetch("/api/detect-tech", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ url: trimmed, followRedirects, timeout: Number(timeout), userAgent }),
+      const data = await apiFetch("/api/detect-tech", {
+        body: { url: trimmed, followRedirects, timeout: Number(timeout), userAgent },
+        // Give the server a little headroom over its own scan timeout.
+        timeoutMs: Number(timeout) + 10_000,
       });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Failed to analyze website");
       setResult(data);
       toast.success(`✅ Detected ${data.technologies?.length || 0} technologies!`);
     } catch (err) {

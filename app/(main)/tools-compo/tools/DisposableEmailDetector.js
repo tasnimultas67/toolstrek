@@ -3,6 +3,7 @@
 import React, { useState, useRef } from "react";
 import ToolPageShell from "../ToolPageShell";
 import { toast } from "sonner";
+import { apiFetch } from "@/lib/apiClient";
 import {
   MailWarning,
   Check,
@@ -88,16 +89,10 @@ export default function DisposableEmailDetector() {
     setSingleResult(null);
 
     try {
-      const response = await fetch("/api/check-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: singleEmail.trim() }),
+      const data = await apiFetch("/api/check-email", {
+        body: { email: singleEmail.trim() },
+        timeoutMs: 30_000,
       });
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Verification failed");
-      }
 
       setSingleResult(data);
       if (data.verdict === "Risky") {
@@ -122,15 +117,16 @@ export default function DisposableEmailDetector() {
       setSingleEmail(suggestedEmail);
       const fakeEvent = { preventDefault: () => {} };
       // React state update requires triggering lookup after DOM changes
-      fetch("/api/check-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email: suggestedEmail }),
+      apiFetch("/api/check-email", {
+        body: { email: suggestedEmail },
+        timeoutMs: 30_000,
       })
-        .then((res) => res.json())
         .then((data) => {
           setSingleResult(data);
           toast.success("Autocorrected email checked!");
+        })
+        .catch((err) => {
+          toast.error(err.message || "Failed to verify email");
         });
     }, 50);
   };
@@ -156,16 +152,10 @@ export default function DisposableEmailDetector() {
     for (let i = 0; i < totalEmails; i += chunkSize) {
       const chunk = emailsToVerify.slice(i, i + chunkSize);
       try {
-        const response = await fetch("/api/check-email", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ emails: chunk }),
+        const data = await apiFetch("/api/check-email", {
+          body: { emails: chunk },
+          timeoutMs: 30_000,
         });
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(data.error || "Bulk process chunk error");
-        }
 
         accumulatedResults = [...accumulatedResults, ...data.results];
         setBulkResults(accumulatedResults);
@@ -343,16 +333,10 @@ export default function DisposableEmailDetector() {
     setSandboxResult(null);
 
     try {
-      const response = await fetch("/api/check-email", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain: sandboxDomain.trim() }),
+      const data = await apiFetch("/api/check-email", {
+        body: { domain: sandboxDomain.trim() },
+        timeoutMs: 30_000,
       });
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Sandbox lookup failed");
-      }
 
       setSandboxResult(data);
       toast.success("Domain analysis completed!");

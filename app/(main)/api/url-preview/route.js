@@ -1,5 +1,8 @@
 import { NextResponse } from "next/server";
 
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 // Helper to resolve relative URLs to absolute ones
 function resolveUrl(baseUrl, targetUrl) {
   if (!targetUrl) return "";

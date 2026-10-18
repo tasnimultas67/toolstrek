@@ -36,6 +36,7 @@ import {
   ListChecks,
 } from "lucide-react";
 import ToolPageShell from "../ToolPageShell";
+import { apiFetch } from "@/lib/apiClient";
 
 // ─────────────────────────────────────────────
 // Mini helper: Copy button with flash feedback
@@ -254,32 +255,13 @@ export default function SSLChecker() {
     setActiveSanPage(0);
 
     try {
-      const response = await fetch("/api/check-ssl", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ domain: cleanedDomain, port: targetPort }),
+      const data = await apiFetch("/api/check-ssl", {
+        body: { domain: cleanedDomain, port: targetPort },
+        timeoutMs: 30_000,
       });
-
-      let data;
-      const contentType = response.headers.get("content-type");
-      if (contentType && contentType.includes("application/json")) {
-        data = await response.json();
-      } else {
-        const text = await response.text();
-        throw new Error(
-          `Server returned an invalid response (${response.status}): ${
-            text.substring(0, 100) || "Unknown error"
-          }`
-        );
-      }
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to retrieve certificate data.");
-      }
-
       setResult(data);
     } catch (err) {
-      setError(err.message);
+      setError(err.message || "Failed to retrieve certificate data.");
     } finally {
       setLoading(false);
     }

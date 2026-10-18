@@ -3,12 +3,18 @@ import tls from "tls";
 import net from "net";
 import dns from "dns";
 
+// Needs the Node.js runtime (raw TLS sockets + DNS). Keep the ceiling below the
+// platform default so a slow handshake returns a clean JSON error instead of a
+// platform-generated HTML timeout page.
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 // ─────────────────────────────────────────────
 // Helper: fetch cert details from a domain
 // ─────────────────────────────────────────────
 function fetchSSLCert(hostname, port = 443) {
   return new Promise((resolve, reject) => {
-    const timeoutMs = 12000;
+    const timeoutMs = 8000;
     let completed = false;
 
     const done = (err, data) => {
@@ -100,7 +106,11 @@ function parseSANs(cert) {
   if (!altNames) return [];
   return altNames
     .split(",")
-    .map((s) => s.replace(/^DNS:/, "").replace(/^IP Address:/, "IP:").trim())
+    .map((entry) => entry.trim())
+    .filter(Boolean)
+    // Strip the OpenSSL type prefix *after* trimming — the earlier order left
+    // every entry past the first one with a stray "DNS:" / "IP Address:" label.
+    .map((entry) => entry.replace(/^DNS:/i, "").replace(/^IP Address:/i, "IP:"))
     .filter(Boolean);
 }
 

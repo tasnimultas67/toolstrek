@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ToolPageShell from "../ToolPageShell";
+import { apiFetch } from "@/lib/apiClient";
 
 export default function DomainAgeChecker() {
   const [domain, setDomain] = useState("");
@@ -61,19 +62,10 @@ export default function DomainAgeChecker() {
     }
 
     try {
-      const response = await fetch("/api/check-domain-age", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ domain: domain.toLowerCase().trim() }),
+      const data = await apiFetch("/api/check-domain-age", {
+        body: { domain: domain.toLowerCase().trim() },
+        timeoutMs: 30_000,
       });
-
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.error || "Failed to check domain age");
-      }
 
       const age = calculateAge(data.creationDate);
       const ageInDays = getAgeInDays(data.creationDate);

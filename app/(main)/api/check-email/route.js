@@ -3,16 +3,33 @@ import dns from "dns";
 import fs from "fs";
 import path from "path";
 
+// Node.js runtime for DNS MX lookups and the local data file.
+export const runtime = "nodejs";
+export const maxDuration = 30;
+
 // Lazily load the disposable domains list in memory as a Set for O(1) lookups
 let disposableSet = null;
+
+// Resolve the bundled data file. Both paths are spelled out with static string
+// literals (rather than looping over an array) so the bundler can trace exactly
+// which files to include instead of tracing the whole project.
+function resolveDomainsFile() {
+  const primary = path.join(process.cwd(), "lib", "disposableDomains.json");
+  if (fs.existsSync(primary)) return primary;
+
+  const fallback = path.join(process.cwd(), "..", "lib", "disposableDomains.json");
+  if (fs.existsSync(fallback)) return fallback;
+
+  return null;
+}
 
 function loadDisposableDomains() {
   if (disposableSet) return disposableSet;
   try {
-    const filePath = path.join(process.cwd(), "lib", "disposableDomains.json");
-    if (fs.existsSync(filePath)) {
+    const filePath = resolveDomainsFile();
+    if (filePath) {
       const domainsArray = JSON.parse(fs.readFileSync(filePath, "utf-8"));
-      disposableSet = new Set(domainsArray.map(d => d.toLowerCase().trim()));
+      disposableSet = new Set(domainsArray.map((d) => d.toLowerCase().trim()));
       console.log(`Loaded ${disposableSet.size} disposable domains into memory.`);
     } else {
       console.warn("disposableDomains.json not found! Fallback to empty list.");

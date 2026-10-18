@@ -1,5 +1,11 @@
 import { NextResponse } from "next/server";
 
+// The Microlink capture can legitimately take a while, but we must return our
+// own JSON 504 before the platform's hard kill (which would produce an HTML
+// error page instead).
+export const runtime = "nodejs";
+export const maxDuration = 60;
+
 const MICROLINK_BASE = "https://api.microlink.io/";
 // Parameters that are private to our proxy and must NOT be forwarded to Microlink
 const PROXY_ONLY_PARAMS = new Set(["image_url"]);
@@ -72,8 +78,9 @@ export async function GET(request) {
     });
 
     const controller = new AbortController();
-    // Microlink can take 30-60 s for a full-page capture with delay
-    const timer = setTimeout(() => controller.abort(), 90_000);
+    // Microlink can take a while for a full-page capture, but stay comfortably
+    // below maxDuration so we can return a friendly JSON timeout instead.
+    const timer = setTimeout(() => controller.abort(), 55_000);
 
     let mlResponse;
     try {

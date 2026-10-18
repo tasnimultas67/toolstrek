@@ -16,7 +16,7 @@
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-110_Available-10b981?style=flat-square" alt="110 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.17.1-purple?style=flat-square" alt="v2.17.1" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.17.2-purple?style=flat-square" alt="v2.17.2" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
