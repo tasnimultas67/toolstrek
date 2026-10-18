@@ -1,6 +1,6 @@
 [
   {
-    "title": "Task Prioritizer & Eisenhower Matrix Studio",
+    "title": "Task Prioritizer",
     "link": "/tools/task-prioritizer",
     "description": "Professional Eisenhower Decision Matrix and multi-framework task prioritizer. Sort tasks by urgency and importance (Do First, Schedule, Delegate, Eliminate), evaluate Action Priority ROI, view Kanban boards, track deadlines, and export to CSV, JSON, PNG, or Markdown.",
     "icon": "LayoutGrid",
@@ -26,7 +26,7 @@
     ]
   },
   {
-    "title": "Countdown Timer & Days Until Calculator",
+    "title": "Countdown Timer",
     "link": "/tools/countdown-timer",
     "description": "Professional live countdown timer and days until calculator. Track upcoming events, holidays, deadlines, and milestones with timezone precision, working/business days calculations, full-screen presentation mode, Web Audio alerts, confetti celebration, and .ics calendar exports.",
     "icon": "Hourglass",
@@ -79,7 +79,7 @@
     ]
   },
   {
-    "title": "Pomodoro Timer & Deep Work Studio",
+    "title": "Pomodoro Timer",
     "link": "/tools/pomodoro-timer",
     "description": "Professional Pomodoro focus timer with customizable intervals, synthesized ambient audio (brown noise, rain, 40Hz gamma focus tone), integrated sprint task estimation, daily streak analytics, and distraction-free Zen mode.",
     "icon": "Timer",
@@ -103,7 +103,7 @@
     ]
   },
   {
-    "title": "Dynamic Time Greeting Generator",
+    "title": "Time Greeting",
     "link": "/tools/dynamic-time-greeting-generator",
     "description": "Create, customize, and generate personalized time-of-day greetings tailored to any target timezone. Features custom time brackets, recipient placeholders, 11+ multilingual packs, tone presets, 24-hour time simulator, visual card exporter, and ready-to-use React, JS, HTML, and email template snippets.",
     "icon": "SunMedium",
@@ -128,7 +128,7 @@
     ]
   },
   {
-    "title": "Custom Calendar Generator & Print Studio",
+    "title": "Calendar Generator",
     "link": "/tools/calendar-generator",
     "description": "Create, customize, and download high-resolution printable calendars for any year (2027 and beyond). Features full year & multi-month views, custom paper sizes (A4, A3, Letter, custom mm/in), holiday database for 10+ countries, custom personal events, lunar moon phases, week numbers, designer themes, and export to crisp PDF, PNG, & JPEG.",
     "icon": "CalendarDays",
@@ -154,7 +154,7 @@
     ]
   },
   {
-    "title": "Online Notepad & Scratchpad Studio",
+    "title": "Online Notepad",
     "link": "/tools/online-notepad",
     "description": "Modern, fully customizable in-browser Online Notepad & Scratchpad Studio. Features multi-tab note management, live Markdown preview, typewriter acoustics, voice dictation, text-to-speech, password protection, real-time statistics, and multi-format exports (TXT, MD, PDF, HTML, JSON).",
     "icon": "NotebookPen",
@@ -179,7 +179,7 @@
     ]
   },
   {
-    "title": "Daily Planner & Time-Blocking Studio",
+    "title": "Daily Planner",
     "link": "/tools/daily-planner",
     "description": "Professional, fully customizable Daily Planner & Time-Blocking Studio. Features hourly time-blocking, Eisenhower Matrix, Top 3 Frog priorities, habit & routine tracking, water & mood logger, integrated Pomodoro timer with ambient sounds, multi-theme styling, and printable PDF sheets.",
     "icon": "CalendarCheck2",
@@ -203,7 +203,7 @@
     ]
   },
   {
-    "title": "Random Number Generator (RNG Studio)",
+    "title": "Random Number Generator",
     "link": "/tools/random-number-generator",
     "description": "Cryptographically secure (CSPRNG) and reproducible seeded Random Number Generator. Features customizable ranges, polyhedral RPG dice roller (D20, D6, D100 with Advantage/Disadvantage), Gaussian/Poisson/Binomial probability distributions, lottery & raffle picker, interactive empirical histogram, and multi-format export.",
     "icon": "Dice5",
@@ -229,7 +229,7 @@
     ]
   },
   {
-    "title": "Regex Tester & Debugger",
+    "title": "Regex Tester",
     "link": "/tools/regex-tester",
     "description": "Test, debug, match, replace, split, and explain regular expressions in real-time. Features interactive capture group inspection, AST syntax explainer, multi-language code generator (JS, Python, PHP, Java, C#, Go, Rust, Ruby, Swift, Bash), custom themes, and zero initial demo data with on-demand presets.",
     "icon": "Code2",
@@ -251,7 +251,7 @@
     ]
   },
   {
-    "title": "Hash Generator & Verifier",
+    "title": "Hash Generator",
     "link": "/tools/hash-generator",
     "description": "Generate, verify, benchmark, and analyze cryptographic hashes (SHA-256, MD5, SHA-1, SHA-512, SHA-3, Keccak-256, RIPEMD-160, CRC32, HMAC, PBKDF2). Features custom salt, HMAC keys, batch multi-line mode, file checksums, live matrix, and code generator.",
     "icon": "Hash",
@@ -362,7 +362,7 @@
     ]
   },
   {
-    "title": "Email to PDF Converter",
+    "title": "Email Converter",
     "link": "/tools/email-to-pdf",
     "description": "Convert EML email files to high-quality PDF documents right in your browser. Configure paper size (A4, Letter, A3), orientation, margins, headers toggle, font styles, and color modes, while extracting and downloading attachments.",
     "icon": "Mail",
@@ -451,7 +451,7 @@
     ]
   },
   {
-    "title": "Disposable Email Detector",
+    "title": "Email Detector",
     "link": "/tools/disposable-email-detector",
     "description": "Detect temporary and disposable emails instantly. Verify syntax, check live MX records, find role-based addresses, correct common spelling typos, and process email lists in bulk.",
     "icon": "MailWarning",
@@ -471,7 +471,7 @@
     ]
   },
   {
-    "title": "Website Technology Detector",
+    "title": "Tech Detector",
     "link": "/tools/website-tech-detector",
     "description": "Instantly detect the full technology stack powering any website. Identifies CMS, JavaScript frameworks (React, Vue, Next.js, Angular), web servers (Nginx, Apache), CDNs (Cloudflare, Vercel), analytics tools, and analyzes HTTP security headers with a score.",
     "icon": "ScanSearch",
@@ -491,7 +491,7 @@
     ]
   },
   {
-    "title": "SSL Certificate Checker",
+    "title": "SSL Checker",
     "link": "/tools/ssl-checker",
     "description": "Instantly inspect any domain's SSL/TLS certificate. View issuer, expiry dates, Subject Alternative Names (SANs), certificate type (DV/OV/EV), security score, TLS protocol & cipher suites, SHA fingerprints, and a full certificate chain — all free and server-side.",
     "icon": "ShieldCheck",
@@ -625,7 +625,7 @@
     ]
   },
   {
-    "title": "Wifi QR Code Generator",
+    "title": "WiFi QR Generator",
     "link": "/tools/wifi-qr",
     "description": "Create a custom QR code that allows guests to instantly connect to your local Wi-Fi network without manually typing complex passwords. Simply fill in your network name and security type, then print or display the generated image.",
     "icon": "QrCode",
@@ -756,7 +756,7 @@
     ]
   },
   {
-    "title": "University CGPA Calculator (Private & Public)",
+    "title": "University CGPA Calculator",
     "link": "/tools/uni-cgpa-calculator",
     "description": "A versatile academic calculator designed for Private and Public University students in Bangladesh. Calculate semester GPA or cumulative CGPA, choose from BUET, NSU, BRAC, UIU, AIUB, AUST presets, design custom grading scales, and download your result card as an image.",
     "icon": "Calculator",
@@ -848,7 +848,7 @@
     ]
   },
   {
-    "title": "CSV Viewer & Editor",
+    "title": "CSV Editor",
     "link": "/tools/csv-viewer",
     "description": "An advanced, interactive CSV viewer and editor. Upload or paste CSV data to explore dynamically with table pagination, cell editing, column visibility toggles, descriptive column data profiling, custom SVG chart generation, and multi-format exports.",
     "icon": "Table",
@@ -906,7 +906,7 @@
     ]
   },
   {
-    "title": "PDF to Image Converter",
+    "title": "PDF to Image",
     "link": "/tools/pdf-to-image",
     "description": "Extract individual elements or complete document layouts from cumbersome portable files. Convert distinct PDF pages into high-resolution PNG, JPEG, or WebP graphic assets for seamless inclusion in web galleries or presentation decks.",
     "icon": "FileImage",
@@ -924,7 +924,7 @@
     ]
   },
   {
-    "title": "Image to Text Converter",
+    "title": "Image Text",
     "link": "/tools/image-to-text",
     "description": "Utilize powerful Optical Character Recognition (OCR) technology to extract typography and legible text directly from uploaded graphics, screenshots, or receipts. All operations are processed safely and locally within your browser.",
     "icon": "FileText",
@@ -979,7 +979,7 @@
     ]
   },
   {
-    "title": "Compress PDF Tool",
+    "title": "PDF Compressor",
     "link": "/tools/compress-pdf",
     "description": "Shrink heavy, resource-intensive document file sizes down to lightweight profiles perfect for email attachments or web portals. Intelligently optimizes resolution and asset sizes without sacrificing text legibility.",
     "icon": "FileZip",
@@ -996,7 +996,7 @@
     ]
   },
   {
-    "title": "Crop PDF Tool",
+    "title": "PDF Cropper",
     "link": "/tools/crop-pdf",
     "description": "Trim unnecessary outer edges, modify visible document canvas margins, and cut precise page selections out of standard PDF formats. Perfect for cleaning up skewed scans, adjusting white space, or isolating specific layout regions.",
     "icon": "Crop",
@@ -1066,7 +1066,7 @@
     ]
   },
   {
-    "title": "Add Attachments to PDF",
+    "title": "PDF Attachments",
     "link": "/tools/add-attachments",
     "description": "Supercharge document packets by embedding supplementary files, supporting spread-sheets, or media assets directly within the internal architecture of your target PDF. Keep all project context bound inside one neat container.",
     "icon": "Paperclip",
@@ -1083,7 +1083,7 @@
     ]
   },
   {
-    "title": "Combine PDF Files",
+    "title": "PDF Combiner",
     "link": "/tools/combine-files-to-pdf",
     "description": "An advanced file assembly hub designed to stitch independent document fragments into unified, high-quality portfolios. Easily organize diverse pages in logical sequences and lock them down within a single clean master file.",
     "icon": "FileStack",
@@ -1274,7 +1274,7 @@
     ]
   },
   {
-    "title": "Braille Decoder & Encoder",
+    "title": "Braille Converter",
     "link": "/tools/braille-decoder",
     "description": "Encode text into Braille or decode Braille back to readable text. Supports Bangla (Bengali Braille) and English (Grade 1 Standard Braille) with a full visual dot-pattern reference chart. Real-time conversion — all client-side with no uploads needed.",
     "icon": "BookMarked",
@@ -1295,7 +1295,7 @@
     ]
   },
   {
-    "title": "Binary Decoder & Encoder",
+    "title": "Binary Converter",
     "link": "/tools/binary-decoder",
     "description": "Instantly convert text to binary code and decode binary back to plain text. Customize byte separators (spaces, commas, none), explore bit-level editing, check character statistics, and view a complete ASCII binary reference chart.",
     "icon": "Binary",
@@ -1355,7 +1355,7 @@
     ]
   },
   {
-    "title": "Fancy Text Generator",
+    "title": "Fancy Text",
     "link": "/tools/fancy-text-generator",
     "description": "Transform plain text into cool Unicode styles, cursive fonts, gothic calligraphy, and glitch styles for profiles and social posts.",
     "icon": "Sparkles",
@@ -1375,7 +1375,7 @@
     ]
   },
   {
-    "title": "VAT / GST Calculator",
+    "title": "Tax Calculator",
     "link": "/tools/vat-gst-calculator",
     "description": "Calculate VAT, GST, Sales Tax, and Tax-Inclusive Prices instantly. Add or remove tax, calculate tax amount only, download professional PDF reports, and use country presets.",
     "icon": "Calculator",
@@ -1414,7 +1414,7 @@
     ]
   },
   {
-    "title": "Remove Duplicate Lines",
+    "title": "Deduplicate Lines",
     "link": "/tools/remove-duplicate-lines",
     "description": "Instantly remove duplicate lines from any text. Supports case-insensitive matching, leading/trailing whitespace trimming, blank line removal, regex-based line filtering, 6 sort modes (A–Z, Z–A, length, reverse, shuffle), and optional line-number prepending. Copy or download your clean output in one click.",
     "icon": "Layers",
@@ -1434,7 +1434,7 @@
     ]
   },
   {
-    "title": "Timezone Clock & Converter",
+    "title": "Timezone Clock",
     "link": "/tools/timezone-clock",
     "description": "View real-time clocks for multiple cities, compare timezones with an interactive meeting planner slider, set local alarms, and customize your dashboard. Keep track of UTC offsets, day/night cycles, and local times worldwide.",
     "icon": "Clock",
@@ -1472,7 +1472,7 @@
     ]
   },
   {
-    "title": "TrekGlyph Encoder & Decoder",
+    "title": "TrekGlyph Tool",
     "link": "/tools/trekglyph-encoder-decoder",
     "description": "Instantly translate plain text into exclusive custom geometric TrekGlyph cipher using '▲' and '▼' symbols, and decode it back in real-time. Features real-time interactive conversion, a click-to-insert symbol pad, and a complete symbol reference dictionary.",
     "icon": "Shapes",
@@ -1573,7 +1573,7 @@
     ]
   },
   {
-    "title": "Remove Metadata & EXIF Cleaner",
+    "title": "Metadata Cleaner",
     "link": "/tools/remove-metadata",
     "description": "Strip hidden EXIF tags, GPS location coordinates, camera models, serial numbers, author info, and tracking details from photos (JPG, PNG, WebP) and PDF documents. 100% private, client-side, zero cloud uploads with batch processing and ZIP download.",
     "icon": "ShieldOff",
@@ -1599,7 +1599,7 @@
     ]
   },
   {
-    "title": "Media Format Converter",
+    "title": "Format Converter",
     "link": "/tools/media-format-converter",
     "description": "Convert video and audio files (MP4, WebM, MKV, MOV, MP3, WAV, OGG, FLAC) directly in your browser. Local, private, and hardware-accelerated transcoding powered by MediaBunny.",
     "icon": "Video",
@@ -1638,7 +1638,7 @@
     ]
   },
   {
-    "title": "Social Media URL Preview",
+    "title": "Social Preview",
     "link": "/tools/social-preview",
     "description": "Preview and customize how your web links appear across social media platforms like Facebook, X (Twitter), LinkedIn, Slack, and Discord. Scrape live metadata, simulate card layouts, design cover images, and generate ready-to-use HTML/JSON-LD codes.",
     "icon": "Eye",
@@ -1660,7 +1660,7 @@
     ]
   },
   {
-    "title": "Smoking Cost Calculator",
+    "title": "Smoking Cost",
     "link": "/tools/smoking-cost-calculator",
     "description": "Calculate the true financial and health cost of smoking cigarettes, vape, or tobacco. View expenses per day, 7 days, 1 month, 6 months, 1 year, 5 years, 10 years, and 20 years. Features BDT default and 30+ global currencies, tabs for Per Pack, Per Pcs, Vape, and compound interest investment growth.",
     "icon": "CigaretteOff",
@@ -1682,7 +1682,7 @@
     ]
   },
   {
-    "title": "Water Intake Calculator",
+    "title": "Water Calculator",
     "link": "/tools/water-intake-calculator",
     "description": "Calculate your daily fluid and water requirements based on body weight, age, gender, activity level, climate, pregnancy/breastfeeding, caffeine, and diet. Features advanced options, metric & imperial unit toggles, an interactive daily intake logger, hourly schedules, and downloadable PDF reports.",
     "icon": "Droplets",
@@ -1753,7 +1753,7 @@
     ]
   },
   {
-    "title": "Wedding Budget Allocator",
+    "title": "Wedding Budget",
     "link": "/tools/wedding-budget-allocator",
     "description": "Allocate, customize, and track your wedding budget. Features guest count sliders, interactive priority profiles, manual category sliders, estimated vs. actual itemized trackers, custom categories, a dynamic SVG donut chart, and high-quality PDF exports.",
     "icon": "Heart",
@@ -1797,7 +1797,7 @@
     ]
   },
   {
-    "title": "Travel Budget Splitter",
+    "title": "Travel Budget",
     "link": "/tools/travel-budget-splitter",
     "description": "Plan, track, and split travel expenses with group members. Supports customizable travel categories, budget limits, multi-currency conversion, custom exchange rates, complex split rules (equal, weights, percentages, unequal, exclusions), debt simplification settlement, and PDF export.",
     "icon": "Wallet",
@@ -1864,7 +1864,7 @@
     ]
   },
   {
-    "title": "Bra Size Calculator",
+    "title": "Bra Calculator",
     "link": "/tools/bra-size-calculator",
     "description": "Calculate your professional and accurate bra size using the gold-standard r/ABraThatFits 6-measurement algorithm or standard basic sizing. Supports international conversions, sister sizing, shape adjustments, AMAB trans-inclusive sizing, and features an interactive SVG visualizer with exportable PDF fit reports.",
     "icon": "Ruler",
@@ -1887,7 +1887,7 @@
     ]
   },
   {
-    "title": "Code Formatter & Beautifier",
+    "title": "Code Formatter",
     "link": "/tools/code-formatter",
     "description": "Format and beautify your source code instantly. Supports JavaScript, TypeScript, HTML, CSS, JSON, XML, and SQL with customizable indent sizing, theme support, line wrapping options, and direct file upload/download capabilities.",
     "icon": "Code2",
@@ -1931,7 +1931,7 @@
     ]
   },
   {
-    "title": "NATO Phonetic Alphabet Converter",
+    "title": "NATO Alphabet",
     "link": "/tools/nato-phonetic-converter",
     "description": "Convert any text to the NATO phonetic alphabet (Alpha, Bravo, Charlie…) used by military, aviation, and emergency services worldwide. Features real-time conversion, character-by-character breakdown with pronunciations, bidirectional decoding, and a full interactive reference chart.",
     "icon": "Radio",
@@ -1996,7 +1996,7 @@
     ]
   },
   {
-    "title": "SVG Editor & Visualizer",
+    "title": "SVG Editor",
     "link": "/tools/svg-editor",
     "description": "Create, edit, optimize, and preview SVG code in real-time. Featuring viewBox/dimension adjustment, a global color palette replacement system, SVG optimization/prettification, and flexible format exports.",
     "icon": "FileCode",
@@ -2019,7 +2019,7 @@
     ]
   },
   {
-    "title": "Bijoy ⇄ Unicode Converter",
+    "title": "Bangla Converter",
     "link": "/tools/bijoy-unicode-converter",
     "description": "Convert Bengali text seamlessly between legacy Bijoy (SutonnyMJ/ANSI) and modern Unicode layouts. Includes support for SomewhereIn and Boishakhi keyboard formats, dynamic font scaling, file imports, character references, and instant downloads.",
     "icon": "Languages",
@@ -2081,7 +2081,7 @@
     ]
   },
   {
-    "title": "ZIP File Creator & Compressor",
+    "title": "Zip Creator",
     "link": "/tools/zip-creator",
     "description": "Bundle, compress, and create downloadable ZIP folders from multiple files or entire directory trees directly in your browser. Configure compression levels (Store, Fast, Balanced, Max Deflate), manage folder hierarchies, preview contents, inspect archives, and download instantly with 100% privacy.",
     "icon": "FolderArchive",
@@ -2107,7 +2107,7 @@
     ]
   },
   {
-    "title": "Health Checkup Recommender",
+    "title": "Health Recommender",
     "link": "/tools/health-checkup-recommender",
     "description": "Generate an evidence-based, fully customizable medical checkup & preventive screening plan based on age, gender, lifestyle habits, vitals (BMI), symptoms, family genetics, and diagnosed conditions. Features 36+ clinical investigations, interactive test checklist, custom test adder, doctor discussion guide, and downloadable high-resolution multi-page PDF reports with custom branding.",
     "icon": "Stethoscope",
