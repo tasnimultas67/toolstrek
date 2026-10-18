@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 99 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 104 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 103 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 104 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 15 curated categories: Developer & Design (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator, CSS Box Shadow Generator, Gradient Generator, Color Converter), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
+      "answer": "ToolsTrek features 15 curated categories: Developer & Design (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator, CSS Box Shadow Generator, Gradient Generator, Color Converter), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -67,6 +67,14 @@
     {
       "question": "What is the BMI Calculator and what categories does it use?",
       "answer": "The BMI Calculator computes Body Mass Index using metric or imperial measurements, categorizing results into Underweight, Normal, Overweight, and Obese classifications according to WHO guidelines, with tailored Asian BMI cut-offs and ideal body weight targets."
+    },
+    {
+      "question": "How does the Sleep Calculator find my best bedtime?",
+      "answer": "The Sleep Calculator counts backwards (or forwards) in 90-minute blocks — the average length of one complete sleep cycle — from the time you choose, then adds the time you typically need to fall asleep. Every suggested time therefore lands at the natural end of a full cycle rather than the middle of deep sleep, which is what makes waking up feel easier. It also shows 4, 5 and 6 cycle alternatives so you can trade a little sleep for an earlier or later start."
+    },
+    {
+      "question": "Does the Sleep Calculator account for age and daily habits?",
+      "answer": "Yes. You pick an age group (Newborn through Older Adult) and the calculator adapts both the recommended hours and the number of cycles using National Sleep Foundation guidance. It also factors in your chronotype and lifestyle habits — caffeine after 2 PM, evening alcohol, pre-bed screen time, stress, heavy late meals, intense late workouts, regular daytime exercise and a consistent schedule — each of which fine-tunes your sleep-onset time and produces a live sleep quality score from 0 to 100, plus a breakdown of your night into N1, N2, N3 and REM stages."
     }
   ],
   "developerTools": [

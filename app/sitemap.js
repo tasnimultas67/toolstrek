@@ -79,6 +79,7 @@ const toolPages = [
   { slug: "responsive-viewport", lastModified: "2026-09-10" },
   { slug: "roman-numeral-converter", lastModified: "2026-09-10" },
   { slug: "savings-calculator", lastModified: "2026-09-10" },
+  { slug: "sleep-calculator", lastModified: "2026-10-18" },
   { slug: "smoking-cost-calculator", lastModified: "2026-09-10" },
   { slug: "social-preview", lastModified: "2026-09-10" },
   { slug: "ssl-checker", lastModified: "2026-09-10" },

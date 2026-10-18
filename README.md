@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>103 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>104 powerful tools</strong> across developer, text, PDF, image, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-103_Available-10b981?style=flat-square" alt="103 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-104_Available-10b981?style=flat-square" alt="104 Tools" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-purple?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -35,7 +35,7 @@
 
 ---
 
-## 🛠️ Tool Library (103 Tools)
+## 🛠️ Tool Library (104 Tools)
 
 ### 🌐 Developer & Code Tools (26)
 
@@ -140,7 +140,7 @@
 
 ---
 
-### 🩺 Health & Wellness Tools (5)
+### 🩺 Health & Wellness Tools (6)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -149,6 +149,7 @@
 | **Water Intake Calculator** | `/tools/water-intake-calculator` | Determine daily fluid requirements based on body weight, climate, exercise, life stages, and diet with interactive logger and PDF exports. |
 | **Smoking Cost Calculator** | `/tools/smoking-cost-calculator` | Calculate the financial and physical cost of smoking/vaping from 1 day to 20 years with 30+ currencies and investment growth projections. |
 | **BMI Calculator** | `/tools/bmi-calculator` | Compute Body Mass Index with WHO & Asian classification cut-offs, ideal body weight ranges, and health category insights. |
+| **Sleep Calculator** | `/tools/sleep-calculator` | Find your best bedtime or wake-up time using 90-minute sleep cycles, personalised for age, sleep-onset time, chronotype and daily habits, with a sleep quality score, sleep stage breakdown, nap guide and PDF plan. |
 
 ---
 
@@ -311,12 +312,12 @@ toolstrek/
 │   │   │   ├── contact/                       #   SMTP contact email sender
 │   │   │   └── verify-recaptcha/              #   Google reCAPTCHA v2 verification
 │   │   ├── data/
-│   │   │   └── faqs.json                      # Comprehensive FAQs for all 101 tools (80+ detailed guides)
+│   │   │   └── faqs.json                      # Comprehensive FAQs for all 104 tools (80+ detailed guides)
 │   │   ├── faq/                               # FAQ page with interactive search
 │   │   ├── favorites/                         # ⭐ Saved Favorite tools view
 │   │   ├── privacy-policy/                    # Privacy Policy documentation
 │   │   ├── recent/                            # 🕐 Recent Tools history view
-│   │   ├── tools/                             # 101 Individual Tool Route Pages
+│   │   ├── tools/                             # 104 Individual Tool Route Pages
 │   │   │   ├── add-attachments/               #   Add Attachments to PDF
 │   │   │   ├── age-calculate/                 #   Age Calculator
 │   │   │   ├── avif-converter/                #   AVIF Converter
@@ -393,6 +394,7 @@ toolstrek/
 │   │   │   ├── responsive-viewport/           #   Responsive Viewport Tester
 │   │   │   ├── roman-numeral-converter/       #   Roman Numeral Converter
 │   │   │   ├── savings-calculator/            #   Savings Calculator
+│   │   │   ├── sleep-calculator/              #   Sleep Calculator
 │   │   │   ├── smoking-cost-calculator/       #   Smoking Cost Calculator
 │   │   │   ├── social-preview/                #   Social Media URL Preview
 │   │   │   ├── ssl-checker/                   #   SSL Certificate Checker
@@ -445,7 +447,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 101 tools
+│   ├── toolsData.json                         # Central registry for all 104 tools
 │   ├── cryptoEngine.js                        # Client-side cryptographic algorithms
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── useGlobalSearch.js                     # Global search state logic

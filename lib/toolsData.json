@@ -2132,5 +2132,29 @@
       "Health",
       "Productivity"
     ]
+  },
+  {
+    "title": "Sleep Calculator",
+    "link": "/tools/sleep-calculator",
+    "description": "Find your perfect bedtime or wake-up time with a free sleep cycle calculator. Works out the best times in 90-minute cycles based on your age, how long you take to fall asleep, your chronotype and daily habits like caffeine, screens, alcohol and stress. Includes sleep quality score, sleep stage breakdown, smart nap guide and a downloadable PDF sleep plan.",
+    "icon": "Moon",
+    "keywords": [
+      "sleep calculator",
+      "bedtime calculator",
+      "wake up time calculator",
+      "sleep cycle calculator",
+      "best time to sleep",
+      "what time should i go to bed",
+      "what time should i wake up",
+      "90 minute sleep cycle",
+      "sleep quality calculator",
+      "chronotype calculator",
+      "sleep hygiene",
+      "calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Health"
+    ]
   }
 ]
