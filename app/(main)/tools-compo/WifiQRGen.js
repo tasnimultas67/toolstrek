@@ -353,6 +353,7 @@ const WifiQRGen = () => {
                   className="p-4 flex flex-col items-center justify-start border border-gray-300 dark:border-neutral-600 rounded-xl"
                   style={{ backgroundColor: bgColor }}
                 >
+                  {/* eslint-disable-next-line @next/next/no-img-element -- generated QR code data URL; next/image adds no benefit */}
                   <img
                     src={qrCode}
                     alt="WiFi QR Code"

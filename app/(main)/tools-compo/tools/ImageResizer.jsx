@@ -570,6 +570,7 @@ export default function ImageResizer() {
 
               {/* Real Interactive Preview Screen */}
               <div className="relative rounded-xl overflow-hidden bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 flex items-center justify-center p-4 min-h-[300px] max-h-[500px]">
+                {/* eslint-disable-next-line @next/next/no-img-element -- blob/data URL preview where next/image adds no benefit */}
                 <img
                   ref={imgRef}
                   src={imageSrc}

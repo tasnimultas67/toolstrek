@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useTransition, useId } from "react";
+import React, { useState, useEffect, useRef, useTransition, useId, useMemo, useCallback } from "react";
 import {
   Copy,
   Check,
@@ -143,7 +143,11 @@ export default function HashGenerator() {
 
   // ─── Identifier State ───────────────────────────────────────────────────────
   const [mysteryHash, setMysteryHash] = useState("5d41402abc4b2a76b9719d911017c592");
-  const [identifiedTypes, setIdentifiedTypes] = useState([]);
+  // Derived from mysteryHash during render (no effect needed)
+  const identifiedTypes = useMemo(
+    () => (mysteryHash ? identifyHashType(mysteryHash) : []),
+    [mysteryHash],
+  );
 
   // ─── Code Snippet Generator State ───────────────────────────────────────────
   const [codeLanguage, setCodeLanguage] = useState("javascript");
@@ -169,6 +173,7 @@ export default function HashGenerator() {
     try {
       const saved = localStorage.getItem("toolstrek_hash_history");
       if (saved) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of persisted history from localStorage; must run post-mount to avoid an SSR hydration mismatch
         setHistory(JSON.parse(saved));
       }
     } catch {
@@ -221,7 +226,7 @@ export default function HashGenerator() {
   };
 
   // ─── Calculation for Text Mode ──────────────────────────────────────────────
-  const performTextHash = async () => {
+  const performTextHash = useCallback(async () => {
     if (!inputText && !salt) {
       setCurrentHashBytes(null);
       return;
@@ -266,13 +271,14 @@ export default function HashGenerator() {
     } finally {
       setIsComputing(false);
     }
-  };
+  }, [inputText, inputEncoding, algorithm, salt, saltPosition, isHmac, hmacKey, isPBKDF2, iterations, showMultiMatrix, casing, outputFormat, delimiter, chunkSize]);
 
   useEffect(() => {
-    if (autoCalculate) {
-      performTextHash();
-    }
-  }, [inputText, algorithm, casing, outputFormat, delimiter, chunkSize, inputEncoding, salt, saltPosition, isHmac, hmacKey, iterations, isPBKDF2, autoCalculate, showMultiMatrix]);
+    if (!autoCalculate) return undefined;
+    // Defer so the hashing side effects don't run synchronously inside the effect
+    const timer = setTimeout(() => performTextHash(), 0);
+    return () => clearTimeout(timer);
+  }, [autoCalculate, performTextHash]);
 
   // Formatted Current Output String
   const currentFormattedHash = currentHashBytes
@@ -280,7 +286,7 @@ export default function HashGenerator() {
     : "";
 
   // ─── Batch Mode Computation ─────────────────────────────────────────────────
-  const processBatch = async () => {
+  const processBatch = useCallback(async () => {
     let lines = batchInput.split("\n");
     if (batchTrim) lines = lines.map((l) => l.trim());
     if (batchSkipEmpty) lines = lines.filter((l) => l.length > 0);
@@ -302,13 +308,14 @@ export default function HashGenerator() {
     }
     setBatchResults(rows);
     toast.success(`Processed ${rows.length} lines with ${algorithm.toUpperCase()}`);
-  };
+  }, [batchInput, batchTrim, batchSkipEmpty, inputEncoding, algorithm, salt, saltPosition, isHmac, hmacKey, casing, outputFormat, delimiter, chunkSize]);
 
   useEffect(() => {
-    if (activeTab === "batch") {
-      processBatch();
-    }
-  }, [batchInput, algorithm, casing, outputFormat, delimiter, chunkSize, batchTrim, batchSkipEmpty, activeTab]);
+    if (activeTab !== "batch") return undefined;
+    // Defer so the batch hashing side effects don't run synchronously inside the effect
+    const timer = setTimeout(() => processBatch(), 0);
+    return () => clearTimeout(timer);
+  }, [activeTab, processBatch]);
 
   // ─── File Mode Hashing with Streaming ───────────────────────────────────────
   const handleFileSelect = (e) => {
@@ -377,15 +384,7 @@ export default function HashGenerator() {
     reader.readAsArrayBuffer(file);
   };
 
-  // ─── Hash Identifier Auto Analysis ──────────────────────────────────────────
-  useEffect(() => {
-    if (mysteryHash) {
-      const matched = identifyHashType(mysteryHash);
-      setIdentifiedTypes(matched);
-    } else {
-      setIdentifiedTypes([]);
-    }
-  }, [mysteryHash]);
+  // ─── Hash Identifier Auto Analysis (derived during render above) ────────────
 
   // ─── Benchmark Runner ───────────────────────────────────────────────────────
   const runBenchmark = async () => {
@@ -1645,7 +1644,7 @@ export default function HashGenerator() {
               </div>
             ) : (
               <div className="p-8 rounded-xl bg-slate-50 dark:bg-slate-800/30 text-center text-slate-500 text-xs">
-                Click "Run Benchmark" above to test your machine's client-side hashing speed.
+                Click &quot;Run Benchmark&quot; above to test your machine&apos;s client-side hashing speed.
               </div>
             )}
           </div>

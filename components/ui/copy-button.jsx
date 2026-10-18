@@ -8,16 +8,17 @@ export function CopyButton({ textToCopy, copyTrigger }) {
   const [isCopied, setIsCopied] = useState(false);
 
   const handleCopy = () => {
-    if (!textToCopy) {
-      // If textToCopy is not provided, try to get it from the element with copyTrigger ID
+    // If textToCopy is not provided, try to get it from the element with copyTrigger ID
+    let text = textToCopy;
+    if (!text) {
       const element = document.getElementById(copyTrigger);
       if (element) {
-        textToCopy = element.value;
+        text = element.value;
       }
     }
 
-    if (textToCopy) {
-      navigator.clipboard.writeText(textToCopy);
+    if (text) {
+      navigator.clipboard.writeText(text);
       setIsCopied(true);
       setTimeout(() => setIsCopied(false), 2000);
     }

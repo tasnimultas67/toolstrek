@@ -277,21 +277,7 @@ export default function FaviconGenerator() {
 
   useEffect(() => {
     redraw();
-  }, [
-    activeTab,
-    sourceImage,
-    cornerRadius,
-    bgEnabled,
-    bgColor,
-    padding,
-    iconText,
-    bgType,
-    bgSolid,
-    bgGradientPreset,
-    textColor,
-    fontFamily,
-    fontWeight,
-  ]);
+  }, [redraw]);
 
   // ── File handling ────────────────────────────────────────────────────────
   const handleFile = useCallback((file) => {
@@ -581,6 +567,7 @@ export default function FaviconGenerator() {
                         backgroundSize: "12px 12px",
                       }}
                     >
+                      {/* eslint-disable-next-line @next/next/no-img-element -- object-URL preview of an uploaded image; next/image adds no benefit */}
                       <img
                         src={sourceImage.url}
                         alt="source"

@@ -1,6 +1,6 @@
 ﻿"use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   Mail, Upload, FileText, Download, Check, Eye, Trash2, Settings, 
@@ -451,7 +451,7 @@ export default function EmailToPDF() {
   };
 
   // Build HTML that will render inside the preview / export frame
-  const buildIframeHtml = (isForExport = false) => {
+  const buildIframeHtml = useCallback((isForExport = false) => {
     if (!emlData) return "";
     
     // Styles to inject based on user settings
@@ -620,7 +620,7 @@ export default function EmailToPDF() {
         </body>
       </html>
     `;
-  };
+  }, [emlData, settings]);
 
   // Sync HTML contents to iframe
   useEffect(() => {
@@ -631,7 +631,7 @@ export default function EmailToPDF() {
       doc.write(html);
       doc.close();
     }
-  }, [emlData, settings]);
+  }, [emlData, buildIframeHtml]);
 
   const handleDrag = (e) => {
     e.preventDefault();

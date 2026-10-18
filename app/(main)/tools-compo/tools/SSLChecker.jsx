@@ -304,7 +304,7 @@ export default function SSLChecker() {
             SSL Certificate Checker
           </h1>
           <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base max-w-2xl leading-relaxed">
-            Instantly inspect any domain's SSL/TLS certificate. View validity status, expiry dates, issuer details, Subject Alternative Names (SANs), and a full chain of trust — plus security scoring and protocol analysis in Advanced Options.
+            Instantly inspect any domain&apos;s SSL/TLS certificate. View validity status, expiry dates, issuer details, Subject Alternative Names (SANs), and a full chain of trust — plus security scoring and protocol analysis in Advanced Options.
           </p>
         </div>
 

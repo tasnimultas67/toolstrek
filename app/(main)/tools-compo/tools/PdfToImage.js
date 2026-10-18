@@ -195,6 +195,7 @@ const PdfToImage = () => {
             {images.map((url, index) => (
               <div key={index} className="group flex flex-col">
                 <div className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] bg-gray-50 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 shadow-sm dark:shadow-gray-900/30 group-hover:shadow-2xl dark:group-hover:shadow-gray-900/50 transition-all duration-500">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- object-URL preview of a rendered PDF page; next/image adds no benefit */}
                   <img
                     src={url}
                     alt={`Page ${index + 1}`}

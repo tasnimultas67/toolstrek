@@ -63,6 +63,7 @@ export default function BijoyUnicodeConverter() {
     try {
       const saved = localStorage.getItem("toolstrek_bijoy_history");
       if (saved) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of persisted history from localStorage; must run post-mount to avoid an SSR hydration mismatch
         setHistoryList(JSON.parse(saved));
       }
     } catch (e) {

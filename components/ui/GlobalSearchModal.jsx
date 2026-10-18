@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useRef, useState, useCallback, createElement } from "react";
 import { useRouter } from "next/navigation";
 import * as LucideIcons from "lucide-react";
 import { Search, X, ArrowRight } from "lucide-react";
@@ -89,35 +89,34 @@ export default function GlobalSearchModal() {
     }, 180); // was 140 — matches tt-modal-out duration
   }, []);
 
+  // Opening resets the search state and focuses the input. Doing this in the
+  // event that opens the modal keeps the state update out of an effect.
+  const openModal = useCallback(() => {
+    setOpen(true);
+    setQuery("");
+    setActiveIndex(0);
+    setTimeout(() => inputRef.current?.focus(), 30);
+  }, []);
+
   useEffect(() => {
     const onKey = (e) => {
       if ((e.ctrlKey || e.metaKey) && e.key === "k") {
         e.preventDefault();
         if (open) closeModal();
-        else setOpen(true);
+        else openModal();
       }
       if (e.key === "Escape" && open) closeModal();
     };
-    const onEvent = () => setOpen(true);
+    const onEvent = () => {
+      if (!open) openModal();
+    };
     window.addEventListener("keydown", onKey);
     window.addEventListener("toolstrek:open-search", onEvent);
     return () => {
       window.removeEventListener("keydown", onKey);
       window.removeEventListener("toolstrek:open-search", onEvent);
     };
-  }, [open, closeModal]);
-
-  useEffect(() => {
-    if (open && !closing) {
-      setQuery("");
-      setActiveIndex(0);
-      setTimeout(() => inputRef.current?.focus(), 30);
-    }
-  }, [open, closing]);
-
-  useEffect(() => {
-    setActiveIndex(0);
-  }, [query]);
+  }, [open, closeModal, openModal]);
 
   const navigateTo = useCallback(
     (path) => {
@@ -183,13 +182,19 @@ export default function GlobalSearchModal() {
             ref={inputRef}
             type="text"
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
+            onChange={(e) => {
+              setQuery(e.target.value);
+              setActiveIndex(0);
+            }}
             onKeyDown={handleKeyDown}
             placeholder="Search tools…"
             className="flex-1 bg-transparent text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-500 text-[15px] outline-none"
           />
           <button
-            onClick={() => setQuery("")}
+            onClick={() => {
+              setQuery("");
+              setActiveIndex(0);
+            }}
             aria-label="Clear"
             style={{
               opacity: query ? 1 : 0,
@@ -279,8 +284,6 @@ function Kbd({ children }) {
 }
 
 function ToolRow({ tool, index, active, onSelect, onHover }) {
-  const IconComponent = getIcon(tool.icon);
-
   return (
     <li data-index={index}>
       <button
@@ -308,7 +311,7 @@ function ToolRow({ tool, index, active, onSelect, onHover }) {
             transition: "background-color 150ms ease, color 150ms ease",
           }}
         >
-          <IconComponent size={15} />
+          {createElement(getIcon(tool.icon), { size: 15 })}
         </span>
 
         {/* Tool title */}

@@ -16,7 +16,7 @@
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-109_Available-10b981?style=flat-square" alt="109 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.15.1-purple?style=flat-square" alt="v2.15.1" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.15.2-purple?style=flat-square" alt="v2.15.2" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -269,7 +269,7 @@ ToolsTrek is **browser-first**: the overwhelming majority of tools complete thei
 | Category | Technologies | Description |
 | :--- | :--- | :--- |
 | **Core Framework** | Next.js 16.3, React 19 | App Router, Server & Client Components, Turbopack |
-| **Styling & Design** | Tailwind CSS 4.2, `@tailwindcss/postcss`, `tw-animate-css` | Next-gen CSS engine, responsive utilities, dark mode |
+| **Styling & Design** | Tailwind CSS 4.3, `@tailwindcss/postcss`, `tw-animate-css` | Next-gen CSS engine, responsive utilities, dark mode |
 | **UI Components** | Radix UI, shadcn/ui, `cmdk`, Headless UI, Heroicons, Lucide | Accessible primitives, command palette, mega-menu |
 | **Animation** | Framer Motion / `motion` 12, `embla-carousel-react` | Physics-based micro-interactions & carousels |
 | **Forms & Validation** | React Hook Form, Zod, `@hookform/resolvers` | Schema validation and performant form state |
@@ -283,10 +283,12 @@ ToolsTrek is **browser-first**: the overwhelming majority of tools complete thei
 | **Archive & Utilities** | `jszip`, `date-fns`, `clsx`, `tailwind-merge`, `class-variance-authority`, `clipboard-copy`, `react-country-flag` | Client-side ZIP creation, date math, class merging |
 | **Network & Security** | `whois`, Node.js `tls` | WHOIS lookups and live TLS inspection in Route Handlers |
 | **Camera** | `react-webcam` | QR scanning and image capture |
-| **Notifications** | Sonner | Rich toast notifications |
-| **Theming** | `next-themes` | Class-based dark/light mode |
+| **Notifications** | Sonner | Theme-aware toast notifications that follow the app's dark/light toggle |
+| **Theming** | Custom `ThemeProvider` (`app/theme-context.jsx`) | Class-based dark/light mode persisted in `localStorage`; the app intentionally ignores `prefers-color-scheme` |
 | **Analytics** | `@vercel/analytics` | Lightweight, privacy-compliant traffic analytics |
 | **Typography** | Google Sans Flex, Playfair Display, Staatliches (via `next/font/google`) | Body, display, and brand wordmark typefaces |
+| **Code Quality** | ESLint 9 (flat config), `eslint-config-next` 16 | Next.js Core Web Vitals rules with a zero-warning lint run |
+| **Testing** | Playwright | End-to-end smoke suite for route rendering and key interactions |
 
 ---
 
@@ -294,8 +296,8 @@ ToolsTrek is **browser-first**: the overwhelming majority of tools complete thei
 
 ### Prerequisites
 
-- **Node.js** 18.18+ (Node.js 20+ recommended)
-- **npm**, **pnpm**, or **yarn**
+- **Node.js** 20.9+ (Node.js 22 or 24 LTS recommended)
+- **npm** (this project uses npm — see `packageManager` in `package.json`)
 
 ### Installation
 
@@ -343,6 +345,18 @@ npm start
 ```bash
 npm run lint
 ```
+
+### End-to-End Smoke Tests
+
+```bash
+npx playwright install chromium   # one-time: download the browser
+npm run test:e2e
+```
+
+The Playwright suite in `e2e/` builds and boots the app, then verifies the
+high-risk tool routes render with no uncaught exceptions or console errors, plus
+a few key interactions (theme persistence, global search, code-formatter
+prefill). Use `npm run test:e2e:ui` for the interactive runner.
 
 ---
 
@@ -404,9 +418,11 @@ toolstrek/
 │   ├── useGlobalSearch.js                     # Global search state logic
 │   └── utils.js                               # `cn` class-merge helper + formatters
 │
+├── e2e/                                       # Playwright end-to-end smoke tests
 ├── public/                                    # Static assets, workers, and icons
 ├── components.json                            # shadcn/ui configuration
 ├── next.config.mjs                            # Next.js configuration
+├── playwright.config.js                       # Playwright test runner configuration
 ├── jsconfig.json                              # Path aliases (`@/*` → repo root)
 ├── package.json                               # Dependencies and scripts
 └── README.md                                  # Project documentation
@@ -421,7 +437,7 @@ Contributions are warmly welcomed! To contribute:
 1. **Fork** the repository.
 2. **Create a branch** for your feature or fix (`git checkout -b feature/my-cool-tool`).
 3. **Commit your changes** with clear, descriptive commit messages.
-4. **Test locally** — ensure the dev server compiles without errors and lint passes (`npm run lint`).
+4. **Test locally** — ensure the production build succeeds (`npm run build`), lint passes (`npm run lint`), and the smoke suite passes (`npm run test:e2e`).
 5. **Open a Pull Request** describing your changes.
 
 ### Adding a New Tool

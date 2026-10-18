@@ -1,14 +1,19 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
+import nextVitals from "eslint-config-next/core-web-vitals";
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const eslintConfig = [
+  // Next.js + Core Web Vitals rules (native flat config)
+  ...nextVitals,
 
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
-
-const eslintConfig = [...compat.extends("next/core-web-vitals")];
+  // Files that should not be linted
+  {
+    ignores: [
+      ".next/**",
+      "out/**",
+      "build/**",
+      "node_modules/**",
+      "public/**", // static assets + vendored workers (pdf.worker.js, gif.js, ...)
+    ],
+  },
+];
 
 export default eslintConfig;

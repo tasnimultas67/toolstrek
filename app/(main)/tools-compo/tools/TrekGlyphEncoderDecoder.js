@@ -244,7 +244,7 @@ export default function TrekGlyphEncoderDecoder() {
         </h1>
         <p className="mt-3 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto">
           Translate text, numbers & symbols into a completely unique secret
-          cipher language — encode & decode in real-time with TrekGlyph's
+          cipher language — encode & decode in real-time with TrekGlyph&apos;s
           exclusive geometric glyph system.
         </p>
       </div>

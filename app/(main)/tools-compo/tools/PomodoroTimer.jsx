@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import Link from "next/link";
 import ToolPageShell from "../ToolPageShell";
 import FavoriteButton from "@/components/FavoriteButton";
 import toolsData from "@/lib/toolsData.json";
@@ -77,7 +78,6 @@ const STORAGE_KEY = "toolstrek_pomodoro_state_v1";
 export default function PomodoroTimer() {
   // ─── Settings & Preferences State ───
   const [settings, setSettings] = useState(DEFAULT_SETTINGS);
-  const [mounted, setMounted] = useState(false);
 
   // ─── Timer State ───
   const [mode, setMode] = useState(TIMER_MODES.FOCUS);
@@ -113,6 +113,9 @@ export default function PomodoroTimer() {
   const intervalRef = useRef(null);
   const confettiCanvasRef = useRef(null);
   const zenContainerRef = useRef(null);
+  // Latest timeLeft, kept outside deps so the timer engine interval isn't
+  // re-created on every tick.
+  const timeLeftRef = useRef(timeLeft);
 
   // ─── Current Theme Lookup ───
   const currentTheme = useMemo(() => {
@@ -139,11 +142,11 @@ export default function PomodoroTimer() {
 
   // ─── LocalStorage Persistence ───
   useEffect(() => {
-    setMounted(true);
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
       if (saved) {
         const parsed = JSON.parse(saved);
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of persisted Pomodoro state from localStorage; must run post-mount to avoid an SSR hydration mismatch
         if (parsed.settings) setSettings((prev) => ({ ...prev, ...parsed.settings }));
         if (parsed.tasks && Array.isArray(parsed.tasks)) setTasks(parsed.tasks);
         if (parsed.activeTaskId) setActiveTaskId(parsed.activeTaskId);
@@ -377,6 +380,41 @@ export default function PomodoroTimer() {
     saveToStorage
   ]);
 
+  // Keep the latest timeLeft readable by the timer engine without adding it to deps
+  useEffect(() => {
+    timeLeftRef.current = timeLeft;
+  }, [timeLeft]);
+
+  // ─── Timer Action Handlers ───
+  const handleReset = useCallback(() => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current);
+    soundEngine.stopAmbient();
+    const newSec = (settings.durations[mode] || 25) * 60;
+    setTimeLeft(newSec);
+    toast.info("Timer reset to standard duration.");
+  }, [settings.durations, mode]);
+
+  const handleSkip = useCallback(() => {
+    setIsRunning(false);
+    clearInterval(intervalRef.current);
+    soundEngine.stopAmbient();
+
+    if (mode === TIMER_MODES.FOCUS) {
+      const isLong = cycleIndex >= settings.longBreakInterval;
+      if (isLong) {
+        setCycleIndex(1);
+        switchMode(TIMER_MODES.LONG_BREAK);
+      } else {
+        setCycleIndex((prev) => prev + 1);
+        switchMode(TIMER_MODES.SHORT_BREAK);
+      }
+    } else {
+      switchMode(TIMER_MODES.FOCUS);
+    }
+    toast.info("Skipped to next cycle phase.");
+  }, [mode, cycleIndex, settings.longBreakInterval, switchMode]);
+
   // ─── High-Precision Timer Engine (Drift-Resistant with Date.now()) ───
   useEffect(() => {
     if (!isRunning) {
@@ -387,7 +425,7 @@ export default function PomodoroTimer() {
 
     // Set target finish timestamp
     const now = Date.now();
-    timerEndTimestampRef.current = now + timeLeft * 1000;
+    timerEndTimestampRef.current = now + timeLeftRef.current * 1000;
 
     // Start ticking sound if configured
     if (!isMuted && settings.tickingSound !== "none") {
@@ -482,7 +520,7 @@ export default function PomodoroTimer() {
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, []);
+  }, [handleReset, handleSkip]);
 
   // ─── Timer Action Handlers ───
   const handleTogglePlay = () => {
@@ -490,35 +528,6 @@ export default function PomodoroTimer() {
       requestNotificationPermission();
     }
     setIsRunning((prev) => !prev);
-  };
-
-  const handleReset = () => {
-    setIsRunning(false);
-    clearInterval(intervalRef.current);
-    soundEngine.stopAmbient();
-    const newSec = (settings.durations[mode] || 25) * 60;
-    setTimeLeft(newSec);
-    toast.info("Timer reset to standard duration.");
-  };
-
-  const handleSkip = () => {
-    setIsRunning(false);
-    clearInterval(intervalRef.current);
-    soundEngine.stopAmbient();
-
-    if (mode === TIMER_MODES.FOCUS) {
-      const isLong = cycleIndex >= settings.longBreakInterval;
-      if (isLong) {
-        setCycleIndex(1);
-        switchMode(TIMER_MODES.LONG_BREAK);
-      } else {
-        setCycleIndex((prev) => prev + 1);
-        switchMode(TIMER_MODES.SHORT_BREAK);
-      }
-    } else {
-      switchMode(TIMER_MODES.FOCUS);
-    }
-    toast.info("Skipped to next cycle phase.");
   };
 
   const handleAddMinutes = (extraMinutes) => {
@@ -708,9 +717,9 @@ export default function PomodoroTimer() {
           aria-label="Breadcrumb"
           className="flex items-center space-x-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 mb-3"
         >
-          <a href="/" className="hover:text-gray-900 dark:hover:text-white transition-colors">
+          <Link href="/" className="hover:text-gray-900 dark:hover:text-white transition-colors">
             Home
-          </a>
+          </Link>
           <span>/</span>
           <a href="/tools" className="hover:text-gray-900 dark:hover:text-white transition-colors">
             Tools

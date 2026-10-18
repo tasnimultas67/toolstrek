@@ -566,6 +566,7 @@ export default function Base64Nexus() {
 
   // Trigger processing on state changes
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- processInput also performs clipboard writes and object-URL create/revoke side effects; it cannot be derived during render without changing that lifecycle
     processInput();
   }, [processInput]);
 
@@ -987,6 +988,7 @@ export default function Base64Nexus() {
                   {/* Render Image Previews */}
                   {fileOutputMetadata.type === "Image" && fileOutputBlobUrl && (
                     <div className="flex justify-center bg-gray-100 dark:bg-gray-950/80 rounded-xl p-4 max-h-64 overflow-auto border border-gray-200/50 dark:border-gray-850/50">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview decoded from user input; next/image adds no benefit */}
                       <img
                         src={fileOutputBlobUrl}
                         alt="Base64 Decoded Preview"
@@ -998,6 +1000,7 @@ export default function Base64Nexus() {
                   {/* Render SVG Previews */}
                   {fileOutputMetadata.type === "SVG Vector Image" && fileOutputBlobUrl && (
                     <div className="flex justify-center bg-white dark:bg-gray-950/80 rounded-xl p-4 max-h-64 overflow-auto border border-gray-200/50 dark:border-gray-850/50">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- blob URL preview decoded from user input; next/image adds no benefit */}
                       <img
                         src={fileOutputBlobUrl}
                         alt="Base64 Decoded SVG Preview"

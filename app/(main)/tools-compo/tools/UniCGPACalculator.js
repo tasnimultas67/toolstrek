@@ -430,15 +430,6 @@ export default function UniCGPACalculator() {
   // Translation helper
   const t = (key) => TRANSLATIONS[lang][key] || key;
 
-  // Initialize custom grades list when preset changes
-  useEffect(() => {
-    if (presetKey !== "custom") {
-      setCustomGrades([...PRESETS[presetKey].grades]);
-    } else if (customGrades.length === 0) {
-      setCustomGrades([...PRESETS["standard"].grades]);
-    }
-  }, [presetKey]);
-
   // Active grades list
   const activeGrades = useMemo(() => {
     return presetKey === "custom" ? customGrades : PRESETS[presetKey].grades;
@@ -480,6 +471,19 @@ export default function UniCGPACalculator() {
     ]);
     setResult(null);
     setError("");
+  };
+
+  // Initialize / sync the custom grades list when the preset selection changes
+  const handlePresetKeyChange = (value) => {
+    if (value === "custom") {
+      setCustomGrades((prev) =>
+        prev.length === 0 ? [...PRESETS["standard"].grades] : prev,
+      );
+    } else {
+      setCustomGrades([...PRESETS[value].grades]);
+    }
+    setPresetKey(value);
+    setResult(null);
   };
 
   // Custom scale editing
@@ -1143,8 +1147,7 @@ export default function UniCGPACalculator() {
                         <select
                           value={presetKey}
                           onChange={(e) => {
-                            setPresetKey(e.target.value);
-                            setResult(null);
+                            handlePresetKeyChange(e.target.value);
                           }}
                           className="h-11 w-full rounded-md border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-900 px-3 text-sm text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-indigo-100 dark:focus:ring-indigo-900/40 appearance-none pr-10"
                         >
@@ -1177,7 +1180,7 @@ export default function UniCGPACalculator() {
                         </h4>
                         {presetKey !== "custom" && (
                           <span className="text-xs text-amber-600 dark:text-amber-400">
-                            * Selected preset points are view-only. Change profile to "Custom Scale" to edit.
+                            * Selected preset points are view-only. Change profile to &quot;Custom Scale&quot; to edit.
                           </span>
                         )}
                       </div>

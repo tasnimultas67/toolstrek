@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef } from "react";
 import {
   Radio,
   ArrowLeftRight,
@@ -146,7 +146,6 @@ const REFERENCE_GROUPS = [
 export default function MorseCodeDecoder() {
   const [mode, setMode] = useState("encode"); // "encode" | "decode"
   const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
   const [copied, setCopied] = useState(false);
   const [isPlaying, setIsPlaying] = useState(false);
   const [wpm, setWpm] = useState(15);
@@ -155,35 +154,28 @@ export default function MorseCodeDecoder() {
   const [activeGroup, setActiveGroup] = useState("Letters");
   const audioRef = useRef(null);
 
-  // Real-time translation
-  useEffect(() => {
-    if (!inputText.trim()) {
-      setOutputText("");
-      return;
-    }
-    if (mode === "encode") {
-      setOutputText(textToMorse(inputText));
-    } else {
-      setOutputText(morseToText(inputText));
-    }
-  }, [inputText, mode]);
+  // Real-time translation (derived: the output is a pure function of input + mode)
+  const outputText = inputText.trim()
+    ? mode === "encode"
+      ? textToMorse(inputText)
+      : morseToText(inputText)
+    : "";
 
-  const handleSwap = useCallback(() => {
-    stopAudio();
-    const newMode = mode === "encode" ? "decode" : "encode";
-    setMode(newMode);
-    setInputText(outputText);
-    setOutputText(inputText);
-  }, [mode, inputText, outputText]);
-
-  const stopAudio = () => {
+  const stopAudio = useCallback(() => {
     if (audioRef.current) {
       clearTimeout(audioRef.current.timer);
       try { audioRef.current.ctx.close(); } catch (_) {}
       audioRef.current = null;
     }
     setIsPlaying(false);
-  };
+  }, []);
+
+  const handleSwap = useCallback(() => {
+    stopAudio();
+    const newMode = mode === "encode" ? "decode" : "encode";
+    setMode(newMode);
+    setInputText(outputText);
+  }, [mode, outputText, stopAudio]);
 
   const handlePlay = () => {
     if (isPlaying) { stopAudio(); return; }
@@ -219,7 +211,6 @@ export default function MorseCodeDecoder() {
   const handleClear = () => {
     stopAudio();
     setInputText("");
-    setOutputText("");
   };
 
   const inputPlaceholder =
@@ -254,7 +245,7 @@ export default function MorseCodeDecoder() {
       <div className="flex justify-center mb-8">
         <div className="inline-flex bg-gray-100 dark:bg-gray-800 p-1 rounded-xl border border-gray-200 dark:border-gray-700">
           <button
-            onClick={() => { stopAudio(); setMode("encode"); setInputText(""); setOutputText(""); }}
+            onClick={() => { stopAudio(); setMode("encode"); setInputText(""); }}
             className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
               mode === "encode"
                 ? "bg-brandColor text-white shadow-md"
@@ -264,7 +255,7 @@ export default function MorseCodeDecoder() {
             Text → Morse
           </button>
           <button
-            onClick={() => { stopAudio(); setMode("decode"); setInputText(""); setOutputText(""); }}
+            onClick={() => { stopAudio(); setMode("decode"); setInputText(""); }}
             className={`px-6 py-2.5 rounded-lg text-sm font-semibold transition-all duration-200 ${
               mode === "decode"
                 ? "bg-brandColor text-white shadow-md"

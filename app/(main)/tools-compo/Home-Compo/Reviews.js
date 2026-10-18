@@ -64,8 +64,8 @@ const Reviews = () => {
             What Our Clients Say
           </h2>
           <p className=" w-full  text-gray-500 md:text-base dark:text-gray-400">
-            Don't just take our word for it. Here's what our clients have to say
-            about their experiences.
+            Don&apos;t just take our word for it. Here&apos;s what our clients
+            have to say about their experiences.
           </p>
         </motion.div>
 
@@ -99,7 +99,7 @@ const Reviews = () => {
                       <CardContent className="flex flex-col justify-between p-6 h-full">
                         <div className="space-y-10">
                           <p className="text-gray-700 dark:text-gray-300">
-                            "{testimonial.description}"
+                            &quot;{testimonial.description}&quot;
                           </p>
                           <div className="space-y-1">
                             <h3 className="font-semibold text-gray-900 dark:text-white">

@@ -192,6 +192,11 @@ const PRIORITY_PROFILES = [
   }
 ];
 
+// Donut chart geometry: use stroke-dasharray on <circle> elements (reliable, no arc-path bugs)
+// SVG circle: cx=50 cy=50 r=38 => circumference = 2*PI*38 = 238.76
+const DONUT_R = 38;
+const DONUT_CIRC = 2 * Math.PI * DONUT_R; // ≈ 238.76
+
 export default function WeddingBudgetAllocator() {
   const [totalBudget, setTotalBudget] = useState("1500000");
   const [guestCount, setGuestCount] = useState("300");
@@ -527,16 +532,14 @@ export default function WeddingBudgetAllocator() {
 
   // Donut chart: use stroke-dasharray on <circle> elements (reliable, no arc-path bugs)
   // SVG circle: cx=50 cy=50 r=38 => circumference = 2*PI*38 = 238.76
-  const DONUT_R = 38;
-  const DONUT_CIRC = 2 * Math.PI * DONUT_R; // ≈ 238.76
-
   const donutData = useMemo(() => {
     const activeCats = finalCategories.filter((c) => c.active && c.percentage > 0);
     // Normalize percentages to sum exactly to 100
     const totalPct = activeCats.reduce((acc, c) => acc + c.percentage, 0);
     let cumulativeOffset = 0;
+    const slices = [];
 
-    return activeCats.map((cat) => {
+    for (const cat of activeCats) {
       const pct = totalPct > 0 ? (cat.percentage / totalPct) * 100 : 0;
       // dasharray: the filled arc length, then gap
       const dashArray = `${(pct / 100) * DONUT_CIRC} ${DONUT_CIRC}`;
@@ -544,13 +547,15 @@ export default function WeddingBudgetAllocator() {
       const dashOffset = DONUT_CIRC - (cumulativeOffset / 100) * DONUT_CIRC;
       cumulativeOffset += pct;
 
-      return {
+      slices.push({
         ...cat,
         pct,
         dashArray,
         dashOffset,
-      };
-    });
+      });
+    }
+
+    return slices;
   }, [finalCategories]);
 
   // Hover details for center of donut
@@ -1193,7 +1198,7 @@ export default function WeddingBudgetAllocator() {
                 <strong>Attire & Rings</strong> and <strong>Flowers & Decor</strong> (each approx. 8-10%) define the visual theme and style. Consider purchasing multi-use rings or repurposing ceremony flowers for the reception to save on decor costs.
               </p>
               <p>
-                <strong>Hidden Costs to Watch Out For:</strong> Don't forget that taxes, service charges, tips, vendor meals, setup/teardown fees, and potential overtime fees can inflate vendor contracts by 20-30%. Always keep the <strong>Emergency Buffer</strong> category active to cover these unexpected bills.
+                <strong>Hidden Costs to Watch Out For:</strong> Don&apos;t forget that taxes, service charges, tips, vendor meals, setup/teardown fees, and potential overtime fees can inflate vendor contracts by 20-30%. Always keep the <strong>Emergency Buffer</strong> category active to cover these unexpected bills.
               </p>
             </div>
           </div>

@@ -137,7 +137,6 @@ export function AgeCal() {
 
   useEffect(() => {
     if (!result || !result.isLive) {
-      setLiveAge(null);
       return;
     }
 
@@ -263,7 +262,7 @@ export function AgeCal() {
     totalSeconds: differenceInDays(result.rawAgeAtDate, result.rawBirthDate) * 24 * 60 * 60,
   } : null;
 
-  const displayAge = liveAge || {
+  const displayAge = (result?.isLive ? liveAge : null) || {
     years: result?.years,
     months: result?.months,
     days: result?.days,

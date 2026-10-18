@@ -285,6 +285,7 @@ export default function GradientGenerator() {
   const sliderTrackRef = useRef(null);
   const isDraggingRef = useRef(false);
   const dragStopIdRef = useRef(null);
+  const dragControllerRef = useRef(null);
 
   // Active Stop helper
   const activeStop = stops.find((s) => s.id === activeStopId) || stops[0] || null;
@@ -319,7 +320,7 @@ export default function GradientGenerator() {
       return `${repeatPrefix}(from ${conicAngle}deg${posStr}, ${stopsStr})`;
     }
     return "";
-  }, [stops, type, angle, radialShape, radialPosition, conicAngle, conicPosition, isRepeating, colorFormat, sortedStops]);
+  }, [type, angle, radialShape, radialPosition, conicAngle, conicPosition, isRepeating, colorFormat, sortedStops]);
 
   // Full CSS styling block
   const generateFullCss = useCallback(() => {
@@ -402,18 +403,7 @@ export default function GradientGenerator() {
     setActiveStopId(newId);
   };
 
-  // Mouse drag handlers
-  const handleStopMouseDown = (e, stopId) => {
-    e.stopPropagation();
-    isDraggingRef.current = true;
-    dragStopIdRef.current = stopId;
-    setActiveStopId(stopId);
-
-    window.addEventListener("mousemove", handleStopMouseMove);
-    window.addEventListener("mouseup", handleStopMouseUp);
-  };
-
-  const handleStopMouseMove = (e) => {
+  const handleStopMouseMove = useCallback((e) => {
     if (!isDraggingRef.current || !dragStopIdRef.current || !sliderTrackRef.current) return;
     const rect = sliderTrackRef.current.getBoundingClientRect();
     const clickX = e.clientX - rect.left;
@@ -422,20 +412,35 @@ export default function GradientGenerator() {
     setStops((prev) =>
       prev.map((s) => (s.id === dragStopIdRef.current ? { ...s, position: percent } : s))
     );
-  };
+  }, []);
 
-  const handleStopMouseUp = () => {
+  const handleStopMouseUp = useCallback(() => {
     isDraggingRef.current = false;
     dragStopIdRef.current = null;
-    window.removeEventListener("mousemove", handleStopMouseMove);
-    window.removeEventListener("mouseup", handleStopMouseUp);
+    if (dragControllerRef.current) {
+      dragControllerRef.current.abort();
+      dragControllerRef.current = null;
+    }
+  }, []);
+
+  // Mouse drag handlers
+  const handleStopMouseDown = (e, stopId) => {
+    e.stopPropagation();
+    isDraggingRef.current = true;
+    dragStopIdRef.current = stopId;
+    setActiveStopId(stopId);
+
+    if (dragControllerRef.current) dragControllerRef.current.abort();
+    const controller = new AbortController();
+    dragControllerRef.current = controller;
+    window.addEventListener("mousemove", handleStopMouseMove, { signal: controller.signal });
+    window.addEventListener("mouseup", handleStopMouseUp, { signal: controller.signal });
   };
 
   // Drag Cleanup
   useEffect(() => {
     return () => {
-      window.removeEventListener("mousemove", handleStopMouseMove);
-      window.removeEventListener("mouseup", handleStopMouseUp);
+      if (dragControllerRef.current) dragControllerRef.current.abort();
     };
   }, []);
 

@@ -1063,6 +1063,7 @@ export default function RemoveMetadata() {
                     <div className="flex items-center gap-3.5 min-w-0">
                       <div className="w-14 h-14 sm:w-16 sm:h-16 rounded-xl bg-gray-100 dark:bg-gray-800 flex items-center justify-center shrink-0 overflow-hidden border border-gray-200 dark:border-gray-700">
                         {item.previewUrl ? (
+                          /* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */
                           <img
                             src={item.previewUrl}
                             alt={item.name}

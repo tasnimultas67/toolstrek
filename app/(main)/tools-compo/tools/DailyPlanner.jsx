@@ -6,6 +6,7 @@ import React, {
   useMemo,
   useRef,
   useCallback,
+  useSyncExternalStore,
 } from "react";
 import ToolPageShell from "../ToolPageShell";
 import BackButton from "@/components/BackButton";
@@ -953,15 +954,21 @@ function generateId() {
   return "dp_" + Math.random().toString(36).substring(2, 9);
 }
 
+const subscribeNoop = () => () => {};
+const getClientMounted = () => true;
+const getServerMounted = () => false;
+
 // ─────────────────────────────────────────────────────────────
 // Main Component
 // ─────────────────────────────────────────────────────────────
 
 export default function DailyPlanner() {
-  const [mounted, setMounted] = useState(false);
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  // Hydration-safe "mounted" flag (false on server/first client render, true after)
+  const mounted = useSyncExternalStore(
+    subscribeNoop,
+    getClientMounted,
+    getServerMounted,
+  );
 
   // Current active date (YYYY-MM-DD)
   const [currentDate, setCurrentDate] = useState(getTodayKey);
@@ -1035,6 +1042,7 @@ export default function DailyPlanner() {
   // Pomodoro State
   const [pomodoroMode, setPomodoroMode] = useState("focus"); // "focus" (25) | "shortBreak" (5) | "longBreak" (15)
   const [pomodoroSeconds, setPomodoroSeconds] = useState(25 * 60);
+  const pomodoroSecondsRef = useRef(pomodoroSeconds);
   const [isPomodoroRunning, setIsPomodoroRunning] = useState(false);
   const [pomodoroTask, setPomodoroTask] = useState("");
   const [ambientSound, setAmbientSound] = useState("off"); // "off" | "whitenoise" | "rain" | "cafe"
@@ -1053,6 +1061,7 @@ useEffect(() => {
       "toolstrek_daily_planner_settings_v1",
     );
     if (savedSettings) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of persisted settings from localStorage; must run post-mount to avoid an SSR hydration mismatch
       setSettings((prev) => ({ ...prev, ...JSON.parse(savedSettings) }));
     }
   } catch (_) {}
@@ -1186,31 +1195,45 @@ useEffect(() => {
   return () => clearInterval(interval);
 }, []);
 
+// Keep the latest pomodoroSeconds readable inside the interval without
+// re-creating it every tick
+useEffect(() => {
+  pomodoroSecondsRef.current = pomodoroSeconds;
+}, [pomodoroSeconds]);
+
+const handlePomodoroComplete = useCallback(() => {
+  if (settings.soundEnabled) audio.playTimerFinish();
+  toast.success(
+    pomodoroMode === "focus"
+      ? "Focus session complete! Take a break."
+      : "Break finished! Ready to focus?",
+  );
+  setIsPomodoroRunning(false);
+  if (pomodoroMode === "focus") {
+    setPomodoroMode("shortBreak");
+    setPomodoroSeconds(5 * 60);
+  } else {
+    setPomodoroMode("focus");
+    setPomodoroSeconds(25 * 60);
+  }
+}, [settings.soundEnabled, pomodoroMode]);
+
 // Pomodoro Interval Engine
 useEffect(() => {
-  let timer = null;
-  if (isPomodoroRunning && pomodoroSeconds > 0) {
-    timer = setInterval(() => {
-      setPomodoroSeconds((prev) => prev - 1);
-    }, 1000);
-  } else if (isPomodoroRunning && pomodoroSeconds === 0) {
-    if (settings.soundEnabled) audio.playTimerFinish();
-    toast.success(
-      pomodoroMode === "focus"
-        ? "Focus session complete! Take a break."
-        : "Break finished! Ready to focus?",
-    );
-    setIsPomodoroRunning(false);
-    if (pomodoroMode === "focus") {
-      setPomodoroMode("shortBreak");
-      setPomodoroSeconds(5 * 60);
+  if (!isPomodoroRunning) return undefined;
+
+  const timer = setInterval(() => {
+    const next = pomodoroSecondsRef.current - 1;
+    if (next <= 0) {
+      handlePomodoroComplete();
     } else {
-      setPomodoroMode("focus");
-      setPomodoroSeconds(25 * 60);
+      pomodoroSecondsRef.current = next;
+      setPomodoroSeconds(next);
     }
-  }
+  }, 1000);
+
   return () => clearInterval(timer);
-}, [isPomodoroRunning, pomodoroSeconds, pomodoroMode, settings.soundEnabled]);
+}, [isPomodoroRunning, handlePomodoroComplete]);
 
 const handleAmbientChange = (type) => {
   setAmbientSound(type);
@@ -2707,7 +2730,7 @@ return (
                 {/* Mood Selector */}
                 <div className="pt-3 border-t border-slate-200/80 dark:border-slate-800 flex items-center justify-between">
                   <span className="text-xs font-semibold text-slate-600 dark:text-slate-400">
-                    Today's Mood:
+                    Today&apos;s Mood:
                   </span>
                   <div className="flex items-center gap-1.5">
                     {[

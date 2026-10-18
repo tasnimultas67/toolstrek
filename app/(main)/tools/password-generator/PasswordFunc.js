@@ -12,43 +12,55 @@ import StrengthIndicator from "./strength-indicator";
 import { motion, AnimatePresence } from "framer-motion";
 import { ShieldCheck, RefreshCw, Lock, Zap, Info } from "lucide-react";
 
+const DEFAULT_OPTIONS = {
+  uppercase: true,
+  lowercase: true,
+  numbers: true,
+  symbols: false,
+};
+
+const DEFAULT_LENGTH = 12;
+
+// Uses the Web Crypto API, so it is only safe to call from the client.
+function createPassword(options, length) {
+  const charSets = [
+    options.uppercase && "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+    options.lowercase && "abcdefghijklmnopqrstuvwxyz",
+    options.numbers && "0123456789",
+    options.symbols && "!@#$%^&*()_+-=[]{}|;:,.<>?",
+  ]
+    .filter(Boolean)
+    .join("");
+
+  if (!charSets) return "";
+
+  let result = "";
+  const crypto = window.crypto || window.msCrypto;
+  const values = new Uint32Array(length);
+  crypto.getRandomValues(values);
+
+  for (let i = 0; i < length; i++) {
+    result += charSets[values[i] % charSets.length];
+  }
+
+  return result;
+}
+
 export default function PasswordFunc() {
   const [password, setPassword] = useState("");
-  const [length, setLength] = useState(12);
-  const [options, setOptions] = useState({
-    uppercase: true,
-    lowercase: true,
-    numbers: true,
-    symbols: false,
-  });
+  const [length, setLength] = useState(DEFAULT_LENGTH);
+  const [options, setOptions] = useState(DEFAULT_OPTIONS);
 
   const generatePassword = () => {
-    const charSets = [
-      options.uppercase && "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
-      options.lowercase && "abcdefghijklmnopqrstuvwxyz",
-      options.numbers && "0123456789",
-      options.symbols && "!@#$%^&*()_+-=[]{}|;:,.<>?",
-    ]
-      .filter(Boolean)
-      .join("");
-
-    if (!charSets) return;
-
-    let result = "";
-    const crypto = window.crypto || window.msCrypto;
-    const values = new Uint32Array(length);
-    crypto.getRandomValues(values);
-
-    for (let i = 0; i < length; i++) {
-      result += charSets[values[i] % charSets.length];
-    }
-
+    const result = createPassword(options, length);
+    if (!result) return;
     setPassword(result);
   };
 
   // Generate a password on initial mount
   useEffect(() => {
-    generatePassword();
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- the initial password is random and crypto-backed; generating it during render would be impure and cause an SSR hydration mismatch
+    setPassword(createPassword(DEFAULT_OPTIONS, DEFAULT_LENGTH));
   }, []);
 
   return (

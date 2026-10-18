@@ -1587,6 +1587,7 @@ export default function ZipCreator() {
             <div className="mt-4 flex-1 overflow-y-auto">
               {previewFile.type === "image" ? (
                 <div className="flex items-center justify-center rounded-2xl bg-slate-100 p-2 dark:bg-slate-950">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */}
                   <img
                     src={previewFile.url}
                     alt={previewFile.name}

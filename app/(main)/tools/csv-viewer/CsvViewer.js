@@ -36,6 +36,81 @@ const SAMPLES = {
 1009,Oliver Dupont,Sales,78000,3.7,2024-11-12`
 };
 
+// CSV Parser algorithm logic (pure helper, hoisted to module scope)
+function parseCSV(text, options) {
+  const { delimiter, quoteChar, skipEmptyLines, trimSpaces } = options;
+  const resultRows = [];
+  let currentRow = [];
+  let currentVal = "";
+  let insideQuotes = false;
+
+  let i = 0;
+  while (i < text.length) {
+    const char = text[i];
+
+    // Handle quotation character
+    if (quoteChar && char === quoteChar) {
+      // Check for escaped quote inside quotes
+      if (insideQuotes && text[i + 1] === quoteChar) {
+        currentVal += quoteChar;
+        i += 2;
+        continue;
+      }
+      insideQuotes = !insideQuotes;
+      i++;
+      continue;
+    }
+
+    // Handle lines
+    if (!insideQuotes && (char === "\r" || char === "\n")) {
+      currentRow.push(trimSpaces ? currentVal.trim() : currentVal);
+      currentVal = "";
+
+      const isEmpty = currentRow.every(cell => cell === "");
+      if (!skipEmptyLines || !isEmpty) {
+        resultRows.push(currentRow);
+      }
+      currentRow = [];
+
+      if (char === "\r" && text[i + 1] === "\n") {
+        i += 2;
+      } else {
+        i++;
+      }
+      continue;
+    }
+
+    // Handle field separator
+    if (!insideQuotes && char === delimiter) {
+      currentRow.push(trimSpaces ? currentVal.trim() : currentVal);
+      currentVal = "";
+      i++;
+      continue;
+    }
+
+    currentVal += char;
+    i++;
+  }
+
+  // Catch residual characters
+  if (currentVal || currentRow.length > 0 || insideQuotes) {
+    currentRow.push(trimSpaces ? currentVal.trim() : currentVal);
+    const isEmpty = currentRow.every(cell => cell === "");
+    if (!skipEmptyLines || !isEmpty) {
+      resultRows.push(currentRow);
+    }
+  }
+
+  return resultRows;
+}
+
+// Parse a CSV document and measure how long parsing took
+function parseCsvDocument(text, options) {
+  const start = performance.now();
+  const rows = parseCSV(text, options);
+  return { rows, parseTime: Math.round(performance.now() - start) };
+}
+
 export default function CsvViewer() {
   // Parsing states
   const [inputText, setInputText] = useState("");
@@ -80,12 +155,11 @@ export default function CsvViewer() {
   const editInputRef = useRef(null);
 
   // Parse CSV trigger
-  const triggerParse = (textToParse = inputText, customName = "") => {
-    const start = performance.now();
+  const handleTriggerParse = (textToParse = inputText, customName = "") => {
     const activeDelimiter = delimiter === "custom" ? customDelimiter : delimiter;
-    
+
     try {
-      const parsedRows = parseCSV(textToParse, {
+      const { rows: parsedRows, parseTime } = parseCsvDocument(textToParse, {
         delimiter: activeDelimiter || ",",
         quoteChar: quoteChar || null,
         skipEmptyLines,
@@ -115,7 +189,7 @@ export default function CsvViewer() {
       setHeaders(parsedHeaders);
       setRows(parsedDataRows);
       if (customName) setFileName(customName);
-      setParsingTime(Math.round(performance.now() - start));
+      setParsingTime(parseTime);
       setCurrentPage(1);
       
       // Auto-set Y-axis to first numeric column if possible
@@ -133,79 +207,12 @@ export default function CsvViewer() {
     }
   };
 
-  // CSV Parser algorithm logic
-  function parseCSV(text, options) {
-    const { delimiter, quoteChar, skipEmptyLines, trimSpaces } = options;
-    const resultRows = [];
-    let currentRow = [];
-    let currentVal = "";
-    let insideQuotes = false;
-    
-    let i = 0;
-    while (i < text.length) {
-      const char = text[i];
-      
-      // Handle quotation character
-      if (quoteChar && char === quoteChar) {
-        // Check for escaped quote inside quotes
-        if (insideQuotes && text[i + 1] === quoteChar) {
-          currentVal += quoteChar;
-          i += 2;
-          continue;
-        }
-        insideQuotes = !insideQuotes;
-        i++;
-        continue;
-      }
-      
-      // Handle lines
-      if (!insideQuotes && (char === "\r" || char === "\n")) {
-        currentRow.push(trimSpaces ? currentVal.trim() : currentVal);
-        currentVal = "";
-        
-        const isEmpty = currentRow.every(cell => cell === "");
-        if (!skipEmptyLines || !isEmpty) {
-          resultRows.push(currentRow);
-        }
-        currentRow = [];
-        
-        if (char === "\r" && text[i + 1] === "\n") {
-          i += 2;
-        } else {
-          i++;
-        }
-        continue;
-      }
-      
-      // Handle field separator
-      if (!insideQuotes && char === delimiter) {
-        currentRow.push(trimSpaces ? currentVal.trim() : currentVal);
-        currentVal = "";
-        i++;
-        continue;
-      }
-      
-      currentVal += char;
-      i++;
-    }
-    
-    // Catch residual characters
-    if (currentVal || currentRow.length > 0 || insideQuotes) {
-      currentRow.push(trimSpaces ? currentVal.trim() : currentVal);
-      const isEmpty = currentRow.every(cell => cell === "");
-      if (!skipEmptyLines || !isEmpty) {
-        resultRows.push(currentRow);
-      }
-    }
-    
-    return resultRows;
-  }
 
   // Load sample content helper
   const loadSample = (type) => {
     const data = SAMPLES[type];
     setInputText(data);
-    triggerParse(data, `sample_${type}.csv`);
+    handleTriggerParse(data, `sample_${type}.csv`);
   };
 
   // Handle Drag & Drop uploading
@@ -229,7 +236,7 @@ export default function CsvViewer() {
     reader.onload = (event) => {
       const text = event.target.result;
       setInputText(text);
-      triggerParse(text, file.name);
+      handleTriggerParse(text, file.name);
     };
     reader.readAsText(file);
   };
@@ -386,18 +393,14 @@ export default function CsvViewer() {
 
   // Pagination bounds calculation
   const totalPages = Math.max(1, Math.ceil(processedRows.length / rowsPerPage));
+  // Clamp the active page during render so a shrinking result set never
+  // points past the last page (avoids a setState-in-effect correction).
+  const safePage = Math.min(currentPage, totalPages);
   const paginatedRows = useMemo(() => {
     if (rowsPerPage === -1) return processedRows;
-    const startIdx = (currentPage - 1) * rowsPerPage;
+    const startIdx = (safePage - 1) * rowsPerPage;
     return processedRows.slice(startIdx, startIdx + rowsPerPage);
-  }, [processedRows, currentPage, rowsPerPage]);
-
-  useEffect(() => {
-    // Reset to page 1 if search filter shrinks rows count below bounds
-    if (currentPage > totalPages) {
-      setCurrentPage(totalPages);
-    }
-  }, [totalPages, currentPage]);
+  }, [processedRows, safePage, rowsPerPage]);
 
   const handleSort = (colIdx) => {
     setSortConfig(prev => {
@@ -449,7 +452,7 @@ export default function CsvViewer() {
   };
 
   const deleteRow = (rowIdx) => {
-    const actualIdx = (currentPage - 1) * rowsPerPage + rowIdx;
+    const actualIdx = (safePage - 1) * rowsPerPage + rowIdx;
     setRows(rows.filter((_, idx) => idx !== actualIdx));
   };
 
@@ -793,7 +796,7 @@ export default function CsvViewer() {
               
               <button
                 disabled={!inputText.trim()}
-                onClick={() => triggerParse(inputText, "pasted_data.csv")}
+                onClick={() => handleTriggerParse(inputText, "pasted_data.csv")}
                 className="w-full py-3 bg-brandColor hover:bg-brandColorHover disabled:opacity-50 text-white font-bold text-sm rounded-2xl shadow-md transition-all active:scale-95"
               >
                 Parse CSV Text
@@ -869,8 +872,8 @@ export default function CsvViewer() {
                       value={quoteChar}
                       onChange={(e) => setQuoteChar(e.target.value)}
                     >
-                      <option value='"'>Double Quote (")</option>
-                      <option value="'">Single Quote (')</option>
+                      <option value='"'>Double Quote (&quot;)</option>
+                      <option value="'">Single Quote (&apos;)</option>
                       <option value="">None</option>
                     </select>
                   </div>
@@ -909,7 +912,7 @@ export default function CsvViewer() {
                     </label>
                     {rows.length > 0 && (
                       <button
-                        onClick={() => triggerParse(inputText)}
+                        onClick={() => handleTriggerParse(inputText)}
                         className="flex items-center justify-center gap-1 py-2 px-4 bg-brandColor hover:bg-brandColorHover text-white text-xs font-bold rounded-xl shadow-md transition-all active:scale-95"
                       >
                         <RefreshCw size={14} className="animate-spin-hover" /> Re-parse CSV
@@ -1358,7 +1361,7 @@ export default function CsvViewer() {
                         </tr>
                       ) : (
                         paginatedRows.map((row, rowIdx) => {
-                          const displayIndex = (currentPage - 1) * rowsPerPage + rowIdx + 1;
+                          const displayIndex = (safePage - 1) * rowsPerPage + rowIdx + 1;
                           return (
                             <tr key={rowIdx} className="hover:bg-gray-50/50 dark:hover:bg-gray-800/20 transition-colors">
                               <td className="p-3 text-center border-r border-gray-100 dark:border-gray-800 text-gray-400 font-bold bg-gray-50/20 dark:bg-gray-900/10">
@@ -1368,7 +1371,7 @@ export default function CsvViewer() {
                               {row.map((cell, colIdx) => {
                                 if (hiddenColumns.has(colIdx)) return null;
 
-                                const isEditing = editingCell?.rowIdx === ((currentPage - 1) * rowsPerPage + rowIdx) && editingCell?.colIdx === colIdx;
+                                const isEditing = editingCell?.rowIdx === ((safePage - 1) * rowsPerPage + rowIdx) && editingCell?.colIdx === colIdx;
 
                                 return (
                                   <td
@@ -1376,7 +1379,7 @@ export default function CsvViewer() {
                                     className="p-3 border-r border-gray-100 dark:border-gray-850 truncate max-w-[200px]"
                                     onDoubleClick={() => {
                                       if (editMode) {
-                                        setEditingCell({ rowIdx: ((currentPage - 1) * rowsPerPage + rowIdx), colIdx });
+                                        setEditingCell({ rowIdx: ((safePage - 1) * rowsPerPage + rowIdx), colIdx });
                                         setEditingValue(cell);
                                       }
                                     }}
@@ -1462,18 +1465,18 @@ export default function CsvViewer() {
                     {rowsPerPage !== -1 && (
                       <div className="flex items-center gap-1">
                         <button
-                          onClick={() => setCurrentPage(prev => Math.max(prev - 1, 1))}
-                          disabled={currentPage === 1}
+                          onClick={() => setCurrentPage(Math.max(safePage - 1, 1))}
+                          disabled={safePage === 1}
                           className="p-1.5 rounded-xl border border-gray-200 dark:border-gray-800 disabled:opacity-40 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                         >
                           <ChevronLeft size={14} />
                         </button>
                         <span className="text-gray-500 min-w-[70px] text-center">
-                          Page {currentPage} of {totalPages}
+                          Page {safePage} of {totalPages}
                         </span>
                         <button
-                          onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
-                          disabled={currentPage === totalPages}
+                          onClick={() => setCurrentPage(Math.min(safePage + 1, totalPages))}
+                          disabled={safePage === totalPages}
                           className="p-1.5 rounded-xl border border-gray-200 dark:border-gray-800 disabled:opacity-40 hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors"
                         >
                           <ChevronRight size={14} />

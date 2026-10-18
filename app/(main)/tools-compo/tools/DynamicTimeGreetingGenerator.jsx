@@ -108,6 +108,7 @@ export default function DynamicTimeGreetingGenerator() {
 
   // ─── Initialize Device Timezone & Restore Saved State ───
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of persisted settings and device timezone from localStorage/Intl; must run post-mount to avoid an SSR hydration mismatch
     setMounted(true);
     try {
       const detected = Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC";
@@ -804,7 +805,7 @@ if __name__ == "__main__":
       null,
       2
     );
-  }, [codeType, slots, targetTimezone, variables, activeGreeting, activeSubtitle, activeSlot]);
+  }, [codeType, slots, targetTimezone, variables, activeGreeting, activeSubtitle, activeSlot, selectedThemeId]);
 
   return (
     <ToolPageShell>
@@ -1784,7 +1785,7 @@ if __name__ == "__main__":
                     Triggered Rule: {activeSlot.name}
                   </span>
                   <h4 className="text-xl font-black text-slate-900 dark:text-white mt-0.5">
-                    "{activeGreeting}"
+                    &quot;{activeGreeting}&quot;
                   </h4>
                   <p className="text-xs text-slate-600 dark:text-slate-300 mt-1">
                     {activeSubtitle}
@@ -1979,7 +1980,7 @@ if __name__ == "__main__":
               Solving Server vs Client Hydration Mismatches in Next.js
             </h2>
             <p className="text-xs sm:text-sm text-purple-200 leading-relaxed max-w-3xl">
-              When rendering time greetings on a server (e.g. AWS/Vercel running in UTC), the server will generate a greeting for UTC while the client's device might be in Tokyo (+9) or New York (-4). If rendered directly into server HTML, React triggers a hydration error:
+              When rendering time greetings on a server (e.g. AWS/Vercel running in UTC), the server will generate a greeting for UTC while the client&apos;s device might be in Tokyo (+9) or New York (-4). If rendered directly into server HTML, React triggers a hydration error:
               <code className="text-xs bg-black/40 px-2 py-0.5 rounded text-amber-300 ml-1">
                 Text content does not match server-rendered HTML
               </code>.
@@ -1991,7 +1992,7 @@ if __name__ == "__main__":
                   Approach 1: Client Mounting Guard (Recommended)
                 </h4>
                 <p className="text-xs text-purple-200 leading-relaxed">
-                  Render a neutral fallback like "Welcome back" during SSR, and swap to the timezone greeting inside a <code className="text-white">useEffect</code> once the client mounts.
+                  Render a neutral fallback like &quot;Welcome back&quot; during SSR, and swap to the timezone greeting inside a <code className="text-white">useEffect</code> once the client mounts.
                 </p>
               </div>
 
@@ -2000,7 +2001,7 @@ if __name__ == "__main__":
                   Approach 2: Cookie-Based SSR Timezone
                 </h4>
                 <p className="text-xs text-purple-200 leading-relaxed">
-                  Store the user's timezone in an HTTP cookie upon their first visit. Read the cookie on the server in Next.js <code className="text-white">cookies()</code> to render matching HTML immediately.
+                  Store the user&apos;s timezone in an HTTP cookie upon their first visit. Read the cookie on the server in Next.js <code className="text-white">cookies()</code> to render matching HTML immediately.
                 </p>
               </div>
             </div>

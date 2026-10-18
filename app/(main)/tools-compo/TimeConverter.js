@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useEffect,
+  useRef,
+  useMemo,
+  useSyncExternalStore,
+} from "react";
 import {
   Clock,
   ArrowRightLeft,
@@ -52,6 +58,62 @@ function convertTime(value, from, to) {
   }
   if (Number.isInteger(result)) return result.toString();
   return parseFloat(result.toPrecision(10)).toString();
+}
+
+// ─────────────────────────────────────────────────────────────
+//  Recent conversions store (localStorage-backed external store)
+// ─────────────────────────────────────────────────────────────
+const RECENT_STORAGE_KEY = "toolstrek_time_recent";
+const EMPTY_RECENT = [];
+
+let recentCache = null;
+const recentListeners = new Set();
+
+function readRecentFromStorage() {
+  try {
+    const saved = localStorage.getItem(RECENT_STORAGE_KEY);
+    return saved ? JSON.parse(saved) : EMPTY_RECENT;
+  } catch (_) {
+    return EMPTY_RECENT;
+  }
+}
+
+function subscribeRecent(callback) {
+  const onStorage = () => {
+    recentCache = null;
+    callback();
+  };
+  recentListeners.add(callback);
+  window.addEventListener("storage", onStorage);
+  return () => {
+    recentListeners.delete(callback);
+    window.removeEventListener("storage", onStorage);
+  };
+}
+
+function getRecentSnapshot() {
+  if (recentCache === null) recentCache = readRecentFromStorage();
+  return recentCache;
+}
+
+function getRecentServerSnapshot() {
+  return EMPTY_RECENT;
+}
+
+function writeRecent(next) {
+  recentCache = next;
+  try {
+    localStorage.setItem(RECENT_STORAGE_KEY, JSON.stringify(next));
+  } catch (_) {}
+  recentListeners.forEach((listener) => listener());
+}
+
+function clearRecentStore() {
+  recentCache = EMPTY_RECENT;
+  try {
+    localStorage.removeItem(RECENT_STORAGE_KEY);
+  } catch (_) {}
+  recentListeners.forEach((listener) => listener());
 }
 
 // ─────────────────────────────────────────────────────────────
@@ -202,43 +264,31 @@ export default function TimeConverter() {
   const [fromUnit, setFromUnit] = useState("min");
   const [toUnit, setToUnit] = useState("s");
   const [amount, setAmount] = useState("1");
-  const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
-  const [recent, setRecent] = useState([]);
-  const [multiOutput, setMultiOutput] = useState([]);
 
-  // Main conversion
-  useEffect(() => {
-    if (amount === "" || amount === "-" || amount === ".") {
-      setOutput("");
-      return;
-    }
-    setOutput(convertTime(amount, fromUnit, toUnit));
-  }, [amount, fromUnit, toUnit]);
+  // Derived: main conversion result
+  const output =
+    amount === "" || amount === "-" || amount === "."
+      ? ""
+      : convertTime(amount, fromUnit, toUnit);
 
-  // Multi-unit conversion for advanced panel
-  useEffect(() => {
-    if (!showAdvanced || !amount || isNaN(parseFloat(amount))) {
-      setMultiOutput([]);
-      return;
-    }
-    const results = TIME_UNITS.filter((u) => u.key !== fromUnit).map((u) => ({
+  // Derived: multi-unit conversion for advanced panel
+  const multiOutput = useMemo(() => {
+    if (!showAdvanced || !amount || isNaN(parseFloat(amount))) return [];
+    return TIME_UNITS.filter((u) => u.key !== fromUnit).map((u) => ({
       ...u,
       result: convertTime(amount, fromUnit, u.key),
     }));
-    setMultiOutput(results);
   }, [amount, fromUnit, showAdvanced]);
 
-  // Load recent from localStorage
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("toolstrek_time_recent");
-      if (saved) setRecent(JSON.parse(saved));
-    } catch (_) {}
-  }, []);
-
+  // Persisted recent conversions, read from localStorage via an external store
+  const recent = useSyncExternalStore(
+    subscribeRecent,
+    getRecentSnapshot,
+    getRecentServerSnapshot
+  );
   // Save recent conversion
   useEffect(() => {
     if (!amount || !output || isNaN(parseFloat(amount))) return;
@@ -254,26 +304,18 @@ export default function TimeConverter() {
         fromSymbol: UNIT_MAP[fromUnit]?.symbol,
         toSymbol: UNIT_MAP[toUnit]?.symbol,
       };
-      setRecent((prev) => {
-        const deduped = [
-          record,
-          ...prev.filter(
-            (r) =>
-              !(
-                r.fromUnit === fromUnit &&
-                r.toUnit === toUnit &&
-                r.amount === amount
-              )
-          ),
-        ].slice(0, 6);
-        try {
-          localStorage.setItem(
-            "toolstrek_time_recent",
-            JSON.stringify(deduped)
-          );
-        } catch (_) {}
-        return deduped;
-      });
+      const deduped = [
+        record,
+        ...getRecentSnapshot().filter(
+          (r) =>
+            !(
+              r.fromUnit === fromUnit &&
+              r.toUnit === toUnit &&
+              r.amount === amount
+            )
+        ),
+      ].slice(0, 6);
+      writeRecent(deduped);
     }, 900);
     return () => clearTimeout(timer);
   }, [amount, output, fromUnit, toUnit]);
@@ -285,7 +327,6 @@ export default function TimeConverter() {
 
   const handleClear = () => {
     setAmount("");
-    setOutput("");
   };
 
   const handleCopy = () => {
@@ -326,10 +367,7 @@ export default function TimeConverter() {
   };
 
   const clearRecent = () => {
-    setRecent([]);
-    try {
-      localStorage.removeItem("toolstrek_time_recent");
-    } catch (_) {}
+    clearRecentStore();
   };
 
   const fromU = UNIT_MAP[fromUnit];

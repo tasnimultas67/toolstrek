@@ -2,6 +2,51 @@
 import React, { useState, useCallback } from "react";
 import ToolPageShell from "../ToolPageShell";
 
+// Country code mapping for API
+const countryCodes = {
+  us: { code: "US", name: "United States", flag: "🇺🇸", apiName: "US" },
+  gb: { code: "GB", name: "United Kingdom", flag: "🇬🇧", apiName: "GB" },
+  ca: { code: "CA", name: "Canada", flag: "🇨🇦", apiName: "CA" },
+  au: { code: "AU", name: "Australia", flag: "🇦🇺", apiName: "AU" },
+  de: { code: "DE", name: "Germany", flag: "🇩🇪", apiName: "DE" },
+  fr: { code: "FR", name: "France", flag: "🇫🇷", apiName: "FR" },
+  es: { code: "ES", name: "Spain", flag: "🇪🇸", apiName: "ES" },
+  it: { code: "IT", name: "Italy", flag: "🇮🇹", apiName: "IT" },
+  nl: { code: "NL", name: "Netherlands", flag: "🇳🇱", apiName: "NL" },
+  br: { code: "BR", name: "Brazil", flag: "🇧🇷", apiName: "BR" },
+  bd: { code: "BD", name: "Bangladesh", flag: "🇧🇩", apiName: "BD" },
+};
+
+// Get zodiac sign from birth date
+const getZodiacSign = (date) => {
+  const day = date.getDate();
+  const month = date.getMonth() + 1;
+
+  if ((month === 1 && day >= 20) || (month === 2 && day <= 18))
+    return "♒ Aquarius";
+  if ((month === 2 && day >= 19) || (month === 3 && day <= 20))
+    return "♓ Pisces";
+  if ((month === 3 && day >= 21) || (month === 4 && day <= 19))
+    return "♈ Aries";
+  if ((month === 4 && day >= 20) || (month === 5 && day <= 20))
+    return "♉ Taurus";
+  if ((month === 5 && day >= 21) || (month === 6 && day <= 20))
+    return "♊ Gemini";
+  if ((month === 6 && day >= 21) || (month === 7 && day <= 22))
+    return "♋ Cancer";
+  if ((month === 7 && day >= 23) || (month === 8 && day <= 22))
+    return "♌ Leo";
+  if ((month === 8 && day >= 23) || (month === 9 && day <= 22))
+    return "♍ Virgo";
+  if ((month === 9 && day >= 23) || (month === 10 && day <= 22))
+    return "♎ Libra";
+  if ((month === 10 && day >= 23) || (month === 11 && day <= 21))
+    return "♏ Scorpio";
+  if ((month === 11 && day >= 22) || (month === 12 && day <= 21))
+    return "♐ Sagittarius";
+  return "♑ Capricorn";
+};
+
 const FakeInfoGenerator = () => {
   const [selectedCountry, setSelectedCountry] = useState("us");
   const [selectedGender, setSelectedGender] = useState("all");
@@ -10,21 +55,6 @@ const FakeInfoGenerator = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
   const [toast, setToast] = useState({ show: false, message: "", type: "" });
-
-  // Country code mapping for API
-  const countryCodes = {
-    us: { code: "US", name: "United States", flag: "🇺🇸", apiName: "US" },
-    gb: { code: "GB", name: "United Kingdom", flag: "🇬🇧", apiName: "GB" },
-    ca: { code: "CA", name: "Canada", flag: "🇨🇦", apiName: "CA" },
-    au: { code: "AU", name: "Australia", flag: "🇦🇺", apiName: "AU" },
-    de: { code: "DE", name: "Germany", flag: "🇩🇪", apiName: "DE" },
-    fr: { code: "FR", name: "France", flag: "🇫🇷", apiName: "FR" },
-    es: { code: "ES", name: "Spain", flag: "🇪🇸", apiName: "ES" },
-    it: { code: "IT", name: "Italy", flag: "🇮🇹", apiName: "IT" },
-    nl: { code: "NL", name: "Netherlands", flag: "🇳🇱", apiName: "NL" },
-    br: { code: "BR", name: "Brazil", flag: "🇧🇷", apiName: "BR" },
-    bd: { code: "BD", name: "Bangladesh", flag: "🇧🇩", apiName: "BD" },
-  };
 
   // Gender options for dropdown
   const genderOptions = [
@@ -125,36 +155,6 @@ const FakeInfoGenerator = () => {
       setIsLoading(false);
     }
   }, [selectedCountry, quantity, selectedGender]);
-
-  // Get zodiac sign from birth date
-  const getZodiacSign = (date) => {
-    const day = date.getDate();
-    const month = date.getMonth() + 1;
-
-    if ((month === 1 && day >= 20) || (month === 2 && day <= 18))
-      return "♒ Aquarius";
-    if ((month === 2 && day >= 19) || (month === 3 && day <= 20))
-      return "♓ Pisces";
-    if ((month === 3 && day >= 21) || (month === 4 && day <= 19))
-      return "♈ Aries";
-    if ((month === 4 && day >= 20) || (month === 5 && day <= 20))
-      return "♉ Taurus";
-    if ((month === 5 && day >= 21) || (month === 6 && day <= 20))
-      return "♊ Gemini";
-    if ((month === 6 && day >= 21) || (month === 7 && day <= 22))
-      return "♋ Cancer";
-    if ((month === 7 && day >= 23) || (month === 8 && day <= 22))
-      return "♌ Leo";
-    if ((month === 8 && day >= 23) || (month === 9 && day <= 22))
-      return "♍ Virgo";
-    if ((month === 9 && day >= 23) || (month === 10 && day <= 22))
-      return "♎ Libra";
-    if ((month === 10 && day >= 23) || (month === 11 && day <= 21))
-      return "♏ Scorpio";
-    if ((month === 11 && day >= 22) || (month === 12 && day <= 21))
-      return "♐ Sagittarius";
-    return "♑ Capricorn";
-  };
 
   // Copy single card as JSON
   const copySingleAsJSON = (person) => {
@@ -372,7 +372,7 @@ const FakeInfoGenerator = () => {
                       )}
                     </select>
                     <p className="text-xs text-slate-400 dark:text-slate-500 mt-1">
-                      Data will match this country's real format
+                      Data will match this country&apos;s real format
                     </p>
                   </div>
 
@@ -468,7 +468,7 @@ const FakeInfoGenerator = () => {
                         {generatedData.length !== 1 ? "s" : ""} from live API!
                       </p>
                       <p className="text-xs text-green-600 dark:text-green-500 mt-1 text-center">
-                        Click "Generate Random Users" again for fresh data
+                        Click &quot;Generate Random Users&quot; again for fresh data
                       </p>
                     </div>
                   )}
@@ -525,7 +525,7 @@ const FakeInfoGenerator = () => {
                     No users generated yet
                   </p>
                   <p className="text-slate-400 dark:text-slate-500 text-sm mt-2">
-                    Click "Generate Random Users" to start
+                    Click &quot;Generate Random Users&quot; to start
                   </p>
                 </div>
               ) : (
@@ -590,6 +590,7 @@ const FakeInfoGenerator = () => {
                       <div className="p-5">
                         <div className="flex gap-4">
                           {/* Avatar */}
+                          {/* eslint-disable-next-line @next/next/no-img-element -- remote API avatar URL; next/image needs remotePatterns config */}
                           <img
                             src={person.avatar}
                             alt={person.fullName}

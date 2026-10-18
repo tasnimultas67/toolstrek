@@ -33,6 +33,22 @@ const CURRENCIES = [
   { code: "AUD", name: "Australian Dollar", symbol: "$", country: "AU" },
 ];
 
+// Basic approximate default metal prices per gram, per currency.
+const PRICE_PRESETS = {
+  USD: { gold: 75, silver: 0.95 },
+  BDT: { gold: 8800, silver: 110 },
+  PKR: { gold: 21000, silver: 260 },
+  INR: { gold: 6200, silver: 78 },
+  SAR: { gold: 280, silver: 3.5 },
+  AED: { gold: 275, silver: 3.4 },
+  EUR: { gold: 70, silver: 0.88 },
+  GBP: { gold: 60, silver: 0.75 },
+  CAD: { gold: 100, silver: 1.25 },
+  AUD: { gold: 112, silver: 1.40 },
+};
+
+const getDefaultPrices = (currencyCode) => PRICE_PRESETS[currencyCode] || PRICE_PRESETS.USD;
+
 // Nisab presets
 const NISAB_PRESETS = [
   { id: "silver_std", label: "Silver Nisab (612.36g)", weight: 612.36, type: "silver", desc: "Standard Nisab based on Silver. Recommended for maximum charity outreach." },
@@ -103,25 +119,13 @@ export default function ZakatCalculator() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Quick preset actions for Gold/Silver prices depending on Currency
-  useEffect(() => {
-    // Basic approximate values for different currencies to make it dynamic
-    const prices = {
-      USD: { gold: 75, silver: 0.95 },
-      BDT: { gold: 8800, silver: 110 },
-      PKR: { gold: 21000, silver: 260 },
-      INR: { gold: 6200, silver: 78 },
-      SAR: { gold: 280, silver: 3.5 },
-      AED: { gold: 275, silver: 3.4 },
-      EUR: { gold: 70, silver: 0.88 },
-      GBP: { gold: 60, silver: 0.75 },
-      CAD: { gold: 100, silver: 1.25 },
-      AUD: { gold: 112, silver: 1.40 },
-    };
-    const currentPrice = prices[selectedCurrency.code] || prices.USD;
-    setGoldPrice(currentPrice.gold.toString());
-    setSilverPrice(currentPrice.silver.toString());
-  }, [selectedCurrency]);
+  // Changing currency also loads that currency's default metal prices
+  const selectCurrency = (currency) => {
+    setSelectedCurrency(currency);
+    const prices = getDefaultPrices(currency.code);
+    setGoldPrice(prices.gold.toString());
+    setSilverPrice(prices.silver.toString());
+  };
 
   // Reset all fields
   const handleReset = () => {
@@ -142,7 +146,7 @@ export default function ZakatCalculator() {
     setIsCustomRateActive(false);
 
     // Selectors
-    setSelectedCurrency(CURRENCIES[0]);
+    selectCurrency(CURRENCIES[0]);
     setSelectedNisab(NISAB_PRESETS[0]);
     setSelectedCalendar(CALENDARS[0]);
     setShowAdvanced(false);
@@ -279,7 +283,7 @@ export default function ZakatCalculator() {
                       key={curr.code}
                       type="button"
                       onClick={() => {
-                        setSelectedCurrency(curr);
+                        selectCurrency(curr);
                         setCurrencyDropdownOpen(false);
                       }}
                       className={`w-full flex items-center justify-between px-4 py-2.5 text-sm transition-colors text-left ${isSel

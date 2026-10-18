@@ -338,7 +338,7 @@ const TextRepeater = () => {
                       <Repeat className="w-12 h-12 mx-auto mb-3 opacity-50" />
                       <p>Your repeated text will appear here</p>
                       <p className="text-sm">
-                        Click "Generate Text" to see the result
+                        Click &quot;Generate Text&quot; to see the result
                       </p>
                     </div>
                   )}

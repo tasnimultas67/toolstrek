@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+import React, { useState, useCallback, useMemo } from "react";
 import {
   Binary,
   ArrowLeftRight,
@@ -182,6 +182,16 @@ function decodeBinaryToText(binaryStr, encoding, delimiter, customDelim) {
   return "";
 }
 
+// Derive the converted output for the current inputs. Kept as an explicit
+// helper so every input-changing handler can recompute output directly instead
+// of doing so from a setState-in-effect.
+const computeOutputText = (text, currentMode, currentEncoding, currentDelimiter, currentCustomDelimiter) => {
+  if (!text) return "";
+  return currentMode === "encode"
+    ? encodeTextToBinary(text, currentEncoding, currentDelimiter, currentCustomDelimiter)
+    : decodeBinaryToText(text, currentEncoding, currentDelimiter, currentCustomDelimiter);
+};
+
 export default function BinaryDecoder() {
   const [mode, setMode] = useState("encode"); // "encode" | "decode"
   const [inputText, setInputText] = useState("");
@@ -202,27 +212,14 @@ export default function BinaryDecoder() {
   const [activeGroup, setActiveGroup] = useState("all");
   const [refSearch, setRefSearch] = useState("");
 
-  // Translate in real-time
-  useEffect(() => {
-    if (!inputText) {
-      setOutputText("");
-      return;
-    }
-    if (mode === "encode") {
-      setOutputText(encodeTextToBinary(inputText, encoding, delimiter, customDelimiter));
-    } else {
-      setOutputText(decodeBinaryToText(inputText, encoding, delimiter, customDelimiter));
-    }
-  }, [inputText, mode, encoding, delimiter, customDelimiter]);
-
   // Mode Swap
   const handleSwap = useCallback(() => {
     const newMode = mode === "encode" ? "decode" : "encode";
     setMode(newMode);
     setInputText(outputText);
-    setOutputText(inputText);
+    setOutputText(computeOutputText(outputText, newMode, encoding, delimiter, customDelimiter));
     setActiveChipIndex(-1);
-  }, [mode, inputText, outputText]);
+  }, [mode, outputText, encoding, delimiter, customDelimiter]);
 
   // Clear Input/Output
   const handleClear = () => {
@@ -258,13 +255,10 @@ export default function BinaryDecoder() {
   // Load Preset text
   const loadPreset = (type) => {
     const text = PRESET_TEXTS[type];
-    if (type === "binary") {
-      setMode("decode");
-      setInputText(text);
-    } else {
-      setMode("encode");
-      setInputText(text);
-    }
+    const newMode = type === "binary" ? "decode" : "encode";
+    setMode(newMode);
+    setInputText(text);
+    setOutputText(computeOutputText(text, newMode, encoding, delimiter, customDelimiter));
     setActiveChipIndex(-1);
   };
 
@@ -299,32 +293,26 @@ export default function BinaryDecoder() {
     if (insertMode === "char") {
       const charStr = String.fromCharCode(editorByteVal);
       if (mode === "encode") {
-        setInputText((prev) => prev + charStr);
+        const next = inputText + charStr;
+        setInputText(next);
+        setOutputText(computeOutputText(next, mode, encoding, delimiter, customDelimiter));
       } else {
         setOutputText((prev) => prev + charStr);
       }
     } else {
       const binaryStr = editorBits.join("");
+      let sep = " ";
+      if (delimiter === "none") sep = "";
+      else if (delimiter === "comma") sep = ",";
+      else if (delimiter === "dash") sep = "-";
+      else if (delimiter === "custom") sep = customDelimiter || " ";
+
       if (mode === "decode") {
-        setInputText((prev) => {
-          let sep = " ";
-          if (delimiter === "none") sep = "";
-          else if (delimiter === "comma") sep = ",";
-          else if (delimiter === "dash") sep = "-";
-          else if (delimiter === "custom") sep = customDelimiter || " ";
-          
-          return prev ? prev + sep + binaryStr : binaryStr;
-        });
+        const next = inputText ? inputText + sep + binaryStr : binaryStr;
+        setInputText(next);
+        setOutputText(computeOutputText(next, mode, encoding, delimiter, customDelimiter));
       } else {
-        setOutputText((prev) => {
-          let sep = " ";
-          if (delimiter === "none") sep = "";
-          else if (delimiter === "comma") sep = ",";
-          else if (delimiter === "dash") sep = "-";
-          else if (delimiter === "custom") sep = customDelimiter || " ";
-          
-          return prev ? prev + sep + binaryStr : binaryStr;
-        });
+        setOutputText((prev) => (prev ? prev + sep + binaryStr : binaryStr));
       }
     }
   };
@@ -384,16 +372,18 @@ export default function BinaryDecoder() {
   // Insert value from reference table click
   const handleRefRowClick = (item) => {
     if (mode === "encode") {
-      setInputText((prev) => prev + (item.code === 32 ? " " : item.char));
+      const next = inputText + (item.code === 32 ? " " : item.char);
+      setInputText(next);
+      setOutputText(computeOutputText(next, mode, encoding, delimiter, customDelimiter));
     } else {
-      setInputText((prev) => {
-        let sep = " ";
-        if (delimiter === "none") sep = "";
-        else if (delimiter === "comma") sep = ",";
-        else if (delimiter === "dash") sep = "-";
-        else if (delimiter === "custom") sep = customDelimiter || " ";
-        return prev ? prev + sep + item.binary : item.binary;
-      });
+      let sep = " ";
+      if (delimiter === "none") sep = "";
+      else if (delimiter === "comma") sep = ",";
+      else if (delimiter === "dash") sep = "-";
+      else if (delimiter === "custom") sep = customDelimiter || " ";
+      const next = inputText ? inputText + sep + item.binary : item.binary;
+      setInputText(next);
+      setOutputText(computeOutputText(next, mode, encoding, delimiter, customDelimiter));
     }
   };
 
@@ -461,7 +451,10 @@ export default function BinaryDecoder() {
               ].map((enc) => (
                 <button
                   key={enc.id}
-                  onClick={() => setEncoding(enc.id)}
+                  onClick={() => {
+                    setEncoding(enc.id);
+                    setOutputText(computeOutputText(inputText, mode, enc.id, delimiter, customDelimiter));
+                  }}
                   className={`py-1.5 text-xs font-semibold rounded-lg transition-all ${
                     encoding === enc.id
                       ? "bg-brandColor text-white shadow-sm"
@@ -489,7 +482,10 @@ export default function BinaryDecoder() {
               ].map((delim) => (
                 <button
                   key={delim.id}
-                  onClick={() => setDelimiter(delim.id)}
+                  onClick={() => {
+                    setDelimiter(delim.id);
+                    setOutputText(computeOutputText(inputText, mode, encoding, delim.id, customDelimiter));
+                  }}
                   className={`py-1.5 text-xs font-semibold rounded-lg transition-all ${
                     delimiter === delim.id
                       ? "bg-brandColor text-white shadow-sm"
@@ -512,7 +508,11 @@ export default function BinaryDecoder() {
               disabled={delimiter !== "custom"}
               maxLength={4}
               value={customDelimiter}
-              onChange={(e) => setCustomDelimiter(e.target.value)}
+              onChange={(e) => {
+                const next = e.target.value;
+                setCustomDelimiter(next);
+                setOutputText(computeOutputText(inputText, mode, encoding, delimiter, next));
+              }}
               placeholder="e.g. /, \, _"
               className="px-4 py-2 text-sm text-gray-800 dark:text-gray-100 bg-gray-50 dark:bg-gray-950 border border-gray-200 dark:border-gray-800 rounded-xl focus:outline-none focus:border-brandColor disabled:opacity-40 disabled:cursor-not-allowed font-mono transition-colors"
             />
@@ -571,7 +571,9 @@ export default function BinaryDecoder() {
           <textarea
             value={inputText}
             onChange={(e) => {
-              setInputText(e.target.value);
+              const next = e.target.value;
+              setInputText(next);
+              setOutputText(computeOutputText(next, mode, encoding, delimiter, customDelimiter));
               setActiveChipIndex(-1);
             }}
             placeholder={
@@ -916,7 +918,7 @@ export default function BinaryDecoder() {
             </div>
 
             <p className="mt-4 flex items-center gap-1.5 text-[11px] text-gray-500 dark:text-gray-500">
-              <Info size={12} /> Click "Insert" to add that character or its binary representation into your input box.
+              <Info size={12} /> Click &quot;Insert&quot; to add that character or its binary representation into your input box.
             </p>
           </div>
         )}

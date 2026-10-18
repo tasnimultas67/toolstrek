@@ -1029,12 +1029,10 @@ function JsonTableView({ data }) {
 /* ─── MAIN COMPONENT ───────────────────────────────────────────── */
 export default function JSONEditor() {
   const [inputText, setInputText] = useState("");
-  const [validationError, setValidationError] = useState(null);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [activeTab, setActiveTab] = useState("tree");
 
-  // Synced line numbers states
-  const [lineNumbers, setLineNumbers] = useState([1]);
+  // Synced line numbers (derived from input during render)
   const textareaRef = useRef(null);
   const lineNumbersRef = useRef(null);
 
@@ -1069,13 +1067,9 @@ export default function JSONEditor() {
       2
     )
   );
-  const [schemaValidationResult, setSchemaValidationResult] = useState([]);
-  const [schemaParseError, setSchemaParseError] = useState(null);
 
   // Diff comparison states
   const [comparisonText, setComparisonText] = useState("");
-  const [diffResults, setDiffResults] = useState([]);
-  const [comparisonParseError, setComparisonParseError] = useState(null);
 
   // Visual Tree expanded cache
   const [treeExpanded, setTreeExpanded] = useState({});
@@ -1109,8 +1103,7 @@ export default function JSONEditor() {
     setTimeout(() => setToastMessage(null), 3000);
   };
 
-  // Convert tab conversion state
-  const [convertedText, setConvertedText] = useState("");
+  // Convert tab conversion state (convertedText is derived during render)
   const [convertFormat, setConvertFormat] = useState("yaml");
   const [importFormat, setImportFormat] = useState("yaml");
   const [importText, setImportText] = useState("");
@@ -1122,18 +1115,16 @@ export default function JSONEditor() {
     }
   };
 
-  // Calculate lines on text change
-  useEffect(() => {
+  // Calculate line numbers during render (derived from inputText)
+  const lineNumbers = useMemo(() => {
     const lines = inputText.split("\n");
-    const newNumbers = Array.from({ length: Math.max(1, lines.length) }, (_, i) => i + 1);
-    setLineNumbers(newNumbers);
+    return Array.from({ length: Math.max(1, lines.length) }, (_, i) => i + 1);
   }, [inputText]);
 
   // Load sample json
   const handleLoadSample = () => {
     const indent = indentSize === "tab" ? "\t" : " ".repeat(Number(indentSize));
     setInputText(JSON.stringify(defaultSample, null, indent));
-    setValidationError(null);
     triggerToast("Sample JSON loaded successfully!");
   };
 
@@ -1149,10 +1140,9 @@ export default function JSONEditor() {
       }
       const indent = indentSize === "tab" ? "\t" : " ".repeat(Number(indentSize));
       setInputText(JSON.stringify(parsed, null, indent));
-      setValidationError(null);
       triggerToast("JSON beautified and formatted.");
-    } catch (e) {
-      setValidationError(e.message);
+    } catch {
+      // Parse error is surfaced via the derived validationError below
     }
   };
 
@@ -1167,38 +1157,34 @@ export default function JSONEditor() {
         parsed = JSON.parse(inputText);
       }
       setInputText(JSON.stringify(parsed));
-      setValidationError(null);
       triggerToast("JSON minified/compressed.");
-    } catch (e) {
-      setValidationError(e.message);
+    } catch {
+      // Parse error is surfaced via the derived validationError below
     }
   };
 
   // Clean / Clear
   const handleClear = () => {
     setInputText("");
-    setValidationError(null);
     triggerToast("Workspace cleared.");
   };
 
-  // Safe parsing helper
-  const parsedJson = useMemo(() => {
-    if (!inputText.trim()) return null;
+  // Safe parsing helper — also derives the current validation error during render
+  const parseResult = useMemo(() => {
+    if (!inputText.trim()) return { parsed: null, error: null };
     try {
       let cleaned = inputText;
       if (looseMode) {
         cleaned = cleanLooseJson(inputText);
       }
-      const parsed = JSON.parse(cleaned);
-      if (validationError) setValidationError(null);
-      return parsed;
+      return { parsed: JSON.parse(cleaned), error: null };
     } catch (e) {
-      if (!validationError) {
-        setValidationError(e.message);
-      }
-      return null;
+      return { parsed: null, error: e.message };
     }
-  }, [inputText, looseMode, validationError]);
+  }, [inputText, looseMode]);
+
+  const parsedJson = parseResult.parsed;
+  const validationError = parseResult.error;
 
   // JSON analytics breakdown
   const stats = useMemo(() => getJsonStats(parsedJson), [parsedJson]);
@@ -1210,7 +1196,6 @@ export default function JSONEditor() {
       const updated = modifyJsonAtPath(parsedJson, path, action, args);
       const indent = indentSize === "tab" ? "\t" : " ".repeat(Number(indentSize));
       setInputText(JSON.stringify(updated, null, indent));
-      setValidationError(null);
     } catch (e) {
       triggerToast(`Visual Edit Failed: ${e.message}`);
     }
@@ -1287,20 +1272,13 @@ export default function JSONEditor() {
     }
   };
 
-  // XML / YAML / CSV outputs live builder
-  useEffect(() => {
-    if (!parsedJson) {
-      setConvertedText("");
-      return;
-    }
-
-    if (convertFormat === "yaml") {
-      setConvertedText(jsonToYaml(parsedJson));
-    } else if (convertFormat === "xml") {
-      setConvertedText(jsonToXml(parsedJson));
-    } else if (convertFormat === "csv") {
-      setConvertedText(jsonToCsv(parsedJson));
-    }
+  // XML / YAML / CSV outputs live builder (derived during render)
+  const convertedText = useMemo(() => {
+    if (!parsedJson) return "";
+    if (convertFormat === "yaml") return jsonToYaml(parsedJson);
+    if (convertFormat === "xml") return jsonToXml(parsedJson);
+    if (convertFormat === "csv") return jsonToCsv(parsedJson);
+    return "";
   }, [parsedJson, convertFormat]);
 
   // Import XML/YAML/CSV to JSON converter
@@ -1330,7 +1308,6 @@ export default function JSONEditor() {
         }
         const indent = indentSize === "tab" ? "\t" : " ".repeat(Number(indentSize));
         setInputText(JSON.stringify(result, null, indent));
-        setValidationError(null);
         triggerToast("YAML imported to JSON workspace.");
       } else if (importFormat === "xml") {
         const matches = importText.matchAll(/<([^/>]+)>([^<]*)<\/([^>]+)>/g);
@@ -1346,7 +1323,6 @@ export default function JSONEditor() {
         }
         const indent = indentSize === "tab" ? "\t" : " ".repeat(Number(indentSize));
         setInputText(JSON.stringify(result, null, indent));
-        setValidationError(null);
         triggerToast("XML parsed into JSON workspace.");
       } else if (importFormat === "csv") {
         const lines = importText.split("\n").map(l => l.trim()).filter(Boolean);
@@ -1367,7 +1343,6 @@ export default function JSONEditor() {
           }
           const indent = indentSize === "tab" ? "\t" : " ".repeat(Number(indentSize));
           setInputText(JSON.stringify(rows, null, indent));
-          setValidationError(null);
           triggerToast("CSV table loaded as list JSON.");
         }
       }
@@ -1376,39 +1351,34 @@ export default function JSONEditor() {
     }
   };
 
-  // Schema Validation trigger
-  useEffect(() => {
-    if (!parsedJson) {
-      setSchemaValidationResult([]);
-      return;
-    }
+  // Schema validation (derived during render)
+  const { schemaValidationResult, schemaParseError } = useMemo(() => {
+    if (!parsedJson) return { schemaValidationResult: [], schemaParseError: null };
     try {
       const schemaObj = JSON.parse(schemaText);
-      setSchemaParseError(null);
-      const errors = validateJsonAgainstSchema(parsedJson, schemaObj);
-      setSchemaValidationResult(errors);
+      return {
+        schemaValidationResult: validateJsonAgainstSchema(parsedJson, schemaObj),
+        schemaParseError: null,
+      };
     } catch (e) {
-      setSchemaParseError(e.message);
-      setSchemaValidationResult([]);
+      return { schemaValidationResult: [], schemaParseError: e.message };
     }
   }, [parsedJson, schemaText]);
 
-  // Diff structural check trigger
-  useEffect(() => {
+  // Diff structural check (derived during render)
+  const { diffResults, comparisonParseError } = useMemo(() => {
     if (!comparisonText.trim() || !parsedJson) {
-      setDiffResults([]);
-      setComparisonParseError(null);
-      return;
+      return { diffResults: [], comparisonParseError: null };
     }
     try {
       const cleanComp = looseMode ? cleanLooseJson(comparisonText) : comparisonText;
       const compObj = JSON.parse(cleanComp);
-      setComparisonParseError(null);
-      const diffs = diffJsonObjects(parsedJson, compObj);
-      setDiffResults(diffs);
+      return {
+        diffResults: diffJsonObjects(parsedJson, compObj),
+        comparisonParseError: null,
+      };
     } catch (e) {
-      setComparisonParseError(e.message);
-      setDiffResults([]);
+      return { diffResults: [], comparisonParseError: e.message };
     }
   }, [parsedJson, comparisonText, looseMode]);
 
@@ -1437,7 +1407,6 @@ export default function JSONEditor() {
     try {
       const text = await navigator.clipboard.readText();
       setInputText(text);
-      setValidationError(null);
       triggerToast("Text pasted from clipboard!");
     } catch {
       triggerToast("Clipboard access denied. Please paste manually.");
@@ -1471,7 +1440,6 @@ export default function JSONEditor() {
     const reader = new FileReader();
     reader.onload = (evt) => {
       setInputText(evt.target.result);
-      setValidationError(null);
       triggerToast(`Loaded JSON from ${file.name}`);
     };
     reader.readAsText(file);
@@ -1484,7 +1452,6 @@ export default function JSONEditor() {
     try {
       const parsed = JSON.parse(exampleStr);
       setInputText(JSON.stringify(parsed, null, indent));
-      setValidationError(null);
       triggerToast("Template loaded into editor workspace!");
       window.scrollTo({ top: 0, behavior: "smooth" });
     } catch (e) {
@@ -2391,7 +2358,7 @@ export default function JSONEditor() {
               </h3>
               <ul className="space-y-2.5 text-sm text-slate-650 dark:text-slate-400 leading-relaxed list-disc list-inside">
                 <li>
-                  <span className="font-semibold text-slate-700 dark:text-slate-300">Double Quotes Only:</span> All property keys and string values MUST use double quotes (`"key"`), not single quotes (`'key'`).
+                  <span className="font-semibold text-slate-700 dark:text-slate-300">Double Quotes Only:</span> All property keys and string values MUST use double quotes (`&quot;key&quot;`), not single quotes (`&apos;key&apos;`).
                 </li>
                 <li>
                   <span className="font-semibold text-slate-700 dark:text-slate-300">No Trailing Commas:</span> Extra commas before closing brackets/braces are invalid. (Turn on <span className="font-bold text-violet-650 dark:text-violet-400">Loose Parser</span> to auto-clean them).

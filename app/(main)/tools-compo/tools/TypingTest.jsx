@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef, useCallback, useMemo } from "react";
+import React, { useState, useEffect, useRef, useCallback, useMemo, useSyncExternalStore } from "react";
 import {
   Keyboard as KeyboardIcon,
   Volume2,
@@ -692,6 +692,57 @@ const drawCertificate = (canvas, name, wpm, accuracy, date, theme, certId) => {
   }
 };
 
+// ─── High scores external store (localStorage) ───────────────────────────────
+// Read through useSyncExternalStore so the localStorage read happens outside of
+// render and does not cause a hydration mismatch on the server snapshot.
+const HIGH_SCORES_KEY = "toolstrek_typing_highscores";
+const EMPTY_HIGH_SCORES = [];
+
+let cachedHighScoresRaw = null;
+let cachedHighScores = EMPTY_HIGH_SCORES;
+const highScoresListeners = new Set();
+
+function getHighScoresSnapshot() {
+  if (typeof window === "undefined") return EMPTY_HIGH_SCORES;
+  const raw = window.localStorage.getItem(HIGH_SCORES_KEY);
+  if (raw === cachedHighScoresRaw) return cachedHighScores;
+  cachedHighScoresRaw = raw;
+  if (!raw) {
+    cachedHighScores = EMPTY_HIGH_SCORES;
+    return cachedHighScores;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    cachedHighScores = Array.isArray(parsed) ? parsed : EMPTY_HIGH_SCORES;
+  } catch (e) {
+    console.error("Failed to parse high scores", e);
+    cachedHighScores = EMPTY_HIGH_SCORES;
+  }
+  return cachedHighScores;
+}
+
+function getServerHighScoresSnapshot() {
+  return EMPTY_HIGH_SCORES;
+}
+
+function subscribeHighScores(callback) {
+  const handleStorage = (event) => {
+    if (event.key === HIGH_SCORES_KEY) callback();
+  };
+  highScoresListeners.add(callback);
+  window.addEventListener("storage", handleStorage);
+  return () => {
+    highScoresListeners.delete(callback);
+    window.removeEventListener("storage", handleStorage);
+  };
+}
+
+function persistHighScores(scores) {
+  window.localStorage.setItem(HIGH_SCORES_KEY, JSON.stringify(scores));
+  cachedHighScoresRaw = null;
+  highScoresListeners.forEach((listener) => listener());
+}
+
 export default function TypingTest() {
   // Option selection states
   const [mode, setMode] = useState("time"); // time | words | sudden | zen | code
@@ -731,7 +782,11 @@ export default function TypingTest() {
   const [certId, setCertId] = useState("");
   
   // High scores in localStorage
-  const [highScores, setHighScores] = useState([]);
+  const highScores = useSyncExternalStore(
+    subscribeHighScores,
+    getHighScoresSnapshot,
+    getServerHighScoresSnapshot
+  );
 
   // Client-only state to track focus and avoid hydration mismatches
   const [isFocused, setIsFocused] = useState(false);
@@ -754,20 +809,6 @@ export default function TypingTest() {
   // Active styles based on theme selection
   const theme = useMemo(() => THEMES[themeId], [themeId]);
 
-  // Load High Scores on mount
-  useEffect(() => {
-    if (typeof window !== "undefined") {
-      const stored = localStorage.getItem("toolstrek_typing_highscores");
-      if (stored) {
-        try {
-          setHighScores(JSON.parse(stored));
-        } catch (e) {
-          console.error("Failed to parse high scores", e);
-        }
-      }
-    }
-  }, []);
-
   // Save high scores to state and storage
   const saveHighScore = (wpm, accuracy) => {
     if (typeof window === "undefined") return;
@@ -780,8 +821,7 @@ export default function TypingTest() {
     };
     
     const updated = [newScore, ...highScores].slice(0, 5); // Keep top 5
-    setHighScores(updated);
-    localStorage.setItem("toolstrek_typing_highscores", JSON.stringify(updated));
+    persistHighScores(updated);
   };
 
   // Generate words to type
@@ -848,6 +888,7 @@ export default function TypingTest() {
 
   // Re-generate text when modes change
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect -- random prompt text must be generated post-mount to avoid an SSR hydration mismatch
     resetTest();
   }, [mode, timeLimit, wordLimit, codeLang, resetTest]);
 
@@ -959,7 +1000,6 @@ export default function TypingTest() {
     return () => {
       if (timerIntervalRef.current) clearInterval(timerIntervalRef.current);
     };
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [testStatus, mode, completeTest]);
 
   // Core typing key input listener
@@ -1658,7 +1698,7 @@ export default function TypingTest() {
                   <ul className="text-xs text-slate-300 flex flex-col gap-1.5">
                     {weakestKeys.map((item, idx) => (
                       <li key={idx} className="flex justify-between items-center bg-slate-900/60 p-2 rounded-lg">
-                        <span>Key <strong className="uppercase text-amber-400 font-mono">"{item.keyName}"</strong></span>
+                        <span>Key <strong className="uppercase text-amber-400 font-mono">&quot;{item.keyName}&quot;</strong></span>
                         <span className="text-slate-400">
                           Avg: <strong className="text-slate-200">{item.avgSpeed}ms</strong> | Accuracy: <strong className="text-slate-200">{Math.round(item.accuracy)}%</strong>
                         </span>

@@ -356,6 +356,7 @@ export default function ImageToText() {
 
                 {image ? (
                   <div className="relative w-full">
+                    {/* eslint-disable-next-line @next/next/no-img-element -- blob/data URL preview where next/image adds no benefit */}
                     <img
                       src={image}
                       alt="Preview"

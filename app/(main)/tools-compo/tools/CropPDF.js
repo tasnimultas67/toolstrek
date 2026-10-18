@@ -1127,6 +1127,7 @@ const CropPDF = () => {
                                 }`}
                               >
                                 {preview ? (
+                                  // eslint-disable-next-line @next/next/no-img-element -- data-URL page preview rendered from a PDF; next/image adds no benefit
                                   <img
                                     src={preview}
                                     alt={`Page ${pageNum}`}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import ToolPageShell from "../ToolPageShell";
 import { toast } from "sonner";
 import {
@@ -36,7 +36,6 @@ export default function IPChecker() {
   // Real-time clock logic for target timezone
   useEffect(() => {
     if (!result?.timezone || result.timezone === "Unknown") {
-      setLocalTime("");
       return;
     }
 
@@ -61,20 +60,7 @@ export default function IPChecker() {
     return () => clearInterval(interval);
   }, [result?.timezone]);
 
-  // Load client IP on mount or check for URL params
-  useEffect(() => {
-    const params = new URLSearchParams(window.location.search);
-    const urlQuery = params.get("ip") || params.get("query");
-    
-    if (urlQuery) {
-      setQuery(urlQuery);
-      fetchIpInfo(urlQuery);
-    } else {
-      fetchIpInfo(""); // Load current user IP
-    }
-  }, []);
-
-  const fetchIpInfo = async (searchQuery) => {
+  const fetchIpInfo = useCallback(async (searchQuery) => {
     setLoading(true);
     setError("");
     try {
@@ -96,7 +82,25 @@ export default function IPChecker() {
     } finally {
       setLoading(false);
     }
-  };
+  }, []);
+
+  // Load client IP on mount or check for URL params
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const urlQuery = params.get("ip") || params.get("query");
+    
+    if (urlQuery) {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- seed the search input from URL params after mount to avoid an SSR hydration mismatch
+      setQuery(urlQuery);
+      fetchIpInfo(urlQuery);
+    } else {
+      fetchIpInfo(""); // Load current user IP
+    }
+  }, [fetchIpInfo]);
+
+  // Only surface the clock once a valid timezone has produced a tick
+  const displayedLocalTime =
+    result?.timezone && result.timezone !== "Unknown" ? localTime : "";
 
   const handleSearch = (e) => {
     e.preventDefault();
@@ -368,6 +372,7 @@ Generated via ToolsTrek IP Checker
                   <div className="flex gap-4">
                     <div className="w-12 h-12 rounded-2xl bg-purple-50 dark:bg-purple-900/10 flex items-center justify-center flex-shrink-0 overflow-hidden border border-gray-100 dark:border-gray-800">
                       {result.countryCode ? (
+                        // eslint-disable-next-line @next/next/no-img-element -- remote flag CDN image; next/image needs remotePatterns config
                         <img
                           src={`https://flagcdn.com/w80/${result.countryCode.toLowerCase()}.png`}
                           alt={result.country}
@@ -487,8 +492,8 @@ Generated via ToolsTrek IP Checker
                       <p className="text-xs text-gray-500 dark:text-gray-400">Offset: {result.timezoneOffset}</p>
                     </div>
                     <div className="mt-4">
-                      {localTime ? (
-                        <p className="text-3xl font-black text-brandColor font-mono tracking-wide leading-none">{localTime}</p>
+                      {displayedLocalTime ? (
+                        <p className="text-3xl font-black text-brandColor font-mono tracking-wide leading-none">{displayedLocalTime}</p>
                       ) : (
                         <span className="text-xs text-gray-400">Time details unavailable</span>
                       )}
@@ -581,7 +586,7 @@ Generated via ToolsTrek IP Checker
               Domain IP Resolution
             </h4>
             <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-              When entering a domain name, our tool uses public DNS lookup to map the hostname to its active hosted web server IP before scanning the server's geolocation metrics.
+              When entering a domain name, our tool uses public DNS lookup to map the hostname to its active hosted web server IP before scanning the server&apos;s geolocation metrics.
             </p>
           </div>
         </div>

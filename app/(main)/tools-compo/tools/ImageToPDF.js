@@ -2046,6 +2046,7 @@ export default function ImageToPDF() {
                           >
                             <div className="relative bg-slate-100 dark:bg-slate-800">
                               <div className="relative h-56 overflow-hidden">
+                                {/* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */}
                                 <img
                                   src={image.preview}
                                   alt={image.name}

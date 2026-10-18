@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect, useRef } from "react";
+import React, { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import {
   BookOpen,
   ChevronDown,
@@ -321,7 +321,6 @@ export default function BrailleDecoder() {
   const [language, setLanguage] = useState("bangla");
   const [mode, setMode]         = useState("encode");
   const [input, setInput]       = useState("");
-  const [output, setOutput]     = useState("");
   const [copied, setCopied]     = useState(false);
   const [showRef, setShowRef]   = useState(false);
   const [activeTab, setActiveTab] = useState("vowels");
@@ -338,21 +337,19 @@ export default function BrailleDecoder() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // ── Real-time translation
-  useEffect(() => {
-    if (!input) { setOutput(""); return; }
+  // ── Real-time translation (derived from input/mode/language)
+  const output = useMemo(() => {
+    if (!input) return "";
     if (language === "bangla") {
-      setOutput(mode === "encode" ? banglaEncode(input) : banglaDecode(input));
-    } else {
-      setOutput(mode === "encode" ? englishEncode(input) : englishDecode(input));
+      return mode === "encode" ? banglaEncode(input) : banglaDecode(input);
     }
+    return mode === "encode" ? englishEncode(input) : englishDecode(input);
   }, [input, mode, language]);
 
   const handleSwap = useCallback(() => {
     setMode((m) => (m === "encode" ? "decode" : "encode"));
     setInput(output);
-    setOutput(input);
-  }, [input, output]);
+  }, [output]);
 
   const handleCopy = async () => {
     if (!output) return;
@@ -371,13 +368,12 @@ export default function BrailleDecoder() {
     URL.revokeObjectURL(a.href);
   };
 
-  const handleClear = () => { setInput(""); setOutput(""); };
+  const handleClear = () => { setInput(""); };
 
   const handleLangChange = (lang) => {
     setLanguage(lang);
     setDropOpen(false);
     setInput("");
-    setOutput("");
     setMode("encode");
     setActiveTab(lang === "bangla" ? "vowels" : "letters");
   };
@@ -385,7 +381,6 @@ export default function BrailleDecoder() {
   const handleModeChange = (m) => {
     setMode(m);
     setInput("");
-    setOutput("");
   };
 
   const curLang   = LANGUAGES.find((l) => l.id === language);

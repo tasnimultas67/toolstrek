@@ -413,6 +413,7 @@ export default function SocialPreview() {
                     </div>
                     <div className="px-3 pb-2 text-[13px] text-slate-700 dark:text-slate-300">Check this out! Writing professional links has never been easier.</div>
                     <div className="border-t border-slate-100 dark:border-slate-800 hover:bg-slate-50 dark:hover:bg-[#242526] cursor-pointer transition">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote/data URL from scraped metadata; next/image requires configured remotePatterns */}
                       <img src={displayImage} alt="FB preview" className="w-full aspect-[1.91/1] object-cover bg-slate-100 dark:bg-slate-800" onError={e => { e.target.src = customOgImage; }} />
                       <div className="px-3 py-2 bg-slate-50 dark:bg-[#242526]">
                         <div className="text-[11px] uppercase text-slate-400 tracking-wide">{metadata.domain || "EXAMPLE.COM"}</div>
@@ -451,6 +452,7 @@ export default function SocialPreview() {
                     <div className="px-3 pb-3 pl-13">
                       {twitterCardType === "summary_large_image" ? (
                         <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition">
+                          {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote/data URL from scraped metadata; next/image requires configured remotePatterns */}
                           <img src={displayImage} alt="Twitter large" className="w-full aspect-[1.91/1] object-cover bg-slate-100 dark:bg-slate-800" onError={e => { e.target.src = customOgImage; }} />
                           <div className="p-2.5">
                             <div className="text-[11.5px] text-slate-400 flex items-center gap-1 lowercase"><Globe className="w-3 h-3" />{metadata.domain || "example.com"}</div>
@@ -460,6 +462,7 @@ export default function SocialPreview() {
                         </div>
                       ) : (
                         <div className="border border-slate-200 dark:border-slate-700 rounded-xl overflow-hidden flex cursor-pointer hover:bg-slate-50 dark:hover:bg-slate-900 transition h-[110px]">
+                          {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote/data URL from scraped metadata; next/image requires configured remotePatterns */}
                           <img src={displayImage} alt="Twitter thumb" className="w-[110px] h-full object-cover shrink-0 bg-slate-100 dark:bg-slate-800" onError={e => { e.target.src = customOgImage; }} />
                           <div className="p-2.5 flex flex-col justify-center min-w-0">
                             <div className="text-[11px] text-slate-400 flex items-center gap-1 lowercase"><Globe className="w-2.5 h-2.5" />{metadata.domain || "example.com"}</div>
@@ -489,6 +492,7 @@ export default function SocialPreview() {
                     </div>
                     <div className="text-[13px] text-slate-600 dark:text-slate-300 mb-3">Here is the rendering for my latest project URL metadata:</div>
                     <div className="border border-slate-200 dark:border-slate-700 rounded-lg overflow-hidden cursor-pointer hover:bg-slate-50 dark:hover:bg-[#283038] transition">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote/data URL from scraped metadata; next/image requires configured remotePatterns */}
                       <img src={displayImage} alt="LinkedIn" className="w-full aspect-[1.91/1] object-cover bg-slate-100 dark:bg-slate-800" onError={e => { e.target.src = customOgImage; }} />
                       <div className="p-3 border-t border-slate-100 dark:border-slate-700">
                         <div className="text-[14px] font-semibold text-slate-900 dark:text-white line-clamp-1">{metadata.title || "Preview Title"}</div>
@@ -508,6 +512,7 @@ export default function SocialPreview() {
                   <div className="bg-white dark:bg-[#202124] rounded-xl border border-slate-200 dark:border-slate-700 p-5 shadow-sm">
                     <div className="flex items-center gap-2 mb-2">
                       <div className="w-[18px] h-[18px] rounded-full bg-slate-100 dark:bg-slate-800 flex items-center justify-center">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote favicon URL from scraped metadata; next/image requires configured remotePatterns */}
                         <img src={metadata.icon || "https://example.com/favicon.ico"} alt="icon" className="w-3.5 h-3.5 rounded-sm object-contain" onError={e => { e.target.src = "https://www.google.com/s2/favicons?domain=" + metadata.domain; }} />
                       </div>
                       <div className="text-[12px] text-slate-600 dark:text-[#bdc1c6] flex items-center gap-1 lowercase truncate">
@@ -541,11 +546,13 @@ export default function SocialPreview() {
                       <div className="w-1 rounded-full shrink-0" style={{ backgroundColor: accentColor }} />
                       <div className="min-w-0 space-y-1">
                         <div className={`text-[12px] font-bold flex items-center gap-1.5 cursor-pointer hover:underline ${slackTheme === "light" ? "text-slate-600" : "text-slate-400"}`}>
+                          {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote favicon URL from scraped metadata; next/image requires configured remotePatterns */}
                           <img src={metadata.icon} alt="" className="w-3 h-3 object-contain" onError={e => { e.target.src = "https://www.google.com/s2/favicons?domain=" + metadata.domain; }} />
                           {metadata.siteName || "Site Name"}
                         </div>
                         <div className="font-bold text-[14px] text-[#1264a3] dark:text-[#36c5f0] hover:underline cursor-pointer line-clamp-1">{metadata.title || "Preview Title"}</div>
                         <div className={`text-[13px] leading-relaxed line-clamp-3 ${slackTheme === "light" ? "text-slate-600" : "text-[#d1d2d3]"}`}>{metadata.description || "Enter a compelling description."}</div>
+                        {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote/data URL from scraped metadata; next/image requires configured remotePatterns */}
                         <img src={displayImage} alt="Slack" className="rounded-lg max-w-full max-h-[200px] object-cover mt-1.5 border border-slate-200 dark:border-slate-700" onError={e => { e.target.src = customOgImage; }} />
                       </div>
                     </div>
@@ -579,6 +586,7 @@ export default function SocialPreview() {
                           {metadata.siteName && <div className={`text-[11px] font-medium hover:underline cursor-pointer ${discordTheme === "light" ? "text-slate-500" : "text-[#b9bbbe]"}`}>{metadata.siteName}</div>}
                           <div className="text-[14.5px] font-semibold text-[#00aff0] hover:underline cursor-pointer leading-tight">{metadata.title || "Preview Title"}</div>
                           <div className={`text-[12.5px] leading-relaxed line-clamp-3 ${discordTheme === "light" ? "text-slate-600" : "text-[#dcddde]"}`}>{metadata.description || "Description for Discord embed."}</div>
+                          {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied remote/data URL from scraped metadata; next/image requires configured remotePatterns */}
                           <img src={displayImage} alt="Discord" className="rounded max-w-full max-h-[200px] object-cover mt-1" onError={e => { e.target.src = customOgImage; }} />
                         </div>
                       </div>

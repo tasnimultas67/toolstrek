@@ -1,5 +1,5 @@
 "use client";
-import { useState, useRef, useCallback, useEffect } from "react";
+import { useState, useRef, useCallback, useMemo, useSyncExternalStore } from "react";
 import jsQR from "jsqr";
 import Webcam from "react-webcam";
 import { useDropzone } from "react-dropzone";
@@ -123,6 +123,33 @@ const TYPE_META = {
   text:  { label: "Text",    icon: QrCode,        color: "gray"   },
 };
 
+/* ─── scan history store (localStorage backed) ─────────────── */
+
+const QR_HISTORY_KEY = "qr-scan-history";
+const QR_HISTORY_EVENT = "qr-scan-history-change";
+const EMPTY_HISTORY = "[]";
+
+const subscribeQrHistory = (callback) => {
+  window.addEventListener("storage", callback);
+  window.addEventListener(QR_HISTORY_EVENT, callback);
+  return () => {
+    window.removeEventListener("storage", callback);
+    window.removeEventListener(QR_HISTORY_EVENT, callback);
+  };
+};
+
+const getQrHistorySnapshot = () => {
+  try {
+    return localStorage.getItem(QR_HISTORY_KEY) || EMPTY_HISTORY;
+  } catch {
+    return EMPTY_HISTORY;
+  }
+};
+
+const getServerQrHistorySnapshot = () => EMPTY_HISTORY;
+
+const notifyQrHistoryChange = () => window.dispatchEvent(new Event(QR_HISTORY_EVENT));
+
 /* ─── component ───────────────────────────────────────────── */
 
 const QRScanner = () => {
@@ -132,22 +159,27 @@ const QRScanner = () => {
   const [uploadedFile, setUploadedFile] = useState(null);
   const [isScanning, setIsScanning] = useState(false);
   const [scanStatus, setScanStatus] = useState(null); // 'success' | 'error' | null
-  const [history, setHistory] = useState([]);
   const [copied, setCopied] = useState(false);
 
-  useEffect(() => {
+  const historyRaw = useSyncExternalStore(
+    subscribeQrHistory,
+    getQrHistorySnapshot,
+    getServerQrHistorySnapshot,
+  );
+  const history = useMemo(() => {
     try {
-      const saved = JSON.parse(localStorage.getItem("qr-scan-history") || "[]");
-      setHistory(saved.slice(0, 5));
-    } catch {}
-  }, []);
+      return JSON.parse(historyRaw).slice(0, 5);
+    } catch {
+      return [];
+    }
+  }, [historyRaw]);
 
   const saveToHistory = (text) => {
     try {
-      const saved = JSON.parse(localStorage.getItem("qr-scan-history") || "[]");
+      const saved = JSON.parse(localStorage.getItem(QR_HISTORY_KEY) || "[]");
       const updated = [{ text, time: Date.now() }, ...saved.filter((e) => e.text !== text)].slice(0, 5);
-      localStorage.setItem("qr-scan-history", JSON.stringify(updated));
-      setHistory(updated);
+      localStorage.setItem(QR_HISTORY_KEY, JSON.stringify(updated));
+      notifyQrHistoryChange();
     } catch {}
   };
 
@@ -354,6 +386,7 @@ const QRScanner = () => {
                         </div>
                       ) : (
                         <div className="relative rounded-2xl overflow-hidden border border-gray-100 dark:border-gray-800 bg-gray-50 dark:bg-gray-800/50 min-h-[280px] flex items-center justify-center">
+                          {/* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */}
                           <img src={uploadedFile} alt="Uploaded QR Code" className="max-h-72 max-w-full object-contain" />
                           {isScanning && (
                             <div className="absolute inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center">
@@ -504,7 +537,7 @@ const QRScanner = () => {
               <div className="bg-white dark:bg-gray-900 rounded-3xl border border-gray-100 dark:border-gray-800 overflow-hidden shadow-sm">
                 <div className="px-5 py-4 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between">
                   <span className="text-xs font-black uppercase tracking-widest text-gray-400">Recent Scans</span>
-                  <button onClick={() => { localStorage.removeItem("qr-scan-history"); setHistory([]); }} className="text-xs text-gray-400 hover:text-red-400 transition-colors">
+                  <button onClick={() => { localStorage.removeItem(QR_HISTORY_KEY); notifyQrHistoryChange(); }} className="text-xs text-gray-400 hover:text-red-400 transition-colors">
                     Clear
                   </button>
                 </div>

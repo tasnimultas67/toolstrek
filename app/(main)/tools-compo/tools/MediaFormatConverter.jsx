@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useRef, useEffect } from "react";
+import React, { useState, useCallback, useRef, useSyncExternalStore } from "react";
 import {
   Film,
   Music,
@@ -306,6 +306,11 @@ function DropZone({ onFileSelect, fileType }) {
 
 /* ─────────────────────────── Main Component ─────────────────────────── */
 
+const subscribeNoop = () => () => {};
+const getBrowserSupport = () =>
+  typeof window !== "undefined" && "VideoDecoder" in window;
+const getBrowserSupportServer = () => true;
+
 export default function MediaFormatConverter() {
   const [file, setFile] = useState(null);
   const [fileType, setFileType] = useState(null); // 'video' | 'audio'
@@ -319,7 +324,12 @@ export default function MediaFormatConverter() {
   const [activeTab, setActiveTab] = useState("video"); // video | audio
   const [conversionTime, setConversionTime] = useState(null);
   const [outputSize, setOutputSize] = useState(null);
-  const [isBrowserSupported, setIsBrowserSupported] = useState(true);
+  // WebCodecs support (hydration-safe external store read)
+  const isBrowserSupported = useSyncExternalStore(
+    subscribeNoop,
+    getBrowserSupport,
+    getBrowserSupportServer,
+  );
   const [previewUrl, setPreviewUrl] = useState(null);
   const [logs, setLogs] = useState([]);
 
@@ -341,12 +351,6 @@ export default function MediaFormatConverter() {
   const previewPlayerRef = useRef(null);
   const conversionRef = useRef(null);
   const startTimeRef = useRef(null);
-
-  // Check WebCodecs support
-  useEffect(() => {
-    const supported = typeof window !== "undefined" && "VideoDecoder" in window;
-    setIsBrowserSupported(supported);
-  }, []);
 
   const addLog = useCallback((msg, type = "info") => {
     setLogs((prev) => [...prev.slice(-19), { msg, type, ts: Date.now() }]);

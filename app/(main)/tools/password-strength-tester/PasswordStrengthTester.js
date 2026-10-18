@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   Eye, EyeOff, ShieldCheck, ShieldAlert, ShieldX, Shield,
@@ -211,7 +211,6 @@ const SHIELD_ICONS = { ShieldX, ShieldAlert, Shield, ShieldCheck };
 export default function PasswordStrengthTester() {
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
-  const [analysis, setAnalysis] = useState(null);
   const [copied, setCopied] = useState(false);
   const [showAdvanced, setShowAdvanced] = useState(false);
   const [showGenerator, setShowGenerator] = useState(false);
@@ -220,7 +219,8 @@ export default function PasswordStrengthTester() {
     symbols: true, avoidAmbiguous: false, noRepeating: false,
   });
 
-  useEffect(() => { setAnalysis(analyzePassword(password)); }, [password]);
+  // Analysis is a pure function of the password, so derive it during render
+  const analysis = useMemo(() => analyzePassword(password), [password]);
 
   const handleCopy = useCallback(async () => {
     if (!password) return;

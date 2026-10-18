@@ -3,11 +3,11 @@
 
 import React, {
   useState,
-  useEffect,
   useRef,
   useMemo,
   useCallback,
   useTransition,
+  useSyncExternalStore,
 } from "react";
 import { useSearchParams } from "next/navigation";
 import ToolPageShell from "../ToolPageShell";
@@ -68,6 +68,66 @@ import { toast } from "sonner";
 import { jsPDF } from "jspdf";
 import html2canvas from "html2canvas";
 
+// ─── Custom events external store (localStorage) ─────────────────────────────
+const CUSTOM_EVENTS_KEY = "toolstrek_calendar_custom_events";
+const EMPTY_CUSTOM_EVENTS = [];
+
+let cachedEventsRaw = null;
+let cachedEvents = EMPTY_CUSTOM_EVENTS;
+const customEventsListeners = new Set();
+
+function getCustomEventsSnapshot() {
+  if (typeof window === "undefined") return EMPTY_CUSTOM_EVENTS;
+  let raw;
+  try {
+    raw = window.localStorage.getItem(CUSTOM_EVENTS_KEY);
+  } catch (e) {
+    console.warn("Could not load local events", e);
+    return EMPTY_CUSTOM_EVENTS;
+  }
+  if (raw === cachedEventsRaw) return cachedEvents;
+  cachedEventsRaw = raw;
+  if (!raw) {
+    cachedEvents = EMPTY_CUSTOM_EVENTS;
+    return cachedEvents;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    cachedEvents = Array.isArray(parsed) ? parsed : EMPTY_CUSTOM_EVENTS;
+  } catch (e) {
+    console.warn("Could not load local events", e);
+    cachedEvents = EMPTY_CUSTOM_EVENTS;
+  }
+  return cachedEvents;
+}
+
+function getServerCustomEventsSnapshot() {
+  return EMPTY_CUSTOM_EVENTS;
+}
+
+function subscribeCustomEvents(listener) {
+  const handleStorage = (event) => {
+    if (event.key === CUSTOM_EVENTS_KEY) listener();
+  };
+  customEventsListeners.add(listener);
+  window.addEventListener("storage", handleStorage);
+  return () => {
+    customEventsListeners.delete(listener);
+    window.removeEventListener("storage", handleStorage);
+  };
+}
+
+function persistCustomEvents(events) {
+  cachedEvents = events;
+  try {
+    cachedEventsRaw = JSON.stringify(events);
+    window.localStorage.setItem(CUSTOM_EVENTS_KEY, cachedEventsRaw);
+  } catch (e) {
+    console.warn("Could not save local events", e);
+  }
+  customEventsListeners.forEach((listener) => listener());
+}
+
 export default function CalendarGenerator() {
   const searchParams = useSearchParams();
   const [, startTransition] = useTransition();
@@ -122,7 +182,11 @@ export default function CalendarGenerator() {
   const [activeTab, setActiveTab] = useState("dates"); // 'dates' | 'page' | 'format' | 'holidays' | 'theme' | 'header' | 'presets'
 
   // ─── Custom Personal Events (LocalStorage) ───
-  const [customEvents, setCustomEvents] = useState([]);
+  const customEvents = useSyncExternalStore(
+    subscribeCustomEvents,
+    getCustomEventsSnapshot,
+    getServerCustomEventsSnapshot
+  );
   const [isEventModalOpen, setIsEventModalOpen] = useState(false);
   const [selectedDayForEvent, setSelectedDayForEvent] = useState(null);
   const [newEventTitle, setNewEventTitle] = useState("");
@@ -137,26 +201,9 @@ export default function CalendarGenerator() {
 
   const previewRef = useRef(null);
 
-  // Load custom events from localStorage on mount
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("toolstrek_calendar_custom_events");
-      if (stored) {
-        setCustomEvents(JSON.parse(stored));
-      }
-    } catch (e) {
-      console.warn("Could not load local events", e);
-    }
-  }, []);
-
   // Save custom events to localStorage
   const saveCustomEvents = (events) => {
-    setCustomEvents(events);
-    try {
-      localStorage.setItem("toolstrek_calendar_custom_events", JSON.stringify(events));
-    } catch (e) {
-      console.warn("Could not save local events", e);
-    }
+    persistCustomEvents(events);
   };
 
   // Sync title when year changes if using default title

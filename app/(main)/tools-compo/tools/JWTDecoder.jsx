@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import {
   ShieldCheck,
   ShieldAlert,
@@ -136,12 +136,112 @@ function base64UrlToArrayBuffer(base64Url) {
   return bytes.buffer;
 }
 
+// Parse a JWT token into its decoded parts. Pure, so it can run during render.
+function parseToken(rawToken) {
+  const trimmed = rawToken.trim();
+  if (!trimmed) {
+    return { headerData: null, payloadData: null, signaturePart: "", parseError: "", activeAlg: "" };
+  }
+
+  const parts = trimmed.split(".");
+  if (parts.length !== 3) {
+    return {
+      headerData: null,
+      payloadData: null,
+      signaturePart: "",
+      parseError: "Invalid JWT: A standard JWT token must consist of exactly 3 parts separated by dots (.)",
+      activeAlg: "",
+    };
+  }
+
+  try {
+    let decodedHeader;
+    try {
+      decodedHeader = JSON.parse(base64UrlDecode(parts[0]));
+    } catch (err) {
+      throw new Error("Failed to parse token header: Header is not valid JSON.");
+    }
+
+    let decodedPayload;
+    try {
+      decodedPayload = JSON.parse(base64UrlDecode(parts[1]));
+    } catch (err) {
+      throw new Error("Failed to parse token payload: Payload is not valid JSON.");
+    }
+
+    return {
+      headerData: decodedHeader,
+      payloadData: decodedPayload,
+      signaturePart: parts[2],
+      parseError: "",
+      activeAlg: decodedHeader?.alg || "",
+    };
+  } catch (error) {
+    return {
+      headerData: null,
+      payloadData: null,
+      signaturePart: "",
+      parseError: error.message || "An error occurred while decoding the JWT.",
+      activeAlg: "",
+    };
+  }
+}
+
+// Compute the HMAC verification status. Pure (aside from the async crypto call),
+// returning the resulting status instead of setting state so it never triggers
+// a synchronous setState within an effect.
+async function computeSignatureStatus({ token, headerData, payloadData, secretKey, cryptoAlg }) {
+  if (!token.trim() || !headerData || !payloadData) return "unchecked";
+
+  const parts = token.trim().split(".");
+  if (parts.length !== 3) return "unchecked";
+
+  const alg = headerData?.alg || "";
+
+  // Check if algorithm is none
+  if (alg.toLowerCase() === "none") return "invalid";
+
+  // Determine verification algorithm
+  const selectedAlg = cryptoAlg === "auto" ? alg : cryptoAlg;
+
+  if (!selectedAlg || !selectedAlg.startsWith("HS")) {
+    // Standard asymmetric verification isn't implemented in the quick check, or marked as unsupported
+    return "unsupported";
+  }
+
+  try {
+    const hashName = selectedAlg === "HS384" ? "SHA-384" : selectedAlg === "HS512" ? "SHA-512" : "SHA-256";
+    const encoder = new TextEncoder();
+    const keyData = encoder.encode(secretKey);
+
+    const cryptoKey = await window.crypto.subtle.importKey(
+      "raw",
+      keyData,
+      { name: "HMAC", hash: { name: hashName } },
+      false,
+      ["verify"]
+    );
+
+    const headerAndPayloadBytes = encoder.encode(`${parts[0]}.${parts[1]}`);
+    const signatureBytes = base64UrlToArrayBuffer(parts[2]);
+
+    const isValid = await window.crypto.subtle.verify(
+      "HMAC",
+      cryptoKey,
+      signatureBytes,
+      headerAndPayloadBytes
+    );
+
+    return isValid ? "valid" : "invalid";
+  } catch (e) {
+    return "invalid";
+  }
+}
+
 export default function JWTDecoder() {
   const [tokenInput, setTokenInput] = useState("");
-  const [headerData, setHeaderData] = useState(null);
-  const [payloadData, setPayloadData] = useState(null);
-  const [signaturePart, setSignaturePart] = useState("");
-  const [parseError, setParseError] = useState("");
+  // `nowMs` is captured outside render so time-dependent formatting stays pure.
+  const [nowMs, setNowMs] = useState(() => Date.now());
   
   // Copy statuses
   const [copiedToken, setCopiedToken] = useState(false);
@@ -159,148 +259,39 @@ export default function JWTDecoder() {
   
   // Signature Verification Results
   const [signatureStatus, setSignatureStatus] = useState("unchecked"); // "unchecked" | "valid" | "invalid" | "unsupported"
-  const [activeAlg, setActiveAlg] = useState("");
 
-  // Parse JWT token on change
-  useEffect(() => {
-    const trimmed = tokenInput.trim();
-    if (!trimmed) {
-      setHeaderData(null);
-      setPayloadData(null);
-      setSignaturePart("");
-      setParseError("");
-      setSignatureStatus("unchecked");
-      setActiveAlg("");
-      return;
-    }
-
-    const parts = trimmed.split(".");
-    if (parts.length !== 3) {
-      setParseError("Invalid JWT: A standard JWT token must consist of exactly 3 parts separated by dots (.)");
-      setHeaderData(null);
-      setPayloadData(null);
-      setSignaturePart("");
-      setSignatureStatus("unchecked");
-      setActiveAlg("");
-      return;
-    }
-
-    try {
-      // Decode Header
-      let decodedHeader;
-      try {
-        decodedHeader = JSON.parse(base64UrlDecode(parts[0]));
-      } catch (err) {
-        throw new Error("Failed to parse token header: Header is not valid JSON.");
-      }
-
-      // Decode Payload
-      let decodedPayload;
-      try {
-        decodedPayload = JSON.parse(base64UrlDecode(parts[1]));
-      } catch (err) {
-        throw new Error("Failed to parse token payload: Payload is not valid JSON.");
-      }
-
-      setHeaderData(decodedHeader);
-      setPayloadData(decodedPayload);
-      setSignaturePart(parts[2]);
-      setParseError("");
-      
-      const alg = decodedHeader?.alg || "";
-      setActiveAlg(alg);
-      
-    } catch (error) {
-      setParseError(error.message || "An error occurred while decoding the JWT.");
-      setHeaderData(null);
-      setPayloadData(null);
-      setSignaturePart("");
-      setSignatureStatus("unchecked");
-      setActiveAlg("");
-    }
-  }, [tokenInput]);
-
-  // Crytographic Signature Verification helper
-  const verifySignature = useCallback(async () => {
-    if (!tokenInput.trim() || !headerData || !payloadData) {
-      setSignatureStatus("unchecked");
-      return;
-    }
-
-    const parts = tokenInput.trim().split(".");
-    if (parts.length !== 3) return;
-
-    const alg = headerData?.alg || "";
-    
-    // Check if algorithm is none
-    if (alg.toLowerCase() === "none") {
-      setSignatureStatus("invalid");
-      return;
-    }
-
-    // Determine verification algorithm
-    let selectedAlg = cryptoAlg === "auto" ? alg : cryptoAlg;
-    
-    if (!selectedAlg || !selectedAlg.startsWith("HS")) {
-      // Standard asymmetric verification isn't implemented in the quick check, or marked as unsupported
-      setSignatureStatus("unsupported");
-      return;
-    }
-
-    try {
-      const hashName = selectedAlg === "HS384" ? "SHA-384" : selectedAlg === "HS512" ? "SHA-512" : "SHA-256";
-      const encoder = new TextEncoder();
-      const keyData = encoder.encode(secretKey);
-      
-      const cryptoKey = await window.crypto.subtle.importKey(
-        "raw",
-        keyData,
-        { name: "HMAC", hash: { name: hashName } },
-        false,
-        ["verify"]
-      );
-
-      const headerAndPayloadBytes = encoder.encode(`${parts[0]}.${parts[1]}`);
-      const signatureBytes = base64UrlToArrayBuffer(parts[2]);
-
-      const isValid = await window.crypto.subtle.verify(
-        "HMAC",
-        cryptoKey,
-        signatureBytes,
-        headerAndPayloadBytes
-      );
-
-      setSignatureStatus(isValid ? "valid" : "invalid");
-    } catch (e) {
-      setSignatureStatus("invalid");
-    }
-  }, [tokenInput, headerData, payloadData, secretKey, cryptoAlg]);
+  // Parse JWT token (derived from the input, so no setState-in-effect is needed)
+  const { headerData, payloadData, signaturePart, parseError, activeAlg } = useMemo(
+    () => parseToken(tokenInput),
+    [tokenInput]
+  );
 
   // Run signature verification when configurations or input changes
   useEffect(() => {
-    if (enableCryptoVerify) {
-      verifySignature();
-    } else {
-      setSignatureStatus("unchecked");
-    }
-  }, [enableCryptoVerify, verifySignature]);
+    if (!enableCryptoVerify) return;
+    let cancelled = false;
+    computeSignatureStatus({ token: tokenInput, headerData, payloadData, secretKey, cryptoAlg }).then(
+      (status) => {
+        if (!cancelled) setSignatureStatus(status);
+      }
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, [enableCryptoVerify, tokenInput, headerData, payloadData, secretKey, cryptoAlg]);
 
   // Button actions
   const handleLoadSample = () => {
     setTokenInput(SAMPLE_TOKEN);
     setSecretKey(SAMPLE_SECRET);
     setEnableCryptoVerify(true);
-    setParseError("");
+    setNowMs(Date.now());
   };
 
   const handleClear = () => {
     setTokenInput("");
-    setHeaderData(null);
-    setPayloadData(null);
-    setSignaturePart("");
-    setParseError("");
     setSignatureStatus("unchecked");
-    setActiveAlg("");
+    setNowMs(Date.now());
   };
 
   const handleCopy = async (text, setter) => {
@@ -321,7 +312,7 @@ export default function JWTDecoder() {
       if (timeFormat === "utc") {
         return `${val} (${date.toUTCString()})`;
       } else if (timeFormat === "relative") {
-        const diffMs = date.getTime() - Date.now();
+        const diffMs = date.getTime() - nowMs;
         const diffSec = Math.round(diffMs / 1000);
         const diffMin = Math.round(diffSec / 60);
         const diffHr = Math.round(diffMin / 60);
@@ -357,8 +348,7 @@ export default function JWTDecoder() {
   const checkTokenExpiryStatus = () => {
     if (!payloadData || typeof payloadData.exp !== "number") return null;
     const expMs = payloadData.exp * 1000;
-    const nowMs = Date.now();
-    
+
     if (nowMs > expMs) {
       return { status: "expired", message: "Token has expired!" };
     } else if (expMs - nowMs < 10 * 60 * 1000) {
@@ -476,7 +466,11 @@ export default function JWTDecoder() {
                 <input
                   type="checkbox"
                   checked={enableCryptoVerify}
-                  onChange={(e) => setEnableCryptoVerify(e.target.checked)}
+                  onChange={(e) => {
+                    const next = e.target.checked;
+                    setEnableCryptoVerify(next);
+                    if (!next) setSignatureStatus("unchecked");
+                  }}
                   className="w-4 h-4 text-brandColor rounded-sm focus:ring-brandColor border-gray-300 dark:border-gray-700 bg-transparent"
                 />
                 Enable HMAC Verification
@@ -578,11 +572,11 @@ export default function JWTDecoder() {
                 <div className="flex items-center gap-2 text-xs md:text-sm">
                   {headerData?.alg?.toLowerCase() === "none" ? (
                     <span className="text-red-500 flex items-center gap-1.5 font-semibold">
-                      <ShieldAlert size={14} /> Alg is 'none' (Vulnerable)
+                      <ShieldAlert size={14} /> Alg is &apos;none&apos; (Vulnerable)
                     </span>
                   ) : (
                     <span className="text-emerald-500 flex items-center gap-1.5 font-medium">
-                      <ShieldCheck size={14} /> No 'none' algorithm bypass
+                      <ShieldCheck size={14} /> No &apos;none&apos; algorithm bypass
                     </span>
                   )}
                 </div>
@@ -602,7 +596,7 @@ export default function JWTDecoder() {
                 <div className="flex items-center gap-2 text-xs md:text-sm">
                   {payloadData && typeof payloadData.exp !== "number" ? (
                     <span className="text-amber-500 flex items-center gap-1.5 font-medium">
-                      <ShieldAlert size={14} /> No 'exp' expiration claim
+                      <ShieldAlert size={14} /> No &apos;exp&apos; expiration claim
                     </span>
                   ) : (
                     <span className="text-emerald-500 flex items-center gap-1.5 font-medium">
@@ -656,7 +650,10 @@ export default function JWTDecoder() {
             <textarea
               id="token-textarea"
               value={tokenInput}
-              onChange={(e) => setTokenInput(e.target.value)}
+              onChange={(e) => {
+                setTokenInput(e.target.value);
+                setNowMs(Date.now());
+              }}
               placeholder="Paste your base64-encoded JWT token here... e.g. eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxMjM0In0.signature"
               rows={14}
               className="w-full px-4 py-3 rounded-xl border border-gray-300 dark:border-gray-700 bg-gray-50/30 dark:bg-gray-950 text-gray-900 dark:text-white placeholder-gray-400 dark:placeholder-gray-600 focus:outline-hidden focus:ring-2 focus:ring-brandColor text-xs md:text-sm font-mono tracking-wide leading-relaxed resize-y min-h-[250px]"
@@ -771,7 +768,7 @@ export default function JWTDecoder() {
               ) : (
                 <div className="text-center py-6 text-xs md:text-sm text-gray-400 dark:text-gray-500 leading-normal flex flex-col items-center justify-center gap-2">
                   <Lock size={20} className="text-gray-300 dark:text-gray-700" />
-                  <span>No JWT loaded. Paste a token on the left or click 'Load Sample' to populate data.</span>
+                  <span>No JWT loaded. Paste a token on the left or click &apos;Load Sample&apos; to populate data.</span>
                 </div>
               )}
             </div>

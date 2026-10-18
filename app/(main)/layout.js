@@ -2,7 +2,7 @@ import { Outfit } from "next/font/google";
 import "../globals.css";
 
 import Header from "./tools-compo/Header";
-import { Toaster } from "sonner";
+import { Toaster } from "@/components/ui/sonner";
 import Footer from "./tools-compo/Footer";
 import GlobalSearchModal from "@/components/ui/GlobalSearchModal";
 import RecentToolsTracker from "@/components/RecentToolsTracker";

@@ -1,7 +1,7 @@
 // app/(main)/tools-compo/tools/CountdownTimer.jsx
 "use client";
 
-import React, { useState, useEffect, useRef, useMemo, useCallback } from "react";
+import React, { useState, useEffect, useRef, useMemo, useCallback, useSyncExternalStore } from "react";
 import { useSearchParams } from "next/navigation";
 import ToolPageShell from "../ToolPageShell";
 import FavoriteButton from "@/components/FavoriteButton";
@@ -55,6 +55,11 @@ import {
 
 const STORAGE_KEY = "toolstrek_countdown_state_v1";
 
+// Client-only flag: false during SSR/hydration, true once running in the browser.
+const emptySubscribe = () => () => {};
+const getIsClient = () => true;
+const getIsServer = () => false;
+
 // Helper: Format Date for datetime-local input (YYYY-MM-DDTHH:mm)
 const formatToDateTimeLocal = (date) => {
   const d = new Date(date);
@@ -69,7 +74,7 @@ const formatToDateTimeLocal = (date) => {
 
 export default function CountdownTimer({ defaultTab = "countdown" }) {
   const searchParams = useSearchParams();
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(emptySubscribe, getIsClient, getIsServer);
 
   // ─── Active Tab State ───
   const [activeTab, setActiveTab] = useState(defaultTab); // "countdown" | "days-until" | "presets"
@@ -131,41 +136,44 @@ export default function CountdownTimer({ defaultTab = "countdown" }) {
 
   // ─── Mount & URL Query Param Hydration ───
   useEffect(() => {
-    setMounted(true);
+    // The URL/localStorage reads must happen on the client after hydration, and the
+    // resulting state updates are applied in a microtask callback so the effect
+    // body itself does not synchronously set state.
+    queueMicrotask(() => {
+      // Read query params if provided
+      const qTitle = searchParams.get("title");
+      const qDate = searchParams.get("date");
+      const qEmoji = searchParams.get("emoji");
+      const qTheme = searchParams.get("theme");
+      const qTz = searchParams.get("tz");
+      const qMode = searchParams.get("mode");
 
-    // Read query params if provided
-    const qTitle = searchParams.get("title");
-    const qDate = searchParams.get("date");
-    const qEmoji = searchParams.get("emoji");
-    const qTheme = searchParams.get("theme");
-    const qTz = searchParams.get("tz");
-    const qMode = searchParams.get("mode");
-
-    if (qTitle) setTitle(qTitle);
-    if (qDate) setTargetDateStr(qDate);
-    if (qEmoji) setEmoji(qEmoji);
-    if (qTheme && THEMES.some((t) => t.id === qTheme)) setThemeId(qTheme);
-    if (qTz) setTimezone(qTz);
-    if (qMode === "days-until" || defaultTab === "days-until") {
-      setActiveTab("days-until");
-    }
-
-    // Try reading saved settings from LocalStorage
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved && !qTitle && !qDate) {
-        const parsed = JSON.parse(saved);
-        if (parsed.title) setTitle(parsed.title);
-        if (parsed.emoji) setEmoji(parsed.emoji);
-        if (parsed.targetDateStr) setTargetDateStr(parsed.targetDateStr);
-        if (parsed.themeId) setThemeId(parsed.themeId);
-        if (parsed.soundAlert) setSoundAlert(parsed.soundAlert);
-        if (parsed.unitMode) setUnitMode(parsed.unitMode);
-        if (typeof parsed.volume === "number") setVolume(parsed.volume);
+      if (qTitle) setTitle(qTitle);
+      if (qDate) setTargetDateStr(qDate);
+      if (qEmoji) setEmoji(qEmoji);
+      if (qTheme && THEMES.some((t) => t.id === qTheme)) setThemeId(qTheme);
+      if (qTz) setTimezone(qTz);
+      if (qMode === "days-until" || defaultTab === "days-until") {
+        setActiveTab("days-until");
       }
-    } catch {
-      // Ignore local storage error
-    }
+
+      // Try reading saved settings from LocalStorage
+      try {
+        const saved = localStorage.getItem(STORAGE_KEY);
+        if (saved && !qTitle && !qDate) {
+          const parsed = JSON.parse(saved);
+          if (parsed.title) setTitle(parsed.title);
+          if (parsed.emoji) setEmoji(parsed.emoji);
+          if (parsed.targetDateStr) setTargetDateStr(parsed.targetDateStr);
+          if (parsed.themeId) setThemeId(parsed.themeId);
+          if (parsed.soundAlert) setSoundAlert(parsed.soundAlert);
+          if (parsed.unitMode) setUnitMode(parsed.unitMode);
+          if (typeof parsed.volume === "number") setVolume(parsed.volume);
+        }
+      } catch {
+        // Ignore local storage error
+      }
+    });
   }, [searchParams, defaultTab]);
 
   // ─── Save Settings on Change ───

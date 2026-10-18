@@ -460,9 +460,12 @@ export default function DummyTextGenerator() {
     URL.revokeObjectURL(url);
   };
 
-  // Automatically generate on page load and control state changes
+  // Automatically generate on page load and control state changes.
+  // Deferred to a task so the random generation (which calls setState) runs
+  // outside the synchronous effect commit.
   useEffect(() => {
-    handleGenerate();
+    const timer = setTimeout(() => handleGenerate(), 0);
+    return () => clearTimeout(timer);
   }, [handleGenerate]);
 
   return (

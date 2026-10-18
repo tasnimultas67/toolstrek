@@ -363,14 +363,21 @@ export default function CGPACalculator() {
     [program, department],
   );
 
-  const selectedData = subjectData[program]?.[department]?.[year] || {
-    core: [],
-    optional: [],
-    optionalLimit: 0,
-  };
+  const selectedData = useMemo(
+    () =>
+      subjectData[program]?.[department]?.[year] || {
+        core: [],
+        optional: [],
+        optionalLimit: 0,
+      },
+    [program, department, year],
+  );
 
-  const coreSubjects = selectedData.core || [];
-  const optionalSubjects = selectedData.optional || [];
+  const coreSubjects = useMemo(() => selectedData.core || [], [selectedData]);
+  const optionalSubjects = useMemo(
+    () => selectedData.optional || [],
+    [selectedData],
+  );
   const optionalLimit = selectedData.optionalLimit || 0;
 
   const resultRows = useMemo(() => {

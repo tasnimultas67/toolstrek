@@ -1,7 +1,7 @@
 // app/(main)/tools-compo/tools/TaskPrioritizer.jsx
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useRef, useCallback, useSyncExternalStore } from "react";
 import ToolPageShell from "../ToolPageShell";
 import FavoriteButton from "@/components/FavoriteButton";
 import toolsData from "@/lib/toolsData.json";
@@ -63,20 +63,124 @@ import {
 
 const STORAGE_KEY = "toolstrek_task_prioritizer_state_v1";
 
+// ─── Persisted state external store (localStorage) ───────────────────────────
+const DEFAULT_PERSISTED_STATE = {
+  tasks: INITIAL_TASKS,
+  framework: FRAMEWORKS.EISENHOWER,
+  theme: THEMES[0].id,
+  soundEnabled: true,
+};
+
+let cachedStateRaw = null;
+let cachedState = DEFAULT_PERSISTED_STATE;
+const persistedStateListeners = new Set();
+
+function readPersistedState() {
+  if (typeof window === "undefined") return DEFAULT_PERSISTED_STATE;
+  let raw;
+  try {
+    raw = window.localStorage.getItem(STORAGE_KEY);
+  } catch {
+    return DEFAULT_PERSISTED_STATE;
+  }
+  if (raw === cachedStateRaw) return cachedState;
+  cachedStateRaw = raw;
+  if (!raw) {
+    cachedState = DEFAULT_PERSISTED_STATE;
+    return cachedState;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    cachedState = {
+      tasks: Array.isArray(parsed?.tasks) ? parsed.tasks : INITIAL_TASKS,
+      framework:
+        parsed?.framework && FRAMEWORK_CONFIGS[parsed.framework]
+          ? parsed.framework
+          : FRAMEWORKS.EISENHOWER,
+      theme: parsed?.theme || THEMES[0].id,
+      soundEnabled:
+        parsed?.soundEnabled !== undefined
+          ? parsed.soundEnabled
+          : true,
+    };
+  } catch {
+    cachedState = DEFAULT_PERSISTED_STATE;
+  }
+  return cachedState;
+}
+
+function getServerPersistedState() {
+  return DEFAULT_PERSISTED_STATE;
+}
+
+function subscribePersistedState(listener) {
+  const handleStorage = (event) => {
+    if (event.key === STORAGE_KEY) listener();
+  };
+  persistedStateListeners.add(listener);
+  window.addEventListener("storage", handleStorage);
+  return () => {
+    persistedStateListeners.delete(listener);
+    window.removeEventListener("storage", handleStorage);
+  };
+}
+
+function writePersistedState(next) {
+  cachedState = next;
+  cachedStateRaw = JSON.stringify(next);
+  try {
+    window.localStorage.setItem(STORAGE_KEY, cachedStateRaw);
+  } catch {
+    // Storage quota exceeded or disabled
+  }
+  persistedStateListeners.forEach((listener) => listener());
+}
+
 export default function TaskPrioritizer() {
   // ─── Core State ───
-  const [tasks, setTasks] = useState(INITIAL_TASKS);
-  const [framework, setFramework] = useState(FRAMEWORKS.EISENHOWER);
-  const [activeTheme, setActiveTheme] = useState(THEMES[0].id);
+  const persistedState = useSyncExternalStore(
+    subscribePersistedState,
+    readPersistedState,
+    getServerPersistedState
+  );
+  const { tasks, framework, activeTheme, soundEnabled } = persistedState;
+
   const [viewMode, setViewMode] = useState("matrix"); // matrix | kanban | list | focus
   const [focusQuadrant, setFocusQuadrant] = useState("q1");
   const [searchQuery, setSearchQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState("all");
   const [statusFilter, setStatusFilter] = useState("all"); // all | active | completed
   const [sortBy, setSortBy] = useState("default"); // default | deadline | title | est
-  const [soundEnabled, setSoundEnabled] = useState(true);
   const [isZenMode, setIsZenMode] = useState(false);
-  const [mounted, setMounted] = useState(false);
+
+  // Drop-in replacements for the persisted pieces of state: each write merges
+  // into the stored snapshot so the localStorage format stays unchanged.
+  const setTasks = useCallback((updater) => {
+    const current = readPersistedState();
+    const nextTasks =
+      typeof updater === "function" ? updater(current.tasks) : updater;
+    writePersistedState({ ...current, tasks: nextTasks });
+  }, []);
+
+  const setFramework = useCallback((nextFramework) => {
+    writePersistedState({ ...readPersistedState(), framework: nextFramework });
+  }, []);
+
+  const setActiveTheme = useCallback((nextTheme) => {
+    writePersistedState({ ...readPersistedState(), theme: nextTheme });
+  }, []);
+
+  const setSoundEnabled = useCallback((nextSoundEnabled) => {
+    writePersistedState({
+      ...readPersistedState(),
+      soundEnabled: nextSoundEnabled,
+    });
+  }, []);
+
+  // Keep the sound engine in sync with the persisted preference
+  useEffect(() => {
+    taskSoundEngine.muted = !soundEnabled;
+  }, [soundEnabled]);
 
   // ─── Modal / Drawer States ───
   const [editingTask, setEditingTask] = useState(null); // task object or null
@@ -95,42 +199,6 @@ export default function TaskPrioritizer() {
   const [newNotes, setNewNotes] = useState("");
 
   const fileInputRef = useRef(null);
-
-  // ─── LocalStorage Hydration ───
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed.tasks)) setTasks(parsed.tasks);
-        if (parsed.framework && FRAMEWORK_CONFIGS[parsed.framework]) setFramework(parsed.framework);
-        if (parsed.theme) setActiveTheme(parsed.theme);
-        if (parsed.soundEnabled !== undefined) {
-          setSoundEnabled(parsed.soundEnabled);
-          taskSoundEngine.muted = !parsed.soundEnabled;
-        }
-      }
-    } catch {
-      // LocalStorage error handled
-    }
-    setMounted(true);
-  }, []);
-
-  // ─── Save State on Change ───
-  useEffect(() => {
-    if (!mounted) return;
-    try {
-      const state = {
-        tasks,
-        framework,
-        theme: activeTheme,
-        soundEnabled
-      };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
-    } catch {
-      // Storage quota exceeded or disabled
-    }
-  }, [tasks, framework, activeTheme, soundEnabled, mounted]);
 
   // ─── Sound Toggle ───
   const toggleSound = () => {

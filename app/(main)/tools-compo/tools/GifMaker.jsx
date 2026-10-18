@@ -565,6 +565,7 @@ export default function GifMaker() {
 
                       {/* Thumbnail */}
                       <div className="aspect-square bg-gray-50 dark:bg-gray-900">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- blob/data URL preview where next/image adds no benefit */}
                         <img
                           src={frame.src}
                           alt={frame.name}
@@ -686,6 +687,7 @@ export default function GifMaker() {
                 ) : previewUrl ? (
                   <>
                     <div className="rounded-xl overflow-hidden bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%2216%22%3E%3Crect%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23e5e7eb%22%2F%3E%3Crect%20x%3D%228%22%20y%3D%228%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23e5e7eb%22%2F%3E%3C/svg%3E')] border border-gray-200 dark:border-gray-700 max-h-72 flex items-center justify-center">
+                      {/* eslint-disable-next-line @next/next/no-img-element -- blob/data URL preview where next/image adds no benefit */}
                       <img
                         src={previewUrl}
                         alt="Generated GIF preview"
@@ -725,6 +727,7 @@ export default function GifMaker() {
               </div>
               <div className="p-5 flex flex-col items-center gap-3">
                 <div className="rounded-xl overflow-hidden bg-[url('data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2216%22%20height%3D%2216%22%3E%3Crect%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23f3f4f6%22%2F%3E%3Crect%20x%3D%228%22%20y%3D%228%22%20width%3D%228%22%20height%3D%228%22%20fill%3D%22%23f3f4f6%22%2F%3E%3C/svg%3E')] dark:bg-gray-900 border border-gray-200 dark:border-gray-700 max-h-60 flex items-center justify-center">
+                  {/* eslint-disable-next-line @next/next/no-img-element -- blob/data URL preview where next/image adds no benefit */}
                   <img
                     src={frames[previewFrameIdx % frames.length]?.src}
                     alt="Frame preview"

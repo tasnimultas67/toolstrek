@@ -262,7 +262,10 @@ export default function TipCalculator() {
   useEffect(() => {
     try {
       const raw = localStorage.getItem(HISTORY_KEY);
-      if (raw) setHistory(JSON.parse(raw));
+      if (raw) {
+        // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of persisted history from localStorage; must run post-mount to avoid an SSR hydration mismatch
+        setHistory(JSON.parse(raw));
+      }
     } catch {}
   }, []);
 
@@ -277,18 +280,13 @@ export default function TipCalculator() {
     return () => document.removeEventListener("mousedown", handler);
   }, []);
 
-  // ─── Sync custom shares array length with numPeople ───────────────────────
-  useEffect(() => {
-    if (!splitEqually) {
-      setCustomShares((prev) => {
-        if (prev.length === numPeople) return prev;
-        const newShares = Array.from({ length: numPeople }, (_, i) =>
-          i < prev.length ? prev[i] : Math.round(100 / numPeople)
-        );
-        return newShares;
-      });
-    }
-  }, [numPeople, splitEqually]);
+  // ─── Custom shares resized to match numPeople (derived during render) ─────
+  const effectiveShares = React.useMemo(() => {
+    if (customShares.length === numPeople) return customShares;
+    return Array.from({ length: numPeople }, (_, i) =>
+      i < customShares.length ? customShares[i] : Math.round(100 / numPeople)
+    );
+  }, [customShares, numPeople]);
 
   // ─── Calculations ─────────────────────────────────────────────────────────
   const calculations = React.useMemo(() => {
@@ -315,8 +313,8 @@ export default function TipCalculator() {
     const effectiveTotal = roundUp ? perPerson * numPeople : totalBill;
 
     // Custom split shares
-    const shareTotal = customShares.reduce((a, b) => a + b, 0) || 1;
-    const personAmounts = customShares.map((s) => {
+    const shareTotal = effectiveShares.reduce((a, b) => a + b, 0) || 1;
+    const personAmounts = effectiveShares.map((s) => {
       const amt = (s / shareTotal) * effectiveTotal;
       return roundUp ? Math.ceil(amt) : amt;
     });
@@ -346,7 +344,7 @@ export default function TipCalculator() {
     tipOnTax,
     discountAmount,
     serviceQuality,
-    customShares,
+    effectiveShares,
   ]);
 
   // ─── Load Sample Data ─────────────────────────────────────────────────────
@@ -892,11 +890,11 @@ export default function TipCalculator() {
                               Custom Split Percentages
                               <span className="ml-1 text-[var(--color-brandColor)]">
                                 (total:{" "}
-                                {customShares.reduce((a, b) => a + Number(b), 0)}%)
+                                {effectiveShares.reduce((a, b) => a + Number(b), 0)}%)
                               </span>
                             </label>
                             <div className="space-y-2">
-                              {customShares.map((share, i) => (
+                              {effectiveShares.map((share, i) => (
                                 <div key={i} className="flex items-center gap-3">
                                   <span className="text-xs text-[var(--muted-foreground)] w-16 shrink-0">
                                     Person {i + 1}
@@ -905,7 +903,7 @@ export default function TipCalculator() {
                                     type="number"
                                     value={share}
                                     onChange={(e) => {
-                                      const updated = [...customShares];
+                                      const updated = [...effectiveShares];
                                       updated[i] = Math.max(0, Number(e.target.value));
                                       setCustomShares(updated);
                                     }}
@@ -1142,7 +1140,7 @@ export default function TipCalculator() {
                       {calculations.personAmounts.map((amt, i) => (
                         <div key={i} className="flex items-center justify-between text-sm py-1">
                           <span className="text-[var(--muted-foreground)]">
-                            Person {i + 1} ({customShares[i] || 0}%)
+                            Person {i + 1} ({effectiveShares[i] || 0}%)
                           </span>
                           <span className="font-semibold tabular-nums">{fmt(amt, sym)}</span>
                         </div>

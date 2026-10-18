@@ -120,7 +120,8 @@ const PrivacyPolicy = () => {
               title: "1. Introduction",
               content: (
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  <strong>ToolsTrek</strong> ("we", "our", or "us") is committed
+                  <strong>ToolsTrek</strong> (&quot;we&quot;, &quot;our&quot;, or
+                  &quot;us&quot;) is committed
                   to protecting your privacy. This Privacy Policy explains how
                   we handle your information when you use our digital utilities.
                 </p>
@@ -187,7 +188,8 @@ const PrivacyPolicy = () => {
                 <p className="text-gray-600 dark:text-gray-400 mb-4">
                   Since we do not collect personal data, there is no personal
                   data to access, correct, or delete. You can clear your
-                  browser's local storage at any time to remove any preferences
+                  browser&apos;s local storage at any time to remove any
+                  preferences
                   stored by ToolsTrek.
                 </p>
               ),

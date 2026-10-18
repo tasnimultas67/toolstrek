@@ -3,6 +3,25 @@
 import React, { useState, useCallback } from "react";
 import { ChevronDown, Check } from "lucide-react";
 
+// Available output formats
+const formats = [
+  { id: "png", name: "PNG", icon: "🖼️", extension: "png", mime: "image/png" },
+  {
+    id: "jpg",
+    name: "JPEG",
+    icon: "📷",
+    extension: "jpg",
+    mime: "image/jpeg",
+  },
+  {
+    id: "webp",
+    name: "WEBP",
+    icon: "🌐",
+    extension: "webp",
+    mime: "image/webp",
+  },
+];
+
 const AvifConverter = () => {
   const [selectedFile, setSelectedFile] = useState(null);
   const [previewUrl, setPreviewUrl] = useState(null);
@@ -13,25 +32,6 @@ const AvifConverter = () => {
   const [imageDimensions, setImageDimensions] = useState(null);
   const [quality, setQuality] = useState(92);
   const [isFormatDropdownOpen, setIsFormatDropdownOpen] = useState(false);
-
-  // Available formats
-  const formats = [
-    { id: "png", name: "PNG", icon: "🖼️", extension: "png", mime: "image/png" },
-    {
-      id: "jpg",
-      name: "JPEG",
-      icon: "📷",
-      extension: "jpg",
-      mime: "image/jpeg",
-    },
-    {
-      id: "webp",
-      name: "WEBP",
-      icon: "🌐",
-      extension: "webp",
-      mime: "image/webp",
-    },
-  ];
 
   // Error handling helper
   const handleError = useCallback(
@@ -361,6 +361,7 @@ const AvifConverter = () => {
 
                   <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-4 flex items-center justify-center min-h-[300px] border border-gray-100 dark:border-gray-700">
                     {previewUrl && (
+                      // eslint-disable-next-line @next/next/no-img-element -- blob/data URL preview where next/image adds no benefit
                       <img
                         src={previewUrl}
                         alt="AVIF preview"
@@ -491,6 +492,7 @@ const AvifConverter = () => {
                   ) : (
                     <div className="mb-4">
                       <div className="bg-white dark:bg-gray-800 rounded-lg p-4 mb-3 flex items-center justify-center min-h-[200px] border border-gray-100 dark:border-gray-700">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- blob/data URL preview where next/image adds no benefit */}
                         <img
                           src={convertedUrl}
                           alt="Converted preview"

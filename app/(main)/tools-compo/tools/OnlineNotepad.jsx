@@ -194,33 +194,54 @@ export default function OnlineNotepad() {
   const [notes, setNotes] = useState(DEFAULT_NOTES);
   const [activeNoteId, setActiveNoteId] = useState("note-1");
 
+  // ── 1b. PIN / Password Protection State ──
+  const [isPinModalOpen, setIsPinModalOpen] = useState(false);
+  const [pinInput, setPinInput] = useState("");
+  const [pinPromptError, setPinPromptError] = useState("");
+  const [unlockedNoteId, setUnlockedNoteId] = useState(null);
+
+  // Selecting a note resets the PIN-unlock state for the new visit.
+  const selectNote = useCallback((id, isLocked) => {
+    setActiveNoteId(id);
+    setUnlockedNoteId(null);
+    if (isLocked) {
+      setPinInput("");
+      setPinPromptError("");
+    }
+  }, []);
+
   // Current active note
   const activeNote = useMemo(() => {
     return notes.find((n) => n.id === activeNoteId) || notes[0] || BLANK_NOTE;
   }, [notes, activeNoteId]);
 
+  // A locked note shows the PIN prompt until it is unlocked for this visit.
+  const isLockedView = Boolean(activeNote?.isLocked) && unlockedNoteId !== activeNoteId;
+
   // Save status indicator
   const [saveStatus, setSaveStatus] = useState("Saved");
   const autoSaveTimerRef = useRef(null);
 
-  // Load persisted notes from localStorage AFTER hydration (client-only)
+  // Load persisted notes from localStorage AFTER hydration (client-only).
+  // Deferred to a microtask so the effect body itself does not synchronously set state.
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("toolstrek_notepad_notes_v1");
-      if (saved) {
-        const parsed = JSON.parse(saved);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          // Discard old demo notes from previous sessions
-          const hasOldDemo = parsed.some((n) => n.id === "note-welcome");
-          if (!hasOldDemo) {
-            setNotes(parsed);
-            setActiveNoteId(parsed[0]?.id || "note-1");
+    queueMicrotask(() => {
+      try {
+        const saved = localStorage.getItem("toolstrek_notepad_notes_v1");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            // Discard old demo notes from previous sessions
+            const hasOldDemo = parsed.some((n) => n.id === "note-welcome");
+            if (!hasOldDemo) {
+              setNotes(parsed);
+              selectNote(parsed[0]?.id || "note-1", parsed[0]?.isLocked);
+            }
           }
         }
-      }
-    } catch (_) {}
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+      } catch (_) {}
+    });
+  }, [selectNote]);
 
   // Persist notes to localStorage whenever they change
   useEffect(() => {
@@ -251,11 +272,12 @@ export default function OnlineNotepad() {
   const [scratchpadText, setScratchpadText] = useState("");
 
   useEffect(() => {
-    try {
-      const saved = localStorage.getItem("toolstrek_notepad_scratchpad");
-      if (saved !== null) setScratchpadText(saved);
-    } catch (_) {}
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    queueMicrotask(() => {
+      try {
+        const saved = localStorage.getItem("toolstrek_notepad_scratchpad");
+        if (saved !== null) setScratchpadText(saved);
+      } catch (_) {}
+    });
   }, []);
 
   useEffect(() => {
@@ -299,23 +321,6 @@ export default function OnlineNotepad() {
       }
     };
   }, []);
-
-  // ── 6. PIN / Password Protection State ──
-  const [isPinModalOpen, setIsPinModalOpen] = useState(false);
-  const [pinInput, setPinInput] = useState("");
-  const [pinPromptError, setPinPromptError] = useState("");
-  const [isLockedView, setIsLockedView] = useState(false);
-
-  // Sync locked view when active note changes
-  useEffect(() => {
-    if (activeNote?.isLocked) {
-      setIsLockedView(true);
-      setPinInput("");
-      setPinPromptError("");
-    } else {
-      setIsLockedView(false);
-    }
-  }, [activeNoteId, activeNote?.isLocked]);
 
   // ── 7. DOM References ──
   const textareaRef = useRef(null);
@@ -378,7 +383,7 @@ export default function OnlineNotepad() {
       updatedAt: Date.now(),
     };
     setNotes((prev) => [newNote, ...prev]);
-    setActiveNoteId(newId);
+    selectNote(newId, false);
     toast.success("New note created");
   };
 
@@ -390,7 +395,7 @@ export default function OnlineNotepad() {
     const remaining = notes.filter((n) => n.id !== idToDelete);
     setNotes(remaining);
     if (activeNoteId === idToDelete) {
-      setActiveNoteId(remaining[0].id);
+      selectNote(remaining[0].id, remaining[0].isLocked);
     }
     toast.success("Note removed");
   };
@@ -471,7 +476,7 @@ export default function OnlineNotepad() {
     } catch (_) {
       return 0;
     }
-  }, [findQuery, activeNote?.content, findCaseSensitive, findWholeWord, findRegex]);
+  }, [findQuery, activeNote.content, findCaseSensitive, findWholeWord, findRegex]);
 
   const handleReplaceAll = () => {
     if (!findQuery) {
@@ -740,7 +745,7 @@ export default function OnlineNotepad() {
   const handleUnlockWithPin = (e) => {
     e?.preventDefault();
     if (pinInput === activeNote.pinCode) {
-      setIsLockedView(false);
+      setUnlockedNoteId(activeNoteId);
       setPinPromptError("");
       setPinInput("");
       toast.success("Note unlocked");
@@ -764,6 +769,10 @@ export default function OnlineNotepad() {
           n.id === activeNoteId ? { ...n, isLocked: true, pinCode: newPin } : n
         )
       );
+      // Re-lock the current note now that it is protected
+      setUnlockedNoteId(null);
+      setPinInput("");
+      setPinPromptError("");
       toast.success("Note secured with PIN protection");
     }
     setIsPinModalOpen(false);
@@ -1248,7 +1257,7 @@ export default function OnlineNotepad() {
                 return (
                   <div
                     key={note.id}
-                    onClick={() => setActiveNoteId(note.id)}
+                    onClick={() => selectNote(note.id, note.isLocked)}
                     className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap cursor-pointer transition-all ${
                       isActive
                         ? "bg-brandColor text-white shadow-sm shadow-purple-500/20"

@@ -481,6 +481,7 @@ export default function SvgConverter() {
                 {/* SVG Live Preview Screen */}
                 <div className="relative aspect-video rounded-xl border border-gray-100 dark:border-gray-800 overflow-hidden flex items-center justify-center bg-gray-50 dark:bg-gray-950/50 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#374151_1px,transparent_1px)] [background-size:16px_16px] min-h-[320px]">
                   {previewUrl && (
+                    /* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */
                     <img
                       src={previewUrl}
                       alt="SVG preview"

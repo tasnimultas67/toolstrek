@@ -396,12 +396,8 @@ export default function TravelBudgetSplitter() {
   const [newCurrencyCode, setNewCurrencyCode] = useState("");
   const [newCurrencyRate, setNewCurrencyRate] = useState("");
 
-  // Set default paidBy when member list updates or modal opens
-  useEffect(() => {
-    if (members.length > 0 && !expPaidBy) {
-      setExpPaidBy(members[0].id);
-    }
-  }, [members, expPaidBy]);
+  // Default paidBy derived during render (first member when none selected)
+  const effectiveExpPaidBy = expPaidBy || (members[0]?.id ?? "");
 
   const currencySymbol = useMemo(() => {
     // If BDT, use TK symbol for custom dropdown compatibility or standard ৳
@@ -604,7 +600,7 @@ export default function TravelBudgetSplitter() {
       amount: amt,
       currency: expCurrency,
       category: expCategory,
-      paidById: expPaidBy,
+      paidById: effectiveExpPaidBy,
       date: expDate || new Date().toISOString().split("T")[0],
       splitType: expSplitType,
       excludedIds: expSplitType === "equal" ? expExcluded : [],
@@ -1864,7 +1860,7 @@ export default function TravelBudgetSplitter() {
                       Paid By
                     </label>
                     <CustomDropdown
-                      value={expPaidBy}
+                      value={effectiveExpPaidBy}
                       options={members.map(m => ({ value: m.id, label: m.name }))}
                       onChange={setExpPaidBy}
                     />

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState, useEffect, useCallback, useMemo, useSyncExternalStore } from "react";
 import {
   Hash,
   ArrowLeftRight,
@@ -171,95 +171,129 @@ const PRESETS = [
   { label: "Lucky Number", arabic: "7", roman: "VII" },
 ];
 
+// ─── History external store (localStorage) ──────────────────────────────────
+const HISTORY_STORAGE_KEY = "roman_numeral_history";
+const EMPTY_HISTORY = [];
+
+let cachedHistoryRaw = null;
+let cachedHistory = EMPTY_HISTORY;
+const historyListeners = new Set();
+
+function getHistorySnapshot() {
+  if (typeof window === "undefined") return EMPTY_HISTORY;
+  let raw;
+  try {
+    raw = window.localStorage.getItem(HISTORY_STORAGE_KEY);
+  } catch (_) {
+    return EMPTY_HISTORY;
+  }
+  if (raw === cachedHistoryRaw) return cachedHistory;
+  cachedHistoryRaw = raw;
+  if (!raw) {
+    cachedHistory = EMPTY_HISTORY;
+    return cachedHistory;
+  }
+  try {
+    const parsed = JSON.parse(raw);
+    cachedHistory = Array.isArray(parsed) ? parsed : EMPTY_HISTORY;
+  } catch (_) {
+    cachedHistory = EMPTY_HISTORY;
+  }
+  return cachedHistory;
+}
+
+function getServerHistorySnapshot() {
+  return EMPTY_HISTORY;
+}
+
+function subscribeHistory(listener) {
+  const handleStorage = (event) => {
+    if (event.key === HISTORY_STORAGE_KEY) listener();
+  };
+  historyListeners.add(listener);
+  window.addEventListener("storage", handleStorage);
+  return () => {
+    historyListeners.delete(listener);
+    window.removeEventListener("storage", handleStorage);
+  };
+}
+
+function persistHistory(items) {
+  cachedHistory = items;
+  cachedHistoryRaw = JSON.stringify(items);
+  try {
+    window.localStorage.setItem(HISTORY_STORAGE_KEY, cachedHistoryRaw);
+  } catch (_) {}
+  historyListeners.forEach((listener) => listener());
+}
+
 export default function RomanNumeralConverter() {
   const [mode, setMode] = useState("arabicToRoman"); // "arabicToRoman" | "romanToArabic"
   const [inputText, setInputText] = useState("");
-  const [outputText, setOutputText] = useState("");
-  const [error, setError] = useState("");
-  const [breakdown, setBreakdown] = useState([]);
   const [copied, setCopied] = useState(false);
-  const [history, setHistory] = useState([]);
   const [activeTab, setActiveTab] = useState("cheat-sheet"); // "cheat-sheet" | "rules" | "symbols"
 
-  // Load history from localStorage on mount
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem("roman_numeral_history");
-      if (saved) {
-        setHistory(JSON.parse(saved));
-      }
-    } catch (_) {}
-  }, []);
+  // History is backed by localStorage through useSyncExternalStore so the read
+  // happens outside of render/effects and stays hydration-safe.
+  const history = useSyncExternalStore(
+    subscribeHistory,
+    getHistorySnapshot,
+    getServerHistorySnapshot
+  );
 
   // Save history helper
   const saveHistory = useCallback((inputVal, outputVal, currentMode) => {
     if (!inputVal.trim() || !outputVal.trim()) return;
-    setHistory((prev) => {
-      const isDuplicate = prev.some(
-        (item) => item.input === inputVal && item.mode === currentMode
-      );
-      if (isDuplicate) return prev;
+    const prev = getHistorySnapshot();
+    const isDuplicate = prev.some(
+      (item) => item.input === inputVal && item.mode === currentMode
+    );
+    if (isDuplicate) return;
 
-      const newHistory = [
-        {
-          id: Date.now(),
-          input: inputVal,
-          output: outputVal,
-          mode: currentMode,
-          timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-        },
-        ...prev.slice(0, 9), // limit to 10 items
-      ];
-      try {
-        localStorage.setItem("roman_numeral_history", JSON.stringify(newHistory));
-      } catch (_) {}
-      return newHistory;
-    });
+    const newHistory = [
+      {
+        id: Date.now(),
+        input: inputVal,
+        output: outputVal,
+        mode: currentMode,
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+      },
+      ...prev.slice(0, 9), // limit to 10 items
+    ];
+    persistHistory(newHistory);
   }, []);
 
-  // Perform translation on input change
-  useEffect(() => {
+  // Translation is a pure function of the input and mode, so derive it in render
+  const translation = useMemo(() => {
     const trimmed = inputText.trim();
     if (!trimmed) {
-      setOutputText("");
-      setError("");
-      setBreakdown([]);
-      return;
+      return { output: "", error: "", breakdown: [] };
     }
+    return mode === "arabicToRoman"
+      ? arabicToRoman(trimmed)
+      : romanToArabic(trimmed);
+  }, [inputText, mode]);
 
-    let result;
-    if (mode === "arabicToRoman") {
-      result = arabicToRoman(trimmed);
-    } else {
-      result = romanToArabic(trimmed);
-    }
+  const outputText = translation.output;
+  const error = translation.error;
+  const breakdown = translation.breakdown;
 
-    setOutputText(result.output);
-    setError(result.error);
-    setBreakdown(result.breakdown);
-
-    if (result.output && !result.error) {
-      // Debounce history addition to avoid cluttering on every single keypress
-      const handler = setTimeout(() => {
-        saveHistory(trimmed, result.output, mode);
-      }, 1000);
-      return () => clearTimeout(handler);
-    }
-  }, [inputText, mode, saveHistory]);
+  // Persist valid conversions to history (debounced to avoid typing clutter)
+  useEffect(() => {
+    if (!translation.output || translation.error) return;
+    const handler = setTimeout(() => {
+      saveHistory(inputText.trim(), translation.output, mode);
+    }, 1000);
+    return () => clearTimeout(handler);
+  }, [inputText, mode, translation, saveHistory]);
 
   const handleSwap = useCallback(() => {
     setMode((prev) => (prev === "arabicToRoman" ? "romanToArabic" : "arabicToRoman"));
     setInputText(outputText);
-    setOutputText(inputText);
-    setError("");
-    setBreakdown([]);
-  }, [inputText, outputText]);
+  }, [outputText]);
 
   const handleClear = () => {
     setInputText("");
-    setOutputText("");
-    setError("");
-    setBreakdown([]);
   };
 
   const handleCopy = async () => {
@@ -285,10 +319,7 @@ export default function RomanNumeralConverter() {
   };
 
   const clearHistory = () => {
-    setHistory([]);
-    try {
-      localStorage.removeItem("roman_numeral_history");
-    } catch (_) {}
+    persistHistory([]);
   };
 
   // Virtual Roman Keyboard insertion
@@ -706,7 +737,7 @@ export default function RomanNumeralConverter() {
                 <div className="flex gap-2">
                   <span className="w-1.5 h-1.5 bg-brandColor rounded-full mt-1.5 shrink-0" />
                   <p>
-                    <strong>Maximum Range:</strong> The standard system handles values up to 3,999 (MMMCMXCIX) because we don't have symbols larger than M (1000).
+                    <strong>Maximum Range:</strong> The standard system handles values up to 3,999 (MMMCMXCIX) because we don&apos;t have symbols larger than M (1000).
                   </p>
                 </div>
               </div>

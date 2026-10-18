@@ -898,7 +898,7 @@ https://toolstrek.vercel.app/tools/water-intake-calculator
                 <div className="flex items-center gap-2">
                   <Droplets className="w-5 h-5 text-sky-500" />
                   <h3 className="text-base font-bold text-slate-800 dark:text-slate-100">
-                    Log Today's Intake
+                    Log Today&apos;s Intake
                   </h3>
                 </div>
                 <button

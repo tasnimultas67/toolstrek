@@ -1,6 +1,12 @@
 "use client";
 
-import React, { useState, useMemo, useEffect, useRef } from "react";
+import React, {
+  useState,
+  useMemo,
+  useEffect,
+  useRef,
+  useSyncExternalStore,
+} from "react";
 import ToolPageShell from "../ToolPageShell";
 import {
   Percent,
@@ -49,6 +55,57 @@ const COUPONS = [
   { code: "WELCOME5", rate: 5, type: "percent", minSpend: 0, maxDiscount: 1000, desc: "5% off for new customers (No minimum spend)" }
 ];
 
+// ─────────────────────────────────────────────────────────────
+//  Calculation history store (localStorage-backed external store)
+// ─────────────────────────────────────────────────────────────
+const HISTORY_STORAGE_KEY = "discount_calculator_history";
+const EMPTY_HISTORY = [];
+
+let historyCache = null;
+const historyListeners = new Set();
+
+function readHistoryFromStorage() {
+  try {
+    const stored = localStorage.getItem(HISTORY_STORAGE_KEY);
+    return stored ? JSON.parse(stored) : EMPTY_HISTORY;
+  } catch (e) {
+    console.error("Failed to load history from local storage", e);
+    return EMPTY_HISTORY;
+  }
+}
+
+function subscribeHistory(callback) {
+  const onStorage = () => {
+    historyCache = null;
+    callback();
+  };
+  historyListeners.add(callback);
+  window.addEventListener("storage", onStorage);
+  return () => {
+    historyListeners.delete(callback);
+    window.removeEventListener("storage", onStorage);
+  };
+}
+
+function getHistorySnapshot() {
+  if (historyCache === null) historyCache = readHistoryFromStorage();
+  return historyCache;
+}
+
+function getHistoryServerSnapshot() {
+  return EMPTY_HISTORY;
+}
+
+function writeHistory(next) {
+  historyCache = next;
+  try {
+    localStorage.setItem(HISTORY_STORAGE_KEY, JSON.stringify(next));
+  } catch (e) {
+    console.error("Failed to save history to local storage", e);
+  }
+  historyListeners.forEach((listener) => listener());
+}
+
 export default function DiscountCalculator() {
   // Tabs: "discount" | "bogo" | "compare"
   const [activeTab, setActiveTab] = useState("discount");
@@ -77,7 +134,6 @@ export default function DiscountCalculator() {
   const [cashBackType, setCashBackType] = useState("amount"); // "percent" | "amount"
   const [cashBackValue, setCashBackValue] = useState("0");
   const [couponInput, setCouponInput] = useState("");
-  const [appliedCoupon, setAppliedCoupon] = useState(null);
 
   // --- TAB 2: BOGO (Buy X Get Y) CALCULATOR STATES ---
   const [bogoBuy, setBogoBuy] = useState("2");
@@ -98,28 +154,16 @@ export default function DiscountCalculator() {
   const [packBDiscount, setPackBDiscount] = useState("15"); // 15% off Pack B
 
   // --- HISTORY STATE ---
-  const [history, setHistory] = useState([]);
-
-  // Load history from localStorage on mount
-  useEffect(() => {
-    try {
-      const stored = localStorage.getItem("discount_calculator_history");
-      if (stored) {
-        setHistory(JSON.parse(stored));
-      }
-    } catch (e) {
-      console.error("Failed to load history from local storage", e);
-    }
-  }, []);
+  // Persisted calculation history, read from localStorage via an external store
+  const history = useSyncExternalStore(
+    subscribeHistory,
+    getHistorySnapshot,
+    getHistoryServerSnapshot
+  );
 
   // Save history helper
   const saveToLocalStorage = (newHistory) => {
-    setHistory(newHistory);
-    try {
-      localStorage.setItem("discount_calculator_history", JSON.stringify(newHistory));
-    } catch (e) {
-      console.error("Failed to save history to local storage", e);
-    }
+    writeHistory(newHistory);
   };
 
   // Close dropdown on click outside
@@ -133,24 +177,19 @@ export default function DiscountCalculator() {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  // Sync coupon when couponInput changes or originalPrice changes
-  useEffect(() => {
-    if (!couponInput.trim()) {
-      setAppliedCoupon(null);
-      return;
-    }
+  // Derive the applied coupon from the current inputs (no effect needed)
+  const appliedCoupon = useMemo(() => {
+    if (!couponInput.trim()) return null;
     const found = COUPONS.find(c => c.code.toUpperCase() === couponInput.toUpperCase().trim());
     if (found) {
       // Check min spend based on originalPrice * quantity
       const baseSubtotal = (parseFloat(originalPrice) || 0) * (parseInt(quantity) || 1);
       if (baseSubtotal >= found.minSpend) {
-        setAppliedCoupon(found);
-      } else {
-        setAppliedCoupon({ ...found, error: `Requires min spend of ${selectedCurrency.symbol}${found.minSpend}` });
+        return found;
       }
-    } else {
-      setAppliedCoupon({ error: "Invalid coupon code" });
+      return { ...found, error: `Requires min spend of ${selectedCurrency.symbol}${found.minSpend}` };
     }
+    return { error: "Invalid coupon code" };
   }, [couponInput, originalPrice, quantity, selectedCurrency]);
 
   // Quick Preset Handlers
@@ -160,7 +199,6 @@ export default function DiscountCalculator() {
 
   const handleClearCoupon = () => {
     setCouponInput("");
-    setAppliedCoupon(null);
   };
 
   // --- CALCULATIONS FOR TAB 1 (STANDARD / ADVANCED DISCOUNT) ---
@@ -414,40 +452,34 @@ export default function DiscountCalculator() {
     if (!isValid) return;
 
     const timer = setTimeout(() => {
-      setHistory((prevHistory) => {
-        if (prevHistory.length > 0) {
-          const last = prevHistory[0];
-          if (
-            last.type === type &&
-            last.details === details &&
-            last.currencyCode === selectedCurrency.code &&
-            Math.abs(last.finalPrice - finalPrice) < 0.01
-          ) {
-            return prevHistory;
-          }
+      const prevHistory = getHistorySnapshot();
+      if (prevHistory.length > 0) {
+        const last = prevHistory[0];
+        if (
+          last.type === type &&
+          last.details === details &&
+          last.currencyCode === selectedCurrency.code &&
+          Math.abs(last.finalPrice - finalPrice) < 0.01
+        ) {
+          return;
         }
+      }
 
-        const newItem = {
-          id: Date.now(),
-          date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + " " + new Date().toLocaleDateString(),
-          currencySymbol: selectedCurrency.symbol,
-          currencyCode: selectedCurrency.code,
-          type,
-          details,
-          savings,
-          finalPrice,
-          isCompare,
-          better,
-        };
+      const newItem = {
+        id: Date.now(),
+        date: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) + " " + new Date().toLocaleDateString(),
+        currencySymbol: selectedCurrency.symbol,
+        currencyCode: selectedCurrency.code,
+        type,
+        details,
+        savings,
+        finalPrice,
+        isCompare,
+        better,
+      };
 
-        const updatedHistory = [newItem, ...prevHistory].slice(0, 10);
-        try {
-          localStorage.setItem("discount_calculator_history", JSON.stringify(updatedHistory));
-        } catch (e) {
-          console.error("Failed to save history to local storage", e);
-        }
-        return updatedHistory;
-      });
+      const updatedHistory = [newItem, ...prevHistory].slice(0, 10);
+      writeHistory(updatedHistory);
     }, 1500);
 
     return () => clearTimeout(timer);
@@ -480,7 +512,6 @@ export default function DiscountCalculator() {
     setQuantity("1");
     setCashBackValue("0");
     setCouponInput("");
-    setAppliedCoupon(null);
 
     setBogoBuy("2");
     setBogoGet("1");

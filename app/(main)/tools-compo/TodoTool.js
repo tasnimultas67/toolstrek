@@ -219,6 +219,7 @@ export function TodoTool() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem("tt_todos_v2");
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- one-time hydration of persisted todos/settings from localStorage; must run post-mount to avoid an SSR hydration mismatch
       if (saved) setTodos(JSON.parse(saved));
       const savedAcc = localStorage.getItem("tt_accent_v2");
       if (savedAcc) {

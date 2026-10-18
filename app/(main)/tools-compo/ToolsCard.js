@@ -4,7 +4,7 @@ import Link from "next/link";
 import React from "react";
 import { motion } from "framer-motion";
 import { ArrowRightIcon } from "@heroicons/react/24/outline";
-import { getIcon } from "./dynamicIcon";
+import { iconMap } from "./dynamicIcon";
 import FavoriteButton from "@/components/FavoriteButton";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 
@@ -21,7 +21,7 @@ const ToolsCard = ({
   lastUsed,
   index,
 }) => {
-  const IconComponent = getIcon(icon);
+  const IconComponent = iconMap[icon];
   const router = useRouter();
   const pathname = usePathname();
   const searchParams = useSearchParams();

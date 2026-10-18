@@ -235,86 +235,89 @@ export default function TimezoneClock() {
   const [copiedLink, setCopiedLink] = useState(false);
   const searchRef = useRef(null);
 
-  // Initialize and Sync on mount
+  // Initialize and Sync on mount.
+  // Deferred to a microtask so the effect body itself does not synchronously set state.
   useEffect(() => {
-    // 1. Detect local timezone
-    const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Dhaka";
-    setLocalTz(tz);
+    queueMicrotask(() => {
+      // 1. Detect local timezone
+      const tz = Intl.DateTimeFormat().resolvedOptions().timeZone || "Asia/Dhaka";
+      setLocalTz(tz);
 
-    // 2. Fetch or generate default selected cities
-    const storedCities = localStorage.getItem("toolstrek_tz_cities");
-    const storedPins = localStorage.getItem("toolstrek_tz_pinned");
-    const storedFormat = localStorage.getItem("toolstrek_tz_format");
-    const storedAlarms = localStorage.getItem("toolstrek_tz_alarms");
+      // 2. Fetch or generate default selected cities
+      const storedCities = localStorage.getItem("toolstrek_tz_cities");
+      const storedPins = localStorage.getItem("toolstrek_tz_pinned");
+      const storedFormat = localStorage.getItem("toolstrek_tz_format");
+      const storedAlarms = localStorage.getItem("toolstrek_tz_alarms");
 
-    if (storedFormat) setTimeFormat(storedFormat);
-    if (storedAlarms) {
-      try {
-        setAlarms(JSON.parse(storedAlarms));
-      } catch (e) {
-        console.error(e);
+      if (storedFormat) setTimeFormat(storedFormat);
+      if (storedAlarms) {
+        try {
+          setAlarms(JSON.parse(storedAlarms));
+        } catch (e) {
+          console.error(e);
+        }
       }
-    }
 
-    let citiesToLoad = [];
-    let pinsToLoad = [];
+      let citiesToLoad = [];
+      let pinsToLoad = [];
 
-    // Parse URL query parameter 'cities'
-    const params = new URLSearchParams(window.location.search);
-    const urlCities = params.get("cities");
+      // Parse URL query parameter 'cities'
+      const params = new URLSearchParams(window.location.search);
+      const urlCities = params.get("cities");
 
-    if (urlCities) {
-      const names = urlCities.split(",").map(name => name.trim().toLowerCase());
-      citiesToLoad = ALL_CITIES.filter(c => names.includes(c.name.toLowerCase()));
-      // If we parsed successfully from URL, merge pins as empty
-    } else if (storedCities) {
-      try {
-        const parsed = JSON.parse(storedCities);
-        // Ensure valid cities from ALL_CITIES
-        citiesToLoad = ALL_CITIES.filter(c => parsed.some(p => p.name === c.name));
-      } catch (e) {
-        console.error(e);
+      if (urlCities) {
+        const names = urlCities.split(",").map(name => name.trim().toLowerCase());
+        citiesToLoad = ALL_CITIES.filter(c => names.includes(c.name.toLowerCase()));
+        // If we parsed successfully from URL, merge pins as empty
+      } else if (storedCities) {
+        try {
+          const parsed = JSON.parse(storedCities);
+          // Ensure valid cities from ALL_CITIES
+          citiesToLoad = ALL_CITIES.filter(c => parsed.some(p => p.name === c.name));
+        } catch (e) {
+          console.error(e);
+        }
       }
-    }
 
-    // Default cities if none found
-    if (citiesToLoad.length === 0) {
-      const defaultNames = ["Dhaka", "London", "New York", "Tokyo", "Dubai", "Sydney"];
-      citiesToLoad = ALL_CITIES.filter(c => defaultNames.includes(c.name));
+      // Default cities if none found
+      if (citiesToLoad.length === 0) {
+        const defaultNames = ["Dhaka", "London", "New York", "Tokyo", "Dubai", "Sydney"];
+        citiesToLoad = ALL_CITIES.filter(c => defaultNames.includes(c.name));
 
-      // Auto-add local timezone as local city if not present
-      const localMatchedCity = ALL_CITIES.find(c => c.timezone === tz);
-      if (localMatchedCity && !citiesToLoad.some(c => c.name === localMatchedCity.name)) {
-        citiesToLoad.unshift(localMatchedCity);
-      } else if (!localMatchedCity) {
-        // Add custom local timezone node
-        const customLocal = {
-          name: "My Location",
-          country: "Detected Timezone",
-          code: "",
-          timezone: tz
-        };
-        citiesToLoad.unshift(customLocal);
+        // Auto-add local timezone as local city if not present
+        const localMatchedCity = ALL_CITIES.find(c => c.timezone === tz);
+        if (localMatchedCity && !citiesToLoad.some(c => c.name === localMatchedCity.name)) {
+          citiesToLoad.unshift(localMatchedCity);
+        } else if (!localMatchedCity) {
+          // Add custom local timezone node
+          const customLocal = {
+            name: "My Location",
+            country: "Detected Timezone",
+            code: "",
+            timezone: tz
+          };
+          citiesToLoad.unshift(customLocal);
+        }
       }
-    }
 
-    if (storedPins) {
-      try {
-        const parsed = JSON.parse(storedPins);
-        pinsToLoad = parsed.filter(name => citiesToLoad.some(c => c.name === name));
-      } catch (e) {
-        console.error(e);
+      if (storedPins) {
+        try {
+          const parsed = JSON.parse(storedPins);
+          pinsToLoad = parsed.filter(name => citiesToLoad.some(c => c.name === name));
+        } catch (e) {
+          console.error(e);
+        }
       }
-    }
 
-    setSelectedCities(citiesToLoad);
-    setPinnedCities(pinsToLoad);
-    setLiveTime(new Date());
+      setSelectedCities(citiesToLoad);
+      setPinnedCities(pinsToLoad);
+      setLiveTime(new Date());
 
-    // Setup base planner city to be the first city
-    if (citiesToLoad.length > 0) {
-      setPlannerBaseCity(citiesToLoad[0].name);
-    }
+      // Setup base planner city to be the first city
+      if (citiesToLoad.length > 0) {
+        setPlannerBaseCity(citiesToLoad[0].name);
+      }
+    });
   }, []);
 
   // Update live clock every second

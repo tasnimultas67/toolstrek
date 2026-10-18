@@ -637,6 +637,7 @@ export default function EmailSignatureEditor() {
                           <div className="flex items-center gap-3">
                             {sig.photoUrl && (
                               <div className="relative">
+                                {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied photo URL / data-URL preview; next/image adds no benefit */}
                                 <img src={sig.photoUrl} alt="preview" className="w-12 h-12 rounded-full object-cover border-2 border-brandColor/30" />
                                 <button onClick={() => update("photoUrl", "")} className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full flex items-center justify-center text-xs"><X size={10} /></button>
                               </div>
@@ -659,6 +660,7 @@ export default function EmailSignatureEditor() {
                           <div className="mt-2 flex items-center gap-3">
                             {sig.logoUrl && (
                               <div className="relative">
+                                {/* eslint-disable-next-line @next/next/no-img-element -- user-supplied logo URL / data-URL preview; next/image adds no benefit */}
                                 <img src={sig.logoUrl} alt="logo" className="h-8 object-contain border border-gray-200 dark:border-gray-600 rounded" />
                                 <button onClick={() => update("logoUrl", "")} className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 text-white rounded-full flex items-center justify-center text-xs"><X size={10} /></button>
                               </div>
@@ -867,7 +869,8 @@ export default function EmailSignatureEditor() {
                     <div className="p-5">
                       <p className={`text-gray-700 dark:text-gray-300 mb-5 ${previewDevice === "mobile" ? "text-xs" : "text-sm"}`}>
                         Hi there,<br /><br />
-                        Thank you for reaching out. I'll get back to you as soon as possible.<br /><br />
+                        Thank you for reaching out. I&apos;ll get back to you as
+                        soon as possible.<br /><br />
                         Best regards,
                       </p>
 
@@ -910,10 +913,10 @@ export default function EmailSignatureEditor() {
                   <div className="mt-3 p-3 bg-blue-50 dark:bg-blue-950/30 border border-blue-200 dark:border-blue-800 rounded-xl">
                     <p className="text-xs text-blue-700 dark:text-blue-300 font-medium mb-1">💡 How to install this signature</p>
                     <ol className="text-xs text-blue-600 dark:text-blue-400 space-y-0.5 list-decimal list-inside">
-                      <li>Click "Copy Signature" above</li>
+                      <li>Click &quot;Copy Signature&quot; above</li>
                       <li>Open Gmail → Settings → Signature</li>
                       <li>Create new signature and paste (Ctrl+V)</li>
-                      <li>Save changes and you're done!</li>
+                      <li>Save changes and you&apos;re done!</li>
                     </ol>
                   </div>
                 </div>
@@ -951,7 +954,7 @@ export default function EmailSignatureEditor() {
                   <div className="text-gray-700 dark:text-gray-300 mb-6 leading-relaxed" style={{ fontSize: previewDevice === "mobile" ? "12px" : "14px" }}>
                     <p>Hi Sarah,</p>
                     <br />
-                    <p>I hope this message finds you well. I wanted to follow up on our discussion regarding the Q3 product roadmap. I've attached the updated deck for your review — please let me know if you have any feedback before Thursday's call.</p>
+                    <p>I hope this message finds you well. I wanted to follow up on our discussion regarding the Q3 product roadmap. I&apos;ve attached the updated deck for your review — please let me know if you have any feedback before Thursday&apos;s call.</p>
                     <br />
                     <p>Looking forward to connecting!</p>
                     <br />
@@ -1005,8 +1008,8 @@ export default function EmailSignatureEditor() {
                   <ol className="text-xs text-amber-700 dark:text-amber-400 space-y-1 list-decimal list-inside">
                     <li>Copy the HTML above</li>
                     <li>Open Gmail → Settings (⚙) → See all settings</li>
-                    <li>Scroll to "Signature" section</li>
-                    <li>Click "+ Create new"</li>
+                    <li>Scroll to &quot;Signature&quot; section</li>
+                    <li>Click &quot;+ Create new&quot;</li>
                     <li>In the editor, click the {"<>"} button (or use keyboard shortcut)</li>
                     <li>Paste the HTML code</li>
                     <li>Save Changes</li>
@@ -1017,8 +1020,8 @@ export default function EmailSignatureEditor() {
                   <ol className="text-xs text-blue-700 dark:text-blue-400 space-y-1 list-decimal list-inside">
                     <li>Download the HTML file above</li>
                     <li>Open Outlook → File → Options → Mail</li>
-                    <li>Click "Signatures..."</li>
-                    <li>Click "New" and name your signature</li>
+                    <li>Click &quot;Signatures...&quot;</li>
+                    <li>Click &quot;New&quot; and name your signature</li>
                     <li>Open the downloaded HTML in a browser</li>
                     <li>Select all (Ctrl+A), copy, paste into Outlook editor</li>
                     <li>Click OK to save</li>
@@ -1082,7 +1085,7 @@ export default function EmailSignatureEditor() {
                           <li className="flex gap-2"><CheckCircle size={14} className="text-green-500 mt-0.5 flex-shrink-0" /><span>Name: <strong>18–22px bold</strong> for good visual hierarchy</span></li>
                           <li className="flex gap-2"><CheckCircle size={14} className="text-green-500 mt-0.5 flex-shrink-0" /><span>Job title: <strong>13–15px</strong>, normal or italic weight</span></li>
                           <li className="flex gap-2"><CheckCircle size={14} className="text-green-500 mt-0.5 flex-shrink-0" /><span>Contact info: <strong>12–14px</strong> regular weight</span></li>
-                          <li className="flex gap-2"><AlertCircle size={14} className="text-amber-500 mt-0.5 flex-shrink-0" /><span>Avoid custom/Google Fonts — won't render in most email clients</span></li>
+                          <li className="flex gap-2"><AlertCircle size={14} className="text-amber-500 mt-0.5 flex-shrink-0" /><span>Avoid custom/Google Fonts — won&apos;t render in most email clients</span></li>
                         </ul>
                       </InfoCard>
                       <InfoCard icon="📱" title="Mobile Compatibility" color="orange">

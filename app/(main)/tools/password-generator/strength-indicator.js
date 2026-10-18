@@ -1,18 +1,11 @@
 "use client";
 
-import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 
 export default function StrengthIndicator({ password = "" }) {
-  const [strength, setStrength] = useState(0);
-
-  useEffect(() => {
-    if (!password) {
-      setStrength(0);
-      return;
-    }
-
-    let score = 0;
+  // Derive the strength score directly from the password prop during render
+  let score = 0;
+  if (password) {
     // Length
     if (password.length >= 12) score += 2;
     if (password.length >= 16) score += 1;
@@ -21,9 +14,8 @@ export default function StrengthIndicator({ password = "" }) {
     if (/[a-z]/.test(password)) score += 1;
     if (/[0-9]/.test(password)) score += 1;
     if (/[^A-Za-z0-9]/.test(password)) score += 2;
-
-    setStrength(Math.min(score, 5));
-  }, [password]);
+  }
+  const strength = Math.min(score, 5);
 
   const strengthLevels = [
     { text: "Very Weak", color: "red-500", min: 0 },

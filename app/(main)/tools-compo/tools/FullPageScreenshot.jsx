@@ -205,17 +205,18 @@ export default function FullPageScreenshot() {
   const minFontSize = minFontPx(isMobile);
 
   // Sync custom dimensions when preset changes
-  useEffect(() => {
-    if (preset !== "custom") {
-      const p = DEVICE_PRESETS.find((d) => d.id === preset);
+  const handlePresetChange = (id) => {
+    setPreset(id);
+    if (id !== "custom") {
+      const p = DEVICE_PRESETS.find((d) => d.id === id);
       setCustomW(p.width);
       setCustomH(p.height);
     }
-  }, [preset]);
+  };
 
   // Progress bar animation during loading
   useEffect(() => {
-    if (!loading) { setProgress(0); return; }
+    if (!loading) return;
     let v = 0;
     const id = setInterval(() => {
       v = Math.min(v + Math.random() * 4, 88);
@@ -226,7 +227,7 @@ export default function FullPageScreenshot() {
 
   // Elapsed timer
   useEffect(() => {
-    if (!loading) { setElapsed(0); return; }
+    if (!loading) return;
     const t0 = Date.now();
     const id = setInterval(() => setElapsed(((Date.now() - t0) / 1000).toFixed(1)), 200);
     return () => clearInterval(id);
@@ -265,6 +266,8 @@ export default function FullPageScreenshot() {
     setCropBox(null);
     setCropMode(false);
     setColorMode(false);
+    setProgress(0);
+    setElapsed(0);
     setLoading(true);
 
     const t0 = Date.now();
@@ -664,7 +667,7 @@ export default function FullPageScreenshot() {
                     <button
                       key={p.id}
                       type="button"
-                      onClick={() => setPreset(p.id)}
+                      onClick={() => handlePresetChange(p.id)}
                       disabled={loading}
                       className={`flex flex-col items-center gap-1.5 rounded-xl border py-2.5 text-[11px] font-bold transition ${
                         preset === p.id
@@ -993,6 +996,7 @@ export default function FullPageScreenshot() {
                     onMouseUp={onCropUp}
                     onMouseLeave={onCropUp}
                   >
+                    {/* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */}
                     <img
                       ref={imgRef}
                       src={imgBlobUrl}
@@ -1163,6 +1167,7 @@ export default function FullPageScreenshot() {
                       className="group relative cursor-pointer overflow-hidden rounded-xl border border-gray-200 bg-gray-50 transition hover:border-brandColor/40 hover:shadow-md dark:border-gray-800 dark:bg-gray-800/40"
                     >
                       <div className="aspect-[4/3] overflow-hidden">
+                        {/* eslint-disable-next-line @next/next/no-img-element -- blob object URL preview; next/image adds no benefit */}
                         <img
                           src={item.blobUrl}
                           alt={item.meta.domain}

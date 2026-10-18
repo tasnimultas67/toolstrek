@@ -335,7 +335,13 @@ export default function CurrencyConverter() {
   };
 
   useEffect(() => {
-    fetchRates(from.code);
+    // Defer the fetch to an async continuation so the loading/error resets inside
+    // fetchRates are not synchronous state updates within the effect body.
+    const load = async () => {
+      await Promise.resolve();
+      fetchRates(from.code);
+    };
+    load();
   }, [from]);
 
   // ── calculations ───────────────────────────────────────────────────────────

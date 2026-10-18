@@ -62,7 +62,7 @@ return msg;
 };
 
 export default function CodeFormatter() {
-  const [inputCode, setInputCode] = useState("");
+  const [inputCode, setInputCode] = useState(() => SAMPLES.javascript);
   const [formattedCode, setFormattedCode] = useState("");
   const [language, setLanguage] = useState("javascript");
 
@@ -129,13 +129,6 @@ export default function CodeFormatter() {
     setActiveMobileTab("input");
   };
 
-  // Sync sample on language change if textarea is empty or user wants it
-  useEffect(() => {
-    if (!inputCode.trim()) {
-      handleLoadSample(language);
-    }
-  }, [language]);
-
   // Synchronize Scroll of Gutter and Textarea
   const handleInputScroll = (e) => {
     if (inputGutterRef.current) {
@@ -157,13 +150,19 @@ export default function CodeFormatter() {
 
       // Auto-detect language by file extension
       const ext = file.name.split(".").pop()?.toLowerCase();
-      if (ext === "js" || ext === "jsx") setLanguage("javascript");
-      else if (ext === "ts" || ext === "tsx") setLanguage("javascript"); // TS format using JS beautify
-      else if (ext === "html" || ext === "htm") setLanguage("html");
-      else if (ext === "css") setLanguage("css");
-      else if (ext === "json") setLanguage("json");
-      else if (ext === "xml" || ext === "svg") setLanguage("xml");
-      else if (ext === "sql") setLanguage("sql");
+      let detected = language;
+      if (ext === "js" || ext === "jsx") detected = "javascript";
+      else if (ext === "ts" || ext === "tsx") detected = "javascript"; // TS format using JS beautify
+      else if (ext === "html" || ext === "htm") detected = "html";
+      else if (ext === "css") detected = "css";
+      else if (ext === "json") detected = "json";
+      else if (ext === "xml" || ext === "svg") detected = "xml";
+      else if (ext === "sql") detected = "sql";
+
+      setLanguage(detected);
+      // Mirror the former language-change effect: if the uploaded file is empty,
+      // pre-populate the editor with the detected language's sample.
+      if (!text.trim() && detected !== language) handleLoadSample(detected);
     };
     reader.readAsText(file);
   };
@@ -473,7 +472,13 @@ export default function CodeFormatter() {
               <div className="relative">
                 <select
                   value={language}
-                  onChange={(e) => setLanguage(e.target.value)}
+                  onChange={(e) => {
+                    const nextLang = e.target.value;
+                    setLanguage(nextLang);
+                    // Mirror the former language-change effect: pre-populate the
+                    // editor with the new language's sample when it is empty.
+                    if (!inputCode.trim()) handleLoadSample(nextLang);
+                  }}
                   className="w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-800 rounded-xl px-3 py-2.5 focus:outline-none focus:ring-1 focus:ring-brandColor appearance-none cursor-pointer text-[12px] md:text-[14px]"
                 >
                   <option value="javascript">JavaScript (ES6)</option>
@@ -607,8 +612,8 @@ export default function CodeFormatter() {
                         className="w-full bg-gray-50 dark:bg-gray-950 text-gray-900 dark:text-white border border-gray-300 dark:border-gray-800 rounded-xl px-3 py-2 focus:outline-none focus:ring-1 focus:ring-brandColor appearance-none cursor-pointer text-[12px] md:text-[14px]"
                       >
                         <option value="none">Default / Keep Existing</option>
-                        <option value="single">Single Quotes (')</option>
-                        <option value="double">Double Quotes (")</option>
+                        <option value="single">Single Quotes (&apos;)</option>
+                        <option value="double">Double Quotes (&quot;)</option>
                       </select>
                       <ChevronDown className="w-4 h-4 text-gray-500 absolute right-3 top-3 pointer-events-none" />
                     </div>
@@ -807,7 +812,7 @@ export default function CodeFormatter() {
                         onClick={handleFormat}
                         className="text-[12px] md:text-[14px] text-brandColor hover:underline font-semibold cursor-pointer"
                       >
-                        Click "Beautify Code" to run the formatter
+                        Click &quot;Beautify Code&quot; to run the formatter
                       </button>
                     </div>
                   )}

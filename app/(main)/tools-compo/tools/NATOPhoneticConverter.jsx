@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useCallback, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Radio,
   ArrowLeftRight,
@@ -116,16 +116,16 @@ const CARD_COLORS = [
 export default function NATOPhoneticConverter() {
   const [mode, setMode]             = useState("encode"); // "encode" | "decode"
   const [inputText, setInputText]   = useState("");
-  const [outputText, setOutputText] = useState("");
   const [copied, setCopied]         = useState(false);
   const [showRef, setShowRef]       = useState(false);
   const [activeTab, setActiveTab]   = useState("Letters");
 
-  // ── Real-time translation ──────────────────────────────────────────────────
-  useEffect(() => {
-    if (!inputText.trim()) { setOutputText(""); return; }
-    setOutputText(mode === "encode" ? textToNATO(inputText) : natoToText(inputText));
-  }, [inputText, mode]);
+  // ── Real-time translation (derived: output is a pure function of input + mode) ──
+  const outputText = inputText.trim()
+    ? mode === "encode"
+      ? textToNATO(inputText)
+      : natoToText(inputText)
+    : "";
 
   const stats = mode === "encode" && inputText ? getStats(inputText) : null;
 
@@ -133,12 +133,11 @@ export default function NATOPhoneticConverter() {
   const outputTokens = outputText ? outputText.split(" · ") : [];
 
   // ── Handlers ──────────────────────────────────────────────────────────────
-  const handleSwap = useCallback(() => {
+  const handleSwap = () => {
     const newMode = mode === "encode" ? "decode" : "encode";
     setMode(newMode);
     setInputText(outputText);
-    setOutputText(inputText);
-  }, [mode, inputText, outputText]);
+  };
 
   const handleCopy = async () => {
     if (!outputText) return;
@@ -160,7 +159,7 @@ export default function NATOPhoneticConverter() {
     URL.revokeObjectURL(url);
   };
 
-  const handleClear = () => { setInputText(""); setOutputText(""); };
+  const handleClear = () => { setInputText(""); };
 
   const handleInsertChar = (char) => {
     if (mode === "encode") setInputText((prev) => prev + char.toLowerCase());
@@ -200,7 +199,7 @@ export default function NATOPhoneticConverter() {
           ].map(({ id, label }) => (
             <button
               key={id}
-              onClick={() => { setMode(id); setInputText(""); setOutputText(""); }}
+              onClick={() => { setMode(id); setInputText(""); }}
               className={`px-6 py-2.5 rounded-lg text-[12px] md:text-sm font-semibold transition-all duration-200 ${
                 mode === id
                   ? "bg-brandColor text-white shadow-md"

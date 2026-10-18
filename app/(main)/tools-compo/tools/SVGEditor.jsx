@@ -157,6 +157,7 @@ export default function SVGEditor() {
   };
 
   // ── Build blob preview URL whenever source changes ───────────────────────────
+  /* eslint-disable react-hooks/set-state-in-effect -- SVG parsing requires DOMParser (browser-only) plus object-URL create/revoke side effects, so the derived preview state cannot be computed during render without breaking SSR and leaking URLs */
   useEffect(() => {
     // Revoke previous object URL to prevent memory leaks
     setPreviewUrl((prev) => {
@@ -262,6 +263,7 @@ export default function SVGEditor() {
       setPreviewUrl((prev) => { if (prev) URL.revokeObjectURL(prev); return null; });
     };
   }, [svgText]);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   // ── Attribute mutation helper ────────────────────────────────────────────────
   const mutateSvg = useCallback((mutatorFn) => {
@@ -649,6 +651,7 @@ export default function SVGEditor() {
                 </div>
               ) : previewUrl ? (
                 /* SVG rendered safely via blob URL — works for ALL uploaded SVGs */
+                // eslint-disable-next-line @next/next/no-img-element -- blob URL preview of user SVG; next/image adds no benefit
                 <img
                   src={previewUrl}
                   alt="SVG Preview"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { format, subYears, addYears, subDays, addDays, parse, isValid } from "date-fns";
 import {
   ChevronLeft,
@@ -14,6 +14,20 @@ import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover
 import { cn } from "@/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
 
+// Initial state derived from the incoming `selected` value so the text field and
+// the calendar view start in sync without a state-syncing effect.
+const getInitialState = (selected) => {
+  const hasValidSelected = Boolean(selected && isValid(selected));
+  const today = new Date();
+  return {
+    inputValue: hasValidSelected ? format(selected, "yyyy-MM-dd") : "",
+    isValidDate: hasValidSelected ? true : null,
+    currentMonth: hasValidSelected ? selected.getMonth() : today.getMonth(),
+    currentYear: hasValidSelected ? selected.getFullYear() : today.getFullYear(),
+    yearGridStart: hasValidSelected ? selected.getFullYear() - 8 : today.getFullYear() - 8,
+  };
+};
+
 export default function CustomDatePicker({
   selected,
   onSelect,
@@ -23,28 +37,25 @@ export default function CustomDatePicker({
   presetsType = "any", // 'birthDate' | 'futureDate' | 'any'
 }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [inputValue, setInputValue] = useState("");
-  const [isValidDate, setIsValidDate] = useState(null); // null, true, false
+  const [inputValue, setInputValue] = useState(() => getInitialState(selected).inputValue);
+  const [isValidDate, setIsValidDate] = useState(() => getInitialState(selected).isValidDate);
   const [viewMode, setViewMode] = useState("calendar"); // 'calendar' | 'months' | 'years'
   
   // Navigation states for Custom Calendar Header
-  const [currentMonth, setCurrentMonth] = useState(new Date().getMonth());
-  const [currentYear, setCurrentYear] = useState(new Date().getFullYear());
-  const [yearGridStart, setYearGridStart] = useState(new Date().getFullYear() - 8);
+  const [currentMonth, setCurrentMonth] = useState(() => getInitialState(selected).currentMonth);
+  const [currentYear, setCurrentYear] = useState(() => getInitialState(selected).currentYear);
+  const [yearGridStart, setYearGridStart] = useState(() => getInitialState(selected).yearGridStart);
 
-  // Sync inputs on selection changes
-  useEffect(() => {
-    if (selected && isValid(selected)) {
-      setInputValue(format(selected, "yyyy-MM-dd"));
-      setCurrentMonth(selected.getMonth());
-      setCurrentYear(selected.getFullYear());
-      setYearGridStart(selected.getFullYear() - 8);
-      setIsValidDate(true);
-    } else {
-      setInputValue("");
-      setIsValidDate(null);
-    }
-  }, [selected]);
+  // Commit a chosen date: notify the parent, then keep the text field and the
+  // calendar view in sync with it.
+  const commitSelection = (date) => {
+    onSelect(date);
+    setInputValue(format(date, "yyyy-MM-dd"));
+    setIsValidDate(true);
+    setCurrentMonth(date.getMonth());
+    setCurrentYear(date.getFullYear());
+    setYearGridStart(date.getFullYear() - 8);
+  };
 
   // Handle typing inside text input
   const handleInputChange = (e) => {
@@ -60,7 +71,7 @@ export default function CustomDatePicker({
         setIsValidDate(false);
       } else {
         setIsValidDate(true);
-        onSelect(parsedDate);
+        commitSelection(parsedDate);
       }
     } else {
       setIsValidDate(value === "" ? null : false);
@@ -227,7 +238,7 @@ export default function CustomDatePicker({
                     key={preset.label}
                     type="button"
                     onClick={() => {
-                      onSelect(preset.value);
+                      commitSelection(preset.value);
                       setIsOpen(false);
                     }}
                     className={cn(
@@ -320,7 +331,7 @@ export default function CustomDatePicker({
                           selected={selected}
                           onSelect={(date) => {
                             if (date) {
-                              onSelect(date);
+                              commitSelection(date);
                               setIsOpen(false);
                             }
                           }}

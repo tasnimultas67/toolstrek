@@ -226,8 +226,6 @@ export default function ParagraphFormatter() {
     return paragraphs.join(separator);
   }, [
     inputText,
-    alignment,
-    lineSpacing,
     paragraphSpacing,
     indentStyle,
     caseStyle,
@@ -890,7 +888,7 @@ export default function ParagraphFormatter() {
                         onClick={handleLoadSample}
                         className="text-[12px] md:text-[14px] text-brandColor hover:underline font-semibold cursor-pointer"
                       >
-                        Click "Load Sample" to begin formatting
+                        Click &quot;Load Sample&quot; to begin formatting
                       </button>
                     </div>
                   )}

@@ -956,6 +956,18 @@ sed -E 's/${safeRawPattern.replace(/\//g, "\\/")}/${(substitution || "").replace
 }
 
 // ─── Main Component ──────────────────────────────────────────────────────────
+// Empty evaluation state shown until the first analysis pass completes.
+const EMPTY_EVALUATION_RESULT = {
+  isValid: true,
+  regex: null,
+  error: null,
+  matches: [],
+  totalMatches: 0,
+  totalGroups: 0,
+  execTimeMs: 0,
+  timeout: false
+};
+
 export default function RegexTester() {
   // ─── Core Inputs: DEFAULT ZERO DEMO DATA ────────────────────────────────────
   const [pattern, setPattern] = useState("");
@@ -1009,32 +1021,35 @@ export default function RegexTester() {
 
   // ─── Load from Share URL Hash on Mount (if present) ─────────────────────────
   useEffect(() => {
-    if (typeof window !== "undefined" && window.location.hash) {
-      try {
-        const hash = window.location.hash.substring(1);
-        if (hash.startsWith("data=")) {
-          const jsonStr = decodeURIComponent(atob(hash.replace("data=", "")));
-          const parsed = JSON.parse(jsonStr);
-          if (parsed.p !== undefined) setPattern(parsed.p);
-          if (parsed.t !== undefined) setTestString(parsed.t);
-          if (parsed.s !== undefined) setSubstitution(parsed.s);
-          if (parsed.f) {
-            setFlags({
-              g: !!parsed.f.g,
-              i: !!parsed.f.i,
-              m: !!parsed.f.m,
-              s: !!parsed.f.s,
-              u: !!parsed.f.u,
-              y: !!parsed.f.y,
-              d: !!parsed.f.d
-            });
+    // Deferred to a microtask so the effect body itself does not synchronously set state.
+    queueMicrotask(() => {
+      if (typeof window !== "undefined" && window.location.hash) {
+        try {
+          const hash = window.location.hash.substring(1);
+          if (hash.startsWith("data=")) {
+            const jsonStr = decodeURIComponent(atob(hash.replace("data=", "")));
+            const parsed = JSON.parse(jsonStr);
+            if (parsed.p !== undefined) setPattern(parsed.p);
+            if (parsed.t !== undefined) setTestString(parsed.t);
+            if (parsed.s !== undefined) setSubstitution(parsed.s);
+            if (parsed.f) {
+              setFlags({
+                g: !!parsed.f.g,
+                i: !!parsed.f.i,
+                m: !!parsed.f.m,
+                s: !!parsed.f.s,
+                u: !!parsed.f.u,
+                y: !!parsed.f.y,
+                d: !!parsed.f.d
+              });
+            }
+            toast.success("Loaded shared Regex workspace!");
           }
-          toast.success("Loaded shared Regex workspace!");
+        } catch (err) {
+          // invalid hash, ignore and start clean
         }
-      } catch (err) {
-        // invalid hash, ignore and start clean
       }
-    }
+    });
   }, []);
 
   // ─── Flags String Builder ───────────────────────────────────────────────────
@@ -1053,7 +1068,9 @@ export default function RegexTester() {
   };
 
   // ─── Regex Compilation & Safe Execution Engine ─────────────────────────────
-  const evaluationResult = useMemo(() => {
+  // The engine measures elapsed time with performance.now(), which must not be
+  // called during render, so it runs in an effect (via a microtask) instead.
+  const runRegexEvaluation = useCallback(() => {
     if (!pattern) {
       return {
         isValid: true,
@@ -1248,6 +1265,14 @@ export default function RegexTester() {
     };
   }, [pattern, flagsString, testString, maxMatchesLimit, flags.g]);
 
+  const [evaluationResult, setEvaluationResult] = useState(EMPTY_EVALUATION_RESULT);
+
+  useEffect(() => {
+    queueMicrotask(() => {
+      setEvaluationResult(runRegexEvaluation());
+    });
+  }, [runRegexEvaluation]);
+
   // ─── Substitution Calculation Engine ────────────────────────────────────────
   const substitutionResult = useMemo(() => {
     if (!evaluationResult.isValid || !evaluationResult.regex || !testString) {
@@ -1258,7 +1283,6 @@ export default function RegexTester() {
       if (useJsReplace) {
         // Custom JavaScript replacement function
         let replaceCount = 0;
-        /* eslint-disable no-new-func */
         const customFn = new Function(
           "match",
           "p1",
@@ -1269,7 +1293,6 @@ export default function RegexTester() {
           "groups",
           jsReplaceCode
         );
-        /* eslint-enable no-new-func */
 
         const replaced = testString.replace(evaluationResult.regex, (...args) => {
           replaceCount++;
@@ -1473,7 +1496,7 @@ export default function RegexTester() {
     if (!testString) {
       return (
         <span className="text-muted-foreground/40 italic">
-          Test string is empty. Type or paste your sample text above, or click "Load Demo Data" to test.
+          Test string is empty. Type or paste your sample text above, or click &quot;Load Demo Data&quot; to test.
         </span>
       );
     }
@@ -2186,7 +2209,7 @@ export default function RegexTester() {
                     <span>Substitution Pattern Configuration</span>
                   </h3>
                   <p className="text-xs text-muted-foreground mt-0.5">
-                    Substitute regex matches with formatted tokens ($1, $2, $&, $`, $', $&lt;name&gt;) or custom JS function.
+                    Substitute regex matches with formatted tokens ($1, $2, $&amp;, $`, $&apos;, $&lt;name&gt;) or custom JS function.
                   </p>
                 </div>
 
@@ -2573,7 +2596,7 @@ export default function RegexTester() {
                   <span>Regular Expression Syntax Quick Reference</span>
                 </h3>
                 <p className="text-xs text-muted-foreground mt-0.5">
-                  Click the "+ Insert" button on any token to append it to your active regex pattern.
+                  Click the &quot;+ Insert&quot; button on any token to append it to your active regex pattern.
                 </p>
               </div>
 

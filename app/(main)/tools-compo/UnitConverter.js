@@ -316,12 +316,44 @@ const CustomSelect = ({ id, value, onChange, options, label }) => {
   );
 };
 
+// Convert an amount between two units and format the result for display/history.
+// Returns "" when the amount cannot be parsed or the units are not valid for the category.
+function convertAndFormat(amount, category, fromUnit, toUnit) {
+  const numericAmount = parseFloat(amount);
+  if (amount === "" || isNaN(numericAmount)) return "";
+
+  const config = conversionConfig[category];
+
+  // Safety guard to prevent calculations with out-of-sync units during category transitions
+  if (!config.units[fromUnit] || !config.units[toUnit]) return "";
+
+  let result;
+
+  if (config.isSpecial) {
+    result = config.convert(numericAmount, fromUnit, toUnit);
+  } else {
+    const fromFactor = config.units[fromUnit].factor;
+    const toFactor = config.units[toUnit].factor;
+    // Convert to base unit then to target unit
+    const baseValue = numericAmount * fromFactor;
+    result = baseValue / toFactor;
+  }
+
+  // Format output
+  if (result === 0) return "0";
+
+  const absResult = Math.abs(result);
+  if (absResult < 1e-8 || absResult > 1e12) return result.toExponential(6);
+
+  // Strip trailing zeros after parsing float of fixed precision
+  return parseFloat(result.toFixed(8)).toString();
+}
+
 export default function UnitConverter() {
   const [category, setCategory] = useState("length");
   const [amount, setAmount] = useState("1");
   const [fromUnit, setFromUnit] = useState("ft");
   const [toUnit, setToUnit] = useState("m");
-  const [output, setOutput] = useState("");
   const [copied, setCopied] = useState(false);
   const [copiedShare, setCopiedShare] = useState(false);
   const [recentConversions, setRecentConversions] = useState([]);
@@ -329,82 +361,46 @@ export default function UnitConverter() {
 
   const tabContainerRef = useRef(null);
 
-  // Initialize Category default units on category change
+  // Default units for a category (used for the initial state and when switching)
+  const getDefaultUnits = (cat) => {
+    const unitKeys = Object.keys(conversionConfig[cat].units);
+    if (cat === "length") return { from: "ft", to: "m" };
+    if (cat === "weight") return { from: "kg", to: "lb" };
+    if (cat === "temperature") return { from: "c", to: "f" };
+    return { from: unitKeys[0], to: unitKeys[1] || unitKeys[0] };
+  };
+
+  // Switching category also resets the units to that category's defaults
+  const selectCategory = (cat) => {
+    setCategory(cat);
+    const { from, to } = getDefaultUnits(cat);
+    setFromUnit(from);
+    setToUnit(to);
+  };
+
+  // Live conversion result (derived from the current inputs)
+  const output = convertAndFormat(amount, category, fromUnit, toUnit);
+
+  // Load recent conversions on mount.
+  // Deferred to a microtask so the effect body itself does not synchronously set state.
   useEffect(() => {
-    const config = conversionConfig[category];
-    const unitKeys = Object.keys(config.units);
-    if (category === "length") {
-      setFromUnit("ft");
-      setToUnit("m");
-    } else if (category === "weight") {
-      setFromUnit("kg");
-      setToUnit("lb");
-    } else if (category === "temperature") {
-      setFromUnit("c");
-      setToUnit("f");
-    } else {
-      setFromUnit(unitKeys[0]);
-      setToUnit(unitKeys[1] || unitKeys[0]);
-    }
-  }, [category]);
-
-  // Handle calculation in real time
-  useEffect(() => {
-    const numericAmount = parseFloat(amount);
-    if (amount === "" || isNaN(numericAmount)) {
-      setOutput("");
-      return;
-    }
-
-    const config = conversionConfig[category];
-
-    // Safety guard to prevent calculations with out-of-sync units during category transitions
-    if (!config.units[fromUnit] || !config.units[toUnit]) {
-      return;
-    }
-
-    let result;
-
-    if (config.isSpecial) {
-      result = config.convert(numericAmount, fromUnit, toUnit);
-    } else {
-      const fromFactor = config.units[fromUnit].factor;
-      const toFactor = config.units[toUnit].factor;
-      // Convert to base unit then to target unit
-      const baseValue = numericAmount * fromFactor;
-      result = baseValue / toFactor;
-    }
-
-    // Format output
-    if (result === 0) {
-      setOutput("0");
-    } else {
-      const absResult = Math.abs(result);
-      if (absResult < 1e-8 || absResult > 1e12) {
-        setOutput(result.toExponential(6));
-      } else {
-        // Strip trailing zeros after parsing float of fixed precision
-        const formatted = parseFloat(result.toFixed(8));
-        setOutput(formatted.toString());
+    queueMicrotask(() => {
+      const saved = localStorage.getItem("toolstrek_recent_conversions");
+      if (saved) {
+        try {
+          setRecentConversions(JSON.parse(saved));
+        } catch (e) {
+          console.error("Failed to parse recent conversions", e);
+        }
       }
-    }
-  }, [amount, fromUnit, toUnit, category]);
-
-  // Load recent conversions on mount
-  useEffect(() => {
-    const saved = localStorage.getItem("toolstrek_recent_conversions");
-    if (saved) {
-      try {
-        setRecentConversions(JSON.parse(saved));
-      } catch (e) {
-        console.error("Failed to parse recent conversions", e);
-      }
-    }
+    });
   }, []);
 
   // Save to recent conversions when calculation is stable (debounce user input slightly)
   useEffect(() => {
-    if (!amount || !output || amount === "." || amount === "-") return;
+    if (!amount || amount === "." || amount === "-") return;
+    const recordOutput = convertAndFormat(amount, category, fromUnit, toUnit);
+    if (!recordOutput) return;
 
     const timer = setTimeout(() => {
       const activeConfig = conversionConfig[category];
@@ -419,7 +415,7 @@ export default function UnitConverter() {
         toUnit,
         fromSymbol: fromSym,
         toSymbol: toSym,
-        output,
+        output: recordOutput,
       };
 
       setRecentConversions((prev) => {
@@ -458,7 +454,7 @@ export default function UnitConverter() {
     }, 1000);
 
     return () => clearTimeout(timer);
-  }, [amount, output, fromUnit, toUnit, category]);
+  }, [amount, fromUnit, toUnit, category]);
 
   const handleSwap = () => {
     setFromUnit(toUnit);
@@ -467,7 +463,6 @@ export default function UnitConverter() {
 
   const handleClear = () => {
     setAmount("");
-    setOutput("");
   };
 
   const handleCopy = () => {
@@ -498,8 +493,8 @@ export default function UnitConverter() {
   };
 
   const handlePopularClick = (pop) => {
-    setCategory(pop.cat);
-    // Setting units directly (timeout is used because category useEffect also writes fromUnit/toUnit)
+    selectCategory(pop.cat);
+    // Setting units directly (timeout is used because the category switch also writes fromUnit/toUnit)
     setTimeout(() => {
       setFromUnit(pop.from);
       setToUnit(pop.to);
@@ -508,7 +503,7 @@ export default function UnitConverter() {
   };
 
   const handleRecentClick = (record) => {
-    setCategory(record.category);
+    selectCategory(record.category);
     setTimeout(() => {
       setFromUnit(record.fromUnit);
       setToUnit(record.toUnit);
@@ -553,7 +548,7 @@ export default function UnitConverter() {
             return (
               <button
                 key={key}
-                onClick={() => setCategory(key)}
+                onClick={() => selectCategory(key)}
                 className={`snap-start flex items-center gap-2 px-4 py-2.5 rounded-xl border text-sm font-semibold transition-all duration-200 cursor-pointer ${isActive
                     ? "bg-brandColor text-white border-brandColor shadow-md shadow-brandColor/20 scale-[1.02]"
                     : "bg-card hover:bg-muted text-muted-foreground hover:text-foreground border-border"

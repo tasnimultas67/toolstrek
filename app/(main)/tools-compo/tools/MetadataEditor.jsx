@@ -10,7 +10,7 @@ import {
   MapPin,
   Camera,
   FileText,
-  Image,
+  Image as ImageIcon,
   Clock,
   HardDrive,
   Eye,
@@ -854,7 +854,7 @@ export default function MetadataEditor() {
               {/* File Preview */}
               <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-white/20 dark:bg-white/5 overflow-hidden">
                 <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-200 dark:border-white/10 bg-gray-50/50 dark:bg-black/10">
-                  <Image className="w-4 h-4 text-violet-500" />
+                  <ImageIcon className="w-4 h-4 text-violet-500" />
                   <span className="text-sm font-bold text-gray-700 dark:text-white/80">File Preview</span>
                 </div>
                 <div className="p-6 flex justify-center items-center bg-gray-50/30 dark:bg-[#06060c]/30 min-h-[220px]">

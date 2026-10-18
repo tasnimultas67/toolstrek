@@ -1140,7 +1140,7 @@ export default function FancyTextGenerator() {
         },
       },
     ],
-    [zalgoIntensity, zalgoUp, zalgoMid, zalgoDown],
+    [],
   );
 
   // Handle Copy to clipboard
@@ -1564,7 +1564,7 @@ export default function FancyTextGenerator() {
               ) : (
                 <div className="text-center py-10 bg-slate-50 rounded-2xl dark:bg-slate-900/50">
                   <p className="text-sm text-slate-500 dark:text-slate-400">
-                    No matching font styles found for "{searchQuery}".
+                    No matching font styles found for &quot;{searchQuery}&quot;.
                   </p>
                 </div>
               )}

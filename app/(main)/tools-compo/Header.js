@@ -1,7 +1,7 @@
 // components/Header.jsx
 "use client";
 
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef, useEffect, useSyncExternalStore } from "react";
 import { Staatliches } from "next/font/google";
 import {
   Dialog,
@@ -35,6 +35,12 @@ const staatliches = Staatliches({
   display: "swap",
   variable: "--font-staatliches",
 });
+
+const subscribeNoop = () => () => {};
+const getIsMac = () =>
+  typeof navigator !== "undefined" &&
+  navigator.platform.toUpperCase().includes("MAC");
+const getIsMacServer = () => false;
 
 export default function Header() {
   const { favorites } = useFavorites();
@@ -71,11 +77,8 @@ export default function Header() {
     else openHistoryDropdown();
   };
 
-  // Detect Mac for shortcut label
-  const [isMac, setIsMac] = useState(false);
-  useEffect(() => {
-    setIsMac(navigator.platform.toUpperCase().includes("MAC"));
-  }, []);
+  // Detect Mac for shortcut label (hydration-safe external store read)
+  const isMac = useSyncExternalStore(subscribeNoop, getIsMac, getIsMacServer);
 
   // GitHub stars state
   const [starCount, setStarCount] = useState(null);
@@ -127,6 +130,21 @@ export default function Header() {
 
     fetchGitHubStars();
   }, []);
+
+  const openMegaMenu = () => {
+    setIsMegaMenuOpen(true);
+    setTimeout(() => setMegaMenuAnimation(true), 10);
+  };
+
+  const closeMegaMenu = () => {
+    setMegaMenuAnimation(false);
+    setTimeout(() => setIsMegaMenuOpen(false), 200);
+  };
+
+  const toggleMegaMenu = () => {
+    if (isMegaMenuOpen) closeMegaMenu();
+    else openMegaMenu();
+  };
 
   // Handle click outside for mega menu
   useEffect(() => {
@@ -205,21 +223,6 @@ export default function Header() {
       document.removeEventListener("keydown", handleEscKey);
     };
   }, [isHistoryOpen]);
-
-  const openMegaMenu = () => {
-    setIsMegaMenuOpen(true);
-    setTimeout(() => setMegaMenuAnimation(true), 10);
-  };
-
-  const closeMegaMenu = () => {
-    setMegaMenuAnimation(false);
-    setTimeout(() => setIsMegaMenuOpen(false), 200);
-  };
-
-  const toggleMegaMenu = () => {
-    if (isMegaMenuOpen) closeMegaMenu();
-    else openMegaMenu();
-  };
 
   const formatStarCount = (count) => {
     if (count === null) return null;

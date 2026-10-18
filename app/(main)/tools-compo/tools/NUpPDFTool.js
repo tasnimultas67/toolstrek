@@ -662,6 +662,7 @@ export default function NUpPDFTool() {
                               ].join(" ")}
                             >
                               {hasPage && thumb ? (
+                                /* eslint-disable-next-line @next/next/no-img-element -- data URL (canvas.toDataURL) preview; next/image adds no benefit */
                                 <img
                                   src={thumb}
                                   alt={`Preview page ${slot}`}

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useMemo, useRef, useCallback } from "react";
+import React, { useState, useEffect, useMemo, useRef, useCallback, useSyncExternalStore } from "react";
 import ToolPageShell from "../ToolPageShell";
 import {
   Shuffle,
@@ -131,6 +131,64 @@ class SoundEffects {
 }
 
 const sfx = new SoundEffects();
+
+// ─────────────────────────────────────────────────────────────
+//  localStorage-backed stores (generation history & saved presets)
+// ─────────────────────────────────────────────────────────────
+const EMPTY_LIST = [];
+
+function createLocalStore(storageKey) {
+  let cache = null;
+  const listeners = new Set();
+
+  function read() {
+    try {
+      const saved = localStorage.getItem(storageKey);
+      return saved ? JSON.parse(saved) : EMPTY_LIST;
+    } catch (_) {
+      return EMPTY_LIST;
+    }
+  }
+
+  return {
+    subscribe(callback) {
+      const onStorage = () => {
+        cache = null;
+        callback();
+      };
+      listeners.add(callback);
+      window.addEventListener("storage", onStorage);
+      return () => {
+        listeners.delete(callback);
+        window.removeEventListener("storage", onStorage);
+      };
+    },
+    getSnapshot() {
+      if (cache === null) cache = read();
+      return cache;
+    },
+    getServerSnapshot() {
+      return EMPTY_LIST;
+    },
+    set(next) {
+      cache = next;
+      try {
+        localStorage.setItem(storageKey, JSON.stringify(next));
+      } catch (_) {}
+      listeners.forEach((listener) => listener());
+    },
+    clear() {
+      cache = EMPTY_LIST;
+      try {
+        localStorage.removeItem(storageKey);
+      } catch (_) {}
+      listeners.forEach((listener) => listener());
+    },
+  };
+}
+
+const historyStore = createLocalStore("toolstrek_rng_history");
+const presetsStore = createLocalStore("toolstrek_rng_presets");
 
 // ─────────────────────────────────────────────────────────────
 // Pure Math & PRNG / CSPRNG Core Algorithms
@@ -264,47 +322,26 @@ export default function RandomNumberGenerator() {
   const [fullscreenSpotlight, setFullscreenSpotlight] = useState(false);
   const [spotlightValue, setSpotlightValue] = useState(null);
 
-  // ── History & Saved Presets ──
-  const [history, setHistory] = useState([]);
-  const [savedPresets, setSavedPresets] = useState([]);
+  // ── History & Saved Presets (localStorage-backed external stores) ──
+  const history = useSyncExternalStore(
+    historyStore.subscribe,
+    historyStore.getSnapshot,
+    historyStore.getServerSnapshot
+  );
+  const savedPresets = useSyncExternalStore(
+    presetsStore.subscribe,
+    presetsStore.getSnapshot,
+    presetsStore.getServerSnapshot
+  );
   const [activeTab, setActiveTab] = useState("generator"); // "generator" | "analytics" | "history" | "docs"
 
   const canvasRef = useRef(null);
 
-  // Load history & presets from localStorage on mount
-  useEffect(() => {
-    try {
-      const savedHist = localStorage.getItem("toolstrek_rng_history");
-      if (savedHist) setHistory(JSON.parse(savedHist));
-      const savedPre = localStorage.getItem("toolstrek_rng_presets");
-      if (savedPre) setSavedPresets(JSON.parse(savedPre));
-    } catch (_) {}
-  }, []);
-
   // Save history to localStorage
   const saveToHistory = useCallback((entry) => {
-    setHistory((prev) => {
-      const updated = [entry, ...prev.slice(0, 39)];
-      try {
-        localStorage.setItem("toolstrek_rng_history", JSON.stringify(updated));
-      } catch (_) {}
-      return updated;
-    });
+    const updated = [entry, ...historyStore.getSnapshot().slice(0, 39)];
+    historyStore.set(updated);
   }, []);
-
-  // Keyboard shortcut listener (Space or Enter to re-generate when not focusing an input)
-  useEffect(() => {
-    const handleKeyDown = (e) => {
-      const targetTag = e.target.tagName.toLowerCase();
-      if (targetTag === "input" || targetTag === "textarea" || targetTag === "select") return;
-      if (e.code === "Space" || e.code === "KeyR") {
-        e.preventDefault();
-        handleGenerate();
-      }
-    };
-    window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  });
 
   // Confetti Particle Animation
   useEffect(() => {
@@ -802,10 +839,26 @@ export default function RandomNumberGenerator() {
     saveToHistory
   ]);
 
-  // Run on mount
+  // Run on mount (deferred to a task so the setState-heavy generation runs
+  // outside the synchronous effect commit)
   useEffect(() => {
-    handleGenerate();
+    const timer = setTimeout(() => handleGenerate(), 0);
+    return () => clearTimeout(timer);
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
+
+  // Keyboard shortcut listener (Space or Enter to re-generate when not focusing an input)
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      const targetTag = e.target.tagName.toLowerCase();
+      if (targetTag === "input" || targetTag === "textarea" || targetTag === "select") return;
+      if (e.code === "Space" || e.code === "KeyR") {
+        e.preventDefault();
+        handleGenerate();
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  });
 
   // ─────────────────────────────────────────────────────────────
   // Output String Formatter
@@ -1028,10 +1081,7 @@ export default function RandomNumberGenerator() {
       seed
     };
     const updated = [...savedPresets, newPreset];
-    setSavedPresets(updated);
-    try {
-      localStorage.setItem("toolstrek_rng_presets", JSON.stringify(updated));
-    } catch (_) {}
+    presetsStore.set(updated);
     toast.success(`Preset "${presetName}" saved!`);
   };
 
@@ -2408,10 +2458,7 @@ export default function RandomNumberGenerator() {
                   {history.length > 0 && (
                     <button
                       onClick={() => {
-                        setHistory([]);
-                        try {
-                          localStorage.removeItem("toolstrek_rng_history");
-                        } catch (_) {}
+                        historyStore.clear();
                         toast.success("History cleared!");
                       }}
                       className="text-xs text-rose-500 hover:underline flex items-center gap-1 font-semibold cursor-pointer"

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect, useCallback } from "react";
+import React, { useState } from "react";
 import { toast } from "sonner";
 import {
   Copy,
@@ -322,35 +322,38 @@ export default function ColorConverter() {
   const [wcagBgInput, setWcagBgInput] = useState("#FFFFFF");
   const [wcagBg, setWcagBg] = useState({ r: 255, g: 255, b: 255 });
 
-  // Sync inputs when rgb source changes
-  useEffect(() => {
-    setHexInput(rgbToHex(rgb.r, rgb.g, rgb.b));
-    setRInput(rgb.r.toString());
-    setGInput(rgb.g.toString());
-    setBInput(rgb.b.toString());
+  // Apply a new RGB source of truth and sync all derived text inputs.
+  // This replaces a setState-in-effect sync that ran whenever `rgb` changed.
+  const applyRgb = (nextRgb) => {
+    setRgb(nextRgb);
 
-    const hsl = rgbToHsl(rgb.r, rgb.g, rgb.b);
+    setHexInput(rgbToHex(nextRgb.r, nextRgb.g, nextRgb.b));
+    setRInput(nextRgb.r.toString());
+    setGInput(nextRgb.g.toString());
+    setBInput(nextRgb.b.toString());
+
+    const hsl = rgbToHsl(nextRgb.r, nextRgb.g, nextRgb.b);
     setHInput(hsl.h.toString());
     setSInput(hsl.s.toString());
     setLInput(hsl.l.toString());
 
-    const hsv = rgbToHsv(rgb.r, rgb.g, rgb.b);
+    const hsv = rgbToHsv(nextRgb.r, nextRgb.g, nextRgb.b);
     setHsvHInput(hsv.h.toString());
     setHsvSInput(hsv.s.toString());
     setHsvVInput(hsv.v.toString());
 
-    const cmyk = rgbToCmyk(rgb.r, rgb.g, rgb.b);
+    const cmyk = rgbToCmyk(nextRgb.r, nextRgb.g, nextRgb.b);
     setCmykCInput(cmyk.c.toString());
     setCmykMInput(cmyk.m.toString());
     setCmykYInput(cmyk.y.toString());
     setCmykKInput(cmyk.k.toString());
-  }, [rgb]);
+  };
 
   // Handle HexColorPicker input
   const handlePickerChange = (hex) => {
     const parsed = hexToRgb(hex);
     if (parsed) {
-      setRgb(parsed);
+      applyRgb(parsed);
     }
   };
 
@@ -359,7 +362,7 @@ export default function ColorConverter() {
     setHexInput(val);
     const parsed = hexToRgb(val);
     if (parsed) {
-      setRgb(parsed);
+      applyRgb(parsed);
     }
   };
 
@@ -373,7 +376,7 @@ export default function ColorConverter() {
     if (channel === "g") setGInput(val);
     if (channel === "b") setBInput(val);
 
-    setRgb(nextRgb);
+    applyRgb(nextRgb);
   };
 
   const handleHslChange = (param, val) => {
@@ -395,7 +398,7 @@ export default function ColorConverter() {
       l: param === "l" ? num : currentHsl.l,
     };
 
-    setRgb(hslToRgb(nextHsl.h, nextHsl.s, nextHsl.l));
+    applyRgb(hslToRgb(nextHsl.h, nextHsl.s, nextHsl.l));
   };
 
   const handleHsvChange = (param, val) => {
@@ -417,7 +420,7 @@ export default function ColorConverter() {
       v: param === "v" ? num : currentHsv.v,
     };
 
-    setRgb(hsvToRgb(nextHsv.h, nextHsv.s, nextHsv.v));
+    applyRgb(hsvToRgb(nextHsv.h, nextHsv.s, nextHsv.v));
   };
 
   const handleCmykChange = (param, val) => {
@@ -438,14 +441,14 @@ export default function ColorConverter() {
       k: param === "k" ? num : currentCmyk.k,
     };
 
-    setRgb(cmykToRgb(nextCmyk.c, nextCmyk.m, nextCmyk.y, nextCmyk.k));
+    applyRgb(cmykToRgb(nextCmyk.c, nextCmyk.m, nextCmyk.y, nextCmyk.k));
   };
 
   const generateRandomColor = () => {
     const r = Math.floor(Math.random() * 256);
     const g = Math.floor(Math.random() * 256);
     const b = Math.floor(Math.random() * 256);
-    setRgb({ r, g, b });
+    applyRgb({ r, g, b });
   };
 
   const copyToClipboard = (text, label) => {

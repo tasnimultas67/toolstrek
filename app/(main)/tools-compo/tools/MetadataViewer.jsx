@@ -12,7 +12,7 @@ import {
   Film,
   Music,
   FileText,
-  Image,
+  Image as ImageIcon,
   Cpu,
   Clock,
   HardDrive,
@@ -253,10 +253,10 @@ function detectMime(buffer) {
 
 /* ─────────────────────────── Section config ─────────────────────────── */
 const CATEGORY_ICONS = {
-  "File Info": HardDrive, "Image Info": Image, "EXIF Camera": Camera,
+  "File Info": HardDrive, "Image Info": ImageIcon, "EXIF Camera": Camera,
   "EXIF Settings": Zap, "EXIF Dates": Clock, GPS: MapPin,
   PDF: FileText, Audio: Music, Video: Film, "Text/Code": FileText,
-  Font: Layers, Archive: Cpu, "Hash & Integrity": Hash, "PNG Chunks": Image,
+  Font: Layers, Archive: Cpu, "Hash & Integrity": Hash, "PNG Chunks": ImageIcon,
 };
 
 // Section gradient: light bg / dark bg via Tailwind dark: prefix
@@ -770,7 +770,7 @@ export default function MetadataViewer() {
               {imagePreview && (
                 <div className="rounded-2xl border border-gray-200 dark:border-white/10 bg-gray-50 dark:bg-white/5 overflow-hidden">
                   <div className="flex items-center gap-2 px-4 py-3 border-b border-gray-200 dark:border-white/10">
-                    <Image className="w-4 h-4 text-pink-500 dark:text-pink-400" />
+                    <ImageIcon className="w-4 h-4 text-pink-500 dark:text-pink-400" />
                     <span className="text-sm font-medium text-gray-700 dark:text-white/80">Image Preview</span>
                   </div>
                   <div className="p-4 flex justify-center">

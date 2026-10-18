@@ -37,6 +37,34 @@ const CATEGORIES = [
   "Fixes",
 ];
 
+// Filter changelog releases by category and search query
+function filterReleases(query, category) {
+  return changelogData.filter((release) => {
+    const matchesCategory =
+      category === "All" || release.categories.includes(category);
+
+    if (!matchesCategory) return false;
+
+    if (!query.trim()) return true;
+
+    const q = query.toLowerCase();
+    const inTitle = release.title.toLowerCase().includes(q);
+    const inVersion = release.version.toLowerCase().includes(q);
+    const inSummary = release.summary.toLowerCase().includes(q);
+    const inHighlights = release.highlights?.some(
+      (h) =>
+        h.title.toLowerCase().includes(q) ||
+        h.description.toLowerCase().includes(q) ||
+        h.tag.toLowerCase().includes(q)
+    );
+    const inChanges = release.changes?.some((group) =>
+      group.items.some((item) => item.toLowerCase().includes(q))
+    );
+
+    return inTitle || inVersion || inSummary || inHighlights || inChanges;
+  });
+}
+
 export default function ChangelogFeed() {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
@@ -77,44 +105,32 @@ export default function ChangelogFeed() {
   };
 
   // Filter releases by category and search query
-  const filteredReleases = useMemo(() => {
-    return changelogData.filter((release) => {
-      const matchesCategory =
-        selectedCategory === "All" ||
-        release.categories.includes(selectedCategory);
+  const filteredReleases = useMemo(
+    () => filterReleases(searchQuery, selectedCategory),
+    [searchQuery, selectedCategory]
+  );
 
-      if (!matchesCategory) return false;
-
-      if (!searchQuery.trim()) return true;
-
-      const q = searchQuery.toLowerCase();
-      const inTitle = release.title.toLowerCase().includes(q);
-      const inVersion = release.version.toLowerCase().includes(q);
-      const inSummary = release.summary.toLowerCase().includes(q);
-      const inHighlights = release.highlights?.some(
-        (h) =>
-          h.title.toLowerCase().includes(q) ||
-          h.description.toLowerCase().includes(q) ||
-          h.tag.toLowerCase().includes(q)
-      );
-      const inChanges = release.changes?.some((group) =>
-        group.items.some((item) => item.toLowerCase().includes(q))
-      );
-
-      return inTitle || inVersion || inSummary || inHighlights || inChanges;
-    });
-  }, [searchQuery, selectedCategory]);
-
-  // If user searches, auto-expand matching releases
-  useEffect(() => {
-    if (searchQuery.trim()) {
-      const searchExpanded = {};
-      filteredReleases.forEach((r) => {
-        searchExpanded[r.version] = true;
+  // Expand all matching releases as the user searches / changes category
+  const expandMatches = (query, category) => {
+    if (!query.trim()) return;
+    setExpandedVersions((prev) => {
+      const next = { ...prev };
+      filterReleases(query, category).forEach((r) => {
+        next[r.version] = true;
       });
-      setExpandedVersions((prev) => ({ ...prev, ...searchExpanded }));
-    }
-  }, [searchQuery, filteredReleases]);
+      return next;
+    });
+  };
+
+  const handleSearchChange = (value) => {
+    setSearchQuery(value);
+    expandMatches(value, selectedCategory);
+  };
+
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+    expandMatches(searchQuery, category);
+  };
 
   // Track active version in viewport for TOC
   useEffect(() => {
@@ -195,7 +211,7 @@ export default function ChangelogFeed() {
               type="text"
               placeholder="Search features, tools, fixes..."
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={(e) => handleSearchChange(e.target.value)}
               className="w-full pl-10 pr-4 py-2 text-sm bg-gray-50 dark:bg-slate-950 border border-border rounded-xl focus:outline-none focus:ring-2 focus:ring-brandColor/50 focus:border-brandColor transition-all text-foreground placeholder:text-muted-foreground"
             />
             {searchQuery && (
@@ -213,7 +229,7 @@ export default function ChangelogFeed() {
             {CATEGORIES.map((cat) => (
               <button
                 key={cat}
-                onClick={() => setSelectedCategory(cat)}
+                onClick={() => handleCategoryChange(cat)}
                 className={`px-3.5 py-1.5 rounded-xl text-xs font-medium whitespace-nowrap transition-all duration-200 cursor-pointer ${selectedCategory === cat
                   ? "bg-brandColor text-white shadow-md shadow-brandColor/25"
                   : "bg-gray-100 dark:bg-slate-800 text-muted-foreground hover:text-foreground hover:bg-gray-200 dark:hover:bg-slate-700"
@@ -379,8 +395,12 @@ export default function ChangelogFeed() {
                       <span>{release.title}</span>
                     </h2>
 
-                    {/* Executive Summary */}
-                    <p className="text-sm sm:text-base text-muted-foreground leading-relaxed mb-5">
+                    {/* Executive Summary — clamped to 2 lines until expanded */}
+                    <p
+                      className={`text-sm sm:text-base text-muted-foreground leading-relaxed mb-5 ${
+                        isExpanded ? "" : "line-clamp-2"
+                      }`}
+                    >
                       {release.summary}
                     </p>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useSyncExternalStore } from "react";
 import { DragDropContext, Droppable, Draggable } from "@hello-pangea/dnd";
 import * as PDFLib from "pdf-lib";
 import * as pdfjsLib from "pdfjs-dist";
@@ -9,23 +9,24 @@ import ToolPageShell from "../ToolPageShell";
 // Set up the worker for PDF.js
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
+// Client-only flag: false during SSR/hydration, true once running in the browser.
+const emptySubscribe = () => () => {};
+const getIsClient = () => true;
+const getIsServer = () => false;
+
 const PDFReorderPages = () => {
   const [pdfFile, setPdfFile] = useState(null);
   const [pages, setPages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [fileName, setFileName] = useState("");
-  const [mounted, setMounted] = useState(false);
+  const mounted = useSyncExternalStore(emptySubscribe, getIsClient, getIsServer);
   const [viewMode, setViewMode] = useState("grid");
   const [selectedPages, setSelectedPages] = useState([]);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [totalPages, setTotalPages] = useState(0);
   const [uploadProgress, setUploadProgress] = useState(0);
   const [originalPdfBuffer, setOriginalPdfBuffer] = useState(null);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   // Generate real PDF preview using PDF.js
   const generatePreview = async (pdfProxy, pageIndex) => {
@@ -694,6 +695,7 @@ const PDFReorderPages = () => {
                               {viewMode === "grid" ? (
                                 <div className="bg-white rounded-lg shadow-md overflow-hidden hover:shadow-xl transition-all duration-200 cursor-move dark:bg-slate-700 dark:shadow-slate-900/50">
                                   <div className="relative bg-gray-50 dark:bg-slate-600">
+                                    {/* eslint-disable-next-line @next/next/no-img-element -- data URL preview from canvas; next/image adds no benefit */}
                                     <img
                                       src={page.thumbnail}
                                       alt={`Page ${page.pageNumber}`}
@@ -721,6 +723,7 @@ const PDFReorderPages = () => {
                               ) : (
                                 <div className="group bg-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center gap-4 cursor-move p-3 dark:bg-slate-700 dark:shadow-slate-900/50">
                                   <div className="shrink-0 relative">
+                                    {/* eslint-disable-next-line @next/next/no-img-element -- data URL preview from canvas; next/image adds no benefit */}
                                     <img
                                       src={page.thumbnail}
                                       alt={`Page ${page.pageNumber}`}

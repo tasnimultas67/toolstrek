@@ -51,16 +51,19 @@ export default function MonitorHzTest() {
     setIsRunning(false);
   }, []);
 
-  const start = useCallback(() => {
+  const start = useCallback((overrides = {}) => {
     if (stateRef.current.running) {
       stop();
       return;
     }
 
+    const mode = overrides.mode ?? testMode;
+    const hz = overrides.hz ?? targetHz;
+
     stateRef.current.running = true;
-    stateRef.current.mode = testMode;
-    stateRef.current.hz = targetHz;
-    stateRef.current.intervalMs = 1000 / targetHz;
+    stateRef.current.mode = mode;
+    stateRef.current.hz = hz;
+    stateRef.current.intervalMs = 1000 / hz;
     stateRef.current.halfInterval = stateRef.current.intervalMs / 2;
     stateRef.current.lastToggle = performance.now();
     stateRef.current.lastMove = stateRef.current.lastToggle;
@@ -104,13 +107,6 @@ export default function MonitorHzTest() {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };
   }, []);
-
-  useEffect(() => {
-    if (isRunning) {
-      stop();
-      start();
-    }
-  }, [testMode, targetHz, isRunning, stop, start]);
 
   const handleAutoScan = useCallback(() => {
     stop();
@@ -181,7 +177,7 @@ export default function MonitorHzTest() {
                   {copied ? <Check className="w-4 h-4 text-emerald-500" /> : <Copy className="w-4 h-4 text-slate-500" />}
                 </button>
                 <button
-                  onClick={isRunning ? stop : start}
+                  onClick={isRunning ? stop : () => start()}
                   className={cn(
                     "px-4 py-2 rounded-xl font-bold text-sm transition-all shadow-md flex items-center gap-2 cursor-pointer",
                     isRunning
@@ -214,10 +210,11 @@ export default function MonitorHzTest() {
                 max="240"
                 value={targetHz}
                 onChange={(e) => {
-                  setTargetHz(Number(e.target.value));
+                  const hz = Number(e.target.value);
+                  setTargetHz(hz);
                   if (isRunning) {
                     stop();
-                    start();
+                    start({ hz });
                   }
                 }}
                 className="w-full h-2 bg-slate-200 dark:bg-slate-800 rounded-lg appearance-none cursor-pointer accent-violet-600 dark:accent-violet-500"
@@ -228,7 +225,13 @@ export default function MonitorHzTest() {
               {PRESETS.map((hz) => (
                 <button
                   key={hz}
-                  onClick={() => setTargetHz(hz)}
+                  onClick={() => {
+                    setTargetHz(hz);
+                    if (isRunning) {
+                      stop();
+                      start({ hz });
+                    }
+                  }}
                   className={cn(
                     "px-3 py-1.5 rounded-lg text-xs font-bold border transition-all cursor-pointer",
                     targetHz === hz
@@ -249,7 +252,13 @@ export default function MonitorHzTest() {
               ].map((mode) => (
                 <button
                   key={mode.value}
-                  onClick={() => setTestMode(mode.value)}
+                  onClick={() => {
+                    setTestMode(mode.value);
+                    if (isRunning) {
+                      stop();
+                      start({ mode: mode.value });
+                    }
+                  }}
                   className={cn(
                     "px-3 py-2 rounded-xl text-xs font-semibold border transition-all flex items-center gap-1.5 cursor-pointer",
                     testMode === mode.value
