@@ -74,6 +74,8 @@ import {
   DEFAULT_CHART_WIDTH,
 } from "./barChartEngine";
 
+import ChartDataImport from "../_shared/ChartDataImport";
+
 const FONT_STACK =
   "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
@@ -407,6 +409,32 @@ export default function BarChartGenerator() {
     setSortMode("none");
     toast.success(`Loaded “${dataset.name}”`);
   };
+
+  // ── CSV / Excel import ─────────────────────────────────────────────────────
+  // The first column becomes the categories; every chosen numeric column becomes
+  // a series, coloured from the active palette.
+  const handleImportedData = useCallback(
+    ({ categories: labels, series: importedSeries, fileName }) => {
+      setCategories(labels.map((label) => ({ id: createId("cat"), label })));
+      setSeries(
+        importedSeries.map((s, index) => ({
+          id: createId("ser"),
+          name: s.name,
+          color: getPaletteColor(paletteId, index),
+          values: s.values,
+        }))
+      );
+      const baseName = String(fileName || "").replace(/\.[^.]+$/, "").trim();
+      setTitle(baseName || `${labels.length} categories`);
+      setSubtitle(
+        `${labels.length} categories · ${importedSeries.length} ${
+          importedSeries.length === 1 ? "series" : "series"
+        } · imported`
+      );
+      setSortMode("none");
+    },
+    [paletteId]
+  );
 
   const handleRandomize = () => {
     const randomPalette =
@@ -875,6 +903,7 @@ export default function BarChartGenerator() {
                   updateSeriesValue={updateSeriesValue}
                   applyPalette={applyPalette}
                   loadDataset={loadDataset}
+                  onImport={handleImportedData}
                 />
               )}
 
@@ -1633,6 +1662,7 @@ function DataPanel({
   updateSeriesValue,
   applyPalette,
   loadDataset,
+  onImport,
 }) {
   const gridTemplate = `minmax(96px, 1.3fr) repeat(${
     series.length
@@ -1640,6 +1670,9 @@ function DataPanel({
 
   return (
     <div className="flex flex-col gap-6">
+      {/* CSV / Excel import */}
+      <ChartDataImport onImport={onImport} mode="multi" subject="bar chart" />
+
       {/* Sample datasets */}
       <div>
         <SectionLabel icon={Sparkles}>Sample datasets</SectionLabel>

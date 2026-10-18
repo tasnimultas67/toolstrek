@@ -36,6 +36,7 @@ const formatSectionTitle = (sectionKey) => {
     lineChartTools: "Line & Area Chart Generator",
     radarChartTools: "Radar & Spider Chart Generator",
     funnelChartTools: "Funnel & Conversion Chart Generator",
+    polarChartTools: "Polar & Rose Chart Generator",
   };
 
   return (

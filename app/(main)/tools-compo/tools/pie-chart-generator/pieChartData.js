@@ -200,6 +200,10 @@ export function getPaletteColor(paletteId, index) {
 
 export const PIE_FAQS = [
   {
+    q: "Can I import my data from a CSV or Excel file?",
+    a: "Yes. Drag and drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is read entirely inside your browser, the delimiter and header row are detected automatically, and you choose the category and value columns with a live preview before importing. Legacy binary .xls files are not supported, so re-save them as .xlsx or CSV first. Nothing is uploaded, and up to twenty-four slices are imported at a time to keep the chart readable.",
+  },
+  {
     q: "How do I make a pie chart online for free?",
     a: "Enter your categories and numeric values in the data table on the right (or load a ready-made sample dataset), then customise colours, labels and legend to taste. The chart updates instantly in your browser. When you are happy with the result, click Download PNG or Download SVG to save a high-resolution, transparent-ready image — no sign-up, watermark or upload required.",
   },

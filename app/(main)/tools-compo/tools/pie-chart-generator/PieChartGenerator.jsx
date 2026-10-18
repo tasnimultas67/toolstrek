@@ -67,6 +67,8 @@ import {
   DEFAULT_CHART_WIDTH,
 } from "./pieChartEngine";
 
+import ChartDataImport from "../_shared/ChartDataImport";
+
 const FONT_STACK =
   "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
@@ -244,6 +246,28 @@ export default function PieChartGenerator() {
     setSlices(makeSlices(dataset.slices));
     toast.success(`Loaded “${dataset.name}”`);
   };
+
+  // ── CSV / Excel import ─────────────────────────────────────────────────────
+  // One label column + one value column become the slices, coloured from the
+  // active palette.
+  const handleImportedRows = useCallback(
+    ({ rows, fileName }) => {
+      setSlices(
+        rows.map((row, index) => ({
+          id: createId(),
+          label: row.label,
+          value: row.value,
+          color: getPaletteColor(paletteId, index),
+          exploded: false,
+        }))
+      );
+      const baseName = String(fileName || "").replace(/\.[^.]+$/, "").trim();
+      setTitle(baseName || `${rows.length} slices`);
+      setSubtitle(`${rows.length} slices · imported data`);
+      setSortDescending(false);
+    },
+    [paletteId]
+  );
 
   const handleRandomize = () => {
     const randomPalette =
@@ -706,6 +730,7 @@ export default function PieChartGenerator() {
                   toggleExplode={toggleExplode}
                   applyPalette={applyPalette}
                   loadDataset={loadDataset}
+                  onImport={handleImportedRows}
                 />
               )}
 
@@ -1216,6 +1241,7 @@ function DataPanel({
   toggleExplode,
   applyPalette,
   loadDataset,
+  onImport,
 }) {
   const percentById = useMemo(() => {
     const map = {};
@@ -1227,6 +1253,9 @@ function DataPanel({
 
   return (
     <div className="flex flex-col gap-6">
+      {/* CSV / Excel import */}
+      <ChartDataImport onImport={onImport} mode="single" subject="pie chart" />
+
       {/* Sample datasets */}
       <div>
         <SectionLabel icon={Sparkles}>Sample datasets</SectionLabel>

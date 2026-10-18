@@ -5,7 +5,7 @@ import React from "react";
 export const metadata = {
   title: "Funnel Chart Generator | Free Online Funnel & Conversion Chart Maker",
   description:
-    "Free online funnel chart generator and conversion chart maker. Enter your stages to instantly build customizable funnel charts with live preview, curated colour palettes, conversion and drop-off labels, adjustable shapes, labels, legends and one-click PNG or SVG export.",
+    "Free online funnel chart generator and conversion chart maker. Import a CSV or Excel file, or type your stages, to instantly build customizable funnel charts with live preview, curated colour palettes, high-contrast labels, conversion and drop-off labels, adjustable shapes, labels, legends and one-click PNG or SVG export.",
   keywords: [
     "funnel chart generator",
     "funnel chart maker",
@@ -18,6 +18,9 @@ export const metadata = {
     "funnel chart with percentages",
     "drop off chart",
     "conversion rate chart",
+    "csv to funnel chart",
+    "excel to funnel chart",
+    "upload csv chart maker",
     "data visualization tool",
     "funnel chart png export",
     "funnel chart svg",
@@ -28,7 +31,7 @@ export const metadata = {
     title:
       "Funnel Chart Generator | Free Online Funnel & Conversion Chart Maker | ToolsTrek",
     description:
-      "Create conversion funnel charts in seconds. Live preview, curated palettes, conversion and drop-off labels, adjustable shapes, labels and legends, and instant PNG/SVG export — 100% in your browser.",
+      "Create conversion funnel charts in seconds. Import a CSV or Excel file or type your stages — live preview, curated palettes, high-contrast labels, conversion and drop-off labels, adjustable shapes, labels and legends, and instant PNG/SVG export — 100% in your browser.",
     type: "website",
     url: "https://toolstrek.vercel.app/tools/funnel-chart-generator",
     siteName: "ToolsTrek",
@@ -38,7 +41,7 @@ export const metadata = {
     title:
       "Funnel Chart Generator | Free Online Funnel & Conversion Chart Maker | ToolsTrek",
     description:
-      "Create funnel and conversion charts in seconds with live preview, conversion labels, curated palettes, labels, legends, and one-click PNG/SVG export.",
+      "Create funnel and conversion charts in seconds — import CSV or Excel data, or type your stages. Live preview, high-contrast labels, conversion labels, curated palettes, legends, and one-click PNG/SVG export.",
   },
   alternates: {
     canonical: "https://toolstrek.vercel.app/tools/funnel-chart-generator",
@@ -57,7 +60,7 @@ const page = () => {
             "@type": "WebApplication",
             name: "Funnel Chart Generator",
             description:
-              "Free online funnel and conversion chart generator with live preview, curated colour palettes, adjustable funnel, bar and step shapes, conversion and drop-off labels, customisable labels, legends and PNG and SVG export.",
+              "Free online funnel and conversion chart generator. Import a CSV or Excel file or type your stages, then use the live preview, curated colour palettes, WCAG-compliant high-contrast labels, adjustable funnel, bar and step shapes, conversion and drop-off labels, customisable labels, legends and PNG and SVG export.",
             url: "https://toolstrek.vercel.app/tools/funnel-chart-generator",
             applicationCategory: "BusinessApplication",
             operatingSystem: "All",
@@ -68,6 +71,9 @@ const page = () => {
             },
             featureList: [
               "Live SVG preview that updates as you type",
+              "Import data from CSV, TSV and Excel (.xlsx) files, or paste text",
+              "Automatic delimiter and header detection with category/value column mapping",
+              "WCAG-compliant high-contrast stage labels on every palette",
               "Funnel, bar and step chart shapes",
               "Vertical and horizontal orientations",
               "Linear or square-root value scaling",

@@ -228,9 +228,70 @@ export function relativeLuminance(hex) {
   return 0.2126 * transform(r) + 0.7152 * transform(g) + 0.0722 * transform(b);
 }
 
-// Readable foreground colour for text sitting on top of a given fill.
+// WCAG 2.1 contrast ratio between two colours (1:1 for identical colours, up to
+// 21:1 for black on white).
+export function contrastRatio(a, b) {
+  const la = relativeLuminance(a);
+  const lb = relativeLuminance(b);
+  const lighter = Math.max(la, lb);
+  const darker = Math.min(la, lb);
+  return (lighter + 0.05) / (darker + 0.05);
+}
+
+// The two label inks used across the funnel. `LABEL_INK_INVERSE` is pure white
+// and `LABEL_INK` matches the chart's near-black text colour.
+export const LABEL_INK = "#0f172a";
+export const LABEL_INK_INVERSE = "#ffffff";
+
+// WCAG AA contrast for normal-size text.
+export const MIN_LABEL_CONTRAST = 4.5;
+
+// How far the band gradient lightens the base colour (0 = flat, 1 = white).
+export const BAND_GRADIENT_LIGHTEN = 0.32;
+
+// Pick the readable ink for text drawn on top of one or more fills. Because a
+// funnel band is a gradient, we compare the *worst-case* contrast of each
+// candidate across every supplied shade and keep the better one. A plain
+// luminance threshold labels light amber, emerald and cyan bands in white, which
+// is technically "contrast" but unreadable in practice.
+export function bestTextColor(backgrounds) {
+  const list = (Array.isArray(backgrounds) ? backgrounds : [backgrounds]).filter(
+    Boolean
+  );
+  if (!list.length) return LABEL_INK;
+  const worstContrast = (ink) =>
+    Math.min(...list.map((bg) => contrastRatio(ink, bg)));
+  return worstContrast(LABEL_INK_INVERSE) > worstContrast(LABEL_INK)
+    ? LABEL_INK_INVERSE
+    : LABEL_INK;
+}
+
+// Resolve the fill and (optional) hairline halo for a label sitting on the given
+// band colours. A halo is only added when even the best ink cannot clear the AA
+// threshold on every shade, and it is always the *opposite* ink — so it sharpens
+// the glyph edges instead of fattening them into a blur.
+export function labelInkFor(backgrounds) {
+  const list = (Array.isArray(backgrounds) ? backgrounds : [backgrounds]).filter(
+    Boolean
+  );
+  const fill = bestTextColor(list);
+  const worst = list.length
+    ? Math.min(...list.map((bg) => contrastRatio(fill, bg)))
+    : Infinity;
+  return {
+    fill,
+    halo:
+      worst >= MIN_LABEL_CONTRAST
+        ? null
+        : fill === LABEL_INK
+          ? LABEL_INK_INVERSE
+          : LABEL_INK,
+  };
+}
+
+// Readable foreground colour for text sitting on top of a given flat fill.
 export function contrastColor(hex) {
-  return relativeLuminance(hex) > 0.55 ? "#0f172a" : "#ffffff";
+  return bestTextColor([hex]);
 }
 
 export function lighten(hex, amount = 0.28) {

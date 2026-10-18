@@ -5,7 +5,7 @@ import React from "react";
 export const metadata = {
   title: "Radar Chart Generator | Free Online Spider & Polar Chart Maker",
   description:
-    "Free online radar chart generator and spider chart maker. Enter your data to instantly build clean radial charts with multiple series, curated colour palettes, adjustable grid shape, scale, rotation, vertex points, labels and legends, plus one-click PNG or SVG export — 100% in your browser.",
+    "Free online radar chart generator and spider chart maker. Import a CSV or Excel file, or type your data, to instantly build clean radial charts with multiple series, curated colour palettes, adjustable grid shape, scale, rotation, vertex points, labels and legends, plus one-click PNG or SVG export — 100% in your browser.",
   keywords: [
     "radar chart generator",
     "radar chart maker",
@@ -18,6 +18,9 @@ export const metadata = {
     "create radar chart online",
     "free radar chart maker",
     "radar chart with multiple series",
+    "csv to radar chart",
+    "excel to radar chart",
+    "upload csv chart maker",
     "data visualization tool",
     "radar chart png export",
     "radar chart svg",
@@ -28,7 +31,7 @@ export const metadata = {
     title:
       "Radar Chart Generator | Free Online Spider & Polar Chart Maker | ToolsTrek",
     description:
-      "Create radar and spider charts in seconds. Live preview, multiple series, curated palettes, polygon or circle grids, custom scale and rotation, labels and legends, and instant PNG/SVG export — 100% in your browser.",
+      "Create radar and spider charts in seconds. Import a CSV or Excel file or type your data — live preview, multiple series, curated palettes, polygon or circle grids, custom scale and rotation, labels and legends, and instant PNG/SVG export — 100% in your browser.",
     type: "website",
     url: "https://toolstrek.vercel.app/tools/radar-chart-generator",
     siteName: "ToolsTrek",
@@ -38,7 +41,7 @@ export const metadata = {
     title:
       "Radar Chart Generator | Free Online Spider & Polar Chart Maker | ToolsTrek",
     description:
-      "Create radar and spider charts in seconds with live preview, multiple series, polygon or circle grids, custom scale, labels, legends, and one-click PNG/SVG export.",
+      "Create radar and spider charts in seconds — import CSV or Excel data, or type it in. Live preview, multiple series, polygon or circle grids, custom scale, labels, legends, and one-click PNG/SVG export.",
   },
   alternates: {
     canonical: "https://toolstrek.vercel.app/tools/radar-chart-generator",
@@ -57,7 +60,7 @@ const page = () => {
             "@type": "WebApplication",
             name: "Radar Chart Generator",
             description:
-              "Free online radar, spider and polar chart generator with live preview, multiple data series, polygon and circular grids, adjustable scale and rotation, vertex points, labels, legends, and PNG and SVG export.",
+              "Free online radar, spider and polar chart generator. Import a CSV or Excel file or type your data, then use the live preview, multiple data series, polygon and circular grids, adjustable scale and rotation, vertex points, labels, legends, and PNG and SVG export.",
             url: "https://toolstrek.vercel.app/tools/radar-chart-generator",
             applicationCategory: "DesignApplication",
             operatingSystem: "All",
@@ -68,6 +71,8 @@ const page = () => {
             },
             featureList: [
               "Live SVG preview that updates as you type",
+              "Import data from CSV, TSV and Excel (.xlsx) files, or paste text",
+              "Automatic delimiter and header detection with multi-series column mapping",
               "Radar (spider) charts with unlimited axes",
               "Multiple data series drawn as overlapping polygons",
               "Show or hide any series without deleting it",

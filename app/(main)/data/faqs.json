@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 109 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 110 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 109 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 110 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 16 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Hash generator, WHOIS/SSL/IP network tools, and metadata tools), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher, Morse, Braille, Binary), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, and Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Task Prioritizer, Todo Tool, and Typing Test), Design (Color Converter, CSS Box Shadow Generator, Gradient Generator, and the Pie, Bar, Line, Radar & Funnel Chart Generators), Calculator (CGPA, Age, Days, Unit converter, RNG, Roman numerals), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters, Tip), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, SVG converter, WebCodecs transcoder), Time & Date, Education, Security, QR Codes, Fun & Astrology, and Travel."
+      "answer": "ToolsTrek features 16 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Hash generator, WHOIS/SSL/IP network tools, and metadata tools), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher, Morse, Braille, Binary), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, and Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Task Prioritizer, Todo Tool, and Typing Test), Design (Color Converter, CSS Box Shadow Generator, Gradient Generator, and the Pie, Bar, Line, Radar, Funnel & Polar Chart Generators), Calculator (CGPA, Age, Days, Unit converter, RNG, Roman numerals), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters, Tip), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, SVG converter, WebCodecs transcoder), Time & Date, Education, Security, QR Codes, Fun & Astrology, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -80,7 +80,7 @@
   "developerTools": [
     {
       "question": "What developer and code utilities are available on ToolsTrek?",
-      "answer": "ToolsTrek provides a comprehensive developer and design suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, CSS Box Shadow Generator, Gradient Generator, Color Converter, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
+      "answer": "ToolsTrek provides a comprehensive developer and design suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, CSS Box Shadow Generator, Gradient Generator, Color Converter, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Polar Chart Generator, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
     },
     {
       "question": "How secure and customizable is the Random Number Generator (RNG Studio)?",
@@ -158,7 +158,7 @@
   "imageAndMedia": [
     {
       "question": "What image and design tools does ToolsTrek provide?",
-      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
+      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Polar Chart Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
     },
     {
       "question": "How does the Animated GIF Maker work?",
@@ -417,6 +417,10 @@
   ],
   "pieChartTools": [
     {
+      "question": "Can I import my data from a CSV or Excel file to build a pie chart?",
+      "answer": "Yes. Drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is parsed entirely inside your browser: the delimiter and header row are detected automatically, and a mapping step lets you choose the category and value columns while a live preview shows exactly what will be imported. Legacy binary .xls workbooks are not supported, so re-save them as .xlsx or CSV first. Uploaded data is never transmitted anywhere, and up to twenty-four slices are imported at once."
+    },
+    {
       "question": "What is the Pie Chart Generator and how does it work?",
       "answer": "The Pie Chart Generator is a free, browser-first tool for turning a list of categories and values into a polished pie or donut chart without any spreadsheet or design software. You type your labels and numbers into the data table (or load a ready-made sample dataset), and a live SVG preview updates instantly. You can switch between pie and donut modes, choose from ten curated colour palettes, adjust slice gaps, rounded corners, rotation, direction and exploded slices, fine-tune inside or outside labels, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
     },
@@ -446,6 +450,10 @@
     }
   ],
   "barChartTools": [
+    {
+      "question": "Can I import my data from a CSV or Excel file to build a bar chart?",
+      "answer": "Yes. Drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is parsed entirely inside your browser: the delimiter and header row are detected automatically, the first column becomes your categories, and every numeric column you tick becomes a data series (up to eight). A live preview shows the exact categories and series before you confirm. Legacy binary .xls workbooks are not supported, so re-save them as .xlsx or CSV first, and uploaded data is never transmitted anywhere."
+    },
     {
       "question": "What is the Bar Chart Generator and how does it work?",
       "answer": "The Bar Chart Generator is a free, browser-first tool for turning a list of categories and values into a polished bar or column chart without any spreadsheet or design software. You type your categories and numbers into the data table (or load a ready-made sample dataset), add one or more data series, and a live SVG preview updates instantly. You can switch between vertical columns and horizontal bars, choose grouped or stacked bars, pick from ten curated colour palettes, adjust bar width, gaps, rounded corners, opacity, gradients and shadows, fine-tune the value axis, gridlines and axis titles, place value labels inside, outside or in the centre, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
@@ -481,6 +489,10 @@
   ],
   "radarChartTools": [
     {
+      "question": "Can I import my data from a CSV or Excel file to build a radar chart?",
+      "answer": "Yes. Drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is parsed entirely inside your browser: the delimiter and header row are detected automatically, the first column becomes your axes, and every numeric column you tick becomes a data series (up to eight) to compare side by side. A live preview shows the exact axes and series before you confirm. Legacy binary .xls workbooks are not supported, so re-save them as .xlsx or CSV first, and uploaded data is never transmitted anywhere."
+    },
+    {
       "question": "What is the Radar Chart Generator and how does it work?",
       "answer": "The Radar Chart Generator is a free, browser-first tool for turning a set of dimensions into a polished radar (spider) chart without any spreadsheet or design software. You type your axes and numbers into the data table (or load a ready-made sample dataset), add one or more data series, and a live SVG preview updates instantly. You can switch between a polygon web and rounded circular grid, choose from ten curated colour palettes, set the value scale to auto fit, a fixed 0–100 range or a custom range, rotate the start angle, reverse the direction, adjust grid levels, line width, vertex points, curved outlines, area fills and gradients, place vertex value labels, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
     },
@@ -514,6 +526,10 @@
     }
   ],
   "lineChartTools": [
+    {
+      "question": "Can I import my data from a CSV or Excel file to build a line chart?",
+      "answer": "Yes. Drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is parsed entirely inside your browser: the delimiter and header row are detected automatically, the first column becomes your point labels, and every numeric column you tick becomes a data series (up to eight). A live preview shows the exact labels and series before you confirm. Legacy binary .xls workbooks are not supported, so re-save them as .xlsx or CSV first, and uploaded data is never transmitted anywhere."
+    },
     {
       "question": "What is the Line Chart Generator and how does it work?",
       "answer": "The Line Chart Generator is a free, browser-first tool for turning a sequence of numbers into a polished line or area chart without any spreadsheet or design software. You type your point labels and numbers into the data table (or load a ready-made sample dataset), add one or more data series, and a live SVG preview updates instantly. You can switch between straight, smooth and step lines, adjust the curve tension, toggle point markers in five shapes, fill or stack the area, choose from ten curated colour palettes, set the value scale to auto fit or a custom range, rotate the category labels, place value labels above, below or on the line, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
@@ -553,6 +569,10 @@
   ],
   "funnelChartTools": [
     {
+      "question": "Can I import my data from a CSV or Excel file to build a funnel chart?",
+      "answer": "Yes. Drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is parsed entirely inside your browser: the delimiter and header row are detected automatically, and a mapping step lets you choose the stage-name and value columns while a live preview shows exactly what will be imported. Legacy binary .xls workbooks are not supported, so re-save them as .xlsx or CSV first. Uploaded data is never transmitted anywhere, and up to twenty-four stages are imported at once."
+    },
+    {
       "question": "What is the Funnel Chart Generator and how does it work?",
       "answer": "The Funnel Chart Generator is a free, browser-first tool for turning a multi-stage process into a polished funnel or conversion chart without any spreadsheet or design software. You type your stage names and values into the data table (or load a ready-made sample dataset) and a live SVG preview updates instantly. You can switch between funnel, bar and step shapes, rotate the chart between vertical and horizontal, choose linear or square-root value scaling, pick from ten curated colour palettes, adjust the minimum stage width, base taper, gaps, corner radius, opacity and gradients, add conversion and drop-off markers between every stage, fine-tune value labels, percentages, prefixes and suffixes, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
     },
@@ -583,6 +603,44 @@
     {
       "question": "Is the Funnel Chart Generator private and does it work offline?",
       "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential sales, revenue, HR and product analytics data."
+    }
+  ],
+  "polarChartTools": [
+    {
+      "question": "What is the Polar Chart Generator and how does it work?",
+      "answer": "The Polar Chart Generator is a free, browser-first tool for turning a list of categories and values into a polished polar area (rose) or radial bar chart without any spreadsheet or design software. You type your categories and numbers into the data table, import a CSV or Excel file, or load a ready-made sample dataset, and a live SVG preview updates instantly. You can switch between polar area and radial bars, choose area-accurate square-root or linear scaling, add a centre hole with a live total, pick from ten curated colour palettes, set the ring scale to auto fit, a fixed 0–100 range or a custom range, rotate the start angle, reverse the direction, adjust ring levels, slice gaps, corner radius, opacity, gradients and outlines, place value labels, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
+    },
+    {
+      "question": "Can I upload a CSV or Excel file to create a polar chart?",
+      "answer": "Yes. Drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text directly. The file is read entirely inside your browser: the tool auto-detects the delimiter and whether the first row is a header, then shows a preview where you choose which column is the category and which holds the numeric value before importing. Legacy binary .xls workbooks are not supported, so re-save them as .xlsx or CSV first. Uploaded data is never transmitted anywhere, and up to twenty-four categories are imported at once to keep the chart readable."
+    },
+    {
+      "question": "What is a polar chart and when should I use one?",
+      "answer": "A polar chart plots quantitative values around a circle instead of along a straight axis. Each category owns an equal slice of the circle and its value is encoded by how far the shape reaches out from the centre. The polar area chart — also called a Nightingale rose, coxcomb or rose diagram — is the classic form and is ideal for cyclical data such as months of the year, compass directions, hours of the day or budget shares, where the overall pattern matters more than exact values. Use a bar chart whenever readers need precise comparisons."
+    },
+    {
+      "question": "What is the difference between polar area and radial bars?",
+      "answer": "Both use identical geometry — a wedge or bar growing outwards from the centre. Polar area keeps the wedges touching so the chart reads as one continuous rose, which is perfect for showing a single whole broken into parts. Radial bars insert a gap between each category and round the outer caps, which isolates every bar and makes side-by-side comparison easier. Switch between them at any time with the Chart shape control; the underlying data is unchanged."
+    },
+    {
+      "question": "What do the Area (√) and Radius value scales mean?",
+      "answer": "In a true polar area chart the value is encoded by the AREA of each wedge, not its radius. Because a circle's area grows with the square of its radius, the tool applies a square root to the value so the wedge area stays proportional — this is the honest, classic Nightingale rose. Switching to Radius makes the wedge grow linearly with the value, which makes small differences easier to read but visually exaggerates larger values. Choose Area (√) for proportionate roses and Radius when precise comparisons matter."
+    },
+    {
+      "question": "How does the Polar Chart Generator calculate the ring scale?",
+      "answer": "In Auto fit mode the generator scans every visible value, finds the largest, then rounds the outer ring outward to a clean, human-friendly number so the ring labels are tidy values such as 20, 40, 60, 80, 100. Choose the 0–100 mode to fix the scale to a percentage range with no surprises, or Custom to enter your own minimum and maximum — ideal for percentages, survey shares or index scores. Hidden categories are excluded from the automatic scale calculation."
+    },
+    {
+      "question": "Can I export the polar chart as a PNG or SVG image, and is it high resolution?",
+      "answer": "Yes. The Export panel offers Download PNG for a pixel-perfect raster image at up to 4× resolution — ideal for slide decks, reports and social posts — and Download SVG for infinitely scalable vector artwork perfect for print, Figma and websites. You can also copy the raw SVG markup to your clipboard, or download the underlying category data as CSV (with percentages and totals) or JSON. Enable the transparent background option for charts that sit on coloured slides or dark dashboards."
+    },
+    {
+      "question": "What are the best practices for designing a readable polar chart?",
+      "answer": "Keep the number of categories between five and twelve so each slice stays wide enough to read, order them logically (chronologically for time-based data, or by size for rankings), and prefer the area-accurate square-root scale so the picture stays honest. Use two or three ring levels so the eye can gauge the radius without clutter, label only what matters, and remember that comparing angles and areas is harder than comparing bar lengths — switch to radial bars or a plain bar chart when exact differences are essential."
+    },
+    {
+      "question": "Is the Polar Chart Generator private and does it work offline?",
+      "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential business, HR, financial and survey data."
     }
   ]
 }

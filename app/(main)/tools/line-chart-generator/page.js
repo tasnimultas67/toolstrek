@@ -5,7 +5,7 @@ import React from "react";
 export const metadata = {
   title: "Line Chart Generator | Free Online Line & Area Chart Maker",
   description:
-    "Free online line chart generator and area chart maker. Enter your data to instantly build straight, smooth or step line charts and stacked area charts with multiple series, curated colour palettes, markers, adjustable axes, gridlines, labels, legends and one-click PNG or SVG export.",
+    "Free online line chart generator and area chart maker. Import a CSV or Excel file, or type your data, to instantly build straight, smooth or step line charts and stacked area charts with multiple series, curated colour palettes, markers, adjustable axes, gridlines, labels, legends and one-click PNG or SVG export.",
   keywords: [
     "line chart generator",
     "line chart maker",
@@ -19,6 +19,9 @@ export const metadata = {
     "free line chart maker",
     "time series chart maker",
     "trend chart generator",
+    "csv to line chart",
+    "excel to line chart",
+    "upload csv chart maker",
     "data visualization tool",
     "line chart png export",
     "line chart svg",
@@ -29,7 +32,7 @@ export const metadata = {
     title:
       "Line Chart Generator | Free Online Line & Area Chart Maker | ToolsTrek",
     description:
-      "Create line and area charts in seconds. Live preview, multiple series, straight, smooth and step lines, markers, stacked areas, curated palettes, custom axes, labels and legends, and instant PNG/SVG export — 100% in your browser.",
+      "Create line and area charts in seconds. Import a CSV or Excel file or type your data — live preview, multiple series, straight, smooth and step lines, markers, stacked areas, curated palettes, custom axes, labels and legends, and instant PNG/SVG export — 100% in your browser.",
     type: "website",
     url: "https://toolstrek.vercel.app/tools/line-chart-generator",
     siteName: "ToolsTrek",
@@ -39,7 +42,7 @@ export const metadata = {
     title:
       "Line Chart Generator | Free Online Line & Area Chart Maker | ToolsTrek",
     description:
-      "Create line and area charts in seconds with live preview, multiple series, smooth or step lines, markers, stacked areas, custom axes, labels, legends, and one-click PNG/SVG export.",
+      "Create line and area charts in seconds — import CSV or Excel data, or type it in. Live preview, multiple series, smooth or step lines, markers, stacked areas, custom axes, labels, legends, and one-click PNG/SVG export.",
   },
   alternates: {
     canonical: "https://toolstrek.vercel.app/tools/line-chart-generator",
@@ -58,7 +61,7 @@ const page = () => {
             "@type": "WebApplication",
             name: "Line Chart Generator",
             description:
-              "Free online line and area chart generator with live preview, multiple data series, straight, smooth and step lines, markers, stacked area charts, curated colour palettes, custom axes and gridlines, labels, legends, and PNG and SVG export.",
+              "Free online line and area chart generator. Import a CSV or Excel file or type your data, then use the live preview, multiple data series, straight, smooth and step lines, markers, stacked area charts, curated colour palettes, custom axes and gridlines, labels, legends, and PNG and SVG export.",
             url: "https://toolstrek.vercel.app/tools/line-chart-generator",
             applicationCategory: "DesignApplication",
             operatingSystem: "All",
@@ -69,6 +72,8 @@ const page = () => {
             },
             featureList: [
               "Live SVG preview that updates as you type",
+              "Import data from CSV, TSV and Excel (.xlsx) files, or paste text",
+              "Automatic delimiter and header detection with multi-series column mapping",
               "Straight, smooth curved and step line styles",
               "Monotone-safe smoothing so curves never overshoot the data",
               "Multiple data series with per-series colours, dash patterns and visibility",

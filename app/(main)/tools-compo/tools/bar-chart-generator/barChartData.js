@@ -196,6 +196,10 @@ export function getPaletteColor(paletteId, index) {
 
 export const BAR_FAQS = [
   {
+    q: "Can I import my data from a CSV or Excel file?",
+    a: "Yes. Drag and drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is read entirely inside your browser, the delimiter and header row are detected automatically, and the first column becomes your categories while each numeric column you tick becomes a series (up to eight). Review the mapping in the live preview, then import. Legacy binary .xls files are not supported, so re-save them as .xlsx or CSV first, and nothing is ever uploaded.",
+  },
+  {
     q: "How do I make a bar chart online for free?",
     a: "Type your categories and numbers into the data table on the right — or load one of the ready-made sample datasets — and a live SVG preview updates instantly. Add extra data series to build grouped or stacked bars, pick from ten curated colour palettes, fine-tune axes, gridlines, labels and legends, then click Download PNG or Download SVG to save a high-resolution image. No sign-up, watermark or upload is required.",
   },

@@ -69,6 +69,8 @@ import {
   DEFAULT_CHART_WIDTH,
 } from "./radarChartEngine";
 
+import ChartDataImport from "../_shared/ChartDataImport";
+
 const FONT_STACK =
   "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
 
@@ -380,6 +382,31 @@ export default function RadarChartGenerator() {
     setSortMode("none");
     toast.success(`Loaded “${dataset.name}”`);
   };
+
+  // ── CSV / Excel import ─────────────────────────────────────────────────────
+  // The first column becomes the axes; every chosen numeric column becomes a
+  // series, coloured from the active palette.
+  const handleImportedData = useCallback(
+    ({ categories: labels, series: importedSeries, fileName }) => {
+      setAxes(labels.map((label) => ({ id: createId("axis"), label })));
+      setSeries(
+        importedSeries.map((s, index) => ({
+          id: createId("ser"),
+          name: s.name,
+          color: getPaletteColor(paletteId, index),
+          visible: true,
+          values: s.values,
+        }))
+      );
+      const baseName = String(fileName || "").replace(/\.[^.]+$/, "").trim();
+      setTitle(baseName || `${labels.length} axes`);
+      setSubtitle(
+        `${labels.length} axes · ${importedSeries.length} series · imported`
+      );
+      setSortMode("none");
+    },
+    [paletteId]
+  );
 
   const handleRandomize = () => {
     const randomPalette = PALETTES[Math.floor(Math.random() * PALETTES.length)];
@@ -846,6 +873,7 @@ export default function RadarChartGenerator() {
                   updateSeriesValue={updateSeriesValue}
                   applyPalette={applyPalette}
                   loadDataset={loadDataset}
+                  onImport={handleImportedData}
                 />
               )}
 
@@ -1472,6 +1500,7 @@ function DataPanel({
   updateSeriesValue,
   applyPalette,
   loadDataset,
+  onImport,
 }) {
   const gridTemplate = `minmax(96px, 1.3fr) repeat(${
     series.length
@@ -1479,6 +1508,9 @@ function DataPanel({
 
   return (
     <div className="flex flex-col gap-6">
+      {/* CSV / Excel import */}
+      <ChartDataImport onImport={onImport} mode="multi" subject="radar chart" />
+
       {/* Sample datasets */}
       <div>
         <SectionLabel icon={Sparkles}>Sample datasets</SectionLabel>

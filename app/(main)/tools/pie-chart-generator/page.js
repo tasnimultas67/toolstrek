@@ -4,7 +4,7 @@ import React from "react";
 export const metadata = {
   title: "Pie Chart Generator | Free Online Pie & Donut Chart Maker",
   description:
-    "Free online pie chart generator and donut chart maker. Enter your data to instantly create beautiful, customizable pie charts with live preview, curated colour palettes, adjustable labels, legends, exploded slices, and one-click PNG or SVG export.",
+    "Free online pie chart generator and donut chart maker. Import a CSV or Excel file, or type your data, to instantly create beautiful, customizable pie and donut charts with live preview, curated colour palettes, adjustable labels, legends, exploded slices, and one-click PNG or SVG export.",
   keywords: [
     "pie chart generator",
     "pie chart maker",
@@ -13,6 +13,9 @@ export const metadata = {
     "create pie chart online",
     "free pie chart maker",
     "pie chart with percentages",
+    "csv to pie chart",
+    "excel to pie chart",
+    "upload csv chart maker",
     "circle graph maker",
     "data visualization tool",
     "donut chart with total",
@@ -25,7 +28,7 @@ export const metadata = {
     title:
       "Pie Chart Generator | Free Online Pie & Donut Chart Maker | ToolsTrek",
     description:
-      "Create beautiful pie and donut charts in seconds. Live preview, curated palettes, custom labels and legends, exploded slices, and instant PNG/SVG export — 100% in your browser.",
+      "Create beautiful pie and donut charts in seconds. Import a CSV or Excel file or type your data — live preview, curated palettes, custom labels and legends, exploded slices, and instant PNG/SVG export — 100% in your browser.",
     type: "website",
     url: "https://toolstrek.vercel.app/tools/pie-chart-generator",
     siteName: "ToolsTrek",
@@ -35,7 +38,7 @@ export const metadata = {
     title:
       "Pie Chart Generator | Free Online Pie & Donut Chart Maker | ToolsTrek",
     description:
-      "Create beautiful pie and donut charts in seconds with live preview, curated palettes, labels, legends, and one-click PNG/SVG export.",
+      "Create beautiful pie and donut charts in seconds — import CSV or Excel data, or type it in. Live preview, curated palettes, labels, legends, and one-click PNG/SVG export.",
   },
   alternates: {
     canonical: "https://toolstrek.vercel.app/tools/pie-chart-generator",
@@ -77,7 +80,7 @@ const page = () => {
             "@type": "WebApplication",
             name: "Pie Chart Generator",
             description:
-              "Free online pie and donut chart generator with live preview, curated colour palettes, customizable labels, legends and exploded slices, plus PNG and SVG export.",
+              "Free online pie and donut chart generator. Import a CSV or Excel file or type your data, then use the live preview, curated colour palettes, customizable labels, legends and exploded slices, plus PNG and SVG export.",
             url: "https://toolstrek.vercel.app/tools/pie-chart-generator",
             applicationCategory: "DesignApplication",
             operatingSystem: "All",
@@ -88,6 +91,8 @@ const page = () => {
             },
             featureList: [
               "Live SVG preview that updates as you type",
+              "Import data from CSV, TSV and Excel (.xlsx) files, or paste text",
+              "Automatic delimiter and header detection with category/value column mapping",
               "Pie and donut (doughnut) chart modes with adjustable inner radius",
               "Unlimited data rows with live totals and percentage calculations",
               "Ten curated colour palettes plus per-slice custom colour pickers",

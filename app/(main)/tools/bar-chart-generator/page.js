@@ -4,7 +4,7 @@ import React from "react";
 export const metadata = {
   title: "Bar Chart Generator | Free Online Bar & Column Chart Maker",
   description:
-    "Free online bar chart generator and column chart maker. Enter your data to instantly build grouped or stacked bar charts with live preview, multiple data series, curated colour palettes, adjustable axes, gridlines, labels, legends and one-click PNG or SVG export.",
+    "Free online bar chart generator and column chart maker. Import a CSV or Excel file, or type your data, to instantly build grouped or stacked bar charts with live preview, multiple data series, curated colour palettes, adjustable axes, gridlines, labels, legends and one-click PNG or SVG export.",
   keywords: [
     "bar chart generator",
     "bar chart maker",
@@ -16,6 +16,9 @@ export const metadata = {
     "free bar chart maker",
     "horizontal bar chart",
     "vertical bar chart",
+    "csv to bar chart",
+    "excel to bar chart",
+    "upload csv chart maker",
     "data visualization tool",
     "bar chart with values",
     "bar chart png export",
@@ -27,7 +30,7 @@ export const metadata = {
     title:
       "Bar Chart Generator | Free Online Bar & Column Chart Maker | ToolsTrek",
     description:
-      "Create grouped or stacked bar and column charts in seconds. Live preview, multiple series, curated palettes, custom axes, labels and legends, and instant PNG/SVG export — 100% in your browser.",
+      "Create grouped or stacked bar and column charts in seconds. Import a CSV or Excel file or type your data — live preview, multiple series, curated palettes, custom axes, labels and legends, and instant PNG/SVG export — 100% in your browser.",
     type: "website",
     url: "https://toolstrek.vercel.app/tools/bar-chart-generator",
     siteName: "ToolsTrek",
@@ -37,7 +40,7 @@ export const metadata = {
     title:
       "Bar Chart Generator | Free Online Bar & Column Chart Maker | ToolsTrek",
     description:
-      "Create grouped or stacked bar and column charts in seconds with live preview, multiple series, custom axes, labels, legends, and one-click PNG/SVG export.",
+      "Create grouped or stacked bar and column charts in seconds — import CSV or Excel data, or type it in. Live preview, multiple series, custom axes, labels, legends, and one-click PNG/SVG export.",
   },
   alternates: {
     canonical: "https://toolstrek.vercel.app/tools/bar-chart-generator",
@@ -84,7 +87,7 @@ const page = () => {
             "@type": "WebApplication",
             name: "Bar Chart Generator",
             description:
-              "Free online bar and column chart generator with live preview, multiple data series, grouped and stacked modes, curated colour palettes, custom axes and gridlines, labels, legends, and PNG and SVG export.",
+              "Free online bar and column chart generator. Import a CSV or Excel file or type your data, then use the live preview, multiple data series, grouped and stacked modes, curated colour palettes, custom axes and gridlines, labels, legends, and PNG and SVG export.",
             url: "https://toolstrek.vercel.app/tools/bar-chart-generator",
             applicationCategory: "DesignApplication",
             operatingSystem: "All",
@@ -95,6 +98,8 @@ const page = () => {
             },
             featureList: [
               "Live SVG preview that updates as you type",
+              "Import data from CSV, TSV and Excel (.xlsx) files, or paste text",
+              "Automatic delimiter and header detection with multi-series column mapping",
               "Vertical column and horizontal bar orientations",
               "Grouped and stacked bar modes",
               "Multiple data series with per-series colours and names",

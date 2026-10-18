@@ -61,6 +61,7 @@ import {
 import {
   computeFunnelLayout,
   computeFunnelMetrics,
+  BAND_GRADIENT_LIGHTEN,
   contrastColor,
   downloadPng,
   downloadSvgFile,
@@ -68,6 +69,7 @@ import {
   formatValue,
   getStageLabelText,
   getConversionText,
+  labelInkFor,
   lighten,
   serializeSvg,
   stagesToCsv,
@@ -75,6 +77,8 @@ import {
   DEFAULT_CHART_WIDTH,
   DEFAULT_CHART_HEIGHT,
 } from "./funnelChartEngine";
+
+import ChartDataImport from "../_shared/ChartDataImport";
 
 const FONT_STACK =
   "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
@@ -287,6 +291,27 @@ export default function FunnelChartGenerator() {
     setStages(makeStages(dataset.stages));
     toast.success(`Loaded “${dataset.name}”`);
   };
+
+  // ── CSV / Excel import ─────────────────────────────────────────────────────
+  // One label column + one value column become the funnel stages, coloured from
+  // the active palette.
+  const handleImportedRows = useCallback(
+    ({ rows, fileName }) => {
+      setStages(
+        rows.map((row, index) => ({
+          id: createId(),
+          label: row.label,
+          value: row.value,
+          color: getPaletteColor(paletteId, index),
+          highlighted: false,
+        }))
+      );
+      const baseName = String(fileName || "").replace(/\.[^.]+$/, "").trim();
+      setTitle(baseName || `${rows.length} stages`);
+      setSubtitle(`${rows.length} stages · imported data`);
+    },
+    [paletteId]
+  );
 
   const handleRandomize = () => {
     const randomPalette = PALETTES[Math.floor(Math.random() * PALETTES.length)];
@@ -712,6 +737,7 @@ export default function FunnelChartGenerator() {
                   toggleHighlight={toggleHighlight}
                   applyPalette={applyPalette}
                   loadDataset={loadDataset}
+                  onImport={handleImportedRows}
                 />
               )}
 
@@ -943,7 +969,7 @@ function FunnelSvg({
             y2={layout.horizontal ? "0" : "1"}
           >
             <stop offset="0%" stopColor={stage.color} />
-            <stop offset="100%" stopColor={lighten(stage.color, 0.32)} />
+            <stop offset="100%" stopColor={lighten(stage.color, BAND_GRADIENT_LIGHTEN)} />
           </linearGradient>
         ))}
       </defs>
@@ -998,23 +1024,34 @@ function FunnelSvg({
       {/* Inside labels */}
       {labelPosition === "inside" && labelFormat !== "none" && (
         <g pointerEvents="none">
-          {layout.segments.map((seg) => (
-            <text
-              key={seg.id}
-              x={seg.labelInside.x}
-              y={seg.labelInside.y + 4}
-              textAnchor="middle"
-              fontSize={12.5}
-              fontWeight={700}
-              fill={contrastColor(seg.color)}
-              stroke={transparentBg ? "none" : bgColor}
-              strokeWidth={3}
-              strokeLinejoin="round"
-              style={{ paintOrder: "stroke" }}
-            >
-              {getStageLabelText(seg, labelFormat, decimals, fmtOptions, percentBasis)}
-            </text>
-          ))}
+          {layout.segments.map((seg) => {
+            // The band is a gradient, so judge readability across the whole
+            // shade range rather than at the base colour alone. Only fall back
+            // to a hairline halo (in the *opposite* ink) when even the best ink
+            // cannot clear AA — a same-colour halo just blurs the glyphs into
+            // what looks like a smudge.
+            const band = gradient
+              ? [seg.color, lighten(seg.color, BAND_GRADIENT_LIGHTEN)]
+              : [seg.color];
+            const { fill, halo } = labelInkFor(band);
+            return (
+              <text
+                key={seg.id}
+                x={seg.labelInside.x}
+                y={seg.labelInside.y + 4}
+                textAnchor="middle"
+                fontSize={12.5}
+                fontWeight={700}
+                fill={fill}
+                stroke={halo || "none"}
+                strokeWidth={halo ? 1.5 : 0}
+                strokeLinejoin="round"
+                paintOrder="stroke"
+              >
+                {getStageLabelText(seg, labelFormat, decimals, fmtOptions, percentBasis)}
+              </text>
+            );
+          })}
         </g>
       )}
 
@@ -1225,6 +1262,7 @@ function DataPanel({
   toggleHighlight,
   applyPalette,
   loadDataset,
+  onImport,
 }) {
   const percentById = useMemo(() => {
     const map = {};
@@ -1236,6 +1274,9 @@ function DataPanel({
 
   return (
     <div className="flex flex-col gap-6">
+      {/* CSV / Excel import */}
+      <ChartDataImport onImport={onImport} mode="single" subject="funnel chart" />
+
       {/* Sample datasets */}
       <div>
         <SectionLabel icon={Sparkles}>Sample datasets</SectionLabel>

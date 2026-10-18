@@ -8,15 +8,15 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>109 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>110 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-109_Available-10b981?style=flat-square" alt="109 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.15.2-purple?style=flat-square" alt="v2.15.2" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-110_Available-10b981?style=flat-square" alt="110 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.17.1-purple?style=flat-square" alt="v2.17.1" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -30,14 +30,14 @@
 - 🔍 **Command Palette Search** — Keyboard-accessible global search (`Cmd + K` / `Ctrl + K`) to launch any tool in milliseconds.
 - ⭐ **Favorites System** — Pin frequently used tools to a dedicated Favorites dashboard, persisted via SSR-safe `localStorage`.
 - 🕐 **Recent Tools Tracker** — Passively indexes recently visited utilities (with a header dropdown) for rapid context switching.
-- 📊 **Chart Studio** — A family of five export-ready SVG/canvas chart generators (pie/donut, bar/column, line/area, radar/spider, funnel) with PNG & SVG export.
+- 📊 **Chart Studio** — A family of six export-ready SVG/canvas chart generators (pie/donut, bar/column, line/area, radar/spider, funnel, polar/rose & radial bar) with CSV/Excel import, WCAG-compliant high-contrast chart labels, and PNG & SVG export.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
 - 🧩 **SEO & PWA Ready** — Dynamic sitemap, robots, web manifest, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
-## 🛠️ Tool Library (109 Tools)
+## 🛠️ Tool Library (110 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
@@ -71,18 +71,19 @@
 
 ---
 
-### 🎨 Design, CSS & Chart Tools (8)
+### 🎨 Design, CSS & Chart Tools (9)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
 | **Color Converter** | `/tools/color-converter` | Real-time HEX/RGB/HSL/HSV/CMYK conversion with color harmonies, WCAG 2.1 contrast checking, and color-blindness simulation. |
 | **Box Shadow Generator** | `/tools/box-shadow-generator` | Design smooth, multi-layer CSS & Tailwind box shadows with live preview, presets, and one-click code export. |
 | **Gradient Generator** | `/tools/gradient-generator` | Build CSS and Tailwind gradients (linear/radial/conic) with custom color stops and PNG/SVG export. |
-| **Pie Chart Generator** | `/tools/pie-chart-generator` | Pie & donut chart studio with live SVG preview, palettes, exploded slices, labels, legends, and PNG/SVG export. |
-| **Bar Chart Generator** | `/tools/bar-chart-generator` | Bar & column chart studio with grouped/stacked modes, axis controls, data labels, and PNG/SVG export. |
-| **Line Chart Generator** | `/tools/line-chart-generator` | Line & area chart studio with multiple series, straight/smooth/step lines, markers, stacking, and PNG/SVG export. |
-| **Radar Chart Generator** | `/tools/radar-chart-generator` | Radar & spider chart studio with multi-series profiles, polygon/circular grids, fills/gradients, and PNG/SVG export. |
-| **Funnel Chart Generator** | `/tools/funnel-chart-generator` | Funnel & conversion chart studio with funnel/bar/step shapes, conversion & drop-off markers, and PNG/SVG export. |
+| **Pie Chart Generator** | `/tools/pie-chart-generator` | Pie & donut chart studio with CSV/Excel import, live SVG preview, palettes, exploded slices, labels, legends, and PNG/SVG export. |
+| **Bar Chart Generator** | `/tools/bar-chart-generator` | Bar & column chart studio with CSV/Excel import, grouped/stacked modes, multi-series data, axis controls, data labels, and PNG/SVG export. |
+| **Line Chart Generator** | `/tools/line-chart-generator` | Line & area chart studio with CSV/Excel import, multiple series, straight/smooth/step lines, markers, stacking, and PNG/SVG export. |
+| **Radar Chart Generator** | `/tools/radar-chart-generator` | Radar & spider chart studio with CSV/Excel import, multi-series profiles, polygon/circular grids, fills/gradients, and PNG/SVG export. |
+| **Funnel Chart Generator** | `/tools/funnel-chart-generator` | Funnel & conversion chart studio with CSV/Excel import, funnel/bar/step shapes, conversion & drop-off markers, WCAG-compliant labels that stay readable on every palette, and PNG/SVG export. |
+| **Polar Chart Generator** | `/tools/polar-chart-generator` | Polar area (rose) & radial bar chart studio with CSV/Excel import, an interactive hover tooltip, area-accurate square-root scaling, an optional centre hole, adjustable rings, gaps and rotation, and PNG/SVG export. |
 
 ---
 
@@ -382,7 +383,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 109 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 110 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -411,7 +412,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 109 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 110 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers

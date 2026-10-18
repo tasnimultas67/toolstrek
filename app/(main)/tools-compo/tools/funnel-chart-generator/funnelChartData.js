@@ -226,6 +226,10 @@ export function getPaletteColor(paletteId, index) {
 
 export const FUNNEL_FAQS = [
   {
+    q: "Can I import my data from a CSV or Excel file?",
+    a: "Yes. Drag and drop a .csv, .tsv or .xlsx file onto the import box in the Data tab, browse for one, or paste rows of text. The file is read entirely inside your browser, the delimiter and header row are detected automatically, and you choose the stage-name and value columns with a live preview before importing. Legacy binary .xls files are not supported, so re-save them as .xlsx or CSV first. Nothing is uploaded, and up to twenty-four stages are imported at a time.",
+  },
+  {
     q: "What is a funnel chart and when should I use one?",
     a: "A funnel chart shows a multi-stage process where a starting population shrinks as it moves through each step — sales pipelines, marketing conversions, sign-up flows, hiring stages or support queues. Each stage is drawn as a band whose size is proportional to the number of items that reach it, so the shape instantly reveals where the biggest drop-offs happen. Use a funnel when the order of the stages matters and you want to highlight conversion and attrition; use a bar chart when the order is irrelevant.",
   },
