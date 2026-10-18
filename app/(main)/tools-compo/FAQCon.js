@@ -33,6 +33,9 @@ const formatSectionTitle = (sectionKey) => {
     cssShadowTools: "CSS Box Shadow Generator",
     pieChartTools: "Pie & Donut Chart Generator",
     barChartTools: "Bar & Column Chart Generator",
+    lineChartTools: "Line & Area Chart Generator",
+    radarChartTools: "Radar & Spider Chart Generator",
+    funnelChartTools: "Funnel & Conversion Chart Generator",
   };
 
   return (

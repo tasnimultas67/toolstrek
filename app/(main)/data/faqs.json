@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 106 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 109 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 106 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 109 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 15 curated categories: Developer & Design (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Random Number Generator, CSS Box Shadow Generator, Gradient Generator, Color Converter, Pie Chart Generator, Bar Chart Generator), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Todo Tool, Schedule Maker, Timezone Planner), Calculators & Academic (CGPA, Age, Days, Unit converter, RNG), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, WebCodecs transcoder), Security, QR Codes, and Travel."
+      "answer": "ToolsTrek features 16 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Hash generator, WHOIS/SSL/IP network tools, and metadata tools), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher, Morse, Braille, Binary), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, and Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Task Prioritizer, Todo Tool, and Typing Test), Design (Color Converter, CSS Box Shadow Generator, Gradient Generator, and the Pie, Bar, Line, Radar & Funnel Chart Generators), Calculator (CGPA, Age, Days, Unit converter, RNG, Roman numerals), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters, Tip), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, SVG converter, WebCodecs transcoder), Time & Date, Education, Security, QR Codes, Fun & Astrology, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -80,7 +80,7 @@
   "developerTools": [
     {
       "question": "What developer and code utilities are available on ToolsTrek?",
-      "answer": "ToolsTrek provides a comprehensive developer and design suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, CSS Box Shadow Generator, Gradient Generator, Color Converter, Pie Chart Generator, Bar Chart Generator, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
+      "answer": "ToolsTrek provides a comprehensive developer and design suite including Random Number Generator (RNG Studio), Regex Tester & Debugger, Code Formatter & Beautifier (JS/TS/HTML/CSS/JSON/XML/SQL), JSON Editor & Schema Validator, JWT Decoder & Verifier, SVG Editor & Visualizer, Markdown Live Previewer, CSV Viewer & Editor, Base64 Nexus, Hash Generator & Verifier, CSS Box Shadow Generator, Gradient Generator, Color Converter, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Responsive Viewport Tester, Full Page Screenshot Tool, Monitor Hz Test, Social Media URL Preview, and Paragraph Formatter."
     },
     {
       "question": "How secure and customizable is the Random Number Generator (RNG Studio)?",
@@ -158,7 +158,7 @@
   "imageAndMedia": [
     {
       "question": "What image and design tools does ToolsTrek provide?",
-      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Pie Chart Generator, Bar Chart Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
+      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
     },
     {
       "question": "How does the Animated GIF Maker work?",
@@ -477,6 +477,112 @@
     {
       "question": "Is the Bar Chart Generator private and does it work offline?",
       "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential financial, survey and business data."
+    }
+  ],
+  "radarChartTools": [
+    {
+      "question": "What is the Radar Chart Generator and how does it work?",
+      "answer": "The Radar Chart Generator is a free, browser-first tool for turning a set of dimensions into a polished radar (spider) chart without any spreadsheet or design software. You type your axes and numbers into the data table (or load a ready-made sample dataset), add one or more data series, and a live SVG preview updates instantly. You can switch between a polygon web and rounded circular grid, choose from ten curated colour palettes, set the value scale to auto fit, a fixed 0–100 range or a custom range, rotate the start angle, reverse the direction, adjust grid levels, line width, vertex points, curved outlines, area fills and gradients, place vertex value labels, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
+    },
+    {
+      "question": "What is a radar chart and when should I use one?",
+      "answer": "A radar chart (also called a spider chart, web chart, polar chart or star plot) plots several quantitative variables on axes that radiate from a central point and joins the values into a polygon. It is ideal for comparing the profile of two or more items across the same set of dimensions — product features, player stats, skills assessments, website health or balanced scorecards — where the overall shape and balance matter more than exact values. Use a bar chart instead when you need precise comparisons of a single variable."
+    },
+    {
+      "question": "What is the difference between a radar chart and a spider chart?",
+      "answer": "Nothing — they are two names for the same chart. 'Radar chart' describes the way the grid rings resemble a radar sweep, while 'spider chart' describes the radiating web of axes. You may also hear 'web chart', 'polar chart', 'star plot' or 'Kiviat diagram'. This generator draws the classic polygon web by default, and you can switch the grid to rounded concentric circles with the Grid shape control."
+    },
+    {
+      "question": "How does the Radar Chart Generator calculate the value scale?",
+      "answer": "In Auto fit mode the generator scans every visible value, finds the smallest and largest, then rounds them outward to human-friendly 'nice' numbers so the ring labels are clean values like 0, 20, 40, 60, 80, 100. The scale always anchors at zero so area comparisons stay honest. Choose the 0–100 mode to fix the scale to a percentage range, or Custom to enter your own minimum and maximum — perfect for index scores or ratings that live between two known bounds."
+    },
+    {
+      "question": "Can I compare multiple series on the same radar chart?",
+      "answer": "Yes — that is the real strength of a radar chart. Add up to six data series and each one is drawn as its own colour-coded polygon, so you can instantly see where one profile is stronger or weaker than another. Overlapping areas use an adjustable fill opacity and an optional radial gradient. You can also toggle any series on or off from the data table or by clicking its eye icon, and hidden series are excluded from the automatic scale calculation."
+    },
+    {
+      "question": "Can I export the radar chart as a PNG or SVG image, and is it high resolution?",
+      "answer": "Yes. The Export panel offers Download PNG for a pixel-perfect raster image at up to 4× resolution — ideal for slide decks, reports and social posts — and Download SVG for infinitely scalable vector artwork perfect for print, Figma and websites. You can also copy the raw SVG markup to your clipboard, or download the underlying data as CSV or JSON. Enable the transparent background option for charts that sit on coloured slides or dark dashboards."
+    },
+    {
+      "question": "What are the best practices for designing a readable radar chart?",
+      "answer": "Keep the number of axes between three and eight so the shape stays legible, order the axes logically (group related dimensions together or sort them by score), and always anchor the scale at zero so area comparisons stay honest. Limit yourself to two or three overlapping series, keep the fill translucent, and label every axis clearly. Remember that the area of a radar polygon is not proportional to the total, so use it to show balance and shape rather than precise sums."
+    },
+    {
+      "question": "Is the Radar Chart Generator private and does it work offline?",
+      "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential business, HR, financial and survey data."
+    }
+  ],
+  "lineChartTools": [
+    {
+      "question": "What is the Line Chart Generator and how does it work?",
+      "answer": "The Line Chart Generator is a free, browser-first tool for turning a sequence of numbers into a polished line or area chart without any spreadsheet or design software. You type your point labels and numbers into the data table (or load a ready-made sample dataset), add one or more data series, and a live SVG preview updates instantly. You can switch between straight, smooth and step lines, adjust the curve tension, toggle point markers in five shapes, fill or stack the area, choose from ten curated colour palettes, set the value scale to auto fit or a custom range, rotate the category labels, place value labels above, below or on the line, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
+    },
+    {
+      "question": "What is the difference between a line chart and an area chart?",
+      "answer": "An area chart is simply a line chart with the space between the line and the baseline filled in. The fill makes the magnitude of each series easier to gauge, which is why area charts suit cumulative volumes such as revenue, traffic or energy use. Use the Area fill toggle to switch instantly, set the fill opacity and an optional fade-to-transparent gradient, and turn on the Stacked toggle to stack multiple series so their combined total is visible as one shape."
+    },
+    {
+      "question": "When should I use a smooth curve or a step line instead of straight lines?",
+      "answer": "Straight segments are the honest default because every point sits exactly on the value measured. Smooth curves look softer and suit genuinely continuous data such as temperature, but they can imply values that were never measured — this tool uses a monotone-safe spline plus a curve tension slider so the curve never overshoots your real data points. Step lines (after, before or middle) are ideal for values that change discretely, like pricing tiers, interest rates or on/off states."
+    },
+    {
+      "question": "How does the Line Chart Generator calculate the value axis?",
+      "answer": "In Auto scale mode the generator scans every visible series, finds the smallest and largest value, then rounds the axis outward to human-friendly 'nice' numbers so the gridline labels are clean values like 0, 25, 50, 75, 100. Turn Auto scale off to type an exact minimum and maximum — perfect for percentages or index scores that live between two known bounds. Keep the Zero baseline option on for honest comparisons, and use the Tick count slider to control how many gridlines appear."
+    },
+    {
+      "question": "Can I plot multiple series and tell them apart?",
+      "answer": "Yes — add up to six data series and each is drawn in its own colour. Because colour alone is not always enough, every series can also have its own dash pattern (solid, dashed, dotted, dash-dot or long dash), and the legend mirrors both the colour and the dash. You can hide any series with its eye icon without deleting its data, and hidden series are excluded from the automatic scale calculation."
+    },
+    {
+      "question": "How does the hover tooltip work, and will it appear in my export?",
+      "answer": "Move your mouse across the chart and a vertical guide line snaps to the nearest point, highlighting each series and showing a tooltip with every series' value for that point. It is purely a screen aid: the guide and tooltip are automatically stripped out of both the PNG and SVG exports, so your downloaded chart stays clean."
+    },
+    {
+      "question": "Can I export the line chart as a PNG or SVG image, and is it high resolution?",
+      "answer": "Yes. The Export panel offers Download PNG for a pixel-perfect raster image at up to 4× resolution — ideal for slide decks, reports and social posts — and Download SVG for infinitely scalable vector artwork perfect for print, Figma and websites. You can also copy the raw SVG markup to your clipboard, or download the underlying data as CSV or JSON. Enable the transparent background option for charts that sit on coloured slides or dark dashboards."
+    },
+    {
+      "question": "What are the best practices for a readable line chart?",
+      "answer": "Keep the value axis anchored at zero when comparing magnitudes, limit yourself to about four series before colours become hard to tell apart, and give each series a distinct colour plus a dash pattern or marker shape. Always label the axes with their units, avoid smoothing data where exact values matter, and reserve stacked areas for showing how a total is composed over time. Use markers sparingly on dense time series so the trend stays visible."
+    },
+    {
+      "question": "Is the Line Chart Generator private and does it work offline?",
+      "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential business, financial and research data."
+    }
+  ],
+  "funnelChartTools": [
+    {
+      "question": "What is the Funnel Chart Generator and how does it work?",
+      "answer": "The Funnel Chart Generator is a free, browser-first tool for turning a multi-stage process into a polished funnel or conversion chart without any spreadsheet or design software. You type your stage names and values into the data table (or load a ready-made sample dataset) and a live SVG preview updates instantly. You can switch between funnel, bar and step shapes, rotate the chart between vertical and horizontal, choose linear or square-root value scaling, pick from ten curated colour palettes, adjust the minimum stage width, base taper, gaps, corner radius, opacity and gradients, add conversion and drop-off markers between every stage, fine-tune value labels, percentages, prefixes and suffixes, and position the legend on any side before exporting a high-resolution PNG or scalable SVG."
+    },
+    {
+      "question": "When should I use a funnel chart instead of a bar chart?",
+      "answer": "Use a funnel when the order of the steps matters and a starting population shrinks as it moves through a defined process — sales pipelines, marketing conversions, sign-up flows, hiring stages or support queues. The tapering shape instantly shows where the biggest leaks happen. Use a bar chart when the order is irrelevant and you simply want to compare category values side by side. The Funnel Chart Generator even offers a Bars shape so you can compare precise stage sizes without losing the funnel framing."
+    },
+    {
+      "question": "How are stage widths and conversion percentages calculated?",
+      "answer": "In Linear mode each stage width is scaled directly against the largest stage. In Square-root mode the square root of each value is used instead, which compresses large differences so small lower-funnel stages remain visible. Every stage is also scored three ways — as a percentage of the first stage (overall conversion), as a percentage of the previous stage (step conversion) and as a percentage of the total — and you can choose which basis the labels use."
+    },
+    {
+      "question": "What do the conversion and drop-off markers show?",
+      "answer": "The small markers drawn between stages quantify the movement from one step to the next. Conversion % is the share of the previous stage that reached this one (for example 42%), while Drop-off shows the absolute number lost. Switch the marker format to view conversion, drop-off, or both at once — this is the fastest way to identify the single step that is leaking the most and deserves optimisation."
+    },
+    {
+      "question": "Can I export the funnel chart as a PNG or SVG image, and is it high resolution?",
+      "answer": "Yes. The Export panel offers Download PNG for a pixel-perfect raster image at up to 4× resolution — ideal for slide decks, reports and social posts — and Download SVG for infinitely scalable vector artwork perfect for print, Figma and websites. You can also copy the raw SVG markup to your clipboard, or download the underlying stage data as CSV or JSON. Enable the transparent background option for charts that sit on coloured slides or dark dashboards."
+    },
+    {
+      "question": "How do I keep small lower-funnel stages visible?",
+      "answer": "Two controls work together. The Minimum width slider sets a floor so a tiny final stage never collapses to a sliver, and switching the Value scale to Square root compresses the gap between the largest and smallest stages while still preserving their order. Use both together when your funnel starts with hundreds of thousands of impressions and ends with a few hundred conversions, then rely on the value labels to communicate the exact numbers."
+    },
+    {
+      "question": "What are the best practices for designing a readable funnel chart?",
+      "answer": "Keep the number of stages between three and six so the shape stays legible, order them in the true sequence of your process, and label each stage with both its name and value. Always keep widths proportional so the shape stays honest, group tiny tail stages into a single 'Other' band, and pair the funnel with conversion percentages so viewers can quantify the drop-off as well as see it. A light gradient and a clear side legend help the eye travel smoothly from top to bottom."
+    },
+    {
+      "question": "Is the Funnel Chart Generator private and does it work offline?",
+      "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential sales, revenue, HR and product analytics data."
     }
   ]
 }
