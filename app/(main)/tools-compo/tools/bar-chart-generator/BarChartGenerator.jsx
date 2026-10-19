@@ -59,25 +59,22 @@ import {
   getPaletteColor,
 } from "./barChartData";
 import {
-  computeBarLayout,
-  contrastColor,
   dataToCsv,
-  downloadPng,
-  downloadSvgFile,
   formatValue,
   getBarLabelText,
-  hexToRgb,
-  roundedRectPath,
-  serializeSvg,
   truncateText,
   DEFAULT_CHART_HEIGHT,
   DEFAULT_CHART_WIDTH,
 } from "./barChartEngine";
 
 import ChartDataImport from "../_shared/ChartDataImport";
-
-const FONT_STACK =
-  "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+import ChartPreview from "../_shared/charts/ChartPreview";
+import BarChartView from "../_shared/charts/BarChartView";
+import {
+  downloadChartPng,
+  downloadChartSvg,
+  serializeChartSvg,
+} from "../_shared/charts/chartExport";
 
 // Client-only id generator used for rows/series added after mount. It is never
 // called during SSR, so Date.now() here cannot cause a hydration mismatch.
@@ -103,13 +100,6 @@ function makeFromDataset(dataset, paletteId = DEFAULT_PALETTE_ID) {
     values: categories.map((_, i) => Number(s.values?.[i]) || 0),
   }));
   return { categories, series };
-}
-
-function lighten(hex, amount = 0.32) {
-  const { r, g, b } = hexToRgb(hex);
-  const mix = (c) => Math.round(c + (255 - c) * amount);
-  const toHex = (v) => v.toString(16).padStart(2, "0");
-  return `#${toHex(mix(r))}${toHex(mix(g))}${toHex(mix(b))}`;
 }
 
 const CONTROL_TABS = [
@@ -199,7 +189,7 @@ export default function BarChartGenerator() {
   const [pngScale, setPngScale] = useState(2);
   const [openFaq, setOpenFaq] = useState(0);
 
-  const svgRef = useRef(null);
+  const chartRef = useRef(null);
 
   // ── Ordered data (sort) ────────────────────────────────────────────────────
   const { orderedCategories, orderedSeries } = useMemo(() => {
@@ -250,71 +240,62 @@ export default function BarChartGenerator() {
     [useThousands, compact, prefix, suffix]
   );
 
-  // ── Layout ─────────────────────────────────────────────────────────────────
-  const layout = useMemo(
+  // ── Derived chart config ───────────────────────────────────────────────────
+  const mutedColor = textColor === "#f8fafc" ? "#94a3b8" : "#64748b";
+  const hasChartData = orderedCategories.length > 0 && orderedSeries.length > 0;
+
+  const legendItems = useMemo(
     () =>
-      computeBarLayout({
-        width: chartWidth,
-        height: chartHeight,
-        title,
-        subtitle,
-        orientation,
-        mode,
-        series: orderedSeries,
-        categories: orderedCategories,
-        barWidthPct,
-        groupGap,
-        cornerRadius,
-        showValueAxis,
-        showCategoryAxis,
-        showGridlines,
-        zeroBaseline,
-        tickCount,
-        legendPosition,
-        showLegend,
-        legendValues: showLegendValues ? seriesTotals : [],
-        labelFormat,
-        labelPosition,
-        decimals,
-        compact,
-        thousands: useThousands,
-        prefix,
-        suffix,
-        categoryLabelAngle,
-        axisTitleX: axisTitleCategory,
-        axisTitleY: axisTitleValue,
-      }),
+      orderedSeries.map((s, index) => ({
+        id: s.id,
+        label: s.name,
+        color: s.color,
+        value: showLegendValues
+          ? formatValue(seriesTotals[index], { ...fmtOptions, decimals })
+          : undefined,
+      })),
+    [orderedSeries, seriesTotals, showLegendValues, fmtOptions, decimals]
+  );
+
+  const formatTick = useCallback(
+    (value) => formatValue(value, { ...fmtOptions, decimals }),
+    [fmtOptions, decimals]
+  );
+
+  const formatBarLabel = useCallback(
+    (value) =>
+      getBarLabelText({ value }, labelFormat, decimals, grandTotal, fmtOptions),
+    [labelFormat, decimals, grandTotal, fmtOptions]
+  );
+
+  const getExportOptions = useCallback(
+    () => ({
+      container: chartRef.current,
+      width: chartWidth,
+      height: chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition: showLegend ? legendPosition : "none",
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    }),
     [
       chartWidth,
       chartHeight,
       title,
       subtitle,
-      orientation,
-      mode,
-      orderedSeries,
-      orderedCategories,
-      barWidthPct,
-      groupGap,
-      cornerRadius,
-      showValueAxis,
-      showCategoryAxis,
-      showGridlines,
-      zeroBaseline,
-      tickCount,
-      legendPosition,
+      legendItems,
       showLegend,
+      legendPosition,
       showLegendValues,
-      seriesTotals,
-      labelFormat,
-      labelPosition,
-      decimals,
-      compact,
-      useThousands,
-      prefix,
-      suffix,
-      categoryLabelAngle,
-      axisTitleCategory,
-      axisTitleValue,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
     ]
   );
 
@@ -516,7 +497,7 @@ export default function BarChartGenerator() {
   // ── Export handlers ────────────────────────────────────────────────────────
   const handleCopySvg = async () => {
     try {
-      const markup = serializeSvg(svgRef.current, chartWidth, chartHeight);
+      const markup = serializeChartSvg(getExportOptions());
       await navigator.clipboard.writeText(markup);
       setCopiedSvg(true);
       toast.success("SVG markup copied to clipboard");
@@ -539,15 +520,8 @@ export default function BarChartGenerator() {
   };
 
   const handleDownloadPng = async () => {
-    if (!svgRef.current) return;
     try {
-      await downloadPng(
-        svgRef.current,
-        chartWidth,
-        chartHeight,
-        "bar-chart.png",
-        pngScale
-      );
+      await downloadChartPng(getExportOptions(), "bar-chart.png", pngScale);
       toast.success(`PNG downloaded at ${pngScale}× resolution`);
     } catch {
       toast.error("PNG export failed — try the SVG download instead.");
@@ -555,9 +529,8 @@ export default function BarChartGenerator() {
   };
 
   const handleDownloadSvg = () => {
-    if (!svgRef.current) return;
     try {
-      downloadSvgFile(svgRef.current, chartWidth, chartHeight, "bar-chart.svg");
+      downloadChartSvg(getExportOptions(), "bar-chart.svg");
       toast.success("SVG downloaded");
     } catch {
       toast.error("SVG export failed.");
@@ -614,13 +587,6 @@ export default function BarChartGenerator() {
     link: "/tools/bar-chart-generator",
   };
 
-  const hoverCss = `
-    .bar-rect { transition: opacity .18s ease, filter .18s ease; cursor: pointer; }
-    .bar-chart-root:hover .bar-rect { opacity: .45; }
-    .bar-chart-root .bar-rect:hover { opacity: 1; filter: brightness(1.06) saturate(1.06); }
-  `;
-
-  const mutedColor = textColor === "#f8fafc" ? "#94a3b8" : "#64748b";
   const activeOrientation = ORIENTATIONS.find((o) => o.id === orientation);
   const activeMode = BAR_MODES.find((m) => m.id === mode);
 
@@ -733,45 +699,59 @@ export default function BarChartGenerator() {
             </div>
 
             {/* Chart canvas */}
-            <div
-              className="relative flex items-center justify-center p-4 sm:p-6 transition-colors duration-200"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(148,163,184,0.22) 1px, transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            >
-              <BarChartSvg
-                svgRef={svgRef}
-                css={hoverCss}
-                layout={layout}
-                series={orderedSeries}
-                config={{
-                  title,
-                  subtitle,
-                  textColor,
-                  mutedColor,
-                  gridColor,
-                  axisColor,
-                  transparentBg,
-                  bgColor,
-                  labelFormat,
-                  labelPosition,
-                  decimals,
-                  fmtOptions,
-                  gradient,
-                  barOpacity,
-                  shadow,
-                  showValueAxis,
-                  showCategoryAxis,
-                  showGridlines,
-                  showLegendValues,
-                  categoryLabelAngle,
-                  axisTitleCategory,
-                  axisTitleValue,
-                }}
-                grandTotal={grandTotal}
-              />
+            <div className="p-3 sm:p-4 transition-colors duration-200">
+              <ChartPreview
+                ref={chartRef}
+                title={title}
+                subtitle={subtitle}
+                legendItems={legendItems}
+                legendPosition={showLegend ? legendPosition : "none"}
+                showLegendValues={showLegendValues}
+                bgColor={bgColor}
+                transparentBg={transparentBg}
+                textColor={textColor}
+                mutedColor={mutedColor}
+                width={chartWidth}
+                height={chartHeight}
+                empty={!hasChartData}
+                emptyLabel="Add at least one category and series to render your chart"
+                emptyIcon={<BarChart3 className="h-9 w-9 stroke-1" />}
+                className="rounded-xl border border-gray-100 dark:border-gray-800"
+              >
+                <BarChartView
+                  categories={orderedCategories}
+                  series={orderedSeries}
+                  grandTotal={grandTotal}
+                  config={{
+                    orientation,
+                    mode,
+                    barWidthPct,
+                    groupGap,
+                    cornerRadius,
+                    gradient,
+                    barOpacity,
+                    shadow,
+                    showValueAxis,
+                    showCategoryAxis,
+                    showGridlines,
+                    zeroBaseline,
+                    tickCount,
+                    categoryLabelAngle,
+                    axisTitleCategory,
+                    axisTitleValue,
+                    labelFormat,
+                    labelPosition,
+                    textColor,
+                    mutedColor,
+                    gridColor,
+                    axisColor,
+                    bgColor,
+                    formatLabel: formatBarLabel,
+                    formatTick,
+                    formatTooltip: formatTick,
+                  }}
+                />
+              </ChartPreview>
             </div>
 
             {/* Stats strip */}
@@ -1101,485 +1081,6 @@ export default function BarChartGenerator() {
         </div>
       </div>
     </ToolPageShell>
-  );
-}
-
-// ─── Bar chart SVG ───────────────────────────────────────────────────────────
-function BarChartSvg({ svgRef, css, layout, series, config, grandTotal }) {
-  const {
-    title,
-    subtitle,
-    textColor,
-    mutedColor,
-    gridColor,
-    axisColor,
-    transparentBg,
-    bgColor,
-    labelFormat,
-    labelPosition,
-    decimals,
-    fmtOptions,
-    gradient,
-    barOpacity,
-    shadow,
-    showValueAxis,
-    showCategoryAxis,
-    showGridlines,
-    categoryLabelAngle,
-    showLegendValues,
-    axisTitleCategory,
-    axisTitleValue,
-  } = config;
-
-  const { width, height, plot, ticks, categories, legend, vertical, total } =
-    layout;
-
-  const showBars = series.length > 0 && categories.length > 0;
-
-  const catMaxChars = vertical
-    ? Math.max(
-        3,
-        Math.floor(
-          (layout.bandSize * 0.92) / (12 * 0.56)
-        )
-      )
-    : Math.max(3, Math.floor((plot.x - layout.pad - 10) / (12 * 0.56)));
-
-  const plotCenterX = plot.x + plot.w / 2;
-  const plotCenterY = plot.y + plot.h / 2;
-
-  const rawZero = layout.valueToPos(0);
-  const baselinePos = vertical
-    ? Math.max(plot.y, Math.min(plot.y + plot.h, rawZero))
-    : Math.max(plot.x, Math.min(plot.x + plot.w, rawZero));
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${width} ${height}`}
-      width="100%"
-      preserveAspectRatio="xMidYMid meet"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label={title || "Bar chart"}
-      className="w-full h-auto"
-      style={{ maxWidth: `${width}px`, fontFamily: FONT_STACK }}
-    >
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-
-      <defs>
-        <filter id="barShadow" x="-20%" y="-20%" width="140%" height="150%">
-          <feDropShadow
-            dx="0"
-            dy="4"
-            stdDeviation="5"
-            floodColor="#0f172a"
-            floodOpacity="0.2"
-          />
-        </filter>
-        {gradient &&
-          series.map((s) => (
-            <linearGradient
-              key={s.id}
-              id={`bar-grad-${s.id}`}
-              x1="0"
-              y1="0"
-              x2="0"
-              y2="1"
-            >
-              <stop offset="0%" stopColor={lighten(s.color, 0.34)} />
-              <stop offset="100%" stopColor={s.color} />
-            </linearGradient>
-          ))}
-      </defs>
-
-      {!transparentBg && (
-        <rect x="0" y="0" width={width} height={height} fill={bgColor} />
-      )}
-
-      {title && (
-        <text
-          x={width / 2}
-          y={layout.titleY}
-          textAnchor="middle"
-          fontSize={20}
-          fontWeight={800}
-          fill={textColor}
-        >
-          {title}
-        </text>
-      )}
-      {subtitle && (
-        <text
-          x={width / 2}
-          y={title ? layout.titleY + 21 : layout.titleY}
-          textAnchor="middle"
-          fontSize={12.5}
-          fill={mutedColor}
-        >
-          {subtitle}
-        </text>
-      )}
-
-      {/* Gridlines */}
-      {showGridlines && (
-        <g>
-          {ticks.map((tick, index) => {
-            if (vertical) {
-              return (
-                <line
-                  key={index}
-                  x1={plot.x}
-                  x2={plot.x + plot.w}
-                  y1={tick.pos}
-                  y2={tick.pos}
-                  stroke={tick.value === 0 ? "none" : gridColor}
-                  strokeWidth={1}
-                />
-              );
-            }
-            return (
-              <line
-                key={index}
-                y1={plot.y}
-                y2={plot.y + plot.h}
-                x1={tick.pos}
-                x2={tick.pos}
-                stroke={tick.value === 0 ? "none" : gridColor}
-                strokeWidth={1}
-              />
-            );
-          })}
-        </g>
-      )}
-
-      {/* Axis lines */}
-      {showValueAxis &&
-        (vertical ? (
-          <line
-            x1={plot.x}
-            x2={plot.x}
-            y1={plot.y}
-            y2={plot.y + plot.h}
-            stroke={axisColor}
-            strokeWidth={1.4}
-          />
-        ) : (
-          <line
-            x1={plot.x}
-            x2={plot.x + plot.w}
-            y1={plot.y + plot.h}
-            y2={plot.y + plot.h}
-            stroke={axisColor}
-            strokeWidth={1.4}
-          />
-        ))}
-      {showCategoryAxis &&
-        (vertical ? (
-          <line
-            x1={plot.x}
-            x2={plot.x + plot.w}
-            y1={baselinePos}
-            y2={baselinePos}
-            stroke={axisColor}
-            strokeWidth={1.4}
-          />
-        ) : (
-          <line
-            x1={baselinePos}
-            x2={baselinePos}
-            y1={plot.y}
-            y2={plot.y + plot.h}
-            stroke={axisColor}
-            strokeWidth={1.4}
-          />
-        ))}
-
-      {/* Bars */}
-      {showBars && (
-        <g
-          className="bar-chart-root"
-          filter={shadow ? "url(#barShadow)" : undefined}
-        >
-          {categories.map((cat) =>
-            cat.bars.map((bar, j) => {
-              if (bar.w <= 0 || bar.h <= 0) return null;
-              const path = roundedRectPath(bar.x, bar.y, bar.w, bar.h, bar.corner);
-              return (
-                <path
-                  key={`${cat.id}-${bar.seriesId}-${j}`}
-                  d={path}
-                  fill={gradient ? `url(#bar-grad-${bar.seriesId})` : bar.color}
-                  opacity={barOpacity}
-                  className="bar-rect"
-                />
-              );
-            })
-          )}
-        </g>
-      )}
-
-      {/* Value axis ticks + labels */}
-      {showValueAxis &&
-        ticks.map((tick, index) => {
-          const label = formatValue(tick.value, { ...fmtOptions, decimals });
-          if (vertical) {
-            return (
-              <text
-                key={index}
-                x={plot.x - 9}
-                y={tick.pos}
-                textAnchor="end"
-                dominantBaseline="middle"
-                fontSize={12}
-                fill={mutedColor}
-              >
-                {label}
-              </text>
-            );
-          }
-          return (
-            <text
-              key={index}
-              x={tick.pos}
-              y={plot.y + plot.h + 16}
-              textAnchor="middle"
-              fontSize={12}
-              fill={mutedColor}
-            >
-              {label}
-            </text>
-          );
-        })}
-
-      {/* Category labels */}
-      {showCategoryAxis &&
-        categories.map((cat) => {
-          const label = truncateText(cat.label, catMaxChars);
-          if (vertical) {
-            if (categoryLabelAngle === 0) {
-              return (
-                <text
-                  key={cat.id}
-                  x={cat.center}
-                  y={plot.y + plot.h + 17}
-                  textAnchor="middle"
-                  fontSize={12}
-                  fontWeight={600}
-                  fill={textColor}
-                >
-                  {label}
-                </text>
-              );
-            }
-            return (
-              <text
-                key={cat.id}
-                x={cat.center}
-                y={plot.y + plot.h + 14}
-                textAnchor="end"
-                fontSize={12}
-                fontWeight={600}
-                fill={textColor}
-                transform={`rotate(-${categoryLabelAngle} ${cat.center} ${
-                  plot.y + plot.h + 14
-                })`}
-              >
-                {label}
-              </text>
-            );
-          }
-          return (
-            <text
-              key={cat.id}
-              x={plot.x - 10}
-              y={cat.center}
-              textAnchor="end"
-              dominantBaseline="middle"
-              fontSize={12}
-              fontWeight={600}
-              fill={textColor}
-            >
-              {label}
-            </text>
-          );
-        })}
-
-      {/* Axis titles */}
-      {axisTitleCategory && vertical && (
-        <text
-          x={plotCenterX}
-          y={height - layout.pad + 2}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={600}
-          fill={mutedColor}
-        >
-          {axisTitleCategory}
-        </text>
-      )}
-      {axisTitleCategory && !vertical && (
-        <text
-          x={layout.pad + 12}
-          y={plotCenterY}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={600}
-          fill={mutedColor}
-          transform={`rotate(-90 ${layout.pad + 12} ${plotCenterY})`}
-        >
-          {axisTitleCategory}
-        </text>
-      )}
-      {axisTitleValue && vertical && (
-        <text
-          x={layout.pad + 12}
-          y={plotCenterY}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={600}
-          fill={mutedColor}
-          transform={`rotate(-90 ${layout.pad + 12} ${plotCenterY})`}
-        >
-          {axisTitleValue}
-        </text>
-      )}
-      {axisTitleValue && !vertical && (
-        <text
-          x={plotCenterX}
-          y={height - layout.pad + 2}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={600}
-          fill={mutedColor}
-        >
-          {axisTitleValue}
-        </text>
-      )}
-
-      {/* Data labels */}
-      {labelFormat !== "none" && showBars && (
-        <g pointerEvents="none">
-          {categories.map((cat) =>
-            cat.bars.map((bar, j) => {
-              if (bar.value === 0) return null;
-              const text = getBarLabelText(
-                bar,
-                labelFormat,
-                decimals,
-                grandTotal || total,
-                fmtOptions
-              );
-
-              if (!vertical && bar.w < 26 && labelPosition !== "outside") {
-                return null;
-              }
-              if (vertical && bar.h < 16 && labelPosition !== "outside") {
-                return null;
-              }
-
-              let x = bar.cx;
-              let y = bar.cy;
-              let anchor = "middle";
-              let baseline = "middle";
-              let fill = textColor;
-
-              if (labelPosition === "center") {
-                fill = contrastColor(bar.color);
-              } else if (labelPosition === "inside") {
-                fill = contrastColor(bar.color);
-                if (vertical) {
-                  y = bar.dir > 0 ? bar.y + 12 : bar.y + bar.h - 12;
-                } else {
-                  anchor = bar.dir > 0 ? "end" : "start";
-                  x = bar.dir > 0 ? bar.x + bar.w - 8 : bar.x + 8;
-                }
-              } else {
-                // outside
-                if (vertical) {
-                  y = bar.dir > 0 ? bar.y - 6 : bar.y + bar.h + 6;
-                  baseline = bar.dir > 0 ? "auto" : "hanging";
-                } else {
-                  anchor = bar.dir > 0 ? "start" : "end";
-                  x = bar.dir > 0 ? bar.x + bar.w + 6 : bar.x - 6;
-                }
-              }
-
-              return (
-                <text
-                  key={`${cat.id}-${bar.seriesId}-lbl-${j}`}
-                  x={x}
-                  y={y}
-                  textAnchor={anchor}
-                  dominantBaseline={baseline}
-                  fontSize={12}
-                  fontWeight={700}
-                  fill={fill}
-                >
-                  {text}
-                </text>
-              );
-            })
-          )}
-        </g>
-      )}
-
-      {/* Legend */}
-      {legend.visible && (
-        <g>
-          {legend.items.map((item, index) => {
-            const pos = legend.positions[index];
-            if (!pos) return null;
-            const valueText = showLegendValues
-              ? formatValue(item.value, { ...fmtOptions, decimals })
-              : "";
-            return (
-              <g key={item.id}>
-                <rect
-                  x={pos.x}
-                  y={pos.y + 4}
-                  width={legend.marker}
-                  height={legend.marker}
-                  rx={3.5}
-                  fill={item.color}
-                />
-                <text
-                  x={pos.x + legend.marker + 8}
-                  y={pos.y + 14.5}
-                  fontSize={12.5}
-                  fontWeight={600}
-                  fill={textColor}
-                >
-                  {truncateText(
-                    item.label,
-                    legend.onSide
-                      ? 20
-                      : Math.max(
-                          6,
-                          Math.floor(
-                            (pos.width - legend.marker - 24) / (12.5 * 0.56)
-                          )
-                        )
-                  )}
-                </text>
-                {showLegendValues && (
-                  <text
-                    x={pos.x + pos.width}
-                    y={pos.y + 14.5}
-                    textAnchor="end"
-                    fontSize={12}
-                    fontWeight={700}
-                    fill={mutedColor}
-                  >
-                    {valueText}
-                  </text>
-                )}
-              </g>
-            );
-          })}
-        </g>
-      )}
-    </svg>
   );
 }
 

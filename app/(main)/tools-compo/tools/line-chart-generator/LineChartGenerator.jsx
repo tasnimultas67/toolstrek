@@ -62,19 +62,11 @@ import {
   DEFAULT_DATASET_ID,
   DEFAULT_PALETTE_ID,
   getPaletteColor,
-  getDashPattern,
-  getGridPattern,
 } from "./lineChartData";
 import {
-  computeLineLayout,
-  buildPath,
-  buildAreaPath,
   dataToCsv,
-  downloadPng,
-  downloadSvgFile,
   formatValue,
   getPointLabelText,
-  serializeSvg,
   toNum,
   truncateText,
   DEFAULT_CHART_HEIGHT,
@@ -82,9 +74,13 @@ import {
 } from "./lineChartEngine";
 
 import ChartDataImport from "../_shared/ChartDataImport";
-
-const FONT_STACK =
-  "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+import ChartPreview from "../_shared/charts/ChartPreview";
+import LineChartView from "../_shared/charts/LineChartView";
+import {
+  downloadChartPng,
+  downloadChartSvg,
+  serializeChartSvg,
+} from "../_shared/charts/chartExport";
 
 // Client-only id generator used for rows/series added after mount. It is never
 // called during SSR, so Date.now() here cannot cause a hydration mismatch.
@@ -217,9 +213,8 @@ export default function LineChartGenerator() {
   const [copiedData, setCopiedData] = useState(false);
   const [pngScale, setPngScale] = useState(2);
   const [openFaq, setOpenFaq] = useState(0);
-  const [hoverIndex, setHoverIndex] = useState(null);
 
-  const svgRef = useRef(null);
+  const chartRef = useRef(null);
 
   // ── Ordered data (sort) ────────────────────────────────────────────────────
   const { orderedCategories, orderedSeries } = useMemo(() => {
@@ -284,74 +279,65 @@ export default function LineChartGenerator() {
     [useThousands, compact, prefix, suffix]
   );
 
-  // ── Layout ─────────────────────────────────────────────────────────────────
-  const layout = useMemo(
+  // ── Derived chart config ───────────────────────────────────────────────────
+  const mutedColor = textColor === "#f8fafc" ? "#94a3b8" : "#64748b";
+  const hasChartData = orderedCategories.length > 0 && visibleSeries.length > 0;
+
+  const legendItems = useMemo(
     () =>
-      computeLineLayout({
-        width: chartWidth,
-        height: chartHeight,
-        title,
-        subtitle,
-        series: orderedSeries,
-        categories: orderedCategories,
-        stacked,
-        pointPadding: pointPadding / 100,
-        showValueAxis,
-        showCategoryAxis,
-        showGridlines,
-        zeroBaseline,
-        tickCount,
-        autoScale,
-        manualMin,
-        manualMax,
-        legendPosition,
-        showLegend,
-        legendValues: showLegendValues ? seriesTotals : [],
-        labelFormat,
-        labelPosition,
-        decimals,
-        compact,
-        thousands: useThousands,
-        prefix,
-        suffix,
-        categoryLabelAngle,
-        axisTitleX: axisTitleCategory,
-        axisTitleY: axisTitleValue,
-        markerSize: showMarkers ? markerSize : 0,
-      }),
+      orderedSeries.map((s, index) => ({
+        id: s.id,
+        label: s.name,
+        color: s.color,
+        kind: "line",
+        dash: s.dash || "solid",
+        visible: s.visible !== false,
+        value: showLegendValues
+          ? formatValue(seriesTotals[index], { ...fmtOptions, decimals })
+          : undefined,
+      })),
+    [orderedSeries, seriesTotals, showLegendValues, fmtOptions, decimals]
+  );
+
+  const formatTick = useCallback(
+    (value) => formatValue(value, { ...fmtOptions, decimals }),
+    [fmtOptions, decimals]
+  );
+
+  const formatLabel = useCallback(
+    (value) =>
+      getPointLabelText(value, labelFormat, decimals, grandTotal, fmtOptions),
+    [labelFormat, decimals, grandTotal, fmtOptions]
+  );
+
+  const getExportOptions = useCallback(
+    () => ({
+      container: chartRef.current,
+      width: chartWidth,
+      height: chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition: showLegend ? legendPosition : "none",
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    }),
     [
       chartWidth,
       chartHeight,
       title,
       subtitle,
-      orderedSeries,
-      orderedCategories,
-      stacked,
-      pointPadding,
-      showValueAxis,
-      showCategoryAxis,
-      showGridlines,
-      zeroBaseline,
-      tickCount,
-      autoScale,
-      manualMin,
-      manualMax,
-      legendPosition,
+      legendItems,
       showLegend,
+      legendPosition,
       showLegendValues,
-      seriesTotals,
-      labelFormat,
-      labelPosition,
-      decimals,
-      compact,
-      useThousands,
-      prefix,
-      suffix,
-      categoryLabelAngle,
-      axisTitleCategory,
-      axisTitleValue,
-      showMarkers,
-      markerSize,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
     ]
   );
 
@@ -552,7 +538,6 @@ export default function LineChartGenerator() {
     setTextColor("#0f172a");
     setGridColor("#e2e8f0");
     setAxisColor("#94a3b8");
-    setHoverIndex(null);
     toast.info("Reset to defaults");
   };
 
@@ -580,7 +565,7 @@ export default function LineChartGenerator() {
   // ── Export handlers ────────────────────────────────────────────────────────
   const handleCopySvg = async () => {
     try {
-      const markup = serializeSvg(svgRef.current, chartWidth, chartHeight);
+      const markup = serializeChartSvg(getExportOptions());
       await navigator.clipboard.writeText(markup);
       setCopiedSvg(true);
       toast.success("SVG markup copied to clipboard");
@@ -603,15 +588,8 @@ export default function LineChartGenerator() {
   };
 
   const handleDownloadPng = async () => {
-    if (!svgRef.current) return;
     try {
-      await downloadPng(
-        svgRef.current,
-        chartWidth,
-        chartHeight,
-        "line-chart.png",
-        pngScale
-      );
+      await downloadChartPng(getExportOptions(), "line-chart.png", pngScale);
       toast.success(`PNG downloaded at ${pngScale}× resolution`);
     } catch {
       toast.error("PNG export failed — try the SVG download instead.");
@@ -619,9 +597,8 @@ export default function LineChartGenerator() {
   };
 
   const handleDownloadSvg = () => {
-    if (!svgRef.current) return;
     try {
-      downloadSvgFile(svgRef.current, chartWidth, chartHeight, "line-chart.svg");
+      downloadChartSvg(getExportOptions(), "line-chart.svg");
       toast.success("SVG downloaded");
     } catch {
       toast.error("SVG export failed.");
@@ -682,7 +659,6 @@ export default function LineChartGenerator() {
 
   const activeLineStyle = LINE_STYLES.find((s) => s.id === lineStyle);
   const activeMarker = MARKER_SHAPES.find((s) => s.id === markerShape);
-  const mutedColor = textColor === "#f8fafc" ? "#94a3b8" : "#64748b";
 
   return (
     <ToolPageShell widthClassName="max-w-7xl">
@@ -808,58 +784,68 @@ export default function LineChartGenerator() {
             </div>
 
             {/* Chart canvas */}
-            <div
-              className="relative flex items-center justify-center p-4 sm:p-6 transition-colors duration-200"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(148,163,184,0.22) 1px, transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            >
-              <LineChartSvg
-                svgRef={svgRef}
-                layout={layout}
-                series={layout.series}
-                hoverIndex={hoverIndex}
-                setHoverIndex={setHoverIndex}
-                config={{
-                  title,
-                  subtitle,
-                  textColor,
-                  mutedColor,
-                  gridColor,
-                  axisColor,
-                  transparentBg,
-                  bgColor,
-                  lineStyle,
-                  curveTension: curveTension / 100,
-                  lineWidth,
-                  lineOpacity,
-                  globalDash,
-                  showMarkers,
-                  markerShape,
-                  markerSize,
-                  markerFilled,
-                  markerBorderWidth,
-                  showArea,
-                  areaOpacity: areaOpacity / 100,
-                  areaGradient,
-                  stacked,
-                  labelFormat,
-                  labelPosition,
-                  decimals,
-                  fmtOptions,
-                  showValueAxis,
-                  showCategoryAxis,
-                  showGridlines,
-                  gridStyle,
-                  showLegendValues,
-                  categoryLabelAngle,
-                  axisTitleCategory,
-                  axisTitleValue,
-                }}
-                grandTotal={grandTotal}
-              />
+            <div className="p-3 sm:p-4 transition-colors duration-200">
+              <ChartPreview
+                ref={chartRef}
+                title={title}
+                subtitle={subtitle}
+                legendItems={legendItems}
+                legendPosition={showLegend ? legendPosition : "none"}
+                showLegendValues={showLegendValues}
+                bgColor={bgColor}
+                transparentBg={transparentBg}
+                textColor={textColor}
+                mutedColor={mutedColor}
+                width={chartWidth}
+                height={chartHeight}
+                empty={!hasChartData}
+                emptyLabel="Add at least one category and visible series to render your chart"
+                emptyIcon={<ChartSpline className="h-9 w-9 stroke-1" />}
+                className="rounded-xl border border-gray-100 dark:border-gray-800"
+              >
+                <LineChartView
+                  categories={orderedCategories}
+                  series={orderedSeries}
+                  config={{
+                    lineStyle,
+                    lineWidth,
+                    lineOpacity,
+                    showMarkers,
+                    markerShape,
+                    markerSize,
+                    markerFilled,
+                    markerBorderWidth,
+                    showArea,
+                    areaOpacity: areaOpacity / 100,
+                    areaGradient,
+                    stacked,
+                    pointPadding: pointPadding / 100,
+                    showValueAxis,
+                    showCategoryAxis,
+                    showGridlines,
+                    gridStyle,
+                    zeroBaseline,
+                    tickCount,
+                    autoScale,
+                    manualMin,
+                    manualMax,
+                    categoryLabelAngle,
+                    axisTitleCategory,
+                    axisTitleValue,
+                    labelFormat,
+                    labelPosition,
+                    textColor,
+                    mutedColor,
+                    gridColor,
+                    axisColor,
+                    bgColor,
+                    transparentBg,
+                    formatLabel,
+                    formatTick,
+                    formatTooltip: formatTick,
+                  }}
+                />
+              </ChartPreview>
             </div>
 
             {/* Stats strip */}
@@ -1266,583 +1252,6 @@ function MarkerShape({ shape, cx, cy, size, fill, stroke, strokeWidth }) {
         />
       );
   }
-}
-
-// ─── Line chart SVG ──────────────────────────────────────────────────────────
-function LineChartSvg({
-  svgRef,
-  layout,
-  series,
-  config,
-  grandTotal,
-  hoverIndex,
-  setHoverIndex,
-}) {
-  const {
-    title,
-    subtitle,
-    textColor,
-    mutedColor,
-    gridColor,
-    axisColor,
-    transparentBg,
-    bgColor,
-    lineStyle,
-    curveTension,
-    lineWidth,
-    lineOpacity,
-    showMarkers,
-    markerShape,
-    markerSize,
-    markerFilled,
-    markerBorderWidth,
-    showArea,
-    areaOpacity,
-    areaGradient,
-    stacked,
-    labelFormat,
-    labelPosition,
-    decimals,
-    fmtOptions,
-    showValueAxis,
-    showCategoryAxis,
-    showGridlines,
-    gridStyle,
-    showLegendValues,
-    categoryLabelAngle,
-    axisTitleCategory,
-    axisTitleValue,
-  } = config;
-
-  const { width, height, plot, ticks, categories, legend } = layout;
-
-  const gridPattern = getGridPattern(gridStyle);
-  const dashArray = (pattern) => (pattern && pattern.length ? pattern.join(" ") : undefined);
-
-  const showSeries = series.length > 0 && categories.length > 0;
-  const visibleSeries = series.filter((s) => s.visible !== false);
-
-  const catMaxChars =
-    categoryLabelAngle === 0
-      ? Math.max(
-          3,
-          Math.floor((plot.w / Math.max(1, categories.length)) / (12 * 0.56))
-        )
-      : 24;
-
-  const plotCenterX = plot.x + plot.w / 2;
-  const plotCenterY = plot.y + plot.h / 2;
-
-  const handleMove = (e) => {
-    if (!setHoverIndex || !svgRef.current) return;
-    const rect = svgRef.current.getBoundingClientRect();
-    if (!rect.width) return;
-    const x = ((e.clientX - rect.left) / rect.width) * width;
-    let best = null;
-    let bestD = Infinity;
-    categories.forEach((c, i) => {
-      const d = Math.abs(c.x - x);
-      if (d < bestD) {
-        bestD = d;
-        best = i;
-      }
-    });
-    setHoverIndex(best);
-  };
-
-  // ── Hover tooltip geometry ───────────────────────────────────────────────
-  let tooltip = null;
-  if (showSeries && hoverIndex !== null && hoverIndex >= 0 && hoverIndex < categories.length) {
-    const cat = categories[hoverIndex];
-    const rows = series.map((s) => {
-      const p = s.points[hoverIndex];
-      return {
-        name: s.name,
-        color: s.color,
-        dash: s.dash || "solid",
-        value: p ? p.value : null,
-      };
-    });
-    const headerW = (String(cat.label || "")?.length || 3) * 6.4 + 24;
-    const rowW = rows.reduce(
-      (max, r) =>
-        Math.max(
-          max,
-          (String(r.name).length + 12) * 6 + (r.value === null ? 20 : 44)
-        ),
-      headerW
-    );
-    const boxW = Math.min(Math.max(rowW, 140), width - 24);
-    const rowH = 18;
-    const boxH = 26 + rows.length * rowH + 8;
-    let bx = cat.x + 16;
-    if (bx + boxW > width - 10) bx = cat.x - 16 - boxW;
-    if (bx < 10) bx = 10;
-    let by = plot.y + 10;
-    if (by + boxH > height - 10) by = Math.max(10, height - 10 - boxH);
-    tooltip = { cat, rows, boxW, boxH, bx, by, rowH };
-  }
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${width} ${height}`}
-      width="100%"
-      preserveAspectRatio="xMidYMid meet"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label={title || "Line chart"}
-      className="w-full h-auto"
-      style={{ maxWidth: `${width}px`, fontFamily: FONT_STACK }}
-      onMouseMove={handleMove}
-      onMouseLeave={() => setHoverIndex && setHoverIndex(null)}
-    >
-      <defs>
-        <filter id="lineShadow" x="-20%" y="-20%" width="140%" height="150%">
-          <feDropShadow
-            dx="0"
-            dy="3"
-            stdDeviation="4"
-            floodColor="#0f172a"
-            floodOpacity="0.18"
-          />
-        </filter>
-        {showArea &&
-          visibleSeries.map((s) => (
-            <linearGradient
-              key={s.id}
-              id={`area-grad-${s.id}`}
-              x1="0"
-              y1="0"
-              x2="0"
-              y2="1"
-            >
-              <stop offset="0%" stopColor={s.color} stopOpacity={areaOpacity} />
-              <stop offset="100%" stopColor={s.color} stopOpacity={0} />
-            </linearGradient>
-          ))}
-      </defs>
-
-      {!transparentBg && (
-        <rect x="0" y="0" width={width} height={height} fill={bgColor} />
-      )}
-
-      {title && (
-        <text
-          x={width / 2}
-          y={layout.titleY}
-          textAnchor="middle"
-          fontSize={20}
-          fontWeight={800}
-          fill={textColor}
-        >
-          {title}
-        </text>
-      )}
-      {subtitle && (
-        <text
-          x={width / 2}
-          y={title ? layout.titleY + 21 : layout.titleY}
-          textAnchor="middle"
-          fontSize={12.5}
-          fill={mutedColor}
-        >
-          {subtitle}
-        </text>
-      )}
-
-      {/* Gridlines */}
-      {showGridlines && (
-        <g>
-          {ticks.map((tick, index) => (
-            <line
-              key={index}
-              x1={plot.x}
-              x2={plot.x + plot.w}
-              y1={tick.y}
-              y2={tick.y}
-              stroke={tick.value === 0 ? "none" : gridColor}
-              strokeWidth={1}
-              strokeDasharray={dashArray(gridPattern)}
-            />
-          ))}
-        </g>
-      )}
-
-      {/* Axis lines */}
-      {showValueAxis && (
-        <line
-          x1={plot.x}
-          x2={plot.x}
-          y1={plot.y}
-          y2={plot.y + plot.h}
-          stroke={axisColor}
-          strokeWidth={1.4}
-        />
-      )}
-      {showCategoryAxis && (
-        <line
-          x1={plot.x}
-          x2={plot.x + plot.w}
-          y1={plot.y + plot.h}
-          y2={plot.y + plot.h}
-          stroke={axisColor}
-          strokeWidth={1.4}
-        />
-      )}
-
-      {/* Area fills (drawn first, bottom-up for stacking) */}
-      {showArea &&
-        showSeries &&
-        visibleSeries.map((s) => {
-          const pts = s.points.map((p) => (p.missing ? null : { x: p.x, y: p.y }));
-          const baseYs = s.points.map((p) => p.yBase);
-          const d = buildAreaPath(pts, baseYs, lineStyle, curveTension);
-          if (!d) return null;
-          return (
-            <path
-              key={`area-${s.id}`}
-              d={d}
-              fill={areaGradient ? `url(#area-grad-${s.id})` : s.color}
-              opacity={areaGradient ? 1 : areaOpacity}
-            />
-          );
-        })}
-
-      {/* Lines */}
-      {showSeries &&
-        visibleSeries.map((s) => {
-          const pts = s.points.map((p) => (p.missing ? null : { x: p.x, y: p.y }));
-          const d = buildPath(pts, lineStyle, curveTension);
-          if (!d) return null;
-          return (
-            <g key={`line-${s.id}`} className="line-series">
-              <path
-                d={d}
-                fill="none"
-                stroke={s.color}
-                strokeWidth={lineWidth}
-                strokeOpacity={lineOpacity}
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeDasharray={dashArray(getDashPattern(s.dash))}
-              />
-            </g>
-          );
-        })}
-
-      {/* Markers */}
-      {showMarkers &&
-        showSeries &&
-        visibleSeries.map((s) =>
-          s.points.map((p) => {
-            if (p.missing) return null;
-            const isHover = hoverIndex === p.index;
-            const size = isHover ? markerSize + 1.5 : markerSize;
-            const fill = markerFilled ? s.color : bgColor;
-            const stroke = markerFilled ? bgColor : s.color;
-            return (
-              <g key={`marker-${s.id}-${p.index}`} pointerEvents="none">
-                {isHover && (
-                  <circle
-                    cx={p.x}
-                    cy={p.y}
-                    r={size + 4}
-                    fill="none"
-                    stroke={s.color}
-                    strokeWidth={1.5}
-                    opacity={0.45}
-                  />
-                )}
-                <MarkerShape
-                  shape={markerShape}
-                  cx={p.x}
-                  cy={p.y}
-                  size={size}
-                  fill={fill}
-                  stroke={stroke}
-                  strokeWidth={markerBorderWidth}
-                />
-              </g>
-            );
-          })
-        )}
-
-      {/* Value axis ticks + labels */}
-      {showValueAxis &&
-        ticks.map((tick, index) => (
-          <text
-            key={index}
-            x={plot.x - 9}
-            y={tick.y}
-            textAnchor="end"
-            dominantBaseline="middle"
-            fontSize={12}
-            fill={mutedColor}
-          >
-            {formatValue(tick.value, { ...fmtOptions, decimals })}
-          </text>
-        ))}
-
-      {/* Category labels */}
-      {showCategoryAxis &&
-        categories.map((cat) => {
-          const label = truncateText(cat.label, catMaxChars);
-          if (categoryLabelAngle === 0) {
-            return (
-              <text
-                key={cat.id}
-                x={cat.x}
-                y={plot.y + plot.h + 18}
-                textAnchor="middle"
-                fontSize={12}
-                fontWeight={600}
-                fill={textColor}
-              >
-                {label}
-              </text>
-            );
-          }
-          return (
-            <text
-              key={cat.id}
-              x={cat.x}
-              y={plot.y + plot.h + 14}
-              textAnchor="end"
-              fontSize={12}
-              fontWeight={600}
-              fill={textColor}
-              transform={`rotate(-${categoryLabelAngle} ${cat.x} ${
-                plot.y + plot.h + 14
-              })`}
-            >
-              {label}
-            </text>
-          );
-        })}
-
-      {/* Axis titles */}
-      {axisTitleCategory && (
-        <text
-          x={plotCenterX}
-          y={height - layout.pad + 2}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={600}
-          fill={mutedColor}
-        >
-          {axisTitleCategory}
-        </text>
-      )}
-      {axisTitleValue && (
-        <text
-          x={layout.pad + 12}
-          y={plotCenterY}
-          textAnchor="middle"
-          fontSize={12}
-          fontWeight={600}
-          fill={mutedColor}
-          transform={`rotate(-90 ${layout.pad + 12} ${plotCenterY})`}
-        >
-          {axisTitleValue}
-        </text>
-      )}
-
-      {/* Data labels */}
-      {labelFormat !== "none" &&
-        showSeries &&
-        visibleSeries.map((s) =>
-          s.points.map((p) => {
-            if (p.missing) return null;
-            if (hoverIndex !== null && hoverIndex !== p.index) return null;
-            const text = getPointLabelText(
-              p.value,
-              labelFormat,
-              decimals,
-              grandTotal,
-              fmtOptions
-            );
-            let x = p.x;
-            let y = p.y;
-            let baseline = "middle";
-            if (labelPosition === "above") {
-              y = p.y - (markerSize + 8);
-              baseline = "auto";
-            } else if (labelPosition === "below") {
-              y = p.y + (markerSize + 14);
-              baseline = "hanging";
-            } else {
-              y = p.y + 4;
-            }
-            return (
-              <text
-                key={`lbl-${s.id}-${p.index}`}
-                x={x}
-                y={y}
-                textAnchor="middle"
-                dominantBaseline={baseline}
-                fontSize={11}
-                fontWeight={700}
-                fill={textColor}
-                pointerEvents="none"
-              >
-                {text}
-              </text>
-            );
-          })
-        )}
-
-      {/* Legend */}
-      {legend.visible && (
-        <g>
-          {legend.items.map((item, index) => {
-            const pos = legend.positions[index];
-            if (!pos) return null;
-            const valueText = showLegendValues
-              ? formatValue(item.value, { ...fmtOptions, decimals })
-              : "";
-            const dashPattern = getDashPattern(item.dash);
-            return (
-              <g key={item.id} opacity={item.visible ? 1 : 0.4}>
-                <line
-                  x1={pos.x}
-                  x2={pos.x + legend.marker}
-                  y1={pos.y + 11}
-                  y2={pos.y + 11}
-                  stroke={item.color}
-                  strokeWidth={3}
-                  strokeLinecap="round"
-                  strokeDasharray={dashArray(dashPattern)}
-                />
-                <circle cx={pos.x + legend.marker / 2} cy={pos.y + 11} r={2.6} fill={item.color} />
-                <text
-                  x={pos.x + legend.marker + 8}
-                  y={pos.y + 15}
-                  fontSize={12.5}
-                  fontWeight={600}
-                  fill={textColor}
-                >
-                  {truncateText(
-                    item.label,
-                    legend.onSide
-                      ? 20
-                      : Math.max(
-                          6,
-                          Math.floor(
-                            (pos.width - legend.marker - 24) / (12.5 * 0.56)
-                          )
-                        )
-                  )}
-                </text>
-                {showLegendValues && (
-                  <text
-                    x={pos.x + pos.width}
-                    y={pos.y + 15}
-                    textAnchor="end"
-                    fontSize={12}
-                    fontWeight={700}
-                    fill={mutedColor}
-                  >
-                    {valueText}
-                  </text>
-                )}
-              </g>
-            );
-          })}
-        </g>
-      )}
-
-      {/* Hover guide + tooltip (stripped from exports) */}
-      {tooltip && (
-        <g data-export-strip="true" pointerEvents="none">
-          <line
-            x1={tooltip.cat.x}
-            x2={tooltip.cat.x}
-            y1={plot.y}
-            y2={plot.y + plot.h}
-            stroke={axisColor}
-            strokeWidth={1}
-            strokeDasharray="4 4"
-          />
-          {visibleSeries.map((s) => {
-            const p = s.points[hoverIndex];
-            if (!p || p.missing) return null;
-            return (
-              <circle
-                key={`hd-${s.id}`}
-                cx={p.x}
-                cy={p.y}
-                r={markerSize + 2}
-                fill="none"
-                stroke={s.color}
-                strokeWidth={2}
-              />
-            );
-          })}
-          <g>
-            <rect
-              x={tooltip.bx}
-              y={tooltip.by}
-              width={tooltip.boxW}
-              height={tooltip.boxH}
-              rx={10}
-              fill={bgColor}
-              stroke={gridColor}
-              strokeWidth={1}
-              opacity={0.98}
-              filter="url(#lineShadow)"
-            />
-            <text
-              x={tooltip.bx + 12}
-              y={tooltip.by + 18}
-              fontSize={11.5}
-              fontWeight={800}
-              fill={textColor}
-            >
-              {truncateText(tooltip.cat.label, 22)}
-            </text>
-            {tooltip.rows.map((row, i) => {
-              const ry = tooltip.by + 32 + i * tooltip.rowH;
-              return (
-                <g key={`tt-${i}`}>
-                  <line
-                    x1={tooltip.bx + 12}
-                    x2={tooltip.bx + 24}
-                    y1={ry + 4}
-                    y2={ry + 4}
-                    stroke={row.color}
-                    strokeWidth={3}
-                    strokeLinecap="round"
-                    strokeDasharray={dashArray(getDashPattern(row.dash))}
-                  />
-                  <text
-                    x={tooltip.bx + 30}
-                    y={ry + 8}
-                    fontSize={11}
-                    fill={mutedColor}
-                  >
-                    {truncateText(row.name, 16)}
-                  </text>
-                  <text
-                    x={tooltip.bx + tooltip.boxW - 10}
-                    y={ry + 8}
-                    textAnchor="end"
-                    fontSize={11}
-                    fontWeight={700}
-                    fill={textColor}
-                  >
-                    {row.value === null
-                      ? "—"
-                      : formatValue(row.value, { ...fmtOptions, decimals })}
-                  </text>
-                </g>
-              );
-            })}
-          </g>
-        </g>
-      )}
-    </svg>
-  );
 }
 
 // ─── Small UI atoms ──────────────────────────────────────────────────────────

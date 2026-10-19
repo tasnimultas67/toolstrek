@@ -55,14 +55,8 @@ import {
   getPaletteColor,
 } from "./radarChartData";
 import {
-  computeRadarLayout,
-  downloadPng,
-  downloadSvgFile,
   formatValue,
   getPointLabelText,
-  lighten,
-  polygonPath,
-  serializeSvg,
   seriesToCsv,
   truncateText,
   DEFAULT_CHART_HEIGHT,
@@ -70,9 +64,13 @@ import {
 } from "./radarChartEngine";
 
 import ChartDataImport from "../_shared/ChartDataImport";
-
-const FONT_STACK =
-  "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+import ChartPreview from "../_shared/charts/ChartPreview";
+import RadarChartView from "../_shared/charts/RadarChartView";
+import {
+  downloadChartPng,
+  downloadChartSvg,
+  serializeChartSvg,
+} from "../_shared/charts/chartExport";
 
 // Client-only id generator used for rows/series added after mount. It is never
 // called during SSR, so Date.now() here cannot cause a hydration mismatch.
@@ -188,7 +186,7 @@ export default function RadarChartGenerator() {
   const [pngScale, setPngScale] = useState(2);
   const [openFaq, setOpenFaq] = useState(0);
 
-  const svgRef = useRef(null);
+  const chartRef = useRef(null);
 
   // ── Ordered axes (sort) ────────────────────────────────────────────────────
   const { orderedAxes, visibleSeries } = useMemo(() => {
@@ -222,70 +220,14 @@ export default function RadarChartGenerator() {
     [useThousands, compact, prefix, suffix]
   );
 
-  const seriesTotals = useMemo(
+  const seriesMeans = useMemo(
     () =>
-      visibleSeries.map((s) => s.values.reduce((a, v) => a + (Number(v) || 0), 0)),
+      visibleSeries.map((s) =>
+        s.values.length
+          ? s.values.reduce((a, v) => a + (Number(v) || 0), 0) / s.values.length
+          : 0
+      ),
     [visibleSeries]
-  );
-
-  // ── Layout ─────────────────────────────────────────────────────────────────
-  const layout = useMemo(
-    () =>
-      computeRadarLayout({
-        width: chartWidth,
-        height: chartHeight,
-        title,
-        subtitle,
-        axes: orderedAxes,
-        series: visibleSeries,
-        startAngle,
-        direction,
-        levels,
-        gridShape,
-        showAxisLabels,
-        showTickLabels,
-        legendPosition,
-        showLegend,
-        legendValues: showLegendValues ? seriesTotals : [],
-        curved,
-        scaleMode,
-        customMin,
-        customMax,
-        valueLabelFormat,
-        decimals,
-        compact,
-        thousands: useThousands,
-        prefix,
-        suffix,
-      }),
-    [
-      chartWidth,
-      chartHeight,
-      title,
-      subtitle,
-      orderedAxes,
-      visibleSeries,
-      startAngle,
-      direction,
-      levels,
-      gridShape,
-      showAxisLabels,
-      showTickLabels,
-      legendPosition,
-      showLegend,
-      showLegendValues,
-      seriesTotals,
-      curved,
-      scaleMode,
-      customMin,
-      customMax,
-      valueLabelFormat,
-      decimals,
-      compact,
-      useThousands,
-      prefix,
-      suffix,
-    ]
   );
 
   // ── Data handlers ──────────────────────────────────────────────────────────
@@ -490,7 +432,7 @@ export default function RadarChartGenerator() {
   // ── Export handlers ────────────────────────────────────────────────────────
   const handleCopySvg = async () => {
     try {
-      const markup = serializeSvg(svgRef.current, chartWidth, chartHeight);
+      const markup = serializeChartSvg(getExportOptions());
       await navigator.clipboard.writeText(markup);
       setCopiedSvg(true);
       toast.success("SVG markup copied to clipboard");
@@ -513,15 +455,8 @@ export default function RadarChartGenerator() {
   };
 
   const handleDownloadPng = async () => {
-    if (!svgRef.current) return;
     try {
-      await downloadPng(
-        svgRef.current,
-        chartWidth,
-        chartHeight,
-        "radar-chart.png",
-        pngScale
-      );
+      await downloadChartPng(getExportOptions(), "radar-chart.png", pngScale);
       toast.success(`PNG downloaded at ${pngScale}× resolution`);
     } catch {
       toast.error("PNG export failed — try the SVG download instead.");
@@ -529,9 +464,8 @@ export default function RadarChartGenerator() {
   };
 
   const handleDownloadSvg = () => {
-    if (!svgRef.current) return;
     try {
-      downloadSvgFile(svgRef.current, chartWidth, chartHeight, "radar-chart.svg");
+      downloadChartSvg(getExportOptions(), "radar-chart.svg");
       toast.success("SVG downloaded");
     } catch {
       toast.error("SVG export failed.");
@@ -588,15 +522,72 @@ export default function RadarChartGenerator() {
     link: "/tools/radar-chart-generator",
   };
 
-  const hoverCss = `
-    .radar-chart-root .radar-series { transition: opacity .18s ease; }
-    .radar-chart-root:hover .radar-series { opacity: .4; }
-    .radar-chart-root .radar-series:hover { opacity: 1; }
-  `;
-
   const mutedColor = textColor === "#f8fafc" ? "#94a3b8" : "#64748b";
+  const hasChartData = orderedAxes.length >= 3 && visibleSeries.length > 0;
   const activeGridShape = GRID_SHAPES.find((g) => g.id === gridShape);
   const activeScale = SCALE_MODES.find((s) => s.id === scaleMode);
+
+  // ── Legend items (mean per series — radar scales are per-axis) ─────────────
+  const legendItems = useMemo(
+    () =>
+      visibleSeries.map((s, index) => ({
+        id: s.id,
+        label: s.name,
+        color: s.color,
+        value: showLegendValues
+          ? formatValue(seriesMeans[index], { ...fmtOptions, decimals })
+          : undefined,
+      })),
+    [visibleSeries, seriesMeans, showLegendValues, fmtOptions, decimals]
+  );
+
+  const formatTick = useCallback(
+    (value) => formatValue(value, { ...fmtOptions, decimals }),
+    [fmtOptions, decimals]
+  );
+
+  const formatLabel = useCallback(
+    (value, domainMax) =>
+      getPointLabelText(
+        { value },
+        valueLabelFormat,
+        decimals,
+        domainMax,
+        fmtOptions
+      ),
+    [valueLabelFormat, decimals, fmtOptions]
+  );
+
+  const getExportOptions = useCallback(
+    () => ({
+      container: chartRef.current,
+      width: chartWidth,
+      height: chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition: showLegend ? legendPosition : "none",
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    }),
+    [
+      chartWidth,
+      chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      showLegend,
+      legendPosition,
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    ]
+  );
 
   return (
     <ToolPageShell widthClassName="max-w-7xl">
@@ -707,45 +698,61 @@ export default function RadarChartGenerator() {
             </div>
 
             {/* Chart canvas */}
-            <div
-              className="relative flex items-center justify-center p-4 sm:p-6 transition-colors duration-200"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(148,163,184,0.22) 1px, transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            >
-              <RadarChartSvg
-                svgRef={svgRef}
-                css={hoverCss}
-                layout={layout}
-                config={{
-                  title,
-                  subtitle,
-                  textColor,
-                  mutedColor,
-                  gridColor,
-                  axisColor,
-                  transparentBg,
-                  bgColor,
-                  filled,
-                  fillOpacity,
-                  gradient,
-                  strokeWidth,
-                  showPoints,
-                  pointRadius,
-                  shadow,
-                  showGrid,
-                  showOuterRing,
-                  showAxisLines,
-                  showAxisLabels,
-                  showTickLabels,
-                  showLegendValues,
-                  valueLabelFormat,
-                  decimals,
-                  fmtOptions,
-                }}
-              />
+            <div className="p-3 sm:p-4 transition-colors duration-200">
+              <ChartPreview
+                ref={chartRef}
+                title={title}
+                subtitle={subtitle}
+                legendItems={legendItems}
+                legendPosition={showLegend ? legendPosition : "none"}
+                showLegendValues={showLegendValues}
+                bgColor={bgColor}
+                transparentBg={transparentBg}
+                textColor={textColor}
+                mutedColor={mutedColor}
+                width={chartWidth}
+                height={chartHeight}
+                empty={!hasChartData}
+                emptyLabel="Add at least 3 axes and one visible series to render your radar chart"
+                emptyIcon={<Radar className="h-9 w-9 stroke-1" />}
+                className="rounded-xl border border-gray-100 dark:border-gray-800"
+              >
+                <RadarChartView
+                  axes={orderedAxes}
+                  series={visibleSeries}
+                  config={{
+                    filled,
+                    fillOpacity,
+                    gradient,
+                    strokeWidth,
+                    showPoints,
+                    pointRadius,
+                    curved,
+                    shadow,
+                    gridShape,
+                    levels,
+                    showGrid,
+                    showOuterRing,
+                    showAxisLines,
+                    showAxisLabels,
+                    showTickLabels,
+                    startAngle,
+                    direction,
+                    scaleMode,
+                    customMin,
+                    customMax,
+                    valueLabelFormat,
+                    decimals,
+                    textColor,
+                    mutedColor,
+                    gridColor,
+                    axisColor,
+                    formatLabel,
+                    formatTick,
+                    formatTooltip: formatTick,
+                  }}
+                />
+              </ChartPreview>
             </div>
 
             {/* Stats strip */}
@@ -1075,348 +1082,6 @@ export default function RadarChartGenerator() {
         </div>
       </div>
     </ToolPageShell>
-  );
-}
-
-// ─── Radar chart SVG ─────────────────────────────────────────────────────────
-function RadarChartSvg({ svgRef, css, layout, config }) {
-  const {
-    title,
-    subtitle,
-    textColor,
-    mutedColor,
-    gridColor,
-    axisColor,
-    transparentBg,
-    bgColor,
-    filled,
-    fillOpacity,
-    gradient,
-    strokeWidth,
-    showPoints,
-    pointRadius,
-    shadow,
-    showGrid,
-    showOuterRing,
-    showAxisLines,
-    showAxisLabels,
-    showTickLabels,
-    showLegendValues,
-    valueLabelFormat,
-    decimals,
-    fmtOptions,
-  } = config;
-
-  const { width, height, center, radius, axes, rings, gridShape, series, scale } =
-    layout;
-
-  const hasData = series.length > 0 && axes.length > 2;
-
-  // Truncate axis labels to whatever horizontal room remains so long names
-  // never spill outside the SVG canvas.
-  const maxAxisChars = Math.max(
-    6,
-    Math.floor((width - center.x - radius - 18) / (12 * 0.56))
-  );
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${width} ${height}`}
-      width="100%"
-      preserveAspectRatio="xMidYMid meet"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label={title || "Radar chart"}
-      className="w-full h-auto"
-      style={{ maxWidth: `${width}px`, fontFamily: FONT_STACK }}
-    >
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-
-      <defs>
-        <filter id="radarShadow" x="-20%" y="-20%" width="140%" height="150%">
-          <feDropShadow
-            dx="0"
-            dy="3"
-            stdDeviation="4"
-            floodColor="#0f172a"
-            floodOpacity="0.22"
-          />
-        </filter>
-        {filled &&
-          gradient &&
-          series.map((s) => (
-            <radialGradient
-              key={s.id}
-              id={`radar-grad-${s.id}`}
-              cx="50%"
-              cy="50%"
-              r="50%"
-            >
-              <stop offset="0%" stopColor={s.color} stopOpacity={0.05} />
-              <stop offset="100%" stopColor={lighten(s.color, 0.1)} stopOpacity={Math.min(1, fillOpacity * 1.9)} />
-            </radialGradient>
-          ))}
-      </defs>
-
-      {!transparentBg && (
-        <rect x="0" y="0" width={width} height={height} fill={bgColor} />
-      )}
-
-      {title && (
-        <text
-          x={width / 2}
-          y={layout.titleY}
-          textAnchor="middle"
-          fontSize={20}
-          fontWeight={800}
-          fill={textColor}
-        >
-          {title}
-        </text>
-      )}
-      {subtitle && (
-        <text
-          x={width / 2}
-          y={title ? layout.titleY + 21 : layout.titleY}
-          textAnchor="middle"
-          fontSize={12.5}
-          fill={mutedColor}
-        >
-          {subtitle}
-        </text>
-      )}
-
-      {!hasData && (
-        <text
-          x={center.x}
-          y={center.y}
-          textAnchor="middle"
-          fontSize={13}
-          fill={mutedColor}
-        >
-          Add at least 3 axes to draw a radar chart.
-        </text>
-      )}
-
-      {/* Grid rings */}
-      {hasData && showGrid && (
-        <g>
-          {rings.map((ring, index) => {
-            if (ring.r <= 0.5) return null;
-            const isOuter = index === rings.length - 1;
-            if (isOuter && !showOuterRing) return null;
-            const stroke = isOuter ? axisColor : gridColor;
-            const sw = isOuter ? 1.4 : 1;
-            if (gridShape === "circle") {
-              return (
-                <circle
-                  key={index}
-                  cx={center.x}
-                  cy={center.y}
-                  r={ring.r}
-                  fill="none"
-                  stroke={stroke}
-                  strokeWidth={sw}
-                />
-              );
-            }
-            return (
-              <path
-                key={index}
-                d={polygonPath(ring.points)}
-                fill="none"
-                stroke={stroke}
-                strokeWidth={sw}
-              />
-            );
-          })}
-        </g>
-      )}
-
-      {/* Axis spokes */}
-      {hasData && showAxisLines && (
-        <g>
-          {axes.map((ax) => (
-            <line
-              key={ax.id}
-              x1={center.x}
-              y1={center.y}
-              x2={ax.outer.x}
-              y2={ax.outer.y}
-              stroke={gridColor}
-              strokeWidth={1}
-            />
-          ))}
-        </g>
-      )}
-
-      {/* Series polygons */}
-      {hasData && (
-        <g
-          className="radar-chart-root"
-          filter={shadow ? "url(#radarShadow)" : undefined}
-        >
-          {series.map((s) => (
-            <g key={s.id} className="radar-series">
-              {filled && (
-                <path
-                  d={s.path}
-                  fill={gradient ? `url(#radar-grad-${s.id})` : s.color}
-                  fillOpacity={gradient ? 1 : fillOpacity}
-                />
-              )}
-              <path
-                d={s.path}
-                fill="none"
-                stroke={s.color}
-                strokeWidth={strokeWidth}
-                strokeLinejoin="round"
-                strokeLinecap="round"
-              />
-              {showPoints &&
-                s.points.map((p, i) => (
-                  <circle
-                    key={i}
-                    cx={p.x}
-                    cy={p.y}
-                    r={pointRadius}
-                    fill={transparentBg || !filled ? s.color : bgColor}
-                    stroke={s.color}
-                    strokeWidth={2}
-                  />
-                ))}
-            </g>
-          ))}
-        </g>
-      )}
-
-      {/* Radial tick labels (along the vertical up direction) */}
-      {hasData &&
-        showTickLabels &&
-        rings.map((ring, index) => {
-          if (ring.r <= 1) return null;
-          if (index === rings.length - 1 && !showOuterRing) return null;
-          return (
-            <text
-              key={index}
-              x={center.x + 6}
-              y={center.y - ring.r}
-              textAnchor="start"
-              dominantBaseline="middle"
-              fontSize={10.5}
-              fill={mutedColor}
-            >
-              {formatValue(ring.value, { ...fmtOptions, decimals })}
-            </text>
-          );
-        })}
-
-      {/* Axis category labels */}
-      {hasData &&
-        showAxisLabels &&
-        axes.map((ax) => (
-          <text
-            key={ax.id}
-            x={ax.labelX}
-            y={ax.labelY}
-            textAnchor={ax.anchor}
-            dominantBaseline={ax.baseline}
-            fontSize={12}
-            fontWeight={600}
-            fill={textColor}
-          >
-            {truncateText(ax.label, maxAxisChars)}
-          </text>
-        ))}
-
-      {/* Point value labels */}
-      {hasData &&
-        valueLabelFormat !== "none" &&
-        series.map((s) =>
-          s.points.map((p, i) => {
-            const text = getPointLabelText(
-              p,
-              valueLabelFormat,
-              decimals,
-              scale.max,
-              fmtOptions
-            );
-            const rad = ((p.angle - 90) * Math.PI) / 180;
-            const cos = Math.cos(rad);
-            const x = p.x + 14 * cos;
-            const y = p.y + 14 * Math.sin(rad);
-            const anchor = cos > 0.35 ? "start" : cos < -0.35 ? "end" : "middle";
-            return (
-              <text
-                key={`${s.id}-${i}`}
-                x={x}
-                y={y}
-                textAnchor={anchor}
-                dominantBaseline="middle"
-                fontSize={10.5}
-                fontWeight={700}
-                fill={textColor}
-              >
-                {text}
-              </text>
-            );
-          })
-        )}
-
-      {/* Legend */}
-      {layout.legend.visible && (
-        <g>
-          {layout.legend.items.map((item, index) => {
-            const pos = layout.legend.positions[index];
-            if (!pos) return null;
-            return (
-              <g key={item.id}>
-                <rect
-                  x={pos.x}
-                  y={pos.y + 4}
-                  width={layout.legend.marker}
-                  height={layout.legend.marker}
-                  rx={3.5}
-                  fill={item.color}
-                />
-                <text
-                  x={pos.x + layout.legend.marker + 8}
-                  y={pos.y + 14.5}
-                  fontSize={12.5}
-                  fontWeight={600}
-                  fill={textColor}
-                >
-                  {truncateText(
-                    item.label,
-                    layout.legend.onSide
-                      ? 20
-                      : Math.max(
-                          6,
-                          Math.floor(
-                            (pos.width - layout.legend.marker - 24) / (12.5 * 0.56)
-                          )
-                        )
-                  )}
-                </text>
-                {showLegendValues && (
-                  <text
-                    x={pos.x + pos.width}
-                    y={pos.y + 14.5}
-                    textAnchor="end"
-                    fontSize={12}
-                    fontWeight={700}
-                    fill={mutedColor}
-                  >
-                    {formatValue(item.value, { ...fmtOptions, decimals })}
-                  </text>
-                )}
-              </g>
-            );
-          })}
-        </g>
-      )}
-    </svg>
   );
 }
 

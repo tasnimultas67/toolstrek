@@ -51,26 +51,22 @@ import {
   getPaletteColor,
 } from "./pieChartData";
 import {
-  buildSlicePath,
-  computeLayout,
   computeSlices,
-  contrastColor,
-  downloadPng,
-  downloadSvgFile,
-  formatCompact,
   formatNumber,
   getLabelText,
-  polarToCartesian,
-  serializeSvg,
   slicesToCsv,
   DEFAULT_CHART_HEIGHT,
   DEFAULT_CHART_WIDTH,
 } from "./pieChartEngine";
 
 import ChartDataImport from "../_shared/ChartDataImport";
-
-const FONT_STACK =
-  "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+import ChartPreview from "../_shared/charts/ChartPreview";
+import PieChartView from "../_shared/charts/PieChartView";
+import {
+  downloadChartPng,
+  downloadChartSvg,
+  serializeChartSvg,
+} from "../_shared/charts/chartExport";
 
 let idCounter = 0;
 const createId = () => `slice-${Date.now().toString(36)}-${idCounter++}`;
@@ -148,48 +144,13 @@ export default function PieChartGenerator() {
   const [pngScale, setPngScale] = useState(2);
   const [openFaq, setOpenFaq] = useState(0);
 
-  const svgRef = useRef(null);
+  const chartRef = useRef(null);
 
   // ── Derived geometry ───────────────────────────────────────────────────────
   const { slices: computedSlices, total } = useMemo(
     () => computeSlices(slices, { startAngle, clockwise, gapAngle }),
     [slices, startAngle, clockwise, gapAngle]
   );
-
-  const layout = useMemo(
-    () =>
-      computeLayout({
-        width: chartWidth,
-        height: chartHeight,
-        title,
-        subtitle,
-        showLegend: legendPosition !== "none",
-        legendPosition,
-        showLegendValues,
-        legendLabels: computedSlices.map((s) => s.label),
-        labelPosition,
-        chartType,
-        innerRadius,
-        hasOutsideLabels: computedSlices.length > 0,
-      }),
-    [
-      chartWidth,
-      chartHeight,
-      title,
-      subtitle,
-      legendPosition,
-      showLegendValues,
-      computedSlices,
-      labelPosition,
-      chartType,
-      innerRadius,
-    ]
-  );
-
-  const insideLabelRadius = useMemo(() => {
-    if (layout.rInner > 0) return (layout.rOuter + layout.rInner) / 2;
-    return layout.rOuter * 0.62;
-  }, [layout.rOuter, layout.rInner]);
 
   const topSlice = computedSlices.reduce(
     (best, s) => (s.value > (best?.value ?? -Infinity) ? s : best),
@@ -307,9 +268,10 @@ export default function PieChartGenerator() {
     toast.info("Reset to defaults");
   };
 
+  // ── Export handlers ────────────────────────────────────────────────────────
   const handleCopySvg = async () => {
     try {
-      const markup = serializeSvg(svgRef.current, chartWidth, chartHeight);
+      const markup = serializeChartSvg(getExportOptions());
       await navigator.clipboard.writeText(markup);
       setCopiedSvg(true);
       toast.success("SVG markup copied to clipboard");
@@ -333,15 +295,8 @@ export default function PieChartGenerator() {
   };
 
   const handleDownloadPng = async () => {
-    if (!svgRef.current) return;
     try {
-      await downloadPng(
-        svgRef.current,
-        chartWidth,
-        chartHeight,
-        "pie-chart.png",
-        pngScale
-      );
+      await downloadChartPng(getExportOptions(), "pie-chart.png", pngScale);
       toast.success(`PNG downloaded at ${pngScale}× resolution`);
     } catch {
       toast.error("PNG export failed — try the SVG download instead.");
@@ -349,9 +304,8 @@ export default function PieChartGenerator() {
   };
 
   const handleDownloadSvg = () => {
-    if (!svgRef.current) return;
     try {
-      downloadSvgFile(svgRef.current, chartWidth, chartHeight, "pie-chart.svg");
+      downloadChartSvg(getExportOptions(), "pie-chart.svg");
       toast.success("SVG downloaded");
     } catch {
       toast.error("SVG export failed.");
@@ -419,31 +373,62 @@ export default function PieChartGenerator() {
     link: "/tools/pie-chart-generator",
   };
 
-  const hoverCss = `
-    .pie-slice { transition: opacity .18s ease, filter .18s ease; cursor: pointer; }
-    .pie-chart-root:hover .pie-slice { opacity: .45; }
-    .pie-chart-root .pie-slice:hover { opacity: 1; filter: brightness(1.06) saturate(1.06); }
-    .pie-legend-item { transition: opacity .18s ease; }
-  `;
-
   const mutedColor = textColor === "#f8fafc" ? "#94a3b8" : "#64748b";
+  const hasChartData = computedSlices.length > 0;
 
-  // ── Legend item positions ──────────────────────────────────────────────────
-  const legendItems = useMemo(() => {
-    if (!layout.legendVisible) return [];
-    return computedSlices.map((slice, index) => {
-      const stacked = !layout.legendOnSide;
-      const col = stacked ? index % layout.legendPerRow : 0;
-      const row = stacked
-        ? Math.floor(index / layout.legendPerRow)
-        : index;
-      return {
-        slice,
-        x: layout.legendX + col * layout.legendItemWidth,
-        y: layout.legendY + row * layout.legendRowHeight,
-      };
-    });
-  }, [computedSlices, layout]);
+  // ── Legend items (shared by the preview and the export helpers) ────────────
+  const legendItems = useMemo(
+    () =>
+      computedSlices.map((slice) => ({
+        id: slice.id,
+        label: slice.label,
+        color: slice.color,
+        value: showLegendValues
+          ? `${formatNumber(slice.percent, decimals)}%`
+          : undefined,
+      })),
+    [computedSlices, showLegendValues, decimals]
+  );
+
+  const formatSliceLabel = useCallback(
+    (slice) => getLabelText(slice, labelFormat, decimals),
+    [labelFormat, decimals]
+  );
+
+  const formatSliceValue = useCallback(
+    (value) => formatNumber(value, decimals),
+    [decimals]
+  );
+
+  const getExportOptions = useCallback(
+    () => ({
+      container: chartRef.current,
+      width: chartWidth,
+      height: chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition,
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    }),
+    [
+      chartWidth,
+      chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition,
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    ]
+  );
 
   const activeChartTab = CHART_TYPES.find((t) => t.id === chartType);
 
@@ -553,49 +538,52 @@ export default function PieChartGenerator() {
             </div>
 
             {/* Chart canvas */}
-            <div
-              className="relative flex items-center justify-center p-4 sm:p-6 transition-colors duration-200"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(148,163,184,0.22) 1px, transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            >
-              {computedSlices.length > 0 ? (
-                <ChartSvg
-                  svgRef={svgRef}
-                  css={hoverCss}
-                  layout={layout}
+            <div className="p-3 sm:p-4 transition-colors duration-200">
+              <ChartPreview
+                ref={chartRef}
+                title={title}
+                subtitle={subtitle}
+                legendItems={legendItems}
+                legendPosition={legendPosition}
+                showLegendValues={showLegendValues}
+                bgColor={bgColor}
+                transparentBg={transparentBg}
+                textColor={textColor}
+                mutedColor={mutedColor}
+                width={chartWidth}
+                height={chartHeight}
+                empty={!hasChartData}
+                emptyLabel="Add at least one value to render your chart"
+                emptyIcon={<PieChart className="h-9 w-9 stroke-1" />}
+                className="rounded-xl border border-gray-100 dark:border-gray-800"
+              >
+                <PieChartView
                   slices={computedSlices}
                   total={total}
-                  chartType={chartType}
-                  cornerRadius={cornerRadius}
-                  explodeDistance={explodeDistance}
-                  shadow={shadow}
-                  transparentBg={transparentBg}
-                  bgColor={bgColor}
-                  textColor={textColor}
-                  mutedColor={mutedColor}
-                  title={title}
-                  subtitle={subtitle}
-                  labelFormat={labelFormat}
-                  labelPosition={labelPosition}
-                  decimals={decimals}
-                  insideLabelRadius={insideLabelRadius}
-                  centerLabel={centerLabel}
-                  showCenterValue={showCenterValue}
-                  showLegendValues={showLegendValues}
-                  legendPosition={legendPosition}
-                  legendItems={legendItems}
+                  config={{
+                    chartType,
+                    innerRadius,
+                    startAngle,
+                    clockwise,
+                    gapAngle,
+                    cornerRadius,
+                    explodeDistance,
+                    shadow,
+                    transparentBg,
+                    bgColor,
+                    textColor,
+                    mutedColor,
+                    labelFormat,
+                    labelPosition,
+                    decimals,
+                    centerLabel,
+                    showCenterValue,
+                    formatLabelText: formatSliceLabel,
+                    formatValue: formatSliceValue,
+                    formatTooltip: formatSliceValue,
+                  }}
                 />
-              ) : (
-                <div className="w-full h-64 flex flex-col items-center justify-center text-center text-gray-400">
-                  <PieChart className="w-10 h-10 mb-2 stroke-1" />
-                  <p className="text-sm font-medium">
-                    Add at least one value to render your chart
-                  </p>
-                </div>
-              )}
+              </ChartPreview>
             </div>
 
             {/* Stats strip */}
@@ -886,282 +874,6 @@ export default function PieChartGenerator() {
       </div>
     </ToolPageShell>
   );
-}
-
-// ─── Chart SVG ───────────────────────────────────────────────────────────────
-function ChartSvg({
-  svgRef,
-  css,
-  layout,
-  slices,
-  total,
-  chartType,
-  cornerRadius,
-  explodeDistance,
-  shadow,
-  transparentBg,
-  bgColor,
-  textColor,
-  mutedColor,
-  title,
-  subtitle,
-  labelFormat,
-  labelPosition,
-  decimals,
-  insideLabelRadius,
-  centerLabel,
-  showCenterValue,
-  showLegendValues,
-  legendPosition,
-  legendItems,
-}) {
-  const {
-    width,
-    height,
-    cx,
-    cy,
-    rOuter,
-    rInner,
-    legendRowHeight,
-    legendItemWidth,
-    legendWidth,
-  } = layout;
-
-  const labelThreshold = 3; // percent
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${width} ${height}`}
-      width="100%"
-      preserveAspectRatio="xMidYMid meet"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label={title || "Pie chart"}
-      className="w-full h-auto"
-      style={{ maxWidth: `${width}px`, fontFamily: FONT_STACK }}
-    >
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-
-      <defs>
-        <filter id="pieShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow
-            dx="0"
-            dy="6"
-            stdDeviation="8"
-            floodColor="#0f172a"
-            floodOpacity="0.18"
-          />
-        </filter>
-      </defs>
-
-      {!transparentBg && (
-        <rect x="0" y="0" width={width} height={height} fill={bgColor} />
-      )}
-
-      {title && (
-        <text
-          x={width / 2}
-          y={layout.titleY}
-          textAnchor="middle"
-          fontSize={20}
-          fontWeight={800}
-          fill={textColor}
-        >
-          {title}
-        </text>
-      )}
-      {subtitle && (
-        <text
-          x={width / 2}
-          y={title ? layout.titleY + 21 : layout.titleY}
-          textAnchor="middle"
-          fontSize={12.5}
-          fill={mutedColor}
-        >
-          {subtitle}
-        </text>
-      )}
-
-      {/* Slices */}
-      <g
-        className="pie-chart-root"
-        filter={shadow ? "url(#pieShadow)" : undefined}
-      >
-        {slices.map((slice) => {
-          const offset = slice.exploded ? explodeDistance : 0;
-          const o = polarToCartesian(0, 0, offset, slice.mid);
-          const path = buildSlicePath(
-            slice,
-            cx,
-            cy,
-            rOuter,
-            rInner,
-            cornerRadius
-          );
-          return (
-            <g key={slice.id} transform={`translate(${o.x} ${o.y})`}>
-              <path
-                d={path}
-                fill={slice.color}
-                fillRule="evenodd"
-                stroke={
-                  cornerRadius > 0
-                    ? slice.color
-                    : transparentBg
-                    ? "none"
-                    : bgColor
-                }
-                strokeWidth={cornerRadius > 0 ? cornerRadius * 2 : 1.5}
-                strokeLinejoin="round"
-                className="pie-slice"
-              />
-            </g>
-          );
-        })}
-      </g>
-
-      {/* Inside labels */}
-      {labelPosition === "inside" && labelFormat !== "none" && (
-        <g pointerEvents="none">
-          {slices.map((slice) => {
-            if (slice.percent < labelThreshold) return null;
-            const offset = slice.exploded ? explodeDistance : 0;
-            const o = polarToCartesian(0, 0, offset, slice.mid);
-            const p = polarToCartesian(cx, cy, insideLabelRadius, slice.mid);
-            return (
-              <text
-                key={slice.id}
-                x={p.x + o.x}
-                y={p.y + o.y}
-                textAnchor="middle"
-                dominantBaseline="middle"
-                fontSize={12.5}
-                fontWeight={700}
-                fill={contrastColor(slice.color)}
-              >
-                {getLabelText(slice, labelFormat, decimals)}
-              </text>
-            );
-          })}
-        </g>
-      )}
-
-      {/* Outside labels with leader lines */}
-      {labelPosition === "outside" && labelFormat !== "none" && (
-        <g pointerEvents="none">
-          {slices.map((slice) => {
-            const offset = slice.exploded ? explodeDistance : 0;
-            const o = polarToCartesian(0, 0, offset, slice.mid);
-            const base = polarToCartesian(cx, cy, rOuter + 4, slice.mid);
-            const elbow = polarToCartesian(cx, cy, rOuter + 22, slice.mid);
-            const start = { x: base.x + o.x, y: base.y + o.y };
-            const mid = { x: elbow.x + o.x, y: elbow.y + o.y };
-            const rightSide = elbow.x >= cx;
-            const endX = mid.x + (rightSide ? 14 : -14);
-            return (
-              <g key={slice.id}>
-                <polyline
-                  points={`${start.x},${start.y} ${mid.x},${mid.y} ${endX},${mid.y}`}
-                  fill="none"
-                  stroke={mutedColor}
-                  strokeWidth={1.2}
-                />
-                <circle cx={start.x} cy={start.y} r={2.4} fill={slice.color} />
-                <text
-                  x={endX + (rightSide ? 5 : -5)}
-                  y={mid.y + 4}
-                  textAnchor={rightSide ? "start" : "end"}
-                  fontSize={12.5}
-                  fontWeight={600}
-                  fill={textColor}
-                >
-                  {slice.label} · {getLabelText(slice, labelFormat, decimals)}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-      )}
-
-      {/* Donut centre label */}
-      {chartType === "donut" && rInner > 0 && (
-        <g pointerEvents="none">
-          {showCenterValue && (
-            <text
-              x={cx}
-              y={cy - 2}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize={30}
-              fontWeight={800}
-              fill={textColor}
-            >
-              {formatCompact(total)}
-            </text>
-          )}
-          {centerLabel && (
-            <text
-              x={cx}
-              y={cy + (showCenterValue ? 24 : 0)}
-              textAnchor="middle"
-              dominantBaseline="middle"
-              fontSize={12}
-              fontWeight={600}
-              fill={mutedColor}
-              letterSpacing="0.6"
-            >
-              {centerLabel}
-            </text>
-          )}
-        </g>
-      )}
-
-      {/* Legend */}
-      {layout.legendVisible && (
-        <g className="pie-legend">
-          {legendItems.map(({ slice, x, y }) => (
-            <g key={slice.id} className="pie-legend-item">
-              <rect
-                x={x}
-                y={y + 3}
-                width={13}
-                height={13}
-                rx={3.5}
-                fill={slice.color}
-              />
-              <text
-                x={x + 21}
-                y={y + 13.5}
-                fontSize={12.5}
-                fontWeight={600}
-                fill={textColor}
-              >
-                {truncate(slice.label, layout.legendOnSide ? 16 : 14)}
-              </text>
-              {showLegendValues && (
-                <text
-                  x={layout.legendOnSide ? x + legendWidth - 6 : x + legendItemWidth - 12}
-                  y={y + 13.5}
-                  textAnchor="end"
-                  fontSize={12}
-                  fontWeight={700}
-                  fill={mutedColor}
-                >
-                  {formatNumber(slice.percent, decimals)}%
-                </text>
-              )}
-            </g>
-          ))}
-        </g>
-      )}
-    </svg>
-  );
-}
-
-function truncate(text, max) {
-  const value = String(text ?? "");
-  return value.length > max ? `${value.slice(0, max - 1)}…` : value;
 }
 
 // ─── Small UI atoms ──────────────────────────────────────────────────────────

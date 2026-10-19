@@ -61,14 +61,9 @@ import {
   getPaletteColor,
 } from "./polarChartData";
 import {
-  computePolarLayout,
   computePolarMetrics,
-  downloadPng,
-  downloadSvgFile,
   formatValue,
   getSliceLabelText,
-  lighten,
-  serializeSvg,
   slicesToCsv,
   slicesToJson,
   truncateText,
@@ -79,9 +74,14 @@ import {
   MAX_IMPORT_ROWS,
 } from "../_shared/chartImport";
 import ChartDataImport from "../_shared/ChartDataImport";
-
-const FONT_STACK =
-  "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+import ChartPreview from "../_shared/charts/ChartPreview";
+import PolarChartView from "../_shared/charts/PolarChartView";
+import { resolveScale } from "../_shared/charts/chartTheme";
+import {
+  downloadChartPng,
+  downloadChartSvg,
+  serializeChartSvg,
+} from "../_shared/charts/chartExport";
 
 // Client-only id generator used for rows added after mount. It is never called
 // during SSR, so Date.now() here cannot cause a hydration mismatch.
@@ -204,13 +204,7 @@ export default function PolarChartGenerator() {
   const [pngScale, setPngScale] = useState(2);
   const [openFaq, setOpenFaq] = useState(0);
 
-  // ── Interactivity (preview only — never part of an export) ─────────────────
-  const [tooltip, setTooltip] = useState(null); // { id, x, y }
-  const [linkedId, setLinkedId] = useState(null); // legend / table row hover
-  const highlightId = tooltip?.id || linkedId || null;
-
-  const svgRef = useRef(null);
-  const chartBoxRef = useRef(null);
+  const chartRef = useRef(null);
 
   // ── Ordered + visible slices ───────────────────────────────────────────────
   const orderedSlices = useMemo(() => {
@@ -228,85 +222,32 @@ export default function PolarChartGenerator() {
     [useThousands, compact, prefix, suffix]
   );
 
-  // ── Layout ─────────────────────────────────────────────────────────────────
-  const layout = useMemo(
+  // ── Validation + scale metadata (shared with the JSON export) ──────────────
+  const warnings = useMemo(() => {
+    const list = [];
+    if (orderedSlices.length < 2) {
+      list.push("Add at least two categories to draw a polar chart.");
+    } else if (metrics.total <= 0) {
+      list.push("Enter a value greater than zero to draw the chart.");
+    }
+    return list;
+  }, [orderedSlices.length, metrics.total]);
+
+  const exportScale = useMemo(
     () =>
-      computePolarLayout({
-        width: chartWidth,
-        height: chartHeight,
-        title,
-        subtitle,
-        slices: orderedSlices,
-        startAngle,
-        direction,
+      resolveScale({
+        mode: scaleMode,
         levels,
-        innerRatio,
-        cornerRadius,
-        gap,
-        mode,
-        valueScale,
-        scaleMode,
         customMin,
         customMax,
-        showGrid,
-        showSpokes,
-        showCategoryLabels,
-        showTickLabels,
-        showValueLabels,
-        labelFormat,
-        labelPosition,
-        legendPosition,
-        showLegend,
-        legendValues: showLegendValues ? orderedSlices.map((s) => s.value) : [],
-        decimals,
-        compact,
-        thousands: useThousands,
-        prefix,
-        suffix,
+        maxValue: metrics.max,
       }),
-    [
-      chartWidth,
-      chartHeight,
-      title,
-      subtitle,
-      orderedSlices,
-      startAngle,
-      direction,
-      levels,
-      innerRatio,
-      cornerRadius,
-      gap,
-      mode,
-      valueScale,
-      scaleMode,
-      customMin,
-      customMax,
-      showGrid,
-      showSpokes,
-      showCategoryLabels,
-      showTickLabels,
-      showValueLabels,
-      labelFormat,
-      labelPosition,
-      legendPosition,
-      showLegend,
-      showLegendValues,
-      decimals,
-      compact,
-      useThousands,
-      prefix,
-      suffix,
-    ]
+    [scaleMode, levels, customMin, customMax, metrics.max]
   );
 
   const activeMode = POLAR_MODES.find((m) => m.id === mode);
   const activeValueScale = VALUE_SCALES.find((v) => v.id === valueScale);
   const activeScale = SCALE_MODES.find((s) => s.id === scaleMode);
-
-  const tooltipSector = useMemo(
-    () => (tooltip ? layout.sectors.find((s) => s.id === tooltip.id) || null : null),
-    [tooltip, layout.sectors]
-  );
 
   // ── Data handlers ──────────────────────────────────────────────────────────
   const addSlice = () => {
@@ -384,8 +325,6 @@ export default function PolarChartGenerator() {
       setTitle(baseName || `${items.length} categories`);
       setSubtitle(`${items.length} categories · imported data`);
       setSortMode("none");
-      setTooltip(null);
-      setLinkedId(null);
     },
     [paletteId]
   );
@@ -493,9 +432,8 @@ export default function PolarChartGenerator() {
   };
 
   const handleCopySvg = async () => {
-    if (!svgRef.current) return;
     try {
-      const markup = serializeSvg(svgRef.current, chartWidth, chartHeight);
+      const markup = serializeChartSvg(getExportOptions());
       await copyToClipboard(markup);
       setCopiedSvg(true);
       toast.success("SVG markup copied to clipboard");
@@ -518,15 +456,8 @@ export default function PolarChartGenerator() {
   };
 
   const handleDownloadPng = async () => {
-    if (!svgRef.current) return;
     try {
-      await downloadPng(
-        svgRef.current,
-        chartWidth,
-        chartHeight,
-        "polar-chart.png",
-        pngScale
-      );
+      await downloadChartPng(getExportOptions(), "polar-chart.png", pngScale);
       toast.success(`PNG downloaded at ${pngScale}× resolution`);
     } catch {
       toast.error("PNG export failed — try the SVG download instead.");
@@ -534,9 +465,8 @@ export default function PolarChartGenerator() {
   };
 
   const handleDownloadSvg = () => {
-    if (!svgRef.current) return;
     try {
-      downloadSvgFile(svgRef.current, chartWidth, chartHeight, "polar-chart.svg");
+      downloadChartSvg(getExportOptions(), "polar-chart.svg");
       toast.success("SVG downloaded");
     } catch {
       toast.error("SVG export failed.");
@@ -575,7 +505,7 @@ export default function PolarChartGenerator() {
       subtitle,
       mode,
       valueScale,
-      scale: { mode: scaleMode, min: layout.scale.min, max: layout.scale.max },
+      scale: { mode: scaleMode, min: exportScale.min, max: exportScale.max },
       slices: orderedSlices,
       metrics,
     });
@@ -592,35 +522,71 @@ export default function PolarChartGenerator() {
     link: "/tools/polar-chart-generator",
   };
 
-  const hoverCss = `
-    .polar-chart-root .polar-sector { transition: opacity .15s ease, filter .15s ease; }
-    .polar-chart-root .polar-sector.is-dim { opacity: .32; }
-    .polar-chart-root .polar-sector.is-active { filter: brightness(1.08) saturate(1.05); }
-    .polar-legend-item { cursor: default; }
-    .polar-legend-item text { transition: opacity .15s ease; }
-  `;
-
-  // Pointer position is tracked in the chart box so the tooltip can follow the
-  // cursor without polluting the exported SVG (the tooltip is plain HTML).
-  const handleSectorHover = useCallback((id, event) => {
-    if (!id || !event) return;
-    const box = chartBoxRef.current;
-    let x = 12;
-    let y = 12;
-    if (box) {
-      const rect = box.getBoundingClientRect();
-      x = Math.max(8, Math.min(event.clientX - rect.left + 16, rect.width - 196));
-      y = Math.max(8, Math.min(event.clientY - rect.top + 16, rect.height - 92));
-    }
-    setTooltip({ id, x, y });
-  }, []);
-
-  const handleSectorLeave = useCallback(() => setTooltip(null), []);
-  const handleLinkedHover = useCallback((id) => setLinkedId(id || null), []);
-  const clearLinkedHover = useCallback(() => setLinkedId(null), []);
-
   const darkText = textColor === "#f8fafc";
   const mutedColor = darkText ? "#94a3b8" : "#64748b";
+  const hasChartData = orderedSlices.length >= 2 && metrics.total > 0;
+
+  // ── Legend items (shared by the preview and the export helpers) ────────────
+  const legendItems = useMemo(
+    () =>
+      orderedSlices.map((slice) => ({
+        id: slice.id,
+        label: slice.label,
+        color: slice.color,
+        value: showLegendValues
+          ? formatValue(slice.value, { ...fmtOptions, decimals })
+          : undefined,
+      })),
+    [orderedSlices, showLegendValues, fmtOptions, decimals]
+  );
+
+  const formatTick = useCallback(
+    (value) => formatValue(value, { ...fmtOptions, decimals }),
+    [fmtOptions, decimals]
+  );
+
+  const labelTextFor = useCallback(
+    (slice) =>
+      getSliceLabelText(
+        slice.value,
+        labelFormat,
+        decimals,
+        metrics.total,
+        fmtOptions
+      ),
+    [labelFormat, decimals, metrics.total, fmtOptions]
+  );
+
+  const getExportOptions = useCallback(
+    () => ({
+      container: chartRef.current,
+      width: chartWidth,
+      height: chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition: showLegend ? legendPosition : "none",
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    }),
+    [
+      chartWidth,
+      chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      showLegend,
+      legendPosition,
+      showLegendValues,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    ]
+  );
 
   return (
     <ToolPageShell widthClassName="max-w-7xl">
@@ -730,86 +696,74 @@ export default function PolarChartGenerator() {
             </div>
 
             {/* Chart canvas */}
-            <div
-              ref={chartBoxRef}
-              className="relative flex items-center justify-center p-4 sm:p-6 transition-colors duration-200"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(148,163,184,0.22) 1px, transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            >
-              <PolarChartSvg
-                svgRef={svgRef}
-                css={hoverCss}
-                layout={layout}
-                highlightId={highlightId}
-                onSectorHover={handleSectorHover}
-                onSectorLeave={handleSectorLeave}
-                onLegendHover={handleLinkedHover}
-                onLegendLeave={clearLinkedHover}
-                config={{
-                  title,
-                  subtitle,
-                  textColor,
-                  mutedColor,
-                  gridColor,
-                  axisColor,
-                  transparentBg,
-                  bgColor,
-                  fillOpacity,
-                  gradient,
-                  outline,
-                  strokeWidth,
-                  shadow,
-                  showGrid,
-                  showSpokes,
-                  showCategoryLabels,
-                  showTickLabels,
-                  showValueLabels,
-                  labelFormat,
-                  labelPosition,
-                  showCenterTotal,
-                  showLegendValues,
-                  decimals,
-                  fmtOptions,
-                  innerRatio,
-                }}
-              />
-
-              {/* Live hover tooltip (HTML overlay — never captured in exports) */}
-              {tooltip && tooltipSector && (
-                <div
-                  className="pointer-events-none absolute z-20 w-44 rounded-xl border border-gray-200/80 dark:border-gray-700 bg-white/95 dark:bg-gray-900/95 backdrop-blur-xs px-3 py-2 shadow-lg"
-                  style={{ left: tooltip.x, top: tooltip.y }}
-                >
-                  <div className="flex items-center gap-1.5">
-                    <span
-                      className="w-2.5 h-2.5 rounded-full shrink-0"
-                      style={{ backgroundColor: tooltipSector.color }}
-                    />
-                    <span className="text-[11px] font-bold text-gray-900 dark:text-white truncate">
-                      {tooltipSector.label}
-                    </span>
-                  </div>
-                  <div className="mt-1 flex items-baseline justify-between gap-2">
-                    <span className="text-sm font-extrabold text-gray-900 dark:text-white">
-                      {formatValue(tooltipSector.value, { ...fmtOptions, decimals })}
-                    </span>
-                    <span className="text-[10px] font-semibold text-gray-400">
-                      {tooltipSector.percent.toFixed(1)}%
-                    </span>
-                  </div>
-                </div>
-              )}
+            <div className="p-3 sm:p-4 transition-colors duration-200">
+              <ChartPreview
+                ref={chartRef}
+                title={title}
+                subtitle={subtitle}
+                legendItems={legendItems}
+                legendPosition={showLegend ? legendPosition : "none"}
+                showLegendValues={showLegendValues}
+                bgColor={bgColor}
+                transparentBg={transparentBg}
+                textColor={textColor}
+                mutedColor={mutedColor}
+                width={chartWidth}
+                height={chartHeight}
+                empty={!hasChartData}
+                emptyLabel="Add at least two categories with values to render your polar chart"
+                emptyIcon={<Orbit className="h-9 w-9 stroke-1" />}
+                className="rounded-xl border border-gray-100 dark:border-gray-800"
+              >
+                <PolarChartView
+                  slices={orderedSlices}
+                  metrics={metrics}
+                  config={{
+                    mode,
+                    valueScale,
+                    innerRatio,
+                    gap,
+                    cornerRadius,
+                    startAngle,
+                    direction,
+                    levels,
+                    scaleMode,
+                    customMin,
+                    customMax,
+                    fillOpacity,
+                    gradient,
+                    outline,
+                    strokeWidth,
+                    shadow,
+                    transparentBg,
+                    bgColor,
+                    showGrid,
+                    showSpokes,
+                    showCategoryLabels,
+                    showTickLabels,
+                    showValueLabels,
+                    showCenterTotal,
+                    labelFormat,
+                    labelPosition,
+                    textColor,
+                    mutedColor,
+                    gridColor,
+                    axisColor,
+                    formatValue: formatTick,
+                    formatTooltip: formatTick,
+                    formatTick,
+                    labelTextFor,
+                  }}
+                />
+              </ChartPreview>
             </div>
 
             {/* Validation banner */}
-            {layout.warnings.length > 0 && (
+            {warnings.length > 0 && (
               <div className="flex items-start gap-2 px-4 py-3 border-t border-amber-200/70 dark:border-amber-900/50 bg-amber-50/70 dark:bg-amber-950/30">
                 <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
                 <p className="text-[11px] font-medium text-amber-700 dark:text-amber-300 leading-relaxed">
-                  {layout.warnings.join(" ")}
+                  {warnings.join(" ")}
                 </p>
               </div>
             )}
@@ -937,9 +891,6 @@ export default function PolarChartGenerator() {
                   applyPalette={applyPalette}
                   loadDataset={loadDataset}
                   onImport={handleImportedRows}
-                  highlightId={highlightId}
-                  onRowHover={handleLinkedHover}
-                  onRowLeave={clearLinkedHover}
                 />
               )}
 
@@ -1155,378 +1106,6 @@ export default function PolarChartGenerator() {
   );
 }
 
-// ─── Polar chart SVG ─────────────────────────────────────────────────────────
-function PolarChartSvg({
-  svgRef,
-  css,
-  layout,
-  config,
-  highlightId,
-  onSectorHover,
-  onSectorLeave,
-  onLegendHover,
-  onLegendLeave,
-}) {
-  const {
-    title,
-    subtitle,
-    textColor,
-    mutedColor,
-    gridColor,
-    axisColor,
-    transparentBg,
-    bgColor,
-    fillOpacity,
-    gradient,
-    outline,
-    strokeWidth,
-    shadow,
-    showGrid,
-    showSpokes,
-    showCategoryLabels,
-    showTickLabels,
-    showValueLabels,
-    labelFormat,
-    labelPosition,
-    showCenterTotal,
-    showLegendValues,
-    decimals,
-    fmtOptions,
-    innerRatio,
-  } = config;
-
-  const { width, height, center, radius, inner, sectors, rings, spokes, scale, metrics } =
-    layout;
-
-  const hasData = layout.hasData;
-  const halo = transparentBg ? "none" : bgColor;
-
-  // Truncate category labels to whatever horizontal room remains so long names
-  // never spill outside the SVG canvas.
-  const maxCatChars = Math.max(
-    6,
-    Math.floor((width - center.x - radius - 18) / (12 * 0.56))
-  );
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${width} ${height}`}
-      width="100%"
-      preserveAspectRatio="xMidYMid meet"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label={title || "Polar chart"}
-      className="w-full h-auto"
-      style={{ maxWidth: `${width}px`, fontFamily: FONT_STACK }}
-    >
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-
-      <defs>
-        <filter id="polarShadow" x="-20%" y="-20%" width="140%" height="150%">
-          <feDropShadow
-            dx="0"
-            dy="3"
-            stdDeviation="4"
-            floodColor="#0f172a"
-            floodOpacity="0.22"
-          />
-        </filter>
-        {gradient &&
-          sectors.map((s) => (
-            <radialGradient
-              key={s.id}
-              id={`polar-grad-${s.id}`}
-              cx="50%"
-              cy="50%"
-              r="50%"
-            >
-              <stop offset="0%" stopColor={lighten(s.color, 0.4)} stopOpacity="1" />
-              <stop offset="100%" stopColor={s.color} stopOpacity="1" />
-            </radialGradient>
-          ))}
-      </defs>
-
-      {!transparentBg && (
-        <rect x="0" y="0" width={width} height={height} fill={bgColor} />
-      )}
-
-      {title && (
-        <text
-          x={width / 2}
-          y={layout.titleY}
-          textAnchor="middle"
-          fontSize={20}
-          fontWeight={800}
-          fill={textColor}
-        >
-          {title}
-        </text>
-      )}
-      {subtitle && (
-        <text
-          x={width / 2}
-          y={title ? layout.titleY + 21 : layout.titleY}
-          textAnchor="middle"
-          fontSize={12.5}
-          fill={mutedColor}
-        >
-          {subtitle}
-        </text>
-      )}
-
-      {!hasData && (
-        <text
-          x={center.x}
-          y={center.y}
-          textAnchor="middle"
-          fontSize={13}
-          fill={mutedColor}
-        >
-          {layout.warnings[0] || "Add data to draw a polar chart."}
-        </text>
-      )}
-
-      {/* Grid rings */}
-      {hasData && showGrid && (
-        <g>
-          {rings.map((ring, index) => {
-            const isOuter = index === rings.length - 1;
-            return (
-              <circle
-                key={index}
-                cx={center.x}
-                cy={center.y}
-                r={ring.r}
-                fill="none"
-                stroke={isOuter ? axisColor : gridColor}
-                strokeWidth={isOuter ? 1.4 : 1}
-                strokeDasharray={isOuter ? undefined : "4 4"}
-              />
-            );
-          })}
-          {inner > 0.5 && (
-            <circle
-              cx={center.x}
-              cy={center.y}
-              r={inner}
-              fill="none"
-              stroke={axisColor}
-              strokeWidth={1.4}
-            />
-          )}
-        </g>
-      )}
-
-      {/* Spokes */}
-      {hasData && showSpokes && (
-        <g>
-          {spokes.map((spoke, index) => (
-            <line
-              key={index}
-              x1={spoke.from.x}
-              y1={spoke.from.y}
-              x2={spoke.to.x}
-              y2={spoke.to.y}
-              stroke={gridColor}
-              strokeWidth={1}
-            />
-          ))}
-        </g>
-      )}
-
-      {/* Sectors */}
-      {hasData && (
-        <g
-          className="polar-chart-root"
-          filter={shadow ? "url(#polarShadow)" : undefined}
-        >
-          {sectors.map((s) => {
-            const dim = highlightId && highlightId !== s.id;
-            const active = highlightId === s.id;
-            return (
-              <path
-                key={s.id}
-                className={`polar-sector${dim ? " is-dim" : ""}${
-                  active ? " is-active" : ""
-                }`}
-                d={s.path}
-                fill={gradient ? `url(#polar-grad-${s.id})` : s.color}
-                fillOpacity={fillOpacity}
-                stroke={outline ? lighten(s.color, 0.28) : "none"}
-                strokeWidth={outline ? strokeWidth : 0}
-                strokeLinejoin="round"
-                onMouseEnter={(event) => onSectorHover?.(s.id, event)}
-                onMouseMove={(event) => onSectorHover?.(s.id, event)}
-                onMouseLeave={() => onSectorLeave?.()}
-              />
-            );
-          })}
-        </g>
-      )}
-
-      {/* Radial tick labels (along the vertical up direction) */}
-      {hasData &&
-        showTickLabels &&
-        rings.map((ring, index) => (
-          <text
-            key={index}
-            x={center.x + 6}
-            y={center.y - ring.r}
-            textAnchor="start"
-            dominantBaseline="middle"
-            fontSize={10.5}
-            fill={mutedColor}
-            stroke={halo}
-            strokeWidth={halo === "none" ? 0 : 1.25}
-            paintOrder="stroke"
-          >
-            {formatValue(ring.value, { ...fmtOptions, decimals })}
-          </text>
-        ))}
-
-      {/* Category labels */}
-      {hasData &&
-        showCategoryLabels &&
-        sectors.map((s) => (
-          <text
-            key={s.id}
-            x={s.catX}
-            y={s.catY}
-            textAnchor={s.catAnchor}
-            dominantBaseline={s.catBaseline}
-            fontSize={12}
-            fontWeight={600}
-            fill={textColor}
-            stroke={halo}
-            strokeWidth={halo === "none" ? 0 : 1.25}
-            paintOrder="stroke"
-          >
-            {truncateText(s.label, maxCatChars)}
-          </text>
-        ))}
-
-      {/* Value labels */}
-      {hasData &&
-        showValueLabels &&
-        labelFormat !== "none" &&
-        sectors.map((s) => {
-          const outside = labelPosition === "outside";
-          const x = outside ? s.outX : s.inX;
-          const y = outside ? s.outY : s.inY;
-          const anchor = outside ? s.outAnchor : "middle";
-          const baseline = outside ? s.outBaseline : "middle";
-          const text =
-            labelFormat === "label"
-              ? truncateText(s.label, 12)
-              : getSliceLabelText(s.value, labelFormat, decimals, metrics.total, fmtOptions);
-          return (
-            <text
-              key={s.id}
-              x={x}
-              y={y}
-              textAnchor={anchor}
-              dominantBaseline={baseline}
-              fontSize={10.5}
-              fontWeight={700}
-              fill={outside ? textColor : "#ffffff"}
-              stroke={outside ? halo : "none"}
-              strokeWidth={outside && halo !== "none" ? 1.25 : 0}
-              paintOrder="stroke"
-            >
-              {text}
-            </text>
-          );
-        })}
-
-      {/* Centre total inside a donut hole */}
-      {hasData && showCenterTotal && innerRatio > 0.12 && (
-        <g>
-          <text
-            x={center.x}
-            y={center.y - 4}
-            textAnchor="middle"
-            fontSize={Math.min(26, Math.max(15, inner * 0.42))}
-            fontWeight={800}
-            fill={textColor}
-          >
-            {formatValue(metrics.total, { ...fmtOptions, decimals })}
-          </text>
-          <text
-            x={center.x}
-            y={center.y + Math.min(18, Math.max(12, inner * 0.26))}
-            textAnchor="middle"
-            fontSize={11}
-            fontWeight={600}
-            letterSpacing="0.08em"
-            fill={mutedColor}
-          >
-            TOTAL
-          </text>
-        </g>
-      )}
-
-      {/* Legend */}
-      {layout.legend.visible && (
-        <g>
-          {layout.legend.items.map((item, index) => {
-            const pos = layout.legend.positions[index];
-            if (!pos) return null;
-            return (
-              <g
-                key={item.id}
-                className="polar-legend-item"
-                onMouseEnter={() => onLegendHover?.(item.id)}
-                onMouseLeave={() => onLegendLeave?.()}
-              >
-                <rect
-                  x={pos.x}
-                  y={pos.y + 4}
-                  width={layout.legend.marker}
-                  height={layout.legend.marker}
-                  rx={3.5}
-                  fill={item.color}
-                />
-                <text
-                  x={pos.x + layout.legend.marker + 8}
-                  y={pos.y + 14.5}
-                  fontSize={12.5}
-                  fontWeight={600}
-                  fill={textColor}
-                >
-                  {truncateText(
-                    item.label,
-                    layout.legend.onSide
-                      ? 20
-                      : Math.max(
-                          6,
-                          Math.floor(
-                            (pos.width - layout.legend.marker - 56) / (12.5 * 0.56)
-                          )
-                        )
-                  )}
-                </text>
-                {showLegendValues && (
-                  <text
-                    x={pos.x + pos.width}
-                    y={pos.y + 14.5}
-                    textAnchor="end"
-                    fontSize={12}
-                    fontWeight={700}
-                    fill={mutedColor}
-                  >
-                    {formatValue(item.value, { ...fmtOptions, decimals })}
-                  </text>
-                )}
-              </g>
-            );
-          })}
-        </g>
-      )}
-    </svg>
-  );
-}
-
 // ─── Small UI atoms ──────────────────────────────────────────────────────────
 function StatCell({ icon: Icon, label, value, hint }) {
   return (
@@ -1629,9 +1208,6 @@ function DataPanel({
   applyPalette,
   loadDataset,
   onImport,
-  highlightId,
-  onRowHover,
-  onRowLeave,
 }) {
   return (
     <div className="flex flex-col gap-6">
@@ -1716,17 +1292,12 @@ function DataPanel({
           {slices.map((s, index) => {
             const value = toNumber(s.value);
             const percent = total > 0 ? (value / total) * 100 : 0;
-            const linked = highlightId === s.id;
             return (
               <div
                 key={s.id}
-                onMouseEnter={() => onRowHover?.(s.id)}
-                onMouseLeave={() => onRowLeave?.()}
-                className={`flex items-center gap-2 p-2 rounded-xl border bg-gray-50/60 dark:bg-gray-950/50 transition-colors ${
-                  linked
-                    ? "border-brandColor ring-1 ring-brandColor/30"
-                    : "border-gray-200 dark:border-gray-800"
-                } ${s.visible === false ? "opacity-55" : ""}`}
+                className={`flex items-center gap-2 p-2 rounded-xl border bg-gray-50/60 dark:bg-gray-950/50 transition-colors hover:border-gray-300 dark:hover:border-gray-700 ${
+                  s.visible === false ? "opacity-55" : ""
+                }`}
               >
                 <input
                   type="color"

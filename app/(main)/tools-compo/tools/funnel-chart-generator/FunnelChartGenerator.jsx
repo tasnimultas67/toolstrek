@@ -59,29 +59,24 @@ import {
   getPaletteColor,
 } from "./funnelChartData";
 import {
-  computeFunnelLayout,
   computeFunnelMetrics,
-  BAND_GRADIENT_LIGHTEN,
-  contrastColor,
-  downloadPng,
-  downloadSvgFile,
   formatNumber,
   formatValue,
   getStageLabelText,
   getConversionText,
-  labelInkFor,
-  lighten,
-  serializeSvg,
   stagesToCsv,
-  withAlpha,
   DEFAULT_CHART_WIDTH,
   DEFAULT_CHART_HEIGHT,
 } from "./funnelChartEngine";
 
 import ChartDataImport from "../_shared/ChartDataImport";
-
-const FONT_STACK =
-  "system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif";
+import ChartPreview from "../_shared/charts/ChartPreview";
+import FunnelChartView from "../_shared/charts/FunnelChartView";
+import {
+  downloadChartPng,
+  downloadChartSvg,
+  serializeChartSvg,
+} from "../_shared/charts/chartExport";
 
 let idCounter = 0;
 const createId = () => `stage-${Date.now().toString(36)}-${idCounter++}`;
@@ -171,7 +166,7 @@ export default function FunnelChartGenerator() {
   const [pngScale, setPngScale] = useState(2);
   const [openFaq, setOpenFaq] = useState(0);
 
-  const svgRef = useRef(null);
+  const chartRef = useRef(null);
 
   const fmtOptions = useMemo(
     () => ({ thousands, compact, prefix, suffix }),
@@ -184,47 +179,6 @@ export default function FunnelChartGenerator() {
     [stages, valueScale]
   );
   const computedStages = metrics.stages;
-
-  const layout = useMemo(
-    () =>
-      computeFunnelLayout({
-        width: chartWidth,
-        height: chartHeight,
-        title,
-        subtitle,
-        stages: computedStages,
-        shape,
-        orientation,
-        gap,
-        cornerRadius,
-        minWidthPercent,
-        endTaper: endTaper / 100,
-        legendPosition,
-        showLegend: legendPosition !== "none",
-        showLegendValues: showLegendValues || showLegendPercent,
-        showLegendPercent,
-        labelPosition,
-        decimals,
-      }),
-    [
-      chartWidth,
-      chartHeight,
-      title,
-      subtitle,
-      computedStages,
-      shape,
-      orientation,
-      gap,
-      cornerRadius,
-      minWidthPercent,
-      endTaper,
-      legendPosition,
-      showLegendValues,
-      showLegendPercent,
-      labelPosition,
-      decimals,
-    ]
-  );
 
   const overallConversion =
     metrics.first > 0 ? (metrics.last / metrics.first) * 100 : 0;
@@ -355,7 +309,7 @@ export default function FunnelChartGenerator() {
 
   const handleCopySvg = async () => {
     try {
-      const markup = serializeSvg(svgRef.current, chartWidth, chartHeight);
+      const markup = serializeChartSvg(getExportOptions());
       await navigator.clipboard.writeText(markup);
       setCopiedSvg(true);
       toast.success("SVG markup copied to clipboard");
@@ -377,15 +331,8 @@ export default function FunnelChartGenerator() {
   };
 
   const handleDownloadPng = async () => {
-    if (!svgRef.current) return;
     try {
-      await downloadPng(
-        svgRef.current,
-        chartWidth,
-        chartHeight,
-        "funnel-chart.png",
-        pngScale
-      );
+      await downloadChartPng(getExportOptions(), "funnel-chart.png", pngScale);
       toast.success(`PNG downloaded at ${pngScale}× resolution`);
     } catch {
       toast.error("PNG export failed — try the SVG download instead.");
@@ -393,9 +340,8 @@ export default function FunnelChartGenerator() {
   };
 
   const handleDownloadSvg = () => {
-    if (!svgRef.current) return;
     try {
-      downloadSvgFile(svgRef.current, chartWidth, chartHeight, "funnel-chart.svg");
+      downloadChartSvg(getExportOptions(), "funnel-chart.svg");
       toast.success("SVG downloaded");
     } catch {
       toast.error("SVG export failed.");
@@ -472,14 +418,86 @@ export default function FunnelChartGenerator() {
     link: "/tools/funnel-chart-generator",
   };
 
-  const hoverCss = `
-    .funnel-seg { transition: opacity .18s ease, filter .18s ease; cursor: pointer; }
-    .funnel-root:hover .funnel-seg { opacity: .5; }
-    .funnel-root .funnel-seg:hover { opacity: 1; filter: brightness(1.06) saturate(1.06); }
-  `;
-
   const mutedColor = textColor === "#f8fafc" ? "#94a3b8" : "#64748b";
   const activeShape = CHART_SHAPES.find((s) => s.id === shape);
+  const hasChartData = computedStages.length >= 2;
+
+  // ── Legend items (shared by the preview and the export helpers) ────────────
+  const legendItems = useMemo(
+    () =>
+      computedStages.map((stage) => ({
+        id: stage.id,
+        label: stage.label,
+        color: stage.color,
+        value: showLegendPercent
+          ? `${formatNumber(stage.percentFirst, decimals)}%`
+          : showLegendValues
+            ? formatValue(stage.value, { ...fmtOptions, decimals })
+            : undefined,
+      })),
+    [
+      computedStages,
+      showLegendValues,
+      showLegendPercent,
+      fmtOptions,
+      decimals,
+    ]
+  );
+
+  const labelTextFor = useCallback(
+    (stage) =>
+      getStageLabelText(stage, labelFormat, decimals, fmtOptions, percentBasis),
+    [labelFormat, decimals, fmtOptions, percentBasis]
+  );
+
+  const conversionTextFor = useCallback(
+    (stage) => getConversionText(stage, conversionFormat, decimals, fmtOptions),
+    [conversionFormat, decimals, fmtOptions]
+  );
+
+  const percentTextFor = useCallback(
+    (stage) =>
+      percentBasis === "total"
+        ? `${formatNumber(stage.percentTotal, decimals)}%`
+        : `${formatNumber(stage.percentFirst, decimals)}%`,
+    [percentBasis, decimals]
+  );
+
+  const formatStageValue = useCallback(
+    (value) => formatValue(value, { ...fmtOptions, decimals }),
+    [fmtOptions, decimals]
+  );
+
+  const getExportOptions = useCallback(
+    () => ({
+      container: chartRef.current,
+      width: chartWidth,
+      height: chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition,
+      showLegendValues: showLegendValues || showLegendPercent,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    }),
+    [
+      chartWidth,
+      chartHeight,
+      title,
+      subtitle,
+      legendItems,
+      legendPosition,
+      showLegendValues,
+      showLegendPercent,
+      bgColor,
+      transparentBg,
+      textColor,
+      mutedColor,
+    ]
+  );
 
   return (
     <ToolPageShell widthClassName="max-w-7xl">
@@ -574,45 +592,51 @@ export default function FunnelChartGenerator() {
             </div>
 
             {/* Chart canvas */}
-            <div
-              className="relative flex items-center justify-center p-4 sm:p-6 transition-colors duration-200"
-              style={{
-                backgroundImage:
-                  "radial-gradient(rgba(148,163,184,0.22) 1px, transparent 1px)",
-                backgroundSize: "18px 18px",
-              }}
-            >
-              {computedStages.length > 0 ? (
-                <FunnelSvg
-                  svgRef={svgRef}
-                  css={hoverCss}
-                  layout={layout}
+            <div className="p-3 sm:p-4 transition-colors duration-200">
+              <ChartPreview
+                ref={chartRef}
+                title={title}
+                subtitle={subtitle}
+                legendItems={legendItems}
+                legendPosition={legendPosition}
+                showLegendValues={showLegendValues || showLegendPercent}
+                bgColor={bgColor}
+                transparentBg={transparentBg}
+                textColor={textColor}
+                mutedColor={mutedColor}
+                width={chartWidth}
+                height={chartHeight}
+                empty={!hasChartData}
+                emptyLabel="Add at least two stages to render your funnel"
+                emptyIcon={<Filter className="h-9 w-9 stroke-1" />}
+                className="rounded-xl border border-gray-100 dark:border-gray-800"
+              >
+                <FunnelChartView
                   stages={computedStages}
-                  decimals={decimals}
-                  fmtOptions={fmtOptions}
-                  labelFormat={labelFormat}
-                  labelPosition={labelPosition}
-                  percentBasis={percentBasis}
-                  gradient={gradient}
-                  shadow={shadow}
-                  stageOpacity={stageOpacity}
-                  transparentBg={transparentBg}
-                  bgColor={bgColor}
-                  textColor={textColor}
-                  mutedColor={mutedColor}
-                  title={title}
-                  subtitle={subtitle}
-                  showConversion={showConversion}
-                  conversionFormat={conversionFormat}
+                  config={{
+                    shape,
+                    orientation,
+                    gap,
+                    cornerRadius,
+                    minWidthPercent,
+                    endTaper: endTaper / 100,
+                    gradient,
+                    shadow,
+                    stageOpacity,
+                    transparentBg,
+                    bgColor,
+                    textColor,
+                    mutedColor,
+                    labelFormat,
+                    labelPosition,
+                    showConversion,
+                    formatValue: formatStageValue,
+                    labelTextFor,
+                    conversionTextFor,
+                    percentTextFor,
+                  }}
                 />
-              ) : (
-                <div className="w-full h-64 flex flex-col items-center justify-center text-center text-gray-400">
-                  <Filter className="w-10 h-10 mb-2 stroke-1" />
-                  <p className="text-sm font-medium">
-                    Add at least two stages to render your funnel
-                  </p>
-                </div>
-              )}
+              </ChartPreview>
             </div>
 
             {/* Stats strip */}
@@ -908,282 +932,6 @@ export default function FunnelChartGenerator() {
       </div>
     </ToolPageShell>
   );
-}
-
-// ─── Chart SVG ───────────────────────────────────────────────────────────────
-function FunnelSvg({
-  svgRef,
-  css,
-  layout,
-  stages,
-  decimals,
-  fmtOptions,
-  labelFormat,
-  labelPosition,
-  percentBasis,
-  gradient,
-  shadow,
-  stageOpacity,
-  transparentBg,
-  bgColor,
-  textColor,
-  mutedColor,
-  title,
-  subtitle,
-  showConversion,
-  conversionFormat,
-}) {
-  const { width, height, legend } = layout;
-
-  return (
-    <svg
-      ref={svgRef}
-      viewBox={`0 0 ${width} ${height}`}
-      width="100%"
-      preserveAspectRatio="xMidYMid meet"
-      xmlns="http://www.w3.org/2000/svg"
-      role="img"
-      aria-label={title || "Funnel chart"}
-      className="w-full h-auto"
-      style={{ maxWidth: `${width}px`, fontFamily: FONT_STACK }}
-    >
-      <style dangerouslySetInnerHTML={{ __html: css }} />
-
-      <defs>
-        <filter id="funnelShadow" x="-20%" y="-20%" width="140%" height="140%">
-          <feDropShadow
-            dx="0"
-            dy="5"
-            stdDeviation="7"
-            floodColor="#0f172a"
-            floodOpacity="0.16"
-          />
-        </filter>
-        {stages.map((stage, i) => (
-          <linearGradient
-            key={`grad-${stage.id}`}
-            id={`funnelGrad-${i}`}
-            x1="0"
-            y1="0"
-            x2={layout.horizontal ? "1" : "0"}
-            y2={layout.horizontal ? "0" : "1"}
-          >
-            <stop offset="0%" stopColor={stage.color} />
-            <stop offset="100%" stopColor={lighten(stage.color, BAND_GRADIENT_LIGHTEN)} />
-          </linearGradient>
-        ))}
-      </defs>
-
-      {!transparentBg && (
-        <rect x="0" y="0" width={width} height={height} fill={bgColor} />
-      )}
-
-      {title && (
-        <text
-          x={width / 2}
-          y={layout.titleY}
-          textAnchor="middle"
-          fontSize={20}
-          fontWeight={800}
-          fill={textColor}
-        >
-          {title}
-        </text>
-      )}
-      {subtitle && (
-        <text
-          x={width / 2}
-          y={layout.subtitleY}
-          textAnchor="middle"
-          fontSize={12.5}
-          fill={mutedColor}
-        >
-          {subtitle}
-        </text>
-      )}
-
-      {/* Stages */}
-      <g
-        className="funnel-root"
-        filter={shadow ? "url(#funnelShadow)" : undefined}
-      >
-        {layout.segments.map((seg, i) => (
-          <path
-            key={seg.id}
-            d={seg.path}
-            fill={gradient ? `url(#funnelGrad-${i})` : seg.color}
-            fillOpacity={Math.max(0, Math.min(1, stageOpacity / 100))}
-            stroke={seg.highlighted ? contrastColor(seg.color) : "transparent"}
-            strokeWidth={seg.highlighted ? 2.5 : 0}
-            strokeLinejoin="round"
-            className="funnel-seg"
-          />
-        ))}
-      </g>
-
-      {/* Inside labels */}
-      {labelPosition === "inside" && labelFormat !== "none" && (
-        <g pointerEvents="none">
-          {layout.segments.map((seg) => {
-            // The band is a gradient, so judge readability across the whole
-            // shade range rather than at the base colour alone. Only fall back
-            // to a hairline halo (in the *opposite* ink) when even the best ink
-            // cannot clear AA — a same-colour halo just blurs the glyphs into
-            // what looks like a smudge.
-            const band = gradient
-              ? [seg.color, lighten(seg.color, BAND_GRADIENT_LIGHTEN)]
-              : [seg.color];
-            const { fill, halo } = labelInkFor(band);
-            return (
-              <text
-                key={seg.id}
-                x={seg.labelInside.x}
-                y={seg.labelInside.y + 4}
-                textAnchor="middle"
-                fontSize={12.5}
-                fontWeight={700}
-                fill={fill}
-                stroke={halo || "none"}
-                strokeWidth={halo ? 1.5 : 0}
-                strokeLinejoin="round"
-                paintOrder="stroke"
-              >
-                {getStageLabelText(seg, labelFormat, decimals, fmtOptions, percentBasis)}
-              </text>
-            );
-          })}
-        </g>
-      )}
-
-      {/* Outside labels with leader lines */}
-      {labelPosition === "outside" && labelFormat !== "none" && (
-        <g pointerEvents="none">
-          {layout.segments.map((seg) => (
-            <g key={seg.id}>
-              <polyline
-                points={seg.labelOutside.leader
-                  .map((p) => `${p.x},${p.y}`)
-                  .join(" ")}
-                fill="none"
-                stroke={mutedColor}
-                strokeWidth={1.2}
-              />
-              <circle
-                cx={seg.labelOutside.leader[0].x}
-                cy={seg.labelOutside.leader[0].y}
-                r={2.4}
-                fill={seg.color}
-              />
-              <text
-                x={seg.labelOutside.x}
-                y={seg.labelOutside.y + 4}
-                textAnchor={seg.labelOutside.anchor}
-                fontSize={12.5}
-                fontWeight={600}
-                fill={textColor}
-              >
-                {truncate(
-                  getStageLabelText(seg, labelFormat, decimals, fmtOptions, percentBasis),
-                  seg.labelOutside.maxChars ?? 40
-                )}
-              </text>
-            </g>
-          ))}
-        </g>
-      )}
-
-      {/* Conversion markers */}
-      {showConversion && layout.conversions.length > 0 && (
-        <g pointerEvents="none">
-          {layout.conversions.map((conv) => {
-            const text = getConversionText(
-              conv.stage,
-              conversionFormat,
-              decimals,
-              fmtOptions
-            );
-            if (!text) return null;
-            const pillW = Math.max(34, text.length * 6.2 + 16);
-            const pillH = 17;
-            return (
-              <g key={`conv-${conv.index}`}>
-                <rect
-                  x={conv.x - pillW / 2}
-                  y={conv.y - pillH / 2}
-                  width={pillW}
-                  height={pillH}
-                  rx={8.5}
-                  fill={transparentBg ? withAlpha("#94a3b8", 0.22) : bgColor}
-                  stroke={withAlpha(mutedColor, 0.4)}
-                  strokeWidth={1}
-                />
-                <text
-                  x={conv.x}
-                  y={conv.y + 3.5}
-                  textAnchor="middle"
-                  fontSize={10.5}
-                  fontWeight={700}
-                  fill={mutedColor}
-                >
-                  {text}
-                </text>
-              </g>
-            );
-          })}
-        </g>
-      )}
-
-      {/* Legend */}
-      {legend.visible && (
-        <g>
-          {legend.items.map((item, index) => {
-            const pos = legend.positions[index];
-            if (!pos) return null;
-            return (
-              <g key={item.id}>
-                <rect
-                  x={pos.x}
-                  y={pos.y + 3}
-                  width={13}
-                  height={13}
-                  rx={3.5}
-                  fill={item.color}
-                />
-                <text
-                  x={pos.x + 21}
-                  y={pos.y + 13.5}
-                  fontSize={12.5}
-                  fontWeight={600}
-                  fill={textColor}
-                >
-                  {truncate(item.label, legend.onSide ? 16 : 14)}
-                </text>
-                {legend.showValues && (
-                  <text
-                    x={legend.onSide ? pos.x + legend.width - 4 : pos.x + pos.width - 8}
-                    y={pos.y + 13.5}
-                    textAnchor="end"
-                    fontSize={12}
-                    fontWeight={700}
-                    fill={mutedColor}
-                  >
-                    {legend.showPercent
-                      ? `${formatNumber(item.percentFirst, decimals)}%`
-                      : formatValue(item.value, { ...fmtOptions, decimals })}
-                  </text>
-                )}
-              </g>
-            );
-          })}
-        </g>
-      )}
-    </svg>
-  );
-}
-
-function truncate(text, max) {
-  const value = String(text ?? "");
-  return value.length > max ? `${value.slice(0, max - 1)}…` : value;
 }
 
 // ─── Small UI atoms ──────────────────────────────────────────────────────────
