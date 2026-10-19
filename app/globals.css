@@ -72,17 +72,46 @@
   background: var(--color-brandColor);
   color: var(--color-background);
 }
-/* For modern browsers */
+/* Thin branded scrollbar */
 html {
-  scrollbar-width: none;
+  scrollbar-width: thin;
   /* Firefox */
-  -ms-overflow-style: none;
-  /* IE and Edge */
+  scrollbar-color: rgba(124, 0, 254, 0.65) transparent;
+  /* thumb | track */
+  scrollbar-color: color-mix(in srgb, var(--color-brandColor) 65%, transparent)
+    transparent;
 }
 
-html::-webkit-scrollbar {
-  display: none;
-  /* Chrome, Safari, Opera */
+::-webkit-scrollbar {
+  width: 10px;
+  /* vertical */
+  height: 10px;
+  /* horizontal */
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgba(124, 0, 254, 0.5);
+  background-color: color-mix(in srgb, var(--color-brandColor) 50%, transparent);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-brandColor);
+}
+
+::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+.dark {
+  scrollbar-color: color-mix(in srgb, var(--color-brandColor) 65%, #ffffff)
+    transparent;
 }
 .tool-page-shell {
   position: relative;
