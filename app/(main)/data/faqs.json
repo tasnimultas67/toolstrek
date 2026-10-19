@@ -2,11 +2,11 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 111 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 112 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 111 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 112 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -679,6 +679,44 @@
     {
       "question": "Is the Visited Countries Map private, and how do I reset it?",
       "answer": "It is completely private. Your selections, settings, name and profile photo are handled entirely client-side and stored only in your own browser — nothing is uploaded, tracked or shared. To start over, click Reset in the toolbar beside Customize and confirm: this clears your visited countries, your photo and every customisation from this device in one step. If you only want to unmark a country, reopen the picker and click it again — the same click that selects a country also deselects it."
+    }
+  ],
+  "ageOnOtherPlanets": [
+    {
+      "question": "How does the Age on Other Planets calculator work?",
+      "answer": "It first works out exactly how many Earth days you have been alive — from your birth date to the “as of” date you choose — then divides that number by each planet's orbital period. Mercury completes an orbit in 87.97 days, Venus in 224.70, Earth in 365.25, Mars in 686.98, Jupiter in 4,332.59, Saturn in 10,759.22, Uranus in 30,688.5, Neptune in 60,190 and Pluto in 90,560 Earth days. The result is your age in that planet's years, calculated to the day."
+    },
+    {
+      "question": "How old am I on Mars?",
+      "answer": "A Mars year lasts about 687 Earth days — nearly two Earth years — so your Martian age is roughly half your Earth age. If you are 30 on Earth you are about 15.9 Mars years old, and you have lived around 10,600 Martian sols, because one sol (a Mars day) is only 39 minutes longer than an Earth day."
+    },
+    {
+      "question": "Why is my age different on every planet?",
+      "answer": "A “year” is simply one full trip around the Sun, and each planet completes that trip at a different speed and distance. Mercury races around in 88 days while Neptune takes almost 165 Earth years, so your age in planet-years measures how many orbits you have completed on that world. You are oldest on Mercury — about 4.15 Mercury years for every Earth year — and youngest on Neptune."
+    },
+    {
+      "question": "What is a planetary birthday, and when is my next one?",
+      "answer": "A planetary birthday (also called a solar return) happens when the planet returns to the position it held when you were born, completing another full orbit. The tool tracks your progress toward the next one on every world with a live progress bar, shows the exact Earth date it falls on and how many days away it is, and lets you plan milestone birthdays — your 10th, 50th, 100th or any custom number — in the Milestone planner."
+    },
+    {
+      "question": "How do you work out my weight and jump height on other planets?",
+      "answer": "Surface gravity ranges from 0.063 g on Pluto to 2.53 g on Jupiter. Switch on the Weight & jump module, enter your Earth weight and a typical jump, and the calculator multiplies your weight by each planet's gravity — about 2.5× heavier on Jupiter and roughly 16× lighter on Pluto — while your jump height is divided by the same gravity, because weaker gravity lets you jump higher."
+    },
+    {
+      "question": "Is Pluto included, and can I choose which planets to show?",
+      "answer": "Pluto is included as a dwarf planet so you can see just how long its 248-Earth-year orbit really is. Every world — the eight planets and Pluto — can be toggled on or off in the Customise panel, and the cards, comparison table, milestone planner and exports all follow your selection."
+    },
+    {
+      "question": "Does the calculator handle leap-day birthdays and future dates?",
+      "answer": "Yes. The maths runs on whole Earth days rather than calendar years, so a February 29 birthday needs no special handling. You can also move the “as of” date to any day after your birth — including a future date — to project your cosmic age at that moment."
+    },
+    {
+      "question": "Can I share or export my cosmic birthday report?",
+      "answer": "Yes. Copy a ready-made text summary, copy a share link that restores your dates and settings, download a branded PNG report card listing your age on every selected world, or export the full comparison as CSV or JSON. Units, decimal precision and visible planets are all captured in the exports, and every file is generated in your browser."
+    },
+    {
+      "question": "Is my birth date stored or uploaded anywhere?",
+      "answer": "Never. The calculator runs 100% client-side. Your birth date and preferences are saved only in your own browser's localStorage so the tool can remember them, and a share link keeps the dates in the URL you control. Nothing is sent to a server, logged or tracked."
     }
   ]
 }

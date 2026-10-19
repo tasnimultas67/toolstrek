@@ -38,6 +38,7 @@ const formatSectionTitle = (sectionKey) => {
     funnelChartTools: "Funnel & Conversion Chart Generator",
     polarChartTools: "Polar & Rose Chart Generator",
     visitedCountriesMap: "Visited Countries Map",
+    ageOnOtherPlanets: "Age on Other Planets (Space Calculator)",
   };
 
   return (

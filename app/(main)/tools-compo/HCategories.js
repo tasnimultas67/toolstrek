@@ -128,7 +128,7 @@ const categoryMeta = {
     bg: "from-fuchsia-500/10 to-pink-500/10",
     border: "border-fuchsia-500/20",
     text: "text-fuchsia-600 dark:text-fuchsia-400",
-    description: "Zodiac, compatibility & more",
+    description: "Space, zodiac & playful tools",
   },
   Time: {
     Icon: Clock,

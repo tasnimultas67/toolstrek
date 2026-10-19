@@ -3,6 +3,7 @@ const BASE_URL = "https://toolstrek.vercel.app";
 const toolPages = [
   { slug: "add-attachments", lastModified: "2026-09-10" },
   { slug: "age-calculate", lastModified: "2026-09-10" },
+  { slug: "age-on-other-planets", lastModified: "2026-10-19" },
   { slug: "avif-converter", lastModified: "2026-09-15" },
   { slug: "bar-chart-generator", lastModified: "2026-10-19" },
   { slug: "base64-encoder-decoder", lastModified: "2026-09-10" },

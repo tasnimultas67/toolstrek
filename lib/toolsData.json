@@ -2371,5 +2371,26 @@
       "Travel",
       "Productivity"
     ]
+  },
+  {
+    "title": "Age on Other Planets",
+    "link": "/tools/age-on-other-planets",
+    "description": "Find out how old you are on every planet. Enter your birth date to see your exact age on Mercury, Venus, Mars, Jupiter, Saturn, Uranus, Neptune and Pluto, plus your next planetary birthday, milestone dates, weight and jump heights. Fully customisable with share links, a branded PNG card, CSV and JSON export — 100% in your browser.",
+    "icon": "Rocket",
+    "keywords": [
+      "age on other planets",
+      "how old am i on mars",
+      "age on mars calculator",
+      "planetary age calculator",
+      "how old would i be on jupiter",
+      "space age calculator",
+      "planet years calculator",
+      "weight on other planets",
+      "fun"
+    ],
+    "categories": [
+      "Fun",
+      "Calculator"
+    ]
   }
 ]
