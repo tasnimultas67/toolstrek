@@ -97,7 +97,7 @@ const page = () => {
               priceCurrency: "USD",
             },
             featureList: [
-              "Live SVG preview that updates as you type",
+              "Interactive SVG preview with hover tooltips that updates as you type",
               "Import data from CSV, TSV and Excel (.xlsx) files, or paste text",
               "Automatic delimiter and header detection with multi-series column mapping",
               "Vertical column and horizontal bar orientations",

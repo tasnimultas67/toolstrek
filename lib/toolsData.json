@@ -2161,7 +2161,7 @@
   {
     "title": "Pie Chart Generator",
     "link": "/tools/pie-chart-generator",
-    "description": "Free online pie chart and donut chart generator with live SVG preview. Import a CSV, TSV or Excel file or type your data to create beautiful charts with curated colour palettes, adjustable labels, legends, exploded slices, rounded corners and one-click PNG or SVG export — all 100% in your browser.",
+    "description": "Free online pie chart and donut chart generator with an interactive live preview and hover tooltips. Import a CSV, TSV or Excel file or type your data to create beautiful charts with curated colour palettes, adjustable labels, legends, exploded slices, rounded corners and one-click PNG or SVG export — all 100% in your browser.",
     "icon": "PieChart",
     "keywords": [
       "pie chart generator",
@@ -2191,7 +2191,7 @@
   {
     "title": "Bar Chart Generator",
     "link": "/tools/bar-chart-generator",
-    "description": "Free online bar chart and column chart generator with live SVG preview. Import a CSV, TSV or Excel file or type your data to build grouped or stacked bar charts with multiple series, curated colour palettes, adjustable axes and gridlines, labels, legends, rounded bars and one-click PNG or SVG export — all 100% in your browser.",
+    "description": "Free online bar chart and column chart generator with an interactive live preview and hover tooltips. Import a CSV, TSV or Excel file or type your data to build grouped or stacked bar charts with multiple series, curated colour palettes, adjustable axes and gridlines, labels, legends, rounded bars and one-click PNG or SVG export — all 100% in your browser.",
     "icon": "BarChart3",
     "keywords": [
       "bar chart generator",
@@ -2223,7 +2223,7 @@
   {
     "title": "Line Chart Generator",
     "link": "/tools/line-chart-generator",
-    "description": "Free online line chart and area chart generator with live SVG preview. Import a CSV, TSV or Excel file or type your data to build straight, smooth or step line charts and stacked area charts with multiple series, curated colour palettes, markers, adjustable axes and gridlines, labels, legends and one-click PNG or SVG export — all 100% in your browser.",
+    "description": "Free online line chart and area chart generator with an interactive live preview and hover tooltips. Import a CSV, TSV or Excel file or type your data to build straight, smooth or step line charts and stacked area charts with multiple series, curated colour palettes, markers, adjustable axes and gridlines, labels, legends and one-click PNG or SVG export — all 100% in your browser.",
     "icon": "LineChart",
     "keywords": [
       "line chart generator",
@@ -2256,7 +2256,7 @@
   {
     "title": "Radar Chart Generator",
     "link": "/tools/radar-chart-generator",
-    "description": "Free online radar chart and spider chart generator with live SVG preview. Import a CSV, TSV or Excel file or type your data to build radial charts with multiple overlapping series, polygon or circular grids, adjustable scale and rotation, vertex points, custom labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
+    "description": "Free online radar chart and spider chart generator with an interactive live preview and hover tooltips. Import a CSV, TSV or Excel file or type your data to build radial charts with multiple overlapping series, polygon or circular grids, adjustable scale and rotation, vertex points, custom labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
     "icon": "Radar",
     "keywords": [
       "radar chart generator",
@@ -2288,7 +2288,7 @@
   {
     "title": "Funnel Chart Generator",
     "link": "/tools/funnel-chart-generator",
-    "description": "Free online funnel chart and conversion chart generator with live SVG preview. Import a CSV, TSV or Excel file or type your stages to build customisable funnels with funnel, bar or step shapes, WCAG-compliant high-contrast labels, conversion and drop-off labels, curated colour palettes, adjustable labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
+    "description": "Free online funnel chart and conversion chart generator with an interactive live preview and hover tooltips. Import a CSV, TSV or Excel file or type your stages to build customisable funnels with funnel, bar or step shapes, WCAG-compliant high-contrast labels, conversion and drop-off labels, curated colour palettes, adjustable labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
     "icon": "Filter",
     "keywords": [
       "funnel chart generator",
@@ -2320,7 +2320,7 @@
   {
     "title": "Polar Chart Generator",
     "link": "/tools/polar-chart-generator",
-    "description": "Free online polar chart and rose chart generator with live SVG preview. Import a CSV, TSV or Excel file or type your data to build polar area, Nightingale rose or radial bar charts with area-accurate square-root scaling, an optional centre hole, adjustable rings, rotation, gaps and corner radius, custom labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
+    "description": "Free online polar chart and rose chart generator with an interactive live preview and hover tooltips. Import a CSV, TSV or Excel file or type your data to build polar area, Nightingale rose or radial bar charts with area-accurate square-root scaling, an optional centre hole, adjustable rings, rotation, gaps and corner radius, custom labels and legends, and one-click PNG or SVG export — all 100% in your browser.",
     "icon": "Orbit",
     "keywords": [
       "polar chart generator",

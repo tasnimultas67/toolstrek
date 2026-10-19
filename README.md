@@ -16,7 +16,7 @@
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-111_Available-10b981?style=flat-square" alt="111 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.18.0-purple?style=flat-square" alt="v2.18.0" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.19.0-purple?style=flat-square" alt="v2.19.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -30,7 +30,7 @@
 - 🔍 **Command Palette Search** — Keyboard-accessible global search (`Cmd + K` / `Ctrl + K`) to launch any tool in milliseconds.
 - ⭐ **Favorites System** — Pin frequently used tools to a dedicated Favorites dashboard, persisted via SSR-safe `localStorage`.
 - 🕐 **Recent Tools Tracker** — Passively indexes recently visited utilities (with a header dropdown) for rapid context switching.
-- 📊 **Chart Studio** — A family of six export-ready SVG/canvas chart generators (pie/donut, bar/column, line/area, radar/spider, funnel, polar/rose & radial bar) with CSV/Excel import, WCAG-compliant high-contrast chart labels, and PNG & SVG export.
+- 📊 **Chart Studio** — Six interactive, export-ready chart generators (pie/donut, bar/column, line/area, radar/spider, funnel, polar/rose & radial bar) powered by Recharts 3 and shadcn chart primitives, with hover tooltips, responsive legends, CSV/Excel import, WCAG-compliant high-contrast labels, and PNG & SVG export.
 - 🗺️ **Visited Countries Map** — Mark the countries you've travelled to on an interactive flat world map, watch your percentage of the world and continent breakdown update live, then export a branded photo card (with your name and a cropped profile photo), JSON/CSV data or a shareable link.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
@@ -282,7 +282,7 @@ ToolsTrek is **browser-first**: the overwhelming majority of tools complete thei
 | **OCR & Images** | `tesseract.js`, `browser-image-compression`, `piexifjs`, `react-dropzone`, `react-colorful`, `color-thief-browser`, `html2canvas` | In-browser OCR, compression, EXIF editing, color picking |
 | **Media & Audio** | `mediabunny`, `@mediabunny/mp3-encoder`, `@mediabunny/flac-encoder` | Hardware-accelerated WebCodecs transcoding (video & audio) |
 | **Code & Markdown** | `js-beautify`, `sql-formatter`, `highlight.js`, `react-markdown`, `remark-gfm`, `remark-breaks`, `rehype-highlight`, `rehype-raw` | Beautification and GitHub-flavored Markdown rendering |
-| **Charts** | Custom SVG/YAML-free engines | Hand-built SVG/canvas chart renderers with PNG/SVG export |
+| **Charts** | Recharts 3, shadcn chart primitives | Responsive SVG chart previews with hover tooltips, themed legends and PNG/SVG export |
 | **Archive & Utilities** | `jszip`, `date-fns`, `clsx`, `tailwind-merge`, `class-variance-authority`, `clipboard-copy`, `react-country-flag` | Client-side ZIP creation, date math, class merging |
 | **Network & Security** | `whois`, Node.js `tls` | WHOIS lookups and live TLS inspection in Route Handlers |
 | **Camera** | `react-webcam` | QR scanning and image capture |
@@ -391,6 +391,7 @@ toolstrek/
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
 │   │   │   ├── Home-Compo/                    #   Homepage sections
 │   │   │   ├── tools/                         #   Tool logic components (grouped by tool)
+│   │   │   │   └── _shared/charts/            #     Shared Recharts views, theme & export helpers
 │   │   │   ├── Header.js                      #   Navigation, mega-menu, search, history
 │   │   │   ├── Footer.js                      #   Site footer
 │   │   │   ├── FAQCon.js                      #   FAQ accordion + search/filter UI
