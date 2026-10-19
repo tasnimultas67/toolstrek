@@ -32,6 +32,7 @@ const toolPages = [
   { slug: "days-until-calculator", lastModified: "2026-10-14" },
   { slug: "discount-calculator", lastModified: "2026-09-10" },
   { slug: "disposable-email-detector", lastModified: "2026-10-19" },
+  { slug: "dog-cat-age-calculator", lastModified: "2026-10-20" },
   { slug: "domain-age-checker", lastModified: "2026-10-19" },
   { slug: "dummy-text-generator", lastModified: "2026-09-10" },
   { slug: "dynamic-time-greeting-generator", lastModified: "2026-10-14" },
@@ -121,13 +122,13 @@ export default function sitemap() {
   const staticPages = [
     {
       url: BASE_URL,
-      lastModified: "2026-10-19",
+      lastModified: "2026-10-20",
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/tools`,
-      lastModified: "2026-10-19",
+      lastModified: "2026-10-20",
       changeFrequency: "weekly",
       priority: 0.95,
     },
@@ -139,13 +140,13 @@ export default function sitemap() {
     },
     {
       url: `${BASE_URL}/faq`,
-      lastModified: "2026-10-19",
+      lastModified: "2026-10-20",
       changeFrequency: "monthly",
       priority: 0.75,
     },
     {
       url: `${BASE_URL}/changelog`,
-      lastModified: "2026-10-19",
+      lastModified: "2026-10-20",
       changeFrequency: "monthly",
       priority: 0.8,
     },

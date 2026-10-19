@@ -8,15 +8,15 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>112 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>113 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-112_Available-10b981?style=flat-square" alt="112 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.20.0-purple?style=flat-square" alt="v2.20.0" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-113_Available-10b981?style=flat-square" alt="113 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.21.0-purple?style=flat-square" alt="v2.21.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -33,13 +33,14 @@
 - 📊 **Chart Studio** — Six interactive, export-ready chart generators (pie/donut, bar/column, line/area, radar/spider, funnel, polar/rose & radial bar) powered by Recharts 3 and shadcn chart primitives, with hover tooltips, responsive legends, CSV/Excel import, WCAG-compliant high-contrast labels, and PNG & SVG export.
 - 🗺️ **Visited Countries Map** — Mark the countries you've travelled to on an interactive flat world map, watch your percentage of the world and continent breakdown update live, then export a branded photo card (with your name and a cropped profile photo), JSON/CSV data or a shareable link.
 - 🪐 **Age on Other Planets** — Turn one birth date into a cosmic birthday report: day-accurate ages on Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune and Pluto, next planetary birthdays with countdowns, a milestone planner, optional weight & jump comparisons, and share link/card/CSV/JSON exports — all in your browser.
+- 🐾 **Dog & Cat Age Calculator** — Convert a dog or cat's age into human years with size-aware dog charts and lifestyle-aware cat ranges, then explore life stages, typical lifespan and remaining years, next-birthday and milestone dates, gotcha-day tracking and playful lifetime statistics — with share link, branded PNG card, CSV and JSON exports.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
 - 🧩 **SEO & PWA Ready** — Dynamic sitemap, robots, web manifest, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
-## 🛠️ Tool Library (112 Tools)
+## 🛠️ Tool Library (113 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
@@ -233,13 +234,14 @@
 
 ---
 
-### 🔮 Fun & Astrology Tools (3)
+### 🔮 Fun & Astrology Tools (4)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
 | **Zodiac Sign Calculator** | `/tools/zodiac-sign-calculator` | Sun sign, Vedic Rashi, Chinese Zodiac, decan traits, ruling elements, and shareable profile cards. |
 | **Love Compatibility Test** | `/tools/love-compatibility-test` | Relationship harmony via zodiac compatibility, numerology life paths, love languages, and chemistry scores. |
 | **Age on Other Planets** | `/tools/age-on-other-planets` | Your exact age on Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune and Pluto — with next planetary birthdays, a milestone planner, weight & jump comparisons, and shareable report exports. |
+| **Dog & Cat Age Calculator** | `/tools/dog-cat-age-calculator` | Human-age conversion for dogs and cats with size- and lifestyle-aware charts, life stages, lifespan estimates, birthday milestones, gotcha-day tracking, and shareable report exports. |
 
 ---
 
@@ -387,7 +389,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 112 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 113 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -417,7 +419,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 112 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 113 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers

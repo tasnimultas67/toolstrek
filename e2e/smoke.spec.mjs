@@ -33,6 +33,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/json-editor",
   "/tools/country-visited-map",
   "/tools/age-on-other-planets",
+  "/tools/dog-cat-age-calculator",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];

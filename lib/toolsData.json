@@ -2392,5 +2392,29 @@
       "Fun",
       "Calculator"
     ]
+  },
+  {
+    "title": "Dog & Cat Age Calculator",
+    "link": "/tools/dog-cat-age-calculator",
+    "description": "Convert your dog or cat's age into human years with size-aware dog charts and lifestyle-aware cat conversions, then explore life stages, typical lifespan and remaining years. Add a gotcha day, track the next birthday and milestone dates, and export a share link, branded PNG card, CSV or JSON — 100% in your browser.",
+    "icon": "PawPrint",
+    "keywords": [
+      "dog age calculator",
+      "cat age calculator",
+      "dog years to human years",
+      "cat years to human years",
+      "how old is my dog in human years",
+      "how old is my cat in human years",
+      "pet age calculator",
+      "dog years chart",
+      "puppy age chart",
+      "kitten age chart",
+      "pet life stages",
+      "fun"
+    ],
+    "categories": [
+      "Fun",
+      "Calculator"
+    ]
   }
 ]

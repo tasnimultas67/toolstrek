@@ -39,6 +39,7 @@ const formatSectionTitle = (sectionKey) => {
     polarChartTools: "Polar & Rose Chart Generator",
     visitedCountriesMap: "Visited Countries Map",
     ageOnOtherPlanets: "Age on Other Planets (Space Calculator)",
+    dogCatAgeCalculator: "Dog & Cat Age Calculator",
   };
 
   return (

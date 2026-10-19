@@ -2,11 +2,11 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 112 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 113 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 112 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 113 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -717,6 +717,40 @@
     {
       "question": "Is my birth date stored or uploaded anywhere?",
       "answer": "Never. The calculator runs 100% client-side. Your birth date and preferences are saved only in your own browser's localStorage so the tool can remember them, and a share link keeps the dates in the URL you control. Nothing is sent to a server, logged or tracked."
+    }
+  ],
+  "dogCatAgeCalculator": [
+    {
+      "question": "How does the Dog & Cat Age Calculator work?",
+      "answer": "It first works out exactly how many Earth days your pet has been alive — from their birthday to the “as of” date you choose — then converts that real age into human years with the method you select. The default size-aware chart counts 15 human years for the first pet year, adds 9 for the second, then adds a yearly rate based on species and size: about 4 per year for cats and small dogs, 5 for medium dogs, 6 for large dogs and 7 for giant dogs. The report also covers life stage, typical lifespan, next birthday, milestone birthdays and lifetime statistics."
+    },
+    {
+      "question": "How old is my dog in human years?",
+      "answer": "A medium dog is roughly 24 human years old at age two, then gains about five human years for every additional dog year, so a 5-year-old medium dog is around 39. Size matters: small breeds gain about four years per dog year while giant breeds gain closer to seven. Choose your dog's size — or enter a weight and apply the suggested class — for an accurate conversion."
+    },
+    {
+      "question": "How old is my cat in human years?",
+      "answer": "Cats follow a similar early curve: the first year counts as about 15 human years and the second brings them to roughly 24, after which each cat year adds around four. A 10-year-old cat is therefore about 56 in human years and a 15-year-old cat about 76. Indoor cats commonly live 13–17 years, while outdoor-only cats average far less."
+    },
+    {
+      "question": "Is the “multiply by 7” rule accurate?",
+      "answer": "No — it is a handy shortcut, not a scientific formula. Pets mature much faster than humans in their first two years, and lifespan varies with species, adult size and lifestyle. The calculator keeps the classic 7× rule as a comparison option, but the size-aware chart is a much better reflection of how dogs and cats actually age."
+    },
+    {
+      "question": "Why does a dog's size change the conversion?",
+      "answer": "Adult size is one of the strongest predictors of canine lifespan. Small breeds commonly live 12–16 years, medium breeds 11–14, large breeds 9–12 and giant breeds 7–10, and larger bodies tend to age faster at a cellular level. That is why the tool uses a different yearly conversion rate for each size class, and why a giant dog can be a senior at six while a small dog may not be senior until nine or ten."
+    },
+    {
+      "question": "Does my cat's lifestyle really affect life expectancy?",
+      "answer": "It is one of the biggest factors in feline life expectancy. Indoor cats commonly reach 13–17 years, cats with some outdoor access average around 10–14, and outdoor-only cats often live only 5–10 years because of traffic, predators, weather and infectious disease. The lifestyle choice shapes the lifespan estimate without changing the age conversion itself."
+    },
+    {
+      "question": "What if I don't know my pet's exact birthday, or they were born on February 29?",
+      "answer": "If you are not sure of the exact date, open “Estimate from age”, enter your pet's age in years and months, and the calculator works backwards from the “as of” date to create an approximate birthday. Pets born on February 29 are handled cleanly: their age and next birthday use February 28 in non-leap years, so nothing ever shifts by a day or breaks."
+    },
+    {
+      "question": "Can I share or export my pet's report, and is the data private?",
+      "answer": "Yes. Copy a text summary, copy a share link that restores every setting, download a branded PNG report card, or export the full report as CSV or JSON — all generated in your browser. Names, birthdays and preferences are saved only in your own browser's localStorage and in links you create yourself; nothing is uploaded, logged or tracked."
     }
   ]
 }
