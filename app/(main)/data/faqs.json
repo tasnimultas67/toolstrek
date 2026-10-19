@@ -2,11 +2,11 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 110 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 111 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 110 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 111 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -641,6 +641,44 @@
     {
       "question": "Is the Polar Chart Generator private and does it work offline?",
       "answer": "Completely. Every calculation and the chart rendering happen 100% client-side in your browser using SVG and the HTML canvas — your labels and numbers are never uploaded, stored or tracked. After the page has loaded you can even use the tool offline, making it safe for confidential business, HR, financial and survey data."
+    }
+  ],
+  "visitedCountriesMap": [
+    {
+      "question": "What is the Visited Countries Map and how does it work?",
+      "answer": "The Visited Countries Map is a free, browser-first tool for tracking the countries you have travelled to on a single interactive world map. Click the Search button to open the country picker and select a country, or type its name into the picker's search field, and that country is filled in instantly with your chosen colour. Every selection updates your running total, the percentage of the world you have explored, and your continent breakdown in real time. The whole map then animates as a clean, flat world view you can zoom, pan, reset or open in fullscreen — no spreadsheet, no sign-up and nothing to install."
+    },
+    {
+      "question": "How many countries are there to collect, and how is the percentage of the world calculated?",
+      "answer": "The tracker covers 194 sovereign countries across six inhabited continents. Antarctica is deliberately left off the map because it is governed by international treaty rather than being a country, and only the six continents that contain countries are counted, so the card reads “6 of 6 continents” rather than an inflated total. Your exploration percentage is simply the number of countries you have marked divided by 194 — mark 19 countries and you have explored roughly 9.8% of the world — and it updates the moment you select or clear a country."
+    },
+    {
+      "question": "Is my travel map saved automatically, and will it still be there next time?",
+      "answer": "Yes. Every country you mark, along with all of your colours, toggles, name and profile photo, is saved to your browser's own localStorage the instant you make a change, so returning visits restore your map exactly as you left it — there is no save button to remember. Your progress is scoped to the device and browser you used, so it will not appear on a different computer or in a private window. To move it somewhere else, export a JSON backup from the Export menu and import that file on the other device."
+    },
+    {
+      "question": "Can I share my visited countries map with friends?",
+      "answer": "Yes. Open the Share menu to copy a link that carries your selections in the URL itself, so anyone who opens it sees your map already filled in and can build on it themselves. The same menu offers one-click sharing to X, Facebook, LinkedIn, WhatsApp and email. Because the entire map is encoded in the link, no account or server is needed — the recipient simply opens the page and the visited countries are restored."
+    },
+    {
+      "question": "What export formats does the Visited Countries Map offer?",
+      "answer": "The Export menu gives you four formats plus an embed snippet. Download photo card renders a branded, shareable PNG featuring your map, country count, world percentage, continent breakdown and progress bar — complete with your name and profile photo. Download map only exports a clean PNG of the map by itself. Export data (JSON) saves your visited countries and settings as a portable backup you can re-import later, and Download list (CSV) produces a spreadsheet-friendly list of the countries you have visited. Embed code generates an HTML snippet so you can drop your map into a blog or personal site. Exported files are helpfully named, for example visited-countries-alex-carter-map-toolstrek.png."
+    },
+    {
+      "question": "Can I add my name and a profile photo to the exported card?",
+      "answer": "Absolutely — both live in the toolbar above the map. Type your name into the name field and it appears as the headline on your exported photo card. Click the round photo button to open the profile editor, then drag and drop an image or choose a file from your device. You can drag the photo to reposition it and use the zoom slider to choose exactly how much of it shows, guided by a circular crop frame, before saving. The photo is downscaled and stored locally in your browser, never uploaded, and the Customize panel lets you hide it from the card if you prefer."
+    },
+    {
+      "question": "How do I customize the look of my world map?",
+      "answer": "Open the Customize panel to restyle the map without touching your data. You can pick a one-click colour theme such as Classic Blue or Midnight, or set the visited colour, unvisited country colour, border colour, ocean/background colour, border width and unvisited opacity individually. You can also toggle country names, grid lines, the world percentage badge, the legend, and “highlight visited” emphasis, or hide the profile photo and stats on the exported card. Every change previews live on the map and is saved with your progress."
+    },
+    {
+      "question": "Does the Visited Countries Map work on mobile and offline?",
+      "answer": "Yes. The layout is fully responsive and touch-friendly: the toolbar collapses into neat rows, the map fills its frame without ever being cut off, the country picker becomes a scrollable modal, and you can tap to mark countries and pinch or pan to explore, with zoom, reset and fullscreen controls always within reach. Because the map is generated inside your browser, once the page has loaded you can keep marking countries even with a flaky connection."
+    },
+    {
+      "question": "Is the Visited Countries Map private, and how do I reset it?",
+      "answer": "It is completely private. Your selections, settings, name and profile photo are handled entirely client-side and stored only in your own browser — nothing is uploaded, tracked or shared. To start over, click Reset in the toolbar beside Customize and confirm: this clears your visited countries, your photo and every customisation from this device in one step. If you only want to unmark a country, reopen the picker and click it again — the same click that selects a country also deselects it."
     }
   ]
 }

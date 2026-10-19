@@ -8,15 +8,15 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>110 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>111 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-110_Available-10b981?style=flat-square" alt="110 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.17.2-purple?style=flat-square" alt="v2.17.2" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-111_Available-10b981?style=flat-square" alt="111 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.18.0-purple?style=flat-square" alt="v2.18.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -31,13 +31,14 @@
 - ⭐ **Favorites System** — Pin frequently used tools to a dedicated Favorites dashboard, persisted via SSR-safe `localStorage`.
 - 🕐 **Recent Tools Tracker** — Passively indexes recently visited utilities (with a header dropdown) for rapid context switching.
 - 📊 **Chart Studio** — A family of six export-ready SVG/canvas chart generators (pie/donut, bar/column, line/area, radar/spider, funnel, polar/rose & radial bar) with CSV/Excel import, WCAG-compliant high-contrast chart labels, and PNG & SVG export.
+- 🗺️ **Visited Countries Map** — Mark the countries you've travelled to on an interactive flat world map, watch your percentage of the world and continent breakdown update live, then export a branded photo card (with your name and a cropped profile photo), JSON/CSV data or a shareable link.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
 - 🧩 **SEO & PWA Ready** — Dynamic sitemap, robots, web manifest, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
-## 🛠️ Tool Library (110 Tools)
+## 🛠️ Tool Library (111 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
@@ -240,10 +241,11 @@
 
 ---
 
-### ✈️ Travel Tools (2)
+### ✈️ Travel Tools (3)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
+| **Visited Countries Map** | `/tools/country-visited-map` | Mark every country you've been to on an interactive world map, track your % of the world explored and continent breakdown, add your name and a cropped profile photo, then export a branded PNG card, JSON/CSV data or a shareable link. |
 | **Packing List Generator** | `/tools/packing-list-generator` | Customizable travel checklists with collapsible categories, priority badges, packed filters, and PDF export. |
 | **Travel Budget Splitter** | `/tools/travel-budget-splitter` | Plan and split group trip expenses with multi-currency conversion, split rules, and debt-settlement reports. |
 
@@ -383,7 +385,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 110 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 111 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -412,10 +414,12 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 110 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 111 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers
+│   ├── countries.js                           # Country registry for the Visited Countries Map
+│   ├── world-geo.js                           # World GeoJSON loader + map projection helpers
 │   ├── useGlobalSearch.js                     # Global search state logic
 │   └── utils.js                               # `cn` class-merge helper + formatters
 │

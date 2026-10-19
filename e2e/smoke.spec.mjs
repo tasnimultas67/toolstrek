@@ -31,6 +31,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/daily-planner",
   "/tools/hash-generator",
   "/tools/json-editor",
+  "/tools/country-visited-map",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];

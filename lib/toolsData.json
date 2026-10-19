@@ -1595,7 +1595,8 @@
     "categories": [
       "Developer",
       "Security",
-      "Image"
+      "Media",
+      "Productivity"
     ]
   },
   {
@@ -2348,6 +2349,27 @@
     "categories": [
       "Design",
       "Developer"
+    ]
+  },
+  {
+    "title": "Visited Countries Map",
+    "link": "/tools/country-visited-map",
+    "description": "Track every country you've been to on an interactive world map. Mark countries, see what % of the world you've explored, and build a shareable travel map you can keep updating. Fully customizable colors, export to PNG/JSON/CSV, and shareable links — all client-side and private.",
+    "icon": "Globe",
+    "keywords": [
+      "visited countries map",
+      "countries visited tracker",
+      "world map travel tracker",
+      "travel map maker",
+      "countries I have been to",
+      "percentage of world visited",
+      "travel map generator",
+      "world travel map",
+      "travel"
+    ],
+    "categories": [
+      "Travel",
+      "Productivity"
     ]
   }
 ]

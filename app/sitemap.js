@@ -22,6 +22,7 @@ const toolPages = [
   { slug: "combine-files-to-pdf", lastModified: "2026-09-10" },
   { slug: "compress-pdf", lastModified: "2026-09-10" },
   { slug: "countdown-timer", lastModified: "2026-10-14" },
+  { slug: "country-visited-map", lastModified: "2026-10-19" },
   { slug: "crop-pdf", lastModified: "2026-09-10" },
   { slug: "csv-viewer", lastModified: "2026-09-20" },
   { slug: "currency-converter", lastModified: "2026-09-10" },

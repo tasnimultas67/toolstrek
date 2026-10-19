@@ -37,6 +37,7 @@ const formatSectionTitle = (sectionKey) => {
     radarChartTools: "Radar & Spider Chart Generator",
     funnelChartTools: "Funnel & Conversion Chart Generator",
     polarChartTools: "Polar & Rose Chart Generator",
+    visitedCountriesMap: "Visited Countries Map",
   };
 
   return (
