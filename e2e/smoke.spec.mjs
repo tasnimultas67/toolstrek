@@ -34,6 +34,9 @@ const HIGH_RISK_ROUTES = [
   "/tools/country-visited-map",
   "/tools/age-on-other-planets",
   "/tools/dog-cat-age-calculator",
+  "/tools/image-compressor",
+  "/tools/percentage-calculator",
+  "/tools/text-diff",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];
@@ -143,6 +146,164 @@ test.describe("interactions", () => {
     const editor = page.getByPlaceholder(/Paste or drag your .* code here/);
     await expect(editor).toBeVisible();
     await expect(editor).not.toHaveValue("");
+
+    expect(errors, errors.join("\n")).toEqual([]);
+  });
+
+  test("image compressor accepts an image and produces a download", async ({
+    page,
+  }) => {
+    const errors = trackErrors(page);
+    await page.goto("/tools/image-compressor");
+
+    // 1×1 transparent PNG — small enough to make the test fast, but still goes
+    // through the real decode, compression and blob-download pipeline.
+    const pixelPng = Buffer.from(
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+      "base64",
+    );
+    await page.locator('input[type="file"]').setInputFiles({
+      name: "pixel.png",
+      mimeType: "image/png",
+      buffer: pixelPng,
+    });
+
+    await expect(page.getByText("pixel.png")).toBeVisible();
+    await page.getByRole("button", { name: /Compress 1 image/ }).click();
+    await expect(
+      page.getByRole("link", { name: /Download/ }).first(),
+    ).toBeVisible({ timeout: 60000 });
+
+    expect(errors, errors.join("\n")).toEqual([]);
+  });
+
+  test("image compressor compresses a nine-image batch in one run", async ({
+    page,
+  }) => {
+    test.setTimeout(120_000);
+    const errors = trackErrors(page);
+
+    // Generate a real JPEG with a full decode/encode cycle, then upload nine
+    // copies with mixed MIME spellings to catch batch memory and MIME bugs.
+    await page.setViewportSize({ width: 1280, height: 800 });
+    await page.setContent(`
+      <main style="min-height:100vh;padding:48px;background:linear-gradient(135deg,#064e3b,#0ea5e9 55%,#7c3aed);color:white;font-family:Arial,sans-serif">
+        <h1 style="font-size:64px;margin:0">Batch photo test</h1>
+        <p style="font-size:28px">Nine images should compress without a codec error.</p>
+      </main>
+    `);
+    const jpeg = await page.screenshot({ type: "jpeg", quality: 90 });
+
+    await page.goto("/tools/image-compressor");
+    await page.getByLabel("Max width / height").fill("640");
+    const files = Array.from({ length: 9 }, (_, index) => ({
+      name: `batch-${index + 1}.jpg`,
+      mimeType:
+        index % 3 === 1
+          ? "image/jpg"
+          : index % 3 === 2
+            ? "application/octet-stream"
+            : "image/jpeg",
+      buffer: jpeg,
+    }));
+    await page.locator('input[type="file"]').setInputFiles(files);
+
+    await expect(
+      page.getByRole("heading", { name: "Your images (9)" }),
+    ).toBeVisible();
+    await page.getByRole("button", { name: /Compress 9 images/ }).click();
+
+    await expect(page.getByText(/9 compressed/)).toBeVisible({
+      timeout: 120_000,
+    });
+    await expect(page.getByRole("link", { name: /Download/ })).toHaveCount(9);
+    expect(errors, errors.join("\n")).toEqual([]);
+  });
+
+  test("image compressor does not cap the upload queue at 50 images", async ({
+    page,
+  }) => {
+    const errors = trackErrors(page);
+    await page.goto("/tools/image-compressor");
+
+    const pixelPng = Buffer.from(
+      "iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNk+A8AAQUBAScY42YAAAAASUVORK5CYII=",
+      "base64",
+    );
+    const files = Array.from({ length: 51 }, (_, index) => ({
+      name: `pixel-${index + 1}.png`,
+      mimeType: "image/png",
+      buffer: pixelPng,
+    }));
+    await page.locator('input[type="file"]').setInputFiles(files);
+
+    await expect(
+      page.getByRole("heading", { name: "Your images (51)" }),
+    ).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: /Compress 51 images/ }),
+    ).toBeEnabled();
+
+    expect(errors, errors.join("\n")).toEqual([]);
+  });
+
+  test("percentage calculator updates the result as values change", async ({
+    page,
+  }) => {
+    const errors = trackErrors(page);
+    await page.goto("/tools/percentage-calculator");
+
+    await page.getByLabel("Percentage (X)").fill("15");
+    await page.getByLabel("Value (Y)").fill("200");
+    await expect(page.getByTestId("percentage-result")).toHaveText("30");
+
+    await page.getByLabel("Value (Y)").fill("400");
+    await expect(page.getByTestId("percentage-result")).toHaveText("60");
+
+    expect(errors, errors.join("\n")).toEqual([]);
+  });
+
+  test("text diff checker highlights additions in a loaded sample", async ({
+    page,
+  }) => {
+    const errors = trackErrors(page);
+    await page.goto("/tools/text-diff");
+
+    await page.getByRole("button", { name: "Load sample" }).click();
+    await expect(page.getByText(/New image compressor/).first()).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Copy .diff" }),
+    ).toBeEnabled();
+
+    await page.getByRole("button", { name: "Words" }).click();
+    await expect(page.getByText(/% similar/)).toBeVisible();
+    await page.getByRole("button", { name: "Characters" }).click();
+    await expect(page.getByText(/% similar/)).toBeVisible();
+
+    expect(errors, errors.join("\n")).toEqual([]);
+  });
+
+  test("text diff checker shows a shared no-difference state in split view", async ({
+    page,
+  }) => {
+    const errors = trackErrors(page);
+    await page.goto("/tools/text-diff");
+
+    await page
+      .getByRole("textbox", { name: "Original text" })
+      .fill("Identical content");
+    await page
+      .getByRole("textbox", { name: "Modified text" })
+      .fill("Identical content");
+    await page.getByRole("button", { name: "Split" }).click();
+
+    await expect(page.getByText("No differences found")).toBeVisible();
+    await expect(
+      page.getByRole("button", { name: "Copy .diff" }),
+    ).toBeDisabled();
+    await expect(
+      page.getByRole("button", { name: "Download", exact: true }),
+    ).toBeDisabled();
 
     expect(errors, errors.join("\n")).toEqual([]);
   });

@@ -8,15 +8,15 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>113 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>120 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.3-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-113_Available-10b981?style=flat-square" alt="113 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.21.0-purple?style=flat-square" alt="v2.21.0" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-123_Available-10b981?style=flat-square" alt="123 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.22.0-purple?style=flat-square" alt="v2.22.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -34,23 +34,27 @@
 - 🗺️ **Visited Countries Map** — Mark the countries you've travelled to on an interactive flat world map, watch your percentage of the world and continent breakdown update live, then export a branded photo card (with your name and a cropped profile photo), JSON/CSV data or a shareable link.
 - 🪐 **Age on Other Planets** — Turn one birth date into a cosmic birthday report: day-accurate ages on Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune and Pluto, next planetary birthdays with countdowns, a milestone planner, optional weight & jump comparisons, and share link/card/CSV/JSON exports — all in your browser.
 - 🐾 **Dog & Cat Age Calculator** — Convert a dog or cat's age into human years with size-aware dog charts and lifestyle-aware cat ranges, then explore life stages, typical lifespan and remaining years, next-birthday and milestone dates, gotcha-day tracking and playful lifetime statistics — with share link, branded PNG card, CSV and JSON exports.
-- 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays.
+- 🗜️ **Image Compressor** — Batch-compress JPG, PNG, WebP and AVIF images to an exact target size or quality level with no artificial batch-count or per-file size caps, compare before/after previews and download results individually or as a ZIP — with automatic EXIF/GPS metadata removal and no uploads.
+- 🧮 **Percentage Calculator** — Five percentage modes in one tool: X% of Y, what percent X is of Y, increase/decrease, add/subtract a percentage and reverse percentages, each with the substituted formula and step-by-step working.
+- 🔀 **Text Diff Checker** — Compare two texts by line, word or character with unified and split views, ignore-case and whitespace options, similarity statistics, and copy/download support for standard `.diff` patches.
+- 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays, with a responsive type scale that keeps dense workspaces readable as screens grow.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
 - 🧩 **SEO & PWA Ready** — Dynamic sitemap, robots, web manifest, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
-## 🛠️ Tool Library (113 Tools)
+## 🛠️ Tool Library (123 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
-### 🌐 Developer & Code Tools (23)
+### 🌐 Developer & Code Tools (24)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
 | **Regex Tester & Debugger** | `/tools/regex-tester` | Real-time regex pattern testing with an AST syntax explainer, capture groups, replace/split, and a multi-language code generator (JS, Python, Go, Rust, Java, C#, PHP, Ruby, Swift, Bash). |
 | **Code Formatter & Beautifier** | `/tools/code-formatter` | Format and beautify JavaScript, TypeScript, HTML, CSS, JSON, XML, and SQL with custom indent sizing, theme support, and direct file export. |
 | **JSON Editor** | `/tools/json-editor` | Visual JSON editor and tree viewer with schema validation, key sorting, minification, diff comparison, and two-way conversion to XML/YAML/CSV. |
+| **Text Diff Checker** | `/tools/text-diff` | Compare two texts by line, word or character with unified and split views, ignore-case and whitespace options, similarity statistics, and `.diff` patch export. |
 | **JWT Decoder** | `/tools/jwt-decoder` | Decode JSON Web Tokens and inspect headers/claims, verify signatures with custom secrets or public keys, and check expiry — entirely client-side. |
 | **Markdown Previewer** | `/tools/markdown-previewer` | Real-time GitHub-flavored Markdown editor with a live HTML preview, syntax highlighting, and instant export. |
 | **CSV Viewer & Editor** | `/tools/csv-viewer` | Inspect, sort, filter, search, edit, and profile tabular CSV data in the browser with pagination, custom SVG charts, and multi-format export. |
@@ -129,10 +133,11 @@
 
 ---
 
-### 🧮 Calculator Tools (5)
+### 🧮 Calculator Tools (6)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
+| **Percentage Calculator** | `/tools/percentage-calculator` | Five modes for X% of Y, percent-of-whole, increase/decrease, add/subtract a percentage and reverse percentages, with formula breakdowns and copy support. |
 | **Random Number Generator (RNG Studio)** | `/tools/random-number-generator` | CSPRNG and seeded RNG with custom ranges, polyhedral dice (D20/D6/D100 with advantage/disadvantage), probability distributions, lottery/raffle picker, and histograms. |
 | **Age Calculator** | `/tools/age-calculate` | Exact age in years, months, weeks, days, hours, minutes, and seconds with birthday countdowns. |
 | **Days Tracker** | `/tools/days-tracker` | Calculate the exact duration between two dates or add/subtract days, business days, and weeks. |
@@ -169,10 +174,14 @@
 
 ---
 
-### 🖼️ Image, Media & Design Tools (8)
+### 🖼️ Image, Media & Design Tools (12)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
+| **Image Watermark** | `/tools/image-watermark` | Add text or logo watermarks with opacity, font, color, position, rotation, tiling, blend modes, stroke and shadow — export PNG/JPEG/WebP. |
+| **Collage Maker** | `/tools/collage-maker` | Combine photos into grid, masonry or polaroid collages with customizable spacing, corners, backgrounds and shadows. |
+| **Image Editor** | `/tools/image-editor` | Edit photos with professional filters and adjustments (brightness, contrast, temperature, vignette, presets) and export PNG/JPEG/WebP. |
+| **Image Compressor** | `/tools/image-compressor` | Compress JPG, PNG, WebP and AVIF images to an exact target size or quality, batch-process image queues with no artificial count or per-file size caps, preview before/after, and download individually or as a ZIP. |
 | **Image Resizer** | `/tools/image-resizer` | Scale by pixel or percentage, lock aspect ratios, use social presets, and export to PNG/JPEG/WebP. |
 | **Image to Text (OCR)** | `/tools/image-to-text` | Extract editable text from images, scans, and screenshots locally via Tesseract.js in WebAssembly. |
 | **AVIF Converter** | `/tools/avif-converter` | Convert to and from AVIF for ultra-compact file sizes and faster web page loads. |
@@ -275,7 +284,7 @@ ToolsTrek is **browser-first**: the overwhelming majority of tools complete thei
 
 | Category | Technologies | Description |
 | :--- | :--- | :--- |
-| **Core Framework** | Next.js 16.3, React 19 | App Router, Server & Client Components, Turbopack |
+| **Core Framework** | Next.js 16.4, React 19 | App Router, Server & Client Components, Turbopack |
 | **Styling & Design** | Tailwind CSS 4.3, `@tailwindcss/postcss`, `tw-animate-css` | Next-gen CSS engine, responsive utilities, dark mode |
 | **UI Components** | Radix UI, shadcn/ui, `cmdk`, Headless UI, Heroicons, Lucide | Accessible primitives, command palette, mega-menu |
 | **Animation** | Framer Motion / `motion` 12, `embla-carousel-react` | Physics-based micro-interactions & carousels |
@@ -285,7 +294,7 @@ ToolsTrek is **browser-first**: the overwhelming majority of tools complete thei
 | **QR & Barcodes** | `qrcode`, `qrcode.react`, `@zxing/library`, `jsqr` | QR/barcode generation and camera-based decoding |
 | **OCR & Images** | `tesseract.js`, `browser-image-compression`, `piexifjs`, `react-dropzone`, `react-colorful`, `color-thief-browser`, `html2canvas` | In-browser OCR, compression, EXIF editing, color picking |
 | **Media & Audio** | `mediabunny`, `@mediabunny/mp3-encoder`, `@mediabunny/flac-encoder` | Hardware-accelerated WebCodecs transcoding (video & audio) |
-| **Code & Markdown** | `js-beautify`, `sql-formatter`, `highlight.js`, `react-markdown`, `remark-gfm`, `remark-breaks`, `rehype-highlight`, `rehype-raw` | Beautification and GitHub-flavored Markdown rendering |
+| **Code & Markdown** | `js-beautify`, `sql-formatter`, `diff`, `highlight.js`, `react-markdown`, `remark-gfm`, `remark-breaks`, `rehype-highlight`, `rehype-raw` | Beautification, text comparison, syntax highlighting and GitHub-flavored Markdown rendering |
 | **Charts** | Recharts 3, shadcn chart primitives | Responsive SVG chart previews with hover tooltips, themed legends and PNG/SVG export |
 | **Archive & Utilities** | `jszip`, `date-fns`, `clsx`, `tailwind-merge`, `class-variance-authority`, `clipboard-copy`, `react-country-flag` | Client-side ZIP creation, date math, class merging |
 | **Network & Security** | `whois`, Node.js `tls` | WHOIS lookups and live TLS inspection in Route Handlers |
@@ -362,8 +371,10 @@ npm run test:e2e
 
 The Playwright suite in `e2e/` builds and boots the app, then verifies the
 high-risk tool routes render with no uncaught exceptions or console errors, plus
-a few key interactions (theme persistence, global search, code-formatter
-prefill). Use `npm run test:e2e:ui` for the interactive runner.
+key interactions across theme persistence, global search, code-formatter
+prefill, image compression (including nine-image batch and 51-image queue
+regressions), percentage calculation and text diffing. Use
+`npm run test:e2e:ui` for the interactive runner.
 
 ---
 
@@ -389,7 +400,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 113 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 123 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -419,7 +430,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 113 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 123 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers

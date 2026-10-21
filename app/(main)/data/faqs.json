@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 113 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 116 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 113 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 123 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 16 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Hash generator, WHOIS/SSL/IP network tools, and metadata tools), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher, Morse, Braille, Binary), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, and Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Task Prioritizer, Todo Tool, and Typing Test), Design (Color Converter, CSS Box Shadow Generator, Gradient Generator, and the Pie, Bar, Line, Radar, Funnel & Polar Chart Generators), Calculator (CGPA, Age, Days, Unit converter, RNG, Roman numerals), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters, Tip), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image resizer, GIF maker, AVIF, OCR, Favicon, SVG converter, WebCodecs transcoder), Time & Date, Education, Security, QR Codes, Fun & Astrology, and Travel."
+      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Hash generator, Text Diff Checker, WHOIS/SSL/IP network tools, and metadata tools), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher, Morse, Braille, Binary, Text Diff Checker), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, and Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Task Prioritizer, Todo Tool, and Typing Test), Design (Color Converter, CSS Box Shadow Generator, Gradient Generator, and the Pie, Bar, Line, Radar, Funnel & Polar Chart Generators), Calculator (Percentage calculator, CGPA, Age, Days, Unit converter, RNG, Roman numerals), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters, Tip), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image compressor, Image resizer, GIF maker, AVIF, OCR, Favicon, SVG converter, WebCodecs transcoder), Time & Date, Education, Security, QR Codes, Fun & Astrology, and Travel."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -23,6 +23,22 @@
     {
       "question": "Can I use ToolsTrek offline?",
       "answer": "Many of our client-side tools (including Countdown Timer & Days Until Calculator, Pomodoro Timer, Dynamic Time Greeting Generator, Custom Calendar Generator, Online Notepad, text converters, calculators, PDF tools, image resizers, Daily Planner, RNG Studio, and ciphers) function completely in your browser without requiring an active internet connection once the page has loaded."
+    },
+    {
+      "question": "What is the Barcode Generator?",
+      "answer": "The Barcode Generator creates print‑ready barcodes in nine formats (Code 128, EAN‑13, EAN‑8, UPC‑A, Code 39, ITF‑14, MSI and Codabar). It can auto‑repair GS1 check digits, audit quiet‑zone and contrast, verify with a real ZXing scan, and export PNG, SVG, JPEG or PDF labels individually or as a batch CSV/ZIP sheet — all within the browser."
+    },
+    {
+      "question": "How does the Background Remover work?",
+      "answer": "Background Remover offers two modes: AI portrait (MODNet model running locally via Transformers.js) for people and pets, and Colour‑studio (colour‑key) for product screenshots and flat backgrounds. After removal you can add transparent, solid, gradient, blurred or custom backdrops, adjust edge feather, contrast, despill, shadows, padding and aspect‑ratio, then export PNG, WebP or JPEG — never uploading your image."
+    },
+    {
+      "question": "How does the PDF Unlocker remove passwords?",
+      "answer": "PDF Unlocker first audits the file’s encryption (AES‑256, AES‑128 or RC4) and permission matrix. If you know the password, it uses a lossless qpdf 12.2.0 WebAssembly engine to strip the password while keeping text selectable and vector graphics intact. If the lossless engine cannot start (e.g. the browser lacks cross‑origin isolation), it falls back to a raster page‑rebuild that renders each page as an image, removing the password but making the output image‑based."
+    },
+    {
+      "question": "How does the Audio Converter work?",
+      "answer": "The Audio Converter processes audio entirely in your browser using the Web Audio API and lamejs for MP3 encoding. You upload a file, choose output format (MP3, WAV), adjust bitrate, sample rate and channels, trim silence, normalize volume and add fade in/out effects. The converted file is downloaded instantly — no upload, no server, 100% private."
     }
   ],
   "privacyAndSecurity": [
@@ -103,6 +119,10 @@
       "answer": "The JWT Decoder decodes header and payload JSON objects client-side, color-codes claims (iss, exp, iat, sub), verifies signature authenticity using custom HMAC secrets or RSA/ECDSA public keys, and checks token expiration status — completely offline without sending tokens to any server."
     },
     {
+      "question": "How does the Text Diff Checker compare two texts?",
+      "answer": "The Text Diff Checker uses the jsdiff engine to compare text by line, word or character. Line mode provides unified and side-by-side split views with original and modified line numbers; word and character modes highlight inline additions and deletions. You can ignore case or whitespace, swap the two panes, see added/removed/unchanged counts and a similarity percentage, and copy or download a standard unified .diff patch. Each side is capped at 250,000 characters with deferred rendering and row/segment caps so large comparisons stay responsive, and no text is uploaded."
+    },
+    {
       "question": "What does the Responsive Viewport Tester do?",
       "answer": "The Responsive Viewport Tester lets you preview how any web application or URL renders across customizable device viewports (iPhone, iPad, MacBook, 4K desktop, Android). It supports orientation rotation, custom zoom levels, device bezel frames, and side-by-side multi-device comparisons."
     },
@@ -158,7 +178,7 @@
   "imageAndMedia": [
     {
       "question": "What image and design tools does ToolsTrek provide?",
-      "answer": "Our image and design suite includes: Image Resizer, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Polar Chart Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
+      "answer": "Our image and design suite includes: Image Compressor, Image Resizer, Image Watermark, Collage Maker, Image Editor, Animated GIF Maker, AVIF Converter, Image to Text (OCR), Color Palette Extractor, Color Converter (HEX/RGB/HSL/HSV/CMYK), CSS Box Shadow Generator, Gradient Generator, Pie Chart Generator, Bar Chart Generator, Line Chart Generator, Radar Chart Generator, Polar Chart Generator, Favicon Generator, SVG Converter, and SVG Editor & Visualizer."
     },
     {
       "question": "How does the Animated GIF Maker work?",
@@ -167,6 +187,14 @@
     {
       "question": "What features does the Image Resizer include?",
       "answer": "The Image Resizer lets you scale images by exact pixel dimensions or percentage ratios with aspect lock, crop or pad canvas margins, choose from social media presets (Instagram, YouTube, Twitter, Facebook, LinkedIn), and export in PNG, JPEG, or WebP formats with quality controls."
+    },
+    {
+      "question": "How does the Image Compressor reduce file sizes without uploading images?",
+      "answer": "The Image Compressor uses browser-image-compression and the Canvas API to decode and re-encode images locally. You can target an exact file size in KB or MB, set a quality percentage for JPG/WebP output, cap the maximum width or height, and optionally convert to JPEG, WebP or PNG. It accepts JPG, PNG, WebP and AVIF files, places no artificial cap on the number of images or individual file size, processes batches with per-file progress, shows before/after previews and total space saved, strips EXIF/GPS metadata during re-encoding, and lets you download each result or all results as a ZIP — the only practical limit is your browser's available memory, and no image ever leaves your device."
+    },
+    {
+      "question": "Is there a limit on how many images I can compress at once?",
+      "answer": "No artificial limit. You can add as many images as your browser and device can handle — there is no fixed batch count and no per-file size rejection. Because compression runs entirely in your browser, very large queues are ultimately constrained by available memory and processing power rather than an arbitrary ToolsTrek quota; large batches use memory-aware concurrency to limit pressure on the browser. If one file cannot be decoded, only that file shows an error and the rest of the queue continues."
     },
     {
       "question": "How does the Image to Text (OCR) tool extract text?",
@@ -238,7 +266,7 @@
   "textAndLanguage": [
     {
       "question": "What text and language tools are available on ToolsTrek?",
-      "answer": "ToolsTrek includes 13 text utilities: Bijoy ⇄ Unicode Converter, NATO Phonetic Alphabet Converter, Text Analyzer Hub, Morse Code Decoder, Braille Decoder & Encoder, Binary Decoder, Base64 Nexus, TrekGlyph Cipher, Fancy Text Generator, Case Converter, Text Repeater, Remove Duplicate Lines, and Paragraph Formatter."
+      "answer": "ToolsTrek includes 14 text utilities: Bijoy ⇄ Unicode Converter, NATO Phonetic Alphabet Converter, Text Analyzer Hub, Text Diff Checker, Morse Code Decoder, Braille Decoder & Encoder, Binary Decoder, Base64 Nexus, TrekGlyph Cipher, Fancy Text Generator, Case Converter, Text Repeater, Remove Duplicate Lines, and Paragraph Formatter."
     },
     {
       "question": "What is the Bijoy ⇄ Unicode Bengali Converter?",
@@ -286,7 +314,11 @@
   "productivityAndEducation": [
     {
       "question": "What productivity and academic tools are offered on ToolsTrek?",
-      "answer": "ToolsTrek includes: Task Prioritizer & Eisenhower Matrix Studio (multi-framework 2×2 decision matrix, Action Priority ROI, Kanban board, and health diagnostics), Countdown Timer & Days Until Calculator (live millisecond-accurate countdown, working/business days calculator, holiday presets, audio alerts, and .ics calendar exports), Pomodoro Timer & Deep Work Studio (customizable intervals, synthesized ambient audio like brown noise, rain, and 40Hz gamma tone, integrated sprint task estimation, streak tracking, and Zen fullscreen mode), Dynamic Time Greeting Generator (timezone-aware greetings with tone presets and code generation), Custom Calendar Generator & Print Studio (multi-view annual calendars with holiday datasets and print exports), Online Notepad & Scratchpad Studio (with multi-tab notes, live Markdown preview, voice typing, TTS, and PDF/HTML/TXT export), Daily Planner & Time-Blocking Studio, Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, NU CGPA Calculator, and University CGPA Calculator."
+      "answer": "ToolsTrek includes: Task Prioritizer & Eisenhower Matrix Studio (multi-framework 2×2 decision matrix, Action Priority ROI, Kanban board, and health diagnostics), Countdown Timer & Days Until Calculator (live millisecond-accurate countdown, working/business days calculator, holiday presets, audio alerts, and .ics calendar exports), Pomodoro Timer & Deep Work Studio (customizable intervals, synthesized ambient audio like brown noise, rain, and 40Hz gamma tone, integrated sprint task estimation, streak tracking, and Zen fullscreen mode), Dynamic Time Greeting Generator (timezone-aware greetings with tone presets and code generation), Custom Calendar Generator & Print Studio (multi-view annual calendars with holiday datasets and print exports), Online Notepad & Scratchpad Studio (with multi-tab notes, live Markdown preview, voice typing, TTS, and PDF/HTML/TXT export), Daily Planner & Time-Blocking Studio, Todo Tool (task manager with subtasks and priority views), Class Schedule Maker, Email Signature Editor, Packing List Generator, Timezone Clock & World Planner, Time Unit Converter, Typing Speed Test, Fake Info Generator, Link Shortener, Numbers to Words, Roman Numeral Converter, Percentage Calculator, NU CGPA Calculator, and University CGPA Calculator."
+    },
+    {
+      "question": "What can the Percentage Calculator calculate?",
+      "answer": "The Percentage Calculator has five modes: (1) X% of Y, (2) what percent X is of Y, (3) percentage increase or decrease from an original to a new value, (4) add or subtract a percentage from a base value, and (5) reverse percentage — find the whole when you know a part and its percentage. Every result updates instantly, includes the substituted formula and step-by-step arithmetic, accepts formatted numbers such as 1,250 or $200, and can be copied with one click. Division by zero, a zero starting value and malformed inputs produce clear, specific messages instead of failing silently."
     },
     {
       "question": "How does the Task Prioritizer & Eisenhower Matrix Studio work?",
@@ -751,6 +783,24 @@
     {
       "question": "Can I share or export my pet's report, and is the data private?",
       "answer": "Yes. Copy a text summary, copy a share link that restores every setting, download a branded PNG report card, or export the full report as CSV or JSON — all generated in your browser. Names, birthdays and preferences are saved only in your own browser's localStorage and in links you create yourself; nothing is uploaded, logged or tracked."
+    }
+  ],
+  "imageWatermark": [
+    {
+      "question": "How does the Image Watermark tool work?",
+      "answer": "The Image Watermark tool adds text or logo watermarks to images entirely in your browser. You can customise font, size, color, opacity, position, rotation, tiling, blend modes, stroke and shadow, then export as PNG, JPEG or WebP. Images never leave your device."
+    }
+  ],
+  "collageMaker": [
+    {
+      "question": "How does the Collage Maker work?",
+      "answer": "The Collage Maker combines multiple images into grid, masonry or polaroid layouts. You can adjust columns, spacing, corner radius, image fit, background (solid or gradient) and shadows, drag to reorder images, then download the result as a PNG all client-side."
+    }
+  ],
+  "imageEditor": [
+    {
+      "question": "How does the Image Editor work?",
+      "answer": "The Image Editor applies professional filters and adjustments - brightness, contrast, saturation, hue, sepia, grayscale, invert, blur, temperature, tint, exposure, gamma, vignette and noise - plus rotate and flip transforms. Export as PNG, JPEG or WebP. Everything runs in your browser."
     }
   ]
 }

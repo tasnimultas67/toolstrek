@@ -1,5 +1,83 @@
 [
   {
+    "title": "Barcode Generator",
+    "link": "/tools/barcode-generator",
+    "description": "Generate print-ready EAN-13, EAN-8, UPC-A, Code 128, Code 39, ITF-14, MSI and Codabar barcodes in your browser. Repair GS1 check digits, audit quiet zones, bar width and contrast, verify with a real ZXing scan, and export PNG, SVG, JPEG, PDF labels or batch CSV label sheets.",
+    "icon": "Barcode",
+    "keywords": [
+      "barcode generator",
+      "free barcode generator",
+      "ean 13 generator",
+      "ean 8 barcode",
+      "upc barcode generator",
+      "code 128 generator",
+      "code 39 barcode",
+      "itf 14 barcode",
+      "barcode label maker",
+      "bulk barcode generator",
+      "barcode csv to labels",
+      "barcode pdf labels",
+      "print barcode labels",
+      "barcode check digit",
+      "retail barcode generator"
+    ],
+    "categories": [
+      "Developer",
+      "Design"
+    ]
+  },
+  {
+    "title": "Background Remover",
+    "link": "/tools/background-remover",
+    "description": "Remove image backgrounds locally with an AI portrait model or a precise colour key for products and screenshots. Refine alpha edges, despill colour fringes, add transparent, solid, gradient, blurred or custom backdrops, adjust padding, shadows and aspect ratio, and export PNG, WebP or JPEG.",
+    "icon": "Eraser",
+    "keywords": [
+      "background remover",
+      "remove background",
+      "remove image background",
+      "transparent background maker",
+      "cutout image",
+      "ai background remover",
+      "product background remover",
+      "portrait cutout",
+      "change photo background",
+      "transparent png maker",
+      "background eraser",
+      "remove white background",
+      "image cutout tool",
+      "free background remover"
+    ],
+    "categories": [
+      "Media",
+      "Design"
+    ]
+  },
+  {
+    "title": "PDF Unlocker",
+    "link": "/tools/pdf-unlocker",
+    "description": "Audit PDF encryption, page counts and print/copy/edit restrictions, then remove passwords and permission flags locally with a lossless qpdf engine. Optionally linearize, scrub metadata or flatten annotations, and fall back to a raster page rebuild for maximum compatibility.",
+    "icon": "Unlock",
+    "keywords": [
+      "pdf unlocker",
+      "unlock pdf",
+      "remove pdf password",
+      "pdf password remover",
+      "decrypt pdf",
+      "pdf restrictions remover",
+      "remove pdf restrictions",
+      "pdf security audit",
+      "aes 256 pdf",
+      "unlock protected pdf",
+      "pdf permission remover",
+      "pdf unlocker online",
+      "free pdf unlocker"
+    ],
+    "categories": [
+      "PDF",
+      "Security"
+    ]
+  },
+  {
     "title": "Task Prioritizer",
     "link": "/tools/task-prioritizer",
     "description": "Professional Eisenhower Decision Matrix and multi-framework task prioritizer. Sort tasks by urgency and importance (Do First, Schedule, Delegate, Eliminate), evaluate Action Priority ROI, view Kanban boards, track deadlines, and export to CSV, JSON, PNG, or Markdown.",
@@ -2415,6 +2493,163 @@
     "categories": [
       "Fun",
       "Calculator"
+    ]
+  },
+  {
+    "title": "Image Compressor",
+    "link": "/tools/image-compressor",
+    "description": "Compress JPG, PNG, WebP and AVIF images directly in your browser. Target an exact file size, tune quality and dimensions, batch-compress large photo queues with no artificial count or file-size caps and per-file progress, compare before and after previews, and download individually or as a ZIP — with automatic EXIF/GPS metadata removal.",
+    "icon": "ImageDown",
+    "keywords": [
+      "image compressor",
+      "compress image",
+      "compress image online",
+      "compress jpg",
+      "compress png",
+      "compress webp",
+      "reduce image size",
+      "image size reducer",
+      "compress image to 100kb",
+      "compress image to 200kb",
+      "bulk image compressor",
+      "batch image compressor",
+      "photo compressor",
+      "optimize images",
+      "image optimizer",
+      "free image compressor"
+    ],
+    "categories": [
+      "Media",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Percentage Calculator",
+    "link": "/tools/percentage-calculator",
+    "description": "A five-in-one percentage calculator for X% of Y, what percent X is of Y, percentage increase or decrease, adding or subtracting a percentage, and reverse percentages. Every result includes the substituted formula, step-by-step working and one-click copy.",
+    "icon": "Percent",
+    "keywords": [
+      "percentage calculator",
+      "percent calculator",
+      "what is x percent of y",
+      "x is what percent of y",
+      "percentage increase calculator",
+      "percentage decrease calculator",
+      "percent change calculator",
+      "add percentage calculator",
+      "subtract percentage calculator",
+      "reverse percentage calculator",
+      "percentage of a number",
+      "percent difference calculator",
+      "discount percentage calculator",
+      "free percentage calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Education"
+    ]
+  },
+  {
+    "title": "Text Diff Checker",
+    "link": "/tools/text-diff",
+    "description": "Compare two texts and highlight every added, removed and unchanged line, word or character. Switch between unified and split views, ignore case and whitespace, see similarity statistics, and copy or download a standard .diff patch — all in your browser.",
+    "icon": "FileDiff",
+    "keywords": [
+      "text diff",
+      "diff checker",
+      "compare text",
+      "text compare",
+      "difference checker",
+      "text comparison tool",
+      "compare two texts",
+      "find differences between texts",
+      "code diff",
+      "file diff",
+      "line diff",
+      "word diff",
+      "character diff",
+      "unified diff",
+      "side by side diff",
+      "online diff checker",
+      "text diff checker"
+    ],
+    "categories": [
+      "Developer",
+      "Text"
+    ]
+  },
+  {
+    "title": "Audio Converter",
+    "link": "/tools/audio-converter",
+    "description": "Convert audio files between MP3, WAV and OGG formats with bitrate, sample rate and channel settings. Trim, normalize and add fade in/out — all in your browser.",
+    "icon": "Music",
+    "keywords": [
+      "audio converter",
+      "convert mp3",
+      "convert wav",
+      "convert ogg",
+      "audio format converter",
+      "trim audio",
+      "normalize audio",
+      "audio fade in out",
+      "reduce audio size"
+    ],
+    "categories": [
+      "Media"
+    ]
+  },
+  {
+    "title": "Image Watermark",
+    "link": "/tools/image-watermark",
+    "description": "Add custom text or logo watermarks to images instantly. 100% client-side processing with opacity, font size, color, and position customization. No uploads, complete privacy.",
+    "icon": "Text",
+    "keywords": [
+      "image watermark",
+      "add watermark to photo",
+      "photo watermarker",
+      "custom watermark",
+      "image overlay",
+      "protect images",
+      "watermark generator"
+    ],
+    "categories": [
+      "Media"
+    ]
+  },
+  {
+    "title": "Collage Maker",
+    "link": "/tools/collage-maker",
+    "description": "Combine multiple images into beautiful collages with customizable grids, spacing, and backgrounds. Select photos, choose layout, and download as PNG — all client-side.",
+    "icon": "LayoutGrid",
+    "keywords": [
+      "collage maker",
+      "photo collage",
+      "combine images",
+      "image grid",
+      "photo grid maker",
+      "create collage",
+      "merge photos"
+    ],
+    "categories": [
+      "Media"
+    ]
+  },
+  {
+    "title": "Image Editor",
+    "link": "/tools/image-editor",
+    "description": "Apply professional photo filters including grayscale, sepia, invert, brightness, contrast, saturation, and blur. 100% client-side processing with intensity controls. No uploads required.",
+    "icon": "Adjustments",
+    "keywords": [
+      "image editor",
+      "photo filter",
+      "apply filter to photo",
+      "image effects",
+      "photo editing",
+      "image enhancer",
+      "filter photo online"
+    ],
+    "categories": [
+      "Media"
     ]
   }
 ]

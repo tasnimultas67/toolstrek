@@ -15,6 +15,34 @@ const nextConfig = {
   // Turbopack configuration
   turbopack: {},
 
+  // qpdf-wasm uses SharedArrayBuffer-backed WebAssembly memory. The unlocker
+  // route must be cross-origin isolated so its pthread workers can receive
+  // those buffers. Keep the isolation scoped to this one tool and its assets.
+  async headers() {
+    return [
+      {
+        source: "/tools/pdf-unlocker",
+        headers: [
+          { key: "Cross-Origin-Opener-Policy", value: "same-origin" },
+          { key: "Cross-Origin-Embedder-Policy", value: "require-corp" },
+        ],
+      },
+      {
+        source: "/qpdf/:path*",
+        headers: [
+          { key: "Cross-Origin-Resource-Policy", value: "same-origin" },
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        source: "/transformers/:path*",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+    ];
+  },
+
   // ⚠️ Do NOT add `outputFileTracingExcludes` for node_modules here.
   // The Route Handlers under `app/(main)/api/*` rely on Next.js tracing their
   // runtime dependencies into each function bundle. Excluding node_modules

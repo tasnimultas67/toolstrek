@@ -40,6 +40,9 @@ const formatSectionTitle = (sectionKey) => {
     visitedCountriesMap: "Visited Countries Map",
     ageOnOtherPlanets: "Age on Other Planets (Space Calculator)",
     dogCatAgeCalculator: "Dog & Cat Age Calculator",
+    imageWatermark: "Image Watermark",
+    collageMaker: "Collage Maker",
+    imageEditor: "Image Editor & Filters",
   };
 
   return (
