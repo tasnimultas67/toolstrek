@@ -57,7 +57,10 @@ import {
 } from "./flightDurationData";
 
 const FIELD_BASE =
-  "w-full rounded-xl border bg-slate-50 px-3 py-2.5 text-sm text-slate-900 outline-none transition focus:ring-2 focus:ring-sky-500/30 dark:bg-slate-800/60 dark:text-white [color-scheme:light] dark:[color-scheme:dark]";
+  "w-full rounded-xl border bg-slate-50 px-3 py-2.5 text-slate-900 outline-none transition focus:ring-2 focus:ring-sky-500/30 dark:bg-slate-800/60 dark:text-white [color-scheme:light] dark:[color-scheme:dark]";
+
+const FIELD_TEXT = "text-[15px] lg:text-base";
+const COMPACT_FIELD_TEXT = "text-sm lg:text-[15px]";
 
 const MODE_ICONS = {
   [MODES.DURATION]: Timer,
@@ -71,8 +74,8 @@ const TIP_ICONS = {
   Luggage,
 };
 
-function fieldClass(hasError) {
-  return `${FIELD_BASE} ${
+function fieldClass(hasError, compact = false) {
+  return `${FIELD_BASE} ${compact ? COMPACT_FIELD_TEXT : FIELD_TEXT} ${
     hasError
       ? "border-rose-400 ring-1 ring-rose-300 dark:border-rose-700 dark:ring-rose-900/60"
       : "border-slate-200 dark:border-slate-700"
@@ -195,7 +198,7 @@ function buildSummaryText({ result, mode, settings, tripName }) {
 function SegmentedControl({ label, value, options, onChange }) {
   return (
     <div>
-      <span className="mb-1.5 block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+      <span className="mb-1.5 block text-[11px] lg:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
         {label}
       </span>
       <div className="grid grid-cols-2 gap-1 rounded-xl bg-slate-100 p-1 dark:bg-slate-800">
@@ -205,7 +208,7 @@ function SegmentedControl({ label, value, options, onChange }) {
             type="button"
             onClick={() => onChange(option.value)}
             aria-pressed={value === option.value}
-            className={`rounded-lg px-2 py-1.5 text-[11px] font-bold transition ${
+            className={`rounded-lg px-2 py-1.5 text-xs lg:text-[13px] font-bold transition ${
               value === option.value
                 ? "bg-white text-sky-700 shadow-sm dark:bg-slate-700 dark:text-sky-300"
                 : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
@@ -223,8 +226,8 @@ function RangeSetting({ label, value, min, max, step, suffix, onChange, hint }) 
   return (
     <div>
       <div className="flex items-center justify-between gap-3">
-        <span className="text-[11px] font-bold text-slate-700 dark:text-slate-200">{label}</span>
-        <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[10px] font-extrabold text-sky-700 dark:bg-sky-950/50 dark:text-sky-300">
+        <span className="text-xs lg:text-[13px] font-bold text-slate-700 dark:text-slate-200">{label}</span>
+        <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[11px] lg:text-xs font-extrabold text-sky-700 dark:bg-sky-950/50 dark:text-sky-300">
           {value} {suffix}
         </span>
       </div>
@@ -239,7 +242,7 @@ function RangeSetting({ label, value, min, max, step, suffix, onChange, hint }) 
         className="mt-2 w-full accent-sky-600"
       />
       {hint && (
-        <p className="mt-1 text-[10px] leading-snug text-slate-500 dark:text-slate-400">{hint}</p>
+        <p className="mt-1 text-[11px] lg:text-xs leading-snug text-slate-500 dark:text-slate-400">{hint}</p>
       )}
     </div>
   );
@@ -249,8 +252,8 @@ function ToggleSetting({ label, description, checked, onChange }) {
   return (
     <div className="flex items-start justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/70 p-3 dark:border-slate-800 dark:bg-slate-800/40">
       <div>
-        <div className="text-[11px] font-bold text-slate-800 dark:text-slate-100">{label}</div>
-        <p className="mt-0.5 text-[10px] leading-snug text-slate-500 dark:text-slate-400">
+        <div className="text-xs lg:text-[13px] font-bold text-slate-800 dark:text-slate-100">{label}</div>
+        <p className="mt-0.5 text-[11px] lg:text-xs leading-snug text-slate-500 dark:text-slate-400">
           {description}
         </p>
       </div>
@@ -472,14 +475,14 @@ export default function FlightDurationCalculator() {
           <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-teal-300/20 blur-2xl" />
           <div className="pointer-events-none absolute right-10 top-10 hidden h-24 w-40 rounded-full border border-dashed border-white/20 sm:block" />
           <div className="relative">
-            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[10px] font-extrabold uppercase tracking-[0.16em] text-sky-50 backdrop-blur-sm">
+            <span className="inline-flex items-center gap-1.5 rounded-full border border-white/20 bg-white/10 px-3 py-1 text-[11px] lg:text-xs font-extrabold uppercase tracking-[0.16em] text-sky-50 backdrop-blur-sm">
               <Plane className="h-3.5 w-3.5 -rotate-45" aria-hidden="true" />
               Travel timing studio
             </span>
             <h1 className="mt-4 max-w-3xl text-3xl font-black tracking-tight sm:text-4xl lg:text-5xl">
               Flight Duration Calculator
             </h1>
-            <p className="mt-3 max-w-2xl text-sm leading-relaxed text-sky-50/90 sm:text-base">
+            <p className="mt-3 max-w-2xl text-[15px] lg:text-base leading-relaxed text-sky-50/90 sm:text-base">
               Work out exactly how long you&apos;ll be in the air, when you&apos;ll land in local
               time, and how much of your trip is spent flying, waiting and clearing the airport.
               Time zones, daylight saving and connections are handled for you.
@@ -494,7 +497,7 @@ export default function FlightDurationCalculator() {
               ].map((item) => (
                 <span
                   key={item}
-                  className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[10px] font-bold text-sky-50 backdrop-blur-sm"
+                  className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[11px] lg:text-xs font-bold text-sky-50 backdrop-blur-sm"
                 >
                   <CheckCircle2 className="h-3 w-3 text-teal-200" aria-hidden="true" />
                   {item}
@@ -513,10 +516,10 @@ export default function FlightDurationCalculator() {
                   <SlidersHorizontal className="h-4 w-4" aria-hidden="true" />
                 </span>
                 <div>
-                  <h2 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                  <h2 className="text-[15px] lg:text-base font-extrabold text-slate-900 dark:text-white">
                     Plan your journey
                   </h2>
-                  <p className="text-[10px] text-slate-500 dark:text-slate-400">
+                  <p className="text-[11px] lg:text-xs text-slate-500 dark:text-slate-400">
                     Results update live as you type.
                   </p>
                 </div>
@@ -532,7 +535,7 @@ export default function FlightDurationCalculator() {
                       type="button"
                       onClick={() => handleModeChange(key)}
                       aria-pressed={active}
-                      className={`flex flex-col items-center gap-1 rounded-xl px-2 py-2.5 text-[10px] font-extrabold transition sm:flex-row sm:justify-center sm:gap-1.5 sm:text-[11px] ${
+                      className={`flex flex-col items-center gap-1 rounded-xl px-2 py-2.5 text-[11px] lg:text-xs font-extrabold transition sm:flex-row sm:justify-center sm:gap-1.5 sm:text-[11px] ${
                         active
                           ? "bg-white text-sky-700 shadow-sm dark:bg-slate-700 dark:text-sky-300"
                           : "text-slate-500 hover:text-slate-800 dark:text-slate-400 dark:hover:text-slate-200"
@@ -545,14 +548,14 @@ export default function FlightDurationCalculator() {
                 })}
               </div>
 
-              <p className="mt-2.5 text-[11px] leading-relaxed text-slate-500 dark:text-slate-400">
+              <p className="mt-2.5 text-xs lg:text-[13px] leading-relaxed text-slate-500 dark:text-slate-400">
                 {MODE_META[mode].description}
               </p>
 
               <div className="mt-4">
                 <label
                   htmlFor="flight-trip-name"
-                  className="mb-1.5 block text-[11px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                  className="mb-1.5 block text-xs lg:text-[13px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                 >
                   Trip name <span className="font-medium normal-case tracking-normal">(optional)</span>
                 </label>
@@ -597,12 +600,12 @@ export default function FlightDurationCalculator() {
                     >
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
-                          <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-100 px-2.5 py-1 text-[10px] font-extrabold uppercase tracking-wider text-sky-700 dark:bg-sky-950/60 dark:text-sky-300">
+                          <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-100 px-2.5 py-1 text-[11px] lg:text-xs font-extrabold uppercase tracking-wider text-sky-700 dark:bg-sky-950/60 dark:text-sky-300">
                             <Plane className="h-3 w-3 -rotate-45" aria-hidden="true" />
                             Flight {index + 1}
                           </span>
                           {mode === MODES.DURATION && segments.length > 1 && (
-                            <span className="text-[10px] font-semibold text-slate-400 dark:text-slate-500">
+                            <span className="text-[11px] lg:text-xs font-semibold text-slate-400 dark:text-slate-500">
                               {index === 0 ? "Origin" : index === segments.length - 1 ? "Final leg" : "Connection"}
                             </span>
                           )}
@@ -644,7 +647,7 @@ export default function FlightDurationCalculator() {
                         <div>
                           <label
                             htmlFor={`${segment.id}-airline`}
-                            className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                            className="mb-1 block text-[11px] lg:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                           >
                             Airline (optional)
                           </label>
@@ -663,7 +666,7 @@ export default function FlightDurationCalculator() {
                         <div>
                           <label
                             htmlFor={`${segment.id}-flight-number`}
-                            className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                            className="mb-1 block text-[11px] lg:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                           >
                             Flight number (optional)
                           </label>
@@ -716,15 +719,15 @@ export default function FlightDurationCalculator() {
                         />
                       </div>
 
-                      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                      <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
                         {!isArrivalMode && (
                           <div>
                             <div className="mb-1 flex items-center justify-between gap-2">
-                              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                              <span className="text-[11px] lg:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                                 Departure
                               </span>
                               {!isDepartureMode && (
-                                <span className="text-[10px] text-slate-400 dark:text-slate-500">
+                                <span className="text-[11px] lg:text-xs text-slate-400 dark:text-slate-500">
                                   Local time at origin
                                 </span>
                               )}
@@ -742,7 +745,7 @@ export default function FlightDurationCalculator() {
                                     updateSegment(segment.id, { depDate: event.target.value })
                                   }
                                   aria-label={`Flight ${index + 1} departure date`}
-                                  className={fieldClass(fieldHasError(segment.id, "depDate"))}
+                                  className={fieldClass(fieldHasError(segment.id, "depDate"), true)}
                                 />
                               </div>
                               <div>
@@ -757,7 +760,7 @@ export default function FlightDurationCalculator() {
                                     updateSegment(segment.id, { depTime: event.target.value })
                                   }
                                   aria-label={`Flight ${index + 1} departure time`}
-                                  className={fieldClass(fieldHasError(segment.id, "depDate"))}
+                                  className={fieldClass(fieldHasError(segment.id, "depDate"), true)}
                                 />
                               </div>
                             </div>
@@ -767,7 +770,7 @@ export default function FlightDurationCalculator() {
                         {!isDepartureMode && (
                           <div>
                             <div className="mb-1 flex items-center justify-between gap-2">
-                              <span className="text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+                              <span className="text-[11px] lg:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400">
                                 Arrival
                               </span>
                               {!isArrivalMode && !isDepartureMode && (
@@ -779,7 +782,7 @@ export default function FlightDurationCalculator() {
                                         arrDate: addDaysToDateValue(segment.depDate, 0),
                                       })
                                     }
-                                    className="rounded-md px-1.5 py-0.5 text-[9px] font-bold text-slate-400 transition hover:bg-white hover:text-sky-600 dark:hover:bg-slate-800 dark:hover:text-sky-300"
+                                    className="rounded-md px-1.5 py-0.5 text-[10px] lg:text-[11px] font-bold text-slate-400 transition hover:bg-white hover:text-sky-600 dark:hover:bg-slate-800 dark:hover:text-sky-300"
                                   >
                                     Same day
                                   </button>
@@ -790,7 +793,7 @@ export default function FlightDurationCalculator() {
                                         arrDate: addDaysToDateValue(segment.depDate, 1),
                                       })
                                     }
-                                    className="rounded-md px-1.5 py-0.5 text-[9px] font-bold text-slate-400 transition hover:bg-white hover:text-sky-600 dark:hover:bg-slate-800 dark:hover:text-sky-300"
+                                    className="rounded-md px-1.5 py-0.5 text-[10px] lg:text-[11px] font-bold text-slate-400 transition hover:bg-white hover:text-sky-600 dark:hover:bg-slate-800 dark:hover:text-sky-300"
                                   >
                                     +1 day
                                   </button>
@@ -810,7 +813,7 @@ export default function FlightDurationCalculator() {
                                     updateSegment(segment.id, { arrDate: event.target.value })
                                   }
                                   aria-label={`Flight ${index + 1} arrival date`}
-                                  className={fieldClass(fieldHasError(segment.id, "arrDate"))}
+                                  className={fieldClass(fieldHasError(segment.id, "arrDate"), true)}
                                 />
                               </div>
                               <div>
@@ -825,7 +828,7 @@ export default function FlightDurationCalculator() {
                                     updateSegment(segment.id, { arrTime: event.target.value })
                                   }
                                   aria-label={`Flight ${index + 1} arrival time`}
-                                  className={fieldClass(fieldHasError(segment.id, "arrDate"))}
+                                  className={fieldClass(fieldHasError(segment.id, "arrDate"), true)}
                                 />
                               </div>
                             </div>
@@ -834,13 +837,13 @@ export default function FlightDurationCalculator() {
                       </div>
 
                       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
-                        <p className="flex items-center gap-1.5 text-[10px] text-slate-500 dark:text-slate-400">
+                        <p className="flex items-center gap-1.5 text-[11px] lg:text-xs text-slate-500 dark:text-slate-400">
                           <Globe2 className="h-3 w-3 text-sky-500" aria-hidden="true" />
                           {depAirport ? depAirport.timezone : "Choose origin"} →{" "}
                           {arrAirport ? arrAirport.timezone : "choose destination"}
                         </p>
                         {previewLeg && (
-                          <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[10px] font-extrabold text-sky-700 shadow-sm dark:bg-slate-900 dark:text-sky-300">
+                          <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[11px] lg:text-xs font-extrabold text-sky-700 shadow-sm dark:bg-slate-900 dark:text-sky-300">
                             <Clock3 className="h-3 w-3" aria-hidden="true" />
                             {formatDuration(previewLeg.durationMinutes)}
                           </span>
@@ -856,7 +859,7 @@ export default function FlightDurationCalculator() {
                   type="button"
                   onClick={handleAddConnection}
                   disabled={segments.length >= MAX_SEGMENTS}
-                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-sky-300 bg-sky-50/50 px-4 py-3 text-xs font-extrabold text-sky-700 transition hover:border-sky-400 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-sky-800 dark:bg-sky-950/20 dark:text-sky-300 dark:hover:border-sky-700 dark:hover:bg-sky-950/40"
+                  className="mt-3 flex w-full items-center justify-center gap-2 rounded-2xl border border-dashed border-sky-300 bg-sky-50/50 px-4 py-3 text-[13px] lg:text-sm font-extrabold text-sky-700 transition hover:border-sky-400 hover:bg-sky-50 disabled:cursor-not-allowed disabled:opacity-50 dark:border-sky-800 dark:bg-sky-950/20 dark:text-sky-300 dark:hover:border-sky-700 dark:hover:bg-sky-950/40"
                 >
                   <Plus className="h-4 w-4" aria-hidden="true" />
                   {segments.length >= MAX_SEGMENTS
@@ -869,15 +872,15 @@ export default function FlightDurationCalculator() {
                 <div className="mt-4 rounded-2xl border border-sky-100 bg-sky-50/60 p-4 dark:border-sky-900/60 dark:bg-sky-950/20">
                   <div className="flex flex-wrap items-center justify-between gap-2">
                     <div>
-                      <div className="flex items-center gap-1.5 text-[10px] font-extrabold uppercase tracking-wider text-sky-700 dark:text-sky-300">
+                      <div className="flex items-center gap-1.5 text-[11px] lg:text-xs font-extrabold uppercase tracking-wider text-sky-700 dark:text-sky-300">
                         <Timer className="h-3.5 w-3.5" aria-hidden="true" />
                         Flight duration
                       </div>
-                      <p className="mt-0.5 text-[10px] text-slate-500 dark:text-slate-400">
+                      <p className="mt-0.5 text-[11px] lg:text-xs text-slate-500 dark:text-slate-400">
                         Time from take-off to landing, not including airport buffers.
                       </p>
                     </div>
-                    <span className="rounded-full bg-white px-2.5 py-1 text-[10px] font-extrabold text-sky-700 shadow-sm dark:bg-slate-900 dark:text-sky-300">
+                    <span className="rounded-full bg-white px-2.5 py-1 text-[11px] lg:text-xs font-extrabold text-sky-700 shadow-sm dark:bg-slate-900 dark:text-sky-300">
                       {formatDuration(durationMinutes)}
                     </span>
                   </div>
@@ -886,7 +889,7 @@ export default function FlightDurationCalculator() {
                     <div>
                       <label
                         htmlFor="flight-duration-hours"
-                        className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                        className="mb-1 block text-[11px] lg:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                       >
                         Hours
                       </label>
@@ -909,7 +912,7 @@ export default function FlightDurationCalculator() {
                     <div>
                       <label
                         htmlFor="flight-duration-minutes"
-                        className="mb-1 block text-[10px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
+                        className="mb-1 block text-[11px] lg:text-xs font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                       >
                         Minutes
                       </label>
@@ -942,7 +945,7 @@ export default function FlightDurationCalculator() {
                             minutes: minutes % 60,
                           })
                         }
-                        className="rounded-lg bg-white px-2.5 py-1 text-[10px] font-bold text-slate-600 shadow-sm transition hover:text-sky-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-sky-300"
+                        className="rounded-lg bg-white px-2.5 py-1 text-[11px] lg:text-xs font-bold text-slate-600 shadow-sm transition hover:text-sky-700 dark:bg-slate-900 dark:text-slate-300 dark:hover:text-sky-300"
                       >
                         {formatDuration(minutes)}
                       </button>
@@ -950,7 +953,7 @@ export default function FlightDurationCalculator() {
                   </div>
 
                   {durationHasError && (
-                    <p className="mt-2 text-[10px] font-semibold text-rose-600 dark:text-rose-300">
+                    <p className="mt-2 text-[11px] lg:text-xs font-semibold text-rose-600 dark:text-rose-300">
                       Enter a duration between 10 minutes and 72 hours.
                     </p>
                   )}
@@ -958,7 +961,7 @@ export default function FlightDurationCalculator() {
               )}
 
               {mode !== MODES.DURATION && segments.length > 1 && (
-                <p className="mt-2 flex items-start gap-1.5 text-[10px] leading-snug text-amber-700 dark:text-amber-300">
+                <p className="mt-2 flex items-start gap-1.5 text-[11px] lg:text-xs leading-snug text-amber-700 dark:text-amber-300">
                   <Info className="mt-0.5 h-3 w-3 shrink-0" aria-hidden="true" />
                   This mode uses Flight 1. Switch back to Duration to calculate all connections.
                 </p>
@@ -972,11 +975,11 @@ export default function FlightDurationCalculator() {
                   aria-expanded={showAdvanced}
                   className="flex w-full items-center justify-between gap-2 bg-slate-50/80 px-4 py-3 text-left transition hover:bg-slate-100 dark:bg-slate-800/40 dark:hover:bg-slate-800/70"
                 >
-                  <span className="flex items-center gap-2 text-xs font-extrabold text-slate-800 dark:text-slate-100">
+                  <span className="flex items-center gap-2 text-[13px] lg:text-sm font-extrabold text-slate-800 dark:text-slate-100">
                     <Settings2 className="h-4 w-4 text-sky-500" aria-hidden="true" />
                     Advanced options
                     {activeSettingCount > 0 && (
-                      <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[9px] font-extrabold text-sky-700 dark:bg-sky-950/60 dark:text-sky-300">
+                      <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] lg:text-[11px] font-extrabold text-sky-700 dark:bg-sky-950/60 dark:text-sky-300">
                         {activeSettingCount} changed
                       </span>
                     )}
@@ -1087,14 +1090,14 @@ export default function FlightDurationCalculator() {
                     </div>
 
                     <div className="flex flex-wrap items-center justify-between gap-2">
-                      <p className="text-[10px] leading-snug text-slate-500 dark:text-slate-400">
+                      <p className="text-[11px] lg:text-xs leading-snug text-slate-500 dark:text-slate-400">
                         These settings never change the underlying times — they only change how the
                         itinerary is presented and scored.
                       </p>
                       <button
                         type="button"
                         onClick={() => setSettings(DEFAULT_SETTINGS)}
-                        className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3 py-2 text-[10px] font-bold text-slate-600 transition hover:border-sky-300 hover:text-sky-700 dark:border-slate-700 dark:text-slate-300 dark:hover:border-sky-700 dark:hover:text-sky-300"
+                        className="inline-flex items-center gap-1.5 rounded-xl border border-slate-200 px-3 py-2 text-[11px] lg:text-xs font-bold text-slate-600 transition hover:border-sky-300 hover:text-sky-700 dark:border-slate-700 dark:text-slate-300 dark:hover:border-sky-700 dark:hover:text-sky-300"
                       >
                         <RotateCcw className="h-3 w-3" aria-hidden="true" />
                         Reset settings
@@ -1109,7 +1112,7 @@ export default function FlightDurationCalculator() {
                 <button
                   type="button"
                   onClick={handleReset}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-[11px] font-extrabold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-slate-200 bg-white px-3 py-2.5 text-xs lg:text-[13px] font-extrabold text-slate-700 transition hover:border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800"
                 >
                   <RotateCcw className="h-3.5 w-3.5" aria-hidden="true" />
                   Reset
@@ -1118,7 +1121,7 @@ export default function FlightDurationCalculator() {
                   type="button"
                   onClick={handleCopy}
                   disabled={!result.ok}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-200 bg-sky-50 px-3 py-2.5 text-[11px] font-extrabold text-sky-700 transition hover:border-sky-300 hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-45 dark:border-sky-900 dark:bg-sky-950/30 dark:text-sky-300 dark:hover:bg-sky-950/50"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl border border-sky-200 bg-sky-50 px-3 py-2.5 text-xs lg:text-[13px] font-extrabold text-sky-700 transition hover:border-sky-300 hover:bg-sky-100 disabled:cursor-not-allowed disabled:opacity-45 dark:border-sky-900 dark:bg-sky-950/30 dark:text-sky-300 dark:hover:bg-sky-950/50"
                 >
                   <Copy className="h-3.5 w-3.5" aria-hidden="true" />
                   Copy summary
@@ -1127,14 +1130,14 @@ export default function FlightDurationCalculator() {
                   type="button"
                   onClick={handleDownload}
                   disabled={!result.ok}
-                  className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-sky-600 px-3 py-2.5 text-[11px] font-extrabold text-white shadow-sm transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-45"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-xl bg-sky-600 px-3 py-2.5 text-xs lg:text-[13px] font-extrabold text-white shadow-sm transition hover:bg-sky-700 disabled:cursor-not-allowed disabled:opacity-45"
                 >
                   <Download className="h-3.5 w-3.5" aria-hidden="true" />
                   PDF report
                 </button>
               </div>
 
-              <p className="mt-2 flex items-center justify-center gap-1.5 text-[10px] text-emerald-600 dark:text-emerald-400">
+              <p className="mt-2 flex items-center justify-center gap-1.5 text-[11px] lg:text-xs text-emerald-600 dark:text-emerald-400">
                 <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-emerald-500" />
                 Everything runs in your browser — no itinerary data is uploaded.
               </p>
@@ -1143,11 +1146,11 @@ export default function FlightDurationCalculator() {
             <section className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-6">
               <div className="flex items-center gap-2">
                 <Sparkles className="h-4 w-4 text-sky-500" aria-hidden="true" />
-                <h2 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                <h2 className="text-[15px] lg:text-base font-extrabold text-slate-900 dark:text-white">
                   Built for real itineraries
                 </h2>
               </div>
-              <div className="mt-3 grid grid-cols-1 gap-2 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300 sm:grid-cols-3">
+              <div className="mt-3 grid grid-cols-1 gap-2 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 sm:grid-cols-3">
                 <p className="rounded-xl bg-slate-50 p-3 dark:bg-slate-800/40">
                   <strong className="block text-slate-800 dark:text-slate-100">
                     Departure & arrival
@@ -1177,18 +1180,18 @@ export default function FlightDurationCalculator() {
             <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
               <div className="flex items-center gap-2">
                 <ShieldCheck className="h-4 w-4 text-emerald-500" aria-hidden="true" />
-                <h2 className="text-sm font-extrabold text-slate-900 dark:text-white">
+                <h2 className="text-[15px] lg:text-base font-extrabold text-slate-900 dark:text-white">
                   Layover rule of thumb
                 </h2>
               </div>
-              <p className="mt-2 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="mt-2 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
                 Allow <strong className="text-slate-800 dark:text-slate-100">45 minutes</strong> for
                 a domestic connection and <strong className="text-slate-800 dark:text-slate-100">90
                 minutes</strong> for an international one. Add more time if you need to clear
                 immigration, collect checked bags, change terminals or re-check in with a different
                 airline.
               </p>
-              <div className="mt-3 flex items-start gap-2 rounded-xl bg-amber-50 p-3 text-[10px] leading-relaxed text-amber-800 dark:bg-amber-950/20 dark:text-amber-200">
+              <div className="mt-3 flex items-start gap-2 rounded-xl bg-amber-50 p-3 text-[11px] lg:text-xs leading-relaxed text-amber-800 dark:bg-amber-950/20 dark:text-amber-200">
                 <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                 A tight connection is not automatically a bad booking — but it leaves less room for
                 delays. Use the Advanced options to match your own comfort level.
@@ -1209,10 +1212,10 @@ export default function FlightDurationCalculator() {
                 <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-sky-100 text-sky-600 dark:bg-sky-950/60 dark:text-sky-300">
                   <Icon className="h-4 w-4" aria-hidden="true" />
                 </span>
-                <h2 className="mt-3 text-sm font-extrabold text-slate-900 dark:text-white">
+                <h2 className="mt-3 text-[15px] lg:text-base font-extrabold text-slate-900 dark:text-white">
                   {tip.title}
                 </h2>
-                <p className="mt-1.5 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+                <p className="mt-1.5 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
                   {tip.detail}
                 </p>
               </div>
@@ -1228,7 +1231,7 @@ export default function FlightDurationCalculator() {
               How flight duration is calculated
             </h2>
           </div>
-          <p className="mt-2 max-w-3xl text-[11px] leading-relaxed text-slate-600 dark:text-slate-300 sm:text-xs">
+          <p className="mt-2 max-w-3xl text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 sm:text-xs">
             Local clock times cannot be subtracted directly because every airport sits in a
             different time zone. The calculator converts each time to UTC first, then subtracts the
             instants. That is why a 2-hour time difference never makes a 4-hour flight look like a
@@ -1237,44 +1240,44 @@ export default function FlightDurationCalculator() {
 
           <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
             <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/40">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+              <span className="text-[11px] lg:text-xs font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
                 01 · Localise
               </span>
-              <h3 className="mt-1.5 text-xs font-extrabold text-slate-900 dark:text-white">
+              <h3 className="mt-1.5 text-[13px] lg:text-sm font-extrabold text-slate-900 dark:text-white">
                 Read both clocks
               </h3>
-              <p className="mt-1 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="mt-1 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
                 Departure is interpreted in the origin airport&apos;s time zone and arrival in the
                 destination&apos;s time zone, with daylight saving applied for the exact date.
               </p>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/40">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+              <span className="text-[11px] lg:text-xs font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
                 02 · Normalise
               </span>
-              <h3 className="mt-1.5 text-xs font-extrabold text-slate-900 dark:text-white">
+              <h3 className="mt-1.5 text-[13px] lg:text-sm font-extrabold text-slate-900 dark:text-white">
                 Convert to UTC
               </h3>
-              <p className="mt-1 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="mt-1 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
                 Both instants move onto the same universal timeline. This removes time-zone
                 confusion, date-line crossings and overnight flights from the maths.
               </p>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/40">
-              <span className="text-[10px] font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
+              <span className="text-[11px] lg:text-xs font-extrabold uppercase tracking-wider text-sky-600 dark:text-sky-400">
                 03 · Compare
               </span>
-              <h3 className="mt-1.5 text-xs font-extrabold text-slate-900 dark:text-white">
+              <h3 className="mt-1.5 text-[13px] lg:text-sm font-extrabold text-slate-900 dark:text-white">
                 Add the ground time
               </h3>
-              <p className="mt-1 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300">
+              <p className="mt-1 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
                 Subtract the UTC instants to get airborne time, then add each layover and your
                 airport buffers to reveal the full journey.
               </p>
             </div>
           </div>
 
-          <div className="mt-4 overflow-x-auto rounded-2xl bg-slate-900 p-4 font-mono text-[11px] text-sky-200 dark:bg-black/50 sm:text-xs">
+          <div className="mt-4 overflow-x-auto rounded-2xl bg-slate-900 p-4 font-mono text-xs lg:text-[13px] text-sky-200 dark:bg-black/50 sm:text-xs">
             <div>flight_minutes = arrival_utc - departure_utc</div>
             <div className="mt-1">journey_minutes = last_arrival_utc - first_departure_utc</div>
             <div className="mt-1">door_to_door = journey_minutes + pre_buffer + post_buffer</div>
@@ -1290,7 +1293,7 @@ export default function FlightDurationCalculator() {
                 Flight Duration Calculator FAQ
               </h2>
             </div>
-            <p className="mt-1.5 text-[11px] leading-relaxed text-slate-500 dark:text-slate-400 sm:text-xs">
+            <p className="mt-1.5 text-xs lg:text-[13px] leading-relaxed text-slate-500 dark:text-slate-400 sm:text-xs">
               The details that matter when you are comparing flights, checking a connection or
               planning a long-haul day.
             </p>
@@ -1307,7 +1310,7 @@ export default function FlightDurationCalculator() {
                     aria-controls={`flight-faq-${index}`}
                     className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left transition hover:bg-slate-50 dark:hover:bg-slate-800/40 sm:px-7"
                   >
-                    <span className="text-xs font-bold text-slate-800 dark:text-slate-100">
+                    <span className="text-[13px] lg:text-sm font-bold text-slate-800 dark:text-slate-100">
                       {faq.question}
                     </span>
                     <ChevronDown
@@ -1320,7 +1323,7 @@ export default function FlightDurationCalculator() {
                   {expanded && (
                     <div
                       id={`flight-faq-${index}`}
-                      className="px-5 pb-4 text-[11px] leading-relaxed text-slate-600 dark:text-slate-300 sm:px-7 sm:text-xs"
+                      className="px-5 pb-4 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 sm:px-7 sm:text-xs"
                     >
                       {faq.answer}
                     </div>
@@ -1331,7 +1334,7 @@ export default function FlightDurationCalculator() {
           </div>
         </section>
 
-        <p className="mx-auto max-w-3xl text-center text-[10px] leading-relaxed text-slate-500 dark:text-slate-400">
+        <p className="mx-auto max-w-3xl text-center text-[11px] lg:text-xs leading-relaxed text-slate-500 dark:text-slate-400">
           Flight schedules, aircraft routings and airport procedures change. Use these results as a
           planning estimate and confirm the final timings, connection minimums and terminal
           transfer times with your airline or travel agent before booking. Distances are

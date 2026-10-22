@@ -283,6 +283,30 @@ test.describe("interactions", () => {
       expect(errors, errors.join("\n")).toEqual([]);
     });
 
+    test("keeps the airport dropdown compact and readable on desktop", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.setViewportSize({ width: 1440, height: 1000 });
+      await page.goto("/tools/flight-duration-calculator");
+
+      const trigger = page.locator("#seg-1-arr-airport");
+      await expect(trigger).toHaveCSS("font-size", "16px");
+      const triggerBox = await trigger.boundingBox();
+
+      await trigger.click();
+      const dropdownBox = await page
+        .getByRole("listbox", { name: "To" })
+        .locator("xpath=..")
+        .boundingBox();
+
+      expect(dropdownBox.width).toBeLessThanOrEqual(320);
+      expect(Math.abs(dropdownBox.x - triggerBox.x)).toBeLessThanOrEqual(1);
+      expect(dropdownBox.x + dropdownBox.width).toBeLessThanOrEqual(1440);
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
     test("shows a helpful error when arrival is before departure", async ({
       page,
     }) => {
