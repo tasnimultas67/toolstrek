@@ -8,15 +8,15 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>120 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>124 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-123_Available-10b981?style=flat-square" alt="123 Tools" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.22.0-purple?style=flat-square" alt="v2.22.0" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-124_Available-10b981?style=flat-square" alt="124 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
 
@@ -37,13 +37,14 @@
 - 🗜️ **Image Compressor** — Batch-compress JPG, PNG, WebP and AVIF images to an exact target size or quality level with no artificial batch-count or per-file size caps, compare before/after previews and download results individually or as a ZIP — with automatic EXIF/GPS metadata removal and no uploads.
 - 🧮 **Percentage Calculator** — Five percentage modes in one tool: X% of Y, what percent X is of Y, increase/decrease, add/subtract a percentage and reverse percentages, each with the substituted formula and step-by-step working.
 - 🔀 **Text Diff Checker** — Compare two texts by line, word or character with unified and split views, ignore-case and whitespace options, similarity statistics, and copy/download support for standard `.diff` patches.
+- ✈️ **Flight Duration Calculator** — Calculate exact airborne time between more than 100 airports with automatic IANA time-zone and daylight-saving handling, duration/arrival/departure modes, up to six connecting flights, domestic and international layover risk scoring, custom door-to-door buffers, distance and average-speed estimates, plus copyable and PDF itinerary reports.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays, with a responsive type scale that keeps dense workspaces readable as screens grow.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
 - 🧩 **SEO & PWA Ready** — Dynamic sitemap, robots, web manifest, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
-## 🛠️ Tool Library (123 Tools)
+## 🛠️ Tool Library (124 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
@@ -254,13 +255,14 @@
 
 ---
 
-### ✈️ Travel Tools (3)
+### ✈️ Travel Tools (4)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
 | **Visited Countries Map** | `/tools/country-visited-map` | Mark every country you've been to on an interactive world map, track your % of the world explored and continent breakdown, add your name and a cropped profile photo, then export a branded PNG card, JSON/CSV data or a shareable link. |
 | **Packing List Generator** | `/tools/packing-list-generator` | Customizable travel checklists with collapsible categories, priority badges, packed filters, and PDF export. |
 | **Travel Budget Splitter** | `/tools/travel-budget-splitter` | Plan and split group trip expenses with multi-currency conversion, split rules, and debt-settlement reports. |
+| **Flight Duration Calculator** | `/tools/flight-duration-calculator` | Calculate exact flight time between any airports with automatic time-zone and daylight-saving handling, duration/arrival/departure modes, multi-city connections, layover risk scoring, door-to-door buffers, distance estimates and PDF reports. |
 
 ---
 
@@ -400,7 +402,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 123 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 124 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -430,7 +432,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 123 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 124 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers

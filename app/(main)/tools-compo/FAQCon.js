@@ -43,6 +43,7 @@ const formatSectionTitle = (sectionKey) => {
     imageWatermark: "Image Watermark",
     collageMaker: "Collage Maker",
     imageEditor: "Image Editor & Filters",
+    flightDurationCalculator: "Flight Duration Calculator",
   };
 
   return (

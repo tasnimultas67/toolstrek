@@ -1,4 +1,5 @@
 import { test, expect } from "@playwright/test";
+import { statSync } from "node:fs";
 
 /**
  * ToolsTrek regression smoke suite.
@@ -37,6 +38,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/image-compressor",
   "/tools/percentage-calculator",
   "/tools/text-diff",
+  "/tools/flight-duration-calculator",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];
@@ -261,6 +263,85 @@ test.describe("interactions", () => {
     await expect(page.getByTestId("percentage-result")).toHaveText("60");
 
     expect(errors, errors.join("\n")).toEqual([]);
+  });
+
+  test.describe("flight duration calculator", () => {
+    test("calculates the sample DAC to DXB itinerary", async ({ page }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/flight-duration-calculator");
+
+      await expect(
+        page.getByRole("heading", {
+          level: 1,
+          name: "Flight Duration Calculator",
+        }),
+      ).toBeVisible();
+      await expect(page.getByText("7h 30m").first()).toBeVisible();
+      await expect(page.getByText("4h 45m").first()).toBeVisible();
+      await expect(page.getByText("Door-to-door").first()).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("shows a helpful error when arrival is before departure", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/flight-duration-calculator");
+
+      await page.getByLabel("Flight 1 arrival time").fill("00:00");
+      await expect(
+        page.getByText(/arrives before it departs/i).first(),
+      ).toBeVisible();
+
+      await page.getByLabel("Flight 1 arrival time").fill("05:15");
+      await expect(
+        page.getByText(/We couldn't calculate this trip yet/i),
+      ).toHaveCount(0);
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("arrival mode computes the local landing time", async ({ page }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/flight-duration-calculator");
+
+      await page
+        .getByRole("button", { name: "Arrival", exact: true })
+        .click();
+      await expect(page.getByText("Arrives at destination").first()).toBeVisible();
+      await expect(page.getByText("05:15").first()).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("adds a connection and calculates the layover", async ({ page }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/flight-duration-calculator");
+
+      await page.getByRole("button", { name: "Add connection" }).click();
+      await expect(page.getByText(/Layover in Dubai/i).first()).toBeVisible();
+      await expect(page.getByText(/International transfer · minimum 90 min/i)).toBeVisible();
+      await expect(page.getByText(/2h/).first()).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("exports a PDF itinerary report", async ({ page }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/flight-duration-calculator");
+
+      const downloadPromise = page.waitForEvent("download");
+      await page.getByRole("button", { name: "PDF report" }).click();
+      const download = await downloadPromise;
+
+      expect(download.suggestedFilename()).toBe("flight-duration-toolstrek.pdf");
+      const path = await download.path();
+      expect(path).toBeTruthy();
+      expect(statSync(path).size).toBeGreaterThan(1000);
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
   });
 
   test("text diff checker highlights additions in a loaded sample", async ({

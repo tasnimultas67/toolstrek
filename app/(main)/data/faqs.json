@@ -2,15 +2,15 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 116 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 124 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 123 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 124 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
-      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Hash generator, Text Diff Checker, WHOIS/SSL/IP network tools, and metadata tools), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher, Morse, Braille, Binary, Text Diff Checker), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, and Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Task Prioritizer, Todo Tool, and Typing Test), Design (Color Converter, CSS Box Shadow Generator, Gradient Generator, and the Pie, Bar, Line, Radar, Funnel & Polar Chart Generators), Calculator (Percentage calculator, CGPA, Age, Days, Unit converter, RNG, Roman numerals), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters, Tip), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image compressor, Image resizer, GIF maker, AVIF, OCR, Favicon, SVG converter, WebCodecs transcoder), Time & Date, Education, Security, QR Codes, Fun & Astrology, and Travel."
+      "answer": "ToolsTrek features 15 curated categories: Developer (Regex tester, Code beautifier, JSON editor, JWT decoder, SVG visualizer, Viewports, Hash generator, Text Diff Checker, WHOIS/SSL/IP network tools, and metadata tools), Text & Linguistics (Bijoy ⇄ Unicode, NATO phonetic, Case converter, Cipher, Morse, Braille, Binary, Text Diff Checker), PDF Management (11 tools including Merge, Split, Reorder, Compress, Combine, N-Up, Attachments, and Email-to-PDF), Productivity (Countdown Timer & Days Until Calculator, Pomodoro Timer & Deep Work Studio, Dynamic Time Greeting Generator, Custom Calendar Generator & Print Studio, Online Notepad & Scratchpad Studio, Daily Planner Studio, Task Prioritizer, Todo Tool, and Typing Test), Design (Color Converter, CSS Box Shadow Generator, Gradient Generator, and the Pie, Bar, Line, Radar, Funnel & Polar Chart Generators), Calculator (Percentage calculator, CGPA, Age, Days, Unit converter, RNG, Roman numerals), Finance (EMI, Savings, Discount, VAT/GST, Zakat, Currency converter, Wedding & Travel splitters, Tip), Health & Wellness (Health Checkup Recommender, Bra size, Water intake, Smoking cost, BMI, Sleep calculator), Image & Media (Image compressor, Image resizer, GIF maker, AVIF, OCR, Favicon, SVG converter, WebCodecs transcoder), Time & Date, Education, Security, QR Codes, Fun & Astrology, and Travel (Visited Countries Map, Packing List Generator, Travel Budget Splitter and Flight Duration Calculator)."
     },
     {
       "question": "Can I use ToolsTrek on mobile devices and tablets?",
@@ -801,6 +801,32 @@
     {
       "question": "How does the Image Editor work?",
       "answer": "The Image Editor applies professional filters and adjustments - brightness, contrast, saturation, hue, sepia, grayscale, invert, blur, temperature, tint, exposure, gamma, vignette and noise - plus rotate and flip transforms. Export as PNG, JPEG or WebP. Everything runs in your browser."
+    }
+  ],
+  "flightDurationCalculator": [
+    {
+      "question": "How does the Flight Duration Calculator handle time zones and daylight saving?",
+      "answer": "Every airport in the catalogue is paired with an IANA time zone. The calculator converts the local departure and arrival times into UTC before subtracting them, so time-zone shifts never distort the flight time. Because the browser's time-zone database is used for the exact travel date, daylight saving changes, half-hour offsets and 45-minute offsets are applied automatically. If a local time is skipped or repeated during a clock change, the tool uses the nearest valid instant and shows a clear warning instead of returning a silent error."
+    },
+    {
+      "question": "What is the difference between flight time, gate-to-gate time and door-to-door time?",
+      "answer": "Flight time is the airborne time from take-off to landing. Gate-to-gate time is the elapsed time from the first departure to the final arrival, so it includes every layover. Door-to-door time adds your pre-departure airport buffer and post-arrival buffer on top. The results panel shows all three separately, and you can choose whether the large headline number uses gate-to-gate or door-to-door time in the Advanced options."
+    },
+    {
+      "question": "Can I calculate an arrival or departure time when one of them is unknown?",
+      "answer": "Yes. The tool has three modes. Flight duration mode uses known departure and arrival times to calculate the flight time. Arrival time mode takes a departure time and flight duration and returns the exact local arrival time at the destination, including date changes. Departure time mode does the reverse: enter the required arrival time and duration, and it works backwards to the local departure time you need."
+    },
+    {
+      "question": "How does the calculator evaluate connections and layover risk?",
+      "answer": "For each connection it subtracts the previous arrival from the next departure and compares the gap with the minimum connection time you set for domestic and international transfers. Below-minimum gaps are flagged, gaps just above the minimum are marked tight, and unusually long waits are marked as long layovers. A negative gap or a connection under 15 minutes is treated as an error because the itinerary cannot physically work. You can adjust the domestic and international minimums to match your own comfort level."
+    },
+    {
+      "question": "Does the Flight Duration Calculator support multi-city trips and custom airports?",
+      "answer": "Yes. In Flight duration mode you can add up to six flights, each with its own airports, local departure and arrival times, airline and flight number. The tool calculates every leg, every layover and the complete journey. The searchable airport catalogue covers more than 100 major airports, and the Custom airport option lets you enter any airport manually and choose its IANA time zone for accurate conversion."
+    },
+    {
+      "question": "Is my itinerary private and can I export the result?",
+      "answer": "Everything runs 100% in your browser. Airport choices, dates, airline names and results are never uploaded, logged or sent to a server. You can copy a complete text itinerary to your clipboard or download a formatted PDF report from the results panel. The PDF includes each flight, local times, time-zone offsets, layovers, buffers and any warnings."
     }
   ]
 }

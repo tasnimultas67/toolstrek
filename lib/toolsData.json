@@ -2651,5 +2651,29 @@
     "categories": [
       "Media"
     ]
+  },
+  {
+    "title": "Flight Duration Calculator",
+    "link": "/tools/flight-duration-calculator",
+    "description": "Calculate exact flight duration with automatic time zone and daylight-saving handling. Solve for duration, arrival time or departure time, build multi-city itineraries with up to six flights, check layover risk, add door-to-door airport buffers and export a PDF report. 100% browser-based and private.",
+    "icon": "Plane",
+    "keywords": [
+      "flight duration calculator",
+      "flight time calculator",
+      "flight arrival time calculator",
+      "flight departure time calculator",
+      "time zone flight calculator",
+      "layover calculator",
+      "connection time calculator",
+      "how long is my flight",
+      "multi city flight calculator",
+      "flight duration with time zones",
+      "door to door travel time",
+      "daylight saving flight time"
+    ],
+    "categories": [
+      "Travel",
+      "Calculator"
+    ]
   }
 ]
