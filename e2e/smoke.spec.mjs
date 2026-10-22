@@ -39,6 +39,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/percentage-calculator",
   "/tools/text-diff",
   "/tools/flight-duration-calculator",
+  "/tools/passport-photo-maker",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];
@@ -56,6 +57,80 @@ const IGNORED_CONSOLE = [
   // it rate-limits with a 403. External service noise, not an app regression.
   /api\.github\.com/i,
 ];
+
+async function createPortraitJpeg(page) {
+  const base64 = await page.evaluate(() => {
+    const canvas = document.createElement("canvas");
+    canvas.width = 900;
+    canvas.height = 1200;
+    const ctx = canvas.getContext("2d");
+
+    // Plain studio background with a softly lit head-and-shoulders portrait.
+    ctx.fillStyle = "#f3f3f1";
+    ctx.fillRect(0, 0, 900, 1200);
+
+    ctx.fillStyle = "#243447";
+    ctx.beginPath();
+    ctx.ellipse(450, 1230, 330, 340, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#d7a072";
+    ctx.fillRect(390, 840, 120, 190);
+    ctx.beginPath();
+    ctx.ellipse(450, 850, 90, 50, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.ellipse(450, 640, 225, 285, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.beginPath();
+    ctx.ellipse(230, 660, 34, 58, 0, 0, Math.PI * 2);
+    ctx.ellipse(670, 660, 34, 58, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.fillStyle = "#1f2933";
+    ctx.beginPath();
+    ctx.ellipse(450, 455, 236, 155, 0, Math.PI, Math.PI * 2);
+    ctx.fill();
+    ctx.fillRect(214, 455, 46, 170);
+    ctx.fillRect(640, 455, 46, 170);
+
+    ctx.fillStyle = "#2d2a28";
+    ctx.beginPath();
+    ctx.ellipse(365, 645, 26, 15, 0, 0, Math.PI * 2);
+    ctx.ellipse(535, 645, 26, 15, 0, 0, Math.PI * 2);
+    ctx.fill();
+
+    ctx.strokeStyle = "#8b5e3c";
+    ctx.lineWidth = 7;
+    ctx.lineCap = "round";
+    ctx.beginPath();
+    ctx.moveTo(330, 595);
+    ctx.quadraticCurveTo(365, 580, 400, 595);
+    ctx.moveTo(500, 595);
+    ctx.quadraticCurveTo(535, 580, 570, 595);
+    ctx.stroke();
+
+    ctx.strokeStyle = "#b98158";
+    ctx.lineWidth = 8;
+    ctx.beginPath();
+    ctx.moveTo(452, 660);
+    ctx.quadraticCurveTo(438, 750, 468, 760);
+    ctx.stroke();
+
+    ctx.strokeStyle = "#8d4f4a";
+    ctx.lineWidth = 9;
+    ctx.beginPath();
+    ctx.moveTo(390, 812);
+    ctx.quadraticCurveTo(450, 850, 510, 812);
+    ctx.stroke();
+
+    return canvas.toDataURL("image/jpeg", 0.92).split(",")[1];
+  });
+
+  return Buffer.from(base64, "base64");
+}
 
 function trackErrors(page) {
   const errors = [];
@@ -363,6 +438,96 @@ test.describe("interactions", () => {
       const path = await download.path();
       expect(path).toBeTruthy();
       expect(statSync(path).size).toBeGreaterThan(1000);
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+  });
+
+  test.describe("passport / ID photo maker", () => {
+    test("accepts a portrait and runs every readiness check", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/passport-photo-maker");
+      const portrait = await createPortraitJpeg(page);
+
+      await page.locator('input[type="file"]').first().setInputFiles({
+        name: "studio-portrait.jpg",
+        mimeType: "image/jpeg",
+        buffer: portrait,
+      });
+
+      await expect(page.getByText("studio-portrait.jpg")).toBeVisible();
+      await expect(
+        page.getByRole("heading", { name: "Readiness check" }),
+      ).toBeVisible();
+      await expect(page.getByText("Print resolution")).toBeVisible();
+      await expect(page.getByText("Background evenness")).toBeVisible();
+      await expect(page.getByText("Lighting", { exact: true })).toBeVisible();
+      await expect(page.getByText("Subject contrast")).toBeVisible();
+      await expect(page.getByText("Centring")).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: /Download JPEG photo/ }),
+      ).toBeEnabled();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("switches to UK dimensions and exports a PDF print sheet", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/passport-photo-maker");
+      const portrait = await createPortraitJpeg(page);
+
+      await page.locator('input[type="file"]').first().setInputFiles({
+        name: "studio-portrait.jpg",
+        mimeType: "image/jpeg",
+        buffer: portrait,
+      });
+
+      await page.getByLabel("More document formats").selectOption("uk-passport");
+      await expect(page.getByText("UK Passport · 35 × 45 mm")).toBeVisible();
+
+      await page.getByRole("button", { name: "Advanced photo options" }).click();
+      await page.getByRole("button", { name: "PDF", exact: true }).click();
+      await expect(
+        page.getByRole("button", { name: /Download 6-copy PDF/ }),
+      ).toBeEnabled();
+
+      const downloadPromise = page.waitForEvent("download");
+      await page.getByRole("button", { name: /Download 6-copy PDF/ }).click();
+      const download = await downloadPromise;
+      expect(download.suggestedFilename()).toContain("35x45mm-sheet.pdf");
+      const path = await download.path();
+      expect(statSync(path).size).toBeGreaterThan(1000);
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("shows a clear error for an unsupported file and fits a phone screen", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto("/tools/passport-photo-maker");
+
+      await expect(
+        page.getByRole("heading", { name: "Passport / ID Photo Maker" }),
+      ).toBeVisible();
+      const scrollWidth = await page.evaluate(
+        () => document.documentElement.scrollWidth,
+      );
+      expect(scrollWidth).toBeLessThanOrEqual(391);
+
+      await page.locator('input[type="file"]').first().setInputFiles({
+        name: "notes.txt",
+        mimeType: "text/plain",
+        buffer: Buffer.from("not an image"),
+      });
+      await expect(
+        page.getByText(/Please choose a JPEG, PNG or WebP image/).first(),
+      ).toBeVisible();
 
       expect(errors, errors.join("\n")).toEqual([]);
     });

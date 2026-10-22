@@ -232,6 +232,7 @@ const toolPages = [
   { slug: "collage-maker", lastModified: "2026-10-22" },
   { slug: "image-editor", lastModified: "2026-10-22" },
   { slug: "flight-duration-calculator", lastModified: "2026-10-22" },
+  { slug: "passport-photo-maker", lastModified: "2026-10-22" },
 ];
 
 export default function sitemap() {

@@ -828,5 +828,31 @@
       "question": "Is my itinerary private and can I export the result?",
       "answer": "Everything runs 100% in your browser. Airport choices, dates, airline names and results are never uploaded, logged or sent to a server. You can copy a complete text itinerary to your clipboard or download a formatted PDF report from the results panel. The PDF includes each flight, local times, time-zone offsets, layovers, buffers and any warnings."
     }
+  ],
+  "passportPhotoMaker": [
+    {
+      "question": "Is this passport photo maker safe for personal photos?",
+      "answer": "Yes. The photo is decoded, cropped, analysed and exported entirely in your browser using the Canvas API. No image, face data or measurement ever leaves your device, and nothing is stored after you close the page."
+    },
+    {
+      "question": "Does the tool guarantee my photo will be accepted?",
+      "answer": "No tool can guarantee acceptance because the final decision belongs to the passport office or embassy. The readiness score checks what can be measured digitally — resolution, background uniformity, lighting, contrast and framing — and the presets follow published guidance. Always confirm the current rules with the issuing authority before printing."
+    },
+    {
+      "question": "Which file format should I use for printing?",
+      "answer": "JPEG at 300 DPI is the safest choice for photo labs and home printers. PNG is useful when you need a transparent matte, but most passport authorities require a plain background, so a JPEG is usually better. PDF is ideal when you want a correctly sized print sheet with several copies."
+    },
+    {
+      "question": "Why does my background check show a warning?",
+      "answer": "The checker samples the outer edge of your cropped photo. A wall with shadows, a door frame or hair touching the edge can lower the score. Move to even, soft lighting and leave space around your head. The check is a helpful signal, not a judgement by the passport office."
+    },
+    {
+      "question": "Can I use a phone selfie?",
+      "answer": "Often yes, if the photo is sharp, taken from eye level at a neutral distance, and lit evenly from the front. Avoid wide-angle distortion, beauty filters, heavy HDR and flash shadows. A rear camera on a timer usually gives better resolution and less distortion than a front camera."
+    },
+    {
+      "question": "How many copies fit on a print sheet?",
+      "answer": "The tool calculates this automatically from the photo size, paper size, margin and gap. A 4 × 6 inch sheet commonly fits six or more 35 × 45 mm photos, while A4 can fit many more. The maximum printed copies is shown before you download the PDF."
+    }
   ]
 }
