@@ -85,7 +85,9 @@ function fieldClass(hasError, compact = false) {
 function addDaysToDateValue(dateValue, days) {
   const parts = parseDateInput(dateValue);
   if (!parts) return dateValue;
-  const date = new Date(Date.UTC(parts.year, parts.month - 1, parts.day + days));
+  const date = new Date(
+    Date.UTC(parts.year, parts.month - 1, parts.day + days),
+  );
   return date.toISOString().slice(0, 10);
 }
 
@@ -132,7 +134,9 @@ function buildSummaryText({ result, mode, settings, tripName }) {
   } else {
     lines.push(
       `${
-        settings.includeBuffersInHeadline ? "Door-to-door journey" : "Gate-to-gate journey"
+        settings.includeBuffersInHeadline
+          ? "Door-to-door journey"
+          : "Gate-to-gate journey"
       }: ${formatDuration(totals.headlineMinutes)}`,
     );
   }
@@ -143,7 +147,9 @@ function buildSummaryText({ result, mode, settings, tripName }) {
   }
   lines.push(`Gate-to-gate: ${formatDuration(totals.gateToGateMinutes)}`);
   lines.push(`Door-to-door: ${formatDuration(totals.doorToDoorMinutes)}`);
-  lines.push(`Route: ${firstLeg.depAirport.code} to ${lastLeg.arrAirport.code}`);
+  lines.push(
+    `Route: ${firstLeg.depAirport.code} to ${lastLeg.arrAirport.code}`,
+  );
   lines.push("");
   lines.push("ITINERARY");
 
@@ -222,11 +228,22 @@ function SegmentedControl({ label, value, options, onChange }) {
   );
 }
 
-function RangeSetting({ label, value, min, max, step, suffix, onChange, hint }) {
+function RangeSetting({
+  label,
+  value,
+  min,
+  max,
+  step,
+  suffix,
+  onChange,
+  hint,
+}) {
   return (
     <div>
       <div className="flex items-center justify-between gap-3">
-        <span className="text-xs lg:text-[13px] font-bold text-slate-700 dark:text-slate-200">{label}</span>
+        <span className="text-xs lg:text-[13px] font-bold text-slate-700 dark:text-slate-200">
+          {label}
+        </span>
         <span className="rounded-full bg-sky-50 px-2 py-0.5 text-[11px] lg:text-xs font-extrabold text-sky-700 dark:bg-sky-950/50 dark:text-sky-300">
           {value} {suffix}
         </span>
@@ -242,7 +259,9 @@ function RangeSetting({ label, value, min, max, step, suffix, onChange, hint }) 
         className="mt-2 w-full accent-sky-600"
       />
       {hint && (
-        <p className="mt-1 text-[11px] lg:text-xs leading-snug text-slate-500 dark:text-slate-400">{hint}</p>
+        <p className="mt-1 text-[11px] lg:text-xs leading-snug text-slate-500 dark:text-slate-400">
+          {hint}
+        </p>
       )}
     </div>
   );
@@ -252,7 +271,9 @@ function ToggleSetting({ label, description, checked, onChange }) {
   return (
     <div className="flex items-start justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/70 p-3 dark:border-slate-800 dark:bg-slate-800/40">
       <div>
-        <div className="text-xs lg:text-[13px] font-bold text-slate-800 dark:text-slate-100">{label}</div>
+        <div className="text-xs lg:text-[13px] font-bold text-slate-800 dark:text-slate-100">
+          {label}
+        </div>
         <p className="mt-0.5 text-[11px] lg:text-xs leading-snug text-slate-500 dark:text-slate-400">
           {description}
         </p>
@@ -296,7 +317,8 @@ export default function FlightDurationCalculator() {
     });
   }, [addRecentTool]);
 
-  const durationMinutes = (Number(duration.hours) || 0) * 60 + (Number(duration.minutes) || 0);
+  const durationMinutes =
+    (Number(duration.hours) || 0) * 60 + (Number(duration.minutes) || 0);
 
   const result = useMemo(() => {
     if (mode === MODES.DURATION) {
@@ -313,13 +335,19 @@ export default function FlightDurationCalculator() {
   ).length;
 
   const fieldHasError = (segmentId, field) =>
-    result.errors.some((error) => error.segmentId === segmentId && error.field === field);
+    result.errors.some(
+      (error) => error.segmentId === segmentId && error.field === field,
+    );
 
-  const durationHasError = result.errors.some((error) => error.field === "duration");
+  const durationHasError = result.errors.some(
+    (error) => error.field === "duration",
+  );
 
   const updateSegment = (id, patch) => {
     setSegments((current) =>
-      current.map((segment) => (segment.id === id ? { ...segment, ...patch } : segment)),
+      current.map((segment) =>
+        segment.id === id ? { ...segment, ...patch } : segment,
+      ),
     );
   };
 
@@ -330,14 +358,18 @@ export default function FlightDurationCalculator() {
   const handleModeChange = (nextMode) => {
     if (nextMode === mode) return;
     if (nextMode !== MODES.DURATION && segments.length > 1) {
-      toast.info("Arrival and departure modes use Flight 1. Your connections stay saved for Duration mode.");
+      toast.info(
+        "Arrival and departure modes use Flight 1. Your connections stay saved for Duration mode.",
+      );
     }
     setMode(nextMode);
   };
 
   const handleAddConnection = () => {
     if (segments.length >= MAX_SEGMENTS) {
-      toast.error(`You can add up to ${MAX_SEGMENTS} flights in one itinerary.`);
+      toast.error(
+        `You can add up to ${MAX_SEGMENTS} flights in one itinerary.`,
+      );
       return;
     }
 
@@ -438,7 +470,9 @@ export default function FlightDurationCalculator() {
       }
       toast.success("Itinerary copied to clipboard.");
     } catch {
-      toast.error("Copy failed. Your browser may be blocking clipboard access.");
+      toast.error(
+        "Copy failed. Your browser may be blocking clipboard access.",
+      );
     }
   };
 
@@ -458,17 +492,20 @@ export default function FlightDurationCalculator() {
       doc.save(`${safeName}-toolstrek.pdf`);
       toast.success("PDF report downloaded.");
     } catch {
-      toast.error("The report could not be generated. Please check the itinerary and try again.");
+      toast.error(
+        "The report could not be generated. Please check the itinerary and try again.",
+      );
     }
   };
 
-  const visibleSegments = mode === MODES.DURATION ? segments : segments.slice(0, 1);
+  const visibleSegments =
+    mode === MODES.DURATION ? segments : segments.slice(0, 1);
   const isArrivalMode = mode === MODES.ARRIVAL;
   const isDepartureMode = mode === MODES.DEPARTURE;
 
   return (
     <ToolPageShell>
-      <div className="mx-auto w-full max-w-6xl space-y-7 pb-12">
+      <div className="mx-auto w-full space-y-7 pb-12">
         {/* Hero */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-600 via-cyan-600 to-teal-600 p-6 text-white shadow-xl shadow-sky-500/10 sm:p-9">
           <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-white/10 blur-2xl" />
@@ -483,9 +520,10 @@ export default function FlightDurationCalculator() {
               Flight Duration Calculator
             </h1>
             <p className="mt-3 max-w-2xl text-[15px] lg:text-base leading-relaxed text-sky-50/90 sm:text-base">
-              Work out exactly how long you&apos;ll be in the air, when you&apos;ll land in local
-              time, and how much of your trip is spent flying, waiting and clearing the airport.
-              Time zones, daylight saving and connections are handled for you.
+              Work out exactly how long you&apos;ll be in the air, when
+              you&apos;ll land in local time, and how much of your trip is spent
+              flying, waiting and clearing the airport. Time zones, daylight
+              saving and connections are handled for you.
             </p>
             <div className="mt-5 flex flex-wrap gap-2">
               {[
@@ -499,7 +537,10 @@ export default function FlightDurationCalculator() {
                   key={item}
                   className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-2.5 py-1 text-[11px] lg:text-xs font-bold text-sky-50 backdrop-blur-sm"
                 >
-                  <CheckCircle2 className="h-3 w-3 text-teal-200" aria-hidden="true" />
+                  <CheckCircle2
+                    className="h-3 w-3 text-teal-200"
+                    aria-hidden="true"
+                  />
                   {item}
                 </span>
               ))}
@@ -557,7 +598,10 @@ export default function FlightDurationCalculator() {
                   htmlFor="flight-trip-name"
                   className="mb-1.5 block text-xs lg:text-[13px] font-bold uppercase tracking-wider text-slate-500 dark:text-slate-400"
                 >
-                  Trip name <span className="font-medium normal-case tracking-normal">(optional)</span>
+                  Trip name{" "}
+                  <span className="font-medium normal-case tracking-normal">
+                    (optional)
+                  </span>
                 </label>
                 <input
                   id="flight-trip-name"
@@ -601,12 +645,19 @@ export default function FlightDurationCalculator() {
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <div className="flex items-center gap-2">
                           <span className="inline-flex items-center gap-1.5 rounded-full bg-sky-100 px-2.5 py-1 text-[11px] lg:text-xs font-extrabold uppercase tracking-wider text-sky-700 dark:bg-sky-950/60 dark:text-sky-300">
-                            <Plane className="h-3 w-3 -rotate-45" aria-hidden="true" />
+                            <Plane
+                              className="h-3 w-3 -rotate-45"
+                              aria-hidden="true"
+                            />
                             Flight {index + 1}
                           </span>
                           {mode === MODES.DURATION && segments.length > 1 && (
                             <span className="text-[11px] lg:text-xs font-semibold text-slate-400 dark:text-slate-500">
-                              {index === 0 ? "Origin" : index === segments.length - 1 ? "Final leg" : "Connection"}
+                              {index === 0
+                                ? "Origin"
+                                : index === segments.length - 1
+                                  ? "Final leg"
+                                  : "Connection"}
                             </span>
                           )}
                         </div>
@@ -656,7 +707,9 @@ export default function FlightDurationCalculator() {
                             type="text"
                             value={segment.airline}
                             onChange={(event) =>
-                              updateSegment(segment.id, { airline: event.target.value })
+                              updateSegment(segment.id, {
+                                airline: event.target.value,
+                              })
                             }
                             placeholder="e.g. Emirates"
                             maxLength={40}
@@ -675,7 +728,9 @@ export default function FlightDurationCalculator() {
                             type="text"
                             value={segment.flightNumber}
                             onChange={(event) =>
-                              updateSegment(segment.id, { flightNumber: event.target.value })
+                              updateSegment(segment.id, {
+                                flightNumber: event.target.value,
+                              })
                             }
                             placeholder="e.g. EK 585"
                             maxLength={20}
@@ -689,7 +744,9 @@ export default function FlightDurationCalculator() {
                           id={`${segment.id}-dep-airport`}
                           label="From"
                           value={segment.depCode}
-                          onChange={(code) => updateSegment(segment.id, { depCode: code })}
+                          onChange={(code) =>
+                            updateSegment(segment.id, { depCode: code })
+                          }
                           customLabel={segment.depCustomLabel}
                           customTimeZone={segment.depCustomTz}
                           onCustomLabelChange={(value) =>
@@ -699,13 +756,19 @@ export default function FlightDurationCalculator() {
                             updateSegment(segment.id, { depCustomTz: value })
                           }
                           invalid={fieldHasError(segment.id, "depCode")}
-                          hint={depAirport ? `Time zone: ${depAirport.timezone}` : undefined}
+                          hint={
+                            depAirport
+                              ? `Time zone: ${depAirport.timezone}`
+                              : undefined
+                          }
                         />
                         <AirportPicker
                           id={`${segment.id}-arr-airport`}
                           label="To"
                           value={segment.arrCode}
-                          onChange={(code) => updateSegment(segment.id, { arrCode: code })}
+                          onChange={(code) =>
+                            updateSegment(segment.id, { arrCode: code })
+                          }
                           customLabel={segment.arrCustomLabel}
                           customTimeZone={segment.arrCustomTz}
                           onCustomLabelChange={(value) =>
@@ -715,7 +778,11 @@ export default function FlightDurationCalculator() {
                             updateSegment(segment.id, { arrCustomTz: value })
                           }
                           invalid={fieldHasError(segment.id, "arrCode")}
-                          hint={arrAirport ? `Time zone: ${arrAirport.timezone}` : undefined}
+                          hint={
+                            arrAirport
+                              ? `Time zone: ${arrAirport.timezone}`
+                              : undefined
+                          }
                         />
                       </div>
 
@@ -734,7 +801,10 @@ export default function FlightDurationCalculator() {
                             </div>
                             <div className="grid grid-cols-2 gap-2 [&>div]:min-w-0">
                               <div>
-                                <label htmlFor={`${segment.id}-dep-date`} className="sr-only">
+                                <label
+                                  htmlFor={`${segment.id}-dep-date`}
+                                  className="sr-only"
+                                >
                                   Flight {index + 1} departure date
                                 </label>
                                 <input
@@ -742,14 +812,22 @@ export default function FlightDurationCalculator() {
                                   type="date"
                                   value={segment.depDate}
                                   onChange={(event) =>
-                                    updateSegment(segment.id, { depDate: event.target.value })
+                                    updateSegment(segment.id, {
+                                      depDate: event.target.value,
+                                    })
                                   }
                                   aria-label={`Flight ${index + 1} departure date`}
-                                  className={fieldClass(fieldHasError(segment.id, "depDate"), true)}
+                                  className={fieldClass(
+                                    fieldHasError(segment.id, "depDate"),
+                                    true,
+                                  )}
                                 />
                               </div>
                               <div>
-                                <label htmlFor={`${segment.id}-dep-time`} className="sr-only">
+                                <label
+                                  htmlFor={`${segment.id}-dep-time`}
+                                  className="sr-only"
+                                >
                                   Flight {index + 1} departure time
                                 </label>
                                 <input
@@ -757,10 +835,15 @@ export default function FlightDurationCalculator() {
                                   type="time"
                                   value={segment.depTime}
                                   onChange={(event) =>
-                                    updateSegment(segment.id, { depTime: event.target.value })
+                                    updateSegment(segment.id, {
+                                      depTime: event.target.value,
+                                    })
                                   }
                                   aria-label={`Flight ${index + 1} departure time`}
-                                  className={fieldClass(fieldHasError(segment.id, "depDate"), true)}
+                                  className={fieldClass(
+                                    fieldHasError(segment.id, "depDate"),
+                                    true,
+                                  )}
                                 />
                               </div>
                             </div>
@@ -779,7 +862,10 @@ export default function FlightDurationCalculator() {
                                     type="button"
                                     onClick={() =>
                                       updateSegment(segment.id, {
-                                        arrDate: addDaysToDateValue(segment.depDate, 0),
+                                        arrDate: addDaysToDateValue(
+                                          segment.depDate,
+                                          0,
+                                        ),
                                       })
                                     }
                                     className="rounded-md px-1.5 py-0.5 text-[10px] lg:text-[11px] font-bold text-slate-400 transition hover:bg-white hover:text-sky-600 dark:hover:bg-slate-800 dark:hover:text-sky-300"
@@ -790,7 +876,10 @@ export default function FlightDurationCalculator() {
                                     type="button"
                                     onClick={() =>
                                       updateSegment(segment.id, {
-                                        arrDate: addDaysToDateValue(segment.depDate, 1),
+                                        arrDate: addDaysToDateValue(
+                                          segment.depDate,
+                                          1,
+                                        ),
                                       })
                                     }
                                     className="rounded-md px-1.5 py-0.5 text-[10px] lg:text-[11px] font-bold text-slate-400 transition hover:bg-white hover:text-sky-600 dark:hover:bg-slate-800 dark:hover:text-sky-300"
@@ -802,7 +891,10 @@ export default function FlightDurationCalculator() {
                             </div>
                             <div className="grid grid-cols-2 gap-2 [&>div]:min-w-0">
                               <div>
-                                <label htmlFor={`${segment.id}-arr-date`} className="sr-only">
+                                <label
+                                  htmlFor={`${segment.id}-arr-date`}
+                                  className="sr-only"
+                                >
                                   Flight {index + 1} arrival date
                                 </label>
                                 <input
@@ -810,14 +902,22 @@ export default function FlightDurationCalculator() {
                                   type="date"
                                   value={segment.arrDate}
                                   onChange={(event) =>
-                                    updateSegment(segment.id, { arrDate: event.target.value })
+                                    updateSegment(segment.id, {
+                                      arrDate: event.target.value,
+                                    })
                                   }
                                   aria-label={`Flight ${index + 1} arrival date`}
-                                  className={fieldClass(fieldHasError(segment.id, "arrDate"), true)}
+                                  className={fieldClass(
+                                    fieldHasError(segment.id, "arrDate"),
+                                    true,
+                                  )}
                                 />
                               </div>
                               <div>
-                                <label htmlFor={`${segment.id}-arr-time`} className="sr-only">
+                                <label
+                                  htmlFor={`${segment.id}-arr-time`}
+                                  className="sr-only"
+                                >
                                   Flight {index + 1} arrival time
                                 </label>
                                 <input
@@ -825,10 +925,15 @@ export default function FlightDurationCalculator() {
                                   type="time"
                                   value={segment.arrTime}
                                   onChange={(event) =>
-                                    updateSegment(segment.id, { arrTime: event.target.value })
+                                    updateSegment(segment.id, {
+                                      arrTime: event.target.value,
+                                    })
                                   }
                                   aria-label={`Flight ${index + 1} arrival time`}
-                                  className={fieldClass(fieldHasError(segment.id, "arrDate"), true)}
+                                  className={fieldClass(
+                                    fieldHasError(segment.id, "arrDate"),
+                                    true,
+                                  )}
                                 />
                               </div>
                             </div>
@@ -838,9 +943,14 @@ export default function FlightDurationCalculator() {
 
                       <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
                         <p className="flex items-center gap-1.5 text-[11px] lg:text-xs text-slate-500 dark:text-slate-400">
-                          <Globe2 className="h-3 w-3 text-sky-500" aria-hidden="true" />
+                          <Globe2
+                            className="h-3 w-3 text-sky-500"
+                            aria-hidden="true"
+                          />
                           {depAirport ? depAirport.timezone : "Choose origin"} →{" "}
-                          {arrAirport ? arrAirport.timezone : "choose destination"}
+                          {arrAirport
+                            ? arrAirport.timezone
+                            : "choose destination"}
                         </p>
                         {previewLeg && (
                           <span className="inline-flex items-center gap-1 rounded-full bg-white px-2.5 py-1 text-[11px] lg:text-xs font-extrabold text-sky-700 shadow-sm dark:bg-slate-900 dark:text-sky-300">
@@ -877,7 +987,8 @@ export default function FlightDurationCalculator() {
                         Flight duration
                       </div>
                       <p className="mt-0.5 text-[11px] lg:text-xs text-slate-500 dark:text-slate-400">
-                        Time from take-off to landing, not including airport buffers.
+                        Time from take-off to landing, not including airport
+                        buffers.
                       </p>
                     </div>
                     <span className="rounded-full bg-white px-2.5 py-1 text-[11px] lg:text-xs font-extrabold text-sky-700 shadow-sm dark:bg-slate-900 dark:text-sky-300">
@@ -962,8 +1073,12 @@ export default function FlightDurationCalculator() {
 
               {mode !== MODES.DURATION && segments.length > 1 && (
                 <p className="mt-2 flex items-start gap-1.5 text-[11px] lg:text-xs leading-snug text-amber-700 dark:text-amber-300">
-                  <Info className="mt-0.5 h-3 w-3 shrink-0" aria-hidden="true" />
-                  This mode uses Flight 1. Switch back to Duration to calculate all connections.
+                  <Info
+                    className="mt-0.5 h-3 w-3 shrink-0"
+                    aria-hidden="true"
+                  />
+                  This mode uses Flight 1. Switch back to Duration to calculate
+                  all connections.
                 </p>
               )}
 
@@ -976,7 +1091,10 @@ export default function FlightDurationCalculator() {
                   className="flex w-full items-center justify-between gap-2 bg-slate-50/80 px-4 py-3 text-left transition hover:bg-slate-100 dark:bg-slate-800/40 dark:hover:bg-slate-800/70"
                 >
                   <span className="flex items-center gap-2 text-[13px] lg:text-sm font-extrabold text-slate-800 dark:text-slate-100">
-                    <Settings2 className="h-4 w-4 text-sky-500" aria-hidden="true" />
+                    <Settings2
+                      className="h-4 w-4 text-sky-500"
+                      aria-hidden="true"
+                    />
                     Advanced options
                     {activeSettingCount > 0 && (
                       <span className="rounded-full bg-sky-100 px-2 py-0.5 text-[10px] lg:text-[11px] font-extrabold text-sky-700 dark:bg-sky-950/60 dark:text-sky-300">
@@ -998,7 +1116,9 @@ export default function FlightDurationCalculator() {
                       <SegmentedControl
                         label="Clock format"
                         value={settings.timeFormat}
-                        onChange={(value) => updateSettings({ timeFormat: value })}
+                        onChange={(value) =>
+                          updateSettings({ timeFormat: value })
+                        }
                         options={[
                           { value: "24h", label: "24-hour" },
                           { value: "12h", label: "12-hour" },
@@ -1023,7 +1143,9 @@ export default function FlightDurationCalculator() {
                         max={300}
                         step={15}
                         suffix="min"
-                        onChange={(value) => updateSettings({ preBufferMinutes: value })}
+                        onChange={(value) =>
+                          updateSettings({ preBufferMinutes: value })
+                        }
                         hint="Time at the airport before departure — check-in, bags and security."
                       />
                       <RangeSetting
@@ -1033,7 +1155,9 @@ export default function FlightDurationCalculator() {
                         max={180}
                         step={15}
                         suffix="min"
-                        onChange={(value) => updateSettings({ postBufferMinutes: value })}
+                        onChange={(value) =>
+                          updateSettings({ postBufferMinutes: value })
+                        }
                         hint="Time after landing for immigration, baggage claim and onward transport."
                       />
                       <RangeSetting
@@ -1043,7 +1167,9 @@ export default function FlightDurationCalculator() {
                         max={180}
                         step={5}
                         suffix="min"
-                        onChange={(value) => updateSettings({ minDomesticConnection: value })}
+                        onChange={(value) =>
+                          updateSettings({ minDomesticConnection: value })
+                        }
                         hint="Used to score layovers within the same country."
                       />
                       <RangeSetting
@@ -1073,26 +1199,32 @@ export default function FlightDurationCalculator() {
                         label="Show distance & speed"
                         description="Great-circle distance and average airborne speed estimates."
                         checked={settings.showDistance}
-                        onChange={(value) => updateSettings({ showDistance: value })}
+                        onChange={(value) =>
+                          updateSettings({ showDistance: value })
+                        }
                       />
                       <ToggleSetting
                         label="Show journey timeline"
                         description="A proportional bar showing flights and layovers at a glance."
                         checked={settings.showTimeline}
-                        onChange={(value) => updateSettings({ showTimeline: value })}
+                        onChange={(value) =>
+                          updateSettings({ showTimeline: value })
+                        }
                       />
                       <ToggleSetting
                         label="Show technical time zones"
                         description="Display IANA zone names and exact UTC offsets in each leg."
                         checked={settings.showTechnicalDetails}
-                        onChange={(value) => updateSettings({ showTechnicalDetails: value })}
+                        onChange={(value) =>
+                          updateSettings({ showTechnicalDetails: value })
+                        }
                       />
                     </div>
 
                     <div className="flex flex-wrap items-center justify-between gap-2">
                       <p className="text-[11px] lg:text-xs leading-snug text-slate-500 dark:text-slate-400">
-                        These settings never change the underlying times — they only change how the
-                        itinerary is presented and scored.
+                        These settings never change the underlying times — they
+                        only change how the itinerary is presented and scored.
                       </p>
                       <button
                         type="button"
@@ -1161,7 +1293,8 @@ export default function FlightDurationCalculator() {
                   <strong className="block text-slate-800 dark:text-slate-100">
                     Connections
                   </strong>
-                  Compare layovers with realistic domestic and international minimums.
+                  Compare layovers with realistic domestic and international
+                  minimums.
                 </p>
                 <p className="rounded-xl bg-slate-50 p-3 dark:bg-slate-800/40">
                   <strong className="block text-slate-800 dark:text-slate-100">
@@ -1175,26 +1308,44 @@ export default function FlightDurationCalculator() {
 
           {/* Results */}
           <div className="space-y-6 lg:col-span-5">
-            <FlightResults result={result} mode={mode} settings={settings} tripName={tripName} />
+            <FlightResults
+              result={result}
+              mode={mode}
+              settings={settings}
+              tripName={tripName}
+            />
 
             <div className="rounded-3xl border border-slate-200 bg-white p-5 shadow-sm dark:border-slate-800 dark:bg-slate-900">
               <div className="flex items-center gap-2">
-                <ShieldCheck className="h-4 w-4 text-emerald-500" aria-hidden="true" />
+                <ShieldCheck
+                  className="h-4 w-4 text-emerald-500"
+                  aria-hidden="true"
+                />
                 <h2 className="text-[15px] lg:text-base font-extrabold text-slate-900 dark:text-white">
                   Layover rule of thumb
                 </h2>
               </div>
               <p className="mt-2 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
-                Allow <strong className="text-slate-800 dark:text-slate-100">45 minutes</strong> for
-                a domestic connection and <strong className="text-slate-800 dark:text-slate-100">90
-                minutes</strong> for an international one. Add more time if you need to clear
-                immigration, collect checked bags, change terminals or re-check in with a different
-                airline.
+                Allow{" "}
+                <strong className="text-slate-800 dark:text-slate-100">
+                  45 minutes
+                </strong>{" "}
+                for a domestic connection and{" "}
+                <strong className="text-slate-800 dark:text-slate-100">
+                  90 minutes
+                </strong>{" "}
+                for an international one. Add more time if you need to clear
+                immigration, collect checked bags, change terminals or re-check
+                in with a different airline.
               </p>
               <div className="mt-3 flex items-start gap-2 rounded-xl bg-amber-50 p-3 text-[11px] lg:text-xs leading-relaxed text-amber-800 dark:bg-amber-950/20 dark:text-amber-200">
-                <Info className="mt-0.5 h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                A tight connection is not automatically a bad booking — but it leaves less room for
-                delays. Use the Advanced options to match your own comfort level.
+                <Info
+                  className="mt-0.5 h-3.5 w-3.5 shrink-0"
+                  aria-hidden="true"
+                />
+                A tight connection is not automatically a bad booking — but it
+                leaves less room for delays. Use the Advanced options to match
+                your own comfort level.
               </div>
             </div>
           </div>
@@ -1232,10 +1383,10 @@ export default function FlightDurationCalculator() {
             </h2>
           </div>
           <p className="mt-2 max-w-3xl text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300 sm:text-xs">
-            Local clock times cannot be subtracted directly because every airport sits in a
-            different time zone. The calculator converts each time to UTC first, then subtracts the
-            instants. That is why a 2-hour time difference never makes a 4-hour flight look like a
-            6-hour one.
+            Local clock times cannot be subtracted directly because every
+            airport sits in a different time zone. The calculator converts each
+            time to UTC first, then subtracts the instants. That is why a 2-hour
+            time difference never makes a 4-hour flight look like a 6-hour one.
           </p>
 
           <div className="mt-4 grid grid-cols-1 gap-3 md:grid-cols-3">
@@ -1247,8 +1398,9 @@ export default function FlightDurationCalculator() {
                 Read both clocks
               </h3>
               <p className="mt-1 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
-                Departure is interpreted in the origin airport&apos;s time zone and arrival in the
-                destination&apos;s time zone, with daylight saving applied for the exact date.
+                Departure is interpreted in the origin airport&apos;s time zone
+                and arrival in the destination&apos;s time zone, with daylight
+                saving applied for the exact date.
               </p>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/40">
@@ -1259,8 +1411,9 @@ export default function FlightDurationCalculator() {
                 Convert to UTC
               </h3>
               <p className="mt-1 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
-                Both instants move onto the same universal timeline. This removes time-zone
-                confusion, date-line crossings and overnight flights from the maths.
+                Both instants move onto the same universal timeline. This
+                removes time-zone confusion, date-line crossings and overnight
+                flights from the maths.
               </p>
             </div>
             <div className="rounded-2xl bg-slate-50 p-4 dark:bg-slate-800/40">
@@ -1271,16 +1424,20 @@ export default function FlightDurationCalculator() {
                 Add the ground time
               </h3>
               <p className="mt-1 text-xs lg:text-[13px] leading-relaxed text-slate-600 dark:text-slate-300">
-                Subtract the UTC instants to get airborne time, then add each layover and your
-                airport buffers to reveal the full journey.
+                Subtract the UTC instants to get airborne time, then add each
+                layover and your airport buffers to reveal the full journey.
               </p>
             </div>
           </div>
 
           <div className="mt-4 overflow-x-auto rounded-2xl bg-slate-900 p-4 font-mono text-xs lg:text-[13px] text-sky-200 dark:bg-black/50 sm:text-xs">
             <div>flight_minutes = arrival_utc - departure_utc</div>
-            <div className="mt-1">journey_minutes = last_arrival_utc - first_departure_utc</div>
-            <div className="mt-1">door_to_door = journey_minutes + pre_buffer + post_buffer</div>
+            <div className="mt-1">
+              journey_minutes = last_arrival_utc - first_departure_utc
+            </div>
+            <div className="mt-1">
+              door_to_door = journey_minutes + pre_buffer + post_buffer
+            </div>
           </div>
         </section>
 
@@ -1294,8 +1451,8 @@ export default function FlightDurationCalculator() {
               </h2>
             </div>
             <p className="mt-1.5 text-xs lg:text-[13px] leading-relaxed text-slate-500 dark:text-slate-400 sm:text-xs">
-              The details that matter when you are comparing flights, checking a connection or
-              planning a long-haul day.
+              The details that matter when you are comparing flights, checking a
+              connection or planning a long-haul day.
             </p>
           </div>
           <div className="divide-y divide-slate-100 dark:divide-slate-800">
@@ -1335,10 +1492,11 @@ export default function FlightDurationCalculator() {
         </section>
 
         <p className="mx-auto max-w-3xl text-center text-[11px] lg:text-xs leading-relaxed text-slate-500 dark:text-slate-400">
-          Flight schedules, aircraft routings and airport procedures change. Use these results as a
-          planning estimate and confirm the final timings, connection minimums and terminal
-          transfer times with your airline or travel agent before booking. Distances are
-          great-circle estimates; actual flown tracks are usually slightly longer.
+          Flight schedules, aircraft routings and airport procedures change. Use
+          these results as a planning estimate and confirm the final timings,
+          connection minimums and terminal transfer times with your airline or
+          travel agent before booking. Distances are great-circle estimates;
+          actual flown tracks are usually slightly longer.
         </p>
       </div>
     </ToolPageShell>

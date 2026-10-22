@@ -95,7 +95,11 @@ html {
 
 ::-webkit-scrollbar-thumb {
   background-color: rgba(124, 0, 254, 0.5);
-  background-color: color-mix(in srgb, var(--color-brandColor) 50%, transparent);
+  background-color: color-mix(
+    in srgb,
+    var(--color-brandColor) 50%,
+    transparent
+  );
   border: 2px solid transparent;
   background-clip: padding-box;
   border-radius: 9999px;
@@ -116,7 +120,7 @@ html {
 .tool-page-shell {
   position: relative;
   overflow: clip;
-  padding: 7.5rem 0.5rem 2.75rem;
+  padding: 7.5rem 0.1rem 2.75rem;
   background:
     radial-gradient(
       circle at top left,
@@ -186,7 +190,7 @@ html {
 
 @media (min-width: 1024px) {
   .tool-page-shell {
-    padding-inline: 1.5rem;
+    padding-inline: 0.2rem;
   }
 }
 
