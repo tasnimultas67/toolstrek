@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>127 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>128 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-127_Available-10b981?style=flat-square" alt="127 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-128_Available-10b981?style=flat-square" alt="128 Tools" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
@@ -37,6 +37,7 @@
 - 🗜️ **Image Compressor** — Batch-compress JPG, PNG, WebP and AVIF images to an exact target size or quality level with no artificial batch-count or per-file size caps, compare before/after previews and download results individually or as a ZIP — with automatic EXIF/GPS metadata removal and no uploads.
 - 🧮 **Percentage Calculator** — Five percentage modes in one tool: X% of Y, what percent X is of Y, increase/decrease, add/subtract a percentage and reverse percentages, each with the substituted formula and step-by-step working.
 - 🔀 **Text Diff Checker** — Compare two texts by line, word or character with unified and split views, ignore-case and whitespace options, similarity statistics, and copy/download support for standard `.diff` patches.
+- 🔑 **UUID / ULID Generator** — Generate cryptographically secure UUID v4, v7, v1 and v5 values, sortable ULIDs or custom NanoIDs in batches of up to 1,000. Format case, hyphens, braces and separators, inspect any pasted UUID or ULID for version, variant and embedded timestamp, then copy or download the batch as TXT, JSON or CSV — all locally with Web Crypto.
 - ⛽ **Fuel Cost & Road Trip Calculator** — Turn distance, fuel economy and pump prices into a complete road-trip budget in metric or imperial units. Add round-trip distance, driving-style and load adjustments, up to twelve passengers, tolls, parking, accommodation, food and a trip budget, then see fuel used, per-person cost, full-tank range, planned fuel stops and CO₂ — with copyable summaries and CSV exports.
 - 🗓️ **Meeting Time Planner** — Score every possible meeting slot across up to eight time zones against each participant's working hours, handle daylight saving automatically, compare local times and date shifts on an hourly opportunity map, filter for perfect overlaps, and copy a summary or download a standards-compliant `.ics` calendar invite.
 - 🪪 **Passport / ID Photo Maker** — Turn a portrait into a correctly sized passport, visa or ID photo with 10 international presets, live head and eye guides, print-resolution/background/lighting/framing checks, and 300 DPI JPEG, PNG or multi-copy PDF print-sheet exports — entirely in your browser.
@@ -47,11 +48,11 @@
 
 ---
 
-## 🛠️ Tool Library (127 Tools)
+## 🛠️ Tool Library (128 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
-### 🌐 Developer & Code Tools (24)
+### 🌐 Developer & Code Tools (25)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -79,6 +80,7 @@
 | **Monitor Hz Test** | `/tools/monitor-hz-test` | Measure your display's real refresh rate (60Hz–360Hz+) via `requestAnimationFrame` with frame-stability and stutter graphs. |
 | **Fake Info Generator** | `/tools/fake-info-generator` | Generate realistic mock identities, addresses, phone numbers, and company profiles for QA testing and demos. |
 | **ZIP File Creator & Compressor** | `/tools/zip-creator` | Bundle and compress files or entire directory trees into downloadable ZIP archives with configurable Deflate levels. |
+| **UUID / ULID Generator** | `/tools/uuid-ulid-generator` | Generate secure UUID v4/v7/v1/v5, ULID and NanoID batches, format and export them, and inspect pasted UUIDs or ULIDs for version, timestamp and structure. |
 
 ---
 
@@ -241,12 +243,13 @@
 
 ---
 
-### 🔒 Security & Privacy Tools (2)
+### 🔒 Security & Privacy Tools (3)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
 | **Password Generator** | `/tools/password-generator` | Generate strong, cryptographically secure passwords and passphrases with custom length and character rules. |
 | **Password Strength Tester** | `/tools/password-strength-tester` | Inspect entropy, estimated brute-force crack time, security checklists, and common pattern vulnerabilities. |
+| **UUID / ULID Generator** | `/tools/uuid-ulid-generator` | Cryptographically secure UUID, ULID and NanoID generation with bulk output, safe formatting, timestamp inspection and local-only file exports. |
 
 ---
 
@@ -409,7 +412,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 127 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 128 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -439,7 +442,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 127 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 128 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers

@@ -47,6 +47,7 @@ const formatSectionTitle = (sectionKey) => {
     passportPhotoMaker: "Passport / ID Photo Maker",
     meetingTimePlanner: "Meeting Time Planner",
     fuelCostCalculator: "Fuel Cost & Road Trip Calculator",
+    uuidUlidGenerator: "UUID / ULID Generator",
   };
 
   return (

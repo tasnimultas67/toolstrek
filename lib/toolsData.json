@@ -2749,5 +2749,31 @@
       "Travel",
       "Finance"
     ]
+  },
+  {
+    "title": "UUID / ULID Generator",
+    "link": "/tools/uuid-ulid-generator",
+    "description": "Generate cryptographically secure UUID v4, v7, v1 and v5 values, sortable ULIDs or custom NanoIDs. Format batches of up to 1,000, choose case, hyphens, braces and separators, inspect any UUID or ULID, and copy or download as TXT, JSON or CSV. 100% browser-based and private.",
+    "icon": "Fingerprint",
+    "keywords": [
+      "uuid generator",
+      "ulid generator",
+      "uuid v4 generator",
+      "uuid v7 generator",
+      "uuid v5 generator",
+      "nanoid generator",
+      "secure uuid",
+      "bulk uuid generator",
+      "generate ulid online",
+      "uuid validator",
+      "ulid decoder",
+      "guid generator",
+      "sortable id generator",
+      "developer id tools"
+    ],
+    "categories": [
+      "Developer",
+      "Security"
+    ]
   }
 ]

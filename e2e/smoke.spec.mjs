@@ -42,6 +42,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/passport-photo-maker",
   "/tools/meeting-time-planner",
   "/tools/fuel-cost-calculator",
+  "/tools/uuid-ulid-generator",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];
@@ -719,6 +720,123 @@ test.describe("interactions", () => {
         page.getByText("Enter a one-way distance greater than zero.").first(),
       ).toBeVisible();
       await expect(page.getByText("Check the trip details")).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+  });
+
+  test.describe("uuid / ulid generator", () => {
+    test("generates a valid UUID v4 batch with secure formatting", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/uuid-ulid-generator");
+
+      await expect(
+        page.getByRole("heading", {
+          level: 1,
+          name: "UUID / ULID Generator",
+        }),
+      ).toBeVisible();
+
+      const output = page.getByLabel("Generated identifiers");
+      await expect
+        .poll(async () => (await output.inputValue()).split("\n").filter(Boolean).length)
+        .toBe(5);
+
+      const values = (await output.inputValue()).split("\n").filter(Boolean);
+      const uuidV4 =
+        /^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/;
+      values.forEach((value) => expect(value).toMatch(uuidV4));
+      expect(new Set(values).size).toBe(5);
+      await expect(page.getByText("122 bits", { exact: true }).first()).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("makes deterministic UUID v5 values and generates sortable ULIDs", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/uuid-ulid-generator");
+
+      await page.getByRole("button", { name: /^UUID v5/ }).click();
+      const output = page.getByLabel("Generated identifiers");
+      await expect(output).toHaveValue(
+        "cfbff0d1-9375-5685-968c-48ce8b15ae17",
+      );
+
+      await page.getByRole("button", { name: /^ULID/ }).click();
+      await expect
+        .poll(async () => (await output.inputValue()).split("\n").filter(Boolean).length)
+        .toBe(5);
+      const ulids = (await output.inputValue()).split("\n").filter(Boolean);
+      ulids.forEach((value) =>
+        expect(value).toMatch(/^[0-9A-HJKMNP-TV-Z]{26}$/),
+      );
+      expect([...ulids].sort()).toEqual(ulids);
+      expect(new Set(ulids).size).toBe(5);
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("inspects UUIDs and ULIDs and explains invalid input", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/uuid-ulid-generator");
+
+      const inspector = page.getByLabel("Identifier to inspect");
+      await inspector.fill("01ARZ3NDEKTSV4RRFFQ69G5FAV");
+      await expect(page.getByText("Valid ULID")).toBeVisible();
+      await expect(page.getByText(/2016/).first()).toBeVisible();
+      await expect(page.getByText("80 bits").first()).toBeVisible();
+
+      await page.getByRole("button", { name: "Sample UUID" }).click();
+      await expect(page.getByText("Valid UUID")).toBeVisible();
+      await expect(
+        page.getByText("UUID v5 (SHA-1 name-based)").first(),
+      ).toBeVisible();
+      await expect(
+        page.getByText("cfbff0d1-9375-5685-968c-48ce8b15ae17").last(),
+      ).toBeVisible();
+
+      await inspector.fill("not-a-real-identifier");
+      await expect(page.getByText("Not a valid UUID or ULID")).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("generates a 25-value batch, downloads it and fits a phone screen", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto("/tools/uuid-ulid-generator");
+
+      const scrollWidth = await page.evaluate(
+        () => document.documentElement.scrollWidth,
+      );
+      expect(scrollWidth).toBeLessThanOrEqual(391);
+
+      await page.getByLabel("How many identifiers?").fill("25");
+      await page.getByRole("button", { name: "Generate IDs" }).click();
+
+      const output = page.getByLabel("Generated identifiers");
+      await expect
+        .poll(async () => (await output.inputValue()).split("\n").filter(Boolean).length)
+        .toBe(25);
+
+      const downloadPromise = page.waitForEvent("download");
+      await page.getByRole("button", { name: ".txt" }).click();
+      const download = await downloadPromise;
+      expect(download.suggestedFilename()).toMatch(
+        /^uuidv4-25-ids-\d{4}-\d{2}-\d{2}\.txt$/,
+      );
+
+      const path = await download.path();
+      const content = readFileSync(path, "utf8");
+      expect(content.split(/\r?\n/).filter(Boolean)).toHaveLength(25);
 
       expect(errors, errors.join("\n")).toEqual([]);
     });

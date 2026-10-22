@@ -910,5 +910,35 @@
       "question": "Can I export the estimate?",
       "answer": "Yes. Copy a plain-text summary for a message or notes app, or download a CSV file that opens in Excel, Numbers or Google Sheets. The CSV includes the distance, fuel use, costs, per-person split, drive time, emissions, fuel stops and budget comparison."
     }
+  ],
+  "uuidUlidGenerator": [
+    {
+      "question": "What is the difference between UUID v4, v7 and ULID?",
+      "answer": "UUID v4 is 122 random bits with no timestamp, so values are opaque and cannot be sorted by creation time. UUID v7 puts a 48-bit Unix millisecond timestamp first and fills the rest with 74 random bits, making it sortable while remaining globally unique. ULID uses the same millisecond prefix but encodes the whole value in 26 Crockford Base32 characters with 80 random bits, so it is shorter to read and naturally case-insensitive."
+    },
+    {
+      "question": "Are these identifiers generated securely?",
+      "answer": "Yes. Random values come from crypto.getRandomValues(), which uses the operating system's cryptographically secure random number generator. There is no Math.random fallback. UUID v5 uses the Web Crypto SHA-1 digest exactly as the RFC specifies; SHA-1 is used here as a deterministic name mapping, not as a password security primitive."
+    },
+    {
+      "question": "Can two generated identifiers collide?",
+      "answer": "The chance is astronomically small for random UUIDs, ULIDs and well-sized NanoIDs. A UUID v4 has 122 random bits, a ULID has 80 random bits per millisecond and a 21-character NanoID over a 64-character alphabet has about 126 bits. The collision estimate in the output panel shows the pairwise probability for the batch you generated."
+    },
+    {
+      "question": "What does monotonic mean for ULID?",
+      "answer": "Standard ULIDs generated in the same millisecond may sort randomly because each one has an independent random tail. With monotonic output enabled, each additional ULID in the same batch increments the previous random tail, so the whole batch sorts in creation order. The timestamp still comes first."
+    },
+    {
+      "question": "When should I use UUID v5?",
+      "answer": "UUID v5 is for deterministic mapping, not for secrets. Given the same namespace and name, it always returns the same UUID. That is useful for stable integration IDs, deduplicating records or mapping a domain name to an identifier. Because the output is predictable, never use UUID v5 where an unguessable token is required."
+    },
+    {
+      "question": "Are time-based identifiers private?",
+      "answer": "UUID v1, UUID v7 and ULID all reveal an approximate creation timestamp. That is often useful for debugging and database ordering, but it can leak when a record was created. UUID v4 and random NanoIDs do not contain a timestamp. This generator never embeds a hardware MAC address: UUID v1 uses a random node identifier with the multicast bit set."
+    },
+    {
+      "question": "Is anything uploaded or stored?",
+      "answer": "No. Generation, formatting, validation and downloads happen entirely in your browser. There is no API call, account or analytics event for the identifiers. Refreshing the page discards the current batch."
+    }
   ]
 }
