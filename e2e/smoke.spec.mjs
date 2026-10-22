@@ -1,5 +1,5 @@
 import { test, expect } from "@playwright/test";
-import { statSync } from "node:fs";
+import { readFileSync, statSync } from "node:fs";
 
 /**
  * ToolsTrek regression smoke suite.
@@ -40,6 +40,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/text-diff",
   "/tools/flight-duration-calculator",
   "/tools/passport-photo-maker",
+  "/tools/meeting-time-planner",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];
@@ -527,6 +528,108 @@ test.describe("interactions", () => {
       });
       await expect(
         page.getByText(/Please choose a JPEG, PNG or WebP image/).first(),
+      ).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+  });
+
+  test.describe("meeting time planner", () => {
+    test("recommends a slot for the default four-person team", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/meeting-time-planner");
+
+      await expect(
+        page.getByRole("heading", { level: 1, name: "Meeting Time Planner" }),
+      ).toBeVisible();
+      await expect(page.getByText("Recommended slot")).toBeVisible();
+      await expect(
+        page.getByText("3/4 in working hours").first(),
+      ).toBeVisible();
+      await expect(page.getByText(/No perfect overlap/).first()).toBeVisible();
+      await expect(
+        page.getByRole("button", { name: "Calendar .ics" }),
+      ).toBeEnabled();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("downloads a valid .ics invite for the selected slot", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/meeting-time-planner");
+
+      const downloadPromise = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Calendar .ics" }).click();
+      const download = await downloadPromise;
+      expect(download.suggestedFilename()).toBe(
+        "global-product-sync-2026-11-10.ics",
+      );
+
+      const path = await download.path();
+      expect(statSync(path).size).toBeGreaterThan(200);
+      const content = readFileSync(path, "utf8");
+      expect(content).toContain("BEGIN:VCALENDAR");
+      expect(content).toContain("DTSTART:20261110T150000Z");
+      expect(content).toContain("Amara: 10:00");
+      expect(content).toContain("SUMMARY:Global product sync");
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("filters perfect overlaps, switches clocks and adds a participant", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/meeting-time-planner");
+
+      await page
+        .getByRole("button", { name: "Advanced scheduling options" })
+        .click();
+      await page.getByRole("switch", { name: "Only perfect overlaps" }).click();
+      await expect(
+        page.getByText(/No slot puts everyone inside/),
+      ).toBeVisible();
+
+      await page
+        .getByRole("button", { name: "Show all slots" })
+        .first()
+        .click();
+      await expect(page.getByText("Recommended slot")).toBeVisible();
+
+      await page.getByRole("button", { name: "12-hour" }).click();
+      await expect(page.getByText("10:00 AM").first()).toBeVisible();
+
+      await page.getByRole("button", { name: "Add person" }).click();
+      await expect(page.getByText("Participants (5/8)")).toBeVisible();
+      await page.getByLabel("Search window").selectOption("next7");
+      await expect(page.getByText("7 days searched")).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("explains invalid working hours and fits a phone screen", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto("/tools/meeting-time-planner");
+
+      const scrollWidth = await page.evaluate(
+        () => document.documentElement.scrollWidth,
+      );
+      expect(scrollWidth).toBeLessThanOrEqual(391);
+
+      await page
+        .getByRole("button", { name: "Advanced scheduling options" })
+        .click();
+      await page.getByLabel("Workday starts").fill("18:00");
+      await page.getByLabel("Workday ends").fill("09:00");
+      await expect(
+        page.getByText("The working day must end after it starts."),
       ).toBeVisible();
 
       expect(errors, errors.join("\n")).toEqual([]);

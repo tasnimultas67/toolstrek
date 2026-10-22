@@ -45,6 +45,7 @@ const formatSectionTitle = (sectionKey) => {
     imageEditor: "Image Editor & Filters",
     flightDurationCalculator: "Flight Duration Calculator",
     passportPhotoMaker: "Passport / ID Photo Maker",
+    meetingTimePlanner: "Meeting Time Planner",
   };
 
   return (

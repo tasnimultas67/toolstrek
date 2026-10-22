@@ -233,6 +233,7 @@ const toolPages = [
   { slug: "image-editor", lastModified: "2026-10-22" },
   { slug: "flight-duration-calculator", lastModified: "2026-10-22" },
   { slug: "passport-photo-maker", lastModified: "2026-10-22" },
+  { slug: "meeting-time-planner", lastModified: "2026-10-22" },
 ];
 
 export default function sitemap() {

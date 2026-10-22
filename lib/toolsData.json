@@ -2699,5 +2699,29 @@
       "Media",
       "Productivity"
     ]
+  },
+  {
+    "title": "Meeting Time Planner",
+    "link": "/tools/meeting-time-planner",
+    "description": "Find the best meeting time for teams across time zones. Score every slot against each participant's working hours, handle daylight saving automatically, compare local times and date shifts, filter for perfect overlaps, and export an .ics calendar invite. 100% browser-based and private.",
+    "icon": "CalendarClock",
+    "keywords": [
+      "meeting time planner",
+      "time zone meeting planner",
+      "best meeting time calculator",
+      "world clock meeting planner",
+      "schedule across time zones",
+      "international meeting planner",
+      "time zone converter for meetings",
+      "dst meeting planner",
+      "team meeting scheduler",
+      "calendar invite generator",
+      "ics meeting invite",
+      "global team scheduling"
+    ],
+    "categories": [
+      "Productivity",
+      "Time & Date"
+    ]
   }
 ]

@@ -854,5 +854,31 @@
       "question": "How many copies fit on a print sheet?",
       "answer": "The tool calculates this automatically from the photo size, paper size, margin and gap. A 4 × 6 inch sheet commonly fits six or more 35 × 45 mm photos, while A4 can fit many more. The maximum printed copies is shown before you download the PDF."
     }
+  ],
+  "meetingTimePlanner": [
+    {
+      "question": "How does the Meeting Time Planner find the best time?",
+      "answer": "For every candidate slot it converts the same instant into each participant's local time using the IANA time-zone database. A slot earns the highest score when everybody is inside their working hours, loses points when someone is early, late, outside hours, asleep or on a weekend, and loses a small amount when the meeting lands on a different calendar date for part of the group. The highest-scoring slots are ranked, and the day map highlights the best option in every hour."
+    },
+    {
+      "question": "Does it handle daylight saving time and half-hour offsets?",
+      "answer": "Yes. The conversion uses each participant's IANA zone for the actual meeting date, so daylight saving, half-hour offsets such as India, 45-minute offsets such as Nepal, and date-line crossings are all applied automatically. If a local wall time does not exist because of a spring-forward change, the planner moves to the nearest valid instant and still returns a usable slot."
+    },
+    {
+      "question": "What should I do when no time works for everyone?",
+      "answer": "That is common for genuinely global teams. Turn off the 'Only perfect overlaps' filter, then compare the ranked compromises: the score, the number of people inside working hours, and the local time for each participant make the trade-off visible. Rotating the inconvenient slot between regions, shortening the meeting, or recording it for one participant are all fairer long-term solutions than asking the same person to join at midnight every time."
+    },
+    {
+      "question": "How do working hours and weekends affect the score?",
+      "answer": "You can set a shared working window such as 09:00–17:00, choose which weekdays count, and use the meeting duration when checking the end time. A meeting that starts inside working hours but runs past the end is marked late. Weekends and nights carry larger penalties. The default sample deliberately spans New York, London, Dubai and Berlin, so it often has no perfect overlap and shows how the tool surfaces the best compromise instead of hiding it."
+    },
+    {
+      "question": "Can I export the meeting to my calendar?",
+      "answer": "Yes. Select a slot and download a standards-compliant .ics invite with the correct UTC start and end times, participants, local times and a description. It imports into Google Calendar, Outlook, Apple Calendar and most other calendar apps. You can also copy a plain-text summary for chat or email."
+    },
+    {
+      "question": "Is my meeting information private?",
+      "answer": "Completely. Participant names, time zones, dates and results are processed in your browser with the built-in Intl APIs. Nothing is uploaded, logged or saved on a server, and there is no account or tracking. Closing the tab clears the meeting."
+    }
   ]
 }
