@@ -2723,5 +2723,31 @@
       "Productivity",
       "Time & Date"
     ]
+  },
+  {
+    "title": "Fuel Cost & Road Trip Calculator",
+    "link": "/tools/fuel-cost-calculator",
+    "description": "Calculate fuel cost for any road trip in metric or imperial units. Include round trips, L/100 km, km/L, US or UK MPG, passenger splits, tolls, parking, accommodation, food, budget, fuel stops and CO₂, then copy a summary or download a CSV. 100% browser-based and private.",
+    "icon": "Fuel",
+    "keywords": [
+      "fuel cost calculator",
+      "road trip calculator",
+      "gas cost calculator",
+      "trip fuel calculator",
+      "fuel consumption calculator",
+      "mpg calculator",
+      "cost per mile",
+      "cost per km",
+      "road trip budget",
+      "split fuel cost",
+      "fuel stop calculator",
+      "diesel cost calculator",
+      "petrol cost calculator",
+      "towing fuel cost"
+    ],
+    "categories": [
+      "Travel",
+      "Finance"
+    ]
   }
 ]

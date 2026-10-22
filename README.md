@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>126 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>127 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-126_Available-10b981?style=flat-square" alt="126 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-127_Available-10b981?style=flat-square" alt="127 Tools" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
@@ -37,6 +37,7 @@
 - 🗜️ **Image Compressor** — Batch-compress JPG, PNG, WebP and AVIF images to an exact target size or quality level with no artificial batch-count or per-file size caps, compare before/after previews and download results individually or as a ZIP — with automatic EXIF/GPS metadata removal and no uploads.
 - 🧮 **Percentage Calculator** — Five percentage modes in one tool: X% of Y, what percent X is of Y, increase/decrease, add/subtract a percentage and reverse percentages, each with the substituted formula and step-by-step working.
 - 🔀 **Text Diff Checker** — Compare two texts by line, word or character with unified and split views, ignore-case and whitespace options, similarity statistics, and copy/download support for standard `.diff` patches.
+- ⛽ **Fuel Cost & Road Trip Calculator** — Turn distance, fuel economy and pump prices into a complete road-trip budget in metric or imperial units. Add round-trip distance, driving-style and load adjustments, up to twelve passengers, tolls, parking, accommodation, food and a trip budget, then see fuel used, per-person cost, full-tank range, planned fuel stops and CO₂ — with copyable summaries and CSV exports.
 - 🗓️ **Meeting Time Planner** — Score every possible meeting slot across up to eight time zones against each participant's working hours, handle daylight saving automatically, compare local times and date shifts on an hourly opportunity map, filter for perfect overlaps, and copy a summary or download a standards-compliant `.ics` calendar invite.
 - 🪪 **Passport / ID Photo Maker** — Turn a portrait into a correctly sized passport, visa or ID photo with 10 international presets, live head and eye guides, print-resolution/background/lighting/framing checks, and 300 DPI JPEG, PNG or multi-copy PDF print-sheet exports — entirely in your browser.
 - ✈️ **Flight Duration Calculator** — Calculate exact airborne time between more than 100 airports with automatic IANA time-zone and daylight-saving handling, duration/arrival/departure modes, up to six connecting flights, domestic and international layover risk scoring, custom door-to-door buffers, distance and average-speed estimates, plus copyable and PDF itinerary reports.
@@ -46,7 +47,7 @@
 
 ---
 
-## 🛠️ Tool Library (126 Tools)
+## 🛠️ Tool Library (127 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
@@ -149,7 +150,7 @@
 
 ---
 
-### 💰 Finance & Budgeting Tools (8)
+### 💰 Finance & Budgeting Tools (9)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -161,6 +162,7 @@
 | **Currency Converter** | `/tools/currency-converter` | Real-time exchange rates across 36+ currencies with fee simulators, cash breakdown grids, and offline caching. |
 | **Wedding Budget Allocator** | `/tools/wedding-budget-allocator` | Allocate and track wedding expenses with guest-count scaling, category sliders, SVG donut charts, and PDF export. |
 | **Tip Calculator** | `/tools/tip-calculator` | Calculate tips and split bills evenly or by custom shares, with service-quality input and receipt breakdowns. |
+| **Fuel Cost & Road Trip Calculator** | `/tools/fuel-cost-calculator` | Build a complete road-trip budget with fuel, tolls, parking, accommodation and food, split costs by passenger, and plan range, fuel stops and emissions in metric or imperial units. |
 
 ---
 
@@ -259,7 +261,7 @@
 
 ---
 
-### ✈️ Travel Tools (4)
+### ✈️ Travel Tools (5)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -267,6 +269,7 @@
 | **Packing List Generator** | `/tools/packing-list-generator` | Customizable travel checklists with collapsible categories, priority badges, packed filters, and PDF export. |
 | **Travel Budget Splitter** | `/tools/travel-budget-splitter` | Plan and split group trip expenses with multi-currency conversion, split rules, and debt-settlement reports. |
 | **Flight Duration Calculator** | `/tools/flight-duration-calculator` | Calculate exact flight time between any airports with automatic time-zone and daylight-saving handling, duration/arrival/departure modes, multi-city connections, layover risk scoring, door-to-door buffers, distance estimates and PDF reports. |
+| **Fuel Cost & Road Trip Calculator** | `/tools/fuel-cost-calculator` | Calculate fuel consumption and total trip cost in metric or imperial units, with driving adjustments, passenger splits, extra costs, range, fuel stops, CO₂ estimates and CSV export. |
 
 ---
 
@@ -406,7 +409,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 126 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 127 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -436,7 +439,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 126 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 127 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers

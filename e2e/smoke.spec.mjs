@@ -41,6 +41,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/flight-duration-calculator",
   "/tools/passport-photo-maker",
   "/tools/meeting-time-planner",
+  "/tools/fuel-cost-calculator",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];
@@ -631,6 +632,93 @@ test.describe("interactions", () => {
       await expect(
         page.getByText("The working day must end after it starts."),
       ).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+  });
+
+  test.describe("fuel cost & road trip calculator", () => {
+    test("prices the default round trip and splits it per person", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/fuel-cost-calculator");
+
+      await expect(
+        page.getByRole("heading", {
+          level: 1,
+          name: "Fuel Cost & Road Trip Calculator",
+        }),
+      ).toBeVisible();
+      await expect(page.getByTestId("total-trip-cost")).toHaveText("$123.75");
+      await expect(page.getByTestId("per-person-cost")).toHaveText("$61.88");
+      await expect(page.getByTestId("fuel-used")).toHaveText("75 L");
+      await expect(page.getByTestId("fuel-cost")).toHaveText("$123.75");
+      await expect(page.getByText("Cost breakdown")).toBeVisible();
+      await expect(page.getByText("$61.88").first()).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("adds extra costs, flags an over-budget trip and downloads a CSV", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/fuel-cost-calculator");
+
+      await page
+        .getByRole("button", { name: "Advanced trip options" })
+        .click();
+      await page.getByLabel("Tolls & road fees (USD)").fill("25");
+      await page.getByLabel("Parking (USD)").fill("5");
+      await page.getByLabel("Trip budget (USD, optional)").fill("100");
+
+      await expect(page.getByTestId("total-trip-cost")).toHaveText("$153.75");
+      await expect(page.getByTestId("per-person-cost")).toHaveText("$76.88");
+      await expect(page.getByText("Over budget", { exact: true })).toBeVisible();
+      await expect(page.getByText("$53.75 over", { exact: false })).toBeVisible();
+
+      const downloadPromise = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Download CSV" }).click();
+      const download = await downloadPromise;
+      expect(download.suggestedFilename()).toBe(
+        "coastal-weekend-fuel-cost.csv",
+      );
+
+      const path = await download.path();
+      expect(statSync(path).size).toBeGreaterThan(200);
+      const content = readFileSync(path, "utf8");
+      expect(content).toContain("Fuel used (L),75");
+      expect(content).toContain("Fuel cost,123.75");
+      expect(content).toContain("Total cost,153.75");
+      expect(content).toContain("Cost per person,76.88");
+      expect(content).toContain("Budget difference,-53.75");
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("converts to imperial units, validates distance and fits a phone screen", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto("/tools/fuel-cost-calculator");
+
+      const scrollWidth = await page.evaluate(
+        () => document.documentElement.scrollWidth,
+      );
+      expect(scrollWidth).toBeLessThanOrEqual(391);
+
+      await page.getByRole("button", { name: "Imperial · mi / gal" }).click();
+      await expect(page.getByLabel(/One-way distance/)).toHaveValue("310.69");
+      await expect(page.getByLabel("Fuel efficiency")).toHaveValue("31.36");
+      await expect(page.getByLabel(/Fuel price/)).toHaveValue("6.246");
+
+      await page.getByLabel(/One-way distance/).fill("0");
+      await expect(
+        page.getByText("Enter a one-way distance greater than zero.").first(),
+      ).toBeVisible();
+      await expect(page.getByText("Check the trip details")).toBeVisible();
 
       expect(errors, errors.join("\n")).toEqual([]);
     });

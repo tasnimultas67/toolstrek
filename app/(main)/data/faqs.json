@@ -880,5 +880,35 @@
       "question": "Is my meeting information private?",
       "answer": "Completely. Participant names, time zones, dates and results are processed in your browser with the built-in Intl APIs. Nothing is uploaded, logged or saved on a server, and there is no account or tracking. Closing the tab clears the meeting."
     }
+  ],
+  "fuelCostCalculator": [
+    {
+      "question": "How is the fuel cost calculated?",
+      "answer": "The calculator converts your distance and efficiency into a single metric fuel figure, then applies your driving-style and load adjustments. For example, 1,000 km at 7.5 L/100 km uses 75 litres. Multiplying 75 litres by the price per litre gives the fuel cost. Tolls, parking, accommodation and food are added afterwards to produce the complete trip cost."
+    },
+    {
+      "question": "Does the calculator account for a round trip?",
+      "answer": "Yes. Turn on Round trip and the one-way distance is doubled. The fuel, cost, driving time and emissions figures all use the full distance, while the distance field stays as the one-way value so it is easy to compare routes."
+    },
+    {
+      "question": "Why is my real-world fuel use higher than the result?",
+      "answer": "No calculator can predict traffic, weather, tyre pressure, air-conditioning, altitude or driving style exactly. Use the advanced driving-style and load selectors to add a realistic allowance, and treat the answer as a planning estimate. Keeping a small cash buffer is always sensible on a long drive."
+    },
+    {
+      "question": "How does the cost-per-person split work?",
+      "answer": "The total of fuel and every extra cost is divided by the number of passengers. It assumes an even split. If one person is driving more, or someone joins for only part of the trip, use the per-person figure as a starting point and adjust the split manually."
+    },
+    {
+      "question": "What do the fuel stops and range figures mean?",
+      "answer": "Full-tank range is the distance you can cover on the usable part of a full tank, after excluding your reserve. The fuel-stop estimate starts from your chosen starting fuel level and assumes each stop fills the usable tank. It is a planning aid, not a guarantee that stations will be available exactly where you need them."
+    },
+    {
+      "question": "Is the trip data private?",
+      "answer": "Yes. Every calculation happens in your browser and no route, price, budget or personal detail is uploaded. There is no account, no tracking pixel and no server-side storage. Closing or refreshing the page clears the trip."
+    },
+    {
+      "question": "Can I export the estimate?",
+      "answer": "Yes. Copy a plain-text summary for a message or notes app, or download a CSV file that opens in Excel, Numbers or Google Sheets. The CSV includes the distance, fuel use, costs, per-person split, drive time, emissions, fuel stops and budget comparison."
+    }
   ]
 }
