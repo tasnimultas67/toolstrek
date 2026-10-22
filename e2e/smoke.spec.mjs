@@ -43,6 +43,7 @@ const HIGH_RISK_ROUTES = [
   "/tools/meeting-time-planner",
   "/tools/fuel-cost-calculator",
   "/tools/uuid-ulid-generator",
+  "/tools/pregnancy-due-date-calculator",
   // Static page whose content is driven by lib/changelogData.js
   "/changelog",
 ];
@@ -837,6 +838,142 @@ test.describe("interactions", () => {
       const path = await download.path();
       const content = readFileSync(path, "utf8");
       expect(content.split(/\r?\n/).filter(Boolean)).toHaveLength(25);
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+  });
+
+  test.describe("pregnancy due date calculator", () => {
+    test("estimates a due date from LMP and adjusts for cycle length", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/pregnancy-due-date-calculator");
+
+      await expect(
+        page.getByRole("heading", {
+          level: 1,
+          name: "Pregnancy Due Date Calculator",
+        }),
+      ).toBeVisible();
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Sunday, November 8, 2026",
+      );
+
+      await page.getByLabel("First day of last period").fill("2026-01-01");
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Thursday, October 8, 2026",
+      );
+
+      await page.getByLabel("Average cycle length (days)").fill("30");
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Saturday, October 10, 2026",
+      );
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("supports conception, ultrasound and IVF dating methods", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/pregnancy-due-date-calculator");
+
+      await page
+        .getByRole("button", { name: "Use Conception date" })
+        .click();
+      await page.getByRole("textbox", { name: "Conception date" }).fill("2026-01-15");
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Thursday, October 8, 2026",
+      );
+
+      await page
+        .getByRole("button", { name: "Use Ultrasound scan" })
+        .click();
+      await page.getByLabel("Ultrasound scan date").fill("2026-03-01");
+      await page.getByLabel("Weeks at scan").fill("8");
+      await page.getByLabel("Days at scan").fill("2");
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Friday, October 9, 2026",
+      );
+
+      await page.getByRole("button", { name: "Use IVF transfer" }).click();
+      await page.getByLabel("Embryo transfer date").fill("2026-01-20");
+      await page
+        .getByLabel("Embryo stage at transfer")
+        .selectOption("5");
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Thursday, October 8, 2026",
+      );
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("validates future dates and downloads a milestone calendar", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.goto("/tools/pregnancy-due-date-calculator");
+
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Sunday, November 8, 2026",
+      );
+      await page.getByLabel("First day of last period").fill("2026-01-01");
+      await expect(page.getByTestId("due-date")).toHaveText(
+        "Thursday, October 8, 2026",
+      );
+
+      const downloadPromise = page.waitForEvent("download");
+      await page.getByRole("button", { name: "Download .ics" }).click();
+      const download = await downloadPromise;
+      expect(download.suggestedFilename()).toBe(
+        "pregnancy-milestones-2026-10-08.ics",
+      );
+
+      const path = await download.path();
+      expect(statSync(path).size).toBeGreaterThan(400);
+      const content = readFileSync(path, "utf8");
+      expect(content).toContain("BEGIN:VCALENDAR");
+      expect(content).toContain("DTSTART;VALUE=DATE:20261008");
+      expect(content).toContain("SUMMARY:Estimated due date");
+      expect(content).toContain("SUMMARY:Anatomy scan window");
+      expect(content).toContain("SUMMARY:Post-term threshold");
+
+      await page.getByLabel("First day of last period").fill("2027-01-01");
+      await expect(
+        page
+          .getByText("Last period date cannot be after the assessment date.")
+          .first(),
+      ).toBeVisible();
+      await expect(page.getByText("Check the dates")).toBeVisible();
+
+      expect(errors, errors.join("\n")).toEqual([]);
+    });
+
+    test("checks progress at a custom date and fits a phone screen", async ({
+      page,
+    }) => {
+      const errors = trackErrors(page);
+      await page.setViewportSize({ width: 390, height: 844 });
+      await page.goto("/tools/pregnancy-due-date-calculator");
+
+      await expect(page.getByTestId("due-date")).toBeVisible();
+      const initialWidth = await page.evaluate(
+        () => document.documentElement.scrollWidth,
+      );
+      expect(initialWidth).toBeLessThanOrEqual(391);
+
+      await page.getByLabel("First day of last period").fill("2026-01-01");
+      await page
+        .getByRole("button", { name: /Advanced options/ })
+        .click();
+      await page.getByLabel("Calculate progress as of").fill("2026-06-01");
+      await expect(page.getByTestId("gestational-age")).toHaveText("21w 4d");
+
+      const expandedWidth = await page.evaluate(
+        () => document.documentElement.scrollWidth,
+      );
+      expect(expandedWidth).toBeLessThanOrEqual(391);
 
       expect(errors, errors.join("\n")).toEqual([]);
     });

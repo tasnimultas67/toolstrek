@@ -236,6 +236,7 @@ const toolPages = [
   { slug: "meeting-time-planner", lastModified: "2026-10-22" },
   { slug: "fuel-cost-calculator", lastModified: "2026-10-22" },
   { slug: "uuid-ulid-generator", lastModified: "2026-10-22" },
+  { slug: "pregnancy-due-date-calculator", lastModified: "2026-10-22" },
 ];
 
 export default function sitemap() {

@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>128 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>129 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-128_Available-10b981?style=flat-square" alt="128 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-129_Available-10b981?style=flat-square" alt="129 Tools" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
@@ -42,13 +42,14 @@
 - 🗓️ **Meeting Time Planner** — Score every possible meeting slot across up to eight time zones against each participant's working hours, handle daylight saving automatically, compare local times and date shifts on an hourly opportunity map, filter for perfect overlaps, and copy a summary or download a standards-compliant `.ics` calendar invite.
 - 🪪 **Passport / ID Photo Maker** — Turn a portrait into a correctly sized passport, visa or ID photo with 10 international presets, live head and eye guides, print-resolution/background/lighting/framing checks, and 300 DPI JPEG, PNG or multi-copy PDF print-sheet exports — entirely in your browser.
 - ✈️ **Flight Duration Calculator** — Calculate exact airborne time between more than 100 airports with automatic IANA time-zone and daylight-saving handling, duration/arrival/departure modes, up to six connecting flights, domestic and international layover risk scoring, custom door-to-door buffers, distance and average-speed estimates, plus copyable and PDF itinerary reports.
+- 🤰 **Pregnancy Due Date Calculator** — Estimate a due date from last period, conception, ultrasound or IVF transfer, with cycle-length adjustment, gestational and fetal age, trimester progress, conception and implantation estimates, full-term and milestone windows, and copyable or `.ics` calendar exports.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays, with a responsive type scale that keeps dense workspaces readable as screens grow.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
 - 🧩 **SEO & PWA Ready** — Dynamic sitemap, robots, web manifest, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
-## 🛠️ Tool Library (128 Tools)
+## 🛠️ Tool Library (129 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
@@ -139,7 +140,7 @@
 
 ---
 
-### 🧮 Calculator Tools (6)
+### 🧮 Calculator Tools (7)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -149,6 +150,7 @@
 | **Days Tracker** | `/tools/days-tracker` | Calculate the exact duration between two dates or add/subtract days, business days, and weeks. |
 | **Unit Converter** | `/tools/unit-converter` | Convert length, mass, temperature, area, volume, speed, digital storage, energy, and pressure across metric & imperial systems. |
 | **Roman Numeral Converter** | `/tools/roman-numeral-converter` | Convert integers to Roman numerals and back with step-by-step breakdowns and an interactive Roman keyboard. |
+| **Pregnancy Due Date Calculator** | `/tools/pregnancy-due-date-calculator` | Estimate a due date from LMP with cycle adjustment, conception, ultrasound or IVF transfer, with gestational age, milestone windows, summary copy and `.ics` export. |
 
 ---
 
@@ -168,7 +170,7 @@
 
 ---
 
-### 🩺 Health & Wellness Tools (6)
+### 🩺 Health & Wellness Tools (7)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -178,6 +180,7 @@
 | **Bra Size Calculator** | `/tools/bra-size-calculator` | r/ABraThatFits 6-measurement algorithm with international conversions, sister sizes, and fit reports. |
 | **Smoking Cost Calculator** | `/tools/smoking-cost-calculator` | Financial and physical cost of smoking/vaping from 1 day to 20 years, with 30+ currencies and investment growth projections. |
 | **Sleep Calculator** | `/tools/sleep-calculator` | Best bedtime/wake-up times using 90-minute cycles, personalised by age, chronotype, and habits, with a quality score, stage breakdown, nap guide, and PDF plan. |
+| **Pregnancy Due Date Calculator** | `/tools/pregnancy-due-date-calculator` | Estimate a due date from last period, conception, ultrasound or IVF, with gestational and fetal age, trimester progress, conception and implantation windows, milestone dates, summary copy and `.ics` export. |
 
 ---
 
@@ -412,7 +415,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 128 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 129 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -442,7 +445,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 128 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 129 tools (source of truth)
 │   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers

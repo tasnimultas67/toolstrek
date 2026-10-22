@@ -940,5 +940,35 @@
       "question": "Is anything uploaded or stored?",
       "answer": "No. Generation, formatting, validation and downloads happen entirely in your browser. There is no API call, account or analytics event for the identifiers. Refreshing the page discards the current batch."
     }
+  ],
+  "pregnancyDueDateCalculator": [
+    {
+      "question": "How is the pregnancy due date calculated?",
+      "answer": "The most common method is Naegele's rule: add 280 days (40 weeks) to the first day of your last menstrual period. If your cycle is longer or shorter than 28 days, the calculator adjusts the date by the difference. A known conception date uses 266 days, an ultrasound uses the measured gestational age, and IVF uses a fixed offset based on embryo age."
+    },
+    {
+      "question": "Why does my cycle length change the due date?",
+      "answer": "Naegele's rule assumes ovulation on day 14 of a 28-day cycle. If your cycle is 32 days, ovulation is typically later, so the calculator adds 4 days. A 26-day cycle moves the due date 2 days earlier. This is still an estimate; an early dating scan can refine it."
+    },
+    {
+      "question": "What is the difference between gestational age and fetal age?",
+      "answer": "Gestational age is counted from the first day of the last period, even though conception happens about two weeks later. Fetal or embryonic age is counted from conception, so it is usually about 14 days less than gestational age. Pregnancy care almost always uses gestational age."
+    },
+    {
+      "question": "How accurate is an ultrasound due date?",
+      "answer": "An early first-trimester scan is usually accurate to within about 5–7 days, and sometimes closer. Later scans are less precise for dating because babies grow at different rates. This calculator simply converts the scan's reported weeks and days into an estimated 40-week due date."
+    },
+    {
+      "question": "How does IVF transfer dating work?",
+      "answer": "For a day-5 blastocyst transfer, the due date is 261 days after the transfer (266 minus 5). Day-3 and day-6 transfers use 263 and 260 days. This relies on the transfer date and embryo age provided by your fertility clinic, which is usually more precise than LMP dating."
+    },
+    {
+      "question": "What do the milestone dates mean?",
+      "answer": "Milestones are typical gestational windows for screening, scans and trimester boundaries, not personalised medical instructions. Your care team may schedule appointments differently based on your history, local guidelines and the results of earlier tests."
+    },
+    {
+      "question": "Is my information private and is this medical advice?",
+      "answer": "Yes, every date is calculated in your browser and nothing is uploaded. This tool provides educational estimates only and does not replace medical advice. Always confirm your due date and care schedule with a qualified healthcare professional."
+    }
   ]
 }

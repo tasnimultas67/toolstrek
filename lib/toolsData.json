@@ -2775,5 +2775,31 @@
       "Developer",
       "Security"
     ]
+  },
+  {
+    "title": "Pregnancy Due Date Calculator",
+    "link": "/tools/pregnancy-due-date-calculator",
+    "description": "Estimate your pregnancy due date from your last period, conception date, ultrasound scan or IVF transfer. See gestational age, trimester progress, days to go, conception and implantation estimates, full-term and milestone windows, then copy a summary or download an .ics calendar. 100% browser-based and private.",
+    "icon": "Baby",
+    "keywords": [
+      "pregnancy due date calculator",
+      "due date calculator",
+      "pregnancy calculator",
+      "estimated due date",
+      "gestational age calculator",
+      "pregnancy weeks calculator",
+      "lmp calculator",
+      "conception date calculator",
+      "ultrasound due date calculator",
+      "ivf due date calculator",
+      "naegele rule calculator",
+      "pregnancy milestone calendar",
+      "how many weeks pregnant",
+      "full term pregnancy dates"
+    ],
+    "categories": [
+      "Health",
+      "Calculator"
+    ]
   }
 ]
