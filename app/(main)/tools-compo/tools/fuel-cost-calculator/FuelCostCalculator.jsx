@@ -318,8 +318,8 @@ export default function FuelCostCalculator() {
   };
 
   return (
-    <ToolPageShell>
-      <div className="mx-auto w-full max-w-6xl space-y-7 pb-12">
+    <ToolPageShell widthClassName="max-w-none">
+      <div className="mx-auto w-full space-y-7 pb-12 lg:w-11/12">
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-amber-500 via-orange-500 to-rose-500 p-6 text-white shadow-xl shadow-orange-500/15 sm:p-9">
           <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-yellow-200/20 blur-2xl" />
           <div className="pointer-events-none absolute -bottom-24 -left-16 h-56 w-56 rounded-full bg-rose-300/20 blur-2xl" />

@@ -304,8 +304,8 @@ export default function UuidUlidGenerator() {
   };
 
   return (
-    <ToolPageShell>
-      <div className="mx-auto w-full max-w-6xl space-y-7 pb-12">
+    <ToolPageShell widthClassName="max-w-none">
+      <div className="mx-auto w-full space-y-7 pb-12 lg:w-11/12">
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-600 via-blue-600 to-cyan-500 p-6 text-white shadow-xl shadow-indigo-500/15 sm:p-9">
           <div className="pointer-events-none absolute inset-0 opacity-20 [background-image:linear-gradient(rgba(255,255,255,.15)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,.15)_1px,transparent_1px)] [background-size:34px_34px]" />
           <div className="pointer-events-none absolute -right-20 -top-24 h-64 w-64 rounded-full bg-cyan-300/25 blur-3xl" />

@@ -580,8 +580,8 @@ export default function PassportPhotoMaker() {
           : "stroke-slate-300";
 
   return (
-    <ToolPageShell>
-      <div className="mx-auto w-full max-w-6xl space-y-7 pb-12">
+    <ToolPageShell widthClassName="max-w-none">
+      <div className="mx-auto w-full space-y-7 pb-12 lg:w-11/12">
         {/* Hero */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-blue-700 via-indigo-700 to-violet-700 p-6 text-white shadow-xl shadow-indigo-500/15 sm:p-9">
           <div className="pointer-events-none absolute -right-24 -top-28 h-72 w-72 rounded-full bg-white/10 blur-3xl" />

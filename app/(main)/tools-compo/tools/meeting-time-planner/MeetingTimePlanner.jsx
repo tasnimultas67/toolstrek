@@ -508,8 +508,8 @@ export default function MeetingTimePlanner() {
     : formatDateLong(plan.dates?.[0]);
 
   return (
-    <ToolPageShell>
-      <div className="mx-auto w-full max-w-6xl space-y-7 pb-12">
+    <ToolPageShell widthClassName="max-w-none">
+      <div className="mx-auto w-full space-y-7 pb-12 lg:w-11/12">
         {/* Hero */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-teal-800 via-emerald-700 to-cyan-700 p-6 text-white shadow-xl shadow-teal-500/15 sm:p-9">
           <div

@@ -339,8 +339,8 @@ export default function PregnancyDueDateCalculator() {
     : "";
 
   return (
-    <ToolPageShell>
-      <div className="mx-auto w-full max-w-6xl space-y-7 pb-12">
+    <ToolPageShell widthClassName="max-w-none">
+      <div className="mx-auto w-full space-y-7 pb-12 lg:w-11/12">
         {/* Hero */}
         <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-rose-500 via-pink-500 to-fuchsia-600 p-6 text-white shadow-xl shadow-rose-500/15 sm:p-9">
           <div className="pointer-events-none absolute -right-16 -top-20 h-64 w-64 rounded-full bg-white/15 blur-2xl" />
