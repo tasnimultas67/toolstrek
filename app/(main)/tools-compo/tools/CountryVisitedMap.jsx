@@ -400,8 +400,8 @@ function svgToPngCanvas(
 /* ------------------------------------------------------------------ */
 
 function getSiteHost() {
-  if (typeof window === "undefined") return "toolstrek.com";
-  return window.location.host || "toolstrek.com";
+  if (typeof window === "undefined") return "toolstrek.vercel.app";
+  return window.location.host || "toolstrek.vercel.app";
 }
 
 // Brand slug used in download filenames (falls back to "toolstrek" locally).

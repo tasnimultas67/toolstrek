@@ -4,6 +4,8 @@ import HCategories from "./tools-compo/HCategories";
 import { Suspense } from "react";
 import HeroSkeleton from "./tools-compo/Home-Compo/HeroSkeleton";
 import WhyChooseUs from "./tools-compo/WhyChooseUs";
+import StatsBar from "./tools-compo/StatsBar";
+import ToolboxShowcase from "./tools-compo/ToolboxShowcase";
 
 export default function Home() {
   return (
@@ -15,12 +17,17 @@ export default function Home() {
       <Suspense fallback={<HeroSkeleton />}>
         <Hero />
       </Suspense>
+      {/*  */}
+      <div>
+        <StatsBar />
+      </div>
       {/* Services Section */}
       <HServices />
       {/* Categories Section */}
       <HCategories />
       {/* Modern Why Choose Us Section */}
       <WhyChooseUs />
+      <ToolboxShowcase />
     </div>
   );
 }

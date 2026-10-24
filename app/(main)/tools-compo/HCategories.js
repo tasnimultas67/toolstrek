@@ -2,7 +2,6 @@
 import React, { useMemo } from "react";
 import Link from "next/link";
 import toolsData from "../../../lib/toolsData.json";
-import { getIcon } from "./dynamicIcon";
 import {
   Calculator,
   FileText,
@@ -20,151 +19,45 @@ import {
   Clock,
   Plane,
   Film,
+  ArrowUpRight,
   ChevronRight,
 } from "lucide-react";
 import SectionInfo from "./SectionInfo";
 
-// Category metadata: icon, gradient colors, description
+/* -------------------------------------------------------------------------- */
+/*  Category metadata (icon + description only; color is unified via accent)  */
+/* -------------------------------------------------------------------------- */
+
 const categoryMeta = {
   Calculator: {
     Icon: Calculator,
-    gradient: "from-blue-500 to-cyan-500",
-    bg: "from-blue-500/10 to-cyan-500/10",
-    border: "border-blue-500/20",
-    text: "text-blue-600 dark:text-blue-400",
     description: "Number crunching & conversions",
   },
-  PDF: {
-    Icon: FileText,
-    gradient: "from-red-500 to-orange-500",
-    bg: "from-red-500/10 to-orange-500/10",
-    border: "border-red-500/20",
-    text: "text-red-600 dark:text-red-400",
-    description: "Merge, split, convert & compress",
-  },
-  Image: {
-    Icon: Image,
-    gradient: "from-violet-500 to-purple-500",
-    bg: "from-violet-500/10 to-purple-500/10",
-    border: "border-violet-500/20",
-    text: "text-violet-600 dark:text-violet-400",
-    description: "Resize, convert & edit images",
-  },
-  Design: {
-    Icon: Palette,
-    gradient: "from-pink-500 to-rose-500",
-    bg: "from-pink-500/10 to-rose-500/10",
-    border: "border-pink-500/20",
-    text: "text-pink-600 dark:text-pink-400",
-    description: "Colors, gradients & design assets",
-  },
-  Developer: {
-    Icon: Code2,
-    gradient: "from-emerald-500 to-teal-500",
-    bg: "from-emerald-500/10 to-teal-500/10",
-    border: "border-emerald-500/20",
-    text: "text-emerald-600 dark:text-emerald-400",
-    description: "Dev utilities & inspection tools",
-  },
-  Productivity: {
-    Icon: Zap,
-    gradient: "from-amber-500 to-yellow-500",
-    bg: "from-amber-500/10 to-yellow-500/10",
-    border: "border-amber-500/20",
-    text: "text-amber-600 dark:text-amber-400",
-    description: "Boost your daily workflow",
-  },
-  Text: {
-    Icon: Type,
-    gradient: "from-indigo-500 to-blue-500",
-    bg: "from-indigo-500/10 to-blue-500/10",
-    border: "border-indigo-500/20",
-    text: "text-indigo-600 dark:text-indigo-400",
-    description: "Encode, decode & manipulate text",
-  },
-  "QR Code": {
-    Icon: QrCode,
-    gradient: "from-sky-500 to-blue-500",
-    bg: "from-sky-500/10 to-blue-500/10",
-    border: "border-sky-500/20",
-    text: "text-sky-600 dark:text-sky-400",
-    description: "Generate & scan QR codes",
-  },
-  Security: {
-    Icon: ShieldCheck,
-    gradient: "from-slate-600 to-gray-500",
-    bg: "from-slate-500/10 to-gray-500/10",
-    border: "border-slate-500/20",
-    text: "text-slate-600 dark:text-slate-400",
-    description: "Protect your passwords & data",
-  },
+  PDF: { Icon: FileText, description: "Merge, split, convert & compress" },
+  Image: { Icon: Image, description: "Resize, convert & edit images" },
+  Design: { Icon: Palette, description: "Colors, gradients & design assets" },
+  Developer: { Icon: Code2, description: "Dev utilities & inspection tools" },
+  Productivity: { Icon: Zap, description: "Boost your daily workflow" },
+  Text: { Icon: Type, description: "Encode, decode & manipulate text" },
+  "QR Code": { Icon: QrCode, description: "Generate & scan QR codes" },
+  Security: { Icon: ShieldCheck, description: "Protect your passwords & data" },
   Education: {
     Icon: GraduationCap,
-    gradient: "from-lime-500 to-green-500",
-    bg: "from-lime-500/10 to-green-500/10",
-    border: "border-lime-500/20",
-    text: "text-lime-600 dark:text-lime-400",
     description: "Academic calculators & tools",
   },
-  Finance: {
-    Icon: DollarSign,
-    gradient: "from-green-500 to-emerald-600",
-    bg: "from-green-500/10 to-emerald-600/10",
-    border: "border-green-500/20",
-    text: "text-green-600 dark:text-green-400",
-    description: "Budget, tax & financial tools",
-  },
-  Health: {
-    Icon: Heart,
-    gradient: "from-rose-500 to-red-500",
-    bg: "from-rose-500/10 to-red-500/10",
-    border: "border-rose-500/20",
-    text: "text-rose-600 dark:text-rose-400",
-    description: "Wellness & fitness calculators",
-  },
-  Fun: {
-    Icon: Laugh,
-    gradient: "from-fuchsia-500 to-pink-500",
-    bg: "from-fuchsia-500/10 to-pink-500/10",
-    border: "border-fuchsia-500/20",
-    text: "text-fuchsia-600 dark:text-fuchsia-400",
-    description: "Space, zodiac & playful tools",
-  },
-  Time: {
-    Icon: Clock,
-    gradient: "from-cyan-500 to-sky-500",
-    bg: "from-cyan-500/10 to-sky-500/10",
-    border: "border-cyan-500/20",
-    text: "text-cyan-600 dark:text-cyan-400",
-    description: "Timezone & time conversions",
-  },
+  Finance: { Icon: DollarSign, description: "Budget, tax & financial tools" },
+  Health: { Icon: Heart, description: "Wellness & fitness calculators" },
+  Fun: { Icon: Laugh, description: "Space, zodiac & playful tools" },
+  Time: { Icon: Clock, description: "Timezone & time conversions" },
   "Time & Date": {
     Icon: Clock,
-    gradient: "from-purple-500 to-indigo-500",
-    bg: "from-purple-500/10 to-indigo-500/10",
-    border: "border-purple-500/20",
-    text: "text-purple-600 dark:text-purple-400",
-    description: "Calendars, dynamic greetings & time zones",
+    description: "Calendars, greetings & time zones",
   },
-  Travel: {
-    Icon: Plane,
-    gradient: "from-orange-500 to-amber-500",
-    bg: "from-orange-500/10 to-amber-500/10",
-    border: "border-orange-500/20",
-    text: "text-orange-600 dark:text-orange-400",
-    description: "Trip planners & packing tools",
-  },
-  Media: {
-    Icon: Film,
-    gradient: "from-purple-500 to-violet-500",
-    bg: "from-purple-500/10 to-violet-500/10",
-    border: "border-purple-500/20",
-    text: "text-purple-600 dark:text-purple-400",
-    description: "GIFs, video & audio formats",
-  },
+  Travel: { Icon: Plane, description: "Trip planners & packing tools" },
+  Media: { Icon: Film, description: "GIFs, video & audio formats" },
 };
 
-// Category order (most popular / broad first)
+// Most popular / broad first
 const CATEGORY_ORDER = [
   "Productivity",
   "PDF",
@@ -187,113 +80,86 @@ const CATEGORY_ORDER = [
 
 const toSlug = (cat) => cat.toLowerCase().replace(/\s+/g, "-");
 
+/* -------------------------------------------------------------------------- */
+/*  Section                                                                   */
+/* -------------------------------------------------------------------------- */
+
 const HCategories = () => {
-  // Count tools per category & collect a sample icon from each
+  // Count tools per category
   const categoryData = useMemo(() => {
     const map = {};
     toolsData.forEach((tool) => {
       const rawCats = Array.isArray(tool.categories)
         ? tool.categories
         : [tool.category || "General"];
-      const cats = new Set(rawCats.filter(Boolean));
-      cats.forEach((cat) => {
-        if (!map[cat]) map[cat] = { count: 0, sampleIcon: tool.icon };
+      new Set(rawCats.filter(Boolean)).forEach((cat) => {
+        if (!map[cat]) map[cat] = { count: 0 };
         map[cat].count += 1;
       });
     });
     return map;
   }, []);
 
-  const orderedCategories = CATEGORY_ORDER.filter((cat) => categoryData[cat]);
+  const orderedCategories = CATEGORY_ORDER.filter(
+    (cat) => categoryData[cat] && categoryMeta[cat],
+  );
 
   return (
-    <section className="relative py-20 px-2 overflow-hidden border-b border-gray-100 dark:border-gray-800">
-      {/* Subtle background glow */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-brandColor/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-purple-500/5 rounded-full blur-3xl" />
+    <section className="relative isolate overflow-hidden border-b border-gray-100 py-16 dark:border-gray-800 sm:py-20">
+      {/* Background glow + faint grid */}
+      <div aria-hidden className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/2 top-0 h-120 w-205 -translate-x-1/2 rounded-full bg-brandColor/10 blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(100,116,139,0.08)_1px,transparent_1px),linear-gradient(to_bottom,rgba(100,116,139,0.08)_1px,transparent_1px)] bg-size-[44px_44px] mask-[radial-gradient(ellipse_at_top,black_30%,transparent_75%)]" />
       </div>
 
-      <div className="relative w-11/12 mx-auto">
-        {/* Section Header */}
-        <div className="mb-10 text-center">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <div className="mx-auto mb-10 max-w-3xl text-center">
           <SectionInfo
             title="Browse by Category"
-            subtitle="Find the  *Right Tool*, Fast"
-            description={` ${orderedCategories.length} categories. One destination. Everything
-            you need is just a click away.`}
+            subtitle="Find the *Right Tool*, Fast"
+            description={`${orderedCategories.length} categories. One destination. Everything you need is just a click away.`}
           />
+
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-2 text-sm">
+            <span className="rounded-full border border-gray-200 bg-white/70 px-3.5 py-1.5 text-gray-700 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
+              <strong className="font-semibold text-gray-900 dark:text-white">
+                {toolsData.length}
+              </strong>{" "}
+              free tools
+            </span>
+            <span className="rounded-full border border-gray-200 bg-white/70 px-3.5 py-1.5 text-gray-700 backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
+              <strong className="font-semibold text-gray-900 dark:text-white">
+                {orderedCategories.length}
+              </strong>{" "}
+              categories
+            </span>
+          </div>
         </div>
 
-        {/* 4-column grid of category cards */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-3">
-          {orderedCategories.map((cat) => {
-            const meta = categoryMeta[cat];
-            const data = categoryData[cat];
-            if (!meta || !data) return null;
-
-            const { Icon, gradient, bg, border, text, description } = meta;
-
-            return (
-              <Link
-                key={cat}
-                href={`/tools?category=${toSlug(cat)}`}
-                className={`group relative flex flex-col gap-4 p-5 rounded-2xl bg-white dark:bg-gray-900 border ${border} dark:border-white/5 overflow-hidden transition-all duration-300 hover:-translate-y-1 hover:shadow-lg hover:shadow-black/5 dark:hover:shadow-black/30`}
-              >
-                {/* Gradient orb on hover */}
-                <div
-                  className={`absolute -top-8 -right-8 w-28 h-28 bg-gradient-to-br ${gradient} rounded-full opacity-0 group-hover:opacity-10 transition-opacity duration-300 blur-2xl`}
-                />
-
-                {/* Icon */}
-                <div
-                  className={`relative inline-flex items-center justify-center w-12 h-12 rounded-xl bg-gradient-to-br ${bg} border ${border} transition-transform duration-300 group-hover:scale-110`}
-                >
-                  <Icon
-                    className={`w-5 h-5 ${text} transition-colors duration-300`}
-                    strokeWidth={1.75}
-                  />
-                </div>
-
-                {/* Text content */}
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center justify-between gap-2">
-                    <h3 className="text-base font-semibold tracking-tight text-gray-900 dark:text-white truncate group-hover:text-brandColor transition-colors duration-200">
-                      {cat}
-                    </h3>
-                    <ChevronRight
-                      className={`w-4 h-4 shrink-0 ${text} opacity-0 group-hover:opacity-100 group-hover:translate-x-0.5 transition-all duration-200`}
-                    />
-                  </div>
-                  <p className="mt-0.5 text-sm text-gray-500 dark:text-gray-400 line-clamp-1 leading-relaxed">
-                    {description}
-                  </p>
-                </div>
-
-                {/* Tool count badge */}
-                <div className="flex items-center justify-between">
-                  <span
-                    className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-gradient-to-r ${bg} ${text} border ${border}`}
-                  >
-                    {data.count} {data.count === 1 ? "tool" : "tools"}
-                  </span>
-                  {/* <span className="text-[10px] text-gray-400 dark:text-gray-600 font-medium uppercase tracking-wider group-hover:text-brandColor transition-colors duration-200">
-                    Explore →
-                  </span> */}
-                </div>
-              </Link>
-            );
-          })}
+        {/* Category grid */}
+        <div className="grid grid-cols-2 gap-3 md:grid-cols-4 lg:grid-cols-5">
+          {orderedCategories.map((cat) => (
+            <CategoryCard
+              key={cat}
+              cat={cat}
+              meta={categoryMeta[cat]}
+              count={categoryData[cat].count}
+            />
+          ))}
         </div>
 
-        {/* Bottom CTA */}
-        <div className="mt-10 text-center">
+        {/* CTA */}
+        <div className="mt-12 text-center">
           <Link
             href="/tools"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brandColor text-white text-sm font-semibold hover:bg-brandColorHover transition-all duration-200 hover:scale-105 shadow-md shadow-brandColor/20"
+            className="group inline-flex items-center gap-2 rounded-full bg-brandColor px-7 py-3.5 text-sm font-semibold text-white transition-all duration-200 hover:bg-brandColorHover hover:shadow-brandColor/30 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandColor"
           >
-            Browse All Tools
-            <ChevronRight className="w-4 h-4" />
+            Browse all tools
+            <ChevronRight
+              className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5"
+              strokeWidth={2.5}
+            />
           </Link>
         </div>
       </div>
@@ -302,3 +168,42 @@ const HCategories = () => {
 };
 
 export default HCategories;
+
+/* -------------------------------------------------------------------------- */
+/*  Compact card                                                              */
+/* -------------------------------------------------------------------------- */
+
+const CategoryCard = ({ cat, meta, count }) => {
+  const { Icon } = meta;
+
+  return (
+    <Link
+      href={`/tools?category=${toSlug(cat)}`}
+      className="group relative flex items-center gap-3 overflow-hidden rounded-2xl border border-gray-200/80 bg-white/80 p-4 backdrop-blur transition-all duration-300 hover:-translate-y-0.5 hover:border-brandColor/40 hover:shadow-lg hover:shadow-brandColor/15 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brandColor dark:border-white/10 dark:bg-gray-900/70"
+    >
+      {/* Hover spotlight */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute -right-10 -top-10 h-24 w-24 rounded-full bg-brandColor/15 opacity-0 blur-2xl transition-opacity duration-500 group-hover:opacity-100"
+      />
+
+      <div className="relative inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gray-100 text-gray-700 ring-1 ring-inset ring-gray-200 transition-all duration-300 group-hover:scale-105 group-hover:bg-brandColor/10 group-hover:text-brandColor group-hover:ring-brandColor/20 dark:bg-white/5 dark:text-gray-300 dark:ring-white/10">
+        <Icon className="h-5 w-5" strokeWidth={1.75} />
+      </div>
+
+      <div className="relative min-w-0 flex-1">
+        <h3 className="truncate text-sm font-semibold tracking-tight text-gray-900 dark:text-white sm:text-base">
+          {cat}
+        </h3>
+        <span className="text-xs font-medium text-gray-500 transition-colors duration-300 group-hover:text-brandColor dark:text-gray-400">
+          {count} {count === 1 ? "tool" : "tools"}
+        </span>
+      </div>
+
+      <ArrowUpRight
+        aria-hidden
+        className="relative hidden h-4 w-4 shrink-0 text-gray-400 opacity-0 transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-brandColor group-hover:opacity-100 sm:block"
+      />
+    </Link>
+  );
+};

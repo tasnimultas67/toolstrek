@@ -1,172 +1,125 @@
 import * as motion from "motion/react-client";
-
 import React from "react";
-import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { ArrowRight, Check, FileText, Image, QrCode } from "lucide-react";
+
+const RINGS = [320, 270, 220, 170, 120, 70];
+
+const highlights = ["No sign-up", "Free forever", "Runs in your browser"];
+
+const floatingTools = [
+  {
+    label: "QR Code",
+    Icon: QrCode,
+    className: "right-[34%] top-[16%]",
+  },
+  {
+    label: "PDF",
+    Icon: FileText,
+    className: "right-[10%] top-[44%]",
+  },
+  {
+    label: "Image",
+    Icon: Image,
+    className: "right-[38%] bottom-[14%]",
+  },
+];
 
 const CTA = () => {
-  // Animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-        delayChildren: 0.3,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { y: 20, opacity: 0 },
-    visible: {
-      y: 0,
-      opacity: 1,
-      transition: {
-        duration: 0.6,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  const circleVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: {
-      scale: 1,
-      opacity: 0.2,
-      transition: {
-        duration: 1.5,
-        ease: "circOut",
-      },
-    },
-  };
-
   return (
-    <section className="relative">
+    <section className="relative px-4 py-16 sm:px-6 lg:px-8">
       <motion.div
-        className="w-full md:w-11/12 mx-auto text-left bg-linear-to-r from-black to-brandColorHover  rounded-3xl text-white py-10 px-4 sm:px-6 lg:px-8 relative overflow-hidden pb-10 md:pb-10"
-        initial="hidden"
-        whileInView="visible"
+        initial={{ opacity: 0, y: 24 }}
+        whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: "-100px" }}
-        variants={containerVariants}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        className="relative mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-white/10 bg-linear-to-br from-gray-950 via-gray-900 to-brandColorHover px-6 py-14 text-white shadow-2xl shadow-brandColor/20 sm:px-10 md:py-20 lg:px-16"
       >
-        {/* Left Content */}
-        <motion.div
-          className="text-center md:text-left"
-          variants={containerVariants}
-        >
-          <motion.h2
-            className="text-3xl font-semibold mb-4 leading-normal"
-            variants={itemVariants}
-          >
-            Your Digital Toolbox for Productivity & Efficiency!
-          </motion.h2>
-          <motion.p
-            className="text-sm mb-5 opacity-90 w-full md:w-[70%]"
-            variants={itemVariants}
-          >
-            Discover the power of precision-crafted tools designed to simplify
-            your workflow. From QR code generation to smart utilities, ToolsTrek
-            offers innovative solutions that enhance efficiency and convenience.
-            Try them today and optimize your digital experience!
-          </motion.p>
-          <motion.div variants={itemVariants}>
-            <Button asChild variant="secondary" className="">
-              <Link href="/tools" className="text-xs">
-                Browse All Tools
-              </Link>
-            </Button>
-          </motion.div>
-        </motion.div>
+        {/* Dotted texture */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle,rgba(255,255,255,0.12)_1px,transparent_1px)] bg-size-[18px_18px] mask-[radial-gradient(ellipse_at_right,black_10%,transparent_70%)]"
+        />
 
-        {/* Right Background - Abstract Geometric Circles */}
-        <motion.div
-          className="absolute right-0 top-0 bottom-0 w-full md:w-[60%]"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          variants={containerVariants}
+        {/* Brand glow */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -right-24 -top-24 h-96 w-96 rounded-full bg-brandColor/30 blur-3xl"
+        />
+
+        {/* Concentric rings */}
+        <svg
+          aria-hidden
+          viewBox="0 0 700 700"
+          fill="none"
+          className="pointer-events-none absolute -bottom-72 -right-72 h-175 w-175 md:-bottom-60 md:-right-52"
         >
-          <motion.svg
-            className="absolute right-0 md:-right-100 -bottom-75 md:bottom-0 md:-top-32.5 w-120 md:w-200 h-150 fill-white "
-            viewBox="0 0 600 600"
-            fill="none"
-            variants={circleVariants}
-          >
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="320"
+          {RINGS.map((r, i) => (
+            <circle
+              key={r}
+              cx="350"
+              cy="350"
+              r={r}
               stroke="white"
+              strokeOpacity={0.1 + (RINGS.length - i) * 0.02}
               strokeWidth="1.5"
-              variants={circleVariants}
             />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="280"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="240"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="200"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="160"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="120"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="80"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="40"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-            <motion.circle
-              cx="300"
-              cy="300"
-              r="20"
-              stroke="white"
-              strokeWidth="1.5"
-              variants={circleVariants}
-            />
-          </motion.svg>
-        </motion.div>
+          ))}
+          <circle cx="350" cy="350" r="6" fill="white" fillOpacity="0.6" />
+        </svg>
+
+        {/* Floating tool chips (desktop only) */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 hidden lg:block"
+        >
+          {floatingTools.map(({ label, Icon, className }) => (
+            <div
+              key={label}
+              className={`absolute ${className} inline-flex items-center gap-2 rounded-2xl border border-white/15 bg-white/10 px-4 py-2.5 text-sm font-medium text-white shadow-lg shadow-black/20 backdrop-blur-md`}
+            >
+              <Icon size={16} />
+              {label}
+            </div>
+          ))}
+        </div>
+
+        {/* Content */}
+        <div className="relative max-w-2xl text-center md:text-left">
+          <h2 className="text-3xl font-semibold leading-tight tracking-tight sm:text-4xl md:text-5xl">
+            Your digital toolbox for productivity and efficiency
+          </h2>
+
+          <p className="mx-auto mt-5 max-w-xl text-sm leading-relaxed text-white/75 sm:text-base md:mx-0">
+            Discover precision-crafted tools designed to simplify your workflow.
+            From QR code generation to smart utilities, ToolsTrek offers fast,
+            free solutions that make everyday tasks easier.
+          </p>
+
+          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row md:justify-start">
+            <Link
+              href="/tools"
+              className="group inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-sm font-semibold text-gray-900 shadow-lg shadow-black/20 transition-all duration-200 hover:bg-gray-100 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white"
+            >
+              Browse all tools
+              <ArrowRight
+                size={16}
+                className="transition-transform duration-200 group-hover:translate-x-0.5"
+              />
+            </Link>
+          </div>
+
+          <ul className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3 text-sm text-white/80 md:justify-start">
+            {highlights.map((h) => (
+              <li key={h} className="flex items-center gap-2">
+                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white/15">
+                  <Check size={12} strokeWidth={3} />
+                </span>
+                {h}
+              </li>
+            ))}
+          </ul>
+        </div>
       </motion.div>
     </section>
   );
