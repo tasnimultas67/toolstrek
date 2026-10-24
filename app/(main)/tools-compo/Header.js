@@ -27,7 +27,6 @@ import { useFavorites } from "@/hooks/useFavorites";
 import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
 import SupportModal from "@/components/ui/SupportModal";
-import { latestVersion } from "@/lib/changelogData";
 import MegaMenu from "./MegaMenu";
 
 const staatliches = Staatliches({
@@ -178,16 +177,6 @@ export default function Header() {
                 </h3>
               </Link>
 
-              {/* Dynamic Version Badge linking to Changelog */}
-              {latestVersion && (
-                <Link
-                  href="/changelog"
-                  title={`View ${latestVersion} release notes`}
-                  className="font-mono text-[10px] font-semibold mb-1"
-                >
-                  {latestVersion}
-                </Link>
-              )}
             </div>
 
             {/* Mobile Hamburger */}

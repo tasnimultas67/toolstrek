@@ -268,12 +268,6 @@ export default function sitemap() {
       priority: 0.75,
     },
     {
-      url: `${BASE_URL}/changelog`,
-      lastModified: "2026-10-21",
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
       url: `${BASE_URL}/privacy-policy`,
       lastModified: "2026-09-01",
       changeFrequency: "yearly",

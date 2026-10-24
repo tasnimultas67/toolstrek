@@ -44,8 +44,6 @@ const HIGH_RISK_ROUTES = [
   "/tools/fuel-cost-calculator",
   "/tools/uuid-ulid-generator",
   "/tools/pregnancy-due-date-calculator",
-  // Static page whose content is driven by lib/changelogData.js
-  "/changelog",
 ];
 
 // Console output that is environment noise, not an app regression.
@@ -1022,69 +1020,5 @@ test.describe("interactions", () => {
     ).toBeDisabled();
 
     expect(errors, errors.join("\n")).toEqual([]);
-  });
-
-  // Sonner only mounts its toaster element while a toast is on screen, so each
-  // case triggers one via the changelog "Copy anchor link" button. That button is
-  // server-rendered, so the click is retried until a toast actually appears. The
-  // toaster should track the app's own theme store, not the OS or a fixed default.
-  const expectToastTheme = async (page, theme) => {
-    await expect(async () => {
-      await page
-        .getByRole("button", { name: /^Copy link to / })
-        .first()
-        .click();
-      await expect(page.locator("[data-sonner-toaster]")).toHaveAttribute(
-        "data-sonner-theme",
-        theme,
-        { timeout: 2000 },
-      );
-    }).toPass({ timeout: 20000 });
-  };
-
-  test("toasts render with the light theme in light mode", async ({ page }) => {
-    await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
-    await page.goto("/changelog");
-
-    await expectToastTheme(page, "light");
-  });
-
-  test("toasts follow the site theme when dark mode is active", async ({
-    page,
-  }) => {
-    await page.context().grantPermissions(["clipboard-read", "clipboard-write"]);
-    await page.goto("/changelog");
-    // Seed the persisted preference, then reload so the app boots in dark mode.
-    await page.evaluate(() => localStorage.setItem("theme", "dark"));
-    await page.reload();
-    await expect.poll(() => isDark(page)).toBe(true);
-
-    await expectToastTheme(page, "dark");
-  });
-
-  test("changelog summaries clamp to 2 lines until expanded", async ({
-    page,
-  }) => {
-    const lineClamp = (locator) =>
-      locator.evaluate((el) => getComputedStyle(el).webkitLineClamp);
-
-    await page.goto("/changelog");
-
-    const cards = page.locator("article");
-    const latestSummary = cards.first().locator("p").first();
-    const olderSummary = cards.nth(1).locator("p").first();
-
-    // The newest release is expanded by default → full summary.
-    await expect.poll(() => lineClamp(latestSummary)).toBe("none");
-    // Older releases are collapsed → summary clamped to two lines.
-    await expect.poll(() => lineClamp(olderSummary)).toBe("2");
-
-    // Expanding reveals the full summary…
-    await cards.nth(1).getByRole("button", { name: /Show details/ }).click();
-    await expect.poll(() => lineClamp(olderSummary)).toBe("none");
-
-    // …and collapsing clamps it again.
-    await cards.nth(1).getByRole("button", { name: /Hide details/ }).click();
-    await expect.poll(() => lineClamp(olderSummary)).toBe("2");
   });
 });

@@ -408,7 +408,6 @@ toolstrek/
 │   │   │   ├── detect-tech/                   #   Website tech-stack detection
 │   │   │   ├── screenshot/                    #   Microlink screenshot proxy
 │   │   │   └── url-preview/                   #   OpenGraph/Twitter metadata
-│   │   ├── changelog/                         # Release timeline page
 │   │   ├── data/
 │   │   │   └── faqs.json                      # FAQ content (categorised Q&A)
 │   │   ├── faq/                               # FAQ page with live search & filters
@@ -446,7 +445,6 @@ toolstrek/
 │
 ├── lib/
 │   ├── toolsData.json                         # Central registry for all 129 tools (source of truth)
-│   ├── changelogData.js                       # Release notes + latestVersion helper
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers
 │   ├── countries.js                           # Country registry for the Visited Countries Map
@@ -483,7 +481,7 @@ When adding a new utility:
 1. Create its page route under `app/(main)/tools/<tool-slug>/page.js` (include SEO metadata: title, description, canonical, OpenGraph).
 2. Implement its interactive UI under `app/(main)/tools-compo/tools/` (use a sub-folder for tool-specific engines/data).
 3. Register the tool metadata (title, link, description, icon, categories, keywords) in `lib/toolsData.json` — this is the **single source of truth** for the grid, filters, search, and FAQ counters.
-4. Add the route to `app/(main)/tools/`-level navigation where relevant, append the page to `app/sitemap.js`, and add a changelog entry in `lib/changelogData.js`.
+4. Add the route to `app/(main)/tools/`-level navigation where relevant and append the page to `app/sitemap.js`.
 5. Update the FAQ (`app/(main)/data/faqs.json`) and documentation if necessary.
 
 ---

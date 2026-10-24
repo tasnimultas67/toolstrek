@@ -16,7 +16,6 @@ const staatliches = Staatliches({
 
 const about = [
   { name: "About Us", url: "/about-us" },
-  { name: "Changelog", url: "/changelog" },
   { name: "Request a Tool", url: "/contact-us" },
   { name: "Frequently Asked Questions", url: "/faq" },
   { name: "Privacy Policy", url: "/privacy-policy" },
@@ -82,9 +81,9 @@ const Footer = () => {
           {/* Divider */}
           <div className="w-full h-px bg-white/20" />
           {/* company information */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10 items-center justify-between">
+          <div className="">
             {/* Logo */}
-            <div className="col-span-2 space-y-4">
+            <div className="space-y-4">
               <div>
                 <Link
                   href="/"
@@ -139,15 +138,6 @@ const Footer = () => {
                 </Link>
                 <InstallAppButton />
               </div>
-            </div>
-            {/* GDPR Compliance */}
-            <div className="flex justify-start sm:justify-end">
-              <Image
-                src="/gdpr_ready_white.svg"
-                alt="GDPR Compliant"
-                width={100}
-                height={100}
-              />
             </div>
           </div>
           {/* Divider */}

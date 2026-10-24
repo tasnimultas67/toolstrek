@@ -52,7 +52,7 @@
     "lucide-react": "^0.507.0",
     "mediabunny": "^1.50.7",
     "motion": "^12.9.4",
-    "next": "^16.4.2",
+    "next": "^16.4.3",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^4.10.38",
     "piexifjs": "^1.0.6",
@@ -91,5 +91,8 @@
     "eslint-config-next": "^16.3.3",
     "tailwindcss": "^4.3.3",
     "tw-animate-css": "^1.2.9"
+  },
+  "allowScripts": {
+    "onnxruntime-node@1.30.0": true
   }
 }
