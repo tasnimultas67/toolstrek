@@ -104,7 +104,7 @@ export default function MegaMenu() {
         aria-haspopup="true"
         className="flex items-center gap-x-1 text-sm/6 font-semibold text-gray-900 dark:text-gray-100 outline-none hover:text-brandColor dark:hover:text-brandColor"
       >
-        <SplinePointer className="size-5" /> Digital Solutions
+        <SplinePointer className="size-5" /> All Tools
         <ChevronDownIcon
           aria-hidden="true"
           className={`size-5 transition-transform duration-200 ${
@@ -129,7 +129,7 @@ export default function MegaMenu() {
                 }`}
             >
               {/* Tool grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 ">
                 {displayedTools.map((item, index) => {
                   const IconComponent = getIcon(item.icon);
                   return (

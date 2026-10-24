@@ -115,12 +115,12 @@ export const metadata = {
       { url: "/favicon.ico", sizes: "any" },
       { url: "/toolstrek-logo.svg", type: "image/svg+xml" },
     ],
-    apple: "/toolstrek-logo.png",
+    apple: "/apple-touch-icon.png",
     shortcut: "/favicon.ico",
   },
 
   /* -- Manifest ------------------------------------------------------ */
-  manifest: `${BASE_URL}/manifest.webmanifest`,
+  manifest: "/manifest.webmanifest",
 
   /* -- Format detection ---------------------------------------------- */
   formatDetection: {
@@ -181,6 +181,20 @@ export default function RootLayout({ children }) {
       className={`${playfairDisplay.variable} ${googleSansFlex.variable}`}
     >
       <head>
+        {/* Capture the install prompt before hydration so the button can
+            still use it on repeat visits. The component also listens. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.addEventListener('beforeinstallprompt', function (event) {
+                event.preventDefault();
+                window.__toolstrekInstallPrompt = event;
+                window.dispatchEvent(new Event('toolstrek-install-prompt-ready'));
+              });
+            `,
+          }}
+        />
+
         {/* Theme initialisation — runs before first paint to prevent flash */}
         <script
           dangerouslySetInnerHTML={{

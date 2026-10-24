@@ -6,6 +6,7 @@ import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
+import InstallAppButton from "@/components/InstallAppButton";
 
 const staatliches = Staatliches({
   subsets: ["latin"], // Ensures proper character support
@@ -118,7 +119,7 @@ const Footer = () => {
                 accomplish more with minimal effort.
               </p>
               {/* Social Icons */}
-              <div className="flex flex-col md:flex-row items-start md:items-center justify-start gap-4">
+              <div className="flex flex-col flex-wrap md:flex-row items-start md:items-center justify-start gap-4">
                 <Link
                   href="mailto:contact.toolstrek@gmail.com"
                   suppressHydrationWarning
@@ -136,6 +137,7 @@ const Footer = () => {
                   <Github className="size-4 text-gray-300" /> Github Project
                   Repository
                 </Link>
+                <InstallAppButton />
               </div>
             </div>
             {/* GDPR Compliance */}

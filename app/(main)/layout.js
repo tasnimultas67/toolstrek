@@ -6,6 +6,7 @@ import { Toaster } from "@/components/ui/sonner";
 import Footer from "./tools-compo/Footer";
 import GlobalSearchModal from "@/components/ui/GlobalSearchModal";
 import RecentToolsTracker from "@/components/RecentToolsTracker";
+import ScrollToTopButton from "@/components/ScrollToTopButton";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -88,7 +89,7 @@ export const metadata = {
       { url: "/favicon.ico", sizes: "any" },
       { url: "/toolstrek-logo.svg", type: "image/svg+xml" },
     ],
-    apple: "/toolstrek-logo.png",
+    apple: "/apple-touch-icon.png",
     shortcut: "/favicon.ico",
   },
   formatDetection: {
@@ -108,6 +109,7 @@ export default function MainLayout({ children }) {
         <GlobalSearchModal />
         <Toaster />
         <Footer></Footer>
+        <ScrollToTopButton />
       </div>
     </>
   );
