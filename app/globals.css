@@ -42,8 +42,8 @@
   --radius-xl: calc(var(--radius) + 4px);
 }
 @theme {
-  --color-brandColor: #7c00fe;
-  --color-brandColorHover: #4635b1;
+  --color-brandColor: #0aa701;
+  --color-brandColorHover: #0a6904;
   --color-brandBackground: #f6f6f6;
   --color-brandBackgroundHover: #f8f8f8;
 }
@@ -604,7 +604,3 @@ html {
   transition: none !important;
   animation-duration: 0s !important;
 }
-
-/* .plan-header{
-  background-color: rgba(0, 0, 255, 0.566);
-} */

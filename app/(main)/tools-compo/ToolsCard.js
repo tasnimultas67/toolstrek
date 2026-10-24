@@ -57,7 +57,7 @@ const ToolsCard = ({
             {/* Header */}
             <div className="flex items-start justify-start gap-2">
               {/* Icon */}
-              <div className="mb-4 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brandColor/15 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors group-hover:text-indigo-600 dark:group-hover:text-indigo-400">
+              <div className="mb-4 inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-brandColor/15 dark:bg-gray-800 border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-300 transition-colors group-hover:text-brandColor dark:group-hover:text-brandColorHover">
                 {IconComponent && <IconComponent className="h-5 w-5" />}
               </div>
 
@@ -136,13 +136,13 @@ const ToolsCard = ({
           className="
             flex items-center justify-between px-5 py-1.5
             rounded-b-2xl border border-t-0 border-brandColor/40 dark:border-brandColor/60
-            bg-indigo-50 dark:bg-indigo-950
+            bg-indigo-50 dark:bg-brandColor/10 text-brandColor dark:text-brandColorHover
             shadow-[0_20px_40px_rgba(0,0,0,0.18)] dark:shadow-[0_20px_40px_rgba(0,0,0,0.6)]
             -translate-y-full group-hover:translate-y-0 group-focus-within:translate-y-0
             transition-transform duration-300 ease-out
           "
         >
-          <div className="flex items-center text-sm font-medium text-indigo-600 dark:text-indigo-400">
+          <div className="flex items-center text-sm font-medium text-brandColor ">
             Get started
             <ArrowRightIcon className="ml-2 h-3.5 w-3.5 transition-transform group-hover:translate-x-1" />
           </div>

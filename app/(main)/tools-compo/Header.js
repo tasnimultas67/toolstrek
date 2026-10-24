@@ -28,6 +28,8 @@ import { useRecentTools } from "@/hooks/useRecentTools";
 import { formatRelativeTime } from "@/lib/utils";
 import SupportModal from "@/components/ui/SupportModal";
 import MegaMenu from "./MegaMenu";
+import LightLogo from "./LightLogo";
+import DarkLogo from "./DarkLogo";
 
 const staatliches = Staatliches({
   subsets: ["latin"],
@@ -152,33 +154,27 @@ export default function Header() {
             aria-label="Global"
             className="mx-auto flex items-center justify-between"
           >
-            <div className="flex items-end gap-2" suppressHydrationWarning>
-              <Link href="/" className="flex items-center justify-start gap-1">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
-                  width="25"
-                  height="25"
-                  className="size-6"
-                >
-                  <path
-                    d="M 19 16 L 13 16 C 10.243 16 8 13.757 8 11 L 8 5 C 8 2.243 10.243 0 13 0 L 19 0 C 21.757 0 24 2.243 24 5 L 24 11 C 24 13.757 21.757 16 19 16 Z"
-                    className="fill-brandColor"
-                  />
-                  <path
-                    d="M 11 24 L 5 24 C 2.243 24 0 21.757 0 19 L 0 13 C 0 10.243 2.243 8 5 8 C 5.553 8 6 8.448 6 9 L 6 11 C 6 14.86 9.141 18 13 18 L 15 18 C 15.553 18 16 18.448 16 19 C 16 21.757 13.757 24 11 24 Z"
-                    className="fill-brandColorHover"
-                  />
-                </svg>
-                <h3
-                  className={`text-3xl text-gray-900 dark:text-white ${staatliches.className}`}
-                >
-                  Tools<span className="text-brandColor">Trek</span>
-                </h3>
+            {/* Logo */}
+            <div
+              className="flex items-end gap-2 w-28 xl:w-32 2xl:w-40 h-auto"
+              suppressHydrationWarning
+            >
+              <Link
+                href="/"
+                aria-label="Axioree Home Page"
+                className="group flex items-center justify-start gap-1 transition duration-300 ease-in-out"
+              >
+                <div className="w-28 xl:w-32 2xl:w-40 h-auto">
+                  <div className="block dark:hidden">
+                    <LightLogo />
+                  </div>
+
+                  <div className="hidden dark:block">
+                    <DarkLogo />
+                  </div>
+                </div>
               </Link>
-
             </div>
-
             {/* Mobile Hamburger */}
             <div className="flex lg:hidden" suppressHydrationWarning>
               <button
@@ -594,7 +590,7 @@ export default function Header() {
                     target="_blank"
                     className="w-full"
                   >
-                    <Button className="w-full bg-brandColor hover:bg-brandColorHover transition-all duration-200 hover:scale-105 cursor-pointer">
+                    <Button className="w-full bg-brandColor hover:bg-brandColorHover transition-all duration-200 hover:scale-105 cursor-pointer text-black">
                       Request a Tool
                     </Button>
                   </Link>

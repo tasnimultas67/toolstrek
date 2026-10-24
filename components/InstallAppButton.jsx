@@ -121,7 +121,10 @@ export default function InstallAppButton() {
 
     window.addEventListener("beforeinstallprompt", handleBeforeInstallPrompt);
     window.addEventListener("appinstalled", handleAppInstalled);
-    window.addEventListener("toolstrek-install-prompt-ready", handlePromptReady);
+    window.addEventListener(
+      "toolstrek-install-prompt-ready",
+      handlePromptReady,
+    );
 
     // Catch a prompt captured by the inline script before hydration.
     queueMicrotask(handlePromptReady);
@@ -182,7 +185,7 @@ export default function InstallAppButton() {
         onClick={() => setIsSheetOpen(true)}
         aria-haspopup="dialog"
         aria-expanded={isSheetOpen}
-        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brandColor px-4 py-2 text-sm font-semibold whitespace-nowrap text-white shadow-lg shadow-black/20 transition-all duration-200 hover:-translate-y-0.5 hover:bg-brandColorHover hover:shadow-xl focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 focus-visible:outline-none"
+        className="group inline-flex shrink-0 items-center gap-2 rounded-full bg-brandColor px-4 py-2 text-sm font-semibold whitespace-nowrap text-white transition-all duration-200 hover:-translate-y-0.5 hover:bg-brandColorHover  focus-visible:ring-2 focus-visible:ring-white/60 focus-visible:ring-offset-2 focus-visible:ring-offset-gray-950 focus-visible:outline-none"
       >
         <Download className="size-4" aria-hidden="true" />
         Install App

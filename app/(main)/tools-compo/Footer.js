@@ -7,6 +7,7 @@ import React from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
 import InstallAppButton from "@/components/InstallAppButton";
+import DarkLogo from "./DarkLogo";
 
 const staatliches = Staatliches({
   subsets: ["latin"], // Ensures proper character support
@@ -41,8 +42,8 @@ const Footer = () => {
   const currentUrl = usePathname();
   return (
     <div className="pb-4">
-      <div className="bg-linear-to-tr from-slate-900 to-violet-900 pt-10 pb-5 px-4 md:px-8 w-[98%] m-auto rounded-2xl">
-        <div className=" space-y-7 md:space-y-8 ">
+      <div className="bg-linear-to-b from-slate-900 to-black w-[98%] m-auto rounded-2xl overflow-hidden">
+        <div className=" space-y-7 md:space-y-8 pt-10 pb-5 px-4 md:px-8">
           {/* Menus */}
           <div className="flex items-start justify-between flex-wrap space-y-10 md:space-y-6 md:mb-16">
             {/* About Menus */}
@@ -71,7 +72,7 @@ const Footer = () => {
                     key={benefit.name}
                     className="relative flex items-center gap-2 bg-white/10 px-2 py-1.5 rounded-md"
                   >
-                    <CheckBadgeIcon className="size-4 fill-blue-600 text-white" />
+                    <CheckBadgeIcon className="size-4 fill-brandColor text-white" />
                     <p className="text-gray-200 text-sm ">{benefit.name}</p>
                   </li>
                 ))}
@@ -84,30 +85,6 @@ const Footer = () => {
           <div className="">
             {/* Logo */}
             <div className="space-y-4">
-              <div>
-                <Link
-                  href="/"
-                  className=" flex items-center justify-start gap-1"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    id="Layer_1"
-                    data-name="Layer 1"
-                    viewBox="0 0 24 24"
-                    width="50"
-                    height="50"
-                    className="size-6 fill-white"
-                  >
-                    <path d="m19,16h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5h6c2.757,0,5,2.243,5,5v6c0,2.757-2.243,5-5,5Zm-8,8h-6c-2.757,0-5-2.243-5-5v-6c0-2.757,2.243-5,5-5,.553,0,1,.448,1,1v2c0,3.86,3.141,7,7,7h2c.553,0,1,.448,1,1,0,2.757-2.243,5-5,5Z" />
-                  </svg>
-
-                  <h3
-                    className={`text-3xl text-white ${staatliches.className} `}
-                  >
-                    Tools<span className="text-white">Trek</span>
-                  </h3>
-                </Link>
-              </div>
               <p className="text-sm md:text-base text-gray-200 font-light w-full leading-normal">
                 In today’s fast-paced digital world, efficiency is everything.
                 ToolsTrek is your go-to platform for seamless online utilities
@@ -140,8 +117,6 @@ const Footer = () => {
               </div>
             </div>
           </div>
-          {/* Divider */}
-          <div className="w-full h-px bg-white/20" />
           <div>
             <p className="text-gray-300 text-sm md:text-base">
               Copyright {copyrightYear} Toolstrek. All Rights Reserved.
@@ -165,6 +140,15 @@ const Footer = () => {
               </Link>
             </p>
           </div>
+          {/* Divider */}
+          <div className="w-full h-px bg-white/20 mb-10" />
+        </div>
+        {/* Bigger Logo */}
+        <div className="relative top-0 px-3 md:px-10 pt-3">
+          <DarkLogo />
+          <div className="absolute bottom-0 inset-x-0 w-full h-[60px] md:h-[180px] bg-linear-to-b from-transparent to-black z-20" />
+          <div className="absolute bottom-0 inset-x-0 w-full h-[60px] md:h-[180px] bg-linear-to-b from-transparent to-black z-20" />
+          <div className="absolute bottom-0 inset-x-0 w-full h-[60px] md:h-[180px] bg-linear-to-b from-transparent to-black z-20" />
         </div>
       </div>
     </div>
