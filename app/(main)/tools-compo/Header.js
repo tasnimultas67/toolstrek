@@ -377,16 +377,6 @@ export default function Header() {
                   <Heart className="size-4 text-rose-500 fill-rose-500/20 group-hover:fill-rose-500 group-hover:scale-110 transition-all duration-300" />
                   <span className="hidden sm:inline">Support</span>
                 </Button>
-
-                <Link
-                  href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
-                  target="_blank"
-                  suppressHydrationWarning
-                >
-                  <Button className="bg-brandColor hover:bg-brandColorHover border-none dark:text-white text-sm! font-normal shadow-none flex items-center gap-2 transition-all duration-200 cursor-pointer">
-                    <Star className="size-4" /> Request a Tool
-                  </Button>
-                </Link>
               </div>
             </div>
           </nav>
@@ -585,15 +575,6 @@ export default function Header() {
                   </Link>
                 </div>
                 <div className="py-6 flex flex-col gap-3">
-                  <Link
-                    href="https://forms.gle/BJXbXuQ3n2mwdHgx5"
-                    target="_blank"
-                    className="w-full"
-                  >
-                    <Button className="w-full bg-brandColor hover:bg-brandColorHover transition-all duration-200 hover:scale-105 cursor-pointer text-black">
-                      Request a Tool
-                    </Button>
-                  </Link>
                   <Button
                     onClick={() => {
                       setMobileMenuOpen(false);

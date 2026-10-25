@@ -25,11 +25,28 @@ export default function FavoritesClient() {
   }, [recentTools]);
 
   return (
-    <div className="min-h-screen bg-linear-to-b from-gray-50 dark:from-gray-950 to-brandBackground dark:to-transparent pt-20 md:pt-24 pb-20 relative overflow-hidden">
-      {/* Background Decorative Elements for Premium Aesthetics */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-30 pointer-events-none">
-        <div className="absolute top-24 left-10 w-72 h-72 bg-brandColor/20 rounded-full blur-3xl" />
-        <div className="absolute bottom-24 right-10 w-72 h-72 bg-indigo-200/20 rounded-full blur-3xl" />
+    <div className="relative isolate min-h-screen overflow-hidden pt-20 md:pt-24 pb-20 text-gray-900 dark:text-white transition-colors duration-300">
+      {/* ───────── Premium grid background ───────── */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        {/* Grid lines (light) */}
+        <div
+          className="absolute inset-0 opacity-100 dark:opacity-0
+            bg-[linear-gradient(to_right,rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.06)_1px,transparent_1px)]
+            bg-[size:44px_44px]
+            [mask-image:radial-gradient(ellipse_75%_60%_at_50%_0%,#000_55%,transparent_100%)]"
+        />
+        {/* Grid lines (dark) */}
+        <div
+          className="absolute inset-0 opacity-0 dark:opacity-100
+            bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)]
+            bg-[size:44px_44px]
+            [mask-image:radial-gradient(ellipse_75%_60%_at_50%_0%,#000_55%,transparent_100%)]"
+        />
+        {/* Soft top glow */}
+        <div className="absolute left-1/2 top-0 h-[360px] w-[720px] -translate-x-1/2 rounded-full bg-brandColor/10 dark:bg-brandColor/15 blur-[120px]" />
       </div>
 
       <div className="w-11/12 mx-auto max-w-7xl">
@@ -37,9 +54,9 @@ export default function FavoritesClient() {
         <div className="mb-8">
           <Link
             href="/"
-            className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400 hover:text-brandColor dark:hover:text-brandColor transition-colors duration-200"
+            className="group inline-flex items-center gap-2 rounded-full border border-gray-200/80 dark:border-white/10 bg-white/70 dark:bg-white/[0.04] backdrop-blur-md px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-300 shadow-[0_1px_2px_rgba(0,0,0,0.04)] transition-all duration-300 hover:-translate-x-0.5 hover:border-brandColor/40 hover:bg-white dark:hover:bg-white/[0.08] hover:text-gray-950 dark:hover:text-white hover:shadow-[0_8px_20px_-10px] hover:shadow-brandColor/40 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandColor/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
           >
-            <ArrowLeft className="size-4" />
+            <ArrowLeft className="size-4 transition-transform duration-300 group-hover:-translate-x-0.5" />
             Back to Home
           </Link>
         </div>
@@ -58,9 +75,12 @@ export default function FavoritesClient() {
         {favorites.length > 0 ? (
           <div>
             <div className="mb-6 flex justify-between items-center border-b border-gray-100 dark:border-gray-800 pb-4">
-              <span className="text-sm text-gray-500 dark:text-gray-400">
-                Showing {favorites.length} saved{" "}
-                {favorites.length === 1 ? "tool" : "tools"}
+              <span className="inline-flex items-center gap-2 text-sm text-gray-500 dark:text-gray-400">
+                Showing
+                <span className="inline-flex min-w-[22px] items-center justify-center rounded-full bg-brandColor/10 px-1.5 py-0.5 text-[11px] font-semibold leading-none tabular-nums text-brandColor">
+                  {favorites.length}
+                </span>
+                saved {favorites.length === 1 ? "tool" : "tools"}
               </span>
             </div>
 
@@ -95,7 +115,7 @@ export default function FavoritesClient() {
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="max-w-md mx-auto text-center py-16 px-6 bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border border-gray-100 dark:border-gray-800 rounded-3xl shadow-xl mt-12 relative overflow-hidden"
+            className="max-w-md mx-auto text-center py-16 px-6 bg-white/70 dark:bg-white/[0.04] backdrop-blur-xl border border-gray-200/80 dark:border-white/10 rounded-3xl shadow-xl mt-12 relative overflow-hidden"
           >
             {/* Visual background glow inside empty state card */}
             <div className="absolute -top-12 -left-12 w-36 h-36 bg-amber-100/40 dark:bg-amber-950/20 rounded-full blur-2xl pointer-events-none" />
@@ -115,8 +135,12 @@ export default function FavoritesClient() {
               </p>
               <Link
                 href="/tools"
-                className="inline-flex items-center gap-2 px-6 py-3 text-sm font-medium text-white bg-brandColor hover:bg-brandColorHover rounded-xl shadow-md transition-all duration-200 hover:scale-105 cursor-pointer"
+                className="group relative inline-flex items-center gap-2 rounded-full bg-brandColor px-6 py-3 text-sm font-medium text-white border border-brandColor ring-1 ring-inset ring-white/25 shadow-[0_8px_24px_-8px] shadow-brandColor/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px] hover:shadow-brandColor/70 active:scale-[0.97] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandColor/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
               >
+                <span
+                  aria-hidden="true"
+                  className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"
+                />
                 <Compass className="size-4" /> Explore All Tools
               </Link>
             </div>

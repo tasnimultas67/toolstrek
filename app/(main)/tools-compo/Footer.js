@@ -1,23 +1,14 @@
 "use client";
 import { CheckBadgeIcon } from "@heroicons/react/20/solid";
 import { ArrowUpRight, Github, Mail } from "lucide-react";
-import { Staatliches } from "next/font/google";
 import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
-import Image from "next/image";
 import DarkLogo from "./DarkLogo";
-
-const staatliches = Staatliches({
-  subsets: ["latin"], // Ensures proper character support
-  weight: "400", // Adjust weight as needed
-  display: "swap", // Ensures text is visible during loading
-});
 
 const about = [
   { name: "About Us", url: "/about-us" },
   { name: "Brand & Media Kit", url: "/brand-kit" },
-  { name: "Request a Tool", url: "/contact-us" },
   { name: "Frequently Asked Questions", url: "/faq" },
   { name: "Privacy Policy", url: "/privacy-policy" },
 ];

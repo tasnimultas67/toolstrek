@@ -119,7 +119,7 @@ const ParentTools = () => {
   const { recentTools } = useRecentTools();
 
   const [searchTerm, setSearchTerm] = useState("");
-  const ITEMS_PER_PAGE = 12;
+  const ITEMS_PER_PAGE = 16;
 
   // Read page from URL query param (defaults to 1)
   const currentPage = Math.max(
@@ -266,9 +266,31 @@ const ParentTools = () => {
 
   return (
     <div
-      className="pt-26 pb-10 px-2 text-gray-900 dark:text-white transition-colors duration-300"
+      className="relative isolate overflow-hidden pt-26 pb-10 px-2 text-gray-900 dark:text-white transition-colors duration-300"
       id="tools"
     >
+      {/* ───────── Premium grid background ───────── */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 -z-10"
+      >
+        {/* Grid lines (light + dark) */}
+        <div
+          className="absolute inset-0 opacity-100 dark:opacity-0
+            bg-[linear-gradient(to_right,rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(15,23,42,0.06)_1px,transparent_1px)]
+            bg-[size:44px_44px]
+            [mask-image:radial-gradient(ellipse_75%_60%_at_50%_0%,#000_55%,transparent_100%)]"
+        />
+        <div
+          className="absolute inset-0 opacity-0 dark:opacity-100
+            bg-[linear-gradient(to_right,rgba(255,255,255,0.06)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.06)_1px,transparent_1px)]
+            bg-[size:44px_44px]
+            [mask-image:radial-gradient(ellipse_75%_60%_at_50%_0%,#000_55%,transparent_100%)]"
+        />
+        {/* Soft top glow */}
+        <div className="absolute left-1/2 top-0 h-[360px] w-[720px] -translate-x-1/2 rounded-full bg-brandColor/10 dark:bg-brandColor/15 blur-[120px]" />
+      </div>
+
       <div className="w-11/12 mx-auto relative">
         <div className="mb-8 md:mb-10">
           <SectionInfo
@@ -284,30 +306,55 @@ const ParentTools = () => {
         </div>
 
         {/* Category Filters */}
-        <div className="flex flex-wrap justify-center w-fit gap-2 z-30 mb-8 lg:mb-9">
-          {categories.map((category) => (
-            <button
-              key={category}
-              id={`category-btn-${toSlug(category)}`}
-              onClick={() => handleCategoryChange(category)}
-              className={`px-4 py-2 rounded-md text-sm font-medium transition-all duration-200 border cursor-pointer ${
-                selectedCategory === category
-                  ? "bg-brandColor text-white border-brandColor"
-                  : "bg-white dark:bg-gray-900 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-800 border-gray-300 dark:border-gray-800"
-              }`}
-            >
-              {category === "all" ? "All Tools" : category}
-              <span
-                className={`ml-2 text-xs ${
-                  selectedCategory === category
-                    ? "text-blue-200 dark:text-blue-300"
-                    : "text-gray-500 dark:text-gray-400"
-                }`}
+        <div
+          role="tablist"
+          aria-label="Tool categories"
+          className="flex flex-wrap justify-center w-fit gap-2.5 z-30 mb-8 lg:mb-9"
+        >
+          {categories.map((category) => {
+            const isSelected = selectedCategory === category;
+            return (
+              <button
+                key={category}
+                id={`category-btn-${toSlug(category)}`}
+                role="tab"
+                aria-selected={isSelected}
+                onClick={() => handleCategoryChange(category)}
+                className={`group relative inline-flex items-center gap-2 rounded-md px-4 py-2 text-sm font-medium cursor-pointer select-none
+                  transition-all duration-300 ease-out
+                  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandColor/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950
+                  active:scale-[0.97]
+                  ${
+                    isSelected
+                      ? "bg-brandColor text-white border border-brandColor shadow-[0_8px_24px_-8px] shadow-brandColor/40 ring-1 ring-inset ring-white/25"
+                      : "bg-white/70 dark:bg-white/[0.04] backdrop-blur-md text-gray-700 dark:text-gray-300 border border-gray-200/80 dark:border-white/10 shadow-[0_1px_2px_rgba(0,0,0,0.04)] hover:-translate-y-0.5 hover:border-brandColor/40 hover:bg-white dark:hover:bg-white/[0.08] hover:text-gray-950 dark:hover:text-white hover:shadow-[0_8px_20px_-10px] hover:shadow-brandColor/40"
+                  }`}
               >
-                ({getCategoryCount(category)})
-              </span>
-            </button>
-          ))}
+                {/* Glossy top highlight for the active pill */}
+                {isSelected && (
+                  <span
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-3 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"
+                  />
+                )}
+
+                <span className="relative">
+                  {category === "all" ? "All Tools" : category}
+                </span>
+
+                {/* Count badge */}
+                <span
+                  className={`relative inline-flex min-w-[22px] items-center justify-center rounded-full px-1.5 py-0.5 text-[11px] font-semibold leading-none tabular-nums transition-colors duration-300 ${
+                    isSelected
+                      ? "bg-white/20 text-white"
+                      : "bg-gray-100 dark:bg-white/10 text-gray-500 dark:text-gray-400 group-hover:bg-brandColor/10 group-hover:text-brandColor"
+                  }`}
+                >
+                  {getCategoryCount(category)}
+                </span>
+              </button>
+            );
+          })}
         </div>
 
         {/* Tools Grid */}
