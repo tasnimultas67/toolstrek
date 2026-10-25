@@ -53,7 +53,7 @@ export const metadata = {
       "Explore 100+ free, privacy-first online tools. QR codes, PDF tools, image converters, calculators, and more — no sign-up, runs entirely in your browser.",
     images: [
       {
-        url: "https://toolstrek.vercel.app/toolstrek-logo.png",
+        url: "https://toolstrek.vercel.app/brand/toolstrek-social-card.png",
         width: 1200,
         height: 630,
         alt: "ToolsTrek — Your Online Utility Hub",
@@ -67,7 +67,7 @@ export const metadata = {
     title: "ToolsTrek — 100+ Free Online Utility Tools",
     description:
       "Explore 100+ free, privacy-first online tools. QR codes, PDF tools, image converters, calculators, and more — no sign-up, runs entirely in your browser.",
-    images: ["https://toolstrek.vercel.app/toolstrek-logo.png"],
+    images: ["https://toolstrek.vercel.app/brand/toolstrek-social-card.png"],
   },
   robots: {
     index: true,
@@ -83,14 +83,6 @@ export const metadata = {
   },
   alternates: {
     canonical: "https://toolstrek.vercel.app",
-  },
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/toolstrek-logo.svg", type: "image/svg+xml" },
-    ],
-    apple: "/apple-touch-icon.png",
-    shortcut: "/favicon.ico",
   },
   formatDetection: {
     telephone: false,

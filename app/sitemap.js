@@ -262,6 +262,12 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
+      url: `${BASE_URL}/brand-kit`,
+      lastModified: "2026-10-25",
+      changeFrequency: "monthly",
+      priority: 0.65,
+    },
+    {
       url: `${BASE_URL}/faq`,
       lastModified: "2026-10-21",
       changeFrequency: "monthly",

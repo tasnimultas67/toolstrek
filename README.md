@@ -1,7 +1,7 @@
 # ToolsTrek
 
 <p align="center">
-  <img src="public/toolstrek-logo.png" alt="ToolsTrek Logo" width="80" height="80" />
+  <img src="public/brand/toolstrek-app-icon.png" alt="ToolsTrek Logo" width="80" height="80" />
 </p>
 
 <h3 align="center">Your Free, Browser-First Everyday Digital Toolbox</h3>
@@ -45,7 +45,7 @@
 - 🤰 **Pregnancy Due Date Calculator** — Estimate a due date from last period, conception, ultrasound or IVF transfer, with cycle-length adjustment, gestational and fetal age, trimester progress, conception and implantation estimates, full-term and milestone windows, and copyable or `.ics` calendar exports.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays, with a responsive type scale that keeps dense workspaces readable as screens grow.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
-- 🧩 **SEO & PWA Ready** — Dynamic sitemap, robots, web manifest, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
+- 🧩 **SEO Ready** — Dynamic sitemap, robots, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
@@ -430,7 +430,7 @@ toolstrek/
 │   │   └── page.js                            # Homepage
 │   ├── layout.js                              # Root layout, fonts, metadata, JSON-LD
 │   ├── globals.css                            # Global styles & CSS design tokens
-│   ├── sitemap.js / robots.js / manifest.js   # SEO & PWA route handlers
+│   ├── sitemap.js / robots.js                 # SEO route handlers
 │   ├── loading.js / error.js / global-error.js / not-found.js
 │   └── theme-context.jsx                      # Theme provider wrapper
 │

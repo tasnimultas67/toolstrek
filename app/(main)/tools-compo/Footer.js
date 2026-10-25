@@ -6,7 +6,6 @@ import Link from "next/link";
 import React from "react";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
-import InstallAppButton from "@/components/InstallAppButton";
 import DarkLogo from "./DarkLogo";
 
 const staatliches = Staatliches({
@@ -17,6 +16,7 @@ const staatliches = Staatliches({
 
 const about = [
   { name: "About Us", url: "/about-us" },
+  { name: "Brand & Media Kit", url: "/brand-kit" },
   { name: "Request a Tool", url: "/contact-us" },
   { name: "Frequently Asked Questions", url: "/faq" },
   { name: "Privacy Policy", url: "/privacy-policy" },
@@ -95,7 +95,7 @@ const Footer = () => {
                 accomplish more with minimal effort.
               </p>
               {/* Social Icons */}
-              <div className="flex flex-col flex-wrap md:flex-row items-start md:items-center justify-start gap-4">
+              <div className="flex flex-col md:flex-row items-start md:items-center justify-start gap-4">
                 <Link
                   href="mailto:contact.toolstrek@gmail.com"
                   suppressHydrationWarning
@@ -113,7 +113,6 @@ const Footer = () => {
                   <Github className="size-4 text-gray-300" /> Github Project
                   Repository
                 </Link>
-                <InstallAppButton />
               </div>
             </div>
           </div>

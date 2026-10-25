@@ -68,7 +68,7 @@ export const metadata = {
       "Explore 100+ free, privacy-first online tools. QR codes, PDF tools, image converters, calculators, and more — no sign-up, runs entirely in your browser.",
     images: [
       {
-        url: `${BASE_URL}/toolstrek-logo.png`,
+        url: `${BASE_URL}/brand/toolstrek-social-card.png`,
         width: 1200,
         height: 630,
         alt: "ToolsTrek — Your Online Utility Hub",
@@ -84,7 +84,7 @@ export const metadata = {
     title: "ToolsTrek — 100+ Free Online Utility Tools",
     description:
       "Explore 100+ free, privacy-first online tools. QR codes, PDF tools, image converters, calculators, and more — no sign-up, runs entirely in your browser.",
-    images: [`${BASE_URL}/toolstrek-logo.png`],
+    images: [`${BASE_URL}/brand/toolstrek-social-card.png`],
   },
 
   /* -- Robots -------------------------------------------------------- */
@@ -108,19 +108,6 @@ export const metadata = {
       "en-US": BASE_URL,
     },
   },
-
-  /* -- Icons --------------------------------------------------------- */
-  icons: {
-    icon: [
-      { url: "/favicon.ico", sizes: "any" },
-      { url: "/toolstrek-logo.svg", type: "image/svg+xml" },
-    ],
-    apple: "/apple-touch-icon.png",
-    shortcut: "/favicon.ico",
-  },
-
-  /* -- Manifest ------------------------------------------------------ */
-  manifest: "/manifest.webmanifest",
 
   /* -- Format detection ---------------------------------------------- */
   formatDetection: {
@@ -158,9 +145,9 @@ const organizationSchema = {
   url: BASE_URL,
   logo: {
     "@type": "ImageObject",
-    url: `${BASE_URL}/toolstrek-logo.png`,
-    width: 512,
-    height: 512,
+    url: `${BASE_URL}/brand/toolstrek-logo-primary.png`,
+    width: 2400,
+    height: 490,
   },
   sameAs: [
     "https://github.com/tasnimultas67/toolstrek",
@@ -181,20 +168,6 @@ export default function RootLayout({ children }) {
       className={`${playfairDisplay.variable} ${googleSansFlex.variable}`}
     >
       <head>
-        {/* Capture the install prompt before hydration so the button can
-            still use it on repeat visits. The component also listens. */}
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.addEventListener('beforeinstallprompt', function (event) {
-                event.preventDefault();
-                window.__toolstrekInstallPrompt = event;
-                window.dispatchEvent(new Event('toolstrek-install-prompt-ready'));
-              });
-            `,
-          }}
-        />
-
         {/* Theme initialisation — runs before first paint to prevent flash */}
         <script
           dangerouslySetInnerHTML={{

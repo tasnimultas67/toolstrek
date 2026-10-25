@@ -63,12 +63,6 @@ export const metadata = {
   formatDetection: {
     telephone: false,
   },
-  manifest: "https://toolstrek.vercel.app/site.webmanifest",
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
 };
 
 const page = () => {

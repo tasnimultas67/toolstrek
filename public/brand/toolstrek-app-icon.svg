@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1024" height="1024" viewBox="0 0 1024 1024" role="img" aria-label="ToolsTrek app icon">
+  <title>ToolsTrek app icon</title>
+  <rect width="1024" height="1024" fill="#0AA701"/>
+  <g transform="translate(215 215) scale(7.59)">
+  <path fill="#FFFFFF" d="M61.95,52.17h-19.56c-9,0-16.3-7.3-16.3-16.3v-19.56C26.09,7.3,33.38,0,42.39,0h35.87v35.87c0,9-7.3,16.3-16.3,16.3Z"/>
+  <path fill="#FFFFFF" d="M35.87,78.26h-19.56c-8.99,0-16.3-7.31-16.3-16.3v-19.56c0-8.99,7.31-16.3,16.3-16.3,1.8,0,3.26,1.46,3.26,3.26v6.52c0,12.59,10.24,22.82,22.82,22.82h6.52c1.8,0,3.26,1.46,3.26,3.26,0,8.99-7.31,16.3-16.3,16.3Z"/>
+  </g>
+</svg>
