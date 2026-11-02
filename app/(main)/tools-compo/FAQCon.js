@@ -49,6 +49,9 @@ const formatSectionTitle = (sectionKey) => {
     fuelCostCalculator: "Fuel Cost & Road Trip Calculator",
     uuidUlidGenerator: "UUID / ULID Generator",
     pregnancyDueDateCalculator: "Pregnancy Due Date Calculator",
+    imageCropper: "Image Cropper",
+    invoiceGenerator: "Invoice Generator",
+    urlEncoderDecoder: "URL Encoder & Decoder",
   };
 
   return (

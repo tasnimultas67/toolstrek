@@ -44,6 +44,9 @@ const HIGH_RISK_ROUTES = [
   "/tools/fuel-cost-calculator",
   "/tools/uuid-ulid-generator",
   "/tools/pregnancy-due-date-calculator",
+  "/tools/image-cropper",
+  "/tools/invoice-generator",
+  "/tools/url-encoder-decoder",
 ];
 
 // Console output that is environment noise, not an app regression.

@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>129 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>132 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-129_Available-10b981?style=flat-square" alt="129 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-132_Available-10b981?style=flat-square" alt="132 Tools" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
@@ -43,17 +43,20 @@
 - 🪪 **Passport / ID Photo Maker** — Turn a portrait into a correctly sized passport, visa or ID photo with 10 international presets, live head and eye guides, print-resolution/background/lighting/framing checks, and 300 DPI JPEG, PNG or multi-copy PDF print-sheet exports — entirely in your browser.
 - ✈️ **Flight Duration Calculator** — Calculate exact airborne time between more than 100 airports with automatic IANA time-zone and daylight-saving handling, duration/arrival/departure modes, up to six connecting flights, domestic and international layover risk scoring, custom door-to-door buffers, distance and average-speed estimates, plus copyable and PDF itinerary reports.
 - 🤰 **Pregnancy Due Date Calculator** — Estimate a due date from last period, conception, ultrasound or IVF transfer, with cycle-length adjustment, gestational and fetal age, trimester progress, conception and implantation estimates, full-term and milestone windows, and copyable or `.ics` calendar exports.
+- ✂️ **Image Cropper** — Crop, straighten, rotate, flip and resize photos with a draggable, resizable crop box, ten aspect ratios, social and print presets, zoom and pan, composition grids, numeric pixel fields, and full-resolution PNG, JPEG or WebP export — with drag-and-drop, file picker and clipboard paste.
+- 🧾 **Invoice Generator** — Build a polished, itemised invoice with live totals, per-item tax and discounts, inclusive or exclusive tax modes, invoice-level discounts, shipping, deposits and rounding, 40 currencies, logo upload, six accent themes and two templates, then download a print-ready vector PDF, print it, or export and import JSON drafts — auto-saved locally.
+- 🔗 **URL Encoder / Decoder** — Encode and decode URLs, query strings and form data with component, full-URL, form and custom-safe-character modes, strict RFC 3986 handling, uppercase or lowercase hex, line-by-line batch processing, a live URL inspector, a query-string builder and a reserved-character reference — with tolerant decoding of malformed input.
 - 📱 **Fully Responsive Layout** — Carefully tuned for mobile touchscreens, tablets, and high-DPI desktop displays, with a responsive type scale that keeps dense workspaces readable as screens grow.
 - 📈 **Vercel Analytics** — Lightweight, privacy-compliant page-view and performance metrics.
 - 🧩 **SEO Ready** — Dynamic sitemap, robots, JSON-LD structured data, and per-page OpenGraph/Twitter metadata.
 
 ---
 
-## 🛠️ Tool Library (129 Tools)
+## 🛠️ Tool Library (132 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
-### 🌐 Developer & Code Tools (25)
+### 🌐 Developer & Code Tools (26)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -82,6 +85,7 @@
 | **Fake Info Generator** | `/tools/fake-info-generator` | Generate realistic mock identities, addresses, phone numbers, and company profiles for QA testing and demos. |
 | **ZIP File Creator & Compressor** | `/tools/zip-creator` | Bundle and compress files or entire directory trees into downloadable ZIP archives with configurable Deflate levels. |
 | **UUID / ULID Generator** | `/tools/uuid-ulid-generator` | Generate secure UUID v4/v7/v1/v5, ULID and NanoID batches, format and export them, and inspect pasted UUIDs or ULIDs for version, timestamp and structure. |
+| **URL Encoder / Decoder** | `/tools/url-encoder-decoder` | Encode and decode URLs, query strings and form data with component, full-URL, form and custom-safe-character modes, strict RFC 3986 handling, hex casing, batch processing, a live URL inspector and a query-string builder. |
 
 ---
 
@@ -154,7 +158,7 @@
 
 ---
 
-### 💰 Finance & Budgeting Tools (9)
+### 💰 Finance & Budgeting Tools (10)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -167,6 +171,7 @@
 | **Wedding Budget Allocator** | `/tools/wedding-budget-allocator` | Allocate and track wedding expenses with guest-count scaling, category sliders, SVG donut charts, and PDF export. |
 | **Tip Calculator** | `/tools/tip-calculator` | Calculate tips and split bills evenly or by custom shares, with service-quality input and receipt breakdowns. |
 | **Fuel Cost & Road Trip Calculator** | `/tools/fuel-cost-calculator` | Build a complete road-trip budget with fuel, tolls, parking, accommodation and food, split costs by passenger, and plan range, fuel stops and emissions in metric or imperial units. |
+| **Invoice Generator** | `/tools/invoice-generator` | Create itemised invoices with per-item tax and discounts, inclusive or exclusive tax, 40 currencies, logo upload, templates and accent colours, then download a vector PDF, print, or export/import JSON drafts with local auto-save. |
 
 ---
 
@@ -184,7 +189,7 @@
 
 ---
 
-### 🖼️ Image, Media & Design Tools (13)
+### 🖼️ Image, Media & Design Tools (14)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -194,6 +199,7 @@
 | **Passport / ID Photo Maker** | `/tools/passport-photo-maker` | Crop portraits to 10 international passport, visa and ID sizes with live head/eye guides, print-readiness checks, 300 DPI JPEG/PNG/PDF export and multi-copy print sheets. |
 | **Image Compressor** | `/tools/image-compressor` | Compress JPG, PNG, WebP and AVIF images to an exact target size or quality, batch-process image queues with no artificial count or per-file size caps, preview before/after, and download individually or as a ZIP. |
 | **Image Resizer** | `/tools/image-resizer` | Scale by pixel or percentage, lock aspect ratios, use social presets, and export to PNG/JPEG/WebP. |
+| **Image Cropper** | `/tools/image-cropper` | Crop, straighten, rotate and flip photos with a draggable crop box, aspect-ratio locks, social and print presets, zoom and pan, composition grids, numeric pixel fields and full-resolution PNG/JPEG/WebP export. |
 | **Image to Text (OCR)** | `/tools/image-to-text` | Extract editable text from images, scans, and screenshots locally via Tesseract.js in WebAssembly. |
 | **AVIF Converter** | `/tools/avif-converter` | Convert to and from AVIF for ultra-compact file sizes and faster web page loads. |
 | **SVG Converter** | `/tools/svg-converter` | Rasterize SVG vectors into high-resolution PNG, JPEG, or WebP with custom scaling. |
@@ -414,7 +420,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 129 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 132 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -444,7 +450,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 129 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 132 tools (source of truth)
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers
 │   ├── countries.js                           # Country registry for the Visited Countries Map

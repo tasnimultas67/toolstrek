@@ -2801,5 +2801,87 @@
       "Health",
       "Calculator"
     ]
+  },
+  {
+    "title": "Image Cropper",
+    "link": "/tools/image-cropper",
+    "description": "Crop, straighten, rotate and resize photos online with pixel-perfect control. Lock any aspect ratio, use social media presets, zoom and pan, flip images, apply composition grids and export at full source resolution as PNG, JPEG or WebP. Drag-and-drop, file picker and clipboard paste supported — all locally in your browser.",
+    "icon": "Crop",
+    "keywords": [
+      "image cropper",
+      "crop image online",
+      "free image cropper",
+      "photo cropper",
+      "crop photo",
+      "aspect ratio cropper",
+      "instagram crop",
+      "youtube thumbnail cropper",
+      "rotate image",
+      "straighten photo",
+      "flip image",
+      "crop png",
+      "crop jpeg",
+      "crop webp",
+      "image crop tool",
+      "social media image resizer"
+    ],
+    "categories": [
+      "Media",
+      "Design"
+    ]
+  },
+  {
+    "title": "Invoice Generator",
+    "link": "/tools/invoice-generator",
+    "description": "Create professional invoices online for free with a live preview and instant totals. Add unlimited line items with per-item tax and discounts, choose inclusive or exclusive tax, switch between 40 currencies, upload your logo, pick a template and accent colour, then download a print-ready vector PDF or print directly. Drafts auto-save locally in your browser.",
+    "icon": "FileText",
+    "keywords": [
+      "invoice generator",
+      "free invoice generator",
+      "online invoice maker",
+      "invoice template",
+      "pdf invoice generator",
+      "billing invoice",
+      "freelance invoice",
+      "small business invoice",
+      "invoice with logo",
+      "tax invoice generator",
+      "vat invoice",
+      "receipt maker",
+      "invoice creator",
+      "downloadable invoice pdf",
+      "printable invoice"
+    ],
+    "categories": [
+      "Finance",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "URL Encoder / Decoder",
+    "link": "/tools/url-encoder-decoder",
+    "description": "Encode or decode URLs, query strings and form data with full control over percent-encoding. Choose component, full-URL or form semantics, set custom safe characters, toggle uppercase hex and strict RFC 3986 mode, process values line by line, inspect every part of a URL and build query strings. Malformed input is preserved instead of throwing errors.",
+    "icon": "Link",
+    "keywords": [
+      "url encoder",
+      "url decoder",
+      "urlencode",
+      "urldecode",
+      "encode url online",
+      "decode url online",
+      "percent encoding",
+      "encodeuricomponent",
+      "encodeuri",
+      "query string encoder",
+      "form urlencoded",
+      "url escape",
+      "url unescape",
+      "utf-8 url encoding",
+      "query string builder"
+    ],
+    "categories": [
+      "Developer",
+      "Text"
+    ]
   }
 ]

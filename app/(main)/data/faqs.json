@@ -2,11 +2,11 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 124 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 132 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 124 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 132 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -969,6 +969,96 @@
     {
       "question": "Is my information private and is this medical advice?",
       "answer": "Yes, every date is calculated in your browser and nothing is uploaded. This tool provides educational estimates only and does not replace medical advice. Always confirm your due date and care schedule with a qualified healthcare professional."
+    }
+  ],
+  "imageCropper": [
+    {
+      "question": "How does the Image Cropper protect my photos?",
+      "answer": "Your image is decoded locally by the browser into a canvas, cropped at the exact source pixels and re-encoded on your device. Nothing is uploaded to a server, there is no tracking and the file disappears from memory when you close the tab."
+    },
+    {
+      "question": "Does cropping reduce image quality?",
+      "answer": "The crop is rendered from the original image at its native resolution, not from the on-screen preview, so no detail is lost. PNG exports are lossless; JPEG and WebP exports use the quality slider, and 90–95% is a good balance between sharpness and file size."
+    },
+    {
+      "question": "What is the difference between the crop box and image zoom?",
+      "answer": "The crop box selects the part of the photo you keep. Zoom magnifies the photo beneath the box so you can place it precisely, and Pan lets you slide that magnified image. Cropping still uses the original resolution no matter how far you zoom in."
+    },
+    {
+      "question": "Can I straighten a tilted photo?",
+      "answer": "Yes. Rotate in exact 90-degree steps, flip horizontally or vertically, or use the straighten slider between −15 and +15 degrees. All transforms are baked into the working canvas before cropping, so you never get transparent or missing corners."
+    },
+    {
+      "question": "Which aspect ratio should I use for social media?",
+      "answer": "Choose a social preset and the tool sets both the ratio and a recommended output width — 1080 × 1080 for an Instagram post, 1080 × 1920 for a story or Reel, 1280 × 720 for a YouTube thumbnail, and more. You can still fine-tune the crop and output size afterwards."
+    },
+    {
+      "question": "Why does JPEG ask for a background colour?",
+      "answer": "JPEG does not support transparency. If the cropped area contains transparent pixels they are filled with the matte colour you choose, white by default. PNG and WebP keep transparency, so the matte option is hidden for those formats."
+    },
+    {
+      "question": "Can I crop a screenshot from my clipboard?",
+      "answer": "Yes. Copy an image, then press Ctrl/Cmd + V anywhere on the page. You can also drag a file onto the drop zone or browse your device; JPEG, PNG, WebP, GIF and AVIF files up to 40 MB are supported."
+    }
+  ],
+  "invoiceGenerator": [
+    {
+      "question": "Is the Invoice Generator really free?",
+      "answer": "Yes. Unlimited invoices, PDF export, printing, 40 currencies, logo upload, templates and JSON drafts are all free with no account needed. The entire tool runs in your browser, so client and payment details never reach a server."
+    },
+    {
+      "question": "Can I save an invoice and edit it later?",
+      "answer": "Your current invoice is auto-saved in this browser using local storage. For a portable backup, use Export draft to download a JSON file and import it later on any device. Clearing site data or using a different browser starts a fresh draft."
+    },
+    {
+      "question": "What is the difference between exclusive and inclusive tax?",
+      "answer": "Exclusive tax is added on top of your prices: a 100.00 line with 20% VAT becomes 120.00. Inclusive tax extracts the tax already contained in the price: a 120.00 line at 20% includes 20.00 of VAT. Switch modes in Invoice details and every total recalculates instantly."
+    },
+    {
+      "question": "Can I add my own logo and brand colour?",
+      "answer": "Yes. Upload a PNG, JPEG, WebP or SVG logo (it is converted to print-safe PNG locally) and pick one of six accent colours. Both appear in the live preview and the generated PDF, and you can hide the logo without deleting it."
+    },
+    {
+      "question": "Does the PDF handle many line items?",
+      "answer": "Yes. The vector PDF engine paginates automatically, repeats the table header on each new page, keeps totals and payment details together and adds page numbers in the footer. Choose Compact layout for tighter spacing on long invoices."
+    },
+    {
+      "question": "Which currencies and number formats are supported?",
+      "answer": "Forty currencies with locale-aware symbols, grouping and decimal rules, from USD, EUR and GBP to BDT, INR, NGN and JPY. The PDF prints ISO currency codes so amounts render correctly in every PDF reader."
+    },
+    {
+      "question": "Is the generated invoice legally valid?",
+      "answer": "The document includes the usual fields — a unique invoice number, issue and due dates, seller and buyer details, tax IDs, itemised lines, tax breakdown and payment terms — but legal requirements vary by country. Check your local rules and keep your own records."
+    }
+  ],
+  "urlEncoderDecoder": [
+    {
+      "question": "What is the difference between encodeURIComponent and encodeURI?",
+      "answer": "encodeURIComponent escapes every character that is not unreserved, including reserved characters such as / ? & = and #. Use it for a single value. encodeURI leaves reserved characters untouched so a complete URL keeps its structure. In ToolsTrek, choose Component or Full URL to switch between them."
+    },
+    {
+      "question": "Why does a space sometimes become + and sometimes %20?",
+      "answer": "In application/x-www-form-urlencoded data — classic HTML form submissions — spaces are represented by + and a literal plus is written as %2B. Inside a normal URL path or query value a space is %20. The Form data mode performs the + substitution; the other modes keep %20."
+    },
+    {
+      "question": "Is the URL Encoder safe for sensitive data?",
+      "answer": "Yes. Encoding and decoding run entirely in your browser with JavaScript, so URLs, tokens and form values never leave your device. There is no upload, logging or server round-trip on this page."
+    },
+    {
+      "question": "What happens to malformed escapes such as 100%?",
+      "answer": "A standard decodeURIComponent call throws a URIError and stops processing the whole string. ToolsTrek uses a tolerant decoder that preserves invalid sequences exactly as typed, counts them and decodes every valid %XX sequence around them, so 100% off stays readable."
+    },
+    {
+      "question": "Can I encode or decode a list of values line by line?",
+      "answer": "Yes. Enable Process each line and every line is encoded or decoded independently while the original line breaks are preserved. This is ideal for keyword lists, tracking parameters and bulk redirect maps."
+    },
+    {
+      "question": "Does the Query Builder handle Unicode and empty values?",
+      "answer": "Yes. Query Builder encodes keys and values with the same engine, supports Unicode and emoji, keeps empty values as key=, can sort keys alphabetically for stable signatures and can import an existing query string into editable rows."
+    },
+    {
+      "question": "How do I encode a URL for a share link or email?",
+      "answer": "Use Full URL mode for the destination, then Component mode on that encoded URL if it is being placed inside another parameter — for example share?url=https%3A%2F%2Fexample.com. The Inspector panel shows the decoded parts so you can confirm the result."
     }
   ]
 }
