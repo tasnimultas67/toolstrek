@@ -3018,5 +3018,113 @@
     "categories": [
       "Media"
     ]
+  },
+  {
+    "title": "Voice Recorder & Mic / Camera Test",
+    "link": "/tools/voice-recorder",
+    "description": "Record voice notes, inspect your microphone with a live waveform, dB meter, noise floor and clipping readout, and check any webcam with resolution selection, framing guides and PNG snapshots. Choose WebM, OGG, M4A or WAV with bitrate, sample rate, mono or stereo and audio processing. Nothing is uploaded.",
+    "icon": "Mic",
+    "keywords": [
+      "voice recorder",
+      "online voice recorder",
+      "free voice recorder",
+      "microphone test",
+      "mic test online",
+      "camera test",
+      "webcam test",
+      "record audio in browser",
+      "voice memo online",
+      "mic level meter",
+      "webcam snapshot",
+      "audio recorder no upload",
+      "private voice recorder",
+      "webcam check",
+      "stereo audio recorder"
+    ],
+    "categories": [
+      "Media",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Meme Generator",
+    "link": "/tools/meme-generator",
+    "description": "Create memes on a real canvas editor: upload or paste a photo, add unlimited draggable text layers and style each one with custom fonts, gradient fills, outlines, shadows, highlight boxes, rotation and spacing. Export PNG, JPEG or WebP up to 3x resolution, or save the editable project as JSON. No uploads.",
+    "icon": "Laugh",
+    "keywords": [
+      "meme generator",
+      "free meme maker",
+      "online meme creator",
+      "meme editor",
+      "add text to image",
+      "impact font meme",
+      "meme caption generator",
+      "custom meme",
+      "image to meme",
+      "social media meme maker",
+      "meme generator no watermark",
+      "private meme maker",
+      "meme maker",
+      "funny image generator",
+      "text on photo"
+    ],
+    "categories": [
+      "Design",
+      "Fun"
+    ]
+  },
+  {
+    "title": "Video to GIF",
+    "link": "/tools/video-to-gif",
+    "description": "Turn any moment from an MP4, WebM, MOV, MKV or OGG video into a looping GIF. Scrub to a frame-accurate range, then set width, frame rate, speed, palette quality, dithering, loop count and ping-pong playback. Encoding runs locally in the browser with no uploads and no watermark.",
+    "icon": "Clapperboard",
+    "keywords": [
+      "video to gif",
+      "convert video to gif",
+      "mp4 to gif",
+      "gif converter",
+      "video to animated gif",
+      "trim video to gif",
+      "free gif converter",
+      "no watermark gif",
+      "video to gif online",
+      "webm to gif",
+      "high quality gif maker",
+      "private gif converter",
+      "mov to gif",
+      "gif editor",
+      "animated gif maker"
+    ],
+    "categories": [
+      "Media",
+      "Design"
+    ]
+  },
+  {
+    "title": "Resume / CV Builder",
+    "link": "/tools/resume-builder",
+    "description": "Build an ATS-friendly resume or CV with a live A4 or US Letter preview. Choose from four templates, customise the accent colour, typeface, spacing and margins, reorder or hide sections, add a photo, and compare your draft against a job advert. Print a vector PDF or export JSON, all locally.",
+    "icon": "IdCard",
+    "keywords": [
+      "resume builder",
+      "cv builder",
+      "free resume maker",
+      "online cv maker",
+      "ats friendly resume",
+      "professional resume template",
+      "resume pdf generator",
+      "cv template free",
+      "resume maker no signup",
+      "private resume builder",
+      "job application resume",
+      "resume editor",
+      "curriculum vitae builder",
+      "resume template",
+      "cv maker online"
+    ],
+    "categories": [
+      "Productivity",
+      "Education"
+    ]
   }
 ]

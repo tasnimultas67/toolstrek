@@ -245,6 +245,10 @@ const toolPages = [
   { slug: "coin-flip-dice", lastModified: "2026-11-03" },
   { slug: "screen-recorder", lastModified: "2026-11-03" },
   { slug: "video-trimmer", lastModified: "2026-11-03" },
+  { slug: "voice-recorder", lastModified: "2026-11-03" },
+  { slug: "meme-generator", lastModified: "2026-11-03" },
+  { slug: "video-to-gif", lastModified: "2026-11-03" },
+  { slug: "resume-builder", lastModified: "2026-11-03" },
 ];
 
 export default function sitemap() {

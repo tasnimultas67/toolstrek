@@ -1150,5 +1150,109 @@
       "question": "What is the demo clip button for?",
       "answer": "It draws a 10-second animated test card on a canvas and records it with MediaRecorder entirely on your device. The generated clip is a normal video file, so you can practise setting in and out points and exporting before using your own footage."
     }
+  ],
+  "voiceRecorder": [
+    {
+      "question": "How does the Voice Recorder work?",
+      "answer": "The tool captures your microphone with the browser getUserMedia API and records it using MediaRecorder. Audio stays in memory as a blob URL, so playback and downloads happen entirely on your device. Choose WebM, OGG, M4A or WAV before you start recording."
+    },
+    {
+      "question": "Is anything uploaded to a server?",
+      "answer": "No. Microphone audio, camera frames, snapshots and recordings never leave your device. The page makes no upload request and does not require an account. Closing or reloading the tab permanently discards the session."
+    },
+    {
+      "question": "What can the Mic Test measure?",
+      "answer": "The mic test shows a live oscilloscope, RMS and peak levels in decibels, an approximate noise floor, clipping events and a signal-quality score. It also lets you switch input devices so you can compare headset and built-in microphones before recording."
+    },
+    {
+      "question": "Why does my camera preview stay blank?",
+      "answer": "Browsers only grant camera access on HTTPS or localhost, and the permission must be allowed for this site. If another application is already using the camera, close it and press Start camera again. The demo feed button shows a synthetic test pattern without using your camera."
+    },
+    {
+      "question": "What is the demo data button for?",
+      "answer": "Every field starts empty. Load demo audio to hear a locally synthesised melody and try the playback, rename and download controls. The demo camera feed draws a moving test card on a canvas, so you can explore the layout without granting permissions."
+    },
+    {
+      "question": "Which recording format should I choose?",
+      "answer": "WebM Opus is the smallest and works in Chrome, Edge and Firefox. M4A AAC plays natively on Apple devices. WAV is lossless and accepted everywhere, but files are much larger. The tool only lists formats your browser can encode, and WAV is generated locally from the recorded audio."
+    }
+  ],
+  "memeGenerator": [
+    {
+      "question": "How does the Meme Generator work?",
+      "answer": "Upload an image or start with a blank canvas, then add as many text layers as you need. Each layer supports drag positioning, font, size, colour, gradient fill, outline, shadow, highlight box, rotation, opacity, alignment and letter spacing. The canvas is rendered at full resolution in your browser and exported as PNG, JPEG or WebP."
+    },
+    {
+      "question": "Are my images uploaded anywhere?",
+      "answer": "No. Images are read with the File API, drawn onto an HTML canvas and exported locally. Nothing is sent to a server, no account is required, and closing the tab discards the session. The editor also works offline after the page loads."
+    },
+    {
+      "question": "Can I save my meme and come back later?",
+      "answer": "Yes. The project autosaves to this browser local storage, including text layers and the background image where space allows. You can also export a .json project file and import it later on another device. Export JSON is available in the Export panel."
+    },
+    {
+      "question": "Why does the demo button exist?",
+      "answer": "Every field starts blank so nothing is pre-filled for you. Load demo data to see a complete gradient layout with two styled captions, then edit or delete it. The demo is generated locally and does not use an external image."
+    },
+    {
+      "question": "Which export size should I pick?",
+      "answer": "Use 1x for quick sharing, 2x for crisp social posts and 3x for print or large displays. The canvas base size is shown in the Size panel, so a 1080 x 1080 project at 2x exports a 2160 x 2160 PNG."
+    },
+    {
+      "question": "Can I move text with the keyboard?",
+      "answer": "Yes. Select a text layer and press the arrow keys to nudge it by one pixel, or hold Shift for ten pixels. Delete removes the selected layer and Escape clears the selection. Dragging directly on the canvas also works on touch screens and with a mouse."
+    }
+  ],
+  "videoToGif": [
+    {
+      "question": "How does the Video to GIF converter work?",
+      "answer": "Choose a video, set the start and end points, pick a frame rate and width, then generate. The browser seeks through the selected range, paints each frame to a canvas and hands it to a local GIF encoder. The finished GIF is assembled in memory and downloaded from your device."
+    },
+    {
+      "question": "Is my video uploaded to a server?",
+      "answer": "No. The file is opened with the File API, decoded by the browser's own video element and encoded on your machine. No frame, filename or file size is transmitted. The tool also works offline once the page has loaded."
+    },
+    {
+      "question": "How long can the clip be?",
+      "answer": "There is no fixed time limit, but GIF grows quickly. Keep clips short, lower the frame rate and reduce the width for the smallest file. The tool estimates the frame count and warns you before a very large encode."
+    },
+    {
+      "question": "What frame rate should I choose?",
+      "answer": "10 to 15 fps feels smooth for most memes and reactions while keeping files small. Use 5 to 8 fps for slideshows or subtle motion, and 20 to 30 fps only for short, high-motion clips."
+    },
+    {
+      "question": "What do quality, dithering and ping-pong do?",
+      "answer": "Quality controls the GIF palette search - a lower number means better colours and a larger file. Dithering adds a fine pattern that hides colour banding. Ping-pong plays the clip forward and then backward, which is popular for reaction GIFs."
+    },
+    {
+      "question": "What is the demo clip?",
+      "answer": "Every field starts empty. The demo button draws a three-second animated test card on a canvas, records it with MediaRecorder on your device and loads it as a normal video, so you can try trimming and encoding without picking a file."
+    }
+  ],
+  "resumeBuilder": [
+    {
+      "question": "How does the Resume Builder work?",
+      "answer": "Fill in the form on the left and watch the A4 or US Letter preview update instantly. Add, remove and reorder experience, education, skills and other sections, choose a template and accent colour, then print or save a vector PDF from your browser. Everything is stored in local storage and can be exported as a JSON project."
+    },
+    {
+      "question": "Is my personal data uploaded anywhere?",
+      "answer": "No. Your name, contact details, photo and work history stay in this browser tab and in local storage on your device. The page makes no upload request and does not require an account. Export a JSON backup or print a PDF to keep a copy."
+    },
+    {
+      "question": "Is the resume ATS-friendly?",
+      "answer": "The Minimal template is intentionally plain: one column, real text, no tables, icons or graphics in the body. All templates use selectable text rather than images, so applicant tracking systems can read names, roles, dates and bullet points. Always check the final PDF in the job board preview."
+    },
+    {
+      "question": "Why is everything blank at the start?",
+      "answer": "No sample candidate is pre-filled for you. The editor opens empty; use the Load demo data button to explore a complete example, then clear it and replace every field with your own details."
+    },
+    {
+      "question": "How do I save a PDF?",
+      "answer": "Press Print / Save PDF. The tool opens a clean print window with only the resume, sets the correct page size and removes the editor chrome. In the browser print dialog choose Save as PDF, keep margins at none and enable background graphics for accent colours."
+    },
+    {
+      "question": "What is the job description match panel?",
+      "answer": "Paste a job advert into the match panel and the tool compares its keywords with the text already in your resume. It highlights terms you already cover and suggests important words that are missing, helping you tailor the document without inventing experience."
+    }
   ]
 }

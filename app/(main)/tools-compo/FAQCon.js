@@ -57,6 +57,10 @@ const formatSectionTitle = (sectionKey) => {
     coinFlipDice: "Coin Flip & Dice",
     screenRecorder: "Screen Recorder",
     videoTrimmer: "Video Trimmer",
+    voiceRecorder: "Voice Recorder, Mic Test & Camera Test",
+    memeGenerator: "Meme Generator",
+    videoToGif: "Video to GIF Converter",
+    resumeBuilder: "Resume / CV Builder",
   };
 
   return (

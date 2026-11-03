@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>137 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, media, and security workflows — 100% free with no registration required.
+  Featuring <strong>141 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, media, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-137_Available-10b981?style=flat-square" alt="137 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-141_Available-10b981?style=flat-square" alt="141 Tools" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
@@ -52,7 +52,7 @@
 
 ---
 
-## 🛠️ Tool Library (137 Tools)
+## 🛠️ Tool Library (141 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
@@ -190,7 +190,7 @@
 
 ---
 
-### 🖼️ Image, Media & Design Tools (16)
+### 🖼️ Image, Media & Design Tools (19)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -210,10 +210,13 @@
 | **Media Format Converter** | `/tools/media-format-converter` | In-browser WebCodecs & WASM transcoder for MP4, WebM, MKV, MOV, MP3, WAV, OGG, and FLAC with trim/bitrate/rotation settings. |
 | **Screen Recorder** | `/tools/screen-recorder` | Record a screen, window or tab with system audio and microphone narration mixed into one track, optional webcam bubble, clock and watermark overlays, 480p–4K presets, pause/resume and local WebM/MP4 download. |
 | **Video Trimmer** | `/tools/video-trimmer` | Frame-accurate in/out trimming with a scrubbable timeline, live selection preview, resolution and bitrate controls, audio removal, and MP4/WebM/MKV or M4A/MP3/WAV/OGG export via MediaBunny and WebCodecs. |
+| **Voice Recorder, Mic Test & Camera Test** | `/tools/voice-recorder` | Record voice notes with WebM, OGG, M4A or WAV output, pause/resume and renameable takes, plus a live microphone analyser (waveform, dB, noise floor, clipping, quality score) and a webcam checker with resolution presets, framing guides and PNG snapshots. |
+| **Meme Generator** | `/tools/meme-generator` | Canvas meme editor with unlimited draggable text layers, Impact and display fonts, gradient fills, outlines, shadows, highlight boxes, rotation, letter spacing, image framing, clipboard paste, JSON projects and PNG/JPEG/WebP export up to 3×. |
+| **Video to GIF** | `/tools/video-to-gif` | Convert MP4, WebM, MOV, MKV or OGG to GIF with frame-accurate start/end points, width presets, 5–30 fps, 0.5×–2× speed, palette quality, dithering, ping-pong loops, letterbox or fill fitting and fully local encoding. |
 
 ---
 
-### 🔧 Productivity & Time Tools (15)
+### 🔧 Productivity & Time Tools (16)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -232,6 +235,7 @@
 | **Time Converter** | `/tools/time-converter` | Convert between seconds, minutes, hours, days, weeks, months, years, and milliseconds. |
 | **Typing Test** | `/tools/typing-test` | Measure WPM and accuracy with live graphs, an error heatmap, mechanical sounds, and shareable certificates. |
 | **Link Shortener** | `/tools/link-shortner` | Shorten long URLs for clean sharing, complete with scannable QR generation. |
+| **Resume / CV Builder** | `/tools/resume-builder` | Live A4 or US Letter resume editor with four templates, custom accent colour and typeface, text scale, spacing and margin controls, reorderable and hideable sections, profile photo, job-advert keyword matching, JSON project export and clean vector PDF printing. |
 
 ---
 
@@ -426,7 +430,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 137 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 141 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -456,7 +460,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 137 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 141 tools (source of truth)
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers
 │   ├── countries.js                           # Country registry for the Visited Countries Map
