@@ -52,6 +52,11 @@ const formatSectionTitle = (sectionKey) => {
     imageCropper: "Image Cropper",
     invoiceGenerator: "Invoice Generator",
     urlEncoderDecoder: "URL Encoder & Decoder",
+    wheelSpinner: "Wheel Spinner",
+    randomPicker: "Random Picker",
+    coinFlipDice: "Coin Flip & Dice",
+    screenRecorder: "Screen Recorder",
+    videoTrimmer: "Video Trimmer",
   };
 
   return (

@@ -240,6 +240,11 @@ const toolPages = [
   { slug: "image-cropper", lastModified: "2026-11-02" },
   { slug: "invoice-generator", lastModified: "2026-11-02" },
   { slug: "url-encoder-decoder", lastModified: "2026-11-02" },
+  { slug: "wheel-spinner", lastModified: "2026-11-03" },
+  { slug: "random-picker", lastModified: "2026-11-03" },
+  { slug: "coin-flip-dice", lastModified: "2026-11-03" },
+  { slug: "screen-recorder", lastModified: "2026-11-03" },
+  { slug: "video-trimmer", lastModified: "2026-11-03" },
 ];
 
 export default function sitemap() {
@@ -248,13 +253,13 @@ export default function sitemap() {
   const staticPages = [
     {
       url: BASE_URL,
-      lastModified: "2026-10-21",
+      lastModified: "2026-11-03",
       changeFrequency: "weekly",
       priority: 1.0,
     },
     {
       url: `${BASE_URL}/tools`,
-      lastModified: "2026-10-21",
+      lastModified: "2026-11-03",
       changeFrequency: "weekly",
       priority: 0.95,
     },
@@ -272,7 +277,7 @@ export default function sitemap() {
     },
     {
       url: `${BASE_URL}/faq`,
-      lastModified: "2026-10-21",
+      lastModified: "2026-11-03",
       changeFrequency: "monthly",
       priority: 0.75,
     },

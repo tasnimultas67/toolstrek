@@ -2,11 +2,11 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 132 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 137 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 132 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 137 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -1059,6 +1059,96 @@
     {
       "question": "How do I encode a URL for a share link or email?",
       "answer": "Use Full URL mode for the destination, then Component mode on that encoded URL if it is being placed inside another parameter — for example share?url=https%3A%2F%2Fexample.com. The Inspector panel shows the decoded parts so you can confirm the result."
+    }
+  ],
+  "wheelSpinner": [
+    {
+      "question": "How does the Wheel Spinner choose a winner?",
+      "answer": "Every spin uses the Web Crypto API (crypto.getRandomValues). Weighted mode gives each option a chance proportional to its weight, while Equal mode ignores weights. The winning segment is selected before the animation starts, so the pointer always lands on the real result."
+    },
+    {
+      "question": "Why does the wheel start empty?",
+      "answer": "ToolsTrek never inserts sample options into your workspace. Add options one at a time, paste a bulk list, or press Load demo data to explore the tool. An empty wheel stays empty until you add something, and nothing is saved to a server."
+    },
+    {
+      "question": "Can I customise weights, colours and probability?",
+      "answer": "Yes. Every option has an editable weight and colour, and you can switch between Weighted and Equal probability modes. Six palettes recolour the wheel instantly, while individual rows can override the palette colour. Weight 2 is twice as likely as weight 1."
+    },
+    {
+      "question": "Can I export a wheel or its results?",
+      "answer": "Yes. Export the wheel as JSON or CSV, import a JSON wheel, and download the full spin history as CSV. The winner card also has a one-click copy action, and all data is stored only in your browser localStorage."
+    }
+  ],
+  "randomPicker": [
+    {
+      "question": "What can the Random Picker do?",
+      "answer": "It draws one winner, picks several names without repeats, shuffles an entire list, splits items into balanced teams with a snake draft, or generates unique random numbers inside a range. Weighted draws are available for single and multi-winner modes."
+    },
+    {
+      "question": "Is the Random Picker different from the Wheel Spinner?",
+      "answer": "Both use the same cryptographically secure random engine, but the picker is built for larger lists and more formats. The wheel is a visual single-winner raffle; the picker adds pick-N sampling, full shuffles, team building, number ranges and duplicate filtering."
+    },
+    {
+      "question": "Why is the item list empty at the start?",
+      "answer": "No sample names are pre-loaded. Add items individually, paste a bulk list, or press Load demo data to try the tool. The demo only fills the list after you click it and never performs a draw automatically."
+    },
+    {
+      "question": "Where are my items and results stored?",
+      "answer": "Items, settings and draw history live in this browser localStorage only. You can export or import the pool as JSON, download results and history as CSV, and clear everything at any time."
+    }
+  ],
+  "coinFlipDice": [
+    {
+      "question": "Is the Coin Flip & Dice tool truly random?",
+      "answer": "Yes. Every flip and roll uses crypto.getRandomValues rather than Math.random. The outcome is chosen before the animation plays, so the displayed result always matches the secure draw. A fair coin gives each side an exact 50% chance."
+    },
+    {
+      "question": "Can I change the coin faces and odds?",
+      "answer": "Yes. Add, rename, recolour or delete faces, and give each side a relative weight. Weighted mode honours those weights; Fair mode ignores them and treats every side equally. At least two sides are required."
+    },
+    {
+      "question": "Which dice can I roll?",
+      "answer": "Use the d4, d6, d8, d10, d12, d20 or d100 presets, or type any number of sides from 2 to 1000. Roll up to 20 dice at once, add a flat modifier, and use advantage or disadvantage to roll the pool twice and keep the higher or lower total."
+    },
+    {
+      "question": "Does the tool save my coins and history?",
+      "answer": "Your coin faces, rules and session history are stored in this browser localStorage. Export the configuration as JSON or the history as CSV at any time. Clearing site data removes everything permanently."
+    }
+  ],
+  "screenRecorder": [
+    {
+      "question": "How does the Screen Recorder work?",
+      "answer": "It uses the browser getDisplayMedia API to capture a screen, window or tab, then records the stream with MediaRecorder. Audio from the shared source and your microphone are mixed through Web Audio into one track. The finished file is assembled in memory and downloaded locally."
+    },
+    {
+      "question": "Which browsers support screen recording with audio?",
+      "answer": "Chromium desktop browsers such as Chrome, Edge and Opera offer the best support, including tab audio. Firefox supports screen capture but system audio depends on the operating system. Safari support is limited. The tool lists only the output codecs your browser reports as supported."
+    },
+    {
+      "question": "Can I add a webcam, clock or watermark?",
+      "answer": "Yes. When the webcam overlay is enabled, the screen is painted to an offscreen canvas at your chosen resolution and the camera is drawn as a circular picture-in-picture bubble. The same canvas pipeline can burn in a live clock and a Toolstrek watermark."
+    },
+    {
+      "question": "Are my recordings uploaded or stored?",
+      "answer": "No. Recordings exist only as temporary blob URLs in this browser tab and disappear when you reload or close the page. There is no upload, no server storage and no account. Download anything you want to keep."
+    }
+  ],
+  "videoTrimmer": [
+    {
+      "question": "Does the Video Trimmer upload my file?",
+      "answer": "Never. The file is read locally with the File API, decoded and encoded with WebCodecs through MediaBunny, and written to memory as a new blob. No byte is sent over the network, and the tool keeps working offline once the page has loaded."
+    },
+    {
+      "question": "Is trimming lossless?",
+      "answer": "Precise trimming re-encodes only the frames inside the selected range so the cut is frame accurate and starts exactly at your in point. Re-encoding introduces a small generation loss, so choose a higher bitrate if you plan to edit the result again."
+    },
+    {
+      "question": "Which input and output formats are supported?",
+      "answer": "You can open MP4, WebM, MKV, MOV and most common containers, plus audio files such as MP3, M4A, WAV, OGG and FLAC. Export video to MP4, WebM or MKV, or audio-only to M4A, MP3, WAV or OGG."
+    },
+    {
+      "question": "What is the demo clip button for?",
+      "answer": "It draws a 10-second animated test card on a canvas and records it with MediaRecorder entirely on your device. The generated clip is a normal video file, so you can practise setting in and out points and exporting before using your own footage."
     }
   ]
 }

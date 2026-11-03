@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>132 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, and security workflows — 100% free with no registration required.
+  Featuring <strong>137 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, media, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-132_Available-10b981?style=flat-square" alt="132 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-137_Available-10b981?style=flat-square" alt="137 Tools" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
@@ -52,14 +52,15 @@
 
 ---
 
-## 🛠️ Tool Library (132 Tools)
+## 🛠️ Tool Library (137 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
-### 🌐 Developer & Code Tools (26)
+### 🌐 Developer & Code Tools (27)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
+| **Barcode Generator** | `/tools/barcode-generator` | Generate print-ready EAN-13, EAN-8, UPC-A, Code 128, Code 39, ITF-14, MSI and Codabar barcodes with GS1 check-digit repair, quiet-zone and contrast audits, real ZXing verification, and PNG, SVG, JPEG, PDF label or batch CSV export. |
 | **Regex Tester & Debugger** | `/tools/regex-tester` | Real-time regex pattern testing with an AST syntax explainer, capture groups, replace/split, and a multi-language code generator (JS, Python, Go, Rust, Java, C#, PHP, Ruby, Swift, Bash). |
 | **Code Formatter & Beautifier** | `/tools/code-formatter` | Format and beautify JavaScript, TypeScript, HTML, CSS, JSON, XML, and SQL with custom indent sizing, theme support, and direct file export. |
 | **JSON Editor** | `/tools/json-editor` | Visual JSON editor and tree viewer with schema validation, key sorting, minification, diff comparison, and two-way conversion to XML/YAML/CSV. |
@@ -189,7 +190,7 @@
 
 ---
 
-### 🖼️ Image, Media & Design Tools (14)
+### 🖼️ Image, Media & Design Tools (16)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -207,6 +208,8 @@
 | **Color Palette Extractor** | `/tools/color-palette-extractor` | Extract dominant palettes from images and export CSS variables, HEX arrays, or Tailwind tokens. |
 | **GIF Maker** | `/tools/gif-maker` | Create animated GIFs from image frames with drag-and-drop ordering, per-frame delays, and local encoding. |
 | **Media Format Converter** | `/tools/media-format-converter` | In-browser WebCodecs & WASM transcoder for MP4, WebM, MKV, MOV, MP3, WAV, OGG, and FLAC with trim/bitrate/rotation settings. |
+| **Screen Recorder** | `/tools/screen-recorder` | Record a screen, window or tab with system audio and microphone narration mixed into one track, optional webcam bubble, clock and watermark overlays, 480p–4K presets, pause/resume and local WebM/MP4 download. |
+| **Video Trimmer** | `/tools/video-trimmer` | Frame-accurate in/out trimming with a scrubbable timeline, live selection preview, resolution and bitrate controls, audio removal, and MP4/WebM/MKV or M4A/MP3/WAV/OGG export via MediaBunny and WebCodecs. |
 
 ---
 
@@ -262,7 +265,7 @@
 
 ---
 
-### 🔮 Fun & Astrology Tools (4)
+### 🔮 Fun & Astrology Tools (7)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -270,6 +273,9 @@
 | **Love Compatibility Test** | `/tools/love-compatibility-test` | Relationship harmony via zodiac compatibility, numerology life paths, love languages, and chemistry scores. |
 | **Age on Other Planets** | `/tools/age-on-other-planets` | Your exact age on Mercury, Venus, Earth, Mars, Jupiter, Saturn, Uranus, Neptune and Pluto — with next planetary birthdays, a milestone planner, weight & jump comparisons, and shareable report exports. |
 | **Dog & Cat Age Calculator** | `/tools/dog-cat-age-calculator` | Human-age conversion for dogs and cats with size- and lifestyle-aware charts, life stages, lifespan estimates, birthday milestones, gotcha-day tracking, and shareable report exports. |
+| **Wheel Spinner** | `/tools/wheel-spinner` | Build a weighted prize wheel from your own options with per-item colour and weight, six palettes, sound and confetti, elimination mode, full-screen spins, local history and JSON/CSV export. |
+| **Random Picker** | `/tools/random-picker` | Draw one or many winners, shuffle lists, build balanced teams with a snake draft, and generate unique random numbers — with weighting, duplicate filtering, secure randomness and CSV/JSON exports. |
+| **Coin Flip & Dice** | `/tools/coin-flip-dice` | Flip custom weighted coins and roll d4–d100 or any side count, with dice pools, flat modifiers, advantage/disadvantage, distribution stats and a private session history. |
 
 ---
 
@@ -420,7 +426,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 132 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 137 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -450,7 +456,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 132 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 137 tools (source of truth)
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers
 │   ├── countries.js                           # Country registry for the Visited Countries Map

@@ -2883,5 +2883,140 @@
       "Developer",
       "Text"
     ]
+  },
+  {
+    "title": "Wheel Spinner",
+    "link": "/tools/wheel-spinner",
+    "description": "Spin a customisable prize wheel built from your own options, each with its own weight and colour. Choose weighted or equal odds, bulk-paste lists, apply palettes, add sound and confetti, remove winners for elimination rounds, and export the wheel or spin history as JSON or CSV.",
+    "icon": "Disc3",
+    "keywords": [
+      "wheel spinner",
+      "spin the wheel",
+      "random wheel picker",
+      "prize wheel",
+      "decision wheel",
+      "weighted wheel",
+      "raffle picker",
+      "random name picker",
+      "spinner wheel online",
+      "classroom wheel",
+      "giveaway picker",
+      "custom wheel",
+      "free wheel spinner",
+      "elimination wheel",
+      "wheel of names"
+    ],
+    "categories": [
+      "Fun",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Random Picker",
+    "link": "/tools/random-picker",
+    "description": "Draw one winner or several names, shuffle an entire list, split people into balanced teams, or generate unique random numbers. Filter duplicates, apply per-item weights, tune the reveal animation, then export results and history as CSV. Your pool starts empty and never leaves the browser.",
+    "icon": "Shuffle",
+    "keywords": [
+      "random picker",
+      "random name picker",
+      "pick a random name",
+      "random number generator",
+      "shuffle list",
+      "team generator",
+      "random draw",
+      "raffle picker",
+      "giveaway winner",
+      "weighted random picker",
+      "random choice",
+      "classroom picker",
+      "fair draw",
+      "random team maker",
+      "list shuffler"
+    ],
+    "categories": [
+      "Fun",
+      "Productivity",
+      "Calculator"
+    ]
+  },
+  {
+    "title": "Coin Flip & Dice",
+    "link": "/tools/coin-flip-dice",
+    "description": "Flip custom coins with editable faces, colours and weights, or roll d4, d6, d8, d10, d12, d20, d100 or any side count from 2 to 1000. Roll pools with flat modifiers, use advantage or disadvantage, and review distribution stats and a private session history with CSV export.",
+    "icon": "Coins",
+    "keywords": [
+      "coin flip",
+      "flip a coin",
+      "coin toss",
+      "dice roller",
+      "roll dice online",
+      "d20 roller",
+      "dnd dice",
+      "random dice",
+      "coin flip online",
+      "virtual dice",
+      "weighted coin",
+      "advantage disadvantage dice",
+      "dice simulator",
+      "free dice roller",
+      "random coin toss"
+    ],
+    "categories": [
+      "Fun",
+      "Calculator"
+    ]
+  },
+  {
+    "title": "Screen Recorder",
+    "link": "/tools/screen-recorder",
+    "description": "Record your screen, an application window or a single browser tab with system audio and microphone narration mixed into one track. Add a circular webcam overlay, clock or watermark, pick 480p to 4K, pause and resume, then download the WebM or MP4 file. Nothing is uploaded.",
+    "icon": "ScreenShare",
+    "keywords": [
+      "screen recorder",
+      "free screen recorder",
+      "online screen recording",
+      "record screen with audio",
+      "tab recorder",
+      "webcam screen recorder",
+      "browser screen capture",
+      "no watermark screen recorder",
+      "record chrome tab",
+      "screen recording tool",
+      "webm recorder",
+      "mp4 screen recorder",
+      "microphone screen recorder",
+      "local screen capture",
+      "screen and camera recorder"
+    ],
+    "categories": [
+      "Media",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Video Trimmer",
+    "link": "/tools/video-trimmer",
+    "description": "Trim video and audio with frame-accurate in and out points, a scrubbable timeline and live selection preview. Resize, set the bitrate, mute audio, then export MP4, WebM, MKV, M4A, MP3, WAV or OGG. Processing runs locally with MediaBunny and WebCodecs, so files never leave your device.",
+    "icon": "Scissors",
+    "keywords": [
+      "video trimmer",
+      "trim video online",
+      "cut video",
+      "mp4 trimmer",
+      "webm trimmer",
+      "audio trimmer",
+      "trim mp3",
+      "video cutter",
+      "frame accurate trim",
+      "free video trimmer",
+      "no watermark video cutter",
+      "local video editing",
+      "webcodecs trimmer",
+      "video clipper",
+      "mkv trimmer"
+    ],
+    "categories": [
+      "Media"
+    ]
   }
 ]
