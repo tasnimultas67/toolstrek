@@ -61,6 +61,14 @@ const formatSectionTitle = (sectionKey) => {
     memeGenerator: "Meme Generator",
     videoToGif: "Video to GIF Converter",
     resumeBuilder: "Resume / CV Builder",
+    shoeClothingSize: "Shoe & Clothing Size Converter",
+    printSize: "Print Size & DPI Calculator",
+    freelanceRate: "Freelance Hourly Rate Calculator",
+    businessCard: "Business Card Maker",
+    letterhead: "Letterhead Maker",
+    configFileGenerator: "Config File Generator",
+    subtitleEditor: "Subtitle (SRT/VTT) Editor & Sync",
+    babyGrowthFeeding: "Baby Growth Percentile & Feeding Calculator",
   };
 
   return (

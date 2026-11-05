@@ -2,11 +2,11 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 137 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 149 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 137 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes! The entire ToolsTrek suite of 149 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -1253,6 +1253,234 @@
     {
       "question": "What is the job description match panel?",
       "answer": "Paste a job advert into the match panel and the tool compares its keywords with the text already in your resume. It highlights terms you already cover and suggests important words that are missing, helping you tailor the document without inventing experience."
+    }
+  ],
+  "shoeClothingSize": [
+    {
+      "question": "How does the shoe and clothing size converter work?",
+      "answer": "Choose a category, a region and a size, and the converter maps it across EU, UK, US, Mondopoint and centimetres. For a personal recommendation, enter a foot length or body measurements instead: the tool compares them with the size chart and suggests the closest match with a fit note."
+    },
+    {
+      "question": "Why can the same size fit differently between brands?",
+      "answer": "Size labels are not standardised. Last shape, fabric stretch, vanity sizing and regional grading all change the real measurements. Use the brand-specific fit offset in the tool and trust the garment's own measurement chart over the label whenever it is available."
+    },
+    {
+      "question": "How should I measure my foot?",
+      "answer": "Stand on a sheet of paper with your heel against a wall, mark the longest toe, and measure the distance in centimetres. Do it late in the day when feet are slightly larger, measure both feet and use the longer one. Add about 0.5–1 cm of toe room for everyday shoes."
+    },
+    {
+      "question": "How do kids' sizes work?",
+      "answer": "Children's shoe sizes grow quickly, so measure every few months rather than relying on age. Clothing is usually grouped by height in centimetres in Europe and by age in the US and UK. The converter includes child ranges, but height and chest measurements are more reliable than an age label."
+    },
+    {
+      "question": "Can I build my own conversion chart?",
+      "answer": "Yes. Add your own rows with the size in each system and the matching centimetres, then reorder or delete them. The custom chart can be exported as CSV or printed as a PDF so a shop or tailor can keep a copy."
+    },
+    {
+      "question": "Is anything uploaded or stored?",
+      "answer": "No. Conversions and custom charts are calculated in your browser. Your measurements and chart are saved only in local storage on this device, and clearing the tool removes them."
+    }
+  ],
+  "printSize": [
+    {
+      "question": "How do I convert pixels to print size?",
+      "answer": "Divide the pixel count by the DPI to get inches, then multiply by 25.4 for millimetres. A 3000 × 2400 px file at 300 DPI prints at 10 × 8 inches. The calculator does this in both directions and also reports the effective PPI for any chosen paper size."
+    },
+    {
+      "question": "What DPI should I use for print?",
+      "answer": "300 PPI is the usual target for photographs and detailed art viewed up close. Large posters can be 150 PPI or lower because they are seen from further away, while line art and small text benefit from 300–600 PPI. Always confirm the printer's requirement before exporting."
+    },
+    {
+      "question": "What are bleed and safe margins?",
+      "answer": "Bleed is extra artwork beyond the trim line, usually 3 mm, so small cutting errors do not leave a white edge. The safe margin keeps text and logos away from the trim, commonly 3–5 mm. The preview shows both on your chosen paper size."
+    },
+    {
+      "question": "Does the tool change my image file?",
+      "answer": "No. It is a specification calculator: it tells you the pixel dimensions, DPI and paper size you need. Use an image editor or the ToolsTrek image resizer to produce the file, then check the result here before sending it to print."
+    },
+    {
+      "question": "Which paper size should I choose?",
+      "answer": "A4 is the standard in most of the world, US Letter in the United States and Canada, and A3 or larger for posters. Photo sizes such as 4 × 6, 5 × 7 and 8 × 10 are common for prints. You can also enter a completely custom width and height."
+    },
+    {
+      "question": "What if my image has the wrong aspect ratio?",
+      "answer": "The calculator warns when the image ratio does not match the paper. Cropping fills the page but loses edges; fitting adds white margins. Choose deliberately and keep the subject away from the crop line."
+    }
+  ],
+  "freelanceRate": [
+    {
+      "question": "How is the freelance hourly rate calculated?",
+      "answer": "The tool starts with the income you need after business costs, then adds overheads, tax, pension and holiday cover, and divides the total by the hours you can realistically bill. Billable capacity is deliberately lower than working hours because admin, sales and unpaid revisions take time."
+    },
+    {
+      "question": "Why is a freelance rate higher than an employee salary?",
+      "answer": "A salary is only part of the cost of an employee: employers also pay pension, insurance, equipment and paid leave. A freelancer covers all of that plus unbilled time, sickness and gaps between contracts. The employee-to-contractor comparison makes the gap explicit."
+    },
+    {
+      "question": "How many billable hours should I assume?",
+      "answer": "Many solo freelancers bill 50–70% of their working time. A 40-hour week with 25 billable hours is a realistic starting point; client work, proposals, invoicing and learning fill the rest. If you are new, be conservative — overestimating capacity produces an unsustainably low rate."
+    },
+    {
+      "question": "What is value-based pricing?",
+      "answer": "Instead of charging for time, you price against the value the work creates for the client — more revenue, lower cost or reduced risk. The calculator includes a value-based scenario so you can compare a time-based floor with a project price that reflects the outcome."
+    },
+    {
+      "question": "How should I quote a fixed-price project?",
+      "answer": "Estimate the hours honestly, add a risk buffer for revisions and unknowns, then multiply by your target hourly rate. Show the client the scope, deliverables and revision limit. A fixed price without a defined scope is how projects become unprofitable."
+    },
+    {
+      "question": "Does the calculator include taxes?",
+      "answer": "It includes the tax and contribution rate you enter, which varies by country and legal structure. It is a planning model, not a tax return. Check local rules for VAT/GST, self-employment contributions and allowable expenses with an accountant."
+    }
+  ],
+  "businessCard": [
+    {
+      "question": "What size should a business card be?",
+      "answer": "In the US and Canada the standard is 3.5 × 2 inches (88.9 × 50.8 mm). In Europe, the UK and most of Asia, 85 × 55 mm is the norm. Square and slim formats are popular for creative studios, but always confirm the printer's trim size before ordering."
+    },
+    {
+      "question": "How much bleed does a business card need?",
+      "answer": "Add 3 mm (0.125 in) of bleed on every edge when any colour or image runs to the edge. That makes the document 94.9 × 56.8 mm for a US card and 91 × 61 mm for a European card. Keep text at least 3–4 mm inside the trim line."
+    },
+    {
+      "question": "Can I export a print-ready PDF?",
+      "answer": "Yes. The export renders your design at 300 DPI and places it on a page sized to your card or card back. When crop marks are enabled, the PDF adds a margin and corner marks so a print shop can trim the job accurately."
+    },
+    {
+      "question": "How many cards fit on one sheet?",
+      "answer": "It depends on the card and sheet size, the gap between cards and the sheet margin. With a US card and a 4 mm gap on A4, the layout section shows the exact grid and copy count. Adjust the gap or margin to see how many more fit."
+    },
+    {
+      "question": "Can I add a QR code to my card?",
+      "answer": "Yes. Enter any URL, email address, phone number or plain text and the maker generates a QR code locally. It is embedded in the preview, the PNG and the PDF. Test-scan the exported file before sending it to print."
+    },
+    {
+      "question": "What paper and finish should I choose?",
+      "answer": "350–400 gsm card stock feels substantial without becoming brittle. A matte or soft-touch laminate is easy to write on, while a gloss finish makes colours pop. Spot UV, foil and letterpress add cost, so ask for a proof before a large run."
+    },
+    {
+      "question": "Is my logo uploaded to a server?",
+      "answer": "No. The logo and contact details never leave your browser. Everything is rendered on your device and saved to local storage so you can pick up where you left off."
+    },
+    {
+      "question": "Can I reuse the design later?",
+      "answer": "Yes. Export the project as JSON from the maker. It stores your brand details, colours, template choices and print settings so you can import it on another device or hand it to a colleague. The logo is included in the file when you add one."
+    }
+  ],
+  "letterhead": [
+    {
+      "question": "What size should a letterhead be?",
+      "answer": "A4 (210 × 297 mm) is the standard in most of the world and US Letter (8.5 × 11 in) in the United States and Canada. A5 is useful for short notes and compliments slips. Choose the same paper your printer stocks so the final trim and margins match your proof."
+    },
+    {
+      "question": "How much margin and bleed should a letterhead use?",
+      "answer": "Keep at least 15–20 mm of clear margin for body copy and leave room for a signature. Add 3 mm of bleed on every edge when a colour band or image runs to the edge. The preview marks the trim and safe area so nothing important is clipped."
+    },
+    {
+      "question": "Can I export a print-ready PDF?",
+      "answer": "Yes. The letterhead is rendered at 300 DPI on a page sized to A4, US Letter, A5 or your chosen paper. With crop marks enabled, the PDF adds a margin and corner marks so a print shop can trim accurately."
+    },
+    {
+      "question": "What should a letterhead include?",
+      "answer": "The company name and logo, a postal address, phone number, email, website and any registration or tax details your market requires. Keep the footer compact so the body copy has room to breathe, and leave a clear signature area at the end."
+    },
+    {
+      "question": "Can I match the letterhead to my business card?",
+      "answer": "Yes. Use the same brand colour, ink colour, typeface and logo. The Business Card Maker uses the same design tokens, so you can build a matching card and letterhead without a separate design file. Layouts can differ to suit the format."
+    },
+    {
+      "question": "Is my logo uploaded to a server?",
+      "answer": "No. The logo, company details and letter copy never leave your browser. Everything is rendered on your device and saved to local storage so you can pick up where you left off."
+    },
+    {
+      "question": "Can I reuse the design later?",
+      "answer": "Yes. Export the project as JSON and import it on another device or hand it to a colleague. It stores the brand details, colours, template choice, paper size and letter content. The logo is included in the file when you add one."
+    },
+    {
+      "question": "Can I write the letter inside the tool?",
+      "answer": "Yes. Add a recipient block, subject, body, closing and signature, and the preview shows exactly what will export. Leave those fields blank if you only need a blank letterhead to print and write on later."
+    }
+  ],
+  "configFileGenerator": [
+    {
+      "question": "What does the Config File Generator produce?",
+      "answer": "Four files: a .gitignore assembled from selectable stacks and custom rules, a robots.txt with crawl directives and a sitemap reference, an HTML block of SEO and social meta tags, and an Apache .htaccess file with security, compression, caching and redirect rules."
+    },
+    {
+      "question": "Does .gitignore untrack files that are already committed?",
+      "answer": "No. It only stops untracked files from being added. Run git rm --cached <file> to stop tracking an existing file, then commit the removal. If a secret was committed, rotate it immediately — deleting it from the latest commit does not remove it from history."
+    },
+    {
+      "question": "Is robots.txt a security control?",
+      "answer": "No. It is a request that well-behaved crawlers honour, not access control. Anyone can read the file and ignore it. Protect private pages with authentication, noindex headers or server rules, and never list sensitive paths in robots.txt."
+    },
+    {
+      "question": "Will .htaccess work on my server?",
+      "answer": ".htaccess is read by Apache and LiteSpeed. Nginx ignores it and needs equivalent rules in the server block. Some managed hosts disable overrides. Test on staging and keep a backup, because a malformed rule can take the site offline."
+    },
+    {
+      "question": "Can I save different configurations?",
+      "answer": "Yes. Each tab can be saved as a named preset in local storage, and presets can be applied or deleted independently. You can also download a single file or all populated files as a ZIP bundle."
+    },
+    {
+      "question": "Are the generated files uploaded anywhere?",
+      "answer": "No. Everything is generated from your selections in the browser, and the ZIP is assembled locally with JSZip. No account is required and no configuration is sent to a server."
+    }
+  ],
+  "subtitleEditor": [
+    {
+      "question": "How do I fix subtitles that are out of sync?",
+      "answer": "If every cue is early or late by the same amount, use Shift every cue with a positive or negative offset. If the drift grows over time, the file was probably made at a different frame rate: use the FPS converter to scale the whole timeline. For one bad cue, edit its start and end times directly."
+    },
+    {
+      "question": "What is the difference between SRT and VTT?",
+      "answer": "SRT is the older, widely supported format with a cue number, a comma-separated timestamp and plain text. WebVTT starts with WEBVTT, uses a dot before milliseconds and supports styling and positioning. Both are exported as UTF-8 so Unicode text survives."
+    },
+    {
+      "question": "What reading speed should I aim for?",
+      "answer": "Around 15–20 characters per second is comfortable, up to about 25 for short cues. Keep cues to one or two lines of roughly 42 characters and on screen for at least 0.6 seconds. The validator flags anything above your chosen limits."
+    },
+    {
+      "question": "Can I preview subtitles against my video?",
+      "answer": "Yes. Add a local video file and the editor plays it with the active cue overlaid. The video is read directly from your device with a temporary object URL and is never uploaded or saved. Jump to any cue with its play button."
+    },
+    {
+      "question": "Which formats can I export?",
+      "answer": "SRT, WebVTT, CSV for spreadsheets and translation workflows, a plain transcript with timecodes, and a JSON project file that can be re-imported. Copying the SRT to the clipboard is also supported."
+    },
+    {
+      "question": "Is my subtitle file uploaded?",
+      "answer": "No. Parsing, retiming, validation and export all run in your browser. The cue list autosaves in local storage on this device, and clearing the editor removes it."
+    }
+  ],
+  "babyGrowthFeeding": [
+    {
+      "question": "How are the growth percentiles calculated?",
+      "answer": "Each measurement is compared with a WHO-aligned monthly reference for the baby's sex. The z-score is (measurement − median) ÷ standard deviation, and the percentile is the area under the normal curve below that z-score. Months between rows are interpolated. The tables are simplified for education; your clinician's charts remain the authority."
+    },
+    {
+      "question": "What does the 50th percentile mean?",
+      "answer": "It is the median: half of healthy children of the same age and sex are above it and half below. A baby on the 15th percentile who follows that line is growing normally. The trend across visits matters far more than one number."
+    },
+    {
+      "question": "Should I use corrected age for a premature baby?",
+      "answer": "For babies born before 37 weeks, corrected age subtracts the weeks they were early. Many clinicians use it for growth and development until about 24 months. Enter the gestational age and the calculator shows both, letting you switch which one drives the percentiles."
+    },
+    {
+      "question": "How much milk does a baby need?",
+      "answer": "A common guide is about 150 ml per kilogram per day, split across the number of feeds. Breastfed babies feed on demand and do not need measured volumes; the figure is an estimate, not a target to force. Always mix formula exactly as the tin instructs."
+    },
+    {
+      "question": "When should solids start?",
+      "answer": "Around 6 months, and not before about 4 months. Readiness signs matter more than the date: good head control, sitting with support, reaching for food and losing the tongue-thrust reflex. Milk remains the main source of nutrition through the first year."
+    },
+    {
+      "question": "Is this medical advice?",
+      "answer": "No. It is an educational calculator for understanding growth trends and feeding arithmetic. Speak to a paediatrician, health visitor or dietitian if a baby loses weight, crosses two percentile lines, feeds poorly or has fewer wet nappies."
+    },
+    {
+      "question": "Is my baby's data uploaded?",
+      "answer": "No. The profile, measurements and feeding settings stay in local storage in this browser. PDF and CSV exports are generated on your device, and clearing the tool removes the saved data."
     }
   ]
 }

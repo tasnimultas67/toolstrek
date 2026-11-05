@@ -8,14 +8,14 @@
 
 <p align="center">
   A high-performance, privacy-focused online utility hub built with <strong>Next.js 16</strong>, <strong>React 19</strong>, and <strong>Tailwind CSS 4</strong>.<br />
-  Featuring <strong>141 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, media, and security workflows — 100% free with no registration required.
+  Featuring <strong>149 powerful tools</strong> across developer, text, PDF, image, chart, QR, calculator, finance, health, productivity, media, and security workflows — 100% free with no registration required.
 </p>
 
 <p align="center">
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Next.js-16.4-black?style=flat-square&logo=next.js" alt="Next.js" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/React-19.0-blue?style=flat-square&logo=react" alt="React" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tailwind-CSS_4-38bdf8?style=flat-square&logo=tailwind-css" alt="Tailwind CSS" /></a>
-  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-141_Available-10b981?style=flat-square" alt="141 Tools" /></a>
+  <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Tools-149_Available-10b981?style=flat-square" alt="149 Tools" /></a>
   <a href="https://github.com/tasnimultas67/toolstrek"><img src="https://img.shields.io/badge/Release-v2.23.0-purple?style=flat-square" alt="v2.23.0" /></a>
   <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-blueviolet?style=flat-square" alt="MIT License" /></a>
 </p>
@@ -52,11 +52,11 @@
 
 ---
 
-## 🛠️ Tool Library (141 Tools)
+## 🛠️ Tool Library (149 Tools)
 
 > Every tool is registered in a single source of truth — [`lib/toolsData.json`](./lib/toolsData.json) — which drives the All Tools grid, category filters, global search, and the FAQ header counters.
 
-### 🌐 Developer & Code Tools (27)
+### 🌐 Developer & Code Tools (28)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -87,10 +87,11 @@
 | **ZIP File Creator & Compressor** | `/tools/zip-creator` | Bundle and compress files or entire directory trees into downloadable ZIP archives with configurable Deflate levels. |
 | **UUID / ULID Generator** | `/tools/uuid-ulid-generator` | Generate secure UUID v4/v7/v1/v5, ULID and NanoID batches, format and export them, and inspect pasted UUIDs or ULIDs for version, timestamp and structure. |
 | **URL Encoder / Decoder** | `/tools/url-encoder-decoder` | Encode and decode URLs, query strings and form data with component, full-URL, form and custom-safe-character modes, strict RFC 3986 handling, hex casing, batch processing, a live URL inspector and a query-string builder. |
+| **Config File Generator** | `/tools/config-file-generator` | Build `.gitignore`, `robots.txt`, SEO and social meta tags and Apache `.htaccess` from explained, selectable options, add custom rules, save named presets, and copy or download everything as a single file or ZIP. |
 
 ---
 
-### 🎨 Design, CSS & Chart Tools (9)
+### 🎨 Design, CSS & Chart Tools (12)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -103,6 +104,9 @@
 | **Radar Chart Generator** | `/tools/radar-chart-generator` | Radar & spider chart studio with CSV/Excel import, multi-series profiles, polygon/circular grids, fills/gradients, and PNG/SVG export. |
 | **Funnel Chart Generator** | `/tools/funnel-chart-generator` | Funnel & conversion chart studio with CSV/Excel import, funnel/bar/step shapes, conversion & drop-off markers, WCAG-compliant labels that stay readable on every palette, and PNG/SVG export. |
 | **Polar Chart Generator** | `/tools/polar-chart-generator` | Polar area (rose) & radial bar chart studio with CSV/Excel import, an interactive hover tooltip, area-accurate square-root scaling, an optional centre hole, adjustable rings, gaps and rotation, and PNG/SVG export. |
+| **Print Size & DPI Calculator** | `/tools/print-size-calculator` | Convert pixels, millimetres, centimetres and inches at any DPI or PPI, check print quality, compare ISO, US, photo and custom paper sizes, add bleed, safe margins and crop marks, and export a print specification sheet. |
+| **Business Card Maker** | `/tools/business-card-maker` | Design a print-ready business card with five layouts, US, European, square, slim and custom sizes, logo upload, locally generated QR codes, an optional card back, brand colours, bleed and safe-area preview, sheet imposition and 300 DPI PNG or PDF export. |
+| **Letterhead Maker** | `/tools/letterhead-maker` | Create a print-ready company letterhead with four layouts, A4, US Letter, A5 and custom paper sizes, logo upload, brand and ink colours, bleed and safe-area preview, recipient and letter content, and 300 DPI PNG or PDF export. |
 
 ---
 
@@ -145,7 +149,7 @@
 
 ---
 
-### 🧮 Calculator Tools (7)
+### 🧮 Calculator Tools (8)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -156,10 +160,11 @@
 | **Unit Converter** | `/tools/unit-converter` | Convert length, mass, temperature, area, volume, speed, digital storage, energy, and pressure across metric & imperial systems. |
 | **Roman Numeral Converter** | `/tools/roman-numeral-converter` | Convert integers to Roman numerals and back with step-by-step breakdowns and an interactive Roman keyboard. |
 | **Pregnancy Due Date Calculator** | `/tools/pregnancy-due-date-calculator` | Estimate a due date from LMP with cycle adjustment, conception, ultrasound or IVF transfer, with gestational age, milestone windows, summary copy and `.ics` export. |
+| **Shoe & Clothing Size Converter** | `/tools/shoe-clothing-size-converter` | Convert shoe and clothing sizes between EU, UK, US, Mondopoint and centimetres for women, men and children, get a size recommendation from real measurements, apply brand fit offsets, build a custom chart and export it as CSV or PDF. |
 
 ---
 
-### 💰 Finance & Budgeting Tools (10)
+### 💰 Finance & Budgeting Tools (11)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -173,10 +178,11 @@
 | **Tip Calculator** | `/tools/tip-calculator` | Calculate tips and split bills evenly or by custom shares, with service-quality input and receipt breakdowns. |
 | **Fuel Cost & Road Trip Calculator** | `/tools/fuel-cost-calculator` | Build a complete road-trip budget with fuel, tolls, parking, accommodation and food, split costs by passenger, and plan range, fuel stops and emissions in metric or imperial units. |
 | **Invoice Generator** | `/tools/invoice-generator` | Create itemised invoices with per-item tax and discounts, inclusive or exclusive tax, 40 currencies, logo upload, templates and accent colours, then download a vector PDF, print, or export/import JSON drafts with local auto-save. |
+| **Freelance Hourly Rate Calculator** | `/tools/freelance-rate-calculator` | Work out a defensible hourly, daily, weekly and project rate from your income target, billable capacity, overheads, taxes, pension, holiday and unpaid admin time, compare employee and contractor scenarios, and export a client-ready quote breakdown. |
 
 ---
 
-### 🩺 Health & Wellness Tools (7)
+### 🩺 Health & Wellness Tools (8)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -187,10 +193,11 @@
 | **Smoking Cost Calculator** | `/tools/smoking-cost-calculator` | Financial and physical cost of smoking/vaping from 1 day to 20 years, with 30+ currencies and investment growth projections. |
 | **Sleep Calculator** | `/tools/sleep-calculator` | Best bedtime/wake-up times using 90-minute cycles, personalised by age, chronotype, and habits, with a quality score, stage breakdown, nap guide, and PDF plan. |
 | **Pregnancy Due Date Calculator** | `/tools/pregnancy-due-date-calculator` | Estimate a due date from last period, conception, ultrasound or IVF, with gestational and fetal age, trimester progress, conception and implantation windows, milestone dates, summary copy and `.ics` export. |
+| **Baby Growth Percentile & Feeding Calculator** | `/tools/baby-growth-feeding-calculator` | Track weight, length and head circumference against WHO-aligned references with z-scores, percentiles and a growth chart, apply corrected age for premature babies, estimate milk volume, formula scoops and feed times, and export a PDF summary or CSV log. |
 
 ---
 
-### 🖼️ Image, Media & Design Tools (19)
+### 🖼️ Image, Media & Design Tools (20)
 
 | Tool | Route | Description |
 | :--- | :--- | :--- |
@@ -213,6 +220,7 @@
 | **Voice Recorder, Mic Test & Camera Test** | `/tools/voice-recorder` | Record voice notes with WebM, OGG, M4A or WAV output, pause/resume and renameable takes, plus a live microphone analyser (waveform, dB, noise floor, clipping, quality score) and a webcam checker with resolution presets, framing guides and PNG snapshots. |
 | **Meme Generator** | `/tools/meme-generator` | Canvas meme editor with unlimited draggable text layers, Impact and display fonts, gradient fills, outlines, shadows, highlight boxes, rotation, letter spacing, image framing, clipboard paste, JSON projects and PNG/JPEG/WebP export up to 3×. |
 | **Video to GIF** | `/tools/video-to-gif` | Convert MP4, WebM, MOV, MKV or OGG to GIF with frame-accurate start/end points, width presets, 5–30 fps, 0.5×–2× speed, palette quality, dithering, ping-pong loops, letterbox or fill fitting and fully local encoding. |
+| **Subtitle (SRT/VTT) Editor & Sync** | `/tools/subtitle-editor` | Import, edit, retime and validate SRT or WebVTT subtitles, shift or scale the whole timeline, fix frame-rate drift, replace text across cues, check overlaps, reading speed and line length, preview against a local video, and export SRT, VTT, CSV, a transcript or JSON. |
 
 ---
 
@@ -430,7 +438,7 @@ toolstrek/
 │   │   ├── favorites/                         # ⭐ Saved favorite tools
 │   │   ├── privacy-policy/                    # Privacy policy
 │   │   ├── recent/                            # 🕐 Recent tools history
-│   │   ├── tools/                             # 141 tool route pages (one folder per tool)
+│   │   ├── tools/                             # 149 tool route pages (one folder per tool)
 │   │   │   ├── <tool-slug>/page.js            #   SEO metadata + renders the tool UI
 │   │   │   └── ...
 │   │   ├── tools-compo/                       # Shared UI & tool logic components
@@ -460,7 +468,7 @@ toolstrek/
 │   └── useRecentTools.js                      # SSR-safe localStorage recents hook
 │
 ├── lib/
-│   ├── toolsData.json                         # Central registry for all 141 tools (source of truth)
+│   ├── toolsData.json                         # Central registry for all 149 tools (source of truth)
 │   ├── disposableDomains.json                 # 70,000+ disposable email domain database
 │   ├── cryptoEngine.js                        # Client-side cryptographic helpers
 │   ├── countries.js                           # Country registry for the Visited Countries Map

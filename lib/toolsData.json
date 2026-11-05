@@ -3126,5 +3126,220 @@
       "Productivity",
       "Education"
     ]
+  },
+  {
+    "title": "Shoe & Clothing Size Converter",
+    "link": "/tools/shoe-clothing-size-converter",
+    "description": "Convert shoe and clothing sizes between EU, UK, US, Mondopoint and centimetres for women, men and children. Add foot or body measurements for a size recommendation, compare brand-specific fit notes, build a custom conversion chart and export it as CSV or PDF.",
+    "icon": "Ruler",
+    "keywords": [
+      "shoe size converter",
+      "clothing size converter",
+      "size conversion chart",
+      "eu to us shoe size",
+      "uk to us clothing size",
+      "kids shoe size chart",
+      "mondopoint calculator",
+      "foot length to shoe size",
+      "international size converter",
+      "womens clothing size conversion",
+      "mens shoe size converter",
+      "size chart generator",
+      "measure my shoe size",
+      "clothing size calculator",
+      "shoe size chart"
+    ],
+    "categories": [
+      "Calculator",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Print Size & DPI Calculator",
+    "link": "/tools/print-size-calculator",
+    "description": "Convert between pixels, millimetres, centimetres and inches at any DPI or PPI. Check print quality, compare ISO A/B/C, US, photo and custom paper sizes, add bleed, safe margins and crop marks, and export a print-ready spec sheet or resize plan.",
+    "icon": "Printer",
+    "keywords": [
+      "print size calculator",
+      "dpi calculator",
+      "pixels to inches",
+      "pixels to mm",
+      "mm to pixels",
+      "ppi calculator",
+      "print resolution calculator",
+      "paper size chart",
+      "a4 size in pixels",
+      "bleed calculator",
+      "print ready file checker",
+      "image resolution for print",
+      "photo print size calculator",
+      "custom paper size",
+      "300 dpi converter"
+    ],
+    "categories": [
+      "Design",
+      "Calculator"
+    ]
+  },
+  {
+    "title": "Freelance Hourly Rate Calculator",
+    "link": "/tools/freelance-rate-calculator",
+    "description": "Work out a defensible freelance hourly, daily, weekly and project rate from your income target, billable capacity, overheads, taxes, pension, holiday and unpaid admin time. Compare employee and contractor scenarios, add value-based pricing and export a client-ready quote breakdown.",
+    "icon": "BadgeDollarSign",
+    "keywords": [
+      "freelance rate calculator",
+      "hourly rate calculator",
+      "freelancer day rate",
+      "consulting rate calculator",
+      "how much should i charge",
+      "billable hours calculator",
+      "contractor rate calculator",
+      "project pricing calculator",
+      "freelance income calculator",
+      "value based pricing",
+      "rate card generator",
+      "self employed hourly rate",
+      "agency day rate",
+      "freelance quote calculator",
+      "break even rate"
+    ],
+    "categories": [
+      "Finance",
+      "Calculator"
+    ]
+  },
+  {
+    "title": "Business Card Maker",
+    "link": "/tools/business-card-maker",
+    "description": "Design a print-ready business card with five layouts, US, European, square, slim and custom sizes, logo upload, locally generated QR codes, an optional card back, brand colours, typeface controls, bleed and safe-area preview, sheet imposition and 300 DPI PNG or PDF export.",
+    "icon": "Contact",
+    "keywords": [
+      "business card maker",
+      "business card generator",
+      "free business card design",
+      "printable business card",
+      "qr code business card",
+      "print ready business card",
+      "business card template",
+      "business card pdf",
+      "double sided business card",
+      "custom business card",
+      "business card designer",
+      "card imposition",
+      "professional business card",
+      "business card layout",
+      "business card print"
+    ],
+    "categories": [
+      "Design",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Letterhead Maker",
+    "link": "/tools/letterhead-maker",
+    "description": "Create a print-ready company letterhead with four layouts, A4, US Letter, A5 and custom paper sizes, logo upload, brand and ink colours, typeface controls, bleed and safe-area preview, recipient and letter content, and 300 DPI PNG or PDF export.",
+    "icon": "FileText",
+    "keywords": [
+      "letterhead maker",
+      "letterhead generator",
+      "free letterhead template",
+      "company letterhead",
+      "printable letterhead",
+      "business letterhead design",
+      "letterhead pdf",
+      "official letterhead",
+      "corporate stationery",
+      "letterhead designer",
+      "custom letterhead",
+      "a4 letterhead",
+      "us letter letterhead",
+      "letterhead layout",
+      "professional letterhead"
+    ],
+    "categories": [
+      "Design",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Config File Generator",
+    "link": "/tools/config-file-generator",
+    "description": "Generate .gitignore, robots.txt, HTML meta tags and Apache .htaccess files from explained, selectable options. Cover operating systems, editors, frameworks, secrets, crawl rules, Open Graph, Twitter cards, security headers, caching, error pages and maintenance mode, then copy or download everything as a ZIP.",
+    "icon": "FileCog",
+    "keywords": [
+      "gitignore generator",
+      "robots.txt generator",
+      "meta tag generator",
+      "htaccess generator",
+      "open graph generator",
+      "twitter card generator",
+      "security headers htaccess",
+      "apache config generator",
+      "gitignore template",
+      "seo meta tags",
+      "robots txt maker",
+      "config file generator",
+      "htaccess redirect generator",
+      "website meta generator",
+      "developer file generator"
+    ],
+    "categories": [
+      "Developer"
+    ]
+  },
+  {
+    "title": "Subtitle (SRT/VTT) Editor & Sync",
+    "link": "/tools/subtitle-editor",
+    "description": "Import, edit, retime and validate SRT or WebVTT subtitles in the browser. Shift or scale the whole timeline, fix frame-rate drift, replace text across cues, check overlaps, reading speed and line length, preview against a local video, and export SRT, VTT, CSV, a transcript or JSON.",
+    "icon": "Captions",
+    "keywords": [
+      "subtitle editor",
+      "srt editor",
+      "vtt editor",
+      "subtitle sync",
+      "srt sync tool",
+      "vtt converter",
+      "subtitle timing",
+      "subtitle converter",
+      "fix subtitle sync",
+      "fps subtitle converter",
+      "subtitle validator",
+      "srt to vtt",
+      "online subtitle editor",
+      "webvtt editor",
+      "subtitle corrector"
+    ],
+    "categories": [
+      "Media",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Baby Growth Percentile & Feeding Calculator",
+    "link": "/tools/baby-growth-feeding-calculator",
+    "description": "Track baby weight, length and head circumference against WHO-aligned references. See z-scores, percentiles and a growth chart, apply corrected age for premature babies, log measurements over time, estimate daily milk volume, formula scoops and feed times, and export a PDF summary or CSV log.",
+    "icon": "Baby",
+    "keywords": [
+      "baby growth calculator",
+      "baby percentile calculator",
+      "infant growth chart",
+      "who growth percentile",
+      "baby weight percentile",
+      "baby length percentile",
+      "head circumference percentile",
+      "corrected age calculator",
+      "baby feeding calculator",
+      "formula amount calculator",
+      "baby milk intake",
+      "feeding schedule calculator",
+      "baby growth tracker",
+      "infant feeding planner",
+      "newborn weight chart"
+    ],
+    "categories": [
+      "Health",
+      "Calculator"
+    ]
   }
 ]

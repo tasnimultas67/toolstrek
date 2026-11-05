@@ -249,7 +249,18 @@ const toolPages = [
   { slug: "meme-generator", lastModified: "2026-11-03" },
   { slug: "video-to-gif", lastModified: "2026-11-03" },
   { slug: "resume-builder", lastModified: "2026-11-03" },
+  { slug: "shoe-clothing-size-converter", lastModified: "2026-11-03" },
+  { slug: "print-size-calculator", lastModified: "2026-11-03" },
+  { slug: "freelance-rate-calculator", lastModified: "2026-11-03" },
+  { slug: "business-card-maker", lastModified: "2026-11-05" },
+  { slug: "letterhead-maker", lastModified: "2026-11-05" },
+  { slug: "config-file-generator", lastModified: "2026-11-03" },
+  { slug: "subtitle-editor", lastModified: "2026-11-03" },
+  { slug: "baby-growth-feeding-calculator", lastModified: "2026-11-03" },
 ];
+
+// Keep the newest entry for each slug — older duplicates are collapsed here.
+const uniqueToolPages = Array.from(new Map(toolPages.map((page) => [page.slug, page])).values());
 
 export default function sitemap() {
   // Static / top-level pages
@@ -306,7 +317,7 @@ export default function sitemap() {
   ];
 
   // Map each tool entry to a proper sitemap object
-  const toolSitemapEntries = toolPages.map(({ slug, lastModified }) => ({
+  const toolSitemapEntries = uniqueToolPages.map(({ slug, lastModified }) => ({
     url: `${BASE_URL}/tools/${slug}`,
     lastModified,
     changeFrequency: "monthly",
