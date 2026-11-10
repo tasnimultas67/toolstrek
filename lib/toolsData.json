@@ -3341,5 +3341,143 @@
       "Health",
       "Calculator"
     ]
+  },
+  {
+    "title": "Suspicious URL Analyzer",
+    "link": "/tools/suspicious-url-analyzer",
+    "description": "Analyze any URL for phishing signals with 27 heuristics covering punycode, lookalike domains, risky TLDs, IP hosts, URL shorteners, credential traps and more. Score risk with adjustable strictness, bulk-scan a list, add custom allow and block rules, inspect URL anatomy and export the findings.",
+    "icon": "ShieldAlert",
+    "keywords": [
+      "suspicious url analyzer",
+      "phishing url checker",
+      "url risk scanner",
+      "is this link safe",
+      "malicious link checker",
+      "phishing link detector",
+      "url security checker",
+      "lookalike domain detector",
+      "punycode checker",
+      "url shortener checker",
+      "scam link analyzer",
+      "link reputation checker",
+      "bulk url scanner",
+      "domain typosquatting",
+      "safe browsing alternative"
+    ],
+    "categories": [
+      "Security",
+      "Developer"
+    ]
+  },
+  {
+    "title": "HTML Email Signature Generator",
+    "link": "/tools/html-email-signature-generator",
+    "description": "Build a professional HTML email signature with five templates, live desktop, tablet and mobile previews, brand colors, custom fonts, photo upload, social links and call-to-action buttons. Copy rich HTML for Gmail or Outlook, or export HTML, plain text, vCard and JSON.",
+    "icon": "Mail",
+    "keywords": [
+      "email signature generator",
+      "html email signature",
+      "email signature template",
+      "professional email signature",
+      "gmail signature generator",
+      "outlook signature generator",
+      "email signature maker",
+      "free email signature",
+      "corporate email signature",
+      "email signature with photo",
+      "email signature with social links",
+      "email signature html code",
+      "vcard generator",
+      "email footer generator",
+      "branded email signature"
+    ],
+    "categories": [
+      "Productivity",
+      "Design"
+    ]
+  },
+  {
+    "title": "Factorial Calculator",
+    "link": "/tools/factorial-calculator",
+    "description": "Calculate factorials with exact BigInt precision, including double factorials, derangements, permutations, combinations and prime factorization. See trailing zeros, digit counts and Stirling's approximation, generate a reference table and copy or download full values up to n = 100,000.",
+    "icon": "Calculator",
+    "keywords": [
+      "factorial calculator",
+      "n factorial",
+      "factorial of a number",
+      "large factorial calculator",
+      "bigint factorial",
+      "double factorial calculator",
+      "derangement calculator",
+      "permutation calculator",
+      "combination calculator",
+      "npr calculator",
+      "ncr calculator",
+      "trailing zeros in factorial",
+      "prime factorization of factorial",
+      "stirling approximation",
+      "factorial table"
+    ],
+    "categories": [
+      "Calculator",
+      "Education"
+    ]
+  },
+  {
+    "title": "Fibonacci Generator",
+    "link": "/tools/fibonacci-generator",
+    "description": "Generate exact Fibonacci sequences with BigInt up to index 100,000. Choose custom seeds, ranges, steps and negative indices, check whether a number is Fibonacci, inspect prime terms, digit counts and golden-ratio convergence, build Zeckendorf decompositions, and export as text, CSV or JSON.",
+    "icon": "ListOrdered",
+    "keywords": [
+      "fibonacci generator",
+      "fibonacci sequence",
+      "fibonacci calculator",
+      "nth fibonacci number",
+      "fibonacci checker",
+      "is this a fibonacci number",
+      "golden ratio calculator",
+      "zeckendorf representation",
+      "fibonacci table",
+      "large fibonacci numbers",
+      "negative fibonacci",
+      "custom fibonacci sequence",
+      "fibonacci number generator",
+      "fibonacci series calculator",
+      "fibonacci primes"
+    ],
+    "categories": [
+      "Calculator",
+      "Education"
+    ]
+  },
+  {
+    "title": "Matrix Calculator",
+    "link": "/tools/matrix-calculator",
+    "description": "Add, multiply, invert and decompose matrices up to 8 × 8 with live results. Sixteen operations include determinant, inverse, rank, trace, adjugate, cofactor, RREF, integer powers, Kronecker and Hadamard products and solving Ax = b, with precision controls and CSV, TSV, LaTeX or JSON export.",
+    "icon": "Grid3x3",
+    "keywords": [
+      "matrix calculator",
+      "matrix multiplication calculator",
+      "determinant calculator",
+      "inverse matrix calculator",
+      "matrix rank calculator",
+      "transpose matrix calculator",
+      "rref calculator",
+      "reduced row echelon form",
+      "solve linear system",
+      "adjugate matrix",
+      "cofactor matrix",
+      "kronecker product calculator",
+      "hadamard product",
+      "matrix power calculator",
+      "trace calculator",
+      "linear algebra calculator",
+      "3x3 matrix calculator",
+      "2x2 inverse matrix"
+    ],
+    "categories": [
+      "Calculator",
+      "Education"
+    ]
   }
 ]
