@@ -2,6 +2,7 @@ import ParagraphFormatter from "@/app/(main)/tools-compo/tools/ParagraphFormatte
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/paragraph-formatter" },
   title: "Professional Paragraph Formatter & Text Aligner",
   description:
     "Free online paragraph formatter and editor. Align text, adjust line spacing, paragraph margins, indent first lines, convert case types, clean extra spaces, and export to plain text or styled HTML.",

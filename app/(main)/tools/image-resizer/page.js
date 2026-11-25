@@ -2,6 +2,7 @@ import React from "react";
 import ImageResizer from "@/app/(main)/tools-compo/tools/ImageResizer";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/image-resizer" },
   title: "Image Resizer - Resize Images Online | Free Photo Tool",
   description:
     "Resize images online for free. Adjust image dimensions by pixels or percentage, lock aspect ratio, convert formats (PNG, JPEG, WebP), compress, crop, and apply social media presets. High-quality client-side image processing.",

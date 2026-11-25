@@ -13,9 +13,11 @@ import {
 } from "lucide-react";
 import CTA from "../tools-compo/Home-Compo/CTA";
 import SectionInfo from "../tools-compo/SectionInfo";
+import { SITE_URL, TOOL_COUNT } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "About Us",
+  alternates: { canonical: `${SITE_URL}/about-us` },
   keywords: [
     "about",
     "tools",
@@ -40,7 +42,7 @@ const values = [
     id: 1,
     title: "Privacy First",
     description:
-      "All processing happens locally in your browser. We never store, track, or share your data. Your privacy is our priority.",
+      "Most tools process data locally. Live lookup tools send the requested details to the services needed to return results; see our Privacy Policy for specifics.",
     Icon: Lock,
   },
   {
@@ -182,7 +184,7 @@ const Page = () => {
             </div>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
-              <Pill>100+ free tools</Pill>
+              <Pill>{TOOL_COUNT} free tools</Pill>
               <Pill>No sign-up</Pill>
               <Pill>Runs in your browser</Pill>
             </div>
@@ -207,7 +209,8 @@ const Page = () => {
                   is an open-source project dedicated to providing free,
                   accessible, and high-quality digital tools. Our goal is to
                   eliminate friction in everyday tasks by offering lightweight,
-                  privacy-focused utilities that work entirely in your browser.
+                  privacy-aware utilities that do most work in your browser and
+                  clearly identify features that use live network lookups.
                 </p>
                 <p>
                   Whether you&apos;re a developer needing quick conversions, a

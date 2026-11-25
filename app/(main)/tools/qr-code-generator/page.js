@@ -20,7 +20,7 @@ export const metadata = {
     description:
       "Generate professional QR codes instantly. Support for URL, vCard, WiFi, Events, and more. Download in high resolution with custom colors. 100% free.",
     type: "website",
-    url: "https://toolstrek.vercel.app/tools/qr-generator",
+    url: "https://toolstrek.vercel.app/tools/qr-code-generator",
     siteName: "ToolsTrek",
     images: [
       {
@@ -40,7 +40,7 @@ export const metadata = {
     site: "@toolstrek",
   },
   alternates: {
-    canonical: "https://toolstrek.vercel.app/tools/qr-generator",
+    canonical: "https://toolstrek.vercel.app/tools/qr-code-generator",
   },
   robots: {
     index: true,
@@ -52,9 +52,6 @@ export const metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  verification: {
-    google: "your-google-verification-code", // Add if you have Google Search Console
   },
   category: "technology",
   authors: [{ name: "Tasnimul Haque & Oracle Byte" }],
@@ -78,7 +75,7 @@ const page = () => {
             name: "QR Code Generator",
             description:
               "Create custom QR codes with multiple data types and design options",
-            url: "https://toolstrek.vercel.app/tools/qr-generator",
+            url: "https://toolstrek.vercel.app/tools/qr-code-generator",
             applicationCategory: "Utility",
             operatingSystem: "All",
             offers: {

@@ -1,8 +1,10 @@
 import React from "react";
 import FAQCon from "../tools-compo/FAQCon";
+import { SITE_URL, TOOL_COUNT } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "Frequently Asked Questions",
+  alternates: { canonical: `${SITE_URL}/faq` },
   keywords: [
     "faq",
     "frequently asked questions",
@@ -14,7 +16,7 @@ export const metadata = {
     "privacy questions",
   ],
   description:
-    "Find answers to common questions about ToolsTrek, client-side privacy, and our 149 free online web tools.",
+    `Find answers about ToolsTrek, browser privacy, and our ${TOOL_COUNT} free online tools.`,
 };
 
 const page = () => {

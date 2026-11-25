@@ -78,6 +78,7 @@ export default function ImageEditor() {
     if (file.size > 25 * 1024 * 1024) { toast.error("Image must be under 25MB"); return; }
     const reader = new FileReader();
     reader.onload = (e) => {
+      setImageDims(null);
       setImageSrc(e.target.result);
       setImageName(file.name);
       setResultUrl("");
@@ -87,8 +88,18 @@ export default function ImageEditor() {
   }, []);
 
   useEffect(() => {
-    if (!imageSrc) { setImageDims(null); return; }
-    loadImage(imageSrc).then((img) => setImageDims({ w: img.naturalWidth, h: img.naturalHeight })).catch(() => setError("Could not load image"));
+    if (!imageSrc) return;
+    let cancelled = false;
+    loadImage(imageSrc)
+      .then((img) => {
+        if (!cancelled) setImageDims({ w: img.naturalWidth, h: img.naturalHeight });
+      })
+      .catch(() => {
+        if (!cancelled) setError("Could not load image");
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [imageSrc]);
 
   const update = (key, val) => setSettings((s) => ({ ...s, [key]: val }));
@@ -120,7 +131,7 @@ export default function ImageEditor() {
     return () => { cancelled = true; };
   }, [imageSrc, settings, rotation, flipH, flipV]);
 
-  const renderToCanvas = (canvas, img, s, rot, fh, fv, scale = 1) => {
+  function renderToCanvas(canvas, img, s, rot, fh, fv, scale = 1) {
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.save();
@@ -193,7 +204,7 @@ export default function ImageEditor() {
       }
       ctx.putImageData(imageData, 0, 0);
     }
-  };
+  }
 
   const generate = useCallback(async () => {
     if (!imageSrc) { toast.error("Please upload an image first"); return; }

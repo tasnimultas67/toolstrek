@@ -2,6 +2,7 @@ import React from "react";
 import GifMaker from "@/app/(main)/tools-compo/tools/GifMaker";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/gif-maker" },
   title: "GIF Maker - Create Animated GIFs Online | Free Tool",
   description:
     "Create animated GIFs from images directly in your browser. Upload frames, set delays, control loops, apply effects like ping-pong and dithering, and download high-quality GIFs instantly. 100% private — no uploads to servers.",

@@ -12,7 +12,7 @@ export const metadata = {
   openGraph: {
     title: "Add Attachments to PDF Online | ToolsTrek",
     description: "Easily attach extra files and documents to your PDF online.",
-    url: "https://toolstrek.vercel.app/",
+    url: "https://toolstrek.vercel.app/tools/add-attachments",
     siteName: "ToolsTrek",
     type: "website",
   },

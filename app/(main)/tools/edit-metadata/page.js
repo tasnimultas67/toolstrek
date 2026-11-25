@@ -3,6 +3,7 @@ import ToolPageShell from "@/app/(main)/tools-compo/ToolPageShell";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/edit-metadata" },
   title: "File Metadata Editor",
   description:
     "Modify, spoof GPS coordinates, clear camera EXIF details, or strip metadata entirely from images, PDFs, and files. 100% private, client-side, zero uploads.",

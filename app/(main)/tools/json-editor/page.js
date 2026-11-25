@@ -2,6 +2,7 @@ import JSONEditor from "@/app/(main)/tools-compo/tools/JSONEditor";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/json-editor" },
   title: "Advanced JSON Editor & Visual Tree Viewer",
   description:
     "Free online advanced JSON editor, formatter, and viewer. Edit JSON as text or interactively using a visual tree. Beautify, minify, sort, query with JSONPath, compare with JSON Diff, validate schema, and convert JSON to XML, YAML, and CSV.",

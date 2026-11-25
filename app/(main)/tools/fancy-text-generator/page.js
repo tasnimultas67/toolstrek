@@ -2,6 +2,7 @@ import FancyTextGenerator from "@/app/(main)/tools-compo/tools/FancyTextGenerato
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/fancy-text-generator" },
   title: "Professional Fancy Text Generator",
   description:
     "Free online fancy text generator tool. Instantly convert plain text into stylized Unicode fonts, cursive script, bubble letters, double-struck, gothic calligraphy, and glitched Zalgo text.",

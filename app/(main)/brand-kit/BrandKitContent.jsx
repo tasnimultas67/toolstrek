@@ -64,7 +64,6 @@ const NAV_LINKS = [
 ];
 
 const STATS = [
-  { value: "100+", label: "free online tools" },
   { value: "0", label: "sign-ups required" },
   { value: "100%", label: "in-browser file tools" },
   { value: "Free", label: "now and always" },
@@ -140,11 +139,11 @@ const DONTS = [
   },
 ];
 
-const SHORT_DESCRIPTION =
-  "ToolsTrek is a free online toolbox with 100+ privacy-first tools for files, images, text, calculations and everyday digital tasks.";
+const SHORT_DESCRIPTION = (toolCount) =>
+  `ToolsTrek is a free online toolbox with ${toolCount} privacy-first tools for files, images, text, calculations and everyday digital tasks.`;
 
-const BOILERPLATE =
-  "ToolsTrek is an independent, open-source collection of more than 100 free online tools for everyday digital work. From PDF and image utilities to converters, calculators and text tools, it brings the small jobs into one fast, uncluttered workspace. No sign-up is required, and the file-based tools process locally in your browser.";
+const BOILERPLATE = (toolCount) =>
+  `ToolsTrek is an independent, open-source collection of ${toolCount} free online tools for everyday digital work. From PDF and image utilities to converters, calculators and text tools, it brings the small jobs into one fast, uncluttered workspace. No sign-up is required, and file-based tools process locally in your browser.`;
 
 const CONTACT_ROWS = [
   {
@@ -357,10 +356,12 @@ function Reveal({ children, delay = 0, className = "" }) {
   );
 }
 
-function StatStrip() {
+function StatStrip({ toolCount }) {
+  const stats = [{ value: String(toolCount), label: "free online tools" }, ...STATS];
+
   return (
     <div className="mt-2 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-gray-200/80 bg-gray-200/70 shadow-sm shadow-black/[0.03] dark:border-white/10 dark:bg-white/10 sm:grid-cols-4">
-      {STATS.map((stat) => (
+      {stats.map((stat) => (
         <div
           key={stat.label}
           className="bg-white/90 px-4 py-5 backdrop-blur dark:bg-[#0b0b0d] sm:px-6 sm:py-6"
@@ -646,7 +647,10 @@ function LogoAssetCard({
 /*  Page                                                                      */
 /* -------------------------------------------------------------------------- */
 
-export default function BrandKitContent() {
+export default function BrandKitContent({ toolCount }) {
+  const shortDescription = SHORT_DESCRIPTION(toolCount);
+  const boilerplate = BOILERPLATE(toolCount);
+
   return (
     <div id="top" className="pb-16 sm:pb-20">
       {/* ------------------------------- Hero ------------------------------- */}
@@ -737,7 +741,7 @@ export default function BrandKitContent() {
       </section>
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <StatStrip />
+        <StatStrip toolCount={toolCount} />
 
         {/* --------------------------- Sticky nav --------------------------- */}
         <div className="sticky top-20 z-30 mt-8">
@@ -1558,13 +1562,13 @@ export default function BrandKitContent() {
                       One-liner
                     </p>
                     <CopyButton
-                      value={SHORT_DESCRIPTION}
+                      value={shortDescription}
                       label="One-liner"
                       showLabel
                     />
                   </div>
                   <p className="mt-4 text-sm leading-7 text-gray-700 dark:text-gray-300 sm:text-base">
-                    {SHORT_DESCRIPTION}
+                    {shortDescription}
                   </p>
                 </div>
               </Reveal>
@@ -1576,13 +1580,13 @@ export default function BrandKitContent() {
                       Boilerplate
                     </p>
                     <CopyButton
-                      value={BOILERPLATE}
+                      value={boilerplate}
                       label="Boilerplate"
                       showLabel
                     />
                   </div>
                   <p className="mt-4 text-sm leading-7 text-gray-700 dark:text-gray-300">
-                    {BOILERPLATE}
+                    {boilerplate}
                   </p>
                 </div>
               </Reveal>

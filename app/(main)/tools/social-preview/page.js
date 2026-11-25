@@ -2,6 +2,7 @@ import React from "react";
 import SocialPreview from "./SocialPreview";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/social-preview" },
   title: "Social Media URL Preview Generator & Editor",
   keywords: [
     "social media preview",

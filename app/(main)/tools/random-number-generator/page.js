@@ -2,6 +2,7 @@ import RandomNumberGenerator from "@/app/(main)/tools-compo/tools/RandomNumberGe
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/random-number-generator" },
   title: "Random Number Generator (RNG Studio)",
   description:
     "Free online customizable Random Number Generator. Features Cryptographic CSPRNG & Seeded PRNG, range generation, polyhedral RPG dice roller (D20, D6, Advantage/Disadvantage), statistical distributions (Gaussian Bell Curve, Poisson, Binomial), lottery & raffle picker, interactive histogram, and multi-format export (JSON, CSV, Python, JS, SQL).",

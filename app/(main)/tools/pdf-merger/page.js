@@ -2,6 +2,7 @@ import React from "react";
 import PDFMerger from "../../tools-compo/PDFMerger";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/pdf-merger" },
   title: "Merge PDF Files Online - Free PDF Merger Tool",
   description:
     "Combine multiple PDF files into one document easily. Free, fast, and secure PDF merger tool. No uploads required - all processing happens in your browser.",

@@ -2,6 +2,7 @@ import DummyTextGenerator from "@/app/(main)/tools-compo/tools/DummyTextGenerato
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/dummy-text-generator" },
   title: "Advanced Dummy Text Generator",
   description:
     "Free online dummy text generator tool. Instantly generate Lorem Ipsum, Tech Speak, or Sci-Fi Space placeholder text by words, characters, or paragraphs with HTML formatting.",

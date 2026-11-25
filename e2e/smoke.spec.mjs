@@ -47,6 +47,11 @@ const HIGH_RISK_ROUTES = [
   "/tools/image-cropper",
   "/tools/invoice-generator",
   "/tools/url-encoder-decoder",
+  "/tools/api-request-builder",
+  "/tools/cron-expression-builder",
+  "/tools/dns-email-auth-checker",
+  "/tools/pdf-ocr-text-extractor",
+  "/tools/robots-sitemap-validator",
 ];
 
 // Console output that is environment noise, not an app regression.
@@ -150,15 +155,12 @@ function trackErrors(page) {
   return errors;
 }
 
-const isDark = (page) =>
-  page.locator("html").evaluate((el) => el.classList.contains("dark"));
-
 test.describe("high-risk routes", () => {
   for (const route of HIGH_RISK_ROUTES) {
     test(`renders ${route} without runtime errors`, async ({ page }) => {
       const errors = trackErrors(page);
 
-      const response = await page.goto(route);
+      const response = await page.goto(route, { waitUntil: "domcontentloaded" });
       expect(response?.status(), `HTTP status for ${route}`).toBeLessThan(400);
 
       // Server metadata resolved through the root template.
@@ -186,15 +188,20 @@ test.describe("interactions", () => {
     const toggle = page.locator('button[aria-label^="Switch to"]');
     await expect(toggle).toBeVisible();
 
-    const before = await isDark(page);
+    const before = await toggle.getAttribute("aria-label");
+    const expectedLabel =
+      before === "Switch to dark mode" ? "Switch to light mode" : "Switch to dark mode";
     await toggle.click();
-    await expect.poll(() => isDark(page)).toBe(!before);
+    await expect(toggle).toHaveAttribute("aria-label", expectedLabel);
 
     // Let the theme cross-fade view transition settle before reloading.
     await page.waitForTimeout(800);
-    await page.reload();
+    await page.reload({ waitUntil: "domcontentloaded" });
     // Allow hydration + the theme store to re-apply the class before asserting.
-    await expect.poll(() => isDark(page)).toBe(!before);
+    await expect(page.locator('button[aria-label^="Switch to"]')).toHaveAttribute(
+      "aria-label",
+      expectedLabel,
+    );
 
     expect(errors, errors.join("\n")).toEqual([]);
   });
@@ -204,14 +211,14 @@ test.describe("interactions", () => {
     await page.goto("/");
 
     const input = page.getByPlaceholder("Search tools…");
-    // The global keydown listener is attached on hydration, so an early keypress
-    // can be missed. Retry — but never press while it is already open, since that
-    // would toggle it shut again.
-    await expect(async () => {
-      if (await input.isVisible()) return;
-      await page.keyboard.press("Control+k");
-      await expect(input).toBeVisible({ timeout: 2000 });
-    }).toPass({ timeout: 20000 });
+    // Clicking the hydrated control confirms the app is interactive before
+    // checking the keyboard shortcut, which can otherwise race first-load hydration.
+    await page.getByRole("button", { name: "Search tools" }).click();
+    await expect(input).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(input).toBeHidden();
+    await page.keyboard.press("Control+k");
+    await expect(input).toBeVisible();
 
     await input.fill("regex");
     await expect(

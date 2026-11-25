@@ -1,8 +1,10 @@
 import React from "react";
 import * as motion from "motion/react-client";
+import { SITE_URL } from "@/lib/siteConfig";
 
 export const metadata = {
   title: "Privacy Policy",
+  alternates: { canonical: `${SITE_URL}/privacy-policy` },
   keywords: [
     "privacy policy",
     "GDPR compliant",
@@ -10,7 +12,7 @@ export const metadata = {
     "client-side processing",
   ],
   description:
-    "At ToolsTrek, your privacy is our top priority. Our tools are designed to protect your data by processing everything locally in your browser.",
+    "Learn how ToolsTrek handles browser-processed files, live lookup requests, browser storage, and privacy-friendly Vercel Web Analytics.",
 };
 
 // Animation variants
@@ -71,23 +73,23 @@ const Check = () => (
 
 const features = [
   {
-    title: "No Server Uploads",
-    desc: "Your files are never uploaded to any server. All processing happens locally in your browser.",
+    title: "Local by Default",
+    desc: "Many file, text, and calculator tools process your inputs in the browser on your device.",
     icon: "M12 2v20m-5-5l5 5 5-5",
   },
   {
-    title: "Local Processing",
-    desc: "Operations are performed using JavaScript directly on your device.",
+    title: "Live Lookups",
+    desc: "Lookup tools send the requested domain, IP address, email address, or URL to the service needed to answer it.",
     icon: "M9 12l2 2 4-4",
   },
   {
-    title: "Automatic Cleanup",
-    desc: "All file data is cleared when you close the browser tab or navigate away.",
+    title: "Browser Preferences",
+    desc: "Favorites, recent tools, and theme preferences are stored in your browser's local storage.",
     icon: "M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16",
   },
   {
-    title: "No Tracking",
-    desc: "We don't track your file contents. Your documents remain private at all times.",
+    title: "Aggregate Analytics",
+    desc: "We use Vercel Web Analytics for aggregate page-view insights. It does not use cookies.",
     icon: "M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z",
   },
 ];
@@ -109,10 +111,10 @@ const sections = [
     content: (
       <ul className="space-y-3 text-gray-600 dark:text-gray-400">
         {[
-          "All processing happens directly in your web browser.",
-          "Your files are never uploaded to our servers or any third-party servers.",
-          "We cannot see, access, or store your documents.",
-          "Your files remain on your device at all times.",
+          "Many file, text, and calculator tools process content directly in your browser.",
+          "Live lookup tools send the specific domain, IP address, email address, or URL you request to a ToolsTrek endpoint and, when needed, an external lookup provider.",
+          "The API Request Builder sends requests from your browser directly to the destination API; ToolsTrek does not proxy those requests.",
+          "Check each tool's notes before use when handling sensitive information. Browser extensions, network providers, and external destinations may have their own data practices.",
         ].map((item) => (
           <li key={item} className="flex items-start gap-3 leading-relaxed">
             <Check />
@@ -131,7 +133,7 @@ const sections = [
             3.1 Your Files
           </h3>
           <p className="inline-flex items-center gap-2 rounded-full bg-brandColor/10 px-3 py-1 text-sm font-semibold text-brandColor ring-1 ring-inset ring-brandColor/20">
-            We do not collect your files.
+            Local tools process files in your browser. Live lookup tools may send the lookup input needed to return a result.
           </p>
         </div>
         <div className="rounded-xl border border-gray-200/80 dark:border-white/10 bg-white/60 dark:bg-white/[0.03] p-5">
@@ -139,9 +141,11 @@ const sections = [
             3.2 Usage Data
           </h3>
           <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">
-            We may collect anonymous usage statistics to improve our service,
-            such as which tools are most popular, browser type, and device type.
-            This data is aggregated and anonymized.
+            We use Vercel Web Analytics to understand page views, referrers,
+            and aggregate browser, device, and location trends. Vercel says
+            Web Analytics uses no cookies and keeps visitor identification
+            hashes for no longer than 24 hours. We do not send tool inputs or
+            file contents as custom analytics events.
           </p>
         </div>
       </div>
@@ -151,9 +155,10 @@ const sections = [
     title: "4. Cookies & Local Storage",
     content: (
       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-        We use minimal cookies for essential functionality, such as remembering
-        your language preference or dark mode settings. We do not use tracking
-        or advertising cookies.
+        Favorites, recent tools, and your theme preference are stored in your
+        browser&apos;s local storage so they remain available on that device.
+        ToolsTrek does not use advertising cookies. Vercel Web Analytics does
+        not use cookies, according to its published documentation.
       </p>
     ),
   },
@@ -161,24 +166,44 @@ const sections = [
     title: "5. Third-Party Services",
     content: (
       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-        ToolsTrek does not share your data with third parties. We do not use
-        third-party analytics that track individual users, advertising networks,
-        or social media tracking pixels.
+        Vercel provides the site hosting and Web Analytics services. Some live
+        lookup tools also use external providers to retrieve public DNS,
+        certificate, geolocation, email-domain, or website metadata. Those
+        services receive the lookup details needed for the request and handle
+        them under their own policies. The API Request Builder connects
+        directly from your browser to the API URL you enter. ToolsTrek does
+        not use advertising networks or social-media tracking pixels.
       </p>
     ),
   },
   {
-    title: "6. Your Rights",
+    title: "6. Data Retention & Controls",
     content: (
       <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
-        Since we do not collect personal data, there is no personal data to
-        access, correct, or delete. You can clear your browser&apos;s local
-        storage at any time to remove any preferences stored by ToolsTrek.
+        Tool inputs and files processed locally remain in the current browser
+        session unless you choose to save or export them. You can remove saved
+        preferences by clearing ToolsTrek&apos;s local storage in your browser.
+        Requests made to lookup providers or destination APIs are subject to
+        those services&apos; retention and privacy terms. Contact us if you have
+        a question about this policy.
       </p>
     ),
   },
   {
-    title: "7. Contact Us",
+    title: "7. Your Rights",
+    content: (
+      <p className="text-gray-600 dark:text-gray-400 leading-relaxed">
+        ToolsTrek does not provide accounts or a server-side tool history.
+        Analytics, hosting, and lookup providers may process request metadata
+        as described above and under their own policies. For a privacy request,
+        contact us and include the service or lookup involved. You can clear
+        your browser&apos;s local storage at any time to remove saved ToolsTrek
+        preferences.
+      </p>
+    ),
+  },
+  {
+    title: "8. Contact Us",
     content: (
       <div className="relative overflow-hidden rounded-xl border border-brandColor/20 bg-brandColor/[0.04] p-6">
         <div
@@ -193,14 +218,14 @@ const sections = [
             📧 <strong>contact.toolstrek@gmail.com</strong>
           </p>
           <a
-            href="/contact-us"
+            href="mailto:contact.toolstrek@gmail.com"
             className="group relative inline-flex items-center gap-2 rounded-full bg-brandColor px-5 py-2.5 text-sm font-medium text-white border border-brandColor ring-1 ring-inset ring-white/25 shadow-[0_8px_24px_-8px] shadow-brandColor/60 transition-all duration-300 hover:-translate-y-0.5 hover:shadow-[0_12px_28px_-8px] hover:shadow-brandColor/70 active:scale-[0.97] cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brandColor/60 focus-visible:ring-offset-2 focus-visible:ring-offset-white dark:focus-visible:ring-offset-gray-950"
           >
             <span
               aria-hidden="true"
               className="pointer-events-none absolute inset-x-4 top-0 h-px bg-gradient-to-r from-transparent via-white/70 to-transparent"
             />
-            Contact Us Page
+            Email ToolsTrek
             <span
               aria-hidden="true"
               className="transition-transform duration-300 group-hover:translate-x-0.5"
@@ -253,19 +278,15 @@ const PrivacyPolicy = () => {
               <span className="absolute inline-flex size-full animate-ping rounded-full bg-brandColor/60" />
               <span className="relative inline-flex size-2 rounded-full bg-brandColor" />
             </span>
-            Last updated:{" "}
-            {new Date().toLocaleDateString("en-US", {
-              year: "numeric",
-              month: "long",
-            })}
+            Last updated: November 2026
           </div>
           <h1 className="mb-4 text-4xl font-bold tracking-tight text-gray-900 dark:text-white md:text-5xl">
             Privacy Policy
           </h1>
           <p className="mx-auto max-w-2xl leading-relaxed text-gray-600 dark:text-gray-400 md:text-lg">
-            Your privacy is our top priority. <strong>ToolsTrek</strong> is
-            designed from the ground up to protect your data. All file
-            processing happens locally in your browser.
+            <strong>ToolsTrek</strong> processes many inputs locally in your
+            browser. Some live lookup tools send request details to our
+            endpoints and external providers; this policy explains those cases.
           </p>
         </motion.div>
 

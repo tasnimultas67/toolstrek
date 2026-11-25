@@ -9,8 +9,11 @@
     "start": "next start",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "test:unit": "node --test",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui"
+    "test:e2e:ui": "playwright test --ui",
+    "validate:catalog": "node scripts/audit-tool-catalog.mjs",
+    "docs:catalog": "node scripts/update-readme-catalog.mjs"
   },
   "dependencies": {
     "@headlessui/react": "^2.2.2",
@@ -52,7 +55,7 @@
     "lucide-react": "^0.507.0",
     "mediabunny": "^1.50.7",
     "motion": "^12.9.4",
-    "next": "^16.4.3",
+    "next": "^16.4.6",
     "pdf-lib": "^1.17.1",
     "pdfjs-dist": "^4.10.38",
     "piexifjs": "^1.0.6",

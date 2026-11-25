@@ -3,6 +3,7 @@ import React from "react";
 
 // ToolsTrek SEO Metadata for PDF Splitter
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/pdf-split" },
   title: "Split PDF Online | Fast & Secure",
   description:
     "Split PDF files into separate pages or extract specific ranges instantly. Secure, browser-based processing—your files never leave your device.",
@@ -18,7 +19,7 @@ export const metadata = {
     title: "Split PDF Online - ToolsTrek",
     description:
       "The easiest way to split PDF files into individual pages for free.",
-    url: "https://toolstrek.vercel.app/tools/pdf-splitter", // Update to your actual route
+    url: "https://toolstrek.vercel.app/tools/pdf-split",
     siteName: "ToolsTrek",
     images: [
       {

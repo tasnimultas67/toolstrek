@@ -214,10 +214,11 @@ export function todayISO() {
 
 export function makeItem(overrides = {}) {
   return {
-    id:
+    id: overrides.id ?? (
       typeof crypto !== "undefined" && crypto.randomUUID
         ? crypto.randomUUID()
-        : `item-${Date.now()}-${Math.random().toString(16).slice(2)}`,
+        : `item-${Date.now()}-${Math.random().toString(16).slice(2)}`
+    ),
     description: "",
     qty: 1,
     unit: "pcs",
@@ -259,6 +260,7 @@ export function makeDefaultInvoice() {
     },
     items: [
       makeItem({
+        id: "demo-brand-identity",
         description: "Brand identity design",
         qty: 1,
         unit: "project",
@@ -266,6 +268,7 @@ export function makeDefaultInvoice() {
         taxRate: 0,
       }),
       makeItem({
+        id: "demo-landing-page",
         description: "Landing page development",
         qty: 32,
         unit: "hrs",
@@ -273,6 +276,7 @@ export function makeDefaultInvoice() {
         taxRate: 10,
       }),
       makeItem({
+        id: "demo-stock-photos",
         description: "Stock photography licence",
         qty: 6,
         unit: "images",

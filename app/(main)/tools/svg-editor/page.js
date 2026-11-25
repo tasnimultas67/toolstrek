@@ -2,6 +2,7 @@ import SVGEditor from "@/app/(main)/tools-compo/tools/SVGEditor";
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/svg-editor" },
   title: "Advanced SVG Editor & Interactive Live Previewer",
   description:
     "Free online SVG editor, customizer, and optimizer. Edit SVG source code, adjust viewBox and dimensions, globally replace colors, prettify or minify markup, and export to SVG, React JSX, Base64, or raster formats (PNG, JPEG, WebP).",

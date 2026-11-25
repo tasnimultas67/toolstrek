@@ -2,11 +2,11 @@
   "general": [
     {
       "question": "What is ToolsTrek?",
-      "answer": "ToolsTrek is a modern, high-performance, browser-first online utility platform built with Next.js 16 and React 19. It brings together 149 powerful, free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, SVG chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-friendly hub."
+      "answer": "ToolsTrek is a modern, browser-first online utility platform built with Next.js 16 and React 19. It brings together free tools across developer utilities, PDF workflows, text and linguistics, health and wellness, finance calculators, image processing, chart generation, in-browser media transcoding, QR tools, and everyday productivity — all in one privacy-aware hub."
     },
     {
       "question": "Is ToolsTrek free to use, and do I need to create an account?",
-      "answer": "Yes! The entire ToolsTrek suite of 149 tools is 100% free with no registration, subscriptions, or hidden paywalls required. You can access every single tool immediately in your browser."
+      "answer": "Yes. ToolsTrek's online tools are free, with no registration, subscription, or hidden paywall required. Most tools run in your browser; live lookup tools connect to the services needed for their results."
     },
     {
       "question": "What categories of tools are available on ToolsTrek?",
@@ -44,23 +44,23 @@
   "privacyAndSecurity": [
     {
       "question": "Do my files, images, or documents get uploaded to a server?",
-      "answer": "For over 90% of our tools — including all PDF workflows, image editing, GIF creation, OCR extraction, audio/video transcoding, metadata editing, ZIP compression, and text operations — processing occurs 100% client-side inside your browser via WebAssembly and WebCodecs. Your files never leave your computer or device."
+      "answer": "Most file, image, PDF, media, text, and calculator tools process your content locally in the browser. Some features download libraries or language assets, and live lookup tools send the specific domain, IP address, email address, or URL needed for the lookup to a ToolsTrek endpoint and sometimes an external provider. Check a tool's notes and our Privacy Policy before using it with sensitive data."
     },
     {
       "question": "Which specific tools require server-side requests?",
-      "answer": "Only tools that require live external network lookups use secure server API routes: Domain Age Checker (WHOIS lookups), IP Geolocation Checker, SSL Certificate Checker (TLS handshakes), Disposable Email Detector (MX record verification), Website Technology Detector, Link Shortener, and contact form submissions."
+      "answer": "Live lookup routes are used by Domain Age Checker (WHOIS), IP Geolocation Checker, SSL Certificate Checker, Disposable Email Detector, DNS & Email Authentication Checker, Website Technology Detector, URL Preview, and Screenshot. The API Request Builder sends requests directly from your browser to the destination API and does not use a ToolsTrek proxy."
     },
     {
       "question": "Are sensitive inputs like passwords, WiFi credentials, or private tokens stored?",
-      "answer": "Never. WiFi credentials, generated passwords, cryptographic hashes, JWT tokens, and metadata adjustments are executed in volatile browser memory and never stored, logged, or sent across the network."
+      "answer": "Tools that generate passwords, process WiFi QR data, hash text, or decode JWTs run those operations in your browser. We do not send those values as analytics events. Live lookup tools and the API Request Builder have separate network behavior described on the tool pages and in our Privacy Policy."
     },
     {
       "question": "Does ToolsTrek store my IP address or query history?",
-      "answer": "No. ToolsTrek does not log personal search queries, IP addresses, or calculation history. Any saved data (such as Favorites or recent tool history) is stored exclusively in your browser's local localStorage."
+      "answer": "ToolsTrek has no account-based query history feature. Favorites, recent tools, and theme preferences are stored in your browser. Vercel Web Analytics collects aggregate page-view and visitor trends; live lookup endpoints and external providers receive the request details needed to answer a lookup and may process standard connection metadata under their own policies."
     },
     {
       "question": "How can I report a bug or suggest a new tool?",
-      "answer": "You can reach out through our Contact page or submit an issue/pull request directly on our GitHub repository. We welcome community feedback and new tool suggestions!"
+      "answer": "Email contact.toolstrek@gmail.com or submit an issue or pull request on the ToolsTrek GitHub repository."
     }
   ],
   "healthAndWellness": [

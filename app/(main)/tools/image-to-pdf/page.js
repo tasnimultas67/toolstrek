@@ -2,6 +2,7 @@ import React from "react";
 import ImageToPDF from "../../tools-compo/tools/ImageToPDF";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/image-to-pdf" },
   title: "Convert Image to PDF",
   description:
     "Easily convert JPG, PNG, and other images to high-quality PDF documents for free on ToolsTrek. Fast, secure, and browser-based conversion.",

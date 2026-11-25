@@ -12,7 +12,7 @@ export const metadata = {
     title: "Text Repeater - Repeat Text Online | ToolsTrek",
     description:
       "Free online text repeater tool to repeat any text multiple times. Customize with separators, prefixes, suffixes.",
-    url: "https://toolstrek.vercel.app/text-repeater",
+    url: "https://toolstrek.vercel.app/tools/text-repeater",
     siteName: "ToolsTrek",
     type: "website",
   },
@@ -23,7 +23,7 @@ export const metadata = {
       "Free online text repeater tool to repeat any text multiple times.",
   },
   alternates: {
-    canonical: "https://toolstrek.vercel.app/text-repeater",
+    canonical: "https://toolstrek.vercel.app/tools/text-repeater",
   },
 };
 

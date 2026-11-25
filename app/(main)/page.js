@@ -6,6 +6,13 @@ import HeroSkeleton from "./tools-compo/Home-Compo/HeroSkeleton";
 import WhyChooseUs from "./tools-compo/WhyChooseUs";
 import StatsBar from "./tools-compo/StatsBar";
 import ToolboxShowcase from "./tools-compo/ToolboxShowcase";
+import { SITE_URL, TOOL_COUNT } from "@/lib/siteConfig";
+
+export const metadata = {
+  title: "Free Online Utility Hub",
+  description: `Explore ${TOOL_COUNT} free browser-first utilities for developers, students, and everyday tasks.`,
+  alternates: { canonical: SITE_URL },
+};
 
 export default function Home() {
   return (

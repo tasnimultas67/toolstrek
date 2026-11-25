@@ -13,7 +13,7 @@ export const metadata = {
     title: "N-Up PDF Layout Tool | ToolsTrek",
     description:
       "Convert your PDF to a multi-page per sheet layout (2-up, 4-up, etc.) instantly.",
-    url: "https://toolstrek.vercel.app/",
+    url: "https://toolstrek.vercel.app/tools/n-up-pdf",
     siteName: "ToolsTrek",
     type: "website",
   },

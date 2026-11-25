@@ -13,7 +13,7 @@ export const metadata = {
     title: "Combine Multiple Files into One PDF | ToolsTrek",
     description:
       "The simplest way to merge your documents and images into a single PDF file.",
-    url: "https://toolstrek.vercel.app/",
+    url: "https://toolstrek.vercel.app/tools/combine-files-to-pdf",
     siteName: "ToolsTrek",
     images: [
       {

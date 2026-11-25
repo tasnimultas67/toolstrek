@@ -3,6 +3,7 @@ import React from "react";
 
 // ToolsTrek SEO Metadata for PDF Reorder
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/pdf-reorder" },
   title: "Rearrange PDF Pages Online | Organize PDF",
   description:
     "Easily reorder, move, or delete pages in your PDF document. Use our intuitive drag-and-drop interface to organize your PDF exactly how you want it on ToolsTrek.",

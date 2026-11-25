@@ -1,7 +1,7 @@
 import BrandKitContent from "./BrandKitContent";
+import { SITE_URL, TOOL_COUNT } from "@/lib/siteConfig";
 
-const BASE_URL = "https://toolstrek.vercel.app";
-const PAGE_URL = `${BASE_URL}/brand-kit`;
+const PAGE_URL = `${SITE_URL}/brand-kit`;
 const PAGE_TITLE = "Brand & Media Kit";
 const PAGE_DESCRIPTION =
   "Download the official ToolsTrek brand assets — logos, monogram, app icon, social card, colour palette, typography, usage guidelines and press contact details.";
@@ -31,7 +31,7 @@ export const metadata = {
     description: PAGE_DESCRIPTION,
     images: [
       {
-        url: `${BASE_URL}/brand/toolstrek-social-card.png`,
+        url: `${SITE_URL}/brand/toolstrek-social-card.png`,
         width: 1200,
         height: 630,
         alt: "ToolsTrek brand and media kit",
@@ -44,7 +44,7 @@ export const metadata = {
     creator: "@toolstrek",
     title: `${PAGE_TITLE} — ToolsTrek`,
     description: PAGE_DESCRIPTION,
-    images: [`${BASE_URL}/brand/toolstrek-social-card.png`],
+    images: [`${SITE_URL}/brand/toolstrek-social-card.png`],
   },
 };
 
@@ -57,8 +57,8 @@ const brandSchema = {
   about: {
     "@type": "Organization",
     name: "ToolsTrek",
-    url: BASE_URL,
-    logo: `${BASE_URL}/brand/toolstrek-logo-primary.svg`,
+    url: SITE_URL,
+    logo: `${SITE_URL}/brand/toolstrek-logo-primary.svg`,
     sameAs: ["https://github.com/tasnimultas67/toolstrek"],
   },
 };
@@ -70,7 +70,7 @@ export default function BrandKitPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(brandSchema) }}
       />
-      <BrandKitContent />
+      <BrandKitContent toolCount={TOOL_COUNT} />
     </>
   );
 }

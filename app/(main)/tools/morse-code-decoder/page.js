@@ -1,6 +1,7 @@
 import MorseCodeDecoder from "@/app/(main)/tools-compo/tools/MorseCodeDecoder";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/morse-code-decoder" },
   title: "Morse Code Decoder & Encoder",
   description:
     "Free online Morse Code Decoder and Encoder. Instantly translate text to Morse code and Morse code to text. Features real-time translation, audio playback, and a complete Morse code reference chart.",

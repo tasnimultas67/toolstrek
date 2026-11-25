@@ -3,6 +3,7 @@ import React from "react";
 
 // ToolsTrek SEO Metadata for Image to Text (OCR)
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/image-to-text" },
   title: "Image to Text Converter | Free Online OCR",
   description:
     "Extract text from images accurately with our free online OCR tool. Convert JPG, PNG, and scanned documents to editable text instantly on ToolsTrek.",

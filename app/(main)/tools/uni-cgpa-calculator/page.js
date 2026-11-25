@@ -1,6 +1,7 @@
 import UniCGPACalculator from "@/app/(main)/tools-compo/tools/UniCGPACalculator";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/uni-cgpa-calculator" },
   title: "University CGPA Calculator (Private & Public)",
   description:
     "Calculate GPA/CGPA for Private and Public Universities in Bangladesh. Includes presets for BUET, NSU, BRAC, UIU, AIUB, AUST, custom grading scales, semester CGPA calculator, target GPA planning, and downloadable image results.",

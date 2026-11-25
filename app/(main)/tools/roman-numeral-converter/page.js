@@ -1,6 +1,7 @@
 import RomanNumeralConverter from "@/app/(main)/tools-compo/tools/RomanNumeralConverter";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/roman-numeral-converter" },
   title: "Roman Numeral Converter",
   description:
     "Convert standard numbers to Roman numerals and back with ease. Real-time conversion, step-by-step mathematical breakdown, interactive Roman keyboard, and full reference guide.",

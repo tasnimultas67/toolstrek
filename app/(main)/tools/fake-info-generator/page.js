@@ -2,6 +2,7 @@ import FakeInfoGenerator from "@/app/(main)/tools-compo/tools/FakeInfoGenerator"
 import React from "react";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/fake-info-generator" },
   title: "Fake Info Generator",
   description:
     "Generate random and realistic fake user data, personal info, and test data quickly for your development and testing needs with ToolsTrek.",
@@ -15,7 +16,7 @@ export const metadata = {
     title: "Fake Info Generator | ToolsTrek",
     description:
       "Generate random and realistic fake user data, personal info, and test data quickly for your development and testing needs with ToolsTrek.",
-    url: "https://toolstrek.vercel.app", // Update with your specific route path if needed, e.g., /fake-info
+    url: "https://toolstrek.vercel.app/tools/fake-info-generator",
     siteName: "ToolsTrek",
     type: "website",
   },

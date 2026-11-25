@@ -99,6 +99,7 @@ export default function ImageWatermark() {
     if (file.size > 25 * 1024 * 1024) { toast.error("Image must be under 25MB"); return; }
     const reader = new FileReader();
     reader.onload = (e) => {
+      setImageDims(null);
       setImageSrc(e.target.result);
       setImageName(file.name);
       setResultUrl("");
@@ -117,8 +118,18 @@ export default function ImageWatermark() {
 
   // Measure image dims
   useEffect(() => {
-    if (!imageSrc) { setImageDims(null); return; }
-    loadImage(imageSrc).then((img) => setImageDims({ w: img.naturalWidth, h: img.naturalHeight })).catch(() => setError("Could not load image"));
+    if (!imageSrc) return;
+    let cancelled = false;
+    loadImage(imageSrc)
+      .then((img) => {
+        if (!cancelled) setImageDims({ w: img.naturalWidth, h: img.naturalHeight });
+      })
+      .catch(() => {
+        if (!cancelled) setError("Could not load image");
+      });
+    return () => {
+      cancelled = true;
+    };
   }, [imageSrc]);
 
   const drawWatermark = useCallback(async (canvas, img) => {

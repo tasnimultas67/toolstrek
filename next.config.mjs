@@ -9,9 +9,6 @@ const nextConfig = {
     ],
   },
 
-  // Stable top-level key
-  serverExternalPackages: ["pdfjs-dist"],
-
   // Turbopack configuration
   turbopack: {},
 

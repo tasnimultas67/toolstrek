@@ -3479,5 +3479,252 @@
       "Calculator",
       "Education"
     ]
+  },
+  {
+    "title": "Matrix Generator",
+    "link": "/tools/matrix-generator",
+    "description": "Generate random, identity, diagonal, triangular, symmetric, skew-symmetric, sparse, Hilbert, Vandermonde and other matrices in one click. Control size, number range, decimals and seed reproducibility, edit cells directly, inspect determinant, rank, inverse and transpose, and export to CSV, TSV, JSON, LaTeX, Markdown, Python, MATLAB or JavaScript.",
+    "icon": "Grid3x3",
+    "keywords": [
+      "matrix generator",
+      "random matrix generator",
+      "create matrix online",
+      "identity matrix generator",
+      "symmetric matrix generator",
+      "diagonal matrix generator",
+      "triangular matrix generator",
+      "hilbert matrix",
+      "vandermonde matrix",
+      "sparse matrix generator",
+      "matrix csv export",
+      "matrix latex generator",
+      "matrix to python",
+      "matrix to matlab",
+      "linear algebra matrix maker",
+      "editable matrix generator",
+      "reproducible matrix seed"
+    ],
+    "categories": [
+      "Calculator",
+      "Education"
+    ]
+  },
+  {
+    "title": "Password Entropy Calculator",
+    "link": "/tools/password-entropy-calculator",
+    "description": "Measure password strength with transparent Shannon entropy, character-pool and pattern-aware penalties, common-password detection and realistic crack-time models. Compare attack scenarios, build memorable passphrases, plan length upgrades and export a full security report — all locally in your browser.",
+    "icon": "KeyRound",
+    "keywords": [
+      "password entropy calculator",
+      "password strength calculator",
+      "shannon entropy password",
+      "password crack time calculator",
+      "password bits calculator",
+      "passphrase entropy",
+      "password security checker",
+      "password complexity calculator",
+      "how long to crack my password",
+      "password dictionary check",
+      "passphrase generator",
+      "password length calculator",
+      "brute force time calculator",
+      "password audit report",
+      "strong password test"
+    ],
+    "categories": [
+      "Security",
+      "Developer"
+    ]
+  },
+  {
+    "title": "Trigonometric Function Calculator",
+    "link": "/tools/trigonometric-calculator",
+    "description": "Evaluate all six trigonometric functions plus hyperbolics in degrees, radians, gradians or turns, with exact values at special angles, inverse functions, atan2 quadrant handling, a right-triangle solver and an interactive unit circle. Includes step-by-step identities, reference angles and CSV export.",
+    "icon": "TriangleRight",
+    "keywords": [
+      "trigonometric calculator",
+      "trig function calculator",
+      "sin cos tan calculator",
+      "unit circle calculator",
+      "inverse trig calculator",
+      "atan2 calculator",
+      "radians to degrees calculator",
+      "exact trig values",
+      "right triangle solver",
+      "hyperbolic functions calculator",
+      "sec csc cot calculator",
+      "reference angle calculator",
+      "trigonometry solver",
+      "sohcahtoa calculator",
+      "trig identities calculator"
+    ],
+    "categories": [
+      "Calculator",
+      "Education"
+    ]
+  },
+  {
+    "title": "Color Contrast Checker",
+    "link": "/tools/color-contrast-checker",
+    "description": "Test any foreground and background pair against WCAG 2.2 AA and AAA, score APCA contrast, preview real interface text, check large-text thresholds, simulate protanopia, deuteranopia and tritanopia, and generate accessible color fixes. Supports hex, RGB, HSL and eyedropper input.",
+    "icon": "Contrast",
+    "keywords": [
+      "color contrast checker",
+      "contrast ratio checker",
+      "wcag contrast checker",
+      "wcag aa checker",
+      "wcag aaa checker",
+      "accessible color checker",
+      "apca contrast calculator",
+      "text contrast checker",
+      "background contrast checker",
+      "color accessibility tool",
+      "color blindness simulator",
+      "accessible color palette",
+      "contrast checker hex rgb hsl",
+      "web accessibility checker",
+      "readable text color"
+    ],
+    "categories": [
+      "Design",
+      "Developer"
+    ]
+  },
+  {
+    "title": "PDF Page Rotator",
+    "link": "/tools/pdf-page-rotator",
+    "description": "Rotate individual PDF pages, ranges such as 1-3,5 or every page left, right and 180° with live thumbnails. Preview the final orientation, audit original sizes and rotations, reset pages, and export the full document or only the selected pages — losslessly and entirely in your browser.",
+    "icon": "RotateCw",
+    "keywords": [
+      "pdf page rotator",
+      "rotate pdf",
+      "rotate pdf pages",
+      "rotate pdf online",
+      "free pdf rotator",
+      "turn pdf pages",
+      "rotate one pdf page",
+      "rotate pdf 90 degrees",
+      "rotate pdf 180 degrees",
+      "fix upside down pdf",
+      "rotate scanned pdf",
+      "pdf page orientation",
+      "rotate selected pdf pages",
+      "lossless pdf rotation",
+      "rotate pdf without quality loss"
+    ],
+    "categories": [
+      "PDF",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "DNS & Email Authentication Checker",
+    "link": "/tools/dns-email-auth-checker",
+    "description": "Look up public A, AAAA, CNAME, MX, NS, CAA and TXT records, then check SPF and DMARC records and query a chosen DKIM selector. Results are served from the DNS lookup endpoint; no email content or passwords are requested.",
+    "icon": "Globe2",
+    "keywords": [
+      "dns lookup",
+      "dns checker",
+      "dns record lookup",
+      "spf checker",
+      "dmarc checker",
+      "dkim lookup",
+      "email authentication checker",
+      "mx record lookup",
+      "txt record lookup",
+      "caa record lookup",
+      "domain dns records"
+    ],
+    "categories": [
+      "Developer",
+      "Security"
+    ]
+  },
+  {
+    "title": "API Request Builder",
+    "link": "/tools/api-request-builder",
+    "description": "Compose GET, POST, PUT, PATCH, DELETE and HEAD requests directly from your browser. Configure JSON headers and bodies, inspect formatted responses and timing, and keep credentials transient without a ToolsTrek proxy.",
+    "icon": "Code2",
+    "keywords": [
+      "api request builder",
+      "rest api tester",
+      "http request tool",
+      "api client online",
+      "test api endpoint",
+      "post request tester",
+      "get request tester",
+      "json api tester",
+      "http headers tester",
+      "browser api client",
+      "rest api debugger"
+    ],
+    "categories": [
+      "Developer"
+    ]
+  },
+  {
+    "title": "Cron Expression Builder",
+    "link": "/tools/cron-expression-builder",
+    "description": "Build and explain standard five-field cron expressions with numbers, lists, ranges and steps, then preview upcoming run times in the browser's local timezone or UTC. Supports Unix-style syntax, not Quartz extensions.",
+    "icon": "CalendarClock",
+    "keywords": [
+      "cron expression builder",
+      "cron expression generator",
+      "cron parser",
+      "cron explainer",
+      "cron schedule calculator",
+      "cron next run time",
+      "crontab generator",
+      "five field cron",
+      "cron syntax validator",
+      "cron schedule preview"
+    ],
+    "categories": [
+      "Developer",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "PDF OCR & Text Extractor",
+    "link": "/tools/pdf-ocr-text-extractor",
+    "description": "Extract selectable PDF text and run English OCR on scanned pages in your browser. Process up to 25 MB and 30 pages per run, then download the combined page-by-page text as TXT without uploading the document.",
+    "icon": "FileSearch",
+    "keywords": [
+      "pdf ocr",
+      "ocr pdf online",
+      "scanned pdf to text",
+      "extract text from pdf",
+      "pdf text extractor",
+      "search scanned pdf",
+      "pdf optical character recognition",
+      "english pdf ocr",
+      "pdf to txt",
+      "local pdf ocr"
+    ],
+    "categories": [
+      "PDF",
+      "Productivity"
+    ]
+  },
+  {
+    "title": "Robots.txt & Sitemap Validator",
+    "link": "/tools/robots-sitemap-validator",
+    "description": "Validate robots.txt directives and sitemap XML structure, absolute URLs, duplicate entries and common file limits. Paste content or load a local file; validation happens in your browser without fetching the domain.",
+    "icon": "ListChecks",
+    "keywords": [
+      "robots txt validator",
+      "robots.txt checker",
+      "sitemap validator",
+      "sitemap xml checker",
+      "xml sitemap tester",
+      "robots file tester",
+      "sitemap url validation",
+      "robots directives checker",
+      "seo technical checker",
+      "local sitemap validation"
+    ],
+    "categories": [
+      "Developer"
+    ]
   }
 ]

@@ -6,7 +6,7 @@ const baseURL = `http://localhost:${PORT}`;
 
 /**
  * Playwright config for the ToolsTrek regression smoke suite.
- * Boots the Next.js dev server automatically and runs a single Chromium project.
+ * Builds and serves the production app before running a single Chromium project.
  */
 module.exports = defineConfig({
   testDir: "./e2e",

@@ -2,6 +2,7 @@
 import PasswordStrengthTester from "./PasswordStrengthTester";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/password-strength-tester" },
   title: "Password Strength Tester",
   keywords: [
     "password strength tester",

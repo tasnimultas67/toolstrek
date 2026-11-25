@@ -12,7 +12,7 @@ export const metadata = {
   openGraph: {
     title: "Compress PDF Online | ToolsTrek",
     description: "Shrink your PDF files in seconds.",
-    url: "https://toolstrek.vercel.app/",
+    url: "https://toolstrek.vercel.app/tools/compress-pdf",
     siteName: "ToolsTrek",
     type: "website",
   },

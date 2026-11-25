@@ -1,6 +1,7 @@
 import Base64Nexus from "@/app/(main)/tools-compo/tools/Base64Nexus";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/base64-encoder-decoder" },
   title: "Base64 Nexus - Base64 Encoder & Decoder",
   description:
     "Free online Base64 Encoder & Decoder. Convert text or files to Base64 (including URL-safe and custom alphabets), decode Base64 back to plain text or binary files, preview decoded images/PDFs in real-time, view byte density maps, and browse code examples.",

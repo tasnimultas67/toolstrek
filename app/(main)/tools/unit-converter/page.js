@@ -2,6 +2,7 @@ import React from "react";
 import UnitConverter from "@/app/(main)/tools-compo/UnitConverter";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/unit-converter" },
   title: "Unit Converter - Convert Length, Weight, Temperature & More",
   description: "Free online unit converter. Convert length, weight, temperature, area, volume, speed, time and data storage units instantly.",
   keywords: [

@@ -1,6 +1,7 @@
 import QRScanner from "@/app/(main)/tools-compo/QRScanner";
 import React from "react";
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/qr-scanner" },
   title: "QR Scanner",
   keywords: ["qr", "scanner", "tools"],
   description: "Scan QR codes easily and quickly",

@@ -7,6 +7,7 @@ import Footer from "./tools-compo/Footer";
 import GlobalSearchModal from "@/components/ui/GlobalSearchModal";
 import RecentToolsTracker from "@/components/RecentToolsTracker";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
+import { SITE_NAME, SITE_URL, TOOL_COUNT } from "@/lib/siteConfig";
 
 const outfit = Outfit({
   subsets: ["latin"],
@@ -20,8 +21,7 @@ const outfit = Outfit({
 // (e.g. "ToolsTrek — Your Online Utility Hub | ToolsTrek") on routes such as
 // the homepage that don't set their own title.
 export const metadata = {
-  description:
-    "100+ free online tools for developers, students & professionals — QR codes, PDF utilities, image converters, calculators, text tools and more. No sign-up required, 100% in-browser privacy.",
+  description: `${TOOL_COUNT} free browser-first tools for developers, students, and everyday tasks. Most file, text, and calculator processing stays in your browser; live checks contact relevant services. No account required.`,
   keywords: [
     "free online tools",
     "web utilities",
@@ -35,25 +35,22 @@ export const metadata = {
     "no signup tools",
     "client-side tools",
     "privacy-friendly tools",
-    "URL shortener",
     "BMI calculator",
     "unit converter",
   ],
-  authors: [{ name: "Tasnimul Haque", url: "https://toolstrek.vercel.app" }],
-  creator: "ToolsTrek",
-  publisher: "ToolsTrek",
+  authors: [{ name: "Tasnimul Haque", url: SITE_URL }],
+  creator: SITE_NAME,
+  publisher: SITE_NAME,
   category: "technology",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://toolstrek.vercel.app",
-    siteName: "ToolsTrek",
-    title: "ToolsTrek — 100+ Free Online Utility Tools",
-    description:
-      "Explore 100+ free, privacy-first online tools. QR codes, PDF tools, image converters, calculators, and more — no sign-up, runs entirely in your browser.",
+    siteName: SITE_NAME,
+    title: `${SITE_NAME} — ${TOOL_COUNT} Free Online Tools`,
+    description: `${TOOL_COUNT} free browser-first tools for files, text, calculations, design, and developer workflows. No account required.`,
     images: [
       {
-        url: "https://toolstrek.vercel.app/brand/toolstrek-social-card.png",
+        url: `${SITE_URL}/brand/toolstrek-social-card.png`,
         width: 1200,
         height: 630,
         alt: "ToolsTrek — Your Online Utility Hub",
@@ -64,10 +61,9 @@ export const metadata = {
     card: "summary_large_image",
     site: "@toolstrek",
     creator: "@toolstrek",
-    title: "ToolsTrek — 100+ Free Online Utility Tools",
-    description:
-      "Explore 100+ free, privacy-first online tools. QR codes, PDF tools, image converters, calculators, and more — no sign-up, runs entirely in your browser.",
-    images: ["https://toolstrek.vercel.app/brand/toolstrek-social-card.png"],
+    title: `${SITE_NAME} — ${TOOL_COUNT} Free Online Tools`,
+    description: `${TOOL_COUNT} free browser-first tools for files, text, calculations, design, and developer workflows. No account required.`,
+    images: [`${SITE_URL}/brand/toolstrek-social-card.png`],
   },
   robots: {
     index: true,
@@ -80,9 +76,6 @@ export const metadata = {
       "max-image-preview": "large",
       "max-snippet": -1,
     },
-  },
-  alternates: {
-    canonical: "https://toolstrek.vercel.app",
   },
   formatDetection: {
     telephone: false,

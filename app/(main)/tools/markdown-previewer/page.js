@@ -3,6 +3,7 @@ import React from "react";
 
 // ToolsTrek SEO Metadata
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/markdown-previewer" },
   title: "Markdown Previewer",
   description:
     "Free online Markdown editor and real-time previewer. Write GitHub-flavored Markdown and see the live HTML result instantly on ToolsTrek.",

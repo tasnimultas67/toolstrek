@@ -1,6 +1,7 @@
 import BrailleDecoder from "@/app/(main)/tools-compo/tools/BrailleDecoder";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/braille-decoder" },
   title: "Braille Encoder & Decoder",
   description:
     "Free online Braille Encoder and Decoder supporting Bangla (Bengali Braille) and English (Grade 1 Braille). Instantly convert text to Braille or decode Braille back to readable text with a full visual reference chart — all client-side, no uploads needed.",

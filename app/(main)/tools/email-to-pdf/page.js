@@ -2,6 +2,7 @@ import React from "react";
 import EmailToPDF from "../../tools-compo/tools/EmailToPDF";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/email-to-pdf" },
   title: "Convert Email to PDF Online",
   description:
     "Convert EML email files to high-quality PDF documents for free. Customize paper size (A4, Letter, A3), orientation, margins, headers, colors, fonts, and extract attachments in your browser safely.",

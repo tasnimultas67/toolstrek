@@ -33,7 +33,7 @@ export const metadata = {
       "Calculate exact days, working business days, and duration between dates with instant breakdown."
   },
   alternates: {
-    canonical: "https://toolstrek.vercel.app/tools/countdown-timer"
+    canonical: "https://toolstrek.vercel.app/tools/days-until-calculator"
   }
 };
 

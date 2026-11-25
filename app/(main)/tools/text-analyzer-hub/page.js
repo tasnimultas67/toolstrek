@@ -2,6 +2,7 @@ import React from "react";
 import TextAnalyzerHub from "@/app/(main)/tools-compo/tools/TextAnalyzerHub";
 
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/text-analyzer-hub" },
   title: "All-in-One Text Analyzer Hub",
   description:
     "An all-in-one text utility toolkit to count characters, words, sentences, and lines. Perform advanced case conversions, clean duplicate lines/HTML markup, find and replace with regex, and run base64/hex/binary codecs.",

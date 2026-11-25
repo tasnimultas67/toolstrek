@@ -3,6 +3,7 @@ import React from "react";
 
 // Metadata for SEO
 export const metadata = {
+  alternates: { canonical: "https://toolstrek.vercel.app/tools/svg-converter" },
   title: "SVG to PNG/JPG/WebP Converter",
   description:
     "Convert SVG vector images to high-quality PNG, JPEG, or WebP formats completely client-side. Free, fast, secure, and customizable dimensions at ToolsTrek.",
